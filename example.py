@@ -18,6 +18,9 @@ from plotly.subplots import make_subplots
 snp500 = pd.read_csv("SP500.csv")
 symbols = snp500['Symbol'].sort_values().tolist()  
 
+
+
+
 ticker = st.sidebar.selectbox(
 	'Choose a S&P 500 Stock',
 	 symbols) 
