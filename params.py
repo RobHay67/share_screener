@@ -31,8 +31,7 @@ opening_hours = {
 						},
 						'USA':{	'group_1':{'letter_range':['1', '2', '3', '4', '5', '8', '9', 'A', 'B'], 'opening_time':'10:00:00','minutes_per_day':360   },
 							},
-}
-
+				}
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Share Data file Schema
@@ -81,7 +80,7 @@ download_share_data_schemas =    {
 							}
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Scope Params Object
+# Scope out the Params Object == session_state in streamlit
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def set_session_variables(session_state, project_description):
 	if 'initial_run' not in session_state:
@@ -140,9 +139,9 @@ def set_session_variables(session_state, project_description):
 
 
 		# Market Dictionaries
-		session_state.market_info_markets = markets
-		session_state.market_info_public_holidays = public_holidays
-		session_state.market_info_opening_hours = opening_hours	
+		session_state.market_suffix = markets
+		session_state.market_public_holidays = public_holidays
+		session_state.market_opening_hours = opening_hours	
 		
 
 		# Strategy Params
@@ -262,7 +261,7 @@ def construct_list_of_share_codes(params):
 	# Most detailed takes precedece
 	if len(params.selected_tickers) != 0:
 		for ticker in params.selected_tickers:
-			st.warning('adding this ticker = ' + ticker )
+			st.warning('adding this ticker to the Ticker List = ' + ticker )
 			ticker_list += [ticker]	
 		pass
 	elif len(params.selected_industry) != 0:
