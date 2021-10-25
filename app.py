@@ -4,10 +4,10 @@ project_description = 'Share Trader - DDT'
 
 
 
-from params import set_initial_session_state, render_sidebar_drop_down_lists, render_app_params_selector, construct_list_of_share_codes
+from params import set_initial_session_state, render_sidebar_drop_down_lists, render_app_params_selector
 from share_index import load_share_index_file
 
-from home_page import render_home_page
+from home_page import render_home_page, construct_list_of_share_codes
 
 
 # Set Up Streamlit Environment ==================================================================================
@@ -25,17 +25,17 @@ print ( '-'*100)
 # print ( 'session_state.display_page = ', st.session_state.display_page )
 # if 'ticker_list' in st.session_state:
 # 	print ('ticker list in session is this long ', len(st.session_state.ticker_list))
-print ( '*'*100)
-print( 'List of all keys in the st.session_state')
+# print ( '*'*100)
+# print( 'List of all keys in the st.session_state')
 # if 'first_render_of_streamlit' in st.session_state:
 # 	print(st.session_state)
 # 	for key in sorted(st.session_state):
 # 		print ( key)
-print ( '-'*100)
+# print ( '-'*100)
 
 
 # Display Appropriate Page ====================================================================================== 
-print ( 'Current Page = ', st.session_state.display_page)
+# print ( 'Current Page = ', st.session_state.display_page)
 
 if st.session_state.display_page == 'home':
 	render_home_page(st.session_state)
@@ -74,10 +74,10 @@ def show_params_page():
 
 # Select Tickers -----------------------------------------------------------------------------------------------
 st.sidebar.title(project_description)
-st.sidebar.subheader('Select Tickers')
+# st.sidebar.subheader('Select Tickers')
 market = st.sidebar.selectbox  ('Select Market', st.session_state.available_markets, on_change=update_ticker_list)
-industry = st.sidebar.multiselect('Select Industry', st.session_state.available_industries, on_change=update_ticker_list, help='This is help')
-tickers = st.sidebar.multiselect('Select Ticker(s)', st.session_state.available_tickers, on_change=update_ticker_list) 
+industry = st.sidebar.multiselect('Select Industry', st.session_state.available_industries, on_change=update_ticker_list, help='Quickly Select all tickers in a particular industry')
+tickers = st.sidebar.multiselect('Select Ticker(s)', st.session_state.available_tickers, on_change=update_ticker_list, help='Select a ticker, or multiple tickers from the dropdown. Start typing to jump within list') 
 
 # if st.session_state.ticker_list_needs_updating:
 # 	print( 'ticker_list_needs_updating = TRUE so attempting to update')

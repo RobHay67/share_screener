@@ -1,12 +1,12 @@
-from types import SimpleNamespace
-import time  
-from datetime import datetime, timedelta 
+# from types import SimpleNamespace
+
 import pandas as pd
 import pathlib
 import os 
+import time  
+from datetime import datetime, timedelta 
 import streamlit as st
 
-from share_index import load_share_index_file
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Config - Market Information
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -84,14 +84,14 @@ download_share_data_schemas =    {
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def set_initial_session_state(session_state, project_description):
 	if 'first_render_of_streamlit' not in session_state:
-		st.session_state.first_render_of_streamlit = True
+		session_state.first_render_of_streamlit = True
 
 
 	print( 'first render = ', session_state.first_render_of_streamlit)
 	if session_state.first_render_of_streamlit:
 		# st.warning('Updating the session state params')
 		# Streamlit Params
-		st.session_state.display_page = 'undetermined'
+		session_state.display_page = 'undetermined'
 
 		# Project Params
 		session_state.project_description = project_description
@@ -120,10 +120,7 @@ def set_initial_session_state(session_state, project_description):
 		# Available Share Markerts
 		session_state.available_markets = list(markets.keys())
 		session_state.selected_market = 'ASX'
-		
-		# Share Index - Default Load = Australia
-		# load_share_index_file(session_state)
-		
+				
 		# Share Data Files
 		session_state.share_data_files = {}
 		session_state.share_data_loaded_list = []
@@ -154,23 +151,21 @@ def set_initial_session_state(session_state, project_description):
 		session_state.chart_macd_on_price = {}
 		session_state.chart_macd_on_volume = {}
 		
-
 def render_sidebar_drop_down_lists(session_state):
 	if session_state.first_render_of_streamlit:
-		# st.warning('Updating the session state params')
 		# Available Share industries
 		industries = session_state.share_index_file['industry_group'].unique().tolist()
 		industries.sort()
 		session_state.available_industries = industries
+		session_state.selected_industry = None
 		
 		# Available Share Tickers
 		session_state.available_tickers = session_state.share_index_file.index.values.tolist()
+		session_state.selected_tickers = None
 		
 		# Ticker list - for analysis
 		session_state.ticker_list_needs_updating = False
 		session_state.ticker_list = []
-
-
 
 def render_app_params_selector(session_state):
 	st.title('Application Parameters')
@@ -195,229 +190,271 @@ def render_app_params_selector(session_state):
 							)
 
 	if param_group == 'Lists - Ticker(s)':
-		st.header('Ticker Lists')
+		st.subheader('Ticker Lists')
 		
-		st.subheader('Update the Ticker List ?')
-		st.code('ticker_list_needs_updating')
-		st.write(st.session_state.ticker_list_needs_updating)
-
-		st.subheader('Ticker List - these are the tickers for any analysis')
-		st.code('ticker_list')
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Ticker List Needs Updating ?')
+		with col2: st.write(st.session_state.ticker_list_needs_updating)
+		with col3: st.code('< ticker_list_needs_updating >')
+		
+		col1,col2 = st.columns([4,4])
+		with col1: st.write('Analysis Ticker List')
+		with col2: st.code('< ticker_list >')
 		st.write(st.session_state.ticker_list)
-
 		
-
-		st.subheader('Loaded Ticker List')
-		st.code('share_data_loaded_list')
+		col1,col2 = st.columns([4,4])
+		with col1: st.write('Loaded Ticker List')
+		with col2: st.code('< share_data_loaded_list >')
 		st.write(st.session_state.share_data_loaded_list)
 
-		st.subheader('Missing Ticker List')
-		st.code('share_data_missing_list')
+		col1,col2 = st.columns([4,4])
+		with col1: st.write('Missing Ticker List')
+		with col2: st.code('< share_data_missing_list >')
 		st.write(st.session_state.share_data_missing_list)
 
-	if param_group == 'Lists - Industries': # DONE
-		st.header('Share Index File contains the following Industries')
+	if param_group == 'Lists - Industries':
+		st.subheader('Share Index File contains the following Industries')
 		industry_group_count = pd.DataFrame(st.session_state.share_index_file['industry_group'].value_counts())
 		industry_group_count.index.name = 'Industry'
 		industry_group_count.columns =['No of Codes']
-		st.table(industry_group_count)
+		st.dataframe(industry_group_count, 2000, 1200)
 
-	if param_group == 'File - Share Index File': # DONE
-		st.header('Share Index File')
-		st.code('share_index_file')
+	if param_group == 'File - Share Index File':
+		col1,col2 = st.columns([4,4])
+		with col1: st.subheader('Share Index File')
+		with col2: st.code('< share_index_file >')
 		st.dataframe(st.session_state.share_index_file, 2000, 1200)
 
-	if param_group == 'File - Share Data Files':
-		st.header('Share Data Files')
+	if param_group == 'File - Share Data Files': # TODO 
+		col1,col2 = st.columns([4,4])
+		with col1: st.subheader('Share Data Files (loaded)')
+		with col2: st.code('< share_data_files >')
 		#TODO - does this need to be a table - we need to load some data before checking
-		# TODO - Rob - I dont think the lists belong in this section
-		
-		st.subheader('Share Data Files (loaded)')
-		st.code('share_data_files')
 		st.write(st.session_state.share_data_files)
 
-	if param_group == 'Streamlit': # DONE
-		st.header('Streamlit Application Variables')
+	if param_group == 'Streamlit':
+		st.subheader('Streamlit Variables')
 
-		st.subheader('Selected Market')
-		st.code('selected_market')
-		st.write(st.session_state.selected_market)
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Initial Run / load')
+		with col2: st.write(st.session_state.first_render_of_streamlit)
+		with col3: st.code('< first_render_of_streamlit >')
 
-		st.subheader('Selected Industry(s)')
-		st.code('selected_industry')
-		st.write(st.session_state.selected_industry)
-
-		st.subheader('Selected Ticker(s)')
-		st.code('selected_tickers')
-		st.write(st.session_state.selected_tickers)
-
-		st.subheader('Initial Run / load')
-		st.code('first_render_of_streamlit')
-		st.write(st.session_state.first_render_of_streamlit)
-
-		st.subheader('List of Available Markets Generated for Steamlit')
-		st.code('available_markets')
-		st.write(st.session_state.available_markets)
-
-		st.subheader('List of Available Industries Generated for Steamlit')
-		st.code('available_industries')
-		st.write(st.session_state.available_industries)
-
-		st.subheader('List of Available Tickers Generated for Steamlit')
-		st.code('available_tickers')
-		st.write(st.session_state.available_tickers)
-
-	if param_group == 'Application': # DONE
-		st.header('Application Parameters')
-
-		st.subheader('Project Description')
-		st.code('project_description')
-		st.write(st.session_state.project_description)
-
-		st.subheader('Project Start Time')
-		st.code('project_start_time')
-		st.write(datetime.datetime.fromtimestamp(st.session_state.project_start_time).strftime('%Y-%m-%d %H:%M:%S %p'))
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Selected Market')
+		with col2: st.subheader(st.session_state.selected_market)
+		with col3: st.code('< selected_market >')
 		
-		st.header('Terminal Parameters')
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Selected Industry(s)')
+		with col2: st.write(st.session_state.selected_industry)
+		with col3: st.code('< selected_industry >')
 
-		st.subheader('Terminal Audit')
-		st.code('terminal_audit')
-		st.write(st.session_state.terminal_audit)
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Selected Ticker(s)')
+		with col2: st.write(st.session_state.selected_tickers)
+		with col3: st.code('< selected_tickers >')
 
-		st.subheader('Terminal Width')
-		st.code('terminal_width')
-		st.write(st.session_state.terminal_width)
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('List of Available Markets Generated for Steamlit')
+		with col2: st.write(st.session_state.available_markets)
+		with col3: st.code('< available_markets >')
+		
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('List of Available Industries Generated for Steamlit')
+		with col2: st.write(st.session_state.available_industries)
+		with col3: st.code('< available_industries >')
+		
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('List of Available Tickers Generated for Steamlit')
+		with col2: st.write(st.session_state.available_tickers)
+		with col3: st.code('< available_tickers >')
 
-		st.subheader('Terminal Print Width')
-		st.code('terminal_print_width')
-		st.write(st.session_state.terminal_print_width)
+	if param_group == 'Application':
+		st.subheader('General Application Parameters')
 
-		st.subheader('Terminal Count Passed')
-		st.code('terminal_count_passed')
-		st.write(st.session_state.terminal_count_passed)
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Project Description')
+		with col2: st.write(st.session_state.project_description)
+		with col3: st.code('< project_description >')
+		
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Project Start Time')
+		with col2: st.write(datetime.fromtimestamp(st.session_state.project_start_time).strftime('%Y-%m-%d %H:%M:%S %p'))
+		with col3: st.code('< project_start_time >')
+		
+		st.markdown("""---""")
+		st.subheader('Terminal Parameters')
 
-		st.subheader('Terminal Count_2 Passed')
-		st.code('terminal_count_passed_2')
-		st.write(st.session_state.terminal_count_passed_2)
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Terminal Audit')
+		with col2: st.write(st.session_state.terminal_audit)
+		with col3: st.code('< terminal_audit >')
 
-		st.subheader('Terminal Count Failed')
-		st.code('terminal_count_failed')
-		st.write(st.session_state.terminal_count_failed)
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Terminal Width')
+		with col2: st.write(st.session_state.terminal_width)
+		with col3: st.code('< terminal_width >')
 
-	if param_group == 'Market': # DONE
-		st.header('Market Parameters')
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Terminal Print Width')
+		with col2: st.write(st.session_state.terminal_print_width)
+		with col3: st.code('< terminal_print_width')
 
-		st.subheader('Available Markets')
-		st.code('available_markets')
-		st.dataframe(st.session_state.available_markets, 2000, 1200)
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Terminal Count Passed')
+		with col2: st.write(st.session_state.terminal_count_passed)
+		with col3: st.code('< terminal_count_passed')
 
-		st.subheader('Selected Market')
-		st.code('selected_market')
-		st.write(st.session_state.selected_market)
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Terminal Count_2 Passed')
+		with col2: st.write(st.session_state.terminal_count_passed_2)
+		with col3: st.code('< terminal_count_passed_2')
 
-		st.subheader('Market Share Suffix')
-		st.code('market_suffix')
-		st.dataframe(st.session_state.market_suffix, 2000, 1200)
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Terminal Count Failed')
+		with col2: st.write(st.session_state.terminal_count_failed)
+		with col3: st.code('< terminal_count_failed >')
 
-		st.subheader('Public Holidays')
-		st.code('market_public_holidays')
-		st.write(st.session_state.market_public_holidays)
+	if param_group == 'Market':
+		st.subheader('Market Parameters')
 
-		st.subheader('Opening Hours')
-		st.code('market_opening_hours')
-		st.write(st.session_state.market_opening_hours)
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Available Markets')
+		with col2: st.write(st.session_state.available_markets)
+		with col3: st.code('< available_markets >')
+		# st.dataframe(st.session_state.available_markets, 2000, 1200)
 
-	if param_group == 'Folders': #DONE
-		st.header('Folders and Paths')
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Selected Market')
+		with col2: st.write(st.session_state.selected_market)
+		with col3: st.code('< selected_market >')
+		
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Market Share Suffix')
+		with col2: st.write(st.session_state.market_suffix)
+		with col3: st.code('< market_suffix >')
+		# st.dataframe(st.session_state.market_suffix, 2000, 1200)
 
-		st.subheader('Project Folder')
-		st.code('folder_project')
-		st.write(st.session_state.folder_project)
+		st.markdown("""---""")
+		st.subheader('Market Dates - Opening times and Public Holidays')
 
-		st.subheader('Share Data Folder')
-		st.code('folder_share_data')
-		st.write(st.session_state.folder_share_data)
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Public Holidays')
+		with col2: st.write(st.session_state.market_public_holidays)
+		with col3: st.code('< market_public_holidays >')
+		
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Opening Hours')
+		with col2: st.write(st.session_state.market_opening_hours)
+		with col3: st.code('< market_opening_hours >')
+		
+	if param_group == 'Folders':
+		st.subheader('Folders and Paths')
 
-		st.subheader('Results Analysis Folder')
-		st.code('folder_results_analysis')
-		st.write(st.session_state.folder_results_analysis)
+		col1,col2,col3 = st.columns([2,6,2])
+		with col1: st.write('Project Folder')
+		with col2: st.write(st.session_state.folder_project)
+		with col3: st.code('folder_project')
 
-		st.subheader('Website Output Folder')
-		st.code('folder_website')
-		st.write(st.session_state.folder_website)
+		col1,col2,col3 = st.columns([2,6,2])
+		with col1: st.write('Share Data Folder')
+		with col2: st.write(st.session_state.folder_share_data)
+		with col3: st.code('folder_share_data')
 
-		st.subheader('Path for Share Index File')
-		st.code('path_share_index')
-		st.write(st.session_state.path_share_index)
+		col1,col2,col3 = st.columns([2,6,2])
+		with col1: st.write('Results Analysis Folder')
+		with col2: st.write(st.session_state.folder_results_analysis)
+		with col3: st.code('folder_results_analysis')
 
-		st.subheader('Path for Website Output File')
-		st.code('path_website_file')
-		st.write(st.session_state.path_website_file)
+		col1,col2,col3 = st.columns([2,6,2])
+		with col1: st.write('Website Output Folder')
+		with col2: st.write(st.session_state.folder_website)
+		with col3: st.code('folder_website')
 
-		st.subheader('Path for Share Data File')
-		st.code('path_share_data_file')
-		st.write(st.session_state.path_share_data_file)
+		col1,col2,col3 = st.columns([2,6,2])
+		with col1: st.write('Path for Share Index File')
+		with col2: st.write(st.session_state.path_share_index)
+		with col3: st.code('path_share_index')
 
-	if param_group == 'Strategy': #DONE
-		st.header('Strategy Parameters')
+		col1,col2,col3 = st.columns([2,6,2])
+		with col1: st.write('Path for Website Output File')
+		with col2: st.write(st.session_state.path_website_file)
+		with col3: st.code('path_website_file')
 
-		st.subheader('Strategy Name')
-		st.code('strategy_name')
-		st.write(st.session_state.strategy_name)
+		col1,col2,col3 = st.columns([2,6,2])
+		with col1: st.write('Path for Share Data File')
+		with col2: st.write(st.session_state.path_share_data_file)
+		with col3: st.code('path_share_data_file')
 
-		st.subheader('Print Header')
-		st.code('strategy_print_header')
-		st.write(st.session_state.strategy_print_header)
+	if param_group == 'Strategy': # TODO
+		st.subheader('Strategy Parameters')
+		# TODO not sure what the final format of some of these objects should be
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Strategy Name')
+		with col2: st.write(st.session_state.strategy_name)
+		with col3: st.code('strategy_name')
+		
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Print Header')
+		with col2: st.write(st.session_state.strategy_print_header)
+		with col3: st.code('strategy_print_header')
 
-		st.subheader('Price Columns')
-		st.code('strategy_price_columns')
-		st.dataframe(st.session_state.strategy_price_columns, 2000, 1200)
-
-		st.subheader('Print Count')
-		st.code('strategy_print_count')
-		st.write(st.session_state.strategy_print_count)
-
-		st.subheader('Build Header')
-		st.code('strategy_build_header')
-		st.write(st.session_state.strategy_build_header)
-
-		st.subheader('Header')
-		st.code('strategy_header')
-		st.write(st.session_state.strategy_header)
-
-		st.subheader('Print Line')
-		st.code('strategy_print_line')
-		st.write(st.session_state.strategy_print_line)
-
-		st.subheader('Json Dicitionary')
-		st.code('strategy_json_dict')
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Price Columns')
+		with col2: st.dataframe(st.session_state.strategy_price_columns, 2000, 1200)
+		with col3: st.code('strategy_price_columns')
+		
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Print Count')
+		with col2: st.write(st.session_state.strategy_print_count)
+		with col3: st.code('strategy_print_count')
+		
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Build Header')
+		with col2: st.write(st.session_state.strategy_build_header)
+		with col3: st.code('strategy_build_header')
+		
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Header')
+		with col2: st.write(st.session_state.strategy_header)
+		with col3: st.code('strategy_header')
+		
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Print Line')
+		with col2: st.write(st.session_state.strategy_print_line)
+		with col3: st.code('strategy_print_line')
+		
+		col1,col2 = st.columns([4,4])
+		with col1: st.write('Json Dicitionary')
+		with col2: st.code('strategy_json_dict')
 		st.write(st.session_state.strategy_json_dict)
 
-		st.subheader('Results Dataframe')
-		st.code('strategy_results')
+		col1,col2 = st.columns([4,4])
+		with col1: st.write('Results Dataframe')
+		with col2: st.code('strategy_results')
 		st.dataframe(st.session_state.strategy_results, 2000, 1200)
 
-	if param_group == 'Charting': # DONE
-		st.header('Charting Parameters')
+	if param_group == 'Charting':
+		st.subheader('Charting Parameters')
 
-		st.subheader('Chart Line')
-		st.code('chart_lines')
-		st.write(st.session_state.chart_lines)
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Chart Line')
+		with col2: st.write(st.session_state.chart_lines)
+		with col3: st.code('< chart_lines >')
 		
-		st.subheader('Chart MACD on Price')
-		st.code('chart_macd_on_price')
-		st.write(st.session_state.chart_macd_on_price)
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Chart MACD on Price')
+		with col2: st.write(st.session_state.chart_macd_on_price)
+		with col3: st.code('< chart_macd_on_price >')
 
-		st.subheader('Chart MACD on Volume')
-		st.code('chart_macd_on_volume')
-		st.write(st.session_state.chart_macd_on_volume)
-
-
-
-
+		col1,col2,col3 = st.columns([2,2,4])
+		with col1: st.write('Chart MACD on Volume')
+		with col2: st.write(st.session_state.chart_macd_on_volume)
+		with col3: st.code('< chart_macd_on_volume >')
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Params sub groups - for easier maintenance
+# Params sub groups - for easier maintenance - we need to move any remaining variables into the set initial session state
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # def share_index_params(params):
@@ -492,8 +529,6 @@ def report_params(params ):
 	# if params.analysis['specified_share_codes'] != None and params.analysis['industry_group'] == None: 
 	# 	params.download['industry_group'] = ['specified_share_codes']
 
-
-
 # -----------------------------------------------------------------------------------------------------------------------------------
 # share file path generator
 # -----------------------------------------------------------------------------------------------------------------------------------
@@ -503,51 +538,4 @@ def generate_path_for_share_data_file( params, ticker ):
 	file_path = pathlib.Path.home().joinpath( params.folder_share_data, file_name )
 	params.path_share_data_file = file_path
 
-# ===================================================================================================================================
-# 
-# Construct Ticker Lists for Analysis and Downloading validated share codes
-#
-# ===================================================================================================================================
-def construct_list_of_share_codes(session_state):
-	st.info('Updating list of ticker codes')
-	ticker_list = []
 
-	print ('construct_list_of_share_codes = ', len(st.session_state.ticker_list))
-	
-	# Most detailed takes precedece
-	if len(session_state.selected_tickers) != 0:
-		print('this many selected tickers = ', len(session_state.selected_tickers))
-		for ticker in session_state.selected_tickers:
-			st.warning('adding this ticker to the Ticker List = ' + ticker )
-			ticker_list += [ticker]	
-		pass
-	elif len(session_state.selected_industry) != 0:
-		for industry in session_state.selected_industry:
-			st.warning('adding ' + industry.upper() + ' to the ticker list' )
-			tickers_in_industry_group_df = session_state.share_index_file[session_state.share_index_file['industry_group'] == industry ]
-			tickers_in_industry = tickers_in_industry_group_df.index.tolist()
-			ticker_list += tickers_in_industry 
-		pass
-	elif session_state.selected_industry != 'Select an Industry':
-		available_market_codes = session_state.share_index_file.index.values.tolist()
-		ticker_list =  available_market_codes
-	else:
-		st.warning('Could not build a ticker list for analyis')
-
-	print ('ticker list = ', len(ticker_list))
-	session_state.ticker_list = ticker_list
-	session_state.ticker_list_needs_updating = False
-
-
-
-#
-# -----------------------------------------------------------------------------------------------------------------------------------
-# Colours
-# -----------------------------------------------------------------------------------------------------------------------------------
-red         = '\033[91m'
-green       = '\033[92m'
-yellow      = '\033[93m'
-blue        = '\033[94m'
-purple      = '\033[95m'
-cyan        = '\033[96m'
-white 		= '\033[0m'
