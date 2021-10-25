@@ -1,7 +1,7 @@
 import time
 import datetime
 import re 								# for the strip colours functions
-
+import streamlit as st
 import pandas as pd
 pd.set_option('display.max_rows', 5000)
 pd.set_option('display.max_columns', 500)
@@ -140,12 +140,15 @@ def output_result_to_terminal(params, output=None, result=None, final_print=Fals
 	# Print the results
 	if result=='passed':
 		print( cyan + output + white, end=' ' )
+		# st.info(output)
 		params.terminal_count_passed +=1
 	elif result=='passed_2':
 		print( yellow + output + white, end=' ' )
+		# st.st.warning(output)
 		params.terminal_count_passed_2 +=1
 	elif result=='failed':
 		print( purple + output + white, end=' ' )
+		# st.error(output)
 		params.terminal_count_failed +=1
 	
 	# check if we expect to exceeded the terminal output on the next print and do a carriage return so this does not happen

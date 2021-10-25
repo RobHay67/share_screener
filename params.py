@@ -82,15 +82,17 @@ download_share_data_schemas =    {
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Scope out the Params Object == session_state in streamlit
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def set_session_variables(session_state, project_description):
-	if 'initial_run' not in session_state:
-		session_state.initial_run = True
-	else:
-		session_state.initial_run = False
+def set_initial_session_state(session_state, project_description):
+	if 'first_render_of_streamlit' not in session_state:
+		st.session_state.first_render_of_streamlit = True
 
-	# print ( 'INITL STATE = ', session_state.initial_run )
 
-	if session_state.initial_run:
+	print( 'first render = ', session_state.first_render_of_streamlit)
+	if session_state.first_render_of_streamlit:
+		# st.warning('Updating the session state params')
+		# Streamlit Params
+		st.session_state.display_page = 'undetermined'
+
 		# Project Params
 		session_state.project_description = project_description
 		session_state.project_start_time = time.time()
@@ -114,19 +116,14 @@ def set_session_variables(session_state, project_description):
 		session_state.path_share_index = pathlib.Path.home().joinpath( session_state.folder_project, 'share_index.csv' )
 		session_state.path_website_file = pathlib.Path.home().joinpath( session_state.folder_website, 'strategy_results.json' )
 		session_state.path_share_data_file = 'not yet set',
+		
 		# Available Share Markerts
 		session_state.available_markets = list(markets.keys())
 		session_state.selected_market = 'ASX'
+		
 		# Share Index - Default Load = Australia
-		load_share_index_file(session_state)
-		# Available Share industries
-		industries = session_state.share_index_file['industry_group'].unique().tolist()
-		industries.sort()
-		session_state.available_industries = industries
-		# Available Share Tickers
-		session_state.available_tickers = session_state.share_index_file.index.values.tolist()
-		# Ticker list - for analysis
-		session_state.update_ticker_list = True
+		# load_share_index_file(session_state)
+		
 		# Share Data Files
 		session_state.share_data_files = {}
 		session_state.share_data_loaded_list = []
@@ -136,13 +133,10 @@ def set_session_variables(session_state, project_description):
 		# session_state.share_data_dtypes = {'open': 'float64', 'high': 'float64', 'low': 'float64', 'close': 'float64', 'volume': 'int64'}
 		# session_state.share_data_dates = ['date']
 
-
-
 		# Market Dictionaries
 		session_state.market_suffix = markets
 		session_state.market_public_holidays = public_holidays
 		session_state.market_opening_hours = opening_hours	
-		
 
 		# Strategy Params
 		session_state.strategy_name = 'None yet Selected', 
@@ -155,11 +149,271 @@ def set_session_variables(session_state, project_description):
 		session_state.strategy_json_dict = { "shares":{}, "columnNames":[] }
 		session_state.strategy_results = {}
 
-
 		# Chart Variables
 		session_state.chart_lines = []
 		session_state.chart_macd_on_price = {}
 		session_state.chart_macd_on_volume = {}
+		
+
+def render_sidebar_drop_down_lists(session_state):
+	if session_state.first_render_of_streamlit:
+		# st.warning('Updating the session state params')
+		# Available Share industries
+		industries = session_state.share_index_file['industry_group'].unique().tolist()
+		industries.sort()
+		session_state.available_industries = industries
+		
+		# Available Share Tickers
+		session_state.available_tickers = session_state.share_index_file.index.values.tolist()
+		
+		# Ticker list - for analysis
+		session_state.ticker_list_needs_updating = False
+		session_state.ticker_list = []
+
+
+
+def render_app_params_selector(session_state):
+	st.title('Application Parameters')
+
+	param_group = st.selectbox(
+									'Show Application Parameters',
+									(
+										'< select group >',
+										'Lists - Ticker(s)',
+										'Lists - Industries',
+										'File - Share Index File', 
+										'File - Share Data Files', 
+										'...............................system.parameters',
+										'Streamlit',
+										'Application',
+										'Market', 
+										'Folders', 
+										'Strategy', 
+										'Charting', 
+										# 'Terminal',
+										)
+							)
+
+	if param_group == 'Lists - Ticker(s)':
+		st.header('Ticker Lists')
+		
+		st.subheader('Update the Ticker List ?')
+		st.code('ticker_list_needs_updating')
+		st.write(st.session_state.ticker_list_needs_updating)
+
+		st.subheader('Ticker List - these are the tickers for any analysis')
+		st.code('ticker_list')
+		st.write(st.session_state.ticker_list)
+
+		
+
+		st.subheader('Loaded Ticker List')
+		st.code('share_data_loaded_list')
+		st.write(st.session_state.share_data_loaded_list)
+
+		st.subheader('Missing Ticker List')
+		st.code('share_data_missing_list')
+		st.write(st.session_state.share_data_missing_list)
+
+	if param_group == 'Lists - Industries': # DONE
+		st.header('Share Index File contains the following Industries')
+		industry_group_count = pd.DataFrame(st.session_state.share_index_file['industry_group'].value_counts())
+		industry_group_count.index.name = 'Industry'
+		industry_group_count.columns =['No of Codes']
+		st.table(industry_group_count)
+
+	if param_group == 'File - Share Index File': # DONE
+		st.header('Share Index File')
+		st.code('share_index_file')
+		st.dataframe(st.session_state.share_index_file, 2000, 1200)
+
+	if param_group == 'File - Share Data Files':
+		st.header('Share Data Files')
+		#TODO - does this need to be a table - we need to load some data before checking
+		# TODO - Rob - I dont think the lists belong in this section
+		
+		st.subheader('Share Data Files (loaded)')
+		st.code('share_data_files')
+		st.write(st.session_state.share_data_files)
+
+	if param_group == 'Streamlit': # DONE
+		st.header('Streamlit Application Variables')
+
+		st.subheader('Selected Market')
+		st.code('selected_market')
+		st.write(st.session_state.selected_market)
+
+		st.subheader('Selected Industry(s)')
+		st.code('selected_industry')
+		st.write(st.session_state.selected_industry)
+
+		st.subheader('Selected Ticker(s)')
+		st.code('selected_tickers')
+		st.write(st.session_state.selected_tickers)
+
+		st.subheader('Initial Run / load')
+		st.code('first_render_of_streamlit')
+		st.write(st.session_state.first_render_of_streamlit)
+
+		st.subheader('List of Available Markets Generated for Steamlit')
+		st.code('available_markets')
+		st.write(st.session_state.available_markets)
+
+		st.subheader('List of Available Industries Generated for Steamlit')
+		st.code('available_industries')
+		st.write(st.session_state.available_industries)
+
+		st.subheader('List of Available Tickers Generated for Steamlit')
+		st.code('available_tickers')
+		st.write(st.session_state.available_tickers)
+
+	if param_group == 'Application': # DONE
+		st.header('Application Parameters')
+
+		st.subheader('Project Description')
+		st.code('project_description')
+		st.write(st.session_state.project_description)
+
+		st.subheader('Project Start Time')
+		st.code('project_start_time')
+		st.write(datetime.datetime.fromtimestamp(st.session_state.project_start_time).strftime('%Y-%m-%d %H:%M:%S %p'))
+		
+		st.header('Terminal Parameters')
+
+		st.subheader('Terminal Audit')
+		st.code('terminal_audit')
+		st.write(st.session_state.terminal_audit)
+
+		st.subheader('Terminal Width')
+		st.code('terminal_width')
+		st.write(st.session_state.terminal_width)
+
+		st.subheader('Terminal Print Width')
+		st.code('terminal_print_width')
+		st.write(st.session_state.terminal_print_width)
+
+		st.subheader('Terminal Count Passed')
+		st.code('terminal_count_passed')
+		st.write(st.session_state.terminal_count_passed)
+
+		st.subheader('Terminal Count_2 Passed')
+		st.code('terminal_count_passed_2')
+		st.write(st.session_state.terminal_count_passed_2)
+
+		st.subheader('Terminal Count Failed')
+		st.code('terminal_count_failed')
+		st.write(st.session_state.terminal_count_failed)
+
+	if param_group == 'Market': # DONE
+		st.header('Market Parameters')
+
+		st.subheader('Available Markets')
+		st.code('available_markets')
+		st.dataframe(st.session_state.available_markets, 2000, 1200)
+
+		st.subheader('Selected Market')
+		st.code('selected_market')
+		st.write(st.session_state.selected_market)
+
+		st.subheader('Market Share Suffix')
+		st.code('market_suffix')
+		st.dataframe(st.session_state.market_suffix, 2000, 1200)
+
+		st.subheader('Public Holidays')
+		st.code('market_public_holidays')
+		st.write(st.session_state.market_public_holidays)
+
+		st.subheader('Opening Hours')
+		st.code('market_opening_hours')
+		st.write(st.session_state.market_opening_hours)
+
+	if param_group == 'Folders': #DONE
+		st.header('Folders and Paths')
+
+		st.subheader('Project Folder')
+		st.code('folder_project')
+		st.write(st.session_state.folder_project)
+
+		st.subheader('Share Data Folder')
+		st.code('folder_share_data')
+		st.write(st.session_state.folder_share_data)
+
+		st.subheader('Results Analysis Folder')
+		st.code('folder_results_analysis')
+		st.write(st.session_state.folder_results_analysis)
+
+		st.subheader('Website Output Folder')
+		st.code('folder_website')
+		st.write(st.session_state.folder_website)
+
+		st.subheader('Path for Share Index File')
+		st.code('path_share_index')
+		st.write(st.session_state.path_share_index)
+
+		st.subheader('Path for Website Output File')
+		st.code('path_website_file')
+		st.write(st.session_state.path_website_file)
+
+		st.subheader('Path for Share Data File')
+		st.code('path_share_data_file')
+		st.write(st.session_state.path_share_data_file)
+
+	if param_group == 'Strategy': #DONE
+		st.header('Strategy Parameters')
+
+		st.subheader('Strategy Name')
+		st.code('strategy_name')
+		st.write(st.session_state.strategy_name)
+
+		st.subheader('Print Header')
+		st.code('strategy_print_header')
+		st.write(st.session_state.strategy_print_header)
+
+		st.subheader('Price Columns')
+		st.code('strategy_price_columns')
+		st.dataframe(st.session_state.strategy_price_columns, 2000, 1200)
+
+		st.subheader('Print Count')
+		st.code('strategy_print_count')
+		st.write(st.session_state.strategy_print_count)
+
+		st.subheader('Build Header')
+		st.code('strategy_build_header')
+		st.write(st.session_state.strategy_build_header)
+
+		st.subheader('Header')
+		st.code('strategy_header')
+		st.write(st.session_state.strategy_header)
+
+		st.subheader('Print Line')
+		st.code('strategy_print_line')
+		st.write(st.session_state.strategy_print_line)
+
+		st.subheader('Json Dicitionary')
+		st.code('strategy_json_dict')
+		st.write(st.session_state.strategy_json_dict)
+
+		st.subheader('Results Dataframe')
+		st.code('strategy_results')
+		st.dataframe(st.session_state.strategy_results, 2000, 1200)
+
+	if param_group == 'Charting': # DONE
+		st.header('Charting Parameters')
+
+		st.subheader('Chart Line')
+		st.code('chart_lines')
+		st.write(st.session_state.chart_lines)
+		
+		st.subheader('Chart MACD on Price')
+		st.code('chart_macd_on_price')
+		st.write(st.session_state.chart_macd_on_price)
+
+		st.subheader('Chart MACD on Volume')
+		st.code('chart_macd_on_volume')
+		st.write(st.session_state.chart_macd_on_volume)
+
+
+
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -254,32 +508,35 @@ def generate_path_for_share_data_file( params, ticker ):
 # Construct Ticker Lists for Analysis and Downloading validated share codes
 #
 # ===================================================================================================================================
-def construct_list_of_share_codes(params):
+def construct_list_of_share_codes(session_state):
 	st.info('Updating list of ticker codes')
 	ticker_list = []
+
+	print ('construct_list_of_share_codes = ', len(st.session_state.ticker_list))
 	
 	# Most detailed takes precedece
-	if len(params.selected_tickers) != 0:
-		for ticker in params.selected_tickers:
+	if len(session_state.selected_tickers) != 0:
+		print('this many selected tickers = ', len(session_state.selected_tickers))
+		for ticker in session_state.selected_tickers:
 			st.warning('adding this ticker to the Ticker List = ' + ticker )
 			ticker_list += [ticker]	
 		pass
-	elif len(params.selected_industry) != 0:
-		for industry in params.selected_industry:
+	elif len(session_state.selected_industry) != 0:
+		for industry in session_state.selected_industry:
 			st.warning('adding ' + industry.upper() + ' to the ticker list' )
-			tickers_in_industry_group_df = params.share_index_file[params.share_index_file['industry_group'] == industry ]
+			tickers_in_industry_group_df = session_state.share_index_file[session_state.share_index_file['industry_group'] == industry ]
 			tickers_in_industry = tickers_in_industry_group_df.index.tolist()
 			ticker_list += tickers_in_industry 
 		pass
-	elif params.selected_industry != 'Select an Industry':
-		available_market_codes = params.share_index_file.index.values.tolist()
+	elif session_state.selected_industry != 'Select an Industry':
+		available_market_codes = session_state.share_index_file.index.values.tolist()
 		ticker_list =  available_market_codes
 	else:
 		st.warning('Could not build a ticker list for analyis')
 
-	params.ticker_list = ticker_list
-	params.update_ticker_list = False
-
+	print ('ticker list = ', len(ticker_list))
+	session_state.ticker_list = ticker_list
+	session_state.ticker_list_needs_updating = False
 
 
 
