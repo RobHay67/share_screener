@@ -13,20 +13,13 @@ def render_home_page(streamlit_session):
 #
 # ===================================================================================================================================
 def construct_list_of_share_codes(streamlit_session):
-	print('Updating list of ticker codes')
 	st.info('Updating list of ticker codes')
 	ticker_list = []
-
-	print ('construct_list_of_share_codes = ', len(streamlit_session.ticker_list))
-	print(streamlit_session.selected_market)
-	print(streamlit_session.selected_industry)
-	print(streamlit_session.selected_tickers)
 	
 	# Most detailed takes precedece
 
 	# Selected a ticker or tickers
 	if len(streamlit_session.selected_tickers) != 0:
-		print('this many selected tickers = ', len(streamlit_session.selected_tickers))
 		for ticker in streamlit_session.selected_tickers:
 			st.warning('adding this ticker to the Ticker List = ' + ticker )
 			ticker_list += [ticker]	
@@ -41,7 +34,6 @@ def construct_list_of_share_codes(streamlit_session):
 		pass
 	elif streamlit_session.selected_market != '< select entire market >':
 		available_tickers_for_this_market = streamlit_session.share_index_file.index.values.tolist()
-		print(available_tickers_for_this_market)
 		ticker_list =  available_tickers_for_this_market
 	else:
 		st.warning('Failed to build a ticker list for the application')

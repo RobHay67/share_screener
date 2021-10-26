@@ -76,8 +76,8 @@ def save_share_index_file( params ):
 # SHARE INDEX FILE - Downloader + helpers
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def refresh_share_index_file(streamlit_session):
-	st.info('Downloading Share Index information for the ' + streamlit_session.selected_market)
-	if streamlit_session.selected_market == 'ASX':
+	st.info('Downloading Share Index information for the ' + streamlit_session.share_market)
+	if streamlit_session.share_market == 'ASX':
 		url = 'https://asx.api.markitdigital.com/asx-research/1.0/companies/directory/file?'
 		column_names = ['share_code', 'company_name', 'listing_date', 'industry_group', 'market_cap' ]
 		downloaded_share_info = pd.read_csv( 	url, 
@@ -101,12 +101,11 @@ def refresh_share_index_file(streamlit_session):
 		downloaded_share_info['industry_group'] = downloaded_share_info['industry_group'].str.replace('&', 'and' )
 		downloaded_share_info['industry_group'] = downloaded_share_info['industry_group'].str.lower()
 
-		st.success('number of downloaded ' + streamlit_session.selected_market + ' share codes = ' + str(len(downloaded_share_info)))
+		st.success('number of downloaded ' + streamlit_session.share_market + ' share codes = ' + str(len(downloaded_share_info)))
 		update_share_index_with_latest_download(streamlit_session, downloaded_share_info )
 		print_share_index_industries(streamlit_session)
-
 	else:
-		st.error('DOWNLOAD Share data NOT YET CONFIUGURED FOR ' + streamlit_session.selected_market)
+		st.error('DOWNLOAD Share data NOT YET CONFIUGURED FOR ' + streamlit_session.share_market)
 		pass
 
 def update_share_index_with_latest_download(streamlit_session, downloaded_share_info ):
@@ -140,7 +139,6 @@ def update_share_index_with_latest_download(streamlit_session, downloaded_share_
 	streamlit_session.share_index_file = apply_defaults_to_missing_values(streamlit_session, streamlit_session.share_index_file)
 	streamlit_session.share_index_file['listing_date'] = pd.to_datetime( streamlit_session.share_index_file['listing_date'].dt.date  )
 	streamlit_session.share_index_file = streamlit_session.share_index_file.sort_index()
-	# report_progress( streamlit_session, 'number of share codes added to master share index', add_records_counter, colour2=green)
 	message = 'number of share codes added to master share index = '+ str(add_records_counter)
 	st.warning( message) if add_records_counter > 0 else st.info( message)
 	save_share_index_file(streamlit_session)
@@ -200,7 +198,7 @@ def share_index_schema_csv_dates():
 # Ticker Helpers
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def ticker_open_time( streamlit_session, ticker):
-	market = streamlit_session.selected_market
+	market = streamlit_session.share_market
 	share_code_first_letter = ticker[0].upper()
 	for group in streamlit_session.market_opening_hours[market].keys():
 		if share_code_first_letter in streamlit_session.market_opening_hours[market][group]['letter_range']:
@@ -208,7 +206,7 @@ def ticker_open_time( streamlit_session, ticker):
 	return( opening_time )
 
 def ticker_trading_mins_per_day( streamlit_session, ticker ):
-	market = streamlit_session.selected_market
+	market = streamlit_session.share_market
 	share_code_first_letter = ticker[0].upper()
 	for group in streamlit_session.market_opening_hours[market].keys():
 		if share_code_first_letter in streamlit_session.market_opening_hours[market][group]['letter_range']:
