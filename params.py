@@ -117,9 +117,7 @@ def set_initial_session_state(session_state, project_description):
 		session_state.path_website_file = pathlib.Path.home().joinpath( session_state.folder_website, 'strategy_results.json' )
 		session_state.path_share_data_file = 'not yet set',
 		
-		# Available Share Markerts
-		session_state.available_markets = list(markets.keys())
-		session_state.selected_market = 'ASX'
+		
 				
 		# Share Data Files
 		session_state.share_data_files = {}
@@ -153,14 +151,22 @@ def set_initial_session_state(session_state, project_description):
 		
 def render_sidebar_drop_down_lists(session_state):
 	if session_state.first_render_of_streamlit:
+                                             
+		# Available Share Markerts
+		list_of_markets = list(markets.keys())
+		list_of_markets.insert(0, '< select entire market >')
+		session_state.available_markets = list_of_markets
+		session_state.selected_market = None
+
 		# Available Share industries
-		industries = session_state.share_index_file['industry_group'].unique().tolist()
-		industries.sort()
-		session_state.available_industries = industries
+		list_of_industries = session_state.share_index_file['industry_group'].unique().tolist()
+		list_of_industries.sort()
+		session_state.available_industries = list_of_industries
 		session_state.selected_industry = None
 		
 		# Available Share Tickers
-		session_state.available_tickers = session_state.share_index_file.index.values.tolist()
+		list_of_tickers = session_state.share_index_file.index.values.tolist()
+		session_state.available_tickers = list_of_tickers
 		session_state.selected_tickers = None
 		
 		# Ticker list - for analysis
