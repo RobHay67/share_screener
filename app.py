@@ -18,6 +18,7 @@ import streamlit as st
 st.set_page_config(layout="wide")
 set_initial_scope(st.session_state, project_description)
 if st.session_state.first_render_of_streamlit == True:
+	st.title(project_description)
 	load_share_index_file(st.session_state)
 render_sidebar_drop_down_lists(st.session_state)
 st.session_state.first_render_of_streamlit = False

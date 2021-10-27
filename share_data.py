@@ -20,21 +20,24 @@ import streamlit as st
 def render_share_data_page(scope):
 	st.title('Load and/or Download Share Data')
 
+	st.success(('Ticker List contains ( ' + str((len(scope.ticker_list))) + ' ) tickers'))
+
+	
 	ticker_list_message = str(len(scope.ticker_list))
 
 	col1,col2 = st.columns([4,4])
 
 	with col1: st.subheader('Load Share Data Files')
-	with col1: st.write('Number of Tickers in the Ticker List')
-	with col1: st.info(ticker_list_message) 
+	with col1: st.write(('No of Files to Load = ( ' + str((len(scope.ticker_list))) + ' )'))
 	with col1: load_tickers = st.button('Load OHLC Data')
 
 	with col2: st.subheader('Download Share Data')
-	with col2: st.write('Number of Tickers in the Ticker List')
-	with col2: st.info(ticker_list_message) 
-	with col2: download_tickers = st.button('Download OHLC Data')
 	with col2: no_of_days = st.number_input('Number of Days to Download', min_value=1, max_value=10, value=1, key='0')    
+	with col2: download_tickers = st.button('Download OHLC Data')
 	
+	st.markdown("""---""")
+
+
 	if load_tickers:
 		print( 'lets load the tickers in the ticker list')
 

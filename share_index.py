@@ -34,13 +34,15 @@ def render_share_index_page(scope):
 
 	st.title('Maintain the Share Index File')
 
-	share_index_message = str((len(scope.share_index_file)))
+	# share_index_message = str((len(scope.share_index_file)))
 	
 	st.success(('Share Index contains ( ' + str((len(scope.share_index_file))) + ' ) tickers'))
 	col1,col2,col3 = st.columns([3,3,3])
 	with col1: download_share_index = st.button('Update List of Valid Tickers')
 	with col2: show_share_index = st.button('Display the Share Index File')
 	with col3: show_industries = st.button('Industry Summary')
+
+	st.markdown("""---""")
 	
 	if download_share_index:
 		st.subheader('Downloading Share Data from https://asx.api.markitdigital.com and adding to the Share Index File')
@@ -63,7 +65,7 @@ def load_share_index_file( scope ):
 	print(scope.path_share_index)
 
 	if os.path.exists( scope.path_share_index ):
-		st.info('attemting to load share_index.csv file from ' +  str(scope.path_share_index) )
+		st.info('loading share_index.csv file from ' +  str(scope.path_share_index) )
 
 		share_index = pd.read_csv(  scope.path_share_index, 
 									dtype=share_index_schema_csv_dtypes(),
@@ -72,6 +74,7 @@ def load_share_index_file( scope ):
 		# share_index['blue_chip'] = share_index['blue_chip'].astype(int)
 		share_index['listing_date'] = pd.to_datetime( share_index['listing_date'].dt.date  )
 		st.success('successfully loaded the share index file')
+		st.balloons()
 		share_index.set_index('share_code', inplace=True)
 		# remove any delisted stocks here
 		scope.share_index_file = share_index
@@ -87,11 +90,11 @@ def load_share_index_file( scope ):
 		scope.share_index_file = share_index
 		save_share_index_file(scope)
 
-def save_share_index_file( params ):
+def save_share_index_file( scope ):
 	st.info('Saving the share index file')
-	saving_df = params.share_index_file.copy()
+	saving_df = scope.share_index_file.copy()
 	saving_df.reset_index(inplace=True)      	 # ensure that the index is saved as a normal column
-	saving_df.to_csv( params.path_share_index, index=False )
+	saving_df.to_csv( scope.path_share_index, index=False )
 	st.success('successfully saved share Index file')
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -159,10 +162,11 @@ def update_share_index_with_latest_download(scope, downloaded_share_info ):
 	scope.share_index_file['listing_date'] = pd.to_datetime( scope.share_index_file['listing_date'].dt.date  )
 	scope.share_index_file = scope.share_index_file.sort_index()
 	message = 'number of share codes added to master share index = '+ str(add_records_counter)
+	st.balloons()
 	st.warning( message) if add_records_counter > 0 else st.info( message)
 	save_share_index_file(scope)
 
-def apply_defaults_to_missing_values(params, dataframe):
+def apply_defaults_to_missing_values(scope, dataframe):
 	defaults = share_index_schema_defaults()
 	dtypes = share_index_schema_dtypes()
 
@@ -232,12 +236,12 @@ def ticker_trading_mins_per_day( scope, ticker ):
 			trading_minutes_per_day = scope.market_opening_hours[market][group]['minutes_per_day']
 	return trading_minutes_per_day 
 
-def extrapolate_average_trading_volume(params):
+def extrapolate_average_trading_volume(scope):
 	st.info('Extrapolating the Current Volume to the End of day - checking momentum')
-	for ticker in params.analysis['ticker_list']:
+	for ticker in scope.analysis['ticker_list']:
 		# Only expecting one of these BOQ.AX  
-		opening_time = params.share_index_file.loc[ticker]['opening_time']
-		minutes_per_day = params.share_index_file.loc[ticker]['minutes_per_day']
+		opening_time = scope.share_index_file.loc[ticker]['opening_time']
+		minutes_per_day = scope.share_index_file.loc[ticker]['minutes_per_day']
 		open_hour = int(opening_time[:2])
 		open_minute = int(opening_time[3:5])
 		# Current time
@@ -249,7 +253,7 @@ def extrapolate_average_trading_volume(params):
 		minutes_elapsed = divmod(diff_in_seconds, 60)[0]
 
 		# Now extrapolate
-		volume_to_date = params.market_info['average_volume']
+		volume_to_date = scope.market_info['average_volume']
 		average_vol_per_minute = volume_to_date / minutes_elapsed
 		remaining_minutes = minutes_per_day - minutes_elapsed
 		extrapolated_daily_volume = "{:8,.0f}".format(average_vol_per_minute * minutes_per_day)
@@ -258,18 +262,18 @@ def extrapolate_average_trading_volume(params):
 		# Report and Exit 
 		st.error('TODO - we need this to print on the screen')
 		print ( white )
-		print ( '-'*params.terminal['width'])
-		print ( ticker, ' - ', params.share_index_file.loc[ticker]['company_name'])
-		print ( '-'*params.terminal['width'])
+		print ( '-'*scope.terminal['width'])
+		print ( ticker, ' - ', scope.share_index_file.loc[ticker]['company_name'])
+		print ( '-'*scope.terminal['width'])
 		print ( 'Opening Time              =', open_time.strftime('%Y-%m-%d %H:%M:%S %p'))
 		print ( 'Current Time              =', current_time.strftime('%Y-%m-%d %H:%M:%S %p'))
-		print ( '-'*params.terminal['width'])
+		print ( '-'*scope.terminal['width'])
 		print ( 'Total Minutes Elapsed     = ', str(minutes_elapsed))
 		print ( 'Current Volume            = ' + green + str(volume_to_date) + white )
 		print ( 'Average Volume per Minute = ', int(average_vol_per_minute), '          ( ', str(volume_to_date), ' / ', str(minutes_elapsed), ' )' )
 		print ( 'Remaining Minutes         = ', str(remaining_minutes) )
 		print ( 'Extrapolated EOD Volume   = ', yellow + str(extrapolated_daily_volume) +white+'        ( '+ str(int(average_vol_per_minute))+' x '+ str(minutes_per_day)+' )' )
-		print ( '-'*params.terminal['width'])
+		print ( '-'*scope.terminal['width'])
 		print ( white)
 	exit()
 

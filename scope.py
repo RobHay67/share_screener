@@ -85,6 +85,8 @@ download_share_data_schemas =    {
 def set_initial_scope(scope, project_description):
 	if 'first_render_of_streamlit' not in scope:
 		scope.first_render_of_streamlit = True
+		
+
 
 	if scope.first_render_of_streamlit:
 		# st.warning('Updating the session state params')
