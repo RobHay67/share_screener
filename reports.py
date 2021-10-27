@@ -119,6 +119,37 @@ def print_project_completion(params):
 # -----------------------------------------------------------------------------------------------------------------------------------
 # Output Ticker Iteration to terminal
 # -----------------------------------------------------------------------------------------------------------------------------------
+def output_results_to_browser(streamlit_session, output=None, result=None, final_print=False, passed='', passed_2='', failed='' ):
+	# I think what we do here is just build 3 list and save them
+
+	if output == None:
+		# this is the initial run so set all the defails
+		# width_of_next_output = 0
+		streamlit_session.result_passed=passed
+		streamlit_session.result_passed_2=passed_2
+		streamlit_session.result_failed=failed
+		streamlit_session.result_passed_count = 0
+		streamlit_session.result_passed_2_count = 0
+		streamlit_session.result_failed_count = 0
+
+	# Store the results
+	if result=='passed':
+		streamlit_session.result_passed = streamlit_session.result_passed + str(output) + ' '
+		streamlit_session.result_passed_count +=1
+	elif result=='passed_2':
+		streamlit_session.result_passed_2 = streamlit_session.result_passed_2 + str(output) + ' '
+		streamlit_session.result_passed_2_count +=1
+	elif result=='failed':
+		streamlit_session.result_failed = streamlit_session.result_failed + str(output) + ' '
+		streamlit_session.result_failed_count +=1
+
+	# print (streamlit_session.result_passed)
+	if final_print: 
+		st.info(streamlit_session.result_passed)
+		st.warning(streamlit_session.result_passed_2)
+		if len(streamlit_session.result_failed) != 0:
+			st.error(streamlit_session.result_failed)
+
 
 
 def output_result_to_terminal(params, output=None, result=None, final_print=False):

@@ -7,10 +7,9 @@ from share_index import refresh_share_index_file
 def render_share_data_page(streamlit_session):
 	st.title('Load and/or Download Share Data')
 
-	ticker_list_message = str(len(streamlit_session.ticker_list))
-	# st.info(ticker_list_message)
-
+	
 	share_index_message = str((len(streamlit_session.share_index_file)))
+	ticker_list_message = str(len(streamlit_session.ticker_list))
 
 	col1,col2,col3 = st.columns([3,3,3])
 	with col1: st.subheader('Share Index File')

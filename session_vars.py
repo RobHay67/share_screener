@@ -102,9 +102,12 @@ def set_initial_session_state(session_state, project_description):
 		session_state.terminal_count_passed_2 = 0
 		session_state.terminal_count_failed = 0
 		# Result
-		session_state.result_passed = 0
-		session_state.result_passed_2 = 0
-		session_state.result_failed = 0
+		session_state.result_passed = ''
+		session_state.result_passed_2 = ''
+		session_state.result_failed = ''
+		session_state.result_passed_count = 0
+		session_state.result_passed_2_count = 0
+		session_state.result_failed_count = 0
 		# Folders
 		session_state.folder_project = pathlib.Path(__file__).parent.resolve()
 		session_state.folder_share_data = pathlib.Path.home().joinpath( session_state.folder_project, 'share_data' )

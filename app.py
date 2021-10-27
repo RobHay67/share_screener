@@ -52,6 +52,8 @@ def show_params_page(): st.session_state.display_page = 'app_params'
 
 # Sidebar Action Buttons ======================================================================================= 
 st.sidebar.title(project_description)
+share_index_message = 'Share Index = ' + str((len(st.session_state.share_index_file)))
+st.sidebar.info(share_index_message)
 st.sidebar.button('Home Page......', on_click=show_home_page)
 st.sidebar.button('Volume Analysis', on_click=show_volume_page)
 # Select Tickers -----------------------------------------------------------------------------------------------
@@ -65,6 +67,9 @@ if st.session_state.ticker_list_needs_updating:
 	st.session_state.selected_industry = industry
 	st.session_state.selected_tickers = tickers
 	construct_list_of_share_codes(st.session_state)
+
+ticker_list_message = 'Ticker List = ' + str((len(st.session_state.ticker_list)))
+st.sidebar.info(ticker_list_message)
 
 # Pages ------------------------------------------------------------------------------------------------------- 
 st.sidebar.button('Load Share Data', on_click=show_download_page)

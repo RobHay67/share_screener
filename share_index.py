@@ -6,7 +6,7 @@ import os
 import datetime
 import streamlit as st
 
-from reports import terminal_heading, report_progress, output_result_to_terminal
+from reports import terminal_heading, report_progress, output_result_to_terminal, output_results_to_browser
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -31,14 +31,12 @@ share_index_schema ={
 # SHARE INDEX FILE - loader and Saver
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def load_share_index_file( streamlit_session ):
-	# st.title(streamlit_session.project_description)
+	st.info('Loading Share Index File')
 
-	# st.info('Loading Share Index File')
-	print('Loading Share Index File')
+	print(streamlit_session.path_share_index)
 
 	if os.path.exists( streamlit_session.path_share_index ):
-		# st.info('attemting to load share_index.csv file from ' +  str(streamlit_session.path_share_index) )
-		print('attemting to load share_index.csv file from ', str(streamlit_session.path_share_index) )
+		st.info('attemting to load share_index.csv file from ' +  str(streamlit_session.path_share_index) )
 
 		share_index = pd.read_csv(  streamlit_session.path_share_index, 
 									dtype=share_index_schema_csv_dtypes(),
@@ -46,30 +44,30 @@ def load_share_index_file( streamlit_session ):
 									)
 		# share_index['blue_chip'] = share_index['blue_chip'].astype(int)
 		share_index['listing_date'] = pd.to_datetime( share_index['listing_date'].dt.date  )
-		# st.success('finished loading the share index file')
-		print('SUCCESS - finished loading the share index file')
-
+		st.success('successfully loaded the share index file')
+		share_index.set_index('share_code', inplace=True)
+		# remove any delisted stocks here
+		streamlit_session.share_index_file = share_index
 	else: 
-		st.error( str(streamlit_session.path_share_index) + ' path / file does not exist - creating an empty share_index dataframe' + white )
+		st.warning( str(streamlit_session.path_share_index) + ' path / file does not exist - creating an empty share_index dataframe' )
 		dataframe_columns = []
 		for column_name in share_index_schema: 
 			dataframe_columns.append(column_name)
 			share_index = pd.DataFrame(columns=dataframe_columns)
-		# st.success('successfully created empty share index dataframe')
-		print('SUCCESS - created an empty share index dataframe')
+		st.success('successfully created empty share index dataframe')
+		share_index.set_index('share_code', inplace=True)
+		# remove any delisted stocks here
+		streamlit_session.share_index_file = share_index
+		save_share_index_file(streamlit_session)
 
-	share_index.set_index('share_code', inplace=True)
-
-	# remove any delisted stocks here
-
-	streamlit_session.share_index_file = share_index
+	
 
 def save_share_index_file( params ):
-	st.info('saving the share index file')
+	st.info('Saving the share index file')
 	saving_df = params.share_index_file.copy()
 	saving_df.reset_index(inplace=True)      	 # ensure that the index is saved as a normal column
 	saving_df.to_csv( params.path_share_index, index=False )
-	st.success('saved share Index file')
+	st.success('successfully saved share Index file')
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -116,9 +114,8 @@ def update_share_index_with_latest_download(streamlit_session, downloaded_share_
 
 	downloaded_share_info = apply_defaults_to_missing_values(streamlit_session, downloaded_share_info)
 	downloaded_share_info.set_index('share_code', inplace=True)
-	output_result_to_terminal( streamlit_session )
-
-	print ( streamlit_session.share_index_file.index)
+	# output_result_to_terminal( streamlit_session )
+	output_results_to_browser( streamlit_session, passed='Updated these Shares > ', passed_2='Added these Shares > ' )
 
 	for ticker, row in downloaded_share_info.iterrows(): 
 		# 
@@ -128,14 +125,17 @@ def update_share_index_with_latest_download(streamlit_session, downloaded_share_
 			row['minutes_per_day'] = ticker_trading_mins_per_day( streamlit_session, ticker )
 			row['blue_chip'] = share_index_schema['blue_chip']['default']
 			streamlit_session.share_index_file = streamlit_session.share_index_file.append(row)
-			output_result_to_terminal( streamlit_session, ticker, result='passed_2' )
+			# output_result_to_terminal( streamlit_session, ticker, result='passed_2' )
+			output_results_to_browser( streamlit_session, ticker, result='passed_2' )
 		else:
 			streamlit_session.share_index_file.at[ticker, 'company_name'] = row['company_name']
 			streamlit_session.share_index_file.at[ticker, 'listing_date'] = row['listing_date']
 			streamlit_session.share_index_file.at[ticker, 'industry_group'] = row['industry_group']
 			streamlit_session.share_index_file.at[ticker, 'market_cap'] = row['market_cap']
-			output_result_to_terminal( streamlit_session, ticker, result='passed' )
-	output_result_to_terminal(streamlit_session, ( ' - updated ' + cyan + str(streamlit_session.terminal_count_passed) + white + ' added ' + yellow + str(streamlit_session.terminal_count_passed_2) + white), final_print=True )
+			# output_result_to_terminal( streamlit_session, ticker, result='passed' )
+			output_results_to_browser( streamlit_session, ticker, result='passed' )
+	# output_result_to_terminal(streamlit_session, ( ' - updated ' + cyan + str(streamlit_session.terminal_count_passed) + white + ' added ' + yellow + str(streamlit_session.terminal_count_passed_2) + white), final_print=True )
+	output_results_to_browser(streamlit_session, ( ' - updated ' + str(streamlit_session.terminal_count_passed) + ' added ' + str(streamlit_session.terminal_count_passed_2)), final_print=True )
 	streamlit_session.share_index_file = apply_defaults_to_missing_values(streamlit_session, streamlit_session.share_index_file)
 	streamlit_session.share_index_file['listing_date'] = pd.to_datetime( streamlit_session.share_index_file['listing_date'].dt.date  )
 	streamlit_session.share_index_file = streamlit_session.share_index_file.sort_index()
