@@ -80,104 +80,104 @@ download_share_data_schemas =    {
 							}
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Scope out the Params Object == session_state in streamlit
+# Scope out the Params Object == scope in streamlit
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def set_initial_session_state(session_state, project_description):
-	if 'first_render_of_streamlit' not in session_state:
-		session_state.first_render_of_streamlit = True
+def set_initial_scope(scope, project_description):
+	if 'first_render_of_streamlit' not in scope:
+		scope.first_render_of_streamlit = True
 
-	if session_state.first_render_of_streamlit:
+	if scope.first_render_of_streamlit:
 		# st.warning('Updating the session state params')
 		# Streamlit Params
-		session_state.display_page = 'undetermined'
+		scope.display_page = 'undetermined'
 
 		# Project Params
-		session_state.project_description = project_description
-		session_state.project_start_time = time.time()
+		scope.project_description = project_description
+		scope.project_start_time = time.time()
 		# Terminal Params
-		session_state.terminal_audit = False
-		session_state.terminal_width = 200
-		session_state.terminal_print_width = 0
-		session_state.terminal_count_passed = 0
-		session_state.terminal_count_passed_2 = 0
-		session_state.terminal_count_failed = 0
+		scope.terminal_audit = False
+		scope.terminal_width = 200
+		scope.terminal_print_width = 0
+		scope.terminal_count_passed = 0
+		scope.terminal_count_passed_2 = 0
+		scope.terminal_count_failed = 0
 		# Result
-		session_state.result_passed = ''
-		session_state.result_passed_2 = ''
-		session_state.result_failed = ''
-		session_state.result_passed_count = 0
-		session_state.result_passed_2_count = 0
-		session_state.result_failed_count = 0
+		scope.result_passed = ''
+		scope.result_passed_2 = ''
+		scope.result_failed = ''
+		scope.result_passed_count = 0
+		scope.result_passed_2_count = 0
+		scope.result_failed_count = 0
 		# Folders
-		session_state.folder_project = pathlib.Path(__file__).parent.resolve()
-		session_state.folder_share_data = pathlib.Path.home().joinpath( session_state.folder_project, 'share_data' )
-		session_state.folder_results_analysis = pathlib.Path.home().joinpath( session_state.folder_project, 'results_analysis' )
-		session_state.folder_website = pathlib.Path.home().joinpath( session_state.folder_project, 'website' )
-		if not os.path.isdir( session_state.folder_project ) : os.makedirs( session_state.folder_project )
-		if not os.path.isdir( session_state.folder_share_data ) : os.makedirs( session_state.folder_share_data )
-		if not os.path.isdir( session_state.folder_results_analysis ) : os.makedirs( session_state.folder_results_analysis )
-		if not os.path.isdir( session_state.folder_website ) : os.makedirs( session_state.folder_website )
+		scope.folder_project = pathlib.Path(__file__).parent.resolve()
+		scope.folder_share_data = pathlib.Path.home().joinpath( scope.folder_project, 'share_data' )
+		scope.folder_results_analysis = pathlib.Path.home().joinpath( scope.folder_project, 'results_analysis' )
+		scope.folder_website = pathlib.Path.home().joinpath( scope.folder_project, 'website' )
+		if not os.path.isdir( scope.folder_project ) : os.makedirs( scope.folder_project )
+		if not os.path.isdir( scope.folder_share_data ) : os.makedirs( scope.folder_share_data )
+		if not os.path.isdir( scope.folder_results_analysis ) : os.makedirs( scope.folder_results_analysis )
+		if not os.path.isdir( scope.folder_website ) : os.makedirs( scope.folder_website )
 		# File Paths
-		session_state.path_share_index = pathlib.Path.home().joinpath( session_state.folder_project, 'share_index.csv' )
-		session_state.path_website_file = pathlib.Path.home().joinpath( session_state.folder_website, 'strategy_results.json' )
-		session_state.path_share_data_file = 'not yet set',
+		scope.path_share_index = pathlib.Path.home().joinpath( scope.folder_project, 'share_index.csv' )
+		scope.path_website_file = pathlib.Path.home().joinpath( scope.folder_website, 'strategy_results.json' )
+		scope.path_share_data_file = 'not yet set',
 				
 		# Share Data Files
-		session_state.share_data_files = {}
-		session_state.share_data_loaded_list = []
-		session_state.share_data_missing_list = []
-		# session_state.share_data_schema = share_data_schema
-		# session_state.share_data_usecols = ['date', 'open', 'high', 'low', 'close', 'volume']
-		# session_state.share_data_dtypes = {'open': 'float64', 'high': 'float64', 'low': 'float64', 'close': 'float64', 'volume': 'int64'}
-		# session_state.share_data_dates = ['date']
+		scope.share_data_files = {}
+		scope.share_data_loaded_list = []
+		scope.share_data_missing_list = []
+		# scope.share_data_schema = share_data_schema
+		# scope.share_data_usecols = ['date', 'open', 'high', 'low', 'close', 'volume']
+		# scope.share_data_dtypes = {'open': 'float64', 'high': 'float64', 'low': 'float64', 'close': 'float64', 'volume': 'int64'}
+		# scope.share_data_dates = ['date']
 
 		# Market Dictionaries
-		session_state.market_suffix = markets
-		session_state.market_public_holidays = public_holidays
-		session_state.market_opening_hours = opening_hours	
+		scope.market_suffix = markets
+		scope.market_public_holidays = public_holidays
+		scope.market_opening_hours = opening_hours	
 
 		# Strategy Params
-		session_state.strategy_name = 'None yet Selected', 
-		session_state.strategy_print_header = True
-		session_state.strategy_price_columns = ['open', 'high', 'low', 'close' ]
-		session_state.strategy_print_count = 0
-		session_state.strategy_build_header = True
-		session_state.strategy_header = {1:'', 2:'', 3:'', 4:''}
-		session_state.strategy_print_line = ''
-		session_state.strategy_json_dict = { "shares":{}, "columnNames":[] }
-		session_state.strategy_results = {}
+		scope.strategy_name = 'None yet Selected', 
+		scope.strategy_print_header = True
+		scope.strategy_price_columns = ['open', 'high', 'low', 'close' ]
+		scope.strategy_print_count = 0
+		scope.strategy_build_header = True
+		scope.strategy_header = {1:'', 2:'', 3:'', 4:''}
+		scope.strategy_print_line = ''
+		scope.strategy_json_dict = { "shares":{}, "columnNames":[] }
+		scope.strategy_results = {}
 
 		# Chart Variables
-		session_state.chart_lines = []
-		session_state.chart_macd_on_price = {}
-		session_state.chart_macd_on_volume = {}
+		scope.chart_lines = []
+		scope.chart_macd_on_price = {}
+		scope.chart_macd_on_volume = {}
 		
-def render_sidebar_drop_down_lists(session_state):
-	if session_state.first_render_of_streamlit:
+def render_sidebar_drop_down_lists(scope):
+	if scope.first_render_of_streamlit:
                                              
 		# Available Share Markerts
 		list_of_markets = list(markets.keys())
 		list_of_markets.insert(0, '< select entire market >')
-		session_state.available_markets = list_of_markets
-		session_state.selected_market = None
-		session_state.share_market = 'ASX'
+		scope.available_markets = list_of_markets
+		scope.selected_market = None
+		scope.share_market = 'ASX'
 
 		# Available Share industries
-		list_of_industries = session_state.share_index_file['industry_group'].unique().tolist()
+		list_of_industries = scope.share_index_file['industry_group'].unique().tolist()
 		list_of_industries.sort()
-		session_state.available_industries = list_of_industries
-		session_state.selected_industry = None
+		scope.available_industries = list_of_industries
+		scope.selected_industry = None
 		
 		# Available Share Tickers
-		list_of_tickers = session_state.share_index_file.index.values.tolist()
-		session_state.available_tickers = list_of_tickers
-		session_state.selected_tickers = None
+		list_of_tickers = scope.share_index_file.index.values.tolist()
+		scope.available_tickers = list_of_tickers
+		scope.selected_tickers = None
 		
 		# Ticker list - for analysis
-		session_state.ticker_list_needs_updating = False
-		session_state.ticker_list = []
+		scope.ticker_list_needs_updating = False
+		scope.ticker_list = []
 
-def render_app_params_selector(session_state):
+def render_scope_page(scope):
 	st.title('Application Parameters')
 
 	param_group = st.selectbox(
@@ -204,27 +204,27 @@ def render_app_params_selector(session_state):
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Ticker List Needs Updating ?')
-		with col2: st.write(st.session_state.ticker_list_needs_updating)
+		with col2: st.write(st.scope.ticker_list_needs_updating)
 		with col3: st.write('< ticker_list_needs_updating >')
 		
 		col1,col2 = st.columns([6,2])
 		with col1: st.write('Analysis Ticker List')
 		with col2: st.write('< ticker_list >')
-		st.write(st.session_state.ticker_list)
+		st.write(st.scope.ticker_list)
 		
 		col1,col2 = st.columns([6,2])
 		with col1: st.write('Loaded Ticker List')
 		with col2: st.write('< share_data_loaded_list >')
-		st.write(st.session_state.share_data_loaded_list)
+		st.write(st.scope.share_data_loaded_list)
 
 		col1,col2 = st.columns([6,2])
 		with col1: st.write('Missing Ticker List')
 		with col2: st.write('< share_data_missing_list >')
-		st.write(st.session_state.share_data_missing_list)
+		st.write(st.scope.share_data_missing_list)
 
 	if param_group == 'Lists - Industries':
 		st.subheader('Share Index File contains the following Industries')
-		industry_group_count = pd.DataFrame(st.session_state.share_index_file['industry_group'].value_counts())
+		industry_group_count = pd.DataFrame(st.scope.share_index_file['industry_group'].value_counts())
 		industry_group_count.index.name = 'Industry'
 		industry_group_count.columns =['No of Codes']
 		st.dataframe(industry_group_count, 2000, 1200)
@@ -233,51 +233,51 @@ def render_app_params_selector(session_state):
 		col1,col2 = st.columns([6,2])
 		with col1: st.subheader('Share Index File')
 		with col2: st.write('< share_index_file >')
-		st.dataframe(st.session_state.share_index_file, 2000, 1200)
+		st.dataframe(scope.share_index_file, 2000, 1200)
 
 	if param_group == 'File - Share Data Files': # TODO 
 		col1,col2 = st.columns([6,2])
 		with col1: st.subheader('Share Data Files (loaded)')
 		with col2: st.write('< share_data_files >')
 		#TODO - does this need to be a table - we need to load some data before checking
-		st.write(st.session_state.share_data_files)
+		st.write(st.scope.share_data_files)
 
 	if param_group == 'Streamlit':
 		st.subheader('Streamlit Variables')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Initial Run / load')
-		with col2: st.write(st.session_state.first_render_of_streamlit)
+		with col2: st.write(st.scope.first_render_of_streamlit)
 		with col3: st.write('< first_render_of_streamlit >')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Selected Market')
-		with col2: st.subheader(st.session_state.selected_market)
+		with col2: st.subheader(st.scope.selected_market)
 		with col3: st.write('< selected_market >')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Selected Industry(s)')
-		with col2: st.write(st.session_state.selected_industry)
+		with col2: st.write(st.scope.selected_industry)
 		with col3: st.write('< selected_industry >')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Selected Ticker(s)')
-		with col2: st.write(st.session_state.selected_tickers)
+		with col2: st.write(st.scope.selected_tickers)
 		with col3: st.write('< selected_tickers >')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('List of Available Markets Generated for Steamlit')
-		with col2: st.write(st.session_state.available_markets)
+		with col2: st.write(st.scope.available_markets)
 		with col3: st.write('< available_markets >')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('List of Available Industries Generated for Steamlit')
-		with col2: st.write(st.session_state.available_industries)
+		with col2: st.write(st.scope.available_industries)
 		with col3: st.write('< available_industries >')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('List of Available Tickers Generated for Steamlit')
-		with col2: st.write(st.session_state.available_tickers)
+		with col2: st.write(st.scope.available_tickers)
 		with col3: st.write('< available_tickers >')
 
 	if param_group == 'Application':
@@ -285,25 +285,25 @@ def render_app_params_selector(session_state):
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Project Description')
-		with col2: st.write(st.session_state.project_description)
+		with col2: st.write(st.scope.project_description)
 		with col3: st.write('< project_description >')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Project Start Time')
-		with col2: st.write(datetime.fromtimestamp(st.session_state.project_start_time).strftime('%Y-%m-%d %H:%M:%S %p'))
+		with col2: st.write(datetime.fromtimestamp(st.scope.project_start_time).strftime('%Y-%m-%d %H:%M:%S %p'))
 		with col3: st.write('< project_start_time >')
 		
 		st.markdown("""---""")
 		st.subheader('Result Parameters')
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Result Passed')
-		with col2: st.write(st.session_state.result_passed)
+		with col2: st.write(st.scope.result_passed)
 		with col3: st.write('< result_passed >')
 		with col1: st.write('Result Passed_2')
-		with col2: st.write(st.session_state.result_passed_2)
+		with col2: st.write(st.scope.result_passed_2)
 		with col3: st.write('< result_passed_2 >')
 		with col1: st.write('Result Failed')
-		with col2: st.write(st.session_state.result_failed)
+		with col2: st.write(st.scope.result_failed)
 		with col3: st.write('< result_failed >')
 
 
@@ -313,68 +313,68 @@ def render_app_params_selector(session_state):
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Terminal Audit')
-		with col2: st.write(st.session_state.terminal_audit)
+		with col2: st.write(st.scope.terminal_audit)
 		with col3: st.write('< terminal_audit >')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Terminal Width')
-		with col2: st.write(st.session_state.terminal_width)
+		with col2: st.write(st.scope.terminal_width)
 		with col3: st.write('< terminal_width >')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Terminal Print Width')
-		with col2: st.write(st.session_state.terminal_print_width)
+		with col2: st.write(st.scope.terminal_print_width)
 		with col3: st.write('< terminal_print_width')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Terminal Count Passed')
-		with col2: st.write(st.session_state.terminal_count_passed)
+		with col2: st.write(st.scope.terminal_count_passed)
 		with col3: st.write('< terminal_count_passed')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Terminal Count_2 Passed')
-		with col2: st.write(st.session_state.terminal_count_passed_2)
+		with col2: st.write(st.scope.terminal_count_passed_2)
 		with col3: st.write('< terminal_count_passed_2')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Terminal Count Failed')
-		with col2: st.write(st.session_state.terminal_count_failed)
+		with col2: st.write(st.scope.terminal_count_failed)
 		with col3: st.write('< terminal_count_failed >')
 
 	if param_group == 'Market':
 		st.subheader('Market Parameters')
 		
-		share_market_message = 'Current Share Market = ' + str(st.session_state.share_market)
+		share_market_message = 'Current Share Market = ' + str(st.scope.share_market)
 		st.success(share_market_message)
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Available Markets')
-		with col2: st.write(st.session_state.available_markets)
+		with col2: st.write(st.scope.available_markets)
 		with col3: st.write('< available_markets >')
-		# st.dataframe(st.session_state.available_markets, 2000, 1200)
+		# st.dataframe(st.scope.available_markets, 2000, 1200)
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Selected Market')
-		with col2: st.write(st.session_state.selected_market)
+		with col2: st.write(st.scope.selected_market)
 		with col3: st.write('< selected_market >')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Market Share Suffix')
-		with col2: st.write(st.session_state.market_suffix)
+		with col2: st.write(st.scope.market_suffix)
 		with col3: st.write('< market_suffix >')
-		# st.dataframe(st.session_state.market_suffix, 2000, 1200)
+		# st.dataframe(st.scope.market_suffix, 2000, 1200)
 
 		st.markdown("""---""")
 		st.subheader('Market Dates - Opening times and Public Holidays')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Public Holidays')
-		with col2: st.write(st.session_state.market_public_holidays)
+		with col2: st.write(st.scope.market_public_holidays)
 		with col3: st.write('< market_public_holidays >')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Opening Hours')
-		with col2: st.write(st.session_state.market_opening_hours)
+		with col2: st.write(st.scope.market_opening_hours)
 		with col3: st.write('< market_opening_hours >')
 		
 	if param_group == 'Folders':
@@ -382,37 +382,37 @@ def render_app_params_selector(session_state):
 
 		col1,col2,col3 = st.columns([2,6,2])
 		with col1: st.write('Project Folder')
-		with col2: st.write(st.session_state.folder_project)
+		with col2: st.write(st.scope.folder_project)
 		with col3: st.write('< folder_project >')
 
 		col1,col2,col3 = st.columns([2,6,2])
 		with col1: st.write('Share Data Folder')
-		with col2: st.write(st.session_state.folder_share_data)
+		with col2: st.write(st.scope.folder_share_data)
 		with col3: st.write('< folder_share_data >')
 
 		col1,col2,col3 = st.columns([2,6,2])
 		with col1: st.write('Results Analysis Folder')
-		with col2: st.write(st.session_state.folder_results_analysis)
+		with col2: st.write(st.scope.folder_results_analysis)
 		with col3: st.write('< folder_results_analysis >')
 
 		col1,col2,col3 = st.columns([2,6,2])
 		with col1: st.write('Website Output Folder')
-		with col2: st.write(st.session_state.folder_website)
+		with col2: st.write(st.scope.folder_website)
 		with col3: st.write('< folder_website >')
 
 		col1,col2,col3 = st.columns([2,6,2])
 		with col1: st.write('Path for Share Index File')
-		with col2: st.write(st.session_state.path_share_index)
+		with col2: st.write(st.scope.path_share_index)
 		with col3: st.write('< path_share_index >')
 
 		col1,col2,col3 = st.columns([2,6,2])
 		with col1: st.write('Path for Website Output File')
-		with col2: st.write(st.session_state.path_website_file)
+		with col2: st.write(st.scope.path_website_file)
 		with col3: st.write('< path_website_file >')
 
 		col1,col2,col3 = st.columns([2,6,2])
 		with col1: st.write('Path for Share Data File')
-		with col2: st.write(st.session_state.path_share_data_file)
+		with col2: st.write(st.scope.path_share_data_file)
 		with col3: st.write('< path_share_data_file >')
 
 	if param_group == 'Strategy': # TODO
@@ -420,65 +420,65 @@ def render_app_params_selector(session_state):
 		# TODO not sure what the final format of some of these objects should be
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Strategy Name')
-		with col2: st.write(st.session_state.strategy_name)
+		with col2: st.write(st.scope.strategy_name)
 		with col3: st.write('strategy_name')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Print Header')
-		with col2: st.write(st.session_state.strategy_print_header)
+		with col2: st.write(st.scope.strategy_print_header)
 		with col3: st.write('strategy_print_header')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Price Columns')
-		with col2: st.dataframe(st.session_state.strategy_price_columns, 100, 200)
+		with col2: st.dataframe(st.scope.strategy_price_columns, 100, 200)
 		with col3: st.write('strategy_price_columns')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Print Count')
-		with col2: st.write(st.session_state.strategy_print_count)
+		with col2: st.write(st.scope.strategy_print_count)
 		with col3: st.write('strategy_print_count')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Build Header')
-		with col2: st.write(st.session_state.strategy_build_header)
+		with col2: st.write(st.scope.strategy_build_header)
 		with col3: st.write('strategy_build_header')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Header')
-		with col2: st.write(st.session_state.strategy_header)
+		with col2: st.write(st.scope.strategy_header)
 		with col3: st.write('strategy_header')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Print Line')
-		with col2: st.write(st.session_state.strategy_print_line)
+		with col2: st.write(st.scope.strategy_print_line)
 		with col3: st.write('strategy_print_line')
 		
 		col1,col2 = st.columns([6,2])
 		with col1: st.write('Json Dicitionary')
 		with col2: st.write('strategy_json_dict')
-		st.write(st.session_state.strategy_json_dict)
+		st.write(st.scope.strategy_json_dict)
 
 		col1,col2 = st.columns([6,2])
 		with col1: st.write('Results Dataframe')
 		with col2: st.write('strategy_results')
-		st.dataframe(st.session_state.strategy_results, 2000, 1200)
+		st.dataframe(st.scope.strategy_results, 2000, 1200)
 
 	if param_group == 'Charting':
 		st.subheader('Charting Parameters')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Chart Line')
-		with col2: st.write(st.session_state.chart_lines)
+		with col2: st.write(st.scope.chart_lines)
 		with col3: st.write('< chart_lines >')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Chart MACD on Price')
-		with col2: st.write(st.session_state.chart_macd_on_price)
+		with col2: st.write(st.scope.chart_macd_on_price)
 		with col3: st.write('< chart_macd_on_price >')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Chart MACD on Volume')
-		with col2: st.write(st.session_state.chart_macd_on_volume)
+		with col2: st.write(st.scope.chart_macd_on_volume)
 		with col3: st.write('< chart_macd_on_volume >')
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------

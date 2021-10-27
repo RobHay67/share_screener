@@ -28,17 +28,44 @@ share_index_schema ={
 					}
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Browser Render Controller
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------
+def render_share_index_page(scope):
+
+	st.title('Maintain the Share Index File')
+
+	share_index_message = str((len(scope.share_index_file)))
+	
+	st.success(('Share Index contains ( ' + str((len(scope.share_index_file))) + ' ) tickers'))
+	col1,col2,col3 = st.columns([3,3,3])
+	with col1: download_share_index = st.button('Update List of Valid Tickers')
+	with col2: show_share_index = st.button('Display the Share Index File')
+	with col3: show_industries = st.button('Industry Summary')
+	
+	if download_share_index:
+		st.subheader('Downloading Share Data from https://asx.api.markitdigital.com and adding to the Share Index File')
+		refresh_share_index_file(st.session_state)
+	
+	if show_share_index:
+		st.subheader('Share Index File')
+		st.dataframe(scope.share_index_file, 2000, 1200)
+
+	if show_industries:
+		print_share_index_industries(scope)
+
+
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # SHARE INDEX FILE - loader and Saver
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def load_share_index_file( streamlit_session ):
+def load_share_index_file( scope ):
 	st.info('Loading Share Index File')
 
-	print(streamlit_session.path_share_index)
+	print(scope.path_share_index)
 
-	if os.path.exists( streamlit_session.path_share_index ):
-		st.info('attemting to load share_index.csv file from ' +  str(streamlit_session.path_share_index) )
+	if os.path.exists( scope.path_share_index ):
+		st.info('attemting to load share_index.csv file from ' +  str(scope.path_share_index) )
 
-		share_index = pd.read_csv(  streamlit_session.path_share_index, 
+		share_index = pd.read_csv(  scope.path_share_index, 
 									dtype=share_index_schema_csv_dtypes(),
 									parse_dates=share_index_schema_csv_dates(),
 									)
@@ -47,9 +74,9 @@ def load_share_index_file( streamlit_session ):
 		st.success('successfully loaded the share index file')
 		share_index.set_index('share_code', inplace=True)
 		# remove any delisted stocks here
-		streamlit_session.share_index_file = share_index
+		scope.share_index_file = share_index
 	else: 
-		st.warning( str(streamlit_session.path_share_index) + ' path / file does not exist - creating an empty share_index dataframe' )
+		st.warning( str(scope.path_share_index) + ' path / file does not exist - creating an empty share_index dataframe' )
 		dataframe_columns = []
 		for column_name in share_index_schema: 
 			dataframe_columns.append(column_name)
@@ -57,10 +84,8 @@ def load_share_index_file( streamlit_session ):
 		st.success('successfully created empty share index dataframe')
 		share_index.set_index('share_code', inplace=True)
 		# remove any delisted stocks here
-		streamlit_session.share_index_file = share_index
-		save_share_index_file(streamlit_session)
-
-	
+		scope.share_index_file = share_index
+		save_share_index_file(scope)
 
 def save_share_index_file( params ):
 	st.info('Saving the share index file')
@@ -69,13 +94,12 @@ def save_share_index_file( params ):
 	saving_df.to_csv( params.path_share_index, index=False )
 	st.success('successfully saved share Index file')
 
-
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # SHARE INDEX FILE - Downloader + helpers
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def refresh_share_index_file(streamlit_session):
-	st.info('Downloading Share Index information for the ' + streamlit_session.share_market)
-	if streamlit_session.share_market == 'ASX':
+def refresh_share_index_file(scope):
+	st.info('Downloading Share Index information for the ' + scope.share_market)
+	if scope.share_market == 'ASX':
 		url = 'https://asx.api.markitdigital.com/asx-research/1.0/companies/directory/file?'
 		column_names = ['share_code', 'company_name', 'listing_date', 'industry_group', 'market_cap' ]
 		downloaded_share_info = pd.read_csv( 	url, 
@@ -99,49 +123,44 @@ def refresh_share_index_file(streamlit_session):
 		downloaded_share_info['industry_group'] = downloaded_share_info['industry_group'].str.replace('&', 'and' )
 		downloaded_share_info['industry_group'] = downloaded_share_info['industry_group'].str.lower()
 
-		st.success('number of downloaded ' + streamlit_session.share_market + ' share codes = ' + str(len(downloaded_share_info)))
-		update_share_index_with_latest_download(streamlit_session, downloaded_share_info )
-		print_share_index_industries(streamlit_session)
+		st.success('number of downloaded ' + scope.share_market + ' share codes = ' + str(len(downloaded_share_info)))
+		update_share_index_with_latest_download(scope, downloaded_share_info )
 	else:
-		st.error('DOWNLOAD Share data NOT YET CONFIUGURED FOR ' + streamlit_session.share_market)
+		st.error('DOWNLOAD Share data NOT YET CONFIUGURED FOR ' + scope.share_market)
 		pass
 
-def update_share_index_with_latest_download(streamlit_session, downloaded_share_info ):
+def update_share_index_with_latest_download(scope, downloaded_share_info ):
 	st.info( 'Updating the share records in the Share Index file ')
-	terminal_heading( streamlit_session, ('Updating the share records in the Share Index file '+ cyan + ' Updated' + '  /  ' + yellow + 'Added New'), line_filler='-' )
 
 	add_records_counter = 0
 
-	downloaded_share_info = apply_defaults_to_missing_values(streamlit_session, downloaded_share_info)
+	downloaded_share_info = apply_defaults_to_missing_values(scope, downloaded_share_info)
 	downloaded_share_info.set_index('share_code', inplace=True)
-	# output_result_to_terminal( streamlit_session )
-	output_results_to_browser( streamlit_session, passed='Updated these Shares > ', passed_2='Added these Shares > ' )
+	output_results_to_browser( scope, passed='Updated these Shares > ', passed_2='Added these Shares > ' )
 
 	for ticker, row in downloaded_share_info.iterrows(): 
 		# 
-		if ticker not in streamlit_session.share_index_file.index:
+		if ticker not in scope.share_index_file.index:
 			add_records_counter += 1
-			row['opening_time'] = ticker_open_time( streamlit_session, ticker )
-			row['minutes_per_day'] = ticker_trading_mins_per_day( streamlit_session, ticker )
+			row['opening_time'] = ticker_open_time( scope, ticker )
+			row['minutes_per_day'] = ticker_trading_mins_per_day( scope, ticker )
 			row['blue_chip'] = share_index_schema['blue_chip']['default']
-			streamlit_session.share_index_file = streamlit_session.share_index_file.append(row)
-			# output_result_to_terminal( streamlit_session, ticker, result='passed_2' )
-			output_results_to_browser( streamlit_session, ticker, result='passed_2' )
+			scope.share_index_file = scope.share_index_file.append(row)
+			output_results_to_browser( scope, ticker, result='passed_2' )
 		else:
-			streamlit_session.share_index_file.at[ticker, 'company_name'] = row['company_name']
-			streamlit_session.share_index_file.at[ticker, 'listing_date'] = row['listing_date']
-			streamlit_session.share_index_file.at[ticker, 'industry_group'] = row['industry_group']
-			streamlit_session.share_index_file.at[ticker, 'market_cap'] = row['market_cap']
-			# output_result_to_terminal( streamlit_session, ticker, result='passed' )
-			output_results_to_browser( streamlit_session, ticker, result='passed' )
-	# output_result_to_terminal(streamlit_session, ( ' - updated ' + cyan + str(streamlit_session.terminal_count_passed) + white + ' added ' + yellow + str(streamlit_session.terminal_count_passed_2) + white), final_print=True )
-	output_results_to_browser(streamlit_session, ( ' - updated ' + str(streamlit_session.terminal_count_passed) + ' added ' + str(streamlit_session.terminal_count_passed_2)), final_print=True )
-	streamlit_session.share_index_file = apply_defaults_to_missing_values(streamlit_session, streamlit_session.share_index_file)
-	streamlit_session.share_index_file['listing_date'] = pd.to_datetime( streamlit_session.share_index_file['listing_date'].dt.date  )
-	streamlit_session.share_index_file = streamlit_session.share_index_file.sort_index()
+			scope.share_index_file.at[ticker, 'company_name'] = row['company_name']
+			scope.share_index_file.at[ticker, 'listing_date'] = row['listing_date']
+			scope.share_index_file.at[ticker, 'industry_group'] = row['industry_group']
+			scope.share_index_file.at[ticker, 'market_cap'] = row['market_cap']
+			output_results_to_browser( scope, ticker, result='passed' )
+	# output_result_to_terminal(scope, ( ' - updated ' + cyan + str(scope.terminal_count_passed) + white + ' added ' + yellow + str(scope.terminal_count_passed_2) + white), final_print=True )
+	output_results_to_browser(scope, 'Finished', final_print=True )
+	scope.share_index_file = apply_defaults_to_missing_values(scope, scope.share_index_file)
+	scope.share_index_file['listing_date'] = pd.to_datetime( scope.share_index_file['listing_date'].dt.date  )
+	scope.share_index_file = scope.share_index_file.sort_index()
 	message = 'number of share codes added to master share index = '+ str(add_records_counter)
 	st.warning( message) if add_records_counter > 0 else st.info( message)
-	save_share_index_file(streamlit_session)
+	save_share_index_file(scope)
 
 def apply_defaults_to_missing_values(params, dataframe):
 	defaults = share_index_schema_defaults()
@@ -197,20 +216,20 @@ def share_index_schema_csv_dates():
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Ticker Helpers
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def ticker_open_time( streamlit_session, ticker):
-	market = streamlit_session.share_market
+def ticker_open_time( scope, ticker):
+	market = scope.share_market
 	share_code_first_letter = ticker[0].upper()
-	for group in streamlit_session.market_opening_hours[market].keys():
-		if share_code_first_letter in streamlit_session.market_opening_hours[market][group]['letter_range']:
-			opening_time = streamlit_session.market_opening_hours[market][group]['opening_time']
+	for group in scope.market_opening_hours[market].keys():
+		if share_code_first_letter in scope.market_opening_hours[market][group]['letter_range']:
+			opening_time = scope.market_opening_hours[market][group]['opening_time']
 	return( opening_time )
 
-def ticker_trading_mins_per_day( streamlit_session, ticker ):
-	market = streamlit_session.share_market
+def ticker_trading_mins_per_day( scope, ticker ):
+	market = scope.share_market
 	share_code_first_letter = ticker[0].upper()
-	for group in streamlit_session.market_opening_hours[market].keys():
-		if share_code_first_letter in streamlit_session.market_opening_hours[market][group]['letter_range']:
-			trading_minutes_per_day = streamlit_session.market_opening_hours[market][group]['minutes_per_day']
+	for group in scope.market_opening_hours[market].keys():
+		if share_code_first_letter in scope.market_opening_hours[market][group]['letter_range']:
+			trading_minutes_per_day = scope.market_opening_hours[market][group]['minutes_per_day']
 	return trading_minutes_per_day 
 
 def extrapolate_average_trading_volume(params):
@@ -257,12 +276,13 @@ def extrapolate_average_trading_volume(params):
 # -----------------------------------------------------------------------------------------------------------------------------------
 # Share Index Industry Report
 # -----------------------------------------------------------------------------------------------------------------------------------
-def print_share_index_industries(params):
+def print_share_index_industries(scope):
 	st.subheader('Share Index File contains the following Industries')
-	industry_group_count = pd.DataFrame(params.share_index_file['industry_group'].value_counts())
-	industry_group_count.index.name = 'Industry'
-	industry_group_count.columns =['No of Codes']
-	st.table(industry_group_count)
+	industry_group_count = pd.DataFrame(scope.share_index_file['industry_group'].value_counts().rename_axis('Industry').reset_index(name='No of Codes'))
+	industry_group_count = industry_group_count.sort_values(by='Industry')
+	st.dataframe(industry_group_count, 2000, 1200)
+
+
 
 # -----------------------------------------------------------------------------------------------------------------------------------
 # Colours
