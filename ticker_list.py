@@ -13,8 +13,8 @@ def render_home_page(scope):
 #
 # ===================================================================================================================================
 def construct_list_of_share_codes(scope):
-	print ( 'construct_list_of_share_codes - has been called')
-	print ('construct_list_of_share_codes > update_ticker_list_required = ', st.session_state.update_ticker_list_required)
+	# print ( 'construct_list_of_share_codes - has been called')
+	# print ('construct_list_of_share_codes > update_ticker_list_required = ', st.session_state.update_ticker_list_required)
 
 
 
