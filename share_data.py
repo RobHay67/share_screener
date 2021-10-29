@@ -2,15 +2,15 @@
 
 
 import streamlit as st
-# import pandas as pd
+import pandas as pd
 # import yfinance as yf					# https://github.com/ranaroussi/yfinance
 # import datetime
-# import os
+import os
 
 # from share_index import save_share_index_file
-# from params import generate_path_for_share_data_file
+from scope import generate_path_for_share_data_file
 # from reports import report_progress, terminal_heading, output_result_to_terminal, print_missing_dates
-
+from reports import output_results_to_browser
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -20,29 +20,43 @@ import streamlit as st
 def render_share_data_page(scope):
 	st.title('Load and/or Download Share Data')
 
-	st.success(('Ticker List contains ( ' + str((len(scope.ticker_list))) + ' ) tickers'))
+	st.success(('Current number of Loaded Files ( ' + str((len(scope.share_data_files))) + ' )'))
 
 	
 	ticker_list_message = str(len(scope.ticker_list))
 
-	col1,col2 = st.columns([4,4])
+	col1,col2,col3 = st.columns([3,3,3])
 
-	with col1: st.subheader('Load Share Data Files')
-	with col1: st.write(('No of Files to Load = ( ' + str((len(scope.ticker_list))) + ' )'))
-	with col1: load_tickers = st.button('Load OHLC Data')
+	with col1: st.subheader('Ticker List')
+	with col1: st.write(('number of tickers in Ticker list = ( ' + str((len(scope.ticker_list))) + ' )'))
+	with col1: show_tickers = st.button('Show Ticker List')
 
-	with col2: st.subheader('Download Share Data')
-	with col2: no_of_days = st.number_input('Number of Days to Download', min_value=1, max_value=10, value=1, key='0')    
-	with col2: download_tickers = st.button('Download OHLC Data')
+	with col2: st.subheader('Load Share Data Files')
+	with col2: st.subheader('(per ticker list)')
+	with col2: st.write(('number of Files to Load = ( ' + str((len(scope.ticker_list))) + ' )'))
+	with col2: load_tickers = st.button('Load OHLC Data')
+
+	with col3: st.subheader('Download Latest Share Data')
+	with col3: st.subheader('(per ticker list)')
+	with col3: no_of_days = st.number_input('change ( - / + )  number of days to download', min_value=1, max_value=10, value=1, key='0')    
+	with col3: download_tickers = st.button('Download OHLC Data')
 	
 	st.markdown("""---""")
 
+	if show_tickers:
+		st.subheader('Ticker List - target tickers for analysis (use sidebar to add tickers to this list)')
+		ticker_list_message = ''
+		for ticker in scope.ticker_list:
+			ticker_list_message = ticker_list_message + ticker + ' - '
+		st.success(ticker_list_message)
 
 	if load_tickers:
-		print( 'lets load the tickers in the ticker list')
+		st.subheader('Loading Tickers (as specified by the Ticker List)')
+		load_share_data_files(scope)
+		# print( 'lets load the tickers in the ticker list')
 
 	if download_tickers:
-		print ( 'lets load what we have for these tickers and then download for the number of selected days')
+		st.info('lets firstly load what we have for these tickers and then download for the number of selected days')
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Primary Controller
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -119,34 +133,34 @@ def ensure_share_data_is_available(params):
 # # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # # Share Data File - Loader - local
 # # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# def load_share_data_files( params ):
-# 	if len(params.share_data['loaded_list']) == 0:   			# prevent loading files if they have already been loaded
-# 		terminal_heading( params, ( 'load share data files ' + cyan + 'LOADED' + '  /  ' + purple + 'MISSING' + white + '     ( download required for inclusion in strategy analysis )'), line_filler='-' )
-# 		output_result_to_terminal( params )
-# 		for ticker in params.analysis['ticker_list']:
-# 			generate_path_for_share_data_file(params, ticker )
-# 			if os.path.exists( params.path_share_data_file ):
-# 				load_a_file(params, ticker )
-# 				params.share_data['loaded_list'].append(ticker)
-# 				output_result_to_terminal( params, ticker, result='passed' )
-# 			else:
-# 				params.share_data['missing_list'].append(ticker)
-# 				output_result_to_terminal( params, ticker, result='failed' )
-# 		output_result_to_terminal( params, ( ' - loaded ' + cyan + str(params.terminal['count_passed']) + white + ' files' + white ), final_print=True )
-# 	return params
+def load_share_data_files( scope ):
+	if len(scope.ticker_list) != 0: 
+		output_results_to_browser( scope, passed='LOADED files for > ', failed='MISSING files for > ', passed_2='not applicable' )
+		
+		for ticker in scope.ticker_list:
+			generate_path_for_share_data_file(scope, ticker )
+			if os.path.exists( scope.path_share_data_file ):
+				load_a_file(scope, ticker )
+				scope.share_data_loaded_list.append(ticker)
+				output_results_to_browser( scope, ticker, result='passed' )
+			else:
+				scope.share_data_missing_list.append(ticker)
+				output_results_to_browser( scope, ticker, result='failed' )
+		output_results_to_browser(scope, 'Finished', final_print=True )
+	else:
+		st.error('Ticker List does not contain any tickers - add tickers using the sidebar')
 
-# def load_a_file( params, ticker ):
-# 	share_data_file = pd.read_csv (  
-# 									params.path_share_data_file, 
-# 									header      = 0,
-# 									# nrows       = params.row_limitor, 
-# 									usecols     = params.share_data['usecols'],
-# 									# index_col   = 'date', 
-# 									dtype       = params.share_data['dtypes'],
-# 									parse_dates = params.share_data['dates'],
-# 									)
-# 	params.share_data['files'][ticker] = share_data_file
-# 	return share_data_file
+def load_a_file( scope, ticker ):
+	share_data_file = pd.read_csv (  
+									scope.path_share_data_file, 
+									header      = 0,
+									# nrows       = params.row_limitor, 
+									usecols     = scope.share_data_usecols,
+									# index_col   = 'date', 
+									dtype       = scope.share_data_dtypes,
+									parse_dates = scope.share_data_dates,
+									)
+	scope.share_data_files[ticker] = share_data_file
 
 # # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # # Share Data File - Saver - local

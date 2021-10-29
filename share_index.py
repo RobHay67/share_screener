@@ -156,7 +156,6 @@ def update_share_index_with_latest_download(scope, downloaded_share_info ):
 			scope.share_index_file.at[ticker, 'industry_group'] = row['industry_group']
 			scope.share_index_file.at[ticker, 'market_cap'] = row['market_cap']
 			output_results_to_browser( scope, ticker, result='passed' )
-	# output_result_to_terminal(scope, ( ' - updated ' + cyan + str(scope.terminal_count_passed) + white + ' added ' + yellow + str(scope.terminal_count_passed_2) + white), final_print=True )
 	output_results_to_browser(scope, 'Finished', final_print=True )
 	scope.share_index_file = apply_defaults_to_missing_values(scope, scope.share_index_file)
 	scope.share_index_file['listing_date'] = pd.to_datetime( scope.share_index_file['listing_date'].dt.date  )

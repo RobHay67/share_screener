@@ -145,6 +145,10 @@ def output_results_to_browser(streamlit_session, output=None, result=None, final
 
 	# print (streamlit_session.result_passed)
 	if final_print: 
+		streamlit_session.result_passed = streamlit_session.result_passed + ' < total passed = ' + str(streamlit_session.result_passed_count) 
+		streamlit_session.result_passed_2 = streamlit_session.result_passed_2 + ' < total passed 2 = ' + str(streamlit_session.result_passed_2_count) 
+		streamlit_session.result_failed = streamlit_session.result_failed + ' < total failed = ' + str(streamlit_session.result_failed_count) 
+
 		st.info(streamlit_session.result_passed)
 		st.warning(streamlit_session.result_passed_2)
 		if len(streamlit_session.result_failed) != 0:

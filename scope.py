@@ -86,8 +86,6 @@ def set_initial_scope(scope, project_description):
 	if 'first_render_of_streamlit' not in scope:
 		scope.first_render_of_streamlit = True
 		
-
-
 	if scope.first_render_of_streamlit:
 		# st.warning('Updating the session state params')
 		# Streamlit Params
@@ -128,10 +126,10 @@ def set_initial_scope(scope, project_description):
 		scope.share_data_files = {}
 		scope.share_data_loaded_list = []
 		scope.share_data_missing_list = []
-		# scope.share_data_schema = share_data_schema
-		# scope.share_data_usecols = ['date', 'open', 'high', 'low', 'close', 'volume']
-		# scope.share_data_dtypes = {'open': 'float64', 'high': 'float64', 'low': 'float64', 'close': 'float64', 'volume': 'int64'}
-		# scope.share_data_dates = ['date']
+		scope.share_data_schema = share_data_schema
+		scope.share_data_usecols = ['date', 'open', 'high', 'low', 'close', 'volume']
+		scope.share_data_dtypes = {'open': 'float64', 'high': 'float64', 'low': 'float64', 'close': 'float64', 'volume': 'int64'}
+		scope.share_data_dates = ['date']
 
 		# Market Dictionaries
 		scope.market_suffix = markets
@@ -242,7 +240,7 @@ def render_scope_page(scope):
 		with col1: st.subheader('Share Data Files (loaded)')
 		with col2: st.write('< share_data_files >')
 		#TODO - does this need to be a table - we need to load some data before checking
-		st.write(st.scope.share_data_files)
+		st.write(scope.share_data_files)
 
 	if param_group == 'Streamlit':
 		st.subheader('Streamlit Variables')
@@ -533,7 +531,7 @@ def report_params(params ):
 	#TODO - work out what to do with this
 	params.reports['missing_dates'] = False
 
-	
+
 # def download_params(params):
 	# params.download['no_of_days'] = args.download_no_of_days
 	# if params.download['no_of_days'] >= 1: 
