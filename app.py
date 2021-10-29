@@ -3,7 +3,11 @@
 project_description = 'Share Trader - DDT'
 
 
-from scope import set_initial_scope, build_ticker_dropdowns, render_scope_page
+# from scope import set_initial_scope, build_ticker_dropdowns, render_scope_page
+
+from scope import set_initial_scope
+from scope import build_ticker_dropdowns
+from scope import render_scope_page
 from share_index import load_share_index_file, render_share_index_page
 from share_data import render_share_data_page
 from ticker_list import render_home_page, construct_list_of_share_codes
