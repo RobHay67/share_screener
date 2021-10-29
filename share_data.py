@@ -62,7 +62,7 @@ def render_share_data_page(scope):
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def ensure_share_data_is_available(params):
 	if len(params.analysis['ticker_list']) > 0:								# we have some share data to analyse
-		load_share_data_files( params )
+		# load_share_data_files( params )
 		download_from_yahoo_finance( params )			
 		combine_loaded_and_downloaded_share_data(params)
 		check_share_data_for_missing_dates( params )   # ensure that the expected date ranges are actually available for each stock
@@ -135,7 +135,7 @@ def ensure_share_data_is_available(params):
 # # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def load_share_data_files( scope ):
 	if len(scope.ticker_list) != 0: 
-		output_results_to_browser( scope, passed='LOADED files for > ', failed='MISSING files for > ', passed_2='not applicable' )
+		output_results_to_browser( scope, passed='LOADED files for > ', failed='MISSING files for > ', passed_2='not applicable > ' )
 		
 		for ticker in scope.ticker_list:
 			generate_path_for_share_data_file(scope, ticker )

@@ -7,6 +7,8 @@ import time
 from datetime import datetime, timedelta 
 import streamlit as st
 
+from share_index import load_share_index_file
+
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Config - Market Information
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -23,15 +25,20 @@ public_holidays = {
 
 opening_hours = { 
 						'ASX':{
+							'timezone':'Australia/Sydney',
+							# https://www.marketindex.com.au/trading-hours
 							'group_1':{'letter_range':['1', '2', '3', '4', '5', '8', '9', 'A', 'B'], 'opening_time':'10:00:00','minutes_per_day':360   },
-							'group_2':{'letter_range':['C', 'D', 'E', 'F'],                          'opening_time':'10:02:00','minutes_per_day':357.75},
-							'group_3':{'letter_range':['G', 'H', 'I', 'J', 'K', 'L', 'M'],           'opening_time':'10:05:00','minutes_per_day':355.5 },
-							'group_4':{'letter_range':['N', 'O', 'P', 'Q', 'R'],                     'opening_time':'10:07:00','minutes_per_day':353.25},
+							'group_2':{'letter_range':['C', 'D', 'E', 'F'],                          'opening_time':'10:02:15','minutes_per_day':357.75},
+							'group_3':{'letter_range':['G', 'H', 'I', 'J', 'K', 'L', 'M'],           'opening_time':'10:04:30','minutes_per_day':355.5 },
+							'group_4':{'letter_range':['N', 'O', 'P', 'Q', 'R'],                     'opening_time':'10:06:45','minutes_per_day':353.25},
 							'group_5':{'letter_range':['S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],      'opening_time':'10:09:00','minutes_per_day':351   },
 						},
-						'USA':{	'group_1':{'letter_range':['1', '2', '3', '4', '5', '8', '9', 'A', 'B'], 'opening_time':'10:00:00','minutes_per_day':360   },
+						'USA':{	
+							'timezone':'US/Central',
+							'group_1':{'letter_range':['1', '2', '3', '4', '5', '8', '9', 'A', 'B'], 'opening_time':'10:00:00','minutes_per_day':360   },
 							},
 				}
+
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Share Data file Schema
@@ -83,10 +90,13 @@ download_share_data_schemas =    {
 # Scope out the Params Object == scope in streamlit
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def set_initial_scope(scope, project_description):
-	if 'first_render_of_streamlit' not in scope:
-		scope.first_render_of_streamlit = True
+	if 'initial_load' not in scope:
+		scope.initial_load = True
+		scope.update_available_dropdowns = True
 		
-	if scope.first_render_of_streamlit:
+		
+		
+	if scope.initial_load:
 		# st.warning('Updating the session state params')
 		# Streamlit Params
 		scope.display_page = 'undetermined'
@@ -111,17 +121,25 @@ def set_initial_scope(scope, project_description):
 		# Folders
 		scope.folder_project = pathlib.Path(__file__).parent.resolve()
 		scope.folder_share_data = pathlib.Path.home().joinpath( scope.folder_project, 'share_data' )
-		scope.folder_results_analysis = pathlib.Path.home().joinpath( scope.folder_project, 'results_analysis' )
-		scope.folder_website = pathlib.Path.home().joinpath( scope.folder_project, 'website' )
+		scope.folder_results_analysis = pathlib.Path.home().joinpath( scope.folder_project, scope.folder_share_data, 'results_analysis' )
+		scope.folder_website = pathlib.Path.home().joinpath( scope.folder_project, scope.folder_share_data, 'website' )
 		if not os.path.isdir( scope.folder_project ) : os.makedirs( scope.folder_project )
 		if not os.path.isdir( scope.folder_share_data ) : os.makedirs( scope.folder_share_data )
 		if not os.path.isdir( scope.folder_results_analysis ) : os.makedirs( scope.folder_results_analysis )
 		if not os.path.isdir( scope.folder_website ) : os.makedirs( scope.folder_website )
 		# File Paths
-		scope.path_share_index = pathlib.Path.home().joinpath( scope.folder_project, 'share_index.csv' )
+		scope.path_share_index = pathlib.Path.home().joinpath( scope.folder_share_data, 'share_index.csv' )
 		scope.path_website_file = pathlib.Path.home().joinpath( scope.folder_website, 'strategy_results.json' )
 		scope.path_share_data_file = 'not yet set',
-				
+		# Load the Share Index File
+		load_share_index_file(scope)
+
+
+
+		# Ticker list - for analysis
+		scope.update_ticker_list_required = False
+		scope.ticker_list = []
+
 		# Share Data Files
 		scope.share_data_files = {}
 		scope.share_data_loaded_list = []
@@ -151,32 +169,30 @@ def set_initial_scope(scope, project_description):
 		scope.chart_lines = []
 		scope.chart_macd_on_price = {}
 		scope.chart_macd_on_volume = {}
+
+		st.session_state.initial_load = False
 		
-def render_sidebar_drop_down_lists(scope):
-	if scope.first_render_of_streamlit:
+def build_ticker_dropdowns(scope):
                                              
-		# Available Share Markerts
-		list_of_markets = list(markets.keys())
-		list_of_markets.insert(0, '< select entire market >')
-		scope.available_markets = list_of_markets
-		scope.selected_market = None
-		scope.share_market = 'ASX'
+	# Available Share Markerts
+	list_of_markets = list(markets.keys())
+	list_of_markets.insert(0, '< select entire market >')
+	scope.available_markets = list_of_markets
+	scope.selected_market = None
+	scope.share_market = 'ASX'
 
-		# Available Share industries
-		list_of_industries = scope.share_index_file['industry_group'].unique().tolist()
-		list_of_industries.sort()
-		scope.available_industries = list_of_industries
-		scope.selected_industry = None
-		
-		# Available Share Tickers
-		list_of_tickers = scope.share_index_file.index.values.tolist()
-		scope.available_tickers = list_of_tickers
-		scope.selected_tickers = None
-		
-		# Ticker list - for analysis
-		scope.ticker_list_needs_updating = False
-		scope.ticker_list = []
-
+	# Available Share industries
+	list_of_industries = scope.share_index_file['industry_group'].unique().tolist()
+	list_of_industries.sort()
+	scope.available_industries = list_of_industries
+	scope.selected_industry = None
+	
+	# Available Share Tickers
+	list_of_tickers = scope.share_index_file.index.values.tolist()
+	scope.available_tickers = list_of_tickers
+	scope.selected_tickers = None
+	
+	
 def render_scope_page(scope):
 	st.title('Application Parameters')
 
@@ -247,8 +263,8 @@ def render_scope_page(scope):
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Initial Run / load')
-		with col2: st.write(st.scope.first_render_of_streamlit)
-		with col3: st.write('< first_render_of_streamlit >')
+		with col2: st.write(st.scope.initial_load)
+		with col3: st.write('< initial_load >')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Selected Market')

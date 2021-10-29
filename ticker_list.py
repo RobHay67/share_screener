@@ -13,6 +13,11 @@ def render_home_page(scope):
 #
 # ===================================================================================================================================
 def construct_list_of_share_codes(scope):
+	print ( 'construct_list_of_share_codes - has been called')
+	print ('construct_list_of_share_codes > update_ticker_list_required = ', st.session_state.update_ticker_list_required)
+
+
+
 	st.header('Ticker List - Add or Remove tickers from the Ticker List')
 	ticker_list = []
 	
@@ -45,7 +50,7 @@ def construct_list_of_share_codes(scope):
 		st.error('All Tickers removed from Ticker List')
 
 	scope.ticker_list = ticker_list
-	scope.ticker_list_needs_updating = False
+	scope.update_ticker_list_required = False
 
 	st.subheader('Ticker List - after updating')
 	ticker_list_message = ''
