@@ -10,25 +10,25 @@ pd.set_option('display.width', 1000)
 # -----------------------------------------------------------------------------------------------------------------------------------
 # Colours
 # -----------------------------------------------------------------------------------------------------------------------------------
-red         = '\033[91m'
-green       = '\033[92m'
-yellow      = '\033[93m'
-blue        = '\033[94m'
-purple      = '\033[95m'
-cyan        = '\033[96m'
-white 		= '\033[0m'
+# red         = '\033[91m'
+# green       = '\033[92m'
+# yellow      = '\033[93m'
+# blue        = '\033[94m'
+# purple      = '\033[95m'
+# cyan        = '\033[96m'
+# white 		= '\033[0m'
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------
 # Share Index Reports
 # -----------------------------------------------------------------------------------------------------------------------------------
 
-def print_share_index_industries(params):
-	terminal_heading( params, 'Share Index File contains the following Industries', line_filler='-', colour=cyan )
-	print ( cyan, end='' )
-	print ( params.share_index_file['industry_group'].value_counts() )
-	print ( cyan + '-'*params.terminal_width + white)
-	terminal_blank_line(5)
+# def print_share_index_industries(params):
+# 	terminal_heading( params, 'Share Index File contains the following Industries', line_filler='-', colour=cyan )
+# 	print ( cyan, end='' )
+# 	print ( params.share_index_file['industry_group'].value_counts() )
+# 	print ( cyan + '-'*params.terminal_width + white)
+# 	terminal_blank_line(5)
 
 def print_missing_dates(params):
 	terminal_heading( params, 'Missing Dates for each ticker just assessed', line_filler='-', colour=yellow )

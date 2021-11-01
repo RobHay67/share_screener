@@ -1,6 +1,11 @@
 
 import streamlit as st
+
 from reports import output_results_to_browser
+
+
+
+
 
 def render_home_page(scope):
 	st.title(scope.project_description)
@@ -14,16 +19,7 @@ def render_home_page(scope):
 #
 # ===================================================================================================================================
 def construct_list_of_share_codes(scope):
-<<<<<<< HEAD
-	# print ( 'construct_list_of_share_codes - has been called')
-	# print ('construct_list_of_share_codes > update_ticker_list_required = ', st.session_state.update_ticker_list_required)
-
-
-
-	st.header('Ticker List - Add or Remove tickers from the Ticker List')
-=======
 	st.header('Adding or Remove tickers from the Ticker List')
->>>>>>> download_tickers
 	ticker_list = []
 	
 	output_results_to_browser( scope, passed='Added these selections ticker list > ', passed_2='na', failed='na' )
