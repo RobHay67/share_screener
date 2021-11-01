@@ -30,12 +30,8 @@ def render_share_data_page(scope):
 	col1,col2,col3 = st.columns([3,3,3])
 
 	with col1: st.subheader('Reports')
-	# with col1: st.write(('number of tickers in Ticker list = ( ' + str((len(scope.ticker_list))) + ' )'))
 	with col1: show_tickers = st.button( ('Show Ticker List ( ' + str((len(scope.ticker_list))) + ' )') )
-	with col1: show_share_files = st.button( ('Show Share Data Files ( ' + str((len(scope.share_data_loaded_list))) + ' )') )
 	with col1: show_ticker = st.selectbox('Show Share Data'  , list_of_loaded_tickers, help='Select a Ticker and I will show you all the data we have for it')
-
-
 
 	with col2: st.subheader('Load Share Data Files')
 	with col2: st.subheader('(per ticker list)')
