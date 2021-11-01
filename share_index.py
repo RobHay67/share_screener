@@ -6,7 +6,7 @@ import os
 import datetime
 import streamlit as st
 
-from reports import terminal_heading, report_progress, output_result_to_terminal, output_results_to_browser
+from reports import output_results_to_browser
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
