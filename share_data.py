@@ -22,14 +22,20 @@ def render_share_data_page(scope):
 
 	st.success(('Current number of Loaded Files ( ' + str((len(scope.share_data_files))) + ' )'))
 
+	list_of_loaded_tickers = list(scope.share_data_files.keys())
+	list_of_loaded_tickers.insert(0, '< select a ticker >')
 	
-	ticker_list_message = str(len(scope.ticker_list))
+	# ticker_list_message = str(len(scope.ticker_list))
 
 	col1,col2,col3 = st.columns([3,3,3])
 
-	with col1: st.subheader('Ticker List')
-	with col1: st.write(('number of tickers in Ticker list = ( ' + str((len(scope.ticker_list))) + ' )'))
-	with col1: show_tickers = st.button('Show Ticker List')
+	with col1: st.subheader('Reports')
+	# with col1: st.write(('number of tickers in Ticker list = ( ' + str((len(scope.ticker_list))) + ' )'))
+	with col1: show_tickers = st.button( ('Show Ticker List ( ' + str((len(scope.ticker_list))) + ' )') )
+	with col1: show_share_files = st.button( ('Show Share Data Files ( ' + str((len(scope.share_data_loaded_list))) + ' )') )
+	with col1: show_ticker = st.selectbox('Show Share Data'  , list_of_loaded_tickers, help='Select a Ticker and I will show you all the data we have for it')
+
+
 
 	with col2: st.subheader('Load Share Data Files')
 	with col2: st.subheader('(per ticker list)')
@@ -43,6 +49,13 @@ def render_share_data_page(scope):
 	
 
 	st.markdown("""---""")
+
+	if show_ticker != '< select a ticker >':
+		st.header( show_ticker ) 
+		st.write('loaded and downloaded share data.')
+		
+		st.dataframe(scope.share_data_files[show_ticker], 2000, 1200)
+
 
 	if show_tickers:
 		st.header('Ticker List - target tickers for analysis (use sidebar to add tickers to this list)')
@@ -72,6 +85,7 @@ def render_share_data_page(scope):
 			download_from_yahoo_finance(scope)
 
 			combine_loaded_and_downloaded_share_data(scope)
+
 			# check_share_data_for_missing_dates( scope )
 
 		else:
@@ -99,7 +113,7 @@ def render_share_data_page(scope):
 # # Primary Controller
 # # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def combine_loaded_and_downloaded_share_data(scope): # DONE
-	st.subheading('Combining the Loaded and Downloaded Share Data Files')
+	st.subheader('Combining the Loaded and Downloaded Share Data Files')
 	output_results_to_browser( scope, passed='COMBINED > ', passed_2='CREATED new files > ', failed='na' )
 
 	for ticker in scope.ticker_list:

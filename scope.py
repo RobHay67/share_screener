@@ -206,6 +206,7 @@ def build_ticker_dropdowns(scope):
 	scope.available_tickers = list_of_tickers
 	scope.selected_tickers = None
 
+	# Dont run this again unless we have downloaded new share data
 	scope.update_available_dropdowns = False
 	
 	
