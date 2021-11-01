@@ -154,6 +154,16 @@ def set_initial_scope(scope, project_description):
 		scope.market_public_holidays = public_holidays
 		scope.market_opening_hours = opening_hours	
 
+
+		# Download Share Data
+		scope.download_days = 1
+		scope.download_groups_for_y_finance = []
+		scope.download_schemas = download_share_data_schemas	
+		scope.download_yf_share_data = None
+		scope.download_yf_share_data = pd.DataFrame(columns=scope.share_data_usecols + ['ticker'] )
+		scope.download_yf_anomolies =  {}
+
+
 		# Strategy Params
 		scope.strategy_name = 'None yet Selected', 
 		scope.strategy_print_header = True
@@ -173,7 +183,11 @@ def set_initial_scope(scope, project_description):
 		st.session_state.initial_load = False
 		
 def build_ticker_dropdowns(scope):
-                                             
+
+	st.error('The Ticker Dropdowns have been rebuilt!! - should this have happened?')
+
+	print ( '\033[91m' + 'Ticker Dropdowns have been rebuil' + '\033[0m' )
+
 	# Available Share Markerts
 	list_of_markets = list(markets.keys())
 	list_of_markets.insert(0, '< select entire market >')
@@ -191,6 +205,8 @@ def build_ticker_dropdowns(scope):
 	list_of_tickers = scope.share_index_file.index.values.tolist()
 	scope.available_tickers = list_of_tickers
 	scope.selected_tickers = None
+
+	scope.update_available_dropdowns = False
 	
 	
 def render_scope_page(scope):

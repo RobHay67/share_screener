@@ -90,8 +90,8 @@ def load_share_index_file( scope ):
 		st.markdown("""---""")
 		st.error('Click on the Share Index button to update the Share Index')
 
-def save_share_index_file( scope ):
-	st.info('Saving the share index file')
+def save_share_index_file( scope ): # DONE
+	st.subheader('Save Share Index File')
 	saving_df = scope.share_index_file.copy()
 	saving_df.reset_index(inplace=True)      	 # ensure that the index is saved as a normal column
 	saving_df.to_csv( scope.path_share_index, index=False )
