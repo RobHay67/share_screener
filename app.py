@@ -17,15 +17,20 @@ from volume import render_volume_page
 import streamlit as st
 st.set_page_config(layout="wide")
 set_initial_scope(st.session_state, project_description)
+# Update the dropdowns, but only on an initial build or after downloading new tickers from the ASX
 if st.session_state.update_available_dropdowns: build_ticker_dropdowns(st.session_state)
-
 
 
 # ===============================================================================================================
 print ( '='*80)
 print ( 'A Refresh of the application has occured')
 print ( '-'*80)
-
+import sys
+print(sys.version)
+# print ( 'selected_market = ', st.session_state.selected_market )
+# print ( 'selected_industry = ', st.session_state.selected_industry )
+# print ( 'selected_tickers = ', st.session_state.selected_tickers ) 
+print ( '*'*80)
 
 # Display Appropriate Page ====================================================================================== 
 
@@ -61,6 +66,12 @@ if st.session_state.update_ticker_list_required:
 	st.session_state.selected_industry = industry
 	st.session_state.selected_tickers = tickers
 	construct_list_of_share_codes(st.session_state)
+	# print(tickers)
+	# print ( 'selected_tickers = ', st.session_state.selected_tickers ) 
+
+
+
+
 
 # Analysis Pages -----------------------------------------------------------------------------------------------
 # st.sidebar.info('Ticker List ( ' + str((len(st.session_state.ticker_list))) + ' )')
