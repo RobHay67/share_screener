@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from reports import output_results_to_browser
+from web import output_results_to_browser
 
 
 

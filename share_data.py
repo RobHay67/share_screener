@@ -10,7 +10,7 @@ import os
 from share_index import save_share_index_file
 from scope import generate_path_for_share_data_file
 # from reports import report_progress, terminal_heading, output_result_to_terminal, print_missing_dates
-from reports import output_results_to_browser
+from web import output_results_to_browser
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------

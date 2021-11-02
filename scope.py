@@ -104,6 +104,7 @@ def set_initial_scope(scope, project_description):
 		# Project Params
 		scope.project_description = project_description
 		scope.project_start_time = time.time()
+		
 		# Terminal Params
 		scope.terminal_audit = False
 		scope.terminal_width = 200
@@ -111,6 +112,7 @@ def set_initial_scope(scope, project_description):
 		scope.terminal_count_passed = 0
 		scope.terminal_count_passed_2 = 0
 		scope.terminal_count_failed = 0
+		
 		# Result
 		scope.result_passed = ''
 		scope.result_passed_2 = ''
@@ -118,6 +120,7 @@ def set_initial_scope(scope, project_description):
 		scope.result_passed_count = 0
 		scope.result_passed_2_count = 0
 		scope.result_failed_count = 0
+		
 		# Folders
 		scope.folder_project = pathlib.Path(__file__).parent.resolve()
 		scope.folder_share_data = pathlib.Path.home().joinpath( scope.folder_project, 'share_data' )
@@ -127,14 +130,13 @@ def set_initial_scope(scope, project_description):
 		if not os.path.isdir( scope.folder_share_data ) : os.makedirs( scope.folder_share_data )
 		if not os.path.isdir( scope.folder_results_analysis ) : os.makedirs( scope.folder_results_analysis )
 		if not os.path.isdir( scope.folder_website ) : os.makedirs( scope.folder_website )
+		
 		# File Paths
 		scope.path_share_index = pathlib.Path.home().joinpath( scope.folder_share_data, 'share_index.csv' )
 		scope.path_website_file = pathlib.Path.home().joinpath( scope.folder_website, 'strategy_results.json' )
 		scope.path_share_data_file = 'not yet set',
 		# Load the Share Index File
 		load_share_index_file(scope)
-
-
 
 		# Ticker list - for analysis
 		scope.update_ticker_list_required = False
@@ -154,16 +156,13 @@ def set_initial_scope(scope, project_description):
 		scope.market_public_holidays = public_holidays
 		scope.market_opening_hours = opening_hours	
 
-
 		# Download Share Data
 		scope.download_days = 1
 		scope.download_groups_for_y_finance = []
 		scope.download_schema = None
 		scope.download_schemas = download_share_data_schemas	
-		# scope.download_yf_share_data = None
 		scope.download_yf_share_data = pd.DataFrame(columns=scope.share_data_usecols + ['ticker'] )
 		scope.download_yf_anomolies =  {}
-
 
 		# Strategy Params
 		scope.strategy_name = 'None yet Selected', 
@@ -186,7 +185,6 @@ def set_initial_scope(scope, project_description):
 def build_ticker_dropdowns(scope):
 
 	# st.error('The Ticker Dropdowns have been rebuilt!! - should this have happened?')
-
 	print ( '\033[91m' + 'Ticker Dropdowns have been rebuil' + '\033[0m' )
 
 	# Available Share Markerts
@@ -234,37 +232,37 @@ def render_scope_page(scope):
 										)
 							)
 
-	if param_group == 'Lists - Ticker(s)':
+	if param_group == 'Lists - Ticker(s)': #DONE
 		st.subheader('Ticker Lists')
 		
 		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Ticker List Needs Updating ?')
-		with col2: st.write(st.scope.ticker_list_needs_updating)
-		with col3: st.write('< ticker_list_needs_updating >')
+		with col1: st.write('Ticker Choose Lists need updating')
+		with col2: st.write(scope.update_available_dropdowns)
+		with col3: st.write('< update_available_dropdowns >')
 		
 		col1,col2 = st.columns([6,2])
 		with col1: st.write('Analysis Ticker List')
 		with col2: st.write('< ticker_list >')
-		st.write(st.scope.ticker_list)
+		st.write(scope.ticker_list)
 		
 		col1,col2 = st.columns([6,2])
 		with col1: st.write('Loaded Ticker List')
 		with col2: st.write('< share_data_loaded_list >')
-		st.write(st.scope.share_data_loaded_list)
+		st.write(scope.share_data_loaded_list)
 
 		col1,col2 = st.columns([6,2])
 		with col1: st.write('Missing Ticker List')
 		with col2: st.write('< share_data_missing_list >')
-		st.write(st.scope.share_data_missing_list)
+		st.write(scope.share_data_missing_list)
 
-	if param_group == 'Lists - Industries':
+	if param_group == 'Lists - Industries': # DONE
 		st.subheader('Share Index File contains the following Industries')
-		industry_group_count = pd.DataFrame(st.scope.share_index_file['industry_group'].value_counts())
+		industry_group_count = pd.DataFrame(scope.share_index_file['industry_group'].value_counts())
 		industry_group_count.index.name = 'Industry'
 		industry_group_count.columns =['No of Codes']
 		st.dataframe(industry_group_count, 2000, 1200)
 
-	if param_group == 'File - Share Index File':
+	if param_group == 'File - Share Index File': # DONE
 		col1,col2 = st.columns([6,2])
 		with col1: st.subheader('Share Index File')
 		with col2: st.write('< share_index_file >')
@@ -281,7 +279,7 @@ def render_scope_page(scope):
 			my_expander = st.expander(label=ticker)
 			my_expander.dataframe(scope.share_data_files[ticker], 2000, 2000)
 
-	if param_group == 'Streamlit':
+	if param_group == 'Streamlit': # DONE
 		st.subheader('Streamlit Variables')
 
 		col1,col2,col3 = st.columns([2,4,2])
@@ -319,7 +317,7 @@ def render_scope_page(scope):
 		with col2: st.write(scope.available_tickers)
 		with col3: st.write('< available_tickers >')
 
-	if param_group == 'Application':
+	if param_group == 'Application': # DONE
 		st.subheader('General Application Parameters')
 
 		col1,col2,col3 = st.columns([2,4,2])
@@ -379,7 +377,7 @@ def render_scope_page(scope):
 		with col2: st.write(scope.terminal_count_failed)
 		with col3: st.write('< terminal_count_failed >')
 
-	if param_group == 'Market':
+	if param_group == 'Market': # DONE
 		st.subheader('Market Parameters')
 		
 		share_market_message = 'Current Share Market = ' + str(scope.share_market)
@@ -415,7 +413,7 @@ def render_scope_page(scope):
 		with col2: st.write(scope.market_opening_hours)
 		with col3: st.write('< market_opening_hours >')
 
-	if param_group == 'Download':
+	if param_group == 'Download': # DONE
 		st.subheader('Download Parameters')
 
 		col1,col2,col3 = st.columns([2,4,2])
@@ -459,7 +457,7 @@ def render_scope_page(scope):
 			with col2: st.write(scope.download_schemas[schema])
 		with col3: st.write('< download_schemas >')
 
-	if param_group == 'Folders':
+	if param_group == 'Folders': # DONE
 		st.subheader('Folders and Paths')
 
 		col1,col2,col3 = st.columns([2,6,2])
@@ -545,7 +543,7 @@ def render_scope_page(scope):
 		with col2: st.write('strategy_results')
 		st.dataframe(scope.strategy_results, 2000, 1200)
 
-	if param_group == 'Charting':
+	if param_group == 'Charting': # DONE
 		st.subheader('Charting Parameters')
 
 		col1,col2,col3 = st.columns([2,4,2])
@@ -562,6 +560,18 @@ def render_scope_page(scope):
 		with col1: st.write('Chart MACD on Volume')
 		with col2: st.write(scope.chart_macd_on_volume)
 		with col3: st.write('< chart_macd_on_volume >')
+
+
+# -----------------------------------------------------------------------------------------------------------------------------------
+# share file path generator
+# -----------------------------------------------------------------------------------------------------------------------------------
+
+def generate_path_for_share_data_file( scope, ticker ): # DONE
+	file_name = ( ticker.replace( '.', '_' ) ) + '.csv'
+	file_path = pathlib.Path.home().joinpath( scope.folder_share_data, file_name )
+	scope.path_share_data_file = file_path
+
+
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Params sub groups - for easier maintenance - we need to move any remaining variables into the set initial session state
@@ -614,38 +624,31 @@ def report_params(params ):
 	params.reports['missing_dates'] = False
 
 
-# def download_params(params):
-	# params.download['no_of_days'] = args.download_no_of_days
-	# if params.download['no_of_days'] >= 1: 
-	# 	params.download['downloading_it'] = True
-	# 	params.download['combining'] = True
-	# else:
-	# 	params.download['downloading_it'] = False
-	# 	params.download['combining'] = False
-	# params.download['schemas'] = download_share_data_schemas	
-	# params.download['yf_share_data'] = pd.DataFrame(columns=params.share_data['usecols'] + ['ticker'] )
-	# params.download['yf_anomolies'] =  {} 
-	# # Dates for the download - Y-finance seems to want tomorrows date for the end period - so end date is exlusive
-	# download_end   = params.analysis['end'] + timedelta(days=1)
-	# download_begin = download_end - timedelta(days=params.download['no_of_days'])
-	# params.download['begin'] = (download_begin).strftime('%Y-%m-%d') 
-	# params.download['end']   = (download_end  ).strftime('%Y-%m-%d') 
-	# # Industry Groups for the downloader
-	# params.download['industry_group'] = ''
-	# if params.analysis['entire_market'] == True: 
-	# 	params.download['industry_group'] = ( list(params.share_index['file']['industry_group'].unique() ))
-	# if params.analysis['industry_group'] != None and params.analysis['entire_market'] == False:	
-	# 	params.download['industry_group'] = [ params.analysis['industry_group'] ]
-	# if params.analysis['specified_share_codes'] != None and params.analysis['industry_group'] == None: 
-	# 	params.download['industry_group'] = ['specified_share_codes']
+
+
+
+
+
 
 # -----------------------------------------------------------------------------------------------------------------------------------
-# share file path generator
+# Share Index Reports
 # -----------------------------------------------------------------------------------------------------------------------------------
 
-def generate_path_for_share_data_file( params, ticker ):
-	file_name = ( ticker.replace( '.', '_' ) ) + '.csv'
-	file_path = pathlib.Path.home().joinpath( params.folder_share_data, file_name )
-	params.path_share_data_file = file_path
 
+# def print_missing_dates(params):
+# 	terminal_heading( params, 'Missing Dates for each ticker just assessed', line_filler='-', colour=yellow )
+# 	print ( yellow, end='' )
+# 	for ticker in params.share_data['files']:
+# 		missing_dates_string = str(params.share_index['file'].at[ticker, 'missing_dates'])
+# 		if missing_dates_string != 'None':
+# 			qty = str(missing_dates_string.count(' ')+1)
+# 			leader = ticker + white + ' (' + qty + ') ' + yellow
+# 			if len(missing_dates_string) <= params.terminal['width'] - 20:
+# 				print ( leader + missing_dates_string )
+# 			else:
+# 				for chunk in chunkstring(missing_dates_string, (11*16)):
+# 					print ( leader + chunk )
+# 	print ( yellow + '-'*params.terminal['width'] + white)
 
+# def chunkstring(string, length):
+# 	return (string[0+i:length+i] for i in range(0, len(string), length))

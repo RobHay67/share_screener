@@ -24,12 +24,10 @@ if st.session_state.update_available_dropdowns: build_ticker_dropdowns(st.sessio
 # ===============================================================================================================
 print ( '='*80)
 print ( 'A Refresh of the application has occured')
-print ( '-'*80)
 import sys
 print(sys.version)
-# print ( 'selected_market = ', st.session_state.selected_market )
-# print ( 'selected_industry = ', st.session_state.selected_industry )
-# print ( 'selected_tickers = ', st.session_state.selected_tickers ) 
+print ( '-'*80)
+
 print ( '*'*80)
 
 # Display Appropriate Page ====================================================================================== 
