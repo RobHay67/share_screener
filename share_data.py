@@ -17,7 +17,23 @@ from web import output_results_to_browser
 # Browser Render Controller
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-	
+def render_ticker_list(scope):
+	st.header('Ticker List')
+	st.subheader('target tickers for analysis')
+	st.write('use sidebar to add tickers to this list)')
+	ticker_list_message = ''
+	for ticker in scope.ticker_list:
+		ticker_list_message = ticker_list_message + ticker + ' - '
+	st.success(ticker_list_message)
+
+def render_share_data_file(scope):
+	st.header('Loaded and Downloaded share data.')
+	list_of_loaded_tickers = list(scope.share_data_files.keys())
+
+	for ticker in list_of_loaded_tickers:
+		my_expander = st.expander(label=ticker)
+		my_expander.dataframe(scope.share_data_files[ticker], 2000, 2000)
+
 
 
 def render_share_data_page(scope):
@@ -25,7 +41,7 @@ def render_share_data_page(scope):
 
 	st.info(('Current number of Loaded Files ( ' + str((len(scope.share_data_files))) + ' )'))
 
-	col1,col2,col3 = st.columns([3,3,3])
+	col1,col2 = st.columns([4,4])
 
 	with col1: st.subheader('Load Share Data Files')
 	with col1: st.subheader('(per ticker list)')
@@ -37,26 +53,26 @@ def render_share_data_page(scope):
 	with col2: st.download_days = st.number_input('change ( - / + )  number of days to download', min_value=1, max_value=1000, value=1, key='0')    
 	with col2: download_tickers = st.button('Download OHLCV Data')
 
-	with col3: st.subheader('Reports')
-	with col3: show_ticker_list = st.button( ('Show Ticker List ( ' + str((len(scope.ticker_list))) + ' )') )
-	with col3: show_ticker_file = st.button( ('Show Share Data Files ( ' + str(len(scope.share_data_files.keys())) + ' )') )
+	# with col3: st.subheader('Reports')
+	# with col3: show_ticker_list = st.button( ('Show Ticker List ( ' + str((len(scope.ticker_list))) + ' )') )
+	# with col3: show_ticker_file = st.button( ('Show Share Data Files ( ' + str(len(scope.share_data_files.keys())) + ' )') )
 	
 	st.markdown("""---""")
 
-	if show_ticker_list:
-		st.header('Ticker List - target tickers for analysis (use sidebar to add tickers to this list)')
-		ticker_list_message = ''
-		for ticker in scope.ticker_list:
-			ticker_list_message = ticker_list_message + ticker + ' - '
-		st.success(ticker_list_message)
+	# if show_ticker_list:
+	# 	st.header('Ticker List - target tickers for analysis (use sidebar to add tickers to this list)')
+	# 	ticker_list_message = ''
+	# 	for ticker in scope.ticker_list:
+	# 		ticker_list_message = ticker_list_message + ticker + ' - '
+	# 	st.success(ticker_list_message)
 
-	if show_ticker_file:
-		st.header('Loaded and Downloaded share data.')
-		list_of_loaded_tickers = list(scope.share_data_files.keys())
+	# if show_ticker_file:
+	# 	st.header('Loaded and Downloaded share data.')
+	# 	list_of_loaded_tickers = list(scope.share_data_files.keys())
 
-		for ticker in list_of_loaded_tickers:
-			my_expander = st.expander(label=ticker)
-			my_expander.dataframe(scope.share_data_files[ticker], 2000, 2000)
+	# 	for ticker in list_of_loaded_tickers:
+	# 		my_expander = st.expander(label=ticker)
+	# 		my_expander.dataframe(scope.share_data_files[ticker], 2000, 2000)
 
 	if load_tickers:
 		st.header('Loading Tickers (as specified by the Ticker List)')

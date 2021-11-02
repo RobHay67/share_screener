@@ -9,7 +9,7 @@ from scope import set_initial_scope
 from scope import build_ticker_dropdowns
 from scope import render_scope_page
 from share_index import load_share_index_file, render_share_index_page
-from share_data import render_share_data_page
+from share_data import render_share_data_page, render_ticker_list, render_share_data_file
 from ticker_list import render_home_page, construct_list_of_share_codes
 from volume import render_volume_page
 
@@ -32,29 +32,33 @@ print ( '*'*80)
 
 # Display Appropriate Page ====================================================================================== 
 
-if   st.session_state.display_page == 'home': render_home_page(st.session_state)
-elif st.session_state.display_page == 'volume':	render_volume_page(st.session_state)    
+# if   st.session_state.display_page == 'home': render_home_page(st.session_state)
+if st.session_state.display_page == 'volume':	render_volume_page(st.session_state)    
 elif st.session_state.display_page == 'share_index': render_share_index_page(st.session_state)
-elif st.session_state.display_page == 'share_data_files': render_share_data_page(st.session_state)
+elif st.session_state.display_page == 'ticker_list': render_ticker_list(st.session_state)
+elif st.session_state.display_page == 'manage_share_data': render_share_data_page(st.session_state)
+elif st.session_state.display_page == 'share_data_files': render_share_data_file(st.session_state)
 elif st.session_state.display_page == 'analysis': st.title('Analysis')
 elif st.session_state.display_page == 'scope': render_scope_page(st.session_state)
 
 # Call Backs for Sidebar Action Buttons ========================================================================= 
-def show_home_page(): st.session_state.display_page = 'home'
+# def show_home_page(): st.session_state.display_page = 'home'
 def show_share_index_page(): st.session_state.display_page = 'share_index'
 def update_ticker_list_required(): st.session_state.update_ticker_list_required = True
-def show_share_data_files_page(): st.session_state.display_page = 'share_data_files'
+def show_ticker_list(): st.session_state.display_page = 'ticker_list'
+def show_manage_share_data_page(): st.session_state.display_page = 'manage_share_data'
+def show_share_data_files(): st.session_state.display_page = 'share_data_files'
 def show_volume_page(): st.session_state.display_page = 'volume'
 def show_analysis_page(): st.session_state.display_page = 'analysis'
 def show_scope_page(): st.session_state.display_page = 'scope'
 # Sidebar Action Buttons ======================================================================================= 
 st.sidebar.title(project_description)
-st.sidebar.button('Home Page......', on_click=show_home_page)
-st.sidebar.subheader('Loaded Data')
+# st.sidebar.button('Home Page......', on_click=show_home_page)
+# st.sidebar.subheader('Loaded Data')
 st.sidebar.button(('Share Index ( ' + str((len(st.session_state.share_index_file))) + ' )'), on_click=show_share_index_page)
 
 # Select Tickers -----------------------------------------------------------------------------------------------
-st.sidebar.subheader('Ticker List - add tickers')
+st.sidebar.subheader('Ticker List Selectors - choose tickers')
 market   = st.sidebar.selectbox  ('Add Entire Market to ticker list'  , st.session_state.available_markets   , on_change=update_ticker_list_required, help='Select an Entire Share Market for Analysis')
 industry = st.sidebar.multiselect('Add Industry(s) to the ticker list', st.session_state.available_industries, on_change=update_ticker_list_required, help='Quickly Select all tickers in a particular industry')
 tickers  = st.sidebar.multiselect('Add Ticker(s) to the ticker list'  , st.session_state.available_tickers   , on_change=update_ticker_list_required, help='Select a ticker, or multiple tickers from the dropdown. Start typing to jump within list') 
@@ -66,10 +70,9 @@ if st.session_state.update_ticker_list_required:
 	construct_list_of_share_codes(st.session_state)
 	# print(tickers)
 	# print ( 'selected_tickers = ', st.session_state.selected_tickers ) 
-st.sidebar.button(('Share Data Files ( ' + str((len(st.session_state.ticker_list))) + ' )'), on_click=show_share_data_files_page)
-
-
-
+st.sidebar.button( ('Show Ticker List ( ' + str((len(st.session_state.ticker_list))) + ' )'), on_click=show_ticker_list )
+st.sidebar.button( ('Load and Import Share Data'), on_click=show_manage_share_data_page)
+st.sidebar.button( ('Share Data Files ( ' + str(len(st.session_state.share_data_files.keys())) + ' )'), on_click=show_share_data_files)
 
 # Analysis Pages -----------------------------------------------------------------------------------------------
 st.sidebar.subheader('Analysis')
