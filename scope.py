@@ -380,8 +380,7 @@ def render_scope_page(scope):
 	if param_group == 'Market': # DONE
 		st.subheader('Market Parameters')
 		
-		share_market_message = 'Current Share Market = ' + str(scope.share_market)
-		st.success(share_market_message)
+		st.info( ('Current Share Market = ' + str(scope.share_market)) )
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Available Markets')

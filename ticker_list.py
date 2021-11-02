@@ -7,8 +7,8 @@ from web import output_results_to_browser
 
 
 
-def render_home_page(scope):
-	st.title(scope.project_description)
+# def render_home_page(scope):
+# 	st.title(scope.project_description)
 
 
 
