@@ -17,14 +17,7 @@ from web import output_results_to_browser
 # Browser Render Controller
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def render_ticker_list(scope):
-	st.header('Ticker List')
-	st.subheader('target tickers for analysis')
-	st.write('use sidebar to add tickers to this list)')
-	ticker_list_message = ''
-	for ticker in scope.ticker_list:
-		ticker_list_message = ticker_list_message + ticker + ' - '
-	st.success(ticker_list_message)
+
 
 def render_share_data_page(scope):
 	st.title('Load and/or Download Share Data')
@@ -61,8 +54,8 @@ def render_share_data_page(scope):
 
 		if len(scope.ticker_list) != 0: 
 			st.subheader('Loading Tickers (as specified by the Ticker List)')
+
 			load_share_data_files(scope)
-			# st.markdown("""---""")
 
 			determine_download_groups_for_y_finance(scope)
 
@@ -245,17 +238,19 @@ def download_from_yahoo_finance( scope ): # DONE
 def determine_download_groups_for_y_finance(scope): # DONE
 	scope.download_groups_for_y_finance = []
 
-	if scope.selected_market != '< select entire market >':
+	if scope.chosen_market != '< select entire market >':
 		scope.download_groups_for_y_finance = ( list(scope.share_index_file['industry_group'].unique() ))
-	elif len(scope.selected_industry) != 0:
+	elif len(scope.chosen_industries) != 0:
 		scope.download_groups_for_y_finance = scope.selected_industry
-	elif len(scope.selected_tickers) != 0:
+	elif len(scope.chosen_tickers) != 0:
+		scope.download_groups_for_y_finance.append('selected_tickers')
+	elif len(scope.chosen_single_ticker) != 0:
 		scope.download_groups_for_y_finance.append('selected_tickers')
 
 def yahoo_ticker_string_by_group( scope, y_finance_group): # DONE
 	if y_finance_group == 'selected_tickers':
 		# we have selected specific tickers 
-		tickers_list = scope.selected_tickers
+		tickers_list = scope.ticker_list
 	else:
 		# we have selected a specific market, industry or number of industries
 		tickers_in_industry_group_df = scope.share_index_file[scope.share_index_file['industry_group'] == y_finance_group ]

@@ -11,7 +11,17 @@ from web import output_results_to_browser
 # 	st.title(scope.project_description)
 
 
+def render_ticker_list(scope):
+	st.header('Ticker List')
+	st.subheader('target tickers for analysis')
+	st.write('use sidebar to add tickers to this list)')
+	ticker_list_message = ''
+	for count, ticker in enumerate(scope.ticker_list):
+		ticker_list_message = ticker_list_message + ticker
+		if count < len(scope.ticker_list) - 1:
+			ticker_list_message += '  '
 
+	st.success(ticker_list_message)
 
 # ===================================================================================================================================
 # 
@@ -28,16 +38,41 @@ def construct_list_of_share_codes(scope):
 	# Most detailed takes precedence
 	# ##############################
 
+	
+	# A single ticker
+	if scope.chosen_single_ticker != '< not selected >':
+		ticker = scope.chosen_single_ticker
+		output_results_to_browser( scope, ticker, result='passed' )
+		ticker_list += [ticker]
+
+		if ticker in scope.share_data_loaded_list:
+			print('exists so subsetting to just the data for this ticker')
+
+			keep_exisiting_data = scope.share_data_files[ticker]
+			scope.share_data_files = {}
+			scope.share_data_files[ticker] = keep_exisiting_data
+
+
+			# print ( scope.share_data_files)
+			# for key in scope.share_data_files.keys():
+			# 	print(key)
+			# save_share_data = scope.share_data_files[ticker]
+			# print(save_share_data)
+
+			# scope.share_data_files = scope.share_data_files[ticker]
+		else:
+			scope.share_data_files = {}  # empty the loaded data
+
 	# Selected a ticker or tickers
-	if len(scope.selected_tickers) != 0:
-		for ticker in scope.selected_tickers:
+	elif len(scope.chosen_tickers) != 0:
+		for ticker in scope.chosen_tickers:
 			output_results_to_browser( scope, ticker, result='passed' )
 			ticker_list += [ticker]	
 		pass
 
 	# Selected an Industry
-	elif len(scope.selected_industry) != 0:
-		for industry in scope.selected_industry:
+	elif len(scope.chosen_industries) != 0:
+		for industry in scope.chosen_industries:
 			output_results_to_browser( scope, industry.upper(), result='passed' )
 			tickers_in_industry_group_df = scope.share_index_file[scope.share_index_file['industry_group'] == industry ]
 			tickers_in_industry = tickers_in_industry_group_df.index.tolist()
@@ -45,7 +80,7 @@ def construct_list_of_share_codes(scope):
 		pass
 	
 	# Selected an entire share market
-	elif scope.selected_market != '< select entire market >':
+	elif scope.chosen_market != '< select entire market >':
 		output_results_to_browser( scope, scope.selected_market.upper(), result='passed' )
 		available_tickers_for_this_market = scope.share_index_file.index.values.tolist()
 		ticker_list =  available_tickers_for_this_market

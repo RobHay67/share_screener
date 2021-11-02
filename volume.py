@@ -33,15 +33,15 @@ def render_volume_page(scope):
 
 	# -----------------------------------------------------------------------------------
 	# Extract master data from share index file for the first ticker in the list pos=[0]
-	if len(st.session_state.ticker_list) > 0:
-		ticker_1 = st.session_state.ticker_list[0]
-		if len(st.session_state.ticker_list) > 1:
+	if len(scope.ticker_list) > 0:
+		ticker_1 = scope.ticker_list[0]
+		if len(scope.ticker_list) > 1:
 			st.error( 'Ticker List contains more that 1 ticker. Volume analysis to be performed on the first ticker only > ' + ticker_1)
 
-		ticker_1_opening_time = st.session_state.share_index_file.loc[ticker_1]['opening_time']
-		ticker_1_minutes_per_day = st.session_state.share_index_file.loc[ticker_1]['minutes_per_day']
+		ticker_1_opening_time = scope.share_index_file.loc[ticker_1]['opening_time']
+		ticker_1_minutes_per_day = scope.share_index_file.loc[ticker_1]['minutes_per_day']
 		# Ticker 1
-		st.header( ticker_1 + ' - ' + st.session_state.share_index_file.loc[ticker_1]['company_name'] )
+		st.header( ticker_1 + ' - ' + scope.share_index_file.loc[ticker_1]['company_name'] )
 		ticker_1_current_volume = st.number_input("Current Volume", value=0, format="%d")
 		# Build the open time for this ticker
 		open_hour 	= int(ticker_1_opening_time[:2])

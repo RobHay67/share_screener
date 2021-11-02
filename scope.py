@@ -92,7 +92,8 @@ download_share_data_schemas =    {
 def set_initial_scope(scope, project_description):
 	if 'initial_load' not in scope:
 		scope.initial_load = True
-		scope.update_available_dropdowns = True
+		scope.update_dropdown_lists = True
+		scope.share_market = 'ASX'
 		
 		
 		
@@ -106,12 +107,12 @@ def set_initial_scope(scope, project_description):
 		scope.project_start_time = time.time()
 		
 		# Terminal Params
-		scope.terminal_audit = False
-		scope.terminal_width = 200
-		scope.terminal_print_width = 0
-		scope.terminal_count_passed = 0
-		scope.terminal_count_passed_2 = 0
-		scope.terminal_count_failed = 0
+		# scope.terminal_audit = False
+		# scope.terminal_width = 200
+		# scope.terminal_print_width = 0
+		# scope.terminal_count_passed = 0
+		# scope.terminal_count_passed_2 = 0
+		# scope.terminal_count_failed = 0
 		
 		# Result
 		scope.result_passed = ''
@@ -188,25 +189,33 @@ def build_ticker_dropdowns(scope):
 	print ( '\033[91m' + 'Ticker Dropdowns have been rebuil' + '\033[0m' )
 
 	# Available Share Markerts
-	list_of_markets = list(markets.keys())
+	list_of_markets = list(scope.market_suffix.keys())
 	list_of_markets.insert(0, '< select entire market >')
-	scope.available_markets = list_of_markets
-	scope.selected_market = None
-	scope.share_market = 'ASX'
+	scope.dropdown_markets = list_of_markets
+	scope.chosen_market = None
+	
 
 	# Available Share industries
 	list_of_industries = scope.share_index_file['industry_group'].unique().tolist()
 	list_of_industries.sort()
-	scope.available_industries = list_of_industries
-	scope.selected_industry = None
+	scope.dropdown_industries = list_of_industries
+	scope.chosen_industries = None
 	
 	# Available Share Tickers
 	list_of_tickers = scope.share_index_file.index.values.tolist()
-	scope.available_tickers = list_of_tickers
-	scope.selected_tickers = None
+	scope.dropdown_tickers = list_of_tickers
+	scope.chosen_tickers = None
+
+
+	list_of_single_tickers = list_of_tickers
+	list_of_single_tickers.insert(0, '< not selected >')
+	scope.dropdown_single_ticker = list_of_single_tickers
+	scope.chosen_single_ticker = None
+
+	
 
 	# Dont run this again unless we have downloaded new share data
-	scope.update_available_dropdowns = False
+	scope.update_dropdown_lists = False
 	
 	
 def render_scope_page(scope):
@@ -215,7 +224,7 @@ def render_scope_page(scope):
 	col1,col2,col3,col4 = st.columns([2,2,2,2])
 
 	with col1: st.subheader('Lists')
-	with col1: show_tickers = st.button('Ticker(s)')
+	with col1: show_tickers = st.button('Ticker Lists')
 	with col1: show_industries = st.button('Industries')
 
 	with col2: st.subheader('Data')
@@ -228,24 +237,28 @@ def render_scope_page(scope):
 	with col3: show_charting = st.button('Charting')
 
 	with col4: st.subheader('Parameters')
-	with col4: show_streamlit = st.button('Streamlit')
 	with col4: show_application = st.button('Application')
-	with col4: show_folders = st.button('Folders')
-	with col4: show_market = st.button('Market')
+	with col4: show_streamlit = st.button('Streamlit')
+	with col4: show_folders = st.button('Folder Locations')
+	with col4: show_market = st.button('Share Market Information')
 
 	if show_tickers:
 		st.subheader('Ticker Lists')
 		
 		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Ticker Choose Lists need updating')
-		with col2: st.write(scope.update_available_dropdowns)
-		with col3: st.write('< update_available_dropdowns >')
+		with col1: st.write('Ticker Dropdown Lists need updating')
+		with col2: st.write(scope.update_dropdown_lists)
+		with col3: st.write('< update_dropdown_lists >')
 		
+		st.markdown("""---""")
+
 		col1,col2 = st.columns([6,2])
-		with col1: st.write('Analysis Ticker List')
+		with col1: st.subheader('Working List of Tickers')
 		with col2: st.write('< ticker_list >')
 		st.write(scope.ticker_list)
 		
+		st.markdown("""---""")
+
 		col1,col2 = st.columns([6,2])
 		with col1: st.write('Loaded Ticker List')
 		with col2: st.write('< share_data_loaded_list >')
@@ -390,44 +403,6 @@ def render_scope_page(scope):
 		with col2: st.write(scope.chart_macd_on_volume)
 		with col3: st.write('< chart_macd_on_volume >')
 
-	if show_streamlit:
-		st.subheader('Streamlit Variables')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Initial Run / load')
-		with col2: st.write(scope.initial_load)
-		with col3: st.write('< initial_load >')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Selected Market')
-		with col2: st.subheader(scope.selected_market)
-		with col3: st.write('< selected_market >')
-		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Selected Industry(s)')
-		with col2: st.write(scope.selected_industry)
-		with col3: st.write('< selected_industry >')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Selected Ticker(s)')
-		with col2: st.write(scope.selected_tickers)
-		with col3: st.write('< selected_tickers >')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('List of Available Markets Generated for Steamlit')
-		with col2: st.write(scope.available_markets)
-		with col3: st.write('< available_markets >')
-		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('List of Available Industries Generated for Steamlit')
-		with col2: st.write(scope.available_industries)
-		with col3: st.write('< available_industries >')
-		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('List of Available Tickers Generated for Steamlit')
-		with col2: st.write(scope.available_tickers)
-		with col3: st.write('< available_tickers >')
-
 	if show_application:
 		st.subheader('General Application Parameters')
 
@@ -440,7 +415,15 @@ def render_scope_page(scope):
 		with col1: st.write('Project Start Time')
 		with col2: st.write(datetime.fromtimestamp(scope.project_start_time).strftime('%Y-%m-%d %H:%M:%S %p'))
 		with col3: st.write('< project_start_time >')
-		
+				
+	if show_streamlit:
+		st.subheader('Streamlit Variables')
+
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Initial Run / load')
+		with col2: st.write(scope.initial_load)
+		with col3: st.write('< initial_load >')
+
 		st.markdown("""---""")
 		st.subheader('Result Parameters')
 
@@ -455,38 +438,52 @@ def render_scope_page(scope):
 		with col2: st.write(scope.result_failed)
 		with col3: st.write('< result_failed >')
 
+
 		st.markdown("""---""")
-		st.subheader('Terminal Parameters')
+		st.subheader('Dropdown Selections - what the user has chosen')
 
 		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Terminal Audit')
-		with col2: st.write(scope.terminal_audit)
-		with col3: st.write('< terminal_audit >')
+		with col1: st.write('Selected Market')
+		with col2: st.write(scope.chosen_market)
+		with col3: st.write('< chosen_market >')
+		
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Selected Industry(s)')
+		with col2: st.write(scope.chosen_industries)
+		with col3: st.write('< chosen_industries >')
 
 		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Terminal Width')
-		with col2: st.write(scope.terminal_width)
-		with col3: st.write('< terminal_width >')
+		with col1: st.write('Selected Ticker(s)')
+		with col2: st.write(scope.chosen_tickers)
+		with col3: st.write('< chosen_tickers >')
 
 		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Terminal Print Width')
-		with col2: st.write(scope.terminal_print_width)
-		with col3: st.write('< terminal_print_width')
+		with col1: st.write('Selected Single Ticker)')
+		with col2: st.write(scope.chosen_single_ticker)
+		with col3: st.write('< chosen_single_ticker >')
+
+		st.markdown("""---""")
+		st.subheader('Dropdown List Contents - what the user could choose')
+		
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('List of Available Markets for SINGLE selection')
+		with col2: st.write(scope.dropdown_markets)
+		with col3: st.write('< dropdown_markets >')
 
 		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Terminal Count Passed')
-		with col2: st.write(scope.terminal_count_passed)
-		with col3: st.write('< terminal_count_passed')
+		with col1: st.write('List of Available Industries for MULTI selection')
+		with col2: st.write(scope.dropdown_industries)
+		with col3: st.write('< dropdown_industries >')
+		
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('List of Available Tickers for MULTI selection')
+		with col2: st.write(scope.dropdown_tickers)
+		with col3: st.write('< dropdown_tickers >')
 
 		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Terminal Count_2 Passed')
-		with col2: st.write(scope.terminal_count_passed_2)
-		with col3: st.write('< terminal_count_passed_2')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Terminal Count Failed')
-		with col2: st.write(scope.terminal_count_failed)
-		with col3: st.write('< terminal_count_failed >')
+		with col1: st.write('List of Available Tickers for SINGLE selection')
+		with col2: st.write(scope.dropdown_single_ticker)
+		with col3: st.write('< dropdown_single_ticker >')
 
 	if show_folders:
 		st.subheader('Folders and Paths')
@@ -531,16 +528,16 @@ def render_scope_page(scope):
 		
 		st.info( ('Current Share Market = ' + str(scope.share_market)) )
 
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Available Markets')
-		with col2: st.write(scope.available_markets)
-		with col3: st.write('< available_markets >')
-		# st.dataframe(st.scope.available_markets, 2000, 1200)
+		# col1,col2,col3 = st.columns([2,4,2])
+		# with col1: st.write('Available Markets')
+		# with col2: st.write(scope.dropdown_markets)
+		# with col3: st.write('< dropdown_markets >')
+		# st.dataframe(st.scope.dropdown_markets, 2000, 1200)
 
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Selected Market')
-		with col2: st.write(scope.selected_market)
-		with col3: st.write('< selected_market >')
+		# col1,col2,col3 = st.columns([2,4,2])
+		# with col1: st.write('Selected Market')
+		# with col2: st.write(scope.chosen_market)
+		# with col3: st.write('< chosen_market >')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Market Share Suffix')
