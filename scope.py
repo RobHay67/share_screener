@@ -158,8 +158,9 @@ def set_initial_scope(scope, project_description):
 		# Download Share Data
 		scope.download_days = 1
 		scope.download_groups_for_y_finance = []
+		scope.download_schema = None
 		scope.download_schemas = download_share_data_schemas	
-		scope.download_yf_share_data = None
+		# scope.download_yf_share_data = None
 		scope.download_yf_share_data = pd.DataFrame(columns=scope.share_data_usecols + ['ticker'] )
 		scope.download_yf_anomolies =  {}
 
@@ -184,7 +185,7 @@ def set_initial_scope(scope, project_description):
 		
 def build_ticker_dropdowns(scope):
 
-	st.error('The Ticker Dropdowns have been rebuilt!! - should this have happened?')
+	# st.error('The Ticker Dropdowns have been rebuilt!! - should this have happened?')
 
 	print ( '\033[91m' + 'Ticker Dropdowns have been rebuil' + '\033[0m' )
 
@@ -225,6 +226,7 @@ def render_scope_page(scope):
 										'Streamlit',
 										'Application',
 										'Market', 
+										'Download',
 										'Folders', 
 										'Strategy', 
 										'Charting', 
@@ -268,49 +270,53 @@ def render_scope_page(scope):
 		with col2: st.write('< share_index_file >')
 		st.dataframe(scope.share_index_file, 2000, 1200)
 
-	if param_group == 'File - Share Data Files': # TODO 
+	if param_group == 'File - Share Data Files': # DONE 
 		col1,col2 = st.columns([6,2])
-		with col1: st.subheader('Share Data Files (loaded)')
+		with col1: st.subheader('Loaded and Downloaded share data.')
 		with col2: st.write('< share_data_files >')
-		#TODO - does this need to be a table - we need to load some data before checking
-		st.write(scope.share_data_files)
+
+		list_of_loaded_tickers = list(scope.share_data_files.keys())
+
+		for ticker in list_of_loaded_tickers:
+			my_expander = st.expander(label=ticker)
+			my_expander.dataframe(scope.share_data_files[ticker], 2000, 2000)
 
 	if param_group == 'Streamlit':
 		st.subheader('Streamlit Variables')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Initial Run / load')
-		with col2: st.write(st.scope.initial_load)
+		with col2: st.write(scope.initial_load)
 		with col3: st.write('< initial_load >')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Selected Market')
-		with col2: st.subheader(st.scope.selected_market)
+		with col2: st.subheader(scope.selected_market)
 		with col3: st.write('< selected_market >')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Selected Industry(s)')
-		with col2: st.write(st.scope.selected_industry)
+		with col2: st.write(scope.selected_industry)
 		with col3: st.write('< selected_industry >')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Selected Ticker(s)')
-		with col2: st.write(st.scope.selected_tickers)
+		with col2: st.write(scope.selected_tickers)
 		with col3: st.write('< selected_tickers >')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('List of Available Markets Generated for Steamlit')
-		with col2: st.write(st.scope.available_markets)
+		with col2: st.write(scope.available_markets)
 		with col3: st.write('< available_markets >')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('List of Available Industries Generated for Steamlit')
-		with col2: st.write(st.scope.available_industries)
+		with col2: st.write(scope.available_industries)
 		with col3: st.write('< available_industries >')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('List of Available Tickers Generated for Steamlit')
-		with col2: st.write(st.scope.available_tickers)
+		with col2: st.write(scope.available_tickers)
 		with col3: st.write('< available_tickers >')
 
 	if param_group == 'Application':
@@ -318,82 +324,81 @@ def render_scope_page(scope):
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Project Description')
-		with col2: st.write(st.scope.project_description)
+		with col2: st.write(scope.project_description)
 		with col3: st.write('< project_description >')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Project Start Time')
-		with col2: st.write(datetime.fromtimestamp(st.scope.project_start_time).strftime('%Y-%m-%d %H:%M:%S %p'))
+		with col2: st.write(datetime.fromtimestamp(scope.project_start_time).strftime('%Y-%m-%d %H:%M:%S %p'))
 		with col3: st.write('< project_start_time >')
 		
 		st.markdown("""---""")
 		st.subheader('Result Parameters')
+
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Result Passed')
-		with col2: st.write(st.scope.result_passed)
+		with col2: st.write(scope.result_passed)
 		with col3: st.write('< result_passed >')
 		with col1: st.write('Result Passed_2')
-		with col2: st.write(st.scope.result_passed_2)
+		with col2: st.write(scope.result_passed_2)
 		with col3: st.write('< result_passed_2 >')
 		with col1: st.write('Result Failed')
-		with col2: st.write(st.scope.result_failed)
+		with col2: st.write(scope.result_failed)
 		with col3: st.write('< result_failed >')
-
-
 
 		st.markdown("""---""")
 		st.subheader('Terminal Parameters')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Terminal Audit')
-		with col2: st.write(st.scope.terminal_audit)
+		with col2: st.write(scope.terminal_audit)
 		with col3: st.write('< terminal_audit >')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Terminal Width')
-		with col2: st.write(st.scope.terminal_width)
+		with col2: st.write(scope.terminal_width)
 		with col3: st.write('< terminal_width >')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Terminal Print Width')
-		with col2: st.write(st.scope.terminal_print_width)
+		with col2: st.write(scope.terminal_print_width)
 		with col3: st.write('< terminal_print_width')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Terminal Count Passed')
-		with col2: st.write(st.scope.terminal_count_passed)
+		with col2: st.write(scope.terminal_count_passed)
 		with col3: st.write('< terminal_count_passed')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Terminal Count_2 Passed')
-		with col2: st.write(st.scope.terminal_count_passed_2)
+		with col2: st.write(scope.terminal_count_passed_2)
 		with col3: st.write('< terminal_count_passed_2')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Terminal Count Failed')
-		with col2: st.write(st.scope.terminal_count_failed)
+		with col2: st.write(scope.terminal_count_failed)
 		with col3: st.write('< terminal_count_failed >')
 
 	if param_group == 'Market':
 		st.subheader('Market Parameters')
 		
-		share_market_message = 'Current Share Market = ' + str(st.scope.share_market)
+		share_market_message = 'Current Share Market = ' + str(scope.share_market)
 		st.success(share_market_message)
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Available Markets')
-		with col2: st.write(st.scope.available_markets)
+		with col2: st.write(scope.available_markets)
 		with col3: st.write('< available_markets >')
 		# st.dataframe(st.scope.available_markets, 2000, 1200)
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Selected Market')
-		with col2: st.write(st.scope.selected_market)
+		with col2: st.write(scope.selected_market)
 		with col3: st.write('< selected_market >')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Market Share Suffix')
-		with col2: st.write(st.scope.market_suffix)
+		with col2: st.write(scope.market_suffix)
 		with col3: st.write('< market_suffix >')
 		# st.dataframe(st.scope.market_suffix, 2000, 1200)
 
@@ -402,50 +407,94 @@ def render_scope_page(scope):
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Public Holidays')
-		with col2: st.write(st.scope.market_public_holidays)
+		with col2: st.write(scope.market_public_holidays)
 		with col3: st.write('< market_public_holidays >')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Opening Hours')
-		with col2: st.write(st.scope.market_opening_hours)
+		with col2: st.write(scope.market_opening_hours)
 		with col3: st.write('< market_opening_hours >')
-		
+
+	if param_group == 'Download':
+		st.subheader('Download Parameters')
+
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Number of Days to Download')
+		with col2: st.write(scope.download_days)
+		with col3: st.write('< download_days >')
+
+		st.markdown("""---""")
+		st.subheader('Most Recent Download Variables and Data')
+
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Appropriate download method')
+		with col2: st.write(scope.download_schema)
+		with col3: st.write('< download_schema >')
+
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Batched Groups of tickers for the download')
+		with col2: st.write(scope.download_groups_for_y_finance)
+		with col3: st.write('< download_groups_for_y_finance >')
+
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Downloaded Data from y_finance')
+		with col2: st.write(scope.download_yf_share_data)
+		with col3: st.write('< download_yf_share_data >')
+
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Error Messages from y_finance')
+		with col2: st.write(scope.download_yf_anomolies)
+		with col3: st.write('< download_yf_anomolies >')
+
+		st.markdown("""---""")
+		st.subheader('Available Schemas for the different downloads from y_finance')
+
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Download Schemas - Available')
+
+		list_of_schemas = list(scope.download_schemas.keys())
+		for schema in list_of_schemas:
+			with col2: st.write(schema)
+			schema_definition = scope.download_schemas[schema]
+			with col2: st.write(scope.download_schemas[schema])
+		with col3: st.write('< download_schemas >')
+
 	if param_group == 'Folders':
 		st.subheader('Folders and Paths')
 
 		col1,col2,col3 = st.columns([2,6,2])
 		with col1: st.write('Project Folder')
-		with col2: st.write(st.scope.folder_project)
+		with col2: st.write(scope.folder_project)
 		with col3: st.write('< folder_project >')
 
 		col1,col2,col3 = st.columns([2,6,2])
 		with col1: st.write('Share Data Folder')
-		with col2: st.write(st.scope.folder_share_data)
+		with col2: st.write(scope.folder_share_data)
 		with col3: st.write('< folder_share_data >')
 
 		col1,col2,col3 = st.columns([2,6,2])
 		with col1: st.write('Results Analysis Folder')
-		with col2: st.write(st.scope.folder_results_analysis)
+		with col2: st.write(scope.folder_results_analysis)
 		with col3: st.write('< folder_results_analysis >')
 
 		col1,col2,col3 = st.columns([2,6,2])
 		with col1: st.write('Website Output Folder')
-		with col2: st.write(st.scope.folder_website)
+		with col2: st.write(scope.folder_website)
 		with col3: st.write('< folder_website >')
 
 		col1,col2,col3 = st.columns([2,6,2])
 		with col1: st.write('Path for Share Index File')
-		with col2: st.write(st.scope.path_share_index)
+		with col2: st.write(scope.path_share_index)
 		with col3: st.write('< path_share_index >')
 
 		col1,col2,col3 = st.columns([2,6,2])
 		with col1: st.write('Path for Website Output File')
-		with col2: st.write(st.scope.path_website_file)
+		with col2: st.write(scope.path_website_file)
 		with col3: st.write('< path_website_file >')
 
 		col1,col2,col3 = st.columns([2,6,2])
 		with col1: st.write('Path for Share Data File')
-		with col2: st.write(st.scope.path_share_data_file)
+		with col2: st.write(scope.path_share_data_file)
 		with col3: st.write('< path_share_data_file >')
 
 	if param_group == 'Strategy': # TODO
@@ -453,65 +502,65 @@ def render_scope_page(scope):
 		# TODO not sure what the final format of some of these objects should be
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Strategy Name')
-		with col2: st.write(st.scope.strategy_name)
+		with col2: st.write(scope.strategy_name)
 		with col3: st.write('strategy_name')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Print Header')
-		with col2: st.write(st.scope.strategy_print_header)
+		with col2: st.write(scope.strategy_print_header)
 		with col3: st.write('strategy_print_header')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Price Columns')
-		with col2: st.dataframe(st.scope.strategy_price_columns, 100, 200)
+		with col2: st.dataframe(scope.strategy_price_columns, 100, 200)
 		with col3: st.write('strategy_price_columns')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Print Count')
-		with col2: st.write(st.scope.strategy_print_count)
+		with col2: st.write(scope.strategy_print_count)
 		with col3: st.write('strategy_print_count')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Build Header')
-		with col2: st.write(st.scope.strategy_build_header)
+		with col2: st.write(scope.strategy_build_header)
 		with col3: st.write('strategy_build_header')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Header')
-		with col2: st.write(st.scope.strategy_header)
+		with col2: st.write(scope.strategy_header)
 		with col3: st.write('strategy_header')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Print Line')
-		with col2: st.write(st.scope.strategy_print_line)
+		with col2: st.write(scope.strategy_print_line)
 		with col3: st.write('strategy_print_line')
 		
 		col1,col2 = st.columns([6,2])
 		with col1: st.write('Json Dicitionary')
 		with col2: st.write('strategy_json_dict')
-		st.write(st.scope.strategy_json_dict)
+		st.write(scope.strategy_json_dict)
 
 		col1,col2 = st.columns([6,2])
 		with col1: st.write('Results Dataframe')
 		with col2: st.write('strategy_results')
-		st.dataframe(st.scope.strategy_results, 2000, 1200)
+		st.dataframe(scope.strategy_results, 2000, 1200)
 
 	if param_group == 'Charting':
 		st.subheader('Charting Parameters')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Chart Line')
-		with col2: st.write(st.scope.chart_lines)
+		with col2: st.write(scope.chart_lines)
 		with col3: st.write('< chart_lines >')
 		
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Chart MACD on Price')
-		with col2: st.write(st.scope.chart_macd_on_price)
+		with col2: st.write(scope.chart_macd_on_price)
 		with col3: st.write('< chart_macd_on_price >')
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Chart MACD on Volume')
-		with col2: st.write(st.scope.chart_macd_on_volume)
+		with col2: st.write(scope.chart_macd_on_volume)
 		with col3: st.write('< chart_macd_on_volume >')
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------

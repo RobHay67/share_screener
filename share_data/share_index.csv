@@ -1,6 +1,6 @@
 share_code,company_name,industry_group,listing_date,market_cap,opening_time,minutes_per_day,blue_chip,yahoo_status,missing_dates,delisted_date,trading_halt_dates
 1AD.AX,ADALTA LIMITED,pharmaceuticals_biotechnology_and_life_sciences,2016-08-22,22066162.0,10:00:00,360.0,zz_not_yet_tagged,,,,
-1AG.AX,ALTERRA LIMITED,food_beverage_and_tobacco,2008-05-16,9166617.0,10:00:00,360.0,zz_not_yet_tagged,,,,
+1AG.AX,ALTERRA LIMITED,food_beverage_and_tobacco,2008-05-16,9166617.0,10:00:00,360.0,zz_not_yet_tagged,downloaded,,,
 1ST.AX,1ST GROUP LIMITED,health_care_equipment_and_services,2015-06-09,8060415.0,10:00:00,360.0,zz_not_yet_tagged,,,,
 1VG.AX,VICTORY GOLDFIELDS LIMITED,materials,2021-07-22,9406886.0,10:00:00,360.0,zz_not_yet_tagged,,,,
 29M.AX,29METALS LIMITED,materials,2021-07-02,1249183000.0,10:00:00,360.0,zz_not_yet_tagged,,,,

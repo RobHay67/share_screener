@@ -54,7 +54,7 @@ st.sidebar.title(project_description)
 st.sidebar.button('Home Page......', on_click=show_home_page)
 st.sidebar.subheader('Loaded Data')
 st.sidebar.button(('Share Index ( ' + str((len(st.session_state.share_index_file))) + ' )'), on_click=show_share_index_page)
-st.sidebar.button(('Share Data Files ( ' + str((len(st.session_state.ticker_list))) + ' )'), on_click=show_share_data_files_page)
+
 # Select Tickers -----------------------------------------------------------------------------------------------
 st.sidebar.subheader('Ticker List - add tickers')
 market   = st.sidebar.selectbox  ('Add Entire Market to ticker list'  , st.session_state.available_markets   , on_change=update_ticker_list_required, help='Select an Entire Share Market for Analysis')
@@ -68,15 +68,20 @@ if st.session_state.update_ticker_list_required:
 	construct_list_of_share_codes(st.session_state)
 	# print(tickers)
 	# print ( 'selected_tickers = ', st.session_state.selected_tickers ) 
-
+st.sidebar.button(('Share Data Files ( ' + str((len(st.session_state.ticker_list))) + ' )'), on_click=show_share_data_files_page)
 
 
 
 
 # Analysis Pages -----------------------------------------------------------------------------------------------
+st.sidebar.subheader('Analysis')
 # st.sidebar.info('Ticker List ( ' + str((len(st.session_state.ticker_list))) + ' )')
 st.sidebar.button('Volume Analysis', on_click=show_volume_page)
 st.sidebar.button('Perform Analysis', on_click=show_analysis_page)
+
+
+# System Variables ---------------------------------------------------------------------------------------------
+st.sidebar.subheader('System Variables')
 st.sidebar.button('Scope Variables', on_click=show_scope_page)
 
 
