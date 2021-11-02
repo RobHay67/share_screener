@@ -212,27 +212,28 @@ def build_ticker_dropdowns(scope):
 def render_scope_page(scope):
 	st.title('Application Parameters')
 
-	param_group = st.selectbox(
-									'Show Application Parameters',
-									(
-										'< select group >',
-										'Lists - Ticker(s)',
-										'Lists - Industries',
-										'File - Share Index File', 
-										'File - Share Data Files', 
-										'...............................system.parameters',
-										'Streamlit',
-										'Application',
-										'Market', 
-										'Download',
-										'Folders', 
-										'Strategy', 
-										'Charting', 
-										# 'Terminal',
-										)
-							)
+	col1,col2,col3,col4 = st.columns([2,2,2,2])
 
-	if param_group == 'Lists - Ticker(s)': #DONE
+	with col1: st.subheader('Lists')
+	with col1: show_tickers = st.button('Ticker(s)')
+	with col1: show_industries = st.button('Industries')
+
+	with col2: st.subheader('Data')
+	with col2: show_share_index = st.button('Share Index File')
+	with col2: show_share_data_files = st.button('Share Data Files')
+	with col2: show_download = st.button('Download Settings')
+
+	with col3: st.subheader('Analysis')
+	with col3: show_strategy = st.button('Strategy')
+	with col3: show_charting = st.button('Charting')
+
+	with col4: st.subheader('Parameters')
+	with col4: show_streamlit = st.button('Streamlit')
+	with col4: show_application = st.button('Application')
+	with col4: show_folders = st.button('Folders')
+	with col4: show_market = st.button('Market')
+
+	if show_tickers:
 		st.subheader('Ticker Lists')
 		
 		col1,col2,col3 = st.columns([2,4,2])
@@ -255,20 +256,20 @@ def render_scope_page(scope):
 		with col2: st.write('< share_data_missing_list >')
 		st.write(scope.share_data_missing_list)
 
-	if param_group == 'Lists - Industries': # DONE
+	if show_industries:
 		st.subheader('Share Index File contains the following Industries')
 		industry_group_count = pd.DataFrame(scope.share_index_file['industry_group'].value_counts())
 		industry_group_count.index.name = 'Industry'
 		industry_group_count.columns =['No of Codes']
 		st.dataframe(industry_group_count, 2000, 1200)
 
-	if param_group == 'File - Share Index File': # DONE
+	if show_share_index:
 		col1,col2 = st.columns([6,2])
 		with col1: st.subheader('Share Index File')
 		with col2: st.write('< share_index_file >')
 		st.dataframe(scope.share_index_file, 2000, 1200)
 
-	if param_group == 'File - Share Data Files': # DONE 
+	if show_share_data_files:
 		col1,col2 = st.columns([6,2])
 		with col1: st.subheader('Loaded and Downloaded share data.')
 		with col2: st.write('< share_data_files >')
@@ -279,7 +280,117 @@ def render_scope_page(scope):
 			my_expander = st.expander(label=ticker)
 			my_expander.dataframe(scope.share_data_files[ticker], 2000, 2000)
 
-	if param_group == 'Streamlit': # DONE
+	if show_download:
+		st.subheader('Download Parameters')
+
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Number of Days to Download')
+		with col2: st.write(scope.download_days)
+		with col3: st.write('< download_days >')
+
+		st.markdown("""---""")
+		st.subheader('Most Recent Download Variables and Data')
+
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Appropriate download method')
+		with col2: st.write(scope.download_schema)
+		with col3: st.write('< download_schema >')
+
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Batched Groups of tickers for the download')
+		with col2: st.write(scope.download_groups_for_y_finance)
+		with col3: st.write('< download_groups_for_y_finance >')
+
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Downloaded Data from y_finance')
+		with col2: st.write(scope.download_yf_share_data)
+		with col3: st.write('< download_yf_share_data >')
+
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Error Messages from y_finance')
+		with col2: st.write(scope.download_yf_anomolies)
+		with col3: st.write('< download_yf_anomolies >')
+
+		st.markdown("""---""")
+		st.subheader('Available Schemas for the different downloads from y_finance')
+
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Download Schemas - Available')
+
+		list_of_schemas = list(scope.download_schemas.keys())
+		for schema in list_of_schemas:
+			with col2: st.write(schema)
+			schema_definition = scope.download_schemas[schema]
+			with col2: st.write(scope.download_schemas[schema])
+		with col3: st.write('< download_schemas >')
+
+	if show_strategy:
+		st.subheader('Strategy Parameters')
+		# TODO not sure what the final format of some of these objects should be
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Strategy Name')
+		with col2: st.write(scope.strategy_name)
+		with col3: st.write('strategy_name')
+		
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Print Header')
+		with col2: st.write(scope.strategy_print_header)
+		with col3: st.write('strategy_print_header')
+
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Price Columns')
+		with col2: st.dataframe(scope.strategy_price_columns, 100, 200)
+		with col3: st.write('strategy_price_columns')
+		
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Print Count')
+		with col2: st.write(scope.strategy_print_count)
+		with col3: st.write('strategy_print_count')
+		
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Build Header')
+		with col2: st.write(scope.strategy_build_header)
+		with col3: st.write('strategy_build_header')
+		
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Header')
+		with col2: st.write(scope.strategy_header)
+		with col3: st.write('strategy_header')
+		
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Print Line')
+		with col2: st.write(scope.strategy_print_line)
+		with col3: st.write('strategy_print_line')
+		
+		col1,col2 = st.columns([6,2])
+		with col1: st.write('Json Dicitionary')
+		with col2: st.write('strategy_json_dict')
+		st.write(scope.strategy_json_dict)
+
+		col1,col2 = st.columns([6,2])
+		with col1: st.write('Results Dataframe')
+		with col2: st.write('strategy_results')
+		st.dataframe(scope.strategy_results, 2000, 1200)
+
+	if show_charting:
+		st.subheader('Charting Parameters')
+
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Chart Line')
+		with col2: st.write(scope.chart_lines)
+		with col3: st.write('< chart_lines >')
+		
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Chart MACD on Price')
+		with col2: st.write(scope.chart_macd_on_price)
+		with col3: st.write('< chart_macd_on_price >')
+
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Chart MACD on Volume')
+		with col2: st.write(scope.chart_macd_on_volume)
+		with col3: st.write('< chart_macd_on_volume >')
+
+	if show_streamlit:
 		st.subheader('Streamlit Variables')
 
 		col1,col2,col3 = st.columns([2,4,2])
@@ -317,7 +428,7 @@ def render_scope_page(scope):
 		with col2: st.write(scope.available_tickers)
 		with col3: st.write('< available_tickers >')
 
-	if param_group == 'Application': # DONE
+	if show_application:
 		st.subheader('General Application Parameters')
 
 		col1,col2,col3 = st.columns([2,4,2])
@@ -377,86 +488,7 @@ def render_scope_page(scope):
 		with col2: st.write(scope.terminal_count_failed)
 		with col3: st.write('< terminal_count_failed >')
 
-	if param_group == 'Market': # DONE
-		st.subheader('Market Parameters')
-		
-		st.info( ('Current Share Market = ' + str(scope.share_market)) )
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Available Markets')
-		with col2: st.write(scope.available_markets)
-		with col3: st.write('< available_markets >')
-		# st.dataframe(st.scope.available_markets, 2000, 1200)
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Selected Market')
-		with col2: st.write(scope.selected_market)
-		with col3: st.write('< selected_market >')
-		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Market Share Suffix')
-		with col2: st.write(scope.market_suffix)
-		with col3: st.write('< market_suffix >')
-		# st.dataframe(st.scope.market_suffix, 2000, 1200)
-
-		st.markdown("""---""")
-		st.subheader('Market Dates - Opening times and Public Holidays')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Public Holidays')
-		with col2: st.write(scope.market_public_holidays)
-		with col3: st.write('< market_public_holidays >')
-		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Opening Hours')
-		with col2: st.write(scope.market_opening_hours)
-		with col3: st.write('< market_opening_hours >')
-
-	if param_group == 'Download': # DONE
-		st.subheader('Download Parameters')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Number of Days to Download')
-		with col2: st.write(scope.download_days)
-		with col3: st.write('< download_days >')
-
-		st.markdown("""---""")
-		st.subheader('Most Recent Download Variables and Data')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Appropriate download method')
-		with col2: st.write(scope.download_schema)
-		with col3: st.write('< download_schema >')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Batched Groups of tickers for the download')
-		with col2: st.write(scope.download_groups_for_y_finance)
-		with col3: st.write('< download_groups_for_y_finance >')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Downloaded Data from y_finance')
-		with col2: st.write(scope.download_yf_share_data)
-		with col3: st.write('< download_yf_share_data >')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Error Messages from y_finance')
-		with col2: st.write(scope.download_yf_anomolies)
-		with col3: st.write('< download_yf_anomolies >')
-
-		st.markdown("""---""")
-		st.subheader('Available Schemas for the different downloads from y_finance')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Download Schemas - Available')
-
-		list_of_schemas = list(scope.download_schemas.keys())
-		for schema in list_of_schemas:
-			with col2: st.write(schema)
-			schema_definition = scope.download_schemas[schema]
-			with col2: st.write(scope.download_schemas[schema])
-		with col3: st.write('< download_schemas >')
-
-	if param_group == 'Folders': # DONE
+	if show_folders:
 		st.subheader('Folders and Paths')
 
 		col1,col2,col3 = st.columns([2,6,2])
@@ -494,71 +526,42 @@ def render_scope_page(scope):
 		with col2: st.write(scope.path_share_data_file)
 		with col3: st.write('< path_share_data_file >')
 
-	if param_group == 'Strategy': # TODO
-		st.subheader('Strategy Parameters')
-		# TODO not sure what the final format of some of these objects should be
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Strategy Name')
-		with col2: st.write(scope.strategy_name)
-		with col3: st.write('strategy_name')
+	if show_market:
+		st.subheader('Market Parameters')
 		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Print Header')
-		with col2: st.write(scope.strategy_print_header)
-		with col3: st.write('strategy_print_header')
+		st.info( ('Current Share Market = ' + str(scope.share_market)) )
 
 		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Price Columns')
-		with col2: st.dataframe(scope.strategy_price_columns, 100, 200)
-		with col3: st.write('strategy_price_columns')
-		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Print Count')
-		with col2: st.write(scope.strategy_print_count)
-		with col3: st.write('strategy_print_count')
-		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Build Header')
-		with col2: st.write(scope.strategy_build_header)
-		with col3: st.write('strategy_build_header')
-		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Header')
-		with col2: st.write(scope.strategy_header)
-		with col3: st.write('strategy_header')
-		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Print Line')
-		with col2: st.write(scope.strategy_print_line)
-		with col3: st.write('strategy_print_line')
-		
-		col1,col2 = st.columns([6,2])
-		with col1: st.write('Json Dicitionary')
-		with col2: st.write('strategy_json_dict')
-		st.write(scope.strategy_json_dict)
-
-		col1,col2 = st.columns([6,2])
-		with col1: st.write('Results Dataframe')
-		with col2: st.write('strategy_results')
-		st.dataframe(scope.strategy_results, 2000, 1200)
-
-	if param_group == 'Charting': # DONE
-		st.subheader('Charting Parameters')
+		with col1: st.write('Available Markets')
+		with col2: st.write(scope.available_markets)
+		with col3: st.write('< available_markets >')
+		# st.dataframe(st.scope.available_markets, 2000, 1200)
 
 		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Chart Line')
-		with col2: st.write(scope.chart_lines)
-		with col3: st.write('< chart_lines >')
+		with col1: st.write('Selected Market')
+		with col2: st.write(scope.selected_market)
+		with col3: st.write('< selected_market >')
 		
 		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Chart MACD on Price')
-		with col2: st.write(scope.chart_macd_on_price)
-		with col3: st.write('< chart_macd_on_price >')
+		with col1: st.write('Market Share Suffix')
+		with col2: st.write(scope.market_suffix)
+		with col3: st.write('< market_suffix >')
+		# st.dataframe(st.scope.market_suffix, 2000, 1200)
+
+		st.markdown("""---""")
+		st.subheader('Market Dates - Opening times and Public Holidays')
 
 		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Chart MACD on Volume')
-		with col2: st.write(scope.chart_macd_on_volume)
-		with col3: st.write('< chart_macd_on_volume >')
+		with col1: st.write('Public Holidays')
+		with col2: st.write(scope.market_public_holidays)
+		with col3: st.write('< market_public_holidays >')
+		
+		col1,col2,col3 = st.columns([2,4,2])
+		with col1: st.write('Opening Hours')
+		with col2: st.write(scope.market_opening_hours)
+		with col3: st.write('< market_opening_hours >')
+
+
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------
