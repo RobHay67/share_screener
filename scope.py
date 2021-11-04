@@ -150,7 +150,7 @@ def set_initial_scope(scope, project_description):
 		if not os.path.isdir( scope.folder_website ) : os.makedirs( scope.folder_website )
 		
 		# File Paths
-		scope.path_share_index = pathlib.Path.home().joinpath( scope.folder_share_data, 'share_index.csv' )
+		scope.path_share_index = pathlib.Path.home().joinpath( scope.folder_share_data, 'ticker_index.csv' )
 		scope.path_website_file = pathlib.Path.home().joinpath( scope.folder_website, 'strategy_results.json' )
 		scope.path_share_data_file = 'not yet set',
 		# Load the Share Index File
