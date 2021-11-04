@@ -128,6 +128,7 @@ def refresh_share_index_file(scope):
 
 		st.success('number of downloaded ' + scope.share_market + ' share codes = ' + str(len(downloaded_share_info)))
 		update_share_index_with_latest_download(scope, downloaded_share_info )
+		scope.refresh_ticker_dropdown_lists = True
 	else:
 		st.error('DOWNLOAD Share data NOT YET CONFIUGURED FOR ' + scope.share_market)
 		pass
@@ -139,7 +140,7 @@ def update_share_index_with_latest_download(scope, downloaded_share_info ):
 
 	downloaded_share_info = apply_defaults_to_missing_values(scope, downloaded_share_info)
 	downloaded_share_info.set_index('share_code', inplace=True)
-	output_results_to_browser( scope, passed='Updated these Shares > ', passed_2='Added these Shares > ', failed='not applicable > ' )
+	output_results_to_browser( scope, passed='Updating these Shares > ', passed_2='Adding these Shares > ', failed='not applicable > ' )
 
 	for ticker, row in downloaded_share_info.iterrows(): 
 		# 

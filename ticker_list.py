@@ -46,20 +46,9 @@ def construct_list_of_share_codes(scope):
 		ticker_list += [ticker]
 
 		if ticker in scope.share_data_loaded_list:
-			print('exists so subsetting to just the data for this ticker')
-
 			keep_exisiting_data = scope.share_data_files[ticker]
 			scope.share_data_files = {}
 			scope.share_data_files[ticker] = keep_exisiting_data
-
-
-			# print ( scope.share_data_files)
-			# for key in scope.share_data_files.keys():
-			# 	print(key)
-			# save_share_data = scope.share_data_files[ticker]
-			# print(save_share_data)
-
-			# scope.share_data_files = scope.share_data_files[ticker]
 		else:
 			scope.share_data_files = {}  # empty the loaded data
 

@@ -91,12 +91,16 @@ download_share_data_schemas =    {
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def set_initial_scope(scope, project_description):
 	if 'initial_load' not in scope:
+		# set the initial state for the application - keep this to a minimum
 		scope.initial_load = True
 		scope.update_dropdown_lists = True
+		# Set Initial Applications Selections
 		scope.share_market = 'ASX'
-		
-		
-		
+		scope.chosen_market = None
+		scope.chosen_industries = None
+		scope.chosen_tickers = None
+		scope.chosen_ticker_for_volume_analysis = 'select a ticker'
+
 	if scope.initial_load:
 		# st.warning('Updating the session state params')
 		# Streamlit Params
@@ -164,6 +168,11 @@ def set_initial_scope(scope, project_description):
 		scope.download_schemas = download_share_data_schemas	
 		scope.download_yf_share_data = pd.DataFrame(columns=scope.share_data_usecols + ['ticker'] )
 		scope.download_yf_anomolies =  {}
+		
+		# Analysis Variables
+		scope.dropdown_colums = ['open', 'high', 'low', 'close', 'volume']
+
+
 
 		# Strategy Params
 		scope.strategy_name = 'None yet Selected', 
@@ -183,39 +192,42 @@ def set_initial_scope(scope, project_description):
 
 		st.session_state.initial_load = False
 		
-def build_ticker_dropdowns(scope):
+def refresh_ticker_dropdown_lists(scope):
 
 	# st.error('The Ticker Dropdowns have been rebuilt!! - should this have happened?')
-	print ( '\033[91m' + 'Ticker Dropdowns have been rebuil' + '\033[0m' )
+	print ( '\033[91m' + 'Ticker Dropdowns have been rebuilt' + '\033[0m' )
 
-	# Available Share Markerts
+	# ---------------------------------------------------------------------------------------
+	# Single Share Market Selector
 	list_of_markets = list(scope.market_suffix.keys())
 	list_of_markets.insert(0, '< select entire market >')
 	scope.dropdown_markets = list_of_markets
-	scope.chosen_market = None
+	scope.dropdown_markets_re_render = True
 	
-
-	# Available Share industries
+	# ---------------------------------------------------------------------------------------
+	# Multi Share Industry Selector
 	list_of_industries = scope.share_index_file['industry_group'].unique().tolist()
 	list_of_industries.sort()
 	scope.dropdown_industries = list_of_industries
-	scope.chosen_industries = None
+	scope.dropdown_industries_re_render = True
 	
-	# Available Share Tickers
+	# ---------------------------------------------------------------------------------------
+	# Multi Share Ticker Selector
 	list_of_tickers = scope.share_index_file.index.values.tolist()
 	scope.dropdown_tickers = list_of_tickers
-	scope.chosen_tickers = None
+	scope.dropdown_tickers_re_render = True
+	scope.dropdown_ticker_volume_re_render = True
 
-
-	list_of_single_tickers = list_of_tickers
-	list_of_single_tickers.insert(0, '< not selected >')
-	scope.dropdown_single_ticker = list_of_single_tickers
-	scope.chosen_single_ticker = None
+	# ---------------------------------------------------------------------------------------
+	# Single Ticker Selector for Volume Analysis
+	tickers_for_volume_analysis = list_of_tickers
+	tickers_for_volume_analysis.insert(0, 'select a ticker')
+	scope.dropdown_ticker_for_volume_analysis = tickers_for_volume_analysis
 
 	
-
+	# ---------------------------------------------------------------------------------------
 	# Dont run this again unless we have downloaded new share data
-	scope.update_dropdown_lists = False
+	# scope.update_dropdown_lists = False
 	
 	
 def render_scope_page(scope):
@@ -457,10 +469,16 @@ def render_scope_page(scope):
 		with col2: st.write(scope.chosen_tickers)
 		with col3: st.write('< chosen_tickers >')
 
+		# col1,col2,col3 = st.columns([2,4,2])
+		# with col1: st.write('Selected Single Ticker)')
+		# with col2: st.write(scope.chosen_single_ticker)
+		# with col3: st.write('< chosen_single_ticker >')
+
 		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Selected Single Ticker)')
-		with col2: st.write(scope.chosen_single_ticker)
-		with col3: st.write('< chosen_single_ticker >')
+		with col1: st.write('Selected Ticker for Volume Analysis')
+		with col2: st.write(scope.chosen_ticker_for_volume_analysis)
+		with col3: st.write('< chosen_ticker_for_volume_analysis >')
+
 
 		st.markdown("""---""")
 		st.subheader('Dropdown List Contents - what the user could choose')

@@ -104,6 +104,7 @@ if(infoType == 'Fundamental'):
 	st.table(marketDF)
 
 else:
+	# Technical Analysis
 	def calcMovingAverage(data, size):
 		size = int(size)
 		df = data.copy()
