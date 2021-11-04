@@ -86,6 +86,25 @@ download_share_data_schemas =    {
 													}
 							}
 
+
+
+
+
+
+
+
+
+# ================================================================================================================================================================
+#        							Multi Share Code Analysis		Volume Predictor						Company Profile							Daily Analysis
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Appropriate Code List				tickers_for_multi				ticker_for_vol_predict					ticker_for_company_profile
+# how do we select tickers to add	dropdown_markets				dropdown_ticker_for_volume_analysis		dropdown_ticker_for_company_profile
+#									dropdown_industries
+#									dropdown_tickers
+# Files are stored					share_data_multi_files			share_data_volume_file					share_data_profile_file					share_data_analysis_file
+
+
+
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Scope out the Params Object == scope in streamlit
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -99,8 +118,8 @@ def set_initial_scope(scope, project_description):
 		scope.chosen_market = None
 		scope.chosen_industries = None
 		scope.chosen_tickers = None
-		scope.chosen_ticker_for_volume_prediction = 'select a ticker'
-		scope.chosen_ticker_for_company_profile = 'select a ticker'
+		scope.ticker_for_vol_predict = 'select a ticker'
+		scope.ticker_for_company_profile = 'select a ticker'
 
 
 	if scope.initial_load:
@@ -111,16 +130,8 @@ def set_initial_scope(scope, project_description):
 		# Project Params
 		scope.project_description = project_description
 		scope.project_start_time = time.time()
-		
-		# Terminal Params
-		# scope.terminal_audit = False
-		# scope.terminal_width = 200
-		# scope.terminal_print_width = 0
-		# scope.terminal_count_passed = 0
-		# scope.terminal_count_passed_2 = 0
-		# scope.terminal_count_failed = 0
-		
-		# Result
+				
+		# Results - for batch processing of multiple tickers
 		scope.result_passed = ''
 		scope.result_passed_2 = ''
 		scope.result_failed = ''
@@ -147,7 +158,7 @@ def set_initial_scope(scope, project_description):
 
 		# Ticker list - for analysis
 		scope.update_ticker_list_required = False
-		scope.ticker_list = []
+		scope.tickers_for_multi = []
 
 		# Share Data Files
 		scope.share_data_files = {}
@@ -251,12 +262,12 @@ def render_scope_page(scope):
 	col1,col2,col3,col4 = st.columns([2,2,2,2])
 
 	with col1: st.subheader('Lists')
-	with col1: show_tickers = st.button('Ticker Lists')
+	with col1: show_tickers = st.button('Ticker Lists ( ' + str((len(scope.tickers_for_multi))) + ' )')
 	with col1: show_industries = st.button('Industries')
 
 	with col2: st.subheader('Data')
-	with col2: show_share_index = st.button('Share Index File')
-	with col2: show_share_data_files = st.button('Share Data Files')
+	with col2: show_share_index = st.button('Share Index File ( ' + str((len(st.session_state.share_index_file))) + ' )')
+	with col2: show_share_data_files = st.button('Share Data Files ( ' + str(len(st.session_state.share_data_files.keys())) + ' )')
 	with col2: show_download = st.button('Download Settings')
 
 	with col3: st.subheader('Analysis')
@@ -274,13 +285,19 @@ def render_scope_page(scope):
 		render_3_columns( 'Ticker Dropdown Lists need updating', scope.update_dropdown_lists, 'update_dropdown_lists' )
 				
 		st.markdown("""---""")
-		st.subheader('Working List of Tickers')
-		render_3_columns( 'Working List of Tickers', scope.ticker_list, 'ticker_list' )
-		
-		st.markdown("""---""")
-
+		st.subheader('Ticker List for Multi Share Code Analysis')
+		render_3_columns( 'Ticker List - Multi', scope.tickers_for_multi, 'tickers_for_multi' )
 		render_3_columns( 'Loaded Ticker List', scope.share_data_loaded_list, 'share_data_loaded_list' )
 		render_3_columns( 'Missing Ticker List', scope.share_data_missing_list, 'share_data_missing_list' )
+
+		st.markdown("""---""")
+		st.subheader('Ticker List for Single Share Code Analysis')
+		render_3_columns( 'Ticker List - for Volume Prediction', scope.ticker_for_vol_predict, 'ticker_for_vol_predict' )
+		render_3_columns( 'Ticker List - for Company Profile', scope.ticker_for_company_profile, 'ticker_for_company_profile' )
+		# render_3_columns( 'Ticker List - for Volume Prediction', scope.ticker_for_vol_predict, 'ticker_for_vol_predict' )
+
+
+
 
 	if show_industries:
 		st.subheader('Share Index File contains the following Industries')
@@ -376,7 +393,7 @@ def render_scope_page(scope):
 		render_3_columns( 'Initial Run / load', scope.initial_load, 'initial_load' )
 
 		st.markdown("""---""")
-		st.subheader('Dropdown Selections - Multiple Ticker Analysis < ticker_list>')
+		st.subheader('Dropdown Selections - Multiple Ticker Analysis < tickers_for_multi>')
 
 		render_3_columns( 'Selected Market', scope.chosen_market, 'chosen_market' )
 		render_3_columns( 'Selected Industry(s)', scope.chosen_industries, 'chosen_industries' )
@@ -385,8 +402,8 @@ def render_scope_page(scope):
 		st.markdown("""---""")
 		st.subheader('Dropdown Menu - Single Purpose Ticker Selections')
 
-		render_3_columns( 'Ticker for Volume Analysis', scope.chosen_ticker_for_volume_prediction, 'chosen_ticker_for_volume_prediction' )
-		render_3_columns( 'Ticker for Volume Analysis', scope.chosen_ticker_for_company_profile, 'chosen_ticker_for_company_profile' )
+		render_3_columns( 'Ticker for Volume Analysis', scope.ticker_for_vol_predict, 'ticker_for_vol_predict' )
+		render_3_columns( 'Ticker for Volume Analysis', scope.ticker_for_company_profile, 'ticker_for_company_profile' )
 
 		st.markdown("""---""")
 		st.subheader('Dropdown List Contents - available to select')
@@ -521,3 +538,10 @@ def report_params(params ):
 
 # def chunkstring(string, length):
 # 	return (string[0+i:length+i] for i in range(0, len(string), length))
+
+
+
+
+
+
+

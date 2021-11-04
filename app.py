@@ -103,13 +103,13 @@ st.sidebar.title('OTHER')
 # 	construct_list_of_share_codes(st.session_state)
 
 # ticker list and ticker data buttons
-st.sidebar.button( ('Show Ticker List ( ' + str((len(st.session_state.ticker_list))) + ' )'), on_click=page_show_ticker_list )
+st.sidebar.button( ('Show Ticker List ( ' + str((len(st.session_state.tickers_for_multi))) + ' )'), on_click=page_show_ticker_list )
 # st.info(('Current number of Loaded Files ( ' + str((len(scope.share_data_files))) + ' )'))
 st.sidebar.button( ('Show Share Data Files ( ' + str(len(st.session_state.share_data_files.keys())) + ' )'), on_click=page_share_data_files)
 
 # Analysis Pages -----------------------------------------------------------------------------------------------
 st.sidebar.subheader('Analysis')
-# st.sidebar.info('Ticker List ( ' + str((len(st.session_state.ticker_list))) + ' )')
+# st.sidebar.info('Ticker List ( ' + str((len(st.session_state.tickers_for_multi))) + ' )')
 
 
 
@@ -118,7 +118,7 @@ st.sidebar.subheader('Analysis')
 # System Variables ---------------------------------------------------------------------------------------------
 st.sidebar.subheader('System Variables')
 st.sidebar.button('Scope Variables', on_click=page_scope)
-
+st.download_days = st.sidebar.number_input('change ( - / + )  number of days to download', min_value=1, max_value=1000, value=1, key='0')   
 
 
 

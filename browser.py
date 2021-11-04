@@ -2,13 +2,14 @@
 import streamlit as st
 
 
+# from share_data import load_tickers
 
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------
 # Output Ticker Iteration to terminal
 # -----------------------------------------------------------------------------------------------------------------------------------
-def output_results_to_browser(scope, output=None, result=None, final_print=False, passed='', passed_2='', failed='' ):
+def render_results(scope, output=None, result=None, final_print=False, passed='', passed_2='', failed='' ):
 	# I think what we do here is just build 3 list and save them
 
 	if output == None:
@@ -43,4 +44,7 @@ def output_results_to_browser(scope, output=None, result=None, final_print=False
 
 		# if len(scope.result_failed) != 0:
 		if scope.result_failed_count > 0: st.error(scope.result_failed)
+
+
+
 

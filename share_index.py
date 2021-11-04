@@ -6,7 +6,7 @@ import os
 import datetime
 import streamlit as st
 
-from web import output_results_to_browser
+from browser import render_results
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -140,7 +140,7 @@ def update_share_index_with_latest_download(scope, downloaded_share_info ):
 
 	downloaded_share_info = apply_defaults_to_missing_values(scope, downloaded_share_info)
 	downloaded_share_info.set_index('share_code', inplace=True)
-	output_results_to_browser( scope, passed='Updating these Shares > ', passed_2='Adding these Shares > ', failed='not applicable > ' )
+	render_results( scope, passed='Updating these Shares > ', passed_2='Adding these Shares > ', failed='not applicable > ' )
 
 	for ticker, row in downloaded_share_info.iterrows(): 
 		# 
@@ -150,14 +150,14 @@ def update_share_index_with_latest_download(scope, downloaded_share_info ):
 			row['minutes_per_day'] = ticker_trading_mins_per_day( scope, ticker )
 			row['blue_chip'] = share_index_schema['blue_chip']['default']
 			scope.share_index_file = scope.share_index_file.append(row)
-			output_results_to_browser( scope, ticker, result='passed_2' )
+			render_results( scope, ticker, result='passed_2' )
 		else:
 			scope.share_index_file.at[ticker, 'company_name'] = row['company_name']
 			scope.share_index_file.at[ticker, 'listing_date'] = row['listing_date']
 			scope.share_index_file.at[ticker, 'industry_group'] = row['industry_group']
 			scope.share_index_file.at[ticker, 'market_cap'] = row['market_cap']
-			output_results_to_browser( scope, ticker, result='passed' )
-	output_results_to_browser(scope, 'Finished', final_print=True )
+			render_results( scope, ticker, result='passed' )
+	render_results(scope, 'Finished', final_print=True )
 	scope.share_index_file = apply_defaults_to_missing_values(scope, scope.share_index_file)
 	scope.share_index_file['listing_date'] = pd.to_datetime( scope.share_index_file['listing_date'].dt.date  )
 	scope.share_index_file = scope.share_index_file.sort_index()
@@ -238,46 +238,6 @@ def ticker_trading_mins_per_day( scope, ticker ):
 				trading_minutes_per_day = scope.market_opening_hours[market][group]['minutes_per_day']
 	return trading_minutes_per_day 
 
-# def extrapolate_average_trading_volume(scope):
-# 	st.info('Extrapolating the Current Volume to the End of day - checking momentum')
-# 	for ticker in scope.analysis['ticker_list']:
-# 		# Only expecting one of these BOQ.AX  
-# 		opening_time = scope.share_index_file.loc[ticker]['opening_time']
-# 		minutes_per_day = scope.share_index_file.loc[ticker]['minutes_per_day']
-# 		open_hour = int(opening_time[:2])
-# 		open_minute = int(opening_time[3:5])
-# 		# Current time
-# 		current_time=datetime.datetime.today()
-# 		open_time=current_time.replace(hour=open_hour, minute=open_minute)
-
-# 		# minutes difference
-# 		diff_in_seconds = (current_time - open_time).total_seconds()
-# 		minutes_elapsed = divmod(diff_in_seconds, 60)[0]
-
-# 		# Now extrapolate
-# 		volume_to_date = scope.market_info['average_volume']
-# 		average_vol_per_minute = volume_to_date / minutes_elapsed
-# 		remaining_minutes = minutes_per_day - minutes_elapsed
-# 		extrapolated_daily_volume = "{:8,.0f}".format(average_vol_per_minute * minutes_per_day)
-# 		volume_to_date =  "{:8,.0f}".format(volume_to_date)
-
-# 		# Report and Exit 
-# 		st.error('TODO - we need this to print on the screen')
-# 		print ( white )
-# 		print ( '-'*scope.terminal['width'])
-# 		print ( ticker, ' - ', scope.share_index_file.loc[ticker]['company_name'])
-# 		print ( '-'*scope.terminal['width'])
-# 		print ( 'Opening Time              =', open_time.strftime('%Y-%m-%d %H:%M:%S %p'))
-# 		print ( 'Current Time              =', current_time.strftime('%Y-%m-%d %H:%M:%S %p'))
-# 		print ( '-'*scope.terminal['width'])
-# 		print ( 'Total Minutes Elapsed     = ', str(minutes_elapsed))
-# 		print ( 'Current Volume            = ' + green + str(volume_to_date) + white )
-# 		print ( 'Average Volume per Minute = ', int(average_vol_per_minute), '          ( ', str(volume_to_date), ' / ', str(minutes_elapsed), ' )' )
-# 		print ( 'Remaining Minutes         = ', str(remaining_minutes) )
-# 		print ( 'Extrapolated EOD Volume   = ', yellow + str(extrapolated_daily_volume) +white+'        ( '+ str(int(average_vol_per_minute))+' x '+ str(minutes_per_day)+' )' )
-# 		print ( '-'*scope.terminal['width'])
-# 		print ( white)
-# 	exit()
 
 # -----------------------------------------------------------------------------------------------------------------------------------
 # Share Index Industry Report

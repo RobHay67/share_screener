@@ -10,65 +10,137 @@ import os
 from share_index import save_share_index_file
 from scope import generate_path_for_share_data_file
 # from reports import report_progress, terminal_heading, output_result_to_terminal, print_missing_dates
-from web import output_results_to_browser
+from browser import render_results
+
+# -----------------------------------------------------------------------------------------------------------------------------------
+# Share Data Loader and Downloader
+# -----------------------------------------------------------------------------------------------------------------------------------
+def render_share_data_fetcher(scope, ticker_list):
+
+	if isinstance(ticker_list, str): ticker_list = [ticker_list]
+
+	st.header('Load and/or Download Share Data')
+	col1,col2,col3 = st.columns([2,3,7])
+	with col1: load_tickers = st.button('Load Share Data File')
+	with col2: download_tickers = st.button( ( 'Download Previous ' + str(int(st.download_days)) + ' days') )
+
+	if len(ticker_list) > 0:
+		if load_tickers: 
+			with col3: st.write( ('Loading ( ' + str(len(ticker_list)) + ' ) Tickers') )
+			load_share_data_files(scope, ticker_list)
+			with col3: st.write('Finished Loading Tickers')
+			
+
+	if download_tickers:
+		with col3: st.write( ('Downloading ( ' + str(len(ticker_list)) + ' ) Tickers from Yahoo Finance') )
+
+		load_share_data_files(scope, ticker_list)
+
+		#TODO - ROB WE ARE up to this point - for some reason it was downloading the entire ASX - need to check this
+		determine_download_groups_for_y_finance(scope)
+
+		download_from_yahoo_finance(scope)
+
+		combine_loaded_and_downloaded_share_data(scope)
+
+		# check_share_data_for_missing_dates( scope )
+
+		st.write('Finished Downloading Ticker Trading Data')
+	
+	
+	else:
+				st.error('Ticker List does not contain any tickers - add tickers using the sidebar')
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Browser Render Controller
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
+# def load_tickers(scope, ticker_list ):
+# 	st.header('Loading Tickers (as specified by the Ticker List)')
+
+# 	if len(scope.tickers_for_multi) != 0: 
+# 		load_share_data_files(scope)
+# 	else:
+# 		st.error('Ticker List does not contain any tickers - add tickers using the sidebar')
+	
+# 	st.write('Finished Loading Tickers')
+
+def download_tickers(scope):
+	st.header('Downloading Tickers from Yahoo Finance (as specified by the Ticker List)')
+
+	if len(scope.tickers_for_multi) != 0: 
+		st.subheader('Loading Tickers (as specified by the Ticker List)')
+
+		load_share_data_files(scope)
+
+		determine_download_groups_for_y_finance(scope)
+
+		download_from_yahoo_finance(scope)
+
+		combine_loaded_and_downloaded_share_data(scope)
+
+		# check_share_data_for_missing_dates( scope )
+
+	else:
+		st.error('Ticker List does not contain any tickers - add tickers using the sidebar')
+	
+	st.write('Finished Downloading Ticker Trading Data')
+
 
 
 
 def render_share_data_page(scope):
 	st.title('Load and/or Download Share Data')
-
 	st.info(('Current number of Loaded Files ( ' + str((len(scope.share_data_files))) + ' )'))
 
-	col1,col2 = st.columns([4,4])
+	render_share_data_fetcher(scope, ['test'])
 
-	with col1: st.subheader('Load Share Data Files')
-	with col1: st.subheader('(per ticker list)')
-	with col1: st.write(('number of Files to Load = ( ' + str((len(scope.ticker_list))) + ' )'))
-	with col1: load_tickers = st.button('Load OHLCV Data')
 
-	with col2: st.subheader('Download Latest Share Data')
-	with col2: st.subheader('(per ticker list)')
-	with col2: st.download_days = st.number_input('change ( - / + )  number of days to download', min_value=1, max_value=1000, value=1, key='0')    
-	with col2: download_tickers = st.button('Download OHLCV Data')
+	# col1,col2 = st.columns([4,4])
+
+	# with col1: st.subheader('Load Share Data Files')
+	# with col1: st.subheader('(per ticker list)')
+	# with col1: st.write(('number of Files to Load = ( ' + str((len(scope.tickers_for_multi))) + ' )'))
+	# with col1: load_tickers = st.button('Load OHLCV Data')
+
+	# with col2: st.subheader('Download Latest Share Data')
+	# with col2: st.subheader('(per ticker list)')
+	# with col2: st.download_days = st.number_input('change ( - / + )  number of days to download', min_value=1, max_value=1000, value=1, key='0')    
+	# with col2: download_tickers = st.button('Download OHLCV Data')
 
 	
-	st.markdown("""---""")
+	# st.markdown("""---""")
 
-	if load_tickers:
-		st.header('Loading Tickers (as specified by the Ticker List)')
+	# if load_tickers:
+	# 	st.header('Loading Tickers (as specified by the Ticker List)')
 
-		if len(scope.ticker_list) != 0: 
-			load_share_data_files(scope)
-		else:
-			st.error('Ticker List does not contain any tickers - add tickers using the sidebar')
+	# 	if len(scope.tickers_for_multi) != 0: 
+	# 		load_share_data_files(scope)
+	# 	else:
+	# 		st.error('Ticker List does not contain any tickers - add tickers using the sidebar')
 		
-		st.write('Finished Loading Tickers')
+	# 	st.write('Finished Loading Tickers')
 
-	if download_tickers:
-		st.header('Downloading Tickers from Yahoo Finance (as specified by the Ticker List)')
+	# if download_tickers:
+	# 	st.header('Downloading Tickers from Yahoo Finance (as specified by the Ticker List)')
 
-		if len(scope.ticker_list) != 0: 
-			st.subheader('Loading Tickers (as specified by the Ticker List)')
+	# 	if len(scope.tickers_for_multi) != 0: 
+	# 		st.subheader('Loading Tickers (as specified by the Ticker List)')
 
-			load_share_data_files(scope)
+	# 		load_share_data_files(scope)
 
-			determine_download_groups_for_y_finance(scope)
+	# 		determine_download_groups_for_y_finance(scope)
 
-			download_from_yahoo_finance(scope)
+	# 		download_from_yahoo_finance(scope)
 
-			combine_loaded_and_downloaded_share_data(scope)
+	# 		combine_loaded_and_downloaded_share_data(scope)
 
-			# check_share_data_for_missing_dates( scope )
+	# 		# check_share_data_for_missing_dates( scope )
 
-		else:
-			st.error('Ticker List does not contain any tickers - add tickers using the sidebar')
+	# 	else:
+	# 		st.error('Ticker List does not contain any tickers - add tickers using the sidebar')
 		
-		st.write('Finished Downloading Ticker Trading Data')
+	# 	st.write('Finished Downloading Ticker Trading Data')
 
 def render_share_data_file(scope):
 	st.header('Loaded and Downloaded share data.')
@@ -84,7 +156,7 @@ def render_share_data_file(scope):
 # Primary Controller
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # def ensure_share_data_is_available(params):
-# 	if len(params.analysis['ticker_list']) > 0:								# we have some share data to analyse
+# 	if len(params.analysis['tickers_for_multi']) > 0:								# we have some share data to analyse
 # 		# load_share_data_files( params )
 # 		download_from_yahoo_finance( params )			
 # 		combine_loaded_and_downloaded_share_data(params)
@@ -98,21 +170,21 @@ def render_share_data_file(scope):
 # # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def combine_loaded_and_downloaded_share_data(scope): # DONE
 	st.subheader('Combining the Loaded and Downloaded Share Data Files')
-	output_results_to_browser( scope, passed='COMBINED > ', passed_2='CREATED new files > ', failed='na' )
+	render_results( scope, passed='COMBINED > ', passed_2='CREATED new files > ', failed='na' )
 
-	for ticker in scope.ticker_list:
+	for ticker in scope.tickers_for_multi:
 		if ticker in scope.download_yf_share_data['ticker'].unique():
 			ticker_data = scope.download_yf_share_data[scope.download_yf_share_data['ticker'] == ticker]	# subset to specific ticker
 			ticker_data = ticker_data[scope.share_data_usecols]												# standardise the columns
 			ticker_data = ticker_data[ticker_data['volume'] != 0]											# drop rows where volume is zero 
 			if ticker in scope.share_data_loaded_list:														# we have an exisiting share_data_file so we concatenate the data
 				scope.share_data_files[ticker] = pd.concat([scope.share_data_files[ticker], ticker_data]).drop_duplicates(subset=['date'], keep='last')
-				output_results_to_browser( scope, ticker, result='passed' )
+				render_results( scope, ticker, result='passed' )
 			else:
 				scope.share_data_files[ticker] = ticker_data												# its brand new - so we can just add it to the dictionary
-				output_results_to_browser( scope, ticker, result='passed_2' )
+				render_results( scope, ticker, result='passed_2' )
 			scope.share_data_files[ticker].sort_values(by=['date'], inplace=True)							# sort the share data into date order ascending
-	output_results_to_browser(scope, 'Finished', final_print=True )
+	render_results(scope, 'Finished', final_print=True )
 	save_share_data_files( scope )
 
 # # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -153,25 +225,43 @@ def combine_loaded_and_downloaded_share_data(scope): # DONE
 # 		params.analysis['check_dates'] = False			# To prevent this function being run twice
 # 		if params.reports['missing_dates']: print_missing_dates(params)
 
-# # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# # Share Data File - Loader - local
-# # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def load_share_data_files( scope ): # DONE
-	output_results_to_browser( scope, passed='LOADED Share Data Files > ', failed='MISSING Share Data Files for > ', passed_2='na' )
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Share Data File - Loader - local
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------
+def load_share_data_files( scope, ticker_list ):
+	render_results( scope, passed='LOADED Share Data Files > ', failed='MISSING Share Data Files for > ', passed_2='na' )
 
-	scope.share_data_loaded_list = []
-	scope.share_data_missing_list = []
+	# scope.share_data_loaded_list = []
+	# scope.share_data_missing_list = []
 	
-	for ticker in scope.ticker_list:
+	for ticker in ticker_list:
+	# for ticker in scope.tickers_for_multi:
 		generate_path_for_share_data_file(scope, ticker )
 		if os.path.exists( scope.path_share_data_file ):
 			load_a_file(scope, ticker )
 			scope.share_data_loaded_list.append(ticker)
-			output_results_to_browser( scope, ticker, result='passed' )
+			render_results( scope, ticker, result='passed' )
 		else:
 			scope.share_data_missing_list.append(ticker)
-			output_results_to_browser( scope, ticker, result='failed' )
-	output_results_to_browser(scope, 'Finished', final_print=True )
+			render_results( scope, ticker, result='failed' )
+	render_results(scope, 'Finished', final_print=True )
+
+# def load_share_data_files( scope ): # DONE
+# 	render_results( scope, passed='LOADED Share Data Files > ', failed='MISSING Share Data Files for > ', passed_2='na' )
+
+# 	scope.share_data_loaded_list = []
+# 	scope.share_data_missing_list = []
+	
+# 	for ticker in scope.tickers_for_multi:
+# 		generate_path_for_share_data_file(scope, ticker )
+# 		if os.path.exists( scope.path_share_data_file ):
+# 			load_a_file(scope, ticker )
+# 			scope.share_data_loaded_list.append(ticker)
+# 			render_results( scope, ticker, result='passed' )
+# 		else:
+# 			scope.share_data_missing_list.append(ticker)
+# 			render_results( scope, ticker, result='failed' )
+# 	render_results(scope, 'Finished', final_print=True )
 
 def load_a_file( scope, ticker ): # DONE
 	share_data_file = pd.read_csv (  
@@ -190,12 +280,12 @@ def load_a_file( scope, ticker ): # DONE
 # # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def save_share_data_files( scope ): # DONE
 	st.subheader('Saving Share Data Files')
-	output_results_to_browser( scope, passed='Files SAVED > ', failed='na', passed_2='na' )
+	render_results( scope, passed='Files SAVED > ', failed='na', passed_2='na' )
 	for ticker in scope.share_data_files:
 		generate_path_for_share_data_file(scope, ticker )
 		save_share_data_file( scope, scope.share_data_files[ticker] )
-		output_results_to_browser( scope, ticker, result='passed' )
-	output_results_to_browser(scope, 'Finished', final_print=True )
+		render_results( scope, ticker, result='passed' )
+	render_results(scope, 'Finished', final_print=True )
 
 def save_share_data_file( scope, dataframe ): # DONE
 	saving_df = dataframe.copy()
@@ -250,7 +340,7 @@ def determine_download_groups_for_y_finance(scope): # DONE
 def yahoo_ticker_string_by_group( scope, y_finance_group): # DONE
 	if y_finance_group == 'selected_tickers':
 		# we have selected specific tickers 
-		tickers_list = scope.ticker_list
+		tickers_list = scope.tickers_for_multi
 	else:
 		# we have selected a specific market, industry or number of industries
 		tickers_in_industry_group_df = scope.share_index_file[scope.share_index_file['industry_group'] == y_finance_group ]
@@ -287,7 +377,7 @@ def store_yf_download_in_scope( scope, ticker_string, yf_download, download_erro
 	# store the downloaded data in a single dictionary
 	scope.download_yf_share_data = pd.concat([scope.download_yf_share_data, yf_download], sort=False)
 	scope.download_yf_anomolies.update(download_errors)	# store any errors
-	output_results_to_browser( scope, passed='Downloaded these Shares > ', passed_2='na', failed='Falied to Download > ' )
+	render_results( scope, passed='Downloaded these Shares > ', passed_2='na', failed='Falied to Download > ' )
 	failed_download_list = []
 	for ticker, error in download_errors.items():
 		failed_download_list.append(ticker)
@@ -296,15 +386,15 @@ def store_yf_download_in_scope( scope, ticker_string, yf_download, download_erro
 	
 	for ticker in ticker_list:
 		if ticker not in failed_download_list:
-			output_results_to_browser( scope, ticker, result='passed' )
+			render_results( scope, ticker, result='passed' )
 		else:
-			output_results_to_browser( scope, ticker, result='failed' )
-	output_results_to_browser(scope, 'Finished', final_print=True )
+			render_results( scope, ticker, result='failed' )
+	render_results(scope, 'Finished', final_print=True )
 # # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # # Update Share Index with yahoo download information
 # # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def reset_download_status( scope ): # DONE
-	for ticker in scope.ticker_list:
+	for ticker in scope.tickers_for_multi:
 		scope.share_index_file.at[ticker, 'yahoo_status'] = 'set_for_download'
 
 def update_download_status(scope): # DONE - but needs robust testing on a large group
@@ -339,7 +429,7 @@ def update_download_status(scope): # DONE - but needs robust testing on a large 
 # 	if params.share_index['specified_trading_halt_codes'] != None:  # just make sure we have specified some codes
 # 		terminal_heading( params, ( 'editing share index to account for trading halt days' + cyan + '   Changed' + '  /  ' + purple + 'Failed' + white ), line_filler='-' )
 # 		output_result_to_terminal(params)
-# 		for ticker in params.analysis['ticker_list']:
+# 		for ticker in params.analysis['tickers_for_multi']:
 # 			missing_dates_string = str(params.share_index['file'].loc[ticker]['missing_dates'])
 # 			trading_halt_dates_string = str(params.share_index['file'].loc[ticker]['trading_halt_dates'])
 

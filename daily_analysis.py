@@ -46,8 +46,8 @@ def render_daily_analysis_page(scope):
 
 	st.markdown("""---""")
 
-	if len(scope.ticker_list) > 0:
-		ticker = scope.ticker_list[0]
+	if len(scope.tickers_for_multi) > 0:
+		ticker = scope.tickers_for_multi[0]
 		ticker_name = scope.share_index_file.loc[ticker]['company_name']
 
 		st.header(ticker_name)

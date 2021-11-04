@@ -5,6 +5,8 @@ import pandas as pd
 import datetime as dt
 import plotly.graph_objects as go
 
+from share_data import render_share_data_fetcher
+
 
 
 def render_company_profile_page(scope):
@@ -26,28 +28,6 @@ def render_company_profile_page(scope):
 		st.markdown('** Exchange **: ' + info['exchange'])
 		st.markdown('** Quote Type **: ' + info['quoteType'])
 
-
-
-
-
-
-		# start = dt.datetime.today()-dt.timedelta(2 * 365)
-		# end = dt.datetime.today()
-		# df = yf.download(ticker,start,end)
-		# df = df.reset_index()
-		# fig = go.Figure(
-		# 		data=go.Scatter(x=df['Date'], y=df['Adj Close'])
-		# 	)
-		# fig.update_layout(
-		# 	title={
-		# 		'text': "Stock Prices Over Past Two Years",
-		# 		'y':0.9,
-		# 		'x':0.5,
-		# 		'xanchor': 'center',
-		# 		'yanchor': 'top'})
-		# st.plotly_chart(fig, use_container_width=True)
-
-
 		# lets use our own data and compare
 		if ticker in list(scope.share_data_files.keys()):
 
@@ -66,30 +46,60 @@ def render_company_profile_page(scope):
 					'xanchor': 'center',
 					'yanchor': 'top'})
 			st.plotly_chart(fig, use_container_width=True)
+
+			# start = dt.datetime.today()-dt.timedelta(2 * 365)
+			# end = dt.datetime.today()
+			# df = yf.download(ticker,start,end)
+			# df = df.reset_index()
+			# fig = go.Figure(
+			# 		data=go.Scatter(x=df['Date'], y=df['Adj Close'])
+			# 	)
+			# fig.update_layout(
+			# 	title={
+			# 		'text': "Stock Prices Over Past Two Years",
+			# 		'y':0.9,
+			# 		'x':0.5,
+			# 		'xanchor': 'center',
+			# 		'yanchor': 'top'})
+			# st.plotly_chart(fig, use_container_width=True)
+
+			marketInfo = {
+					"Volume": info['volume'],
+					"Average Volume": info['averageVolume'],
+					"Market Cap": info["marketCap"],
+					"Float Shares": info['floatShares'],
+					"Regular Market Price (USD)": info['regularMarketPrice'],
+					'Bid Size': info['bidSize'],
+					'Ask Size': info['askSize'],
+					"Share Short": info['sharesShort'],
+					'Short Ratio': info['shortRatio'],
+					'Share Outstanding': info['sharesOutstanding']
+				}
+
+			marketDF = pd.DataFrame(data=marketInfo, index=[0])
+			st.table(marketDF)
 		else:
 			st.error( (ticker + ' data has not yet been loaded. Please load some share data so it can be plotted.'))
+			render_share_data_fetcher(scope, ticker)
+			
+			# col1,col2 = st.columns([4,4])
+			# # with col1: st.write(('number of Files to Load = ( ' + str((len(scope.tickers_for_multi))) + ' )'))
+			# with col1: load_tickers = st.button('Load Share Data File')
+			# with col2: st.download_days = st.number_input('change ( - / + )  number of days to download', min_value=1, max_value=1000, value=1, key='0')    
+			# with col2: download_tickers = st.button('Download OHLCV Data')
+		
 
-
-
-
-
-		marketInfo = {
-				"Volume": info['volume'],
-				"Average Volume": info['averageVolume'],
-				"Market Cap": info["marketCap"],
-				"Float Shares": info['floatShares'],
-				"Regular Market Price (USD)": info['regularMarketPrice'],
-				'Bid Size': info['bidSize'],
-				'Ask Size': info['askSize'],
-				"Share Short": info['sharesShort'],
-				'Short Ratio': info['shortRatio'],
-				'Share Outstanding': info['sharesOutstanding']
-			}
-
-		marketDF = pd.DataFrame(data=marketInfo, index=[0])
-		st.table(marketDF)
+		
 	else:
 		st.error('Ticker List does not contain any tickers - add tickers using the sidebar')
+		st.error('I dont know if we have any ticker loaded or not!!')
+
+
+
+
+		
+
+
 
 
 
@@ -106,7 +116,7 @@ def render_select_ticker_for_company(scope):
 	col1,col2 = st.columns([2,10])														# col2 is just a dummy to prevent the widget filling the whole screen
 	
 	dropdown_list = scope.dropdown_ticker_for_company_profile
-	index_of_ticker = dropdown_list.index(scope.chosen_ticker_for_company_profile)
+	index_of_ticker = dropdown_list.index(scope.ticker_for_company_profile)
 
 	with col1: 
 		ticker = st.selectbox ( 'Select Ticker', 
@@ -115,7 +125,7 @@ def render_select_ticker_for_company(scope):
 								help='Select a ticker. Start typing to jump within list'
 								) 
 	
-	scope.chosen_ticker_for_company_profile = ticker									# Store the selection for next session
+	scope.ticker_for_company_profile = ticker									# Store the selection for next session
 	
 	if ticker != 'select a ticker':	
 		st.header( scope.share_index_file.loc[ticker]['company_name'] )					# Render the company name
@@ -159,3 +169,11 @@ def render_fundamental_info(info):
 	render_2_columns( 'Dividend Yield (%)', info['dividendYield'])
 	render_2_columns( 'Five year Avg Dividend Yield (%)', info['fiveYearAvgDividendYield'])
 	render_2_columns( 'Payout Ratio', info['payoutRatio'])
+
+
+
+
+
+
+
+# we want to be able to 
