@@ -10,7 +10,7 @@ from browser import render_results
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Share Index file Schema
+# Ticker Index file Schema
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 share_index_schema ={
 						'share_code'		:{'dtype':'str'				, 'default':None},
@@ -32,24 +32,22 @@ share_index_schema ={
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def render_share_index_page(scope):
 
-	st.title('Maintain the Share Index File')
+	st.title('Maintain the Ticker Index File')
 
-	# share_index_message = str((len(scope.share_index_file)))
-	
-	st.success(('Share Index contains ( ' + str((len(scope.share_index_file))) + ' ) tickers'))
 	col1,col2,col3 = st.columns([3,3,3])
-	with col1: show_share_index = st.button('Display the Share Index File')
-	with col2: show_industries = st.button('Industry Summary')
-	with col3: download_share_index = st.button('Update List of Valid Tickers')
+	with col1: st.success(('Ticker Index contains ( ' + str((len(scope.share_index_file))) + ' ) tickers'))
+	with col1: show_share_index = st.button('Display the Ticker Index File')
+	with col1: show_industries = st.button('Industry Summary')
+	with col1: download_share_index = st.button('Update List of Valid Tickers')
 
 	st.markdown("""---""")
 	
 	if download_share_index:
-		st.subheader('Downloading Share Data from https://asx.api.markitdigital.com and adding to the Share Index File')
+		st.subheader('Downloading Ticker Master Data from https://asx.api.markitdigital.com and adding to the Ticker Index File')
 		refresh_share_index_file(st.session_state)
 	
 	if show_share_index:
-		st.subheader('Share Index File')
+		st.subheader('Ticker Index File')
 		st.dataframe(scope.share_index_file, 2000, 1200)
 
 	if show_industries:
@@ -57,10 +55,10 @@ def render_share_index_page(scope):
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# SHARE INDEX FILE - loader and Saver
+# TICKER INDEX FILE - loader and Saver
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def load_share_index_file( scope ):
-	st.title('Loading Share Index File')
+	st.title('Loading Ticker Index File')
 
 	if os.path.exists( scope.path_share_index ):
 		st.info('loading share_index.csv file from ' +  str(scope.path_share_index) )
@@ -71,37 +69,37 @@ def load_share_index_file( scope ):
 									)
 		# share_index['blue_chip'] = share_index['blue_chip'].astype(int)
 		share_index['listing_date'] = pd.to_datetime( share_index['listing_date'].dt.date  )
-		st.success('successfully loaded the share index file')
+		st.success('successfully loaded the ticker index file')
 		share_index.set_index('share_code', inplace=True)
 		# remove any delisted stocks here
 		scope.share_index_file = share_index
 	else: 
-		st.error( 'Share Index File does not exist at path > ' + str(scope.path_share_index) )
+		st.error( 'Ticker Index File does not exist at path > ' + str(scope.path_share_index) )
 		st.info( 'creating an empty share_index dataframe' )
 		dataframe_columns = []
 		for column_name in share_index_schema: 
 			dataframe_columns.append(column_name)
 			share_index = pd.DataFrame(columns=dataframe_columns)
-		st.success('successfully created empty share index dataframe')
+		st.success('successfully created empty Ticker Index dataframe')
 		share_index.set_index('share_code', inplace=True)
 		# remove any delisted stocks here
 		scope.share_index_file = share_index
 		save_share_index_file(scope)
 		st.markdown("""---""")
-		st.error('Click on the Share Index button to update the Share Index')
+		st.error('Click on the Ticker Index button to update the Ticker Index')
 
 def save_share_index_file( scope ): # DONE
-	st.subheader('Save Share Index File')
+	st.subheader('Save Ticker Index File')
 	saving_df = scope.share_index_file.copy()
 	saving_df.reset_index(inplace=True)      	 # ensure that the index is saved as a normal column
 	saving_df.to_csv( scope.path_share_index, index=False )
-	st.success('successfully saved share Index file')
+	st.success('successfully saved Ticker Index file')
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# SHARE INDEX FILE - Downloader + helpers
+# TICKER INDEX FILE - Downloader + helpers
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def refresh_share_index_file(scope):
-	st.info('Downloading Share Index information for the ' + scope.share_market)
+	st.info('Downloading Ticker Index information for the ' + scope.share_market)
 	if scope.share_market == 'ASX':
 		url = 'https://asx.api.markitdigital.com/asx-research/1.0/companies/directory/file?'
 		column_names = ['share_code', 'company_name', 'listing_date', 'industry_group', 'market_cap' ]
@@ -126,15 +124,15 @@ def refresh_share_index_file(scope):
 		downloaded_share_info['industry_group'] = downloaded_share_info['industry_group'].str.replace('&', 'and' )
 		downloaded_share_info['industry_group'] = downloaded_share_info['industry_group'].str.lower()
 
-		st.success('number of downloaded ' + scope.share_market + ' share codes = ' + str(len(downloaded_share_info)))
+		st.success('number of downloaded ' + scope.share_market + ' ticker codes = ' + str(len(downloaded_share_info)))
 		update_share_index_with_latest_download(scope, downloaded_share_info )
 		scope.refresh_ticker_dropdown_lists = True
 	else:
-		st.error('DOWNLOAD Share data NOT YET CONFIUGURED FOR ' + scope.share_market)
+		st.error('DOWNLOAD Ticker data NOT YET CONFIGURED FOR ' + scope.share_market)
 		pass
 
 def update_share_index_with_latest_download(scope, downloaded_share_info ):
-	st.info( 'Updating the share records in the Share Index file ')
+	st.info( 'Updating the records in the Ticker Index file ')
 
 	add_records_counter = 0
 
@@ -161,7 +159,7 @@ def update_share_index_with_latest_download(scope, downloaded_share_info ):
 	scope.share_index_file = apply_defaults_to_missing_values(scope, scope.share_index_file)
 	scope.share_index_file['listing_date'] = pd.to_datetime( scope.share_index_file['listing_date'].dt.date  )
 	scope.share_index_file = scope.share_index_file.sort_index()
-	message = 'number of share codes added to master share index = '+ str(add_records_counter)
+	message = 'number of ticker codes added to master ticker index = '+ str(add_records_counter)
 	st.warning( message) if add_records_counter > 0 else st.info( message)
 	save_share_index_file(scope)
 	scope.ticker_list_needs_updating = True
@@ -189,7 +187,7 @@ def apply_defaults_to_missing_values(scope, dataframe):
 	return dataframe
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Share Index file Schema - Helpers
+# Ticker Index file Schema - Helpers
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def share_index_schema_dtypes():
 	dtypes={}
@@ -240,10 +238,10 @@ def ticker_trading_mins_per_day( scope, ticker ):
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------
-# Share Index Industry Report
+# Ticker Index Industry Report
 # -----------------------------------------------------------------------------------------------------------------------------------
 def print_share_index_industries(scope):
-	st.subheader('Share Index File contains the following Industries')
+	st.subheader('Ticker Index File contains the following Industries')
 	industry_group_count = pd.DataFrame(scope.share_index_file['industry_group'].value_counts().rename_axis('Industry').reset_index(name='No of Codes'))
 	industry_group_count = industry_group_count.sort_values(by='Industry')
 	st.dataframe(industry_group_count, 2000, 1200)
