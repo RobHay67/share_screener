@@ -58,32 +58,33 @@ def render_share_index_page(scope):
 # TICKER INDEX FILE - loader and Saver
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def load_share_index_file( scope ):
+	print('i have been called')
 	st.title('Loading Ticker Index File')
 
 	if os.path.exists( scope.path_share_index ):
-		st.info('loading share_index.csv file from ' +  str(scope.path_share_index) )
+		st.info('loading ticker_index.csv file from ' +  str(scope.path_share_index) )
 
-		share_index = pd.read_csv(  scope.path_share_index, 
+		ticker_index = pd.read_csv(  scope.path_share_index, 
 									dtype=share_index_schema_csv_dtypes(),
 									parse_dates=share_index_schema_csv_dates(),
 									)
-		# share_index['blue_chip'] = share_index['blue_chip'].astype(int)
-		share_index['listing_date'] = pd.to_datetime( share_index['listing_date'].dt.date  )
+		# ticker_index['blue_chip'] = ticker_index['blue_chip'].astype(int)
+		ticker_index['listing_date'] = pd.to_datetime( ticker_index['listing_date'].dt.date  )
 		st.success('successfully loaded the ticker index file')
-		share_index.set_index('share_code', inplace=True)
+		ticker_index.set_index('share_code', inplace=True)
 		# remove any delisted stocks here
-		scope.share_index_file = share_index
+		scope.share_index_file = ticker_index
 	else: 
 		st.error( 'Ticker Index File does not exist at path > ' + str(scope.path_share_index) )
-		st.info( 'creating an empty share_index dataframe' )
+		st.info( 'creating an empty ticker_index dataframe' )
 		dataframe_columns = []
 		for column_name in share_index_schema: 
 			dataframe_columns.append(column_name)
-			share_index = pd.DataFrame(columns=dataframe_columns)
+			ticker_index = pd.DataFrame(columns=dataframe_columns)
 		st.success('successfully created empty Ticker Index dataframe')
-		share_index.set_index('share_code', inplace=True)
+		ticker_index.set_index('share_code', inplace=True)
 		# remove any delisted stocks here
-		scope.share_index_file = share_index
+		scope.share_index_file = ticker_index
 		save_share_index_file(scope)
 		st.markdown("""---""")
 		st.error('Click on the Ticker Index button to update the Ticker Index')

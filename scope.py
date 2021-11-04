@@ -7,7 +7,7 @@ import time
 from datetime import datetime, timedelta 
 import streamlit as st
 
-from share_index import load_share_index_file
+from ticker_index import load_share_index_file
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Config - Market Information
@@ -466,11 +466,11 @@ def generate_path_for_share_data_file( scope, ticker ): # DONE
 # def share_index_params(params):
 	# trading halt params
 	# TODO - come back to this one if needed
-	# params.share_index['specified_trading_halt_codes'] = args.record_trading_halt_dates
-	# if params.share_index['specified_trading_halt_codes'] == None:
-	# 	params.share_index['edit_index'] = False
+	# params.ticker_index['specified_trading_halt_codes'] = args.record_trading_halt_dates
+	# if params.ticker_index['specified_trading_halt_codes'] == None:
+	# 	params.ticker_index['edit_index'] = False
 	# else:
-	# 	params.share_index['edit_index'] = True
+	# 	params.ticker_index['edit_index'] = True
 
 def analysis_params(params):
 	# set function controlling params
@@ -525,7 +525,7 @@ def report_params(params ):
 # 	terminal_heading( params, 'Missing Dates for each ticker just assessed', line_filler='-', colour=yellow )
 # 	print ( yellow, end='' )
 # 	for ticker in params.share_data['files']:
-# 		missing_dates_string = str(params.share_index['file'].at[ticker, 'missing_dates'])
+# 		missing_dates_string = str(params.ticker_index['file'].at[ticker, 'missing_dates'])
 # 		if missing_dates_string != 'None':
 # 			qty = str(missing_dates_string.count(' ')+1)
 # 			leader = ticker + white + ' (' + qty + ') ' + yellow

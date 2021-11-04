@@ -7,7 +7,7 @@ import yfinance as yf					# https://github.com/ranaroussi/yfinance
 # import datetime
 import os
 
-from share_index import save_share_index_file
+from ticker_index import save_share_index_file
 from scope import generate_path_for_share_data_file
 # from reports import report_progress, terminal_heading, output_result_to_terminal, print_missing_dates
 from browser import render_results
@@ -203,15 +203,15 @@ def combine_loaded_and_downloaded_share_data(scope): # DONE
 			
 # 			if len(missing_dates_list) > 0:			
 # 				# Adjust missing_dates_list for any prelisting dates ( if the listing_date is between our analysis dates, before they start or after they finish )
-# 				listing_date = (params.share_index['file'].loc[ticker]['listing_date'])
+# 				listing_date = (params.ticker_index['file'].loc[ticker]['listing_date'])
 # 				if (listing_date > params.analysis['start'] and listing_date < params.analysis['end']) or (listing_date < params.analysis['start']) or (listing_date > params.analysis['end']):
 # 					pre_listing_dates = list(pd.date_range(params.analysis['start'], listing_date, freq='B').strftime('%Y-%m-%d'))
 # 					missing_dates_list = list(set(missing_dates_list) - set(pre_listing_dates))
 
 # 			if len(missing_dates_list) > 0:
 # 				# at the moment we need to manually tag the trading halt dates (after confirmation with the ASX that this is the case) terminal > pipenv run python app.py -th boq
-# 				if pd.notna(params.share_index['file'].loc[ticker]['trading_halt_dates']):
-# 					trading_halt_dates_list = [ date for date in params.share_index['file'].loc[ticker]['trading_halt_dates'].split()]
+# 				if pd.notna(params.ticker_index['file'].loc[ticker]['trading_halt_dates']):
+# 					trading_halt_dates_list = [ date for date in params.ticker_index['file'].loc[ticker]['trading_halt_dates'].split()]
 # 					missing_dates_list = list(set(missing_dates_list) - set(trading_halt_dates_list))
 
 # 			if len(missing_dates_list) > 0 :
@@ -412,7 +412,7 @@ def update_download_status(scope): # DONE - but needs robust testing on a large 
 # # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # def reset_missing_dates(params):
 # 	for ticker in params.share_data['files']:
-# 		params.share_index['file'].at[ticker, 'missing_dates'] = 'checking_dates'
+# 		params.ticker_index['file'].at[ticker, 'missing_dates'] = 'checking_dates'
 
 # def store_missing_dates( params, ticker, missing_dates_list ):
 # 	if missing_dates_list != None:
@@ -421,26 +421,26 @@ def update_download_status(scope): # DONE - but needs robust testing on a large 
 # 	else:
 # 		missing_dates_string = None
 
-# 	params.share_index['file'].at[ticker, 'missing_dates'] = missing_dates_string
+# 	params.ticker_index['file'].at[ticker, 'missing_dates'] = missing_dates_string
 # # -----------------------------------------------------------------------------------------------------------------------------------
 # # Update Share Index with any Trading Halt Days
 # # -----------------------------------------------------------------------------------------------------------------------------------
 # def update_trading_halt_days(params):
-# 	if params.share_index['specified_trading_halt_codes'] != None:  # just make sure we have specified some codes
+# 	if params.ticker_index['specified_trading_halt_codes'] != None:  # just make sure we have specified some codes
 # 		terminal_heading( params, ( 'editing share index to account for trading halt days' + cyan + '   Changed' + '  /  ' + purple + 'Failed' + white ), line_filler='-' )
 # 		output_result_to_terminal(params)
 # 		for ticker in params.analysis['tickers_for_multi']:
-# 			missing_dates_string = str(params.share_index['file'].loc[ticker]['missing_dates'])
-# 			trading_halt_dates_string = str(params.share_index['file'].loc[ticker]['trading_halt_dates'])
+# 			missing_dates_string = str(params.ticker_index['file'].loc[ticker]['missing_dates'])
+# 			trading_halt_dates_string = str(params.ticker_index['file'].loc[ticker]['trading_halt_dates'])
 
 # 			if missing_dates_string != 'nan' or missing_dates_string != None: # make sure we actually have some missing dates
 # 				if trading_halt_dates_string == 'nan' or trading_halt_dates_string == None:
 # 					# we have nothing so a simple copy will suffice
-# 					params.share_index['file'].at[ticker, 'trading_halt_dates'] = missing_dates_string 
+# 					params.ticker_index['file'].at[ticker, 'trading_halt_dates'] = missing_dates_string 
 # 				else:
 # 					# we had some trading halt days previously so we need to add them together
-# 					params.share_index['file'].at[ticker, 'trading_halt_dates'] = trading_halt_dates_string + ' ' + missing_dates_string 
-# 			params.share_index['file'].at[ticker, 'missing_dates'] = None  # as they are no longer missing - we have them accounted for in the trading_halt_days
+# 					params.ticker_index['file'].at[ticker, 'trading_halt_dates'] = trading_halt_dates_string + ' ' + missing_dates_string 
+# 			params.ticker_index['file'].at[ticker, 'missing_dates'] = None  # as they are no longer missing - we have them accounted for in the trading_halt_days
 # 			output_result_to_terminal( params, ticker, result='passed' )
 # 		print ('')
 # 		save_share_index_file(params)

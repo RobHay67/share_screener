@@ -10,7 +10,7 @@ project_description = 'Share Trader - DDT'
 from scope import set_initial_scope
 from scope import refresh_ticker_dropdown_lists
 from scope import render_scope_page
-from share_index import render_share_index_page
+from ticker_index import render_share_index_page
 from share_data import render_share_data_page, render_share_data_file
 from company_profile import render_company_profile_page
 from daily_analysis import render_daily_analysis_page
@@ -22,7 +22,8 @@ import streamlit as st
 st.set_page_config(layout="wide")
 set_initial_scope(st.session_state, project_description)
 # Update the dropdowns, but only on an initial build or after downloading new tickers from the ASX
-if st.session_state.update_dropdown_lists: refresh_ticker_dropdown_lists(st.session_state)
+if st.session_state.update_dropdown_lists: 
+	refresh_ticker_dropdown_lists(st.session_state)
 
 
 # ===============================================================================================================
@@ -38,7 +39,7 @@ print ( '*'*80)
 
 # if   st.session_state.display_page == 'home': render_home_page(st.session_state)
   
-if st.session_state.display_page == 'share_index': render_share_index_page(st.session_state)
+if st.session_state.display_page == 'ticker_index': render_share_index_page(st.session_state)
 elif st.session_state.display_page == 'ticker_list': render_ticker_list(st.session_state)
 elif st.session_state.display_page == 'manage_share_data': render_share_data_page(st.session_state)
 elif st.session_state.display_page == 'share_data_files': render_share_data_file(st.session_state)
@@ -49,7 +50,7 @@ elif st.session_state.display_page == 'scope': render_scope_page(st.session_stat
 
 # Call Backs for Sidebar Action Buttons ========================================================================= 
 # def show_home_page(): st.session_state.display_page = 'home'
-def page_share_index(): st.session_state.display_page = 'share_index'
+def page_share_index(): st.session_state.display_page = 'ticker_index'
 def update_ticker_list_required(): st.session_state.update_ticker_list_required = True
 def page_show_ticker_list(): st.session_state.display_page = 'ticker_list'
 def page_manage_share_data(): st.session_state.display_page = 'manage_share_data'
@@ -111,14 +112,15 @@ st.sidebar.button( ('Show Share Data Files ( ' + str(len(st.session_state.share_
 st.sidebar.subheader('Analysis')
 # st.sidebar.info('Ticker List ( ' + str((len(st.session_state.tickers_for_multi))) + ' )')
 
-
-
+# Common Variables ----------------------------------------------------------------------------------------------
+st.sidebar.title('Variables')
+st.download_days = st.sidebar.number_input('change ( - / + )  number of days to download', min_value=1, max_value=1000, value=1, key='0')   
 
 
 # System Variables ---------------------------------------------------------------------------------------------
-st.sidebar.subheader('System Variables')
-st.sidebar.button('Scope Variables', on_click=page_scope)
-st.download_days = st.sidebar.number_input('change ( - / + )  number of days to download', min_value=1, max_value=1000, value=1, key='0')   
+# st.sidebar.subheader('System Variables')
+st.sidebar.button('Session Variables', on_click=page_scope)
+
 
 
 
