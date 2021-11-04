@@ -99,7 +99,9 @@ def set_initial_scope(scope, project_description):
 		scope.chosen_market = None
 		scope.chosen_industries = None
 		scope.chosen_tickers = None
-		scope.chosen_ticker_for_volume_analysis = 'select a ticker'
+		scope.chosen_ticker_for_volume_prediction = 'select a ticker'
+		scope.chosen_ticker_for_company_profile = 'select a ticker'
+
 
 	if scope.initial_load:
 		# st.warning('Updating the session state params')
@@ -193,42 +195,55 @@ def set_initial_scope(scope, project_description):
 		st.session_state.initial_load = False
 		
 def refresh_ticker_dropdown_lists(scope):
-
-	# st.error('The Ticker Dropdowns have been rebuilt!! - should this have happened?')
-	print ( '\033[91m' + 'Ticker Dropdowns have been rebuilt' + '\033[0m' )
+	print ( '\033[91m' + 'Dropdown Lists have been repopulated' + '\033[0m' )
 
 	# ---------------------------------------------------------------------------------------
 	# Single Share Market Selector
 	list_of_markets = list(scope.market_suffix.keys())
 	list_of_markets.insert(0, '< select entire market >')
 	scope.dropdown_markets = list_of_markets
-	scope.dropdown_markets_re_render = True
+	# scope.dropdown_markets_re_render = True
 	
 	# ---------------------------------------------------------------------------------------
 	# Multi Share Industry Selector
 	list_of_industries = scope.share_index_file['industry_group'].unique().tolist()
 	list_of_industries.sort()
 	scope.dropdown_industries = list_of_industries
-	scope.dropdown_industries_re_render = True
+	# scope.dropdown_industries_re_render = True
 	
 	# ---------------------------------------------------------------------------------------
 	# Multi Share Ticker Selector
 	list_of_tickers = scope.share_index_file.index.values.tolist()
 	scope.dropdown_tickers = list_of_tickers
 	scope.dropdown_tickers_re_render = True
-	scope.dropdown_ticker_volume_re_render = True
+	# scope.dropdown_ticker_volume_re_render = True
 
 	# ---------------------------------------------------------------------------------------
 	# Single Ticker Selector for Volume Analysis
-	tickers_for_volume_analysis = list_of_tickers
-	tickers_for_volume_analysis.insert(0, 'select a ticker')
-	scope.dropdown_ticker_for_volume_analysis = tickers_for_volume_analysis
+	tickers_for_volume_prediction = scope.share_index_file.index.values.tolist()
+	tickers_for_volume_prediction.insert(0, 'select a ticker')
+	scope.dropdown_ticker_for_volume_analysis = tickers_for_volume_prediction
 
+	# ---------------------------------------------------------------------------------------
+	# Single Ticker Selector for Company Profile
+	tickers_for_company_profile = scope.share_index_file.index.values.tolist()
+	tickers_for_company_profile.insert(0, 'select a ticker')
+	scope.dropdown_ticker_for_company_profile = tickers_for_company_profile
 	
 	# ---------------------------------------------------------------------------------------
 	# Dont run this again unless we have downloaded new share data
 	# scope.update_dropdown_lists = False
 	
+
+def render_3_columns( description, variable, variable_name, diff_col_size=None ):
+	if diff_col_size == None:
+		col1,col2,col3 = st.columns([2,4,2])
+	else:
+		col1,col2,col3 = st.columns(diff_col_size)
+	
+	with col1: st.write(description)
+	with col2: st.write(variable)
+	with col3: st.write( ('< ' + variable_name + ' >') )
 	
 def render_scope_page(scope):
 	st.title('Application Parameters')
@@ -249,37 +264,23 @@ def render_scope_page(scope):
 	with col3: show_charting = st.button('Charting')
 
 	with col4: st.subheader('Parameters')
-	with col4: show_application = st.button('Application')
-	with col4: show_streamlit = st.button('Streamlit')
+	with col4: show_application_variables = st.button('Application Variables')
 	with col4: show_folders = st.button('Folder Locations')
 	with col4: show_market = st.button('Share Market Information')
 
 	if show_tickers:
 		st.subheader('Ticker Lists')
-		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Ticker Dropdown Lists need updating')
-		with col2: st.write(scope.update_dropdown_lists)
-		with col3: st.write('< update_dropdown_lists >')
+
+		render_3_columns( 'Ticker Dropdown Lists need updating', scope.update_dropdown_lists, 'update_dropdown_lists' )
+				
+		st.markdown("""---""")
+		st.subheader('Working List of Tickers')
+		render_3_columns( 'Working List of Tickers', scope.ticker_list, 'ticker_list' )
 		
 		st.markdown("""---""")
 
-		col1,col2 = st.columns([6,2])
-		with col1: st.subheader('Working List of Tickers')
-		with col2: st.write('< ticker_list >')
-		st.write(scope.ticker_list)
-		
-		st.markdown("""---""")
-
-		col1,col2 = st.columns([6,2])
-		with col1: st.write('Loaded Ticker List')
-		with col2: st.write('< share_data_loaded_list >')
-		st.write(scope.share_data_loaded_list)
-
-		col1,col2 = st.columns([6,2])
-		with col1: st.write('Missing Ticker List')
-		with col2: st.write('< share_data_missing_list >')
-		st.write(scope.share_data_missing_list)
+		render_3_columns( 'Loaded Ticker List', scope.share_data_loaded_list, 'share_data_loaded_list' )
+		render_3_columns( 'Missing Ticker List', scope.share_data_missing_list, 'share_data_missing_list' )
 
 	if show_industries:
 		st.subheader('Share Index File contains the following Industries')
@@ -295,6 +296,7 @@ def render_scope_page(scope):
 		st.dataframe(scope.share_index_file, 2000, 1200)
 
 	if show_share_data_files:
+
 		col1,col2 = st.columns([6,2])
 		with col1: st.subheader('Loaded and Downloaded share data.')
 		with col2: st.write('< share_data_files >')
@@ -308,37 +310,19 @@ def render_scope_page(scope):
 	if show_download:
 		st.subheader('Download Parameters')
 
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Number of Days to Download')
-		with col2: st.write(scope.download_days)
-		with col3: st.write('< download_days >')
+		render_3_columns( 'Number of Days to Download', scope.download_days, 'download_days' )
 
 		st.markdown("""---""")
 		st.subheader('Most Recent Download Variables and Data')
 
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Appropriate download method')
-		with col2: st.write(scope.download_schema)
-		with col3: st.write('< download_schema >')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Batched Groups of tickers for the download')
-		with col2: st.write(scope.download_groups_for_y_finance)
-		with col3: st.write('< download_groups_for_y_finance >')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Downloaded Data from y_finance')
-		with col2: st.write(scope.download_yf_share_data)
-		with col3: st.write('< download_yf_share_data >')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Error Messages from y_finance')
-		with col2: st.write(scope.download_yf_anomolies)
-		with col3: st.write('< download_yf_anomolies >')
+		render_3_columns( 'Appropriate download method', scope.download_schema, 'download_schema' )
+		render_3_columns( 'Batched Groups of tickers for the download', scope.download_groups_for_y_finance, 'download_groups_for_y_finance' )
+		render_3_columns( 'Downloaded Data from y_finance', scope.chart_lines, 'chart_lines' )
+		render_3_columns( 'Error Messages from y_finance', scope.download_yf_anomolies, 'download_yf_anomolies' )
 
 		st.markdown("""---""")
 		st.subheader('Available Schemas for the different downloads from y_finance')
-
+			
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Download Schemas - Available')
 
@@ -352,40 +336,21 @@ def render_scope_page(scope):
 	if show_strategy:
 		st.subheader('Strategy Parameters')
 		# TODO not sure what the final format of some of these objects should be
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Strategy Name')
-		with col2: st.write(scope.strategy_name)
-		with col3: st.write('strategy_name')
-		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Print Header')
-		with col2: st.write(scope.strategy_print_header)
-		with col3: st.write('strategy_print_header')
+
+		render_3_columns( 'Strategy Name', scope.strategy_name, 'strategy_name' )
+		render_3_columns( 'Print Header', scope.strategy_print_header, 'strategy_print_header' )
 
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Price Columns')
 		with col2: st.dataframe(scope.strategy_price_columns, 100, 200)
 		with col3: st.write('strategy_price_columns')
 		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Print Count')
-		with col2: st.write(scope.strategy_print_count)
-		with col3: st.write('strategy_print_count')
-		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Build Header')
-		with col2: st.write(scope.strategy_build_header)
-		with col3: st.write('strategy_build_header')
-		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Header')
-		with col2: st.write(scope.strategy_header)
-		with col3: st.write('strategy_header')
-		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Print Line')
-		with col2: st.write(scope.strategy_print_line)
-		with col3: st.write('strategy_print_line')
+		render_3_columns( 'Print Count', scope.strategy_print_count, 'strategy_print_count' )
+		render_3_columns( 'Build Header', scope.strategy_build_header, 'strategy_build_header' )
+		render_3_columns( 'Header', scope.strategy_header, 'strategy_header' )
+		render_3_columns( 'Print Line', scope.strategy_print_line, 'strategy_print_line' )
+		# render_3_columns( 'JSON Dicitionary', scope.strategy_json_dict, 'strategy_json_dict' )
+		render_3_columns( 'Chart', scope.chart_lines, 'chart_lines' )
 		
 		col1,col2 = st.columns([6,2])
 		with col1: st.write('Json Dicitionary')
@@ -399,183 +364,70 @@ def render_scope_page(scope):
 
 	if show_charting:
 		st.subheader('Charting Parameters')
+		render_3_columns( 'Chart Line', scope.chart_lines, 'chart_lines' )
+		render_3_columns( 'Chart MACD on Price', scope.chart_macd_on_price, 'chart_macd_on_price' )
+		render_3_columns( 'Chart MACD on Volume', scope.chart_macd_on_volume, 'chart_macd_on_volume' )
 
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Chart Line')
-		with col2: st.write(scope.chart_lines)
-		with col3: st.write('< chart_lines >')
-		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Chart MACD on Price')
-		with col2: st.write(scope.chart_macd_on_price)
-		with col3: st.write('< chart_macd_on_price >')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Chart MACD on Volume')
-		with col2: st.write(scope.chart_macd_on_volume)
-		with col3: st.write('< chart_macd_on_volume >')
-
-	if show_application:
+	if show_application_variables:
 		st.subheader('General Application Parameters')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Project Description')
-		with col2: st.write(scope.project_description)
-		with col3: st.write('< project_description >')
 		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Project Start Time')
-		with col2: st.write(datetime.fromtimestamp(scope.project_start_time).strftime('%Y-%m-%d %H:%M:%S %p'))
-		with col3: st.write('< project_start_time >')
-				
-	if show_streamlit:
-		st.subheader('Streamlit Variables')
+		render_3_columns( 'Project Description', scope.project_description, 'project_description' )
+		render_3_columns( 'Project Start Time', datetime.fromtimestamp(scope.project_start_time).strftime('%Y-%m-%d %H:%M:%S %p'), 'project_start_time' )
+		render_3_columns( 'Initial Run / load', scope.initial_load, 'initial_load' )
 
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Initial Run / load')
-		with col2: st.write(scope.initial_load)
-		with col3: st.write('< initial_load >')
+		st.markdown("""---""")
+		st.subheader('Dropdown Selections - Multiple Ticker Analysis < ticker_list>')
+
+		render_3_columns( 'Selected Market', scope.chosen_market, 'chosen_market' )
+		render_3_columns( 'Selected Industry(s)', scope.chosen_industries, 'chosen_industries' )
+		render_3_columns( 'Selected Ticker(s)', scope.chosen_tickers, 'chosen_tickers' )
+
+		st.markdown("""---""")
+		st.subheader('Dropdown Menu - Single Purpose Ticker Selections')
+
+		render_3_columns( 'Ticker for Volume Analysis', scope.chosen_ticker_for_volume_prediction, 'chosen_ticker_for_volume_prediction' )
+		render_3_columns( 'Ticker for Volume Analysis', scope.chosen_ticker_for_company_profile, 'chosen_ticker_for_company_profile' )
+
+		st.markdown("""---""")
+		st.subheader('Dropdown List Contents - available to select')
+		
+		render_3_columns( 'Available Markets for SINGLE selection', scope.chosen_market, 'chosen_market' )
+		render_3_columns( 'Available Industries for MULTI selection', scope.dropdown_industries, 'dropdown_industries' )
+		render_3_columns( 'Available Tickers for MULTI selection', scope.dropdown_tickers, 'dropdown_tickers' )
+		render_3_columns( 'Available Tickers for SINGLE volume analysis', scope.dropdown_ticker_for_volume_analysis, 'dropdown_ticker_for_volume_analysis' )
+
 
 		st.markdown("""---""")
 		st.subheader('Result Parameters')
 
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Result Passed')
-		with col2: st.write(scope.result_passed)
-		with col3: st.write('< result_passed >')
-		with col1: st.write('Result Passed_2')
-		with col2: st.write(scope.result_passed_2)
-		with col3: st.write('< result_passed_2 >')
-		with col1: st.write('Result Failed')
-		with col2: st.write(scope.result_failed)
-		with col3: st.write('< result_failed >')
-
-
-		st.markdown("""---""")
-		st.subheader('Dropdown Selections - what the user has chosen')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Selected Market')
-		with col2: st.write(scope.chosen_market)
-		with col3: st.write('< chosen_market >')
-		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Selected Industry(s)')
-		with col2: st.write(scope.chosen_industries)
-		with col3: st.write('< chosen_industries >')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Selected Ticker(s)')
-		with col2: st.write(scope.chosen_tickers)
-		with col3: st.write('< chosen_tickers >')
-
-		# col1,col2,col3 = st.columns([2,4,2])
-		# with col1: st.write('Selected Single Ticker)')
-		# with col2: st.write(scope.chosen_single_ticker)
-		# with col3: st.write('< chosen_single_ticker >')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Selected Ticker for Volume Analysis')
-		with col2: st.write(scope.chosen_ticker_for_volume_analysis)
-		with col3: st.write('< chosen_ticker_for_volume_analysis >')
-
-
-		st.markdown("""---""")
-		st.subheader('Dropdown List Contents - what the user could choose')
-		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('List of Available Markets for SINGLE selection')
-		with col2: st.write(scope.dropdown_markets)
-		with col3: st.write('< dropdown_markets >')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('List of Available Industries for MULTI selection')
-		with col2: st.write(scope.dropdown_industries)
-		with col3: st.write('< dropdown_industries >')
-		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('List of Available Tickers for MULTI selection')
-		with col2: st.write(scope.dropdown_tickers)
-		with col3: st.write('< dropdown_tickers >')
-
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('List of Available Tickers for SINGLE selection')
-		with col2: st.write(scope.dropdown_single_ticker)
-		with col3: st.write('< dropdown_single_ticker >')
+		render_3_columns( 'Result Passed', scope.result_passed, 'result_passed' )
+		render_3_columns( 'Result Passed_2', scope.result_passed_2, 'result_passed_2' )
+		render_3_columns( 'Result Failed', scope.result_failed, 'result_failed' )
 
 	if show_folders:
 		st.subheader('Folders and Paths')
 
-		col1,col2,col3 = st.columns([2,6,2])
-		with col1: st.write('Project Folder')
-		with col2: st.write(scope.folder_project)
-		with col3: st.write('< folder_project >')
+		diff_col_size = [2,6,2]
 
-		col1,col2,col3 = st.columns([2,6,2])
-		with col1: st.write('Share Data Folder')
-		with col2: st.write(scope.folder_share_data)
-		with col3: st.write('< folder_share_data >')
-
-		col1,col2,col3 = st.columns([2,6,2])
-		with col1: st.write('Results Analysis Folder')
-		with col2: st.write(scope.folder_results_analysis)
-		with col3: st.write('< folder_results_analysis >')
-
-		col1,col2,col3 = st.columns([2,6,2])
-		with col1: st.write('Website Output Folder')
-		with col2: st.write(scope.folder_website)
-		with col3: st.write('< folder_website >')
-
-		col1,col2,col3 = st.columns([2,6,2])
-		with col1: st.write('Path for Share Index File')
-		with col2: st.write(scope.path_share_index)
-		with col3: st.write('< path_share_index >')
-
-		col1,col2,col3 = st.columns([2,6,2])
-		with col1: st.write('Path for Website Output File')
-		with col2: st.write(scope.path_website_file)
-		with col3: st.write('< path_website_file >')
-
-		col1,col2,col3 = st.columns([2,6,2])
-		with col1: st.write('Path for Share Data File')
-		with col2: st.write(scope.path_share_data_file)
-		with col3: st.write('< path_share_data_file >')
+		render_3_columns( 'Project Folder', scope.folder_project, 'folder_project', diff_col_size )
+		render_3_columns( 'Share Data Folder', scope.folder_share_data, 'folder_share_data', diff_col_size )
+		render_3_columns( 'Results Analysis Folder', scope.folder_results_analysis, 'folder_results_analysis', diff_col_size )
+		render_3_columns( 'Website Output Folder', scope.folder_website, 'folder_website', diff_col_size )
+		render_3_columns( 'Path for Share Index File', scope.path_share_index, 'path_share_index', diff_col_size )
+		render_3_columns( 'Path for Website Output File', scope.path_website_file, 'path_website_file', diff_col_size )
+		render_3_columns( 'Path for Share Data File', scope.path_share_data_file, 'path_share_data_file', diff_col_size )
 
 	if show_market:
 		st.subheader('Market Parameters')
-		
 		st.info( ('Current Share Market = ' + str(scope.share_market)) )
 
-		# col1,col2,col3 = st.columns([2,4,2])
-		# with col1: st.write('Available Markets')
-		# with col2: st.write(scope.dropdown_markets)
-		# with col3: st.write('< dropdown_markets >')
-		# st.dataframe(st.scope.dropdown_markets, 2000, 1200)
-
-		# col1,col2,col3 = st.columns([2,4,2])
-		# with col1: st.write('Selected Market')
-		# with col2: st.write(scope.chosen_market)
-		# with col3: st.write('< chosen_market >')
+		render_3_columns( 'Share Market Suffix', scope.market_suffix, 'market_suffix' )
 		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Market Share Suffix')
-		with col2: st.write(scope.market_suffix)
-		with col3: st.write('< market_suffix >')
-		# st.dataframe(st.scope.market_suffix, 2000, 1200)
-
 		st.markdown("""---""")
 		st.subheader('Market Dates - Opening times and Public Holidays')
 
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Public Holidays')
-		with col2: st.write(scope.market_public_holidays)
-		with col3: st.write('< market_public_holidays >')
-		
-		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Opening Hours')
-		with col2: st.write(scope.market_opening_hours)
-		with col3: st.write('< market_opening_hours >')
-
+		render_3_columns( 'Public Holidays', scope.market_public_holidays, 'market_public_holidays' )
+		render_3_columns( 'Opening Hours', scope.market_opening_hours, 'market_opening_hours' )
 
 
 

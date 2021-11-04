@@ -5,61 +5,23 @@ import pandas as pd
 import datetime as dt
 import plotly.graph_objects as go
 
+
+
 def render_company_profile_page(scope):
 	st.title('Company Profile')
-	st.write('Just ripping off someone elses code here for the minute')
+	# st.write('Just ripping off someone elses code here for the minute')
 
-	if len(scope.ticker_list) > 0:
-		ticker = scope.ticker_list[0]
-		stock = yf.Ticker(ticker)
-		info = stock.info 
+	ticker = render_select_ticker_for_company(scope)
+	st.markdown("""---""")
 
-		st.markdown("""---""")
-		
-		st.header(info['longName']) 
-		st.subheader(ticker)
+	if ticker != 'select a ticker':	
+		meta_data, info = fetch_yfinance_metadata_for_company_profile(ticker)
 
-		# if len(scope.ticker_list) > 0:
-		# 	ticker_1 = scope.ticker_list[0]
-		# 	if len(scope.ticker_list) > 1:
-		# 		st.error( 'Ticker List contains more that 1 ticker. Analysis to be performed on the first ticker only > ' + ticker_1)
+		render_company_general_info(info)
+		# render_business_summary(info)
+		render_fundamental_info(info)
 
-
-		st.markdown('** Sector **: ' + info['sector'])
-		st.markdown('** Industry **: ' + info['industry'])
-		st.markdown('** Phone **: ' + info['phone'])
-		st.markdown('** Address **: ' + info['address1'] + ', ' + info['city'] + ', ' + info['zip'] + ', '  +  info['country'])
-		st.markdown('** Website **: ' + info['website'])
-		st.markdown('** Business Summary **')
-		st.info(info['longBusinessSummary'])
-
-		fundInfo = {
-				'Enterprise Value (AUD)': info['enterpriseValue'],
-				'Enterprise To Revenue Ratio': info['enterpriseToRevenue'],
-				'Enterprise To Ebitda Ratio': info['enterpriseToEbitda'],
-				'Net Income (AUD)': info['netIncomeToCommon'],
-				'Profit Margin Ratio': info['profitMargins'],
-				'Forward PE Ratio': info['forwardPE'],
-				'PEG Ratio': info['pegRatio'],
-				'Price to Book Ratio': info['priceToBook'],
-				'Forward EPS (AUD)': info['forwardEps'],
-				'Beta ': info['beta'],
-				'Book Value (AUD)': info['bookValue'],
-				'Dividend Rate (%)': info['dividendRate'], 
-				'Dividend Yield (%)': info['dividendYield'],
-				'Five year Avg Dividend Yield (%)': info['fiveYearAvgDividendYield'],
-				'Payout Ratio': info['payoutRatio']
-			}
-		
-		fundDF = pd.DataFrame.from_dict(fundInfo, orient='index')
-		fundDF = fundDF.rename(columns={0: 'Value'})
-		st.subheader('Fundamental Info') 
-		st.table(fundDF)
-
-
-
-
-		st.subheader('General Stock Info') 
+		st.subheader('General meta_data Info') 
 		st.markdown('** Market **: ' + info['market'])
 		st.markdown('** Exchange **: ' + info['exchange'])
 		st.markdown('** Quote Type **: ' + info['quoteType'])
@@ -128,3 +90,72 @@ def render_company_profile_page(scope):
 		st.table(marketDF)
 	else:
 		st.error('Ticker List does not contain any tickers - add tickers using the sidebar')
+
+
+
+# -----------------------------------------------------------------------
+# helpers
+# -----------------------------------------------------------------------
+@st.cache
+def fetch_yfinance_metadata_for_company_profile(ticker):
+	metadata = yf.Ticker(ticker)
+	info = metadata.info 
+	return metadata, info
+
+def render_select_ticker_for_company(scope):
+	col1,col2 = st.columns([2,10])														# col2 is just a dummy to prevent the widget filling the whole screen
+	
+	dropdown_list = scope.dropdown_ticker_for_company_profile
+	index_of_ticker = dropdown_list.index(scope.chosen_ticker_for_company_profile)
+
+	with col1: 
+		ticker = st.selectbox ( 'Select Ticker', 
+								dropdown_list, 
+								index=index_of_ticker, 
+								help='Select a ticker. Start typing to jump within list'
+								) 
+	
+	scope.chosen_ticker_for_company_profile = ticker									# Store the selection for next session
+	
+	if ticker != 'select a ticker':	
+		st.header( scope.share_index_file.loc[ticker]['company_name'] )					# Render the company name
+		with col2: st.write('button') 
+	return ticker
+
+def render_company_general_info(info):
+	col1,col2 = st.columns([3,9])
+	with col1: st.markdown('** Sector **: ' + info['sector'])
+	with col1: st.markdown('** Industry **: ' + info['industry'])
+	with col1: st.markdown('** Phone **: ' + info['phone'])
+	with col1: st.markdown('** Address **: ' + info['address1'] + ', ' + info['city'] + ', ' + info['zip'] + ', '  +  info['country'])
+	with col1: st.markdown('** Website **: ' + info['website'])
+	with col2: st.markdown('** Business Summary **')
+	# paragraph = info['longBusinessSummary']
+	sentences = info['longBusinessSummary'].split('. ')
+	for sentence in sentences:
+		with col2: st.write(sentence)
+
+def render_2_columns( description, variable ):
+	col1,col2,col3 = st.columns([2,2,8])
+	with col1: st.write(description)
+	with col2: st.write(variable)
+
+def render_fundamental_info(info):
+	st.markdown("""---""")
+	st.subheader('Fundamental Info') 
+		
+	render_2_columns( 'Enterprise Value (AUD)', info['enterpriseValue'])
+	render_2_columns( 'Enterprise To Revenue Ratio', info['enterpriseToRevenue'])
+	render_2_columns( 'Enterprise To Ebitda Ratio', info['enterpriseToEbitda'])
+	render_2_columns( 'Net Income (AUD)', info['netIncomeToCommon'])
+	render_2_columns( 'Profit Margin Ratio', info['profitMargins'])
+	render_2_columns( 'Forward PE Ratio', info['forwardPE'])
+	render_2_columns( 'PEG Ratio', info['pegRatio'])
+	render_2_columns( 'Price to Book Ratio', info['priceToBook'])
+	render_2_columns( 'Forward EPS (AUD)', info['forwardEps'])
+	render_2_columns( 'Beta', info['beta'])
+	render_2_columns( 'Book Value (AUD)', info['bookValue'])
+	render_2_columns( 'Dividend Rate (%)', info['dividendRate'])
+	render_2_columns( 'Dividend Yield (%)', info['dividendYield'])
+	render_2_columns( 'Five year Avg Dividend Yield (%)', info['fiveYearAvgDividendYield'])
+	render_2_columns( 'Payout Ratio', info['payoutRatio'])

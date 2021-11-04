@@ -19,17 +19,20 @@ def render_local_vs_market_time(local_time, market_time):
 	with col2:st.subheader(str(market_time.strftime('%H:%M:%S %p')))
 	with col3:st.write(str(market_time.strftime('%Y-%m-%d')))
 
-def render_select_ticker(scope):
+def render_select_ticker_for_volume(scope):
 	col1,col2 = st.columns([2,10])														# col2 is just a dummy to prevent the widget filling the whole screen
-	index_of_stored_ticker = scope.dropdown_ticker_for_volume_analysis.index(scope.chosen_ticker_for_volume_analysis)
+
+	dropdown_list = scope.dropdown_ticker_for_volume_analysis
+	index_of_ticker = dropdown_list.index(scope.chosen_ticker_for_volume_prediction)
+
 	with col1: 
 		ticker = st.selectbox ( 'Select Ticker', 
-								scope.dropdown_ticker_for_volume_analysis, 
-								index=index_of_stored_ticker, 
-								help='Select a ticker only. Start typing to jump within list'
+								dropdown_list, 
+								index=index_of_ticker, 
+								help='Select a ticker. Start typing to jump within list'
 								) 
 	
-	scope.chosen_ticker_for_volume_analysis = ticker									# Store the selection for next session
+	scope.chosen_ticker_for_volume_prediction = ticker									# Store the selection for next session
 	
 	if ticker != 'select a ticker':	
 		st.header( scope.share_index_file.loc[ticker]['company_name'] )					# Render the company name
@@ -49,7 +52,7 @@ def render_volume_page(scope):
 	render_local_vs_market_time(local_time, market_time)
 	st.markdown("""---""")
 
-	ticker = render_select_ticker(scope)
+	ticker = render_select_ticker_for_volume(scope)
 	st.markdown("""---""")
 
 	if ticker != 'select a ticker':	
