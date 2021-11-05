@@ -48,7 +48,7 @@ def render_daily_analysis_page(scope):
 
 	if len(scope.tickers_for_multi) > 0:
 		ticker = scope.tickers_for_multi[0]
-		ticker_name = scope.share_index_file.loc[ticker]['company_name']
+		ticker_name = scope.ticker_index_file.loc[ticker]['company_name']
 
 		st.header(ticker_name)
 		st.subheader(ticker)

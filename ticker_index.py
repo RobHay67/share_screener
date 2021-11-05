@@ -12,7 +12,7 @@ from browser import render_results
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Ticker Index file Schema
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-share_index_schema ={
+ticker_index_schema ={
 						'share_code'		:{'dtype':'str'				, 'default':None},
 						'company_name'		:{'dtype':'str'				, 'default':'zz_missing_company_name'},
 						'industry_group'	:{'dtype':'str'				, 'default':'zz_missing_industry_group'},
@@ -27,84 +27,85 @@ share_index_schema ={
 						'trading_halt_dates':{'dtype':'object'			, 'default':None},
 					}
 
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Browser Render Controller
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def render_share_index_page(scope):
+# ==============================================================================================================================================================
+# Browser Render Controller : Display Ticker Index, Count of tickers by Industry and Update the Ticker Index
+# ==============================================================================================================================================================
+def render_ticker_index_page(scope):
 
 	st.title('Maintain the Ticker Index File')
 
-	col1,col2,col3 = st.columns([3,3,3])
-	with col1: st.success(('Ticker Index contains ( ' + str((len(scope.share_index_file))) + ' ) tickers'))
-	with col1: show_share_index = st.button('Display the Ticker Index File')
-	with col1: show_industries = st.button('Industry Summary')
-	with col1: download_share_index = st.button('Update List of Valid Tickers')
-
+	col1,col2 = st.columns([2,10])
+	with col1: st.success(('Ticker Index contains ( ' + str((len(scope.ticker_index_file))) + ' ) tickers'))
+	col1,col2,col3,col4 = st.columns([2,2,2,6])
+	with col1: download_ticker_index = st.button('Update Ticker Index File')
+	with col2: show_ticker_index = st.button('Show the Ticker Index File')
+	with col3: show_industries = st.button('Show Industry Summary')
+	
 	st.markdown("""---""")
 	
-	if download_share_index:
+	if download_ticker_index:
 		st.subheader('Downloading Ticker Master Data from https://asx.api.markitdigital.com and adding to the Ticker Index File')
-		refresh_share_index_file(st.session_state)
+		refresh_ticker_index_file(st.session_state)
 	
-	if show_share_index:
+	if show_ticker_index:
 		st.subheader('Ticker Index File')
-		st.dataframe(scope.share_index_file, 2000, 1200)
+		st.dataframe(scope.ticker_index_file, 2000, 1200)
 
 	if show_industries:
-		print_share_index_industries(scope)
+		print_industries_in_ticker_index(scope)
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # TICKER INDEX FILE - loader and Saver
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def load_share_index_file( scope ):
+def load_ticker_index_file( scope ):
 	print('i have been called')
 	st.title('Loading Ticker Index File')
 
-	if os.path.exists( scope.path_share_index ):
-		st.info('loading ticker_index.csv file from ' +  str(scope.path_share_index) )
+	if os.path.exists( scope.path_ticker_index ):
+		st.info('loading ticker_index.csv file from ' +  str(scope.path_ticker_index) )
 
-		ticker_index = pd.read_csv(  scope.path_share_index, 
-									dtype=share_index_schema_csv_dtypes(),
-									parse_dates=share_index_schema_csv_dates(),
+		ticker_index = pd.read_csv(  scope.path_ticker_index, 
+									dtype=ticker_index_schema_csv_dtypes(),
+									parse_dates=ticker_index_schema_csv_dates(),
 									)
 		# ticker_index['blue_chip'] = ticker_index['blue_chip'].astype(int)
 		ticker_index['listing_date'] = pd.to_datetime( ticker_index['listing_date'].dt.date  )
 		st.success('successfully loaded the ticker index file')
 		ticker_index.set_index('share_code', inplace=True)
 		# remove any delisted stocks here
-		scope.share_index_file = ticker_index
+		scope.ticker_index_file = ticker_index
 	else: 
-		st.error( 'Ticker Index File does not exist at path > ' + str(scope.path_share_index) )
+		st.error( 'Ticker Index File does not exist at path > ' + str(scope.path_ticker_index) )
 		st.info( 'creating an empty ticker_index dataframe' )
 		dataframe_columns = []
-		for column_name in share_index_schema: 
+		for column_name in ticker_index_schema: 
 			dataframe_columns.append(column_name)
 			ticker_index = pd.DataFrame(columns=dataframe_columns)
 		st.success('successfully created empty Ticker Index dataframe')
 		ticker_index.set_index('share_code', inplace=True)
 		# remove any delisted stocks here
-		scope.share_index_file = ticker_index
-		save_share_index_file(scope)
+		scope.ticker_index_file = ticker_index
+		save_ticker_index_file(scope)
 		st.markdown("""---""")
 		st.error('Click on the Ticker Index button to update the Ticker Index')
 
-def save_share_index_file( scope ): # DONE
+def save_ticker_index_file( scope ): # DONE
 	st.subheader('Save Ticker Index File')
-	saving_df = scope.share_index_file.copy()
+	saving_df = scope.ticker_index_file.copy()
 	saving_df.reset_index(inplace=True)      	 # ensure that the index is saved as a normal column
-	saving_df.to_csv( scope.path_share_index, index=False )
+	saving_df.to_csv( scope.path_ticker_index, index=False )
 	st.success('successfully saved Ticker Index file')
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # TICKER INDEX FILE - Downloader + helpers
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def refresh_share_index_file(scope):
+def refresh_ticker_index_file(scope):
 	st.info('Downloading Ticker Index information for the ' + scope.share_market)
 	if scope.share_market == 'ASX':
 		url = 'https://asx.api.markitdigital.com/asx-research/1.0/companies/directory/file?'
 		column_names = ['share_code', 'company_name', 'listing_date', 'industry_group', 'market_cap' ]
-		downloaded_share_info = pd.read_csv( 	url, 
+		downloaded_ticker_info = pd.read_csv( 	url, 
 												skiprows=1, 
 												names=column_names, 
 												header=0, 
@@ -115,59 +116,59 @@ def refresh_share_index_file(scope):
 													'market_cap':'float',
 												},
 												parse_dates=['listing_date'])
-		downloaded_share_info['share_code'] = downloaded_share_info['share_code'] + '.AX'
-		downloaded_share_info['listing_date'] = pd.to_datetime( downloaded_share_info['listing_date'].dt.date  )
+		downloaded_ticker_info['share_code'] = downloaded_ticker_info['share_code'] + '.AX'
+		downloaded_ticker_info['listing_date'] = pd.to_datetime( downloaded_ticker_info['listing_date'].dt.date  )
 
 		# format the industry group field - remove redundant values
-		downloaded_share_info['industry_group'] = downloaded_share_info['industry_group'].fillna('zz_industry_group')
-		downloaded_share_info['industry_group'] = downloaded_share_info['industry_group'].str.replace(', ', '_' )
-		downloaded_share_info['industry_group'] = downloaded_share_info['industry_group'].str.replace(' ', '_' )
-		downloaded_share_info['industry_group'] = downloaded_share_info['industry_group'].str.replace('&', 'and' )
-		downloaded_share_info['industry_group'] = downloaded_share_info['industry_group'].str.lower()
+		downloaded_ticker_info['industry_group'] = downloaded_ticker_info['industry_group'].fillna('zz_industry_group')
+		downloaded_ticker_info['industry_group'] = downloaded_ticker_info['industry_group'].str.replace(', ', '_' )
+		downloaded_ticker_info['industry_group'] = downloaded_ticker_info['industry_group'].str.replace(' ', '_' )
+		downloaded_ticker_info['industry_group'] = downloaded_ticker_info['industry_group'].str.replace('&', 'and' )
+		downloaded_ticker_info['industry_group'] = downloaded_ticker_info['industry_group'].str.lower()
 
-		st.success('number of downloaded ' + scope.share_market + ' ticker codes = ' + str(len(downloaded_share_info)))
-		update_share_index_with_latest_download(scope, downloaded_share_info )
+		st.success('number of downloaded ' + scope.share_market + ' ticker codes = ' + str(len(downloaded_ticker_info)))
+		update_ticker_index_with_latest_download(scope, downloaded_ticker_info )
 		scope.refresh_ticker_dropdown_lists = True
 	else:
 		st.error('DOWNLOAD Ticker data NOT YET CONFIGURED FOR ' + scope.share_market)
 		pass
 
-def update_share_index_with_latest_download(scope, downloaded_share_info ):
+def update_ticker_index_with_latest_download(scope, downloaded_ticker_info ):
 	st.info( 'Updating the records in the Ticker Index file ')
 
 	add_records_counter = 0
 
-	downloaded_share_info = apply_defaults_to_missing_values(scope, downloaded_share_info)
-	downloaded_share_info.set_index('share_code', inplace=True)
-	render_results( scope, passed='Updating these Shares > ', passed_2='Adding these Shares > ', failed='not applicable > ' )
+	downloaded_ticker_info = apply_defaults_to_missing_values(scope, downloaded_ticker_info)
+	downloaded_ticker_info.set_index('share_code', inplace=True)
+	render_results( scope, passed='Updating these Tickers > ', passed_2='Adding these Tickers > ', failed='not applicable > ' )
 
-	for ticker, row in downloaded_share_info.iterrows(): 
+	for ticker, row in downloaded_ticker_info.iterrows(): 
 		# 
-		if ticker not in scope.share_index_file.index:
+		if ticker not in scope.ticker_index_file.index:
 			add_records_counter += 1
 			row['opening_time'] = ticker_open_time( scope, ticker )
 			row['minutes_per_day'] = ticker_trading_mins_per_day( scope, ticker )
-			row['blue_chip'] = share_index_schema['blue_chip']['default']
-			scope.share_index_file = scope.share_index_file.append(row)
+			row['blue_chip'] = ticker_index_schema['blue_chip']['default']
+			scope.ticker_index_file = scope.ticker_index_file.append(row)
 			render_results( scope, ticker, result='passed_2' )
 		else:
-			scope.share_index_file.at[ticker, 'company_name'] = row['company_name']
-			scope.share_index_file.at[ticker, 'listing_date'] = row['listing_date']
-			scope.share_index_file.at[ticker, 'industry_group'] = row['industry_group']
-			scope.share_index_file.at[ticker, 'market_cap'] = row['market_cap']
+			scope.ticker_index_file.at[ticker, 'company_name'] = row['company_name']
+			scope.ticker_index_file.at[ticker, 'listing_date'] = row['listing_date']
+			scope.ticker_index_file.at[ticker, 'industry_group'] = row['industry_group']
+			scope.ticker_index_file.at[ticker, 'market_cap'] = row['market_cap']
 			render_results( scope, ticker, result='passed' )
 	render_results(scope, 'Finished', final_print=True )
-	scope.share_index_file = apply_defaults_to_missing_values(scope, scope.share_index_file)
-	scope.share_index_file['listing_date'] = pd.to_datetime( scope.share_index_file['listing_date'].dt.date  )
-	scope.share_index_file = scope.share_index_file.sort_index()
+	scope.ticker_index_file = apply_defaults_to_missing_values(scope, scope.ticker_index_file)
+	scope.ticker_index_file['listing_date'] = pd.to_datetime( scope.ticker_index_file['listing_date'].dt.date  )
+	scope.ticker_index_file = scope.ticker_index_file.sort_index()
 	message = 'number of ticker codes added to master ticker index = '+ str(add_records_counter)
 	st.warning( message) if add_records_counter > 0 else st.info( message)
-	save_share_index_file(scope)
+	save_ticker_index_file(scope)
 	scope.ticker_list_needs_updating = True
 
 def apply_defaults_to_missing_values(scope, dataframe):
-	defaults = share_index_schema_defaults()
-	dtypes = share_index_schema_dtypes()
+	defaults = ticker_index_schema_defaults()
+	dtypes = ticker_index_schema_dtypes()
 
 	for field, default_value in defaults.items():
 		if field in dataframe.columns:
@@ -190,28 +191,28 @@ def apply_defaults_to_missing_values(scope, dataframe):
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Ticker Index file Schema - Helpers
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def share_index_schema_dtypes():
+def ticker_index_schema_dtypes():
 	dtypes={}
-	for field, schema in share_index_schema.items():
+	for field, schema in ticker_index_schema.items():
 		dtypes[field] = schema['dtype']
 	return dtypes
 
-def share_index_schema_defaults():
+def ticker_index_schema_defaults():
 	defaults={}
-	for field, schema in share_index_schema.items():
+	for field, schema in ticker_index_schema.items():
 		defaults[field] = schema['default']
 	return defaults
 
-def share_index_schema_csv_dtypes():
+def ticker_index_schema_csv_dtypes():
 	dtypes={}
-	for field, schema in share_index_schema.items():
+	for field, schema in ticker_index_schema.items():
 		if schema['dtype'] != 'datetime64[ns]': 
 			dtypes[field] = schema['dtype']
 	return dtypes
 
-def share_index_schema_csv_dates():
+def ticker_index_schema_csv_dates():
 	dates_to_parse = []
-	for field, schema in share_index_schema.items():
+	for field, schema in ticker_index_schema.items():
 		if schema['dtype'] == 'datetime64[ns]': 
 			dates_to_parse.append(field)
 	return dates_to_parse
@@ -221,41 +222,27 @@ def share_index_schema_csv_dates():
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def ticker_open_time( scope, ticker):
 	market = scope.share_market
-	share_code_first_letter = ticker[0].upper()
+	ticker_code_first_letter = ticker[0].upper()
 	for group in scope.market_opening_hours[market].keys():
 		if group != 'timezone':
-			if share_code_first_letter in scope.market_opening_hours[market][group]['letter_range']:
+			if ticker_code_first_letter in scope.market_opening_hours[market][group]['letter_range']:
 				opening_time = scope.market_opening_hours[market][group]['opening_time']
 	return( opening_time )
 
 def ticker_trading_mins_per_day( scope, ticker ):
 	market = scope.share_market
-	share_code_first_letter = ticker[0].upper()
+	ticker_code_first_letter = ticker[0].upper()
 	for group in scope.market_opening_hours[market].keys():
 		if group != 'timezone':
-			if share_code_first_letter in scope.market_opening_hours[market][group]['letter_range']:
+			if ticker_code_first_letter in scope.market_opening_hours[market][group]['letter_range']:
 				trading_minutes_per_day = scope.market_opening_hours[market][group]['minutes_per_day']
 	return trading_minutes_per_day 
-
 
 # -----------------------------------------------------------------------------------------------------------------------------------
 # Ticker Index Industry Report
 # -----------------------------------------------------------------------------------------------------------------------------------
-def print_share_index_industries(scope):
+def print_industries_in_ticker_index(scope):
 	st.subheader('Ticker Index File contains the following Industries')
-	industry_group_count = pd.DataFrame(scope.share_index_file['industry_group'].value_counts().rename_axis('Industry').reset_index(name='No of Codes'))
+	industry_group_count = pd.DataFrame(scope.ticker_index_file['industry_group'].value_counts().rename_axis('Industry').reset_index(name='No of Codes'))
 	industry_group_count = industry_group_count.sort_values(by='Industry')
 	st.dataframe(industry_group_count, 2000, 1200)
-
-
-
-# -----------------------------------------------------------------------------------------------------------------------------------
-# Colours
-# -----------------------------------------------------------------------------------------------------------------------------------
-red         = '\033[91m'
-green       = '\033[92m'
-yellow      = '\033[93m'
-blue        = '\033[94m'
-purple      = '\033[95m'
-cyan        = '\033[96m'
-white 		= '\033[0m'

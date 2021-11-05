@@ -128,7 +128,7 @@ def render_select_ticker_for_company(scope):
 	scope.ticker_for_company_profile = ticker									# Store the selection for next session
 	
 	if ticker != 'select a ticker':	
-		st.header( scope.share_index_file.loc[ticker]['company_name'] )					# Render the company name
+		st.header( scope.ticker_index_file.loc[ticker]['company_name'] )					# Render the company name
 		with col2: st.write('button') 
 	return ticker
 

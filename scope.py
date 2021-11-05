@@ -7,7 +7,7 @@ import time
 from datetime import datetime, timedelta 
 import streamlit as st
 
-from ticker_index import load_share_index_file
+from ticker_index import load_ticker_index_file
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Config - Market Information
@@ -150,11 +150,11 @@ def set_initial_scope(scope, project_description):
 		if not os.path.isdir( scope.folder_website ) : os.makedirs( scope.folder_website )
 		
 		# File Paths
-		scope.path_share_index = pathlib.Path.home().joinpath( scope.folder_share_data, 'ticker_index.csv' )
+		scope.path_ticker_index = pathlib.Path.home().joinpath( scope.folder_share_data, 'ticker_index.csv' )
 		scope.path_website_file = pathlib.Path.home().joinpath( scope.folder_website, 'strategy_results.json' )
 		scope.path_share_data_file = 'not yet set',
-		# Load the Share Index File
-		load_share_index_file(scope)
+		# Load the Ticker Index File
+		load_ticker_index_file(scope)
 
 		# Ticker list - for analysis
 		scope.update_ticker_list_required = False
@@ -174,7 +174,7 @@ def set_initial_scope(scope, project_description):
 		scope.market_public_holidays = public_holidays
 		scope.market_opening_hours = opening_hours	
 
-		# Download Share Data
+		# Download Ticker Variables
 		scope.download_days = 1
 		scope.download_groups_for_y_finance = []
 		scope.download_schema = None
@@ -217,27 +217,27 @@ def refresh_ticker_dropdown_lists(scope):
 	
 	# ---------------------------------------------------------------------------------------
 	# Multi Share Industry Selector
-	list_of_industries = scope.share_index_file['industry_group'].unique().tolist()
+	list_of_industries = scope.ticker_index_file['industry_group'].unique().tolist()
 	list_of_industries.sort()
 	scope.dropdown_industries = list_of_industries
 	# scope.dropdown_industries_re_render = True
 	
 	# ---------------------------------------------------------------------------------------
 	# Multi Share Ticker Selector
-	list_of_tickers = scope.share_index_file.index.values.tolist()
+	list_of_tickers = scope.ticker_index_file.index.values.tolist()
 	scope.dropdown_tickers = list_of_tickers
 	scope.dropdown_tickers_re_render = True
 	# scope.dropdown_ticker_volume_re_render = True
 
 	# ---------------------------------------------------------------------------------------
 	# Single Ticker Selector for Volume Analysis
-	tickers_for_volume_prediction = scope.share_index_file.index.values.tolist()
+	tickers_for_volume_prediction = scope.ticker_index_file.index.values.tolist()
 	tickers_for_volume_prediction.insert(0, 'select a ticker')
 	scope.dropdown_ticker_for_volume_analysis = tickers_for_volume_prediction
 
 	# ---------------------------------------------------------------------------------------
 	# Single Ticker Selector for Company Profile
-	tickers_for_company_profile = scope.share_index_file.index.values.tolist()
+	tickers_for_company_profile = scope.ticker_index_file.index.values.tolist()
 	tickers_for_company_profile.insert(0, 'select a ticker')
 	scope.dropdown_ticker_for_company_profile = tickers_for_company_profile
 	
@@ -245,17 +245,19 @@ def refresh_ticker_dropdown_lists(scope):
 	# Dont run this again unless we have downloaded new share data
 	# scope.update_dropdown_lists = False
 	
+# -----------------------------------------------------------------------------------------------------------------------------------
+# share file path generator
+# -----------------------------------------------------------------------------------------------------------------------------------
 
-def render_3_columns( description, variable, variable_name, diff_col_size=None ):
-	if diff_col_size == None:
-		col1,col2,col3 = st.columns([2,4,2])
-	else:
-		col1,col2,col3 = st.columns(diff_col_size)
-	
-	with col1: st.write(description)
-	with col2: st.write(variable)
-	with col3: st.write( ('< ' + variable_name + ' >') )
-	
+def generate_path_for_share_data_file( scope, ticker ): # DONE
+	file_name = ( ticker.replace( '.', '_' ) ) + '.csv'
+	file_path = pathlib.Path.home().joinpath( scope.folder_share_data, file_name )
+	scope.path_share_data_file = file_path
+
+# ==============================================================================================================================================================
+# Render all Scope Variables
+# ==============================================================================================================================================================
+
 def render_scope_page(scope):
 	st.title('Application Parameters')
 
@@ -266,7 +268,7 @@ def render_scope_page(scope):
 	with col1: show_industries = st.button('Industries')
 
 	with col2: st.subheader('Data')
-	with col2: show_share_index = st.button('Share Index File ( ' + str((len(st.session_state.share_index_file))) + ' )')
+	with col2: show_ticker_index = st.button('Ticker Index File ( ' + str((len(st.session_state.ticker_index_file))) + ' )')
 	with col2: show_share_data_files = st.button('Share Data Files ( ' + str(len(st.session_state.share_data_files.keys())) + ' )')
 	with col2: show_download = st.button('Download Settings')
 
@@ -301,16 +303,16 @@ def render_scope_page(scope):
 
 	if show_industries:
 		st.subheader('Share Index File contains the following Industries')
-		industry_group_count = pd.DataFrame(scope.share_index_file['industry_group'].value_counts())
+		industry_group_count = pd.DataFrame(scope.ticker_index_file['industry_group'].value_counts())
 		industry_group_count.index.name = 'Industry'
 		industry_group_count.columns =['No of Codes']
 		st.dataframe(industry_group_count, 2000, 1200)
 
-	if show_share_index:
+	if show_ticker_index:
 		col1,col2 = st.columns([6,2])
-		with col1: st.subheader('Share Index File')
-		with col2: st.write('< share_index_file >')
-		st.dataframe(scope.share_index_file, 2000, 1200)
+		with col1: st.subheader('Ticker Index File')
+		with col2: st.write('< ticker_index_file >')
+		st.dataframe(scope.ticker_index_file, 2000, 1200)
 
 	if show_share_data_files:
 
@@ -430,7 +432,7 @@ def render_scope_page(scope):
 		render_3_columns( 'Share Data Folder', scope.folder_share_data, 'folder_share_data', diff_col_size )
 		render_3_columns( 'Results Analysis Folder', scope.folder_results_analysis, 'folder_results_analysis', diff_col_size )
 		render_3_columns( 'Website Output Folder', scope.folder_website, 'folder_website', diff_col_size )
-		render_3_columns( 'Path for Share Index File', scope.path_share_index, 'path_share_index', diff_col_size )
+		render_3_columns( 'Path for Share Index File', scope.path_ticker_index, 'path_ticker_index', diff_col_size )
 		render_3_columns( 'Path for Website Output File', scope.path_website_file, 'path_website_file', diff_col_size )
 		render_3_columns( 'Path for Share Data File', scope.path_share_data_file, 'path_share_data_file', diff_col_size )
 
@@ -447,15 +449,18 @@ def render_scope_page(scope):
 		render_3_columns( 'Opening Hours', scope.market_opening_hours, 'market_opening_hours' )
 
 
+def render_3_columns( description, variable, variable_name, diff_col_size=None ):
+	if diff_col_size == None:
+		col1,col2,col3 = st.columns([2,4,2])
+	else:
+		col1,col2,col3 = st.columns(diff_col_size)
+	
+	with col1: st.write(description)
+	with col2: st.write(variable)
+	with col3: st.write( ('< ' + variable_name + ' >') )
 
-# -----------------------------------------------------------------------------------------------------------------------------------
-# share file path generator
-# -----------------------------------------------------------------------------------------------------------------------------------
 
-def generate_path_for_share_data_file( scope, ticker ): # DONE
-	file_name = ( ticker.replace( '.', '_' ) ) + '.csv'
-	file_path = pathlib.Path.home().joinpath( scope.folder_share_data, file_name )
-	scope.path_share_data_file = file_path
+
 
 
 

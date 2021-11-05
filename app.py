@@ -10,11 +10,11 @@ project_description = 'Share Trader - DDT'
 from scope import set_initial_scope
 from scope import refresh_ticker_dropdown_lists
 from scope import render_scope_page
-from ticker_index import render_share_index_page
-from share_data import render_share_data_page, render_share_data_file
+from ticker_index import render_ticker_index_page
+from share_data import render_share_data_page, render_share_data_file, construct_list_of_share_codes, render_ticker_list
 from company_profile import render_company_profile_page
 from daily_analysis import render_daily_analysis_page
-from ticker_list import construct_list_of_share_codes, render_ticker_list
+# from ticker_list import 
 from volume_predict import render_volume_page
 
 # Set Up Streamlit Environment ==================================================================================
@@ -39,7 +39,7 @@ print ( '*'*80)
 
 # if   st.session_state.display_page == 'home': render_home_page(st.session_state)
   
-if st.session_state.display_page == 'ticker_index': render_share_index_page(st.session_state)
+if st.session_state.display_page == 'ticker_index': render_ticker_index_page(st.session_state)
 elif st.session_state.display_page == 'ticker_list': render_ticker_list(st.session_state)
 elif st.session_state.display_page == 'manage_share_data': render_share_data_page(st.session_state)
 elif st.session_state.display_page == 'share_data_files': render_share_data_file(st.session_state)
@@ -63,7 +63,7 @@ def page_multi_analysis(): st.info('Clicked on Multi Ticker Analysis')
 # Sidebar Action Buttons ======================================================================================= 
 st.sidebar.title(project_description)
 
-st.sidebar.button(('Share Index ( ' + str((len(st.session_state.share_index_file))) + ' )'), on_click=page_share_index)
+st.sidebar.button(('Share Index ( ' + str((len(st.session_state.ticker_index_file))) + ' )'), on_click=page_share_index)
 
 
 st.sidebar.title('Multi Ticker Analysis')

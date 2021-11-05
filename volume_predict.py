@@ -35,7 +35,7 @@ def render_select_ticker_for_volume(scope):
 	scope.ticker_for_vol_predict = ticker									# Store the selection for next session
 	
 	if ticker != 'select a ticker':	
-		st.header( scope.share_index_file.loc[ticker]['company_name'] )					# Render the company name
+		st.header( scope.ticker_index_file.loc[ticker]['company_name'] )					# Render the company name
 	
 	return ticker
 
@@ -57,8 +57,8 @@ def render_volume_page(scope):
 
 	if ticker != 'select a ticker':	
 		# Ticker Master Data
-		ticker_opening_time 	= scope.share_index_file.loc[ticker]['opening_time']
-		ticker_minutes_per_day 	= scope.share_index_file.loc[ticker]['minutes_per_day']
+		ticker_opening_time 	= scope.ticker_index_file.loc[ticker]['opening_time']
+		ticker_minutes_per_day 	= scope.ticker_index_file.loc[ticker]['minutes_per_day']
 		
 		# Current Volume setter
 		col1,col2 = st.columns([2,10])
