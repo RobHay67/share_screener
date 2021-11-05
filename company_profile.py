@@ -8,6 +8,9 @@ import plotly.graph_objects as go
 from share_data import render_share_data_fetcher
 
 
+# ==============================================================================================================================================================
+# Web Page Render Controller
+# ==============================================================================================================================================================
 
 def render_company_profile_page(scope):
 	st.title('Company Profile')
@@ -103,9 +106,9 @@ def render_company_profile_page(scope):
 
 
 
-# -----------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # helpers
-# -----------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
 @st.cache
 def fetch_yfinance_metadata_for_company_profile(ticker):
 	metadata = yf.Ticker(ticker)
@@ -115,7 +118,7 @@ def fetch_yfinance_metadata_for_company_profile(ticker):
 def render_select_ticker_for_company(scope):
 	col1,col2 = st.columns([2,10])														# col2 is just a dummy to prevent the widget filling the whole screen
 	
-	dropdown_list = scope.dropdown_ticker_for_company_profile
+	dropdown_list = scope.dropdown_ticker
 	index_of_ticker = dropdown_list.index(scope.ticker_for_company_profile)
 
 	with col1: 

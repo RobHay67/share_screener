@@ -115,9 +115,9 @@ def set_initial_scope(scope, project_description):
 		scope.update_dropdown_lists = True
 		# Set Initial Applications Selections
 		scope.share_market = 'ASX'
-		scope.chosen_market = None
-		scope.chosen_industries = None
-		scope.chosen_tickers = None
+		# scope.chosen_market = None
+		# scope.chosen_industries = None
+		# scope.chosen_tickers = None
 		scope.ticker_for_vol_predict = 'select a ticker'
 		scope.ticker_for_company_profile = 'select a ticker'
 
@@ -226,20 +226,28 @@ def refresh_ticker_dropdown_lists(scope):
 	# Multi Share Ticker Selector
 	list_of_tickers = scope.ticker_index_file.index.values.tolist()
 	scope.dropdown_tickers = list_of_tickers
-	scope.dropdown_tickers_re_render = True
+	# scope.dropdown_tickers_re_render = True
 	# scope.dropdown_ticker_volume_re_render = True
+	
 
 	# ---------------------------------------------------------------------------------------
-	# Single Ticker Selector for Volume Analysis
-	tickers_for_volume_prediction = scope.ticker_index_file.index.values.tolist()
-	tickers_for_volume_prediction.insert(0, 'select a ticker')
-	scope.dropdown_ticker_for_volume_analysis = tickers_for_volume_prediction
+	# Single Ticker Selector
+	list_of_tickers = scope.ticker_index_file.index.values.tolist()
+	list_of_tickers.insert(0, 'select a ticker')
+	scope.dropdown_ticker = list_of_tickers
 
-	# ---------------------------------------------------------------------------------------
-	# Single Ticker Selector for Company Profile
-	tickers_for_company_profile = scope.ticker_index_file.index.values.tolist()
-	tickers_for_company_profile.insert(0, 'select a ticker')
-	scope.dropdown_ticker_for_company_profile = tickers_for_company_profile
+
+	# # ---------------------------------------------------------------------------------------
+	# # Single Ticker Selector for Volume Analysis
+	# tickers_for_volume_prediction = scope.ticker_index_file.index.values.tolist()
+	# tickers_for_volume_prediction.insert(0, 'select a ticker')
+	# scope.dropdown_ticker_for_volume_analysis = tickers_for_volume_prediction
+
+	# # ---------------------------------------------------------------------------------------
+	# # Single Ticker Selector for Company Profile
+	# tickers_for_company_profile = scope.ticker_index_file.index.values.tolist()
+	# tickers_for_company_profile.insert(0, 'select a ticker')
+	# scope.dropdown_ticker_for_company_profile = tickers_for_company_profile
 	
 	# ---------------------------------------------------------------------------------------
 	# Dont run this again unless we have downloaded new share data
@@ -297,9 +305,6 @@ def render_scope_page(scope):
 		render_3_columns( 'Ticker List - for Volume Prediction', scope.ticker_for_vol_predict, 'ticker_for_vol_predict' )
 		render_3_columns( 'Ticker List - for Company Profile', scope.ticker_for_company_profile, 'ticker_for_company_profile' )
 		# render_3_columns( 'Ticker List - for Volume Prediction', scope.ticker_for_vol_predict, 'ticker_for_vol_predict' )
-
-
-
 
 	if show_industries:
 		st.subheader('Share Index File contains the following Industries')
@@ -388,32 +393,30 @@ def render_scope_page(scope):
 		render_3_columns( 'Chart MACD on Volume', scope.chart_macd_on_volume, 'chart_macd_on_volume' )
 
 	if show_application_variables:
-		st.subheader('General Application Parameters')
 		
+		st.subheader('General Application Parameters')
 		render_3_columns( 'Project Description', scope.project_description, 'project_description' )
 		render_3_columns( 'Project Start Time', datetime.fromtimestamp(scope.project_start_time).strftime('%Y-%m-%d %H:%M:%S %p'), 'project_start_time' )
 		render_3_columns( 'Initial Run / load', scope.initial_load, 'initial_load' )
 
-		st.markdown("""---""")
-		st.subheader('Dropdown Selections - Multiple Ticker Analysis < tickers_for_multi>')
-
-		render_3_columns( 'Selected Market', scope.chosen_market, 'chosen_market' )
-		render_3_columns( 'Selected Industry(s)', scope.chosen_industries, 'chosen_industries' )
-		render_3_columns( 'Selected Ticker(s)', scope.chosen_tickers, 'chosen_tickers' )
+		# st.markdown("""---""")
+		# st.subheader('Dropdown Selections - Multiple Ticker Analysis < tickers_for_multi>')
+		# render_3_columns( 'Selected Market', scope.chosen_market, 'chosen_market' )
+		# render_3_columns( 'Selected Industry(s)', scope.chosen_industries, 'chosen_industries' )
+		# render_3_columns( 'Selected Ticker(s)', scope.chosen_tickers, 'chosen_tickers' )
 
 		st.markdown("""---""")
 		st.subheader('Dropdown Menu - Single Purpose Ticker Selections')
-
 		render_3_columns( 'Ticker for Volume Analysis', scope.ticker_for_vol_predict, 'ticker_for_vol_predict' )
 		render_3_columns( 'Ticker for Volume Analysis', scope.ticker_for_company_profile, 'ticker_for_company_profile' )
+		render_3_columns( 'Ticker for Single Stock Analysis', scope.ticker_for_company_profile, 'NOT YET CONFIGURED' )
 
 		st.markdown("""---""")
-		st.subheader('Dropdown List Contents - available to select')
-		
-		render_3_columns( 'Available Markets for SINGLE selection', scope.chosen_market, 'chosen_market' )
-		render_3_columns( 'Available Industries for MULTI selection', scope.dropdown_industries, 'dropdown_industries' )
-		render_3_columns( 'Available Tickers for MULTI selection', scope.dropdown_tickers, 'dropdown_tickers' )
-		render_3_columns( 'Available Tickers for SINGLE volume analysis', scope.dropdown_ticker_for_volume_analysis, 'dropdown_ticker_for_volume_analysis' )
+		st.subheader('selectbox and multiselect content lists')
+		render_3_columns( 'Available Markets    ( selectbox )', scope.chosen_market, 'chosen_market' )
+		render_3_columns( 'Available Industries ( multiselect )', scope.dropdown_industries, 'dropdown_industries' )
+		render_3_columns( 'Available Tickers    ( multiselect )', scope.dropdown_tickers, 'dropdown_tickers' )
+		render_3_columns( 'Available Tickers    ( selectbox )', scope.dropdown_ticker, 'dropdown_ticker' )
 
 
 		st.markdown("""---""")

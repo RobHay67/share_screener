@@ -22,7 +22,7 @@ def render_local_vs_market_time(local_time, market_time):
 def render_select_ticker_for_volume(scope):
 	col1,col2 = st.columns([2,10])														# col2 is just a dummy to prevent the widget filling the whole screen
 
-	dropdown_list = scope.dropdown_ticker_for_volume_analysis
+	dropdown_list = scope.dropdown_ticker
 	index_of_ticker = dropdown_list.index(scope.ticker_for_vol_predict)
 
 	with col1: 
