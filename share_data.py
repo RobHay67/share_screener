@@ -31,25 +31,25 @@ def render_share_data_fetcher(scope, ticker_list):
 			with col3: st.write('Finished Loading Tickers')
 			
 
-	if download_tickers:
-		with col3: st.write( ('Downloading ( ' + str(len(ticker_list)) + ' ) Tickers from Yahoo Finance') )
+		if download_tickers:
+			with col3: st.write( ('Downloading ( ' + str(len(ticker_list)) + ' ) Tickers from Yahoo Finance') )
 
-		load_share_data_files(scope, ticker_list)
+			load_share_data_files(scope, ticker_list)
 
-		#TODO - ROB WE ARE up to this point - for some reason it was downloading the entire ASX - need to check this
-		determine_download_groups_for_y_finance(scope)
+			#TODO - ROB WE ARE up to this point - for some reason it was downloading the entire ASX - need to check this
+			determine_download_groups_for_y_finance(scope)
 
-		download_from_yahoo_finance(scope)
+			download_from_yahoo_finance(scope)
 
-		combine_loaded_and_downloaded_share_data(scope)
+			combine_loaded_and_downloaded_share_data(scope)
 
-		# check_share_data_for_missing_dates( scope )
+			# check_share_data_for_missing_dates( scope )
 
-		st.write('Finished Downloading Ticker Trading Data')
-	
-	
+			st.write('Finished Downloading Ticker Trading Data')
+		
+		
 	else:
-				st.error('Ticker List does not contain any tickers - add tickers using the sidebar')
+		st.error('Ticker List does not contain any tickers - add tickers using the sidebar')
 
 
 

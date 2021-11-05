@@ -39,11 +39,9 @@ opening_hours = {
 							},
 				}
 
-
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Share Data file Schema
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 share_data_schema =  {
 					1 : { 'col_name' : 'date'   , 'index_col' : True  , 'data_type' : 'datetime64[ns]'  },
 					2 : { 'col_name' : 'open'   , 'index_col' : False , 'data_type' : 'float64'         },
@@ -87,24 +85,6 @@ download_share_data_schemas =    {
 							}
 
 
-
-
-
-
-
-
-
-# ================================================================================================================================================================
-#        							Multi Share Code Analysis		Volume Predictor						Company Profile							Daily Analysis
-# ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Appropriate Code List				tickers_for_multi				ticker_for_vol_predict					ticker_for_company_profile
-# how do we select tickers to add	dropdown_markets				dropdown_ticker_for_volume_analysis		dropdown_ticker_for_company_profile
-#									dropdown_industries
-#									dropdown_tickers
-# Files are stored					share_data_multi_files			share_data_volume_file					share_data_profile_file					share_data_analysis_file
-
-
-
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Scope out the Params Object == scope in streamlit
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -112,18 +92,10 @@ def set_initial_scope(scope, project_description):
 	if 'initial_load' not in scope:
 		# set the initial state for the application - keep this to a minimum
 		scope.initial_load = True
-		scope.update_dropdown_lists = True
-		# Set Initial Applications Selections
-		scope.share_market = 'ASX'
-		# scope.chosen_market = None
-		# scope.chosen_industries = None
-		# scope.chosen_tickers = None
-		scope.ticker_for_vol_predict = 'select a ticker'
-		scope.ticker_for_company_profile = 'select a ticker'
-
+		scope.update_dropdown_lists = True		# TODO - do we need to do this??
+		scope.share_market = 'ASX'				# Set Initial Applications Selections
 
 	if scope.initial_load:
-		# st.warning('Updating the session state params')
 		# Streamlit Params
 		scope.display_page = 'undetermined'
 
@@ -156,9 +128,11 @@ def set_initial_scope(scope, project_description):
 		# Load the Ticker Index File
 		load_ticker_index_file(scope)
 
-		# Ticker list - for analysis
-		scope.update_ticker_list_required = False
+		# Ticker Selections are stored in these variables
+		scope.update_ticker_list_required = False 				# TODO - do we need this
 		scope.tickers_for_multi = []
+		scope.ticker_for_vol_predict = 'select a ticker'
+		
 
 		# Share Data Files
 		scope.share_data_files = {}
@@ -168,6 +142,13 @@ def set_initial_scope(scope, project_description):
 		scope.share_data_usecols = ['date', 'open', 'high', 'low', 'close', 'volume']
 		scope.share_data_dtypes = {'open': 'float64', 'high': 'float64', 'low': 'float64', 'close': 'float64', 'volume': 'int64'}
 		scope.share_data_dates = ['date']
+
+		# Company Profile Page
+		scope.company_profile_ticker = 'select a ticker'
+		scope.company_profile_share_data = {}
+		scope.company_profile_loaded_ticker = None
+		
+
 
 		# Market Dictionaries
 		scope.market_suffix = markets
@@ -181,11 +162,9 @@ def set_initial_scope(scope, project_description):
 		scope.download_schemas = download_share_data_schemas	
 		scope.download_yf_share_data = pd.DataFrame(columns=scope.share_data_usecols + ['ticker'] )
 		scope.download_yf_anomolies =  {}
-		
+
 		# Analysis Variables
 		scope.dropdown_colums = ['open', 'high', 'low', 'close', 'volume']
-
-
 
 		# Strategy Params
 		scope.strategy_name = 'None yet Selected', 
@@ -235,19 +214,6 @@ def refresh_ticker_dropdown_lists(scope):
 	list_of_tickers = scope.ticker_index_file.index.values.tolist()
 	list_of_tickers.insert(0, 'select a ticker')
 	scope.dropdown_ticker = list_of_tickers
-
-
-	# # ---------------------------------------------------------------------------------------
-	# # Single Ticker Selector for Volume Analysis
-	# tickers_for_volume_prediction = scope.ticker_index_file.index.values.tolist()
-	# tickers_for_volume_prediction.insert(0, 'select a ticker')
-	# scope.dropdown_ticker_for_volume_analysis = tickers_for_volume_prediction
-
-	# # ---------------------------------------------------------------------------------------
-	# # Single Ticker Selector for Company Profile
-	# tickers_for_company_profile = scope.ticker_index_file.index.values.tolist()
-	# tickers_for_company_profile.insert(0, 'select a ticker')
-	# scope.dropdown_ticker_for_company_profile = tickers_for_company_profile
 	
 	# ---------------------------------------------------------------------------------------
 	# Dont run this again unless we have downloaded new share data
@@ -303,7 +269,7 @@ def render_scope_page(scope):
 		st.markdown("""---""")
 		st.subheader('Ticker List for Single Share Code Analysis')
 		render_3_columns( 'Ticker List - for Volume Prediction', scope.ticker_for_vol_predict, 'ticker_for_vol_predict' )
-		render_3_columns( 'Ticker List - for Company Profile', scope.ticker_for_company_profile, 'ticker_for_company_profile' )
+		render_3_columns( 'Ticker List - for Company Profile', scope.company_profile_ticker, 'company_profile_ticker' )
 		# render_3_columns( 'Ticker List - for Volume Prediction', scope.ticker_for_vol_predict, 'ticker_for_vol_predict' )
 
 	if show_industries:
@@ -399,17 +365,11 @@ def render_scope_page(scope):
 		render_3_columns( 'Project Start Time', datetime.fromtimestamp(scope.project_start_time).strftime('%Y-%m-%d %H:%M:%S %p'), 'project_start_time' )
 		render_3_columns( 'Initial Run / load', scope.initial_load, 'initial_load' )
 
-		# st.markdown("""---""")
-		# st.subheader('Dropdown Selections - Multiple Ticker Analysis < tickers_for_multi>')
-		# render_3_columns( 'Selected Market', scope.chosen_market, 'chosen_market' )
-		# render_3_columns( 'Selected Industry(s)', scope.chosen_industries, 'chosen_industries' )
-		# render_3_columns( 'Selected Ticker(s)', scope.chosen_tickers, 'chosen_tickers' )
-
 		st.markdown("""---""")
 		st.subheader('Dropdown Menu - Single Purpose Ticker Selections')
 		render_3_columns( 'Ticker for Volume Analysis', scope.ticker_for_vol_predict, 'ticker_for_vol_predict' )
-		render_3_columns( 'Ticker for Volume Analysis', scope.ticker_for_company_profile, 'ticker_for_company_profile' )
-		render_3_columns( 'Ticker for Single Stock Analysis', scope.ticker_for_company_profile, 'NOT YET CONFIGURED' )
+		render_3_columns( 'Ticker for Volume Analysis', scope.company_profile_ticker, 'company_profile_ticker' )
+		render_3_columns( 'Ticker for Single Stock Analysis', scope.company_profile_ticker, 'NOT YET CONFIGURED' )
 
 		st.markdown("""---""")
 		st.subheader('selectbox and multiselect content lists')
@@ -451,7 +411,9 @@ def render_scope_page(scope):
 		render_3_columns( 'Public Holidays', scope.market_public_holidays, 'market_public_holidays' )
 		render_3_columns( 'Opening Hours', scope.market_opening_hours, 'market_opening_hours' )
 
-
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Helpers
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def render_3_columns( description, variable, variable_name, diff_col_size=None ):
 	if diff_col_size == None:
 		col1,col2,col3 = st.columns([2,4,2])
@@ -525,7 +487,7 @@ def report_params(params ):
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------
-# Share Index Reports
+# Missing Dates Reports TODO : Rob, work out if we still need this - should it even be in this module
 # -----------------------------------------------------------------------------------------------------------------------------------
 
 
