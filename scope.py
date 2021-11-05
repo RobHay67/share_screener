@@ -145,8 +145,6 @@ def set_initial_scope(scope, project_description):
 
 		# Company Profile Page
 		scope.company_profile_ticker = 'select a ticker'
-		scope.company_profile_share_data = {}
-		scope.company_profile_loaded_ticker = None
 		
 
 
