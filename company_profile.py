@@ -13,7 +13,7 @@ from share_data import load_share_data_files
 # ==============================================================================================================================================================
 def render_company_profile_page(scope):
 	st.title('Company Profile')
-	render_select_ticker_for_company(scope)
+	company_profile_ticker_selector(scope)
 	
 	st.markdown("""---""")
 	
@@ -37,7 +37,7 @@ def render_company_profile_page(scope):
 # Render Sections
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def render_select_ticker_for_company(scope):
+def company_profile_ticker_selector(scope):
 	col1,col2,col3,col4 = st.columns([2,2,2,6])							# col2=4 is just a dummy to prevent the widget filling the whole screen
 	
 	dropdown_list = scope.dropdown_ticker
@@ -49,8 +49,8 @@ def render_select_ticker_for_company(scope):
 								index=index_of_ticker, 
 								help='Select a ticker. Start typing to jump within list'
 								) 
-	with col2: load_tickers = st.button('Load Share Data File')
-	with col2: download_tickers = st.button( ( 'Download Previous ' + str(int(st.download_days)) + ' days') )
+	with col3: load_tickers = st.button('Load Share Data File')
+	with col3: download_tickers = st.button( ( 'Download Previous ' + str(int(st.download_days)) + ' days') )
 
 	scope.company_profile_ticker = ticker									# Store the selection for next session
 	
