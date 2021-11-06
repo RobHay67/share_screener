@@ -25,12 +25,7 @@ def render_company_profile_page(scope):
 		render_company_general_info(info)
 		render_fundamental_info(info)
 		render_general_meta_data(info)
-
-		if ticker in list(scope.share_data_files.keys()):
-			plot_basic_chart(scope.share_data_files[ticker])
-		else:
-			st.error('Load and/or Download Share Data to see a recent chart')
-		
+		plot_basic_chart(scope)		
 		render_market_info(info)
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -110,34 +105,37 @@ def render_general_meta_data(info):
 	st.markdown('** Exchange **: ' + info['exchange'])
 	st.markdown('** Quote Type **: ' + info['quoteType'])
 
-def plot_basic_chart(share_data):
-	fig = go.Figure(
-			data=go.Scatter(x=share_data['date'], y=share_data['close'])
-		)
-	fig.update_layout(
-		title={
-			'text': "Stock Prices Over Past ??????? Years",
-			'y':0.9,
-			'x':0.5,
-			'xanchor': 'center',
-			'yanchor': 'top'})
-	st.plotly_chart(fig, use_container_width=True)
+def plot_basic_chart(scope):
+	
+	ticker = scope.company_profile_ticker
 
-	# start = dt.datetime.today()-dt.timedelta(2 * 365)
-	# end = dt.datetime.today()
-	# df = yf.download(ticker,start,end)
-	# df = df.reset_index()
-	# fig = go.Figure(
-	# 		data=go.Scatter(x=df['Date'], y=df['Adj Close'])
-	# 	)
-	# fig.update_layout(
-	# 	title={
-	# 		'text': "Stock Prices Over Past Two Years",
-	# 		'y':0.9,
-	# 		'x':0.5,
-	# 		'xanchor': 'center',
-	# 		'yanchor': 'top'})
-	# st.plotly_chart(fig, use_container_width=True)
+	st.subheader('Chart of all available ' + ticker + ' data') 
+
+	if ticker in list(scope.share_data_files.keys()):
+		share_data = scope.share_data_files[ticker]
+		fig = go.Figure(
+				data=go.Scatter(x=share_data['date'], y=share_data['close'])
+			)
+		fig.update_layout(
+			title={
+				'text': "Stock Prices Over Past ??????? Years",
+				'y':0.9,
+				'x':0.5,
+				'xanchor': 'center',
+				'yanchor': 'top'})
+		st.plotly_chart(fig, use_container_width=True)
+
+		# start = dt.datetime.today()-dt.timedelta(2 * 365)
+		# end = dt.datetime.today()
+		# df = yf.download(ticker,start,end)
+		# df = df.reset_index()
+		# fig = go.Figure(
+		# 		data=go.Scatter(x=df['Date'], y=df['Adj Close'])
+		# 	)
+
+		st.warning('ROB to change chart to candlestick and maybe add a widget for the date range')
+	else:
+			st.error('Load and/or Download Share Data to see the chart')
 
 def render_market_info(info):
 	marketInfo = {
