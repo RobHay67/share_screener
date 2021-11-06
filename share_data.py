@@ -10,7 +10,7 @@ import os
 from ticker_index import save_ticker_index_file
 from scope import generate_path_for_share_data_file
 # from reports import report_progress, terminal_heading, output_result_to_terminal, print_missing_dates
-from browser import render_results
+from web_results import render_results
 
 # ==============================================================================================================================================================
 # Browser Render Controller : Load and / or  Download share data

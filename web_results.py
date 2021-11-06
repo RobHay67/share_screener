@@ -2,10 +2,6 @@
 import streamlit as st
 
 
-# from share_data import load_tickers
-
-
-
 # -----------------------------------------------------------------------------------------------------------------------------------
 # Output Ticker Iteration to terminal
 # -----------------------------------------------------------------------------------------------------------------------------------
@@ -44,7 +40,5 @@ def render_results(scope, output=None, result=None, final_print=False, passed=''
 
 		# if len(scope.result_failed) != 0:
 		if scope.result_failed_count > 0: st.error(scope.result_failed)
-
-
 
 

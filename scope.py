@@ -94,10 +94,11 @@ def set_initial_scope(scope, project_description):
 		scope.initial_load = True
 		scope.update_dropdown_lists = True		# TODO - do we need to do this??
 		scope.share_market = 'ASX'				# Set Initial Applications Selections
+		scope.display_page = 'initial_load'		# The homepage to display - 
 
 	if scope.initial_load:
 		# Streamlit Params
-		scope.display_page = 'undetermined'
+		
 
 		# Project Params
 		scope.project_description = project_description

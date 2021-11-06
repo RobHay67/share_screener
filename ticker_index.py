@@ -6,7 +6,7 @@ import os
 import datetime
 import streamlit as st
 
-from browser import render_results
+from web_results import render_results
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
