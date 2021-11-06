@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 
 from indicators import line_sma
 
-from share_data import load_share_data_files
+from ticker_data import load_ticker_data_files
 
 # TODO - Rob - just work on the end of day data and when we get this working we can wire in the 5 minute data
 # X  trend lines
@@ -92,7 +92,7 @@ def company_profile_ticker_selector(scope):
 		st.header( scope.ticker_index_file.loc[ticker]['company_name'] )	
 
 	if load_tickers : 
-		load_share_data_files(scope, [ticker])
+		load_ticker_data_files(scope, [ticker])
 
 	if download_tickers:
 		st.warning('Need to configure the share downloader')

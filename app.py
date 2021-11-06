@@ -10,7 +10,6 @@ project_description = 'Share Trader - DDT'
 from scope import set_initial_scope
 from scope import refresh_ticker_dropdown_lists
 from web_browser import render_current_page, set_page
-# from share_data import construct_list_of_share_codes
 
 
 # Set Up Streamlit Environment ==================================================================================
@@ -56,24 +55,6 @@ st.sidebar.title('Variables')
 st.download_days = st.sidebar.number_input('change ( - / + )  number of days to download', min_value=1, max_value=1000, value=1, key='0')   
 st.sidebar.button('Session Variables', on_click=set_page, args=('scope', ))
 
-
-
-
-# Select Tickers -----------------------------------------------------------------------------------------------
-# def update_ticker_list_required(): st.session_state.update_ticker_list_required = True
-# st.sidebar.subheader('Choose Tickers (lowest takes precedence)')
-# market   = st.sidebar.selectbox  ('Choose a Market'  	, st.session_state.dropdown_markets   , on_change=update_ticker_list_required, help='Select an Entire Share Market for Analysis')
-# industry = st.sidebar.multiselect('Choose Industries'	, st.session_state.dropdown_industries, on_change=update_ticker_list_required, help='Quickly Select all tickers in a particular industry')
-# tickers  = st.sidebar.multiselect('Choose Tickers'   	, st.session_state.dropdown_tickers   , on_change=update_ticker_list_required, help='Select a ticker, or multiple tickers from the dropdown. Start typing to jump within list') 
-# ticker   = st.sidebar.selectbox  ('Choose a lone Ticker', st.session_state.dropdown_single_ticker   , on_change=update_ticker_list_required, help='Select a single ticker only. Start typing to jump within list') 
-
-# Update the ticker list if required (selector box has changed)
-# if st.session_state.update_ticker_list_required:
-# 	st.session_state.chosen_market = market
-# 	st.session_state.tickers_industries = industry
-# 	st.session_state.tickers_tickers = tickers
-#	st.session_state.chosen_single_ticker = ticker
-# 	construct_list_of_share_codes(st.session_state)
 
 
 

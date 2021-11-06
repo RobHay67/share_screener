@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from share_data import construct_list_of_share_codes
+from ticker_data import construct_list_of_ticker_codes
 
 def render_multi_analysis_page(scope):
 	st.title('Analysis - Multiple Tickers')
@@ -31,7 +31,7 @@ def render_multi_analysis_page(scope):
 # 	st.session_state.tickers_industries = industry
 # 	st.session_state.tickers_tickers = tickers
 #	st.session_state.chosen_single_ticker = ticker
-# 	construct_list_of_share_codes(st.session_state)
+# 	construct_list_of_ticker_codes(st.session_state)
 
 def tickers_update_list(): 
 	st.session_state.tickers_update_list = True
@@ -70,12 +70,12 @@ def render_selectors_for_multi_analysis(scope):
 		st.session_state.tickers_market = market
 		st.session_state.tickers_industries = industry
 		st.session_state.tickers_tickers = tickers
-		construct_list_of_share_codes(st.session_state)
+		construct_list_of_ticker_codes(st.session_state)
 
 # def update_ticker_list():
 # 	print( 'I have been called to update the ticker list')
 # 	print( 'Industries = ', st.session_state.tickers_industries )
-# 	construct_list_of_share_codes(st.session_state)
+# 	construct_list_of_ticker_codes(st.session_state)
 
 
 

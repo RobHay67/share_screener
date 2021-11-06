@@ -15,7 +15,7 @@ from web_results import render_results
 # ==============================================================================================================================================================
 # Browser Render Controller : Load and / or  Download share data
 # ==============================================================================================================================================================
-def render_share_data_fetcher(scope, ticker_list):
+def render_ticker_data_fetcher(scope, ticker_list):
 
 	if isinstance(ticker_list, str): ticker_list = [ticker_list]
 
@@ -27,21 +27,21 @@ def render_share_data_fetcher(scope, ticker_list):
 	if len(ticker_list) > 0:
 		if load_tickers: 
 			with col3: st.write( ('Loading ( ' + str(len(ticker_list)) + ' ) Tickers') )
-			load_share_data_files(scope, ticker_list)
+			load_ticker_data_files(scope, ticker_list)
 			with col3: st.write('Finished Loading Tickers')
 			
 
 		if download_tickers:
 			with col3: st.write( ('Downloading ( ' + str(len(ticker_list)) + ' ) Tickers from Yahoo Finance') )
 
-			load_share_data_files(scope, ticker_list)
+			load_ticker_data_files(scope, ticker_list)
 
 			#TODO - ROB WE ARE up to this point - for some reason it was downloading the entire ASX - need to check this
 			determine_download_groups_for_y_finance(scope)
 
 			download_from_yahoo_finance(scope)
 
-			combine_loaded_and_downloaded_share_data(scope)
+			combine_loaded_and_downloaded_ticker_data(scope)
 
 			# check_share_data_for_missing_dates( scope )
 
@@ -59,13 +59,13 @@ def download_tickers(scope):
 	if len(scope.tickers_for_multi) != 0: 
 		st.subheader('Loading Tickers (as specified by the Ticker List)')
 
-		load_share_data_files(scope)
+		load_ticker_data_files(scope)
 
 		determine_download_groups_for_y_finance(scope)
 
 		download_from_yahoo_finance(scope)
 
-		combine_loaded_and_downloaded_share_data(scope)
+		combine_loaded_and_downloaded_ticker_data(scope)
 
 		# check_share_data_for_missing_dates( scope )
 
@@ -77,11 +77,11 @@ def download_tickers(scope):
 
 
 
-def render_share_data_page(scope):
+def render_ticker_data_page(scope):
 	st.title('Load and/or Download Share Data')
 	st.info(('Current number of Loaded Files ( ' + str((len(scope.share_data_files))) + ' )'))
 
-	render_share_data_fetcher(scope, ['test'])
+	render_ticker_data_fetcher(scope, ['test'])
 
 
 	# col1,col2 = st.columns([4,4])
@@ -103,7 +103,7 @@ def render_share_data_page(scope):
 	# 	st.header('Loading Tickers (as specified by the Ticker List)')
 
 	# 	if len(scope.tickers_for_multi) != 0: 
-	# 		load_share_data_files(scope)
+	# 		load_ticker_data_files(scope)
 	# 	else:
 	# 		st.error('Ticker List does not contain any tickers - add tickers using the sidebar')
 		
@@ -115,13 +115,13 @@ def render_share_data_page(scope):
 	# 	if len(scope.tickers_for_multi) != 0: 
 	# 		st.subheader('Loading Tickers (as specified by the Ticker List)')
 
-	# 		load_share_data_files(scope)
+	# 		load_ticker_data_files(scope)
 
 	# 		determine_download_groups_for_y_finance(scope)
 
 	# 		download_from_yahoo_finance(scope)
 
-	# 		combine_loaded_and_downloaded_share_data(scope)
+	# 		combine_loaded_and_downloaded_ticker_data(scope)
 
 	# 		# check_share_data_for_missing_dates( scope )
 
@@ -130,7 +130,7 @@ def render_share_data_page(scope):
 		
 	# 	st.write('Finished Downloading Ticker Trading Data')
 
-def render_share_data_file(scope):
+def render_ticker_data_file(scope):
 	st.header('Loaded and Downloaded share data.')
 	list_of_loaded_tickers = list(scope.share_data_files.keys())
 
@@ -145,9 +145,9 @@ def render_share_data_file(scope):
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # def ensure_share_data_is_available(params):
 # 	if len(params.analysis['tickers_for_multi']) > 0:								# we have some share data to analyse
-# 		# load_share_data_files( params )
+# 		# load_ticker_data_files( params )
 # 		download_from_yahoo_finance( params )			
-# 		combine_loaded_and_downloaded_share_data(params)
+# 		combine_loaded_and_downloaded_ticker_data(params)
 # 		check_share_data_for_missing_dates( params )   # ensure that the expected date ranges are actually available for each stock
 
 
@@ -156,7 +156,7 @@ def render_share_data_file(scope):
 # ==============================================================================================================================================================
 # Combiner - concatenates any downloaded data with any loaded data resulting in a complete (hopefully) temporal history of existing share data
 # ==============================================================================================================================================================
-def combine_loaded_and_downloaded_share_data(scope): # DONE
+def combine_loaded_and_downloaded_ticker_data(scope): # DONE
 	st.subheader('Combining the Loaded and Downloaded Share Data Files')
 	render_results( scope, passed='COMBINED > ', passed_2='CREATED new files > ', failed='na' )
 
@@ -173,13 +173,13 @@ def combine_loaded_and_downloaded_share_data(scope): # DONE
 				render_results( scope, ticker, result='passed_2' )
 			scope.share_data_files[ticker].sort_values(by=['date'], inplace=True)							# sort the share data into date order ascending
 	render_results(scope, 'Finished', final_print=True )
-	save_share_data_files( scope )
+	save_ticker_data_files( scope )
 
 
 # ==============================================================================================================================================================
 # Share Data : loaders and savers
 # ==============================================================================================================================================================
-def load_share_data_files( scope, ticker_list ):
+def load_ticker_data_files( scope, ticker_list ):
 	render_results( scope, passed='LOADED Share Data Files > ', failed='MISSING Share Data Files for > ', passed_2='na' )
 
 	# scope.share_data_loaded_list = []
@@ -209,16 +209,16 @@ def load_a_file( scope, ticker ): # DONE
 									)
 	scope.share_data_files[ticker] = share_data_file
 
-def save_share_data_files( scope ): # DONE
+def save_ticker_data_files( scope ): # DONE
 	st.subheader('Saving Share Data Files')
 	render_results( scope, passed='Files SAVED > ', failed='na', passed_2='na' )
 	for ticker in scope.share_data_files:
 		generate_path_for_share_data_file(scope, ticker )
-		save_share_data_file( scope, scope.share_data_files[ticker] )
+		save_ticker_data_file( scope, scope.share_data_files[ticker] )
 		render_results( scope, ticker, result='passed' )
 	render_results(scope, 'Finished', final_print=True )
 
-def save_share_data_file( scope, dataframe ): # DONE
+def save_ticker_data_file( scope, dataframe ): # DONE
 	saving_df = dataframe.copy()
 	saving_df.to_csv( scope.path_share_data_file, index=False )
 
@@ -344,7 +344,7 @@ def update_download_status(scope): # DONE - but needs robust testing on a large 
 # ==============================================================================================================================================================
 # Ticker List for Multi Ticker Analysis : Construct and Quick Show
 # ==============================================================================================================================================================
-def construct_list_of_share_codes(scope):
+def construct_list_of_ticker_codes(scope):
 	st.header('Adding or Remove tickers from the Ticker List')
 	ticker_list = []
 	
@@ -506,7 +506,7 @@ def render_ticker_list(scope):
 # -----------------------------------------------------------------------------------------------------------------------------------
 # Replaced these functions with non specfic ticker lists
 # -----------------------------------------------------------------------------------------------------------------------------------
-# def load_share_data_files( scope ): # DONE
+# def load_ticker_data_files( scope ): # DONE
 # 	render_results( scope, passed='LOADED Share Data Files > ', failed='MISSING Share Data Files for > ', passed_2='na' )
 
 # 	scope.share_data_loaded_list = []
@@ -536,7 +536,7 @@ def render_ticker_list(scope):
 # 	st.header('Loading Tickers (as specified by the Ticker List)')
 
 # 	if len(scope.tickers_for_multi) != 0: 
-# 		load_share_data_files(scope)
+# 		load_ticker_data_files(scope)
 # 	else:
 # 		st.error('Ticker List does not contain any tickers - add tickers using the sidebar')
 	

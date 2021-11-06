@@ -463,7 +463,7 @@ def analysis_params(params):
 	
 	# TICKER LIST - primary iterator
 	# TODO
-	# construct_list_of_share_codes(params)
+	# construct_list_of_ticker_codes(params)
 
 	# set trading variables
 	# params.analysis['trade_value'] = args.analysis_trade_value

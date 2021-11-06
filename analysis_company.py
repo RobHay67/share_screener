@@ -5,7 +5,7 @@ import pandas as pd
 # import datetime as dt
 import plotly.graph_objects as go
 
-from share_data import load_share_data_files
+from ticker_data import load_ticker_data_files
 
 
 # ==============================================================================================================================================================
@@ -55,7 +55,7 @@ def company_profile_ticker_selector(scope):
 		st.header( scope.ticker_index_file.loc[ticker]['company_name'] )	
 
 	if load_tickers : 
-		load_share_data_files(scope, [ticker])
+		load_ticker_data_files(scope, [ticker])
 
 	if download_tickers:
 		st.warning('Need to configure the share downloader')
