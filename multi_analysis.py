@@ -29,7 +29,7 @@ def render_multi_analysis_page(scope):
 # if st.session_state.tickers_update_list:
 # 	st.session_state.tickers_market = market
 # 	st.session_state.tickers_industries = industry
-# 	st.session_state.tickers_tickers = tickers
+# 	st.session_state.tickers_selected = tickers
 #	st.session_state.chosen_single_ticker = ticker
 # 	construct_list_of_ticker_codes(st.session_state)
 
@@ -61,7 +61,7 @@ def render_selectors_for_multi_analysis(scope):
 	with col3: 
 		tickers = st.multiselect( 	label='Add a Ticker(s) to the Ticker List',
 									options=scope.dropdown_tickers,
-									default=scope.tickers_tickers,
+									default=scope.tickers_selected,
 									on_change=tickers_update_list,
 									help='Select a ticker, or multiple tickers from the dropdown. Start typing to jump within list'
 									)
@@ -69,8 +69,26 @@ def render_selectors_for_multi_analysis(scope):
 	if st.session_state.tickers_update_list:
 		st.session_state.tickers_market = market
 		st.session_state.tickers_industries = industry
-		st.session_state.tickers_tickers = tickers
+		st.session_state.tickers_selected = tickers
 		construct_list_of_ticker_codes(st.session_state)
+
+
+# the loader and downloader needs to set the following :
+
+# scope.download_groups_for_y_finance = ['random_tickers']
+
+# if scope.tickers_market != 'select entire market':
+# 	scope.download_groups_for_y_finance = ( list(scope.ticker_index_file['industry_group'].unique() ))
+# elif len(scope.tickers_industries) != 0:
+# 	scope.download_groups_for_y_finance = scope.tickers_industries				# TODO - test this one Rob as I needed to change it
+# elif len(scope.tickers_selected) != 0:
+# 	scope.download_groups_for_y_finance.append('random_tickers')
+
+
+
+
+
+
 
 # def update_ticker_list():
 # 	print( 'I have been called to update the ticker list')

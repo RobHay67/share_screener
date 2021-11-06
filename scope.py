@@ -130,15 +130,14 @@ def set_initial_scope(scope, project_description):
 		load_ticker_index_file(scope)
 
 		# Ticker Selections are stored in these variables
-		scope.tickers_market = 'select entire market'			# for the multi ticker selection screen
-		scope.tickers_industries = None
-		scope.tickers_tickers = None
-		scope.tickers_for_multi = []
-		scope.tickers_update_list = False 				# TODO - do we need this - yes we do
+		scope.tickers_market 		= 'select entire market'			# for the multi ticker selection screen
+		scope.tickers_industries 	= None
+		scope.tickers_selected 		= None
+		scope.tickers_for_multi 	= []
+		scope.tickers_update_list 	= False 							# This is utilised by the multi selectors to ensure smooth updates
 		scope.ticker_for_company_profile = 'select a ticker'
 		scope.ticker_for_vol_predict = 'select a ticker'
 		scope.ticker_for_daily = 'select a ticker'
-		
 
 		# Share Data Files
 		scope.share_data_files = {}
@@ -149,6 +148,9 @@ def set_initial_scope(scope, project_description):
 		scope.share_data_dtypes = {'open': 'float64', 'high': 'float64', 'low': 'float64', 'close': 'float64', 'volume': 'int64'}
 		scope.share_data_dates = ['date']
 
+		# Object to store the Tickers to be loaded or downloaded
+		scope.ticker_list = []
+
 		# Market Dictionaries
 		scope.market_suffix = markets
 		scope.market_public_holidays = public_holidays
@@ -157,6 +159,7 @@ def set_initial_scope(scope, project_description):
 		# Download Ticker Variables
 		scope.download_days = 1
 		scope.download_groups_for_y_finance = []
+		# scope.download_by_group = False						# only the multi selector would need to change this
 		scope.download_schema = None
 		scope.download_schemas = download_share_data_schemas	
 		scope.download_yf_share_data = pd.DataFrame(columns=scope.share_data_usecols + ['ticker'] )
@@ -378,7 +381,7 @@ def render_scope_page(scope):
 		st.subheader('selectbox and multiselect content lists')
 		render_3_columns( 'Selected Market'		, scope.tickers_market, 'tickers_market' )
 		render_3_columns( 'Selected Industries' , scope.tickers_industries, 'tickers_industries' )
-		render_3_columns( 'Selected Tickers' 	, scope.tickers_tickers, 'tickers_tickers' )
+		render_3_columns( 'Selected Tickers' 	, scope.tickers_selected, 'tickers_selected' )
 
 		render_3_columns( 'Update the Tickers Mult List' 	, scope.tickers_update_list, 'tickers_update_list' )
 		

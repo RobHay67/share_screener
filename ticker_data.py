@@ -156,13 +156,13 @@ def render_ticker_data_file(scope):
 # ==============================================================================================================================================================
 # Combiner - concatenates any downloaded data with any loaded data resulting in a complete (hopefully) temporal history of existing share data
 # ==============================================================================================================================================================
-def combine_loaded_and_downloaded_ticker_data(scope): # DONE
+def combine_loaded_and_downloaded_ticker_data(scope): # WIP - change to check for loaded ticker
 	st.subheader('Combining the Loaded and Downloaded Share Data Files')
 	render_results( scope, passed='COMBINED > ', passed_2='CREATED new files > ', failed='na' )
 
-	for ticker in scope.tickers_for_multi:
-		if ticker in scope.download_yf_share_data['ticker'].unique():
-			ticker_data = scope.download_yf_share_data[scope.download_yf_share_data['ticker'] == ticker]	# subset to specific ticker
+	for ticker in scope.ticker_list:																		# iterate through the target tickers
+		if ticker in scope.download_yf_share_data['ticker'].unique():										# if we have downloaded data (we may have nothing)
+			ticker_data = scope.download_yf_share_data[scope.download_yf_share_data['ticker'] == ticker]	# subset to a specific ticker in the downloaded data
 			ticker_data = ticker_data[scope.share_data_usecols]												# standardise the columns
 			ticker_data = ticker_data[ticker_data['volume'] != 0]											# drop rows where volume is zero 
 			if ticker in scope.share_data_loaded_list:														# we have an exisiting share_data_file so we concatenate the data
@@ -177,15 +177,41 @@ def combine_loaded_and_downloaded_ticker_data(scope): # DONE
 
 
 # ==============================================================================================================================================================
-# Share Data : loaders and savers
+# Ticker Data : loaders and savers
 # ==============================================================================================================================================================
-def load_ticker_data_files( scope, ticker_list ):
+def load_and_download_ticker_data( scope ):
+	st.header('Downloading Tickers from Yahoo Finance')
+
+
+	# 	if len(scope.tickers_for_multi) != 0: 
+	# 		st.subheader('Loading Tickers (as specified by the Ticker List)')
+
+	# load_ticker_data_files(scope, ticker_list)
+
+	# determine_download_groups_for_y_finance(scope)   # DONT NEED THIS STEP ANYMORE
+
+	download_from_yahoo_finance(scope )
+
+
+	combine_loaded_and_downloaded_ticker_data(scope)
+
+	# 		# check_share_data_for_missing_dates( scope )
+
+	# scope.download_by_group = False
+	scope.download_groups_for_y_finance = [] # Reset for next download
+
+	# 	else:
+	# 		st.error('Ticker List does not contain any tickers - add tickers using the sidebar')
+
+
+
+def load_ticker_data_files( scope ):
 	render_results( scope, passed='LOADED Share Data Files > ', failed='MISSING Share Data Files for > ', passed_2='na' )
 
 	# scope.share_data_loaded_list = []
 	# scope.share_data_missing_list = []
 	
-	for ticker in ticker_list:
+	for ticker in scope.ticker_list:
 	# for ticker in scope.tickers_for_multi:
 		generate_path_for_share_data_file(scope, ticker )
 		if os.path.exists( scope.path_share_data_file ):
@@ -227,7 +253,7 @@ def save_ticker_data_file( scope, dataframe ): # DONE
 # Yahoo Finance - current source of OHLCV Share Data
 # ==============================================================================================================================================================
 
-def download_from_yahoo_finance( scope ): # DONE
+def download_from_yahoo_finance( scope ): # WIP
 	# group_by: group by column or ticker (‘column’/’ticker’, default is ‘column’)
 	# threads: use threads for mass downloading? (True/False/Integer)
 	st.subheader('Downloading Ticker data from Yahoo Finance (as specified by the Ticker List')
@@ -240,7 +266,9 @@ def download_from_yahoo_finance( scope ): # DONE
 		download_message = ('downloading > ' + y_finance_group + ' ( ' + str(count+1) + ' of ' + str(len(scope.download_groups_for_y_finance)) + ' )' )
 		st.write(  download_message)
 		print ( download_message)
-		ticker_string = yahoo_ticker_string_by_group( scope, y_finance_group)
+		ticker_string = yahoo_ticker_string_for_each_group( scope, y_finance_group)
+
+		print ( scope.download_schema)
 
 		if scope.download_schema == 'y_finance_single':
 			yf_download = yf.download( ticker_string, period=period , interval='1d', progress=True, show_errors=False )
@@ -256,22 +284,33 @@ def download_from_yahoo_finance( scope ): # DONE
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Yahoo Finance - helpers
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def determine_download_groups_for_y_finance(scope): # DONE
-	scope.download_groups_for_y_finance = []
+# def determine_download_groups_for_y_finance(scope, ticker_list ): # TODO : this is complicated and needs refactoring
+# 	# If appropriate, group the download by the industry 
+# 	# groups as this simplifies the download process
 
-	if scope.tickers_market != 'select entire market':
-		scope.download_groups_for_y_finance = ( list(scope.ticker_index_file['industry_group'].unique() ))
-	elif len(scope.tickers_industries) != 0:
-		scope.download_groups_for_y_finance = scope.selected_industry
-	elif len(scope.tickers_tickers) != 0:
-		scope.download_groups_for_y_finance.append('selected_tickers')
-	elif len(scope.chosen_single_ticker) != 0:
-		scope.download_groups_for_y_finance.append('selected_tickers')
+# 	scope.download_groups_for_y_finance = []
 
-def yahoo_ticker_string_by_group( scope, y_finance_group): # DONE
-	if y_finance_group == 'selected_tickers':
+# 	# group_method = ''
+# 	if download_by_group == False:
+
+# 	# if we are multi download, we do what we normally do, otherwise we do the selected tickers method (for singles)
+# 	if scope.download_group_method == 'tickers_selected':
+# 		scope.download_groups_for_y_finance.append('tickers_selected')
+# 	elif scope.download_group_method == 'tickers_multi':
+# 		if scope.tickers_market != 'select entire market':
+# 			scope.download_groups_for_y_finance = ( list(scope.ticker_index_file['industry_group'].unique() ))
+# 		elif len(scope.tickers_industries) != 0:
+# 			scope.download_groups_for_y_finance = scope.selected_industry
+# 		elif len(scope.tickers_selected) != 0:
+# 			scope.download_groups_for_y_finance.append('tickers_selected')
+# 	else:
+# 		st.error( ('The scope.download_group_method value > ' + scope.download_group_method + ' < which has not been configured') )
+
+def yahoo_ticker_string_for_each_group( scope, y_finance_group): # TODO - refactor this as well - that last function can be a single line
+	# TODO - we need to know which ticker list to work with
+	if y_finance_group == 'random_tickers':
 		# we have selected specific tickers 
-		tickers_list = scope.tickers_for_multi
+		tickers_list = scope.ticker_list
 	else:
 		# we have selected a specific market, industry or number of industries
 		tickers_in_industry_group_df = scope.ticker_index_file[scope.ticker_index_file['industry_group'] == y_finance_group ]
@@ -326,11 +365,11 @@ def store_yf_download_in_scope( scope, ticker_string, yf_download, download_erro
 # ==============================================================================================================================================================
 # Update Share Index with download status information
 # ==============================================================================================================================================================
-def reset_download_status( scope ): # DONE
-	for ticker in scope.tickers_for_multi:
+def reset_download_status( scope ): # TODO - test output
+	for ticker in scope.ticker_list:
 		scope.ticker_index_file.at[ticker, 'yahoo_status'] = 'set_for_download'
 
-def update_download_status(scope): # DONE - but needs robust testing on a large group
+def update_download_status(scope ): # TODO DONE - but needs robust testing on a large group
 	for ticker in scope.download_yf_share_data['ticker'].unique():
 		scope.ticker_index_file.at[ticker, 'yahoo_status'] = 'downloaded'
 	for ticker, error_message in scope.download_yf_anomolies.items():
@@ -356,8 +395,8 @@ def construct_list_of_ticker_codes(scope):
 
 
 	# Selected a ticker or tickers
-	if len(scope.tickers_tickers) != 0:
-		for ticker in scope.tickers_tickers:
+	if len(scope.tickers_selected) != 0:
+		for ticker in scope.tickers_selected:
 			render_results( scope, ticker, result='passed' )
 			ticker_list += [ticker]	
 		pass
