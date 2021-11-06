@@ -38,11 +38,11 @@ render_current_page(st.session_state.display_page)
 st.sidebar.title(project_description)
 st.sidebar.button(('Share Index ( ' + str((len(st.session_state.ticker_index_file))) + ' )'), on_click=set_page, args=('ticker_index', ))
 
-st.sidebar.title('Multi Ticker Analysis')
+st.sidebar.title('Analysis ( multiple tickers )')
 st.sidebar.button('Multi Ticker Analysis', on_click=set_page, args=('multi_analysis', ))
 st.sidebar.button( ('Load and Import Share Data ( ' + str((len(st.session_state.share_data_files))) + ' )'), on_click=set_page, args=('manage_share_data', ))
 
-st.sidebar.title('Single Ticker Analysis')
+st.sidebar.title('Analysis ( single ticker )')
 st.sidebar.button('Company Profile'	 , on_click=set_page, args=('company_profile', ))
 st.sidebar.button('Volume Prediction', on_click=set_page, args=('volume', ))
 st.sidebar.button('Daily Analysis'	 , on_click=set_page, args=('daily_analysis', ))
@@ -70,8 +70,8 @@ st.sidebar.button('Session Variables', on_click=set_page, args=('scope', ))
 # Update the ticker list if required (selector box has changed)
 # if st.session_state.update_ticker_list_required:
 # 	st.session_state.chosen_market = market
-# 	st.session_state.chosen_industries = industry
-# 	st.session_state.chosen_tickers = tickers
+# 	st.session_state.tickers_industries = industry
+# 	st.session_state.tickers_tickers = tickers
 #	st.session_state.chosen_single_ticker = ticker
 # 	construct_list_of_share_codes(st.session_state)
 

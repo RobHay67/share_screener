@@ -17,7 +17,7 @@ def set_page(page:str):
 	st.session_state.display_page = page
 
 def render_current_page(page):
-
+	# print(page)
 	page_render_map = {
 						'ticker_index'		:render_ticker_index_page,
 						'ticker_list'		:render_ticker_list,

@@ -130,11 +130,15 @@ def set_initial_scope(scope, project_description):
 		load_ticker_index_file(scope)
 
 		# Ticker Selections are stored in these variables
-		scope.update_ticker_list_required = False 				# TODO - do we need this
+		scope.tickers_market = 'select entire market'			# for the multi ticker selection screen
+		scope.tickers_industries = None
+		scope.tickers_tickers = None
 		scope.tickers_for_multi = []
+		scope.tickers_update_list = False 				# TODO - do we need this - yes we do
 		scope.ticker_for_company_profile = 'select a ticker'
 		scope.ticker_for_vol_predict = 'select a ticker'
 		scope.ticker_for_daily = 'select a ticker'
+		
 
 		# Share Data Files
 		scope.share_data_files = {}
@@ -188,7 +192,7 @@ def refresh_ticker_dropdown_lists(scope):
 	# ---------------------------------------------------------------------------------------
 	# Single Share Market Selector
 	list_of_markets = list(scope.market_suffix.keys())
-	list_of_markets.insert(0, '< select entire market >')
+	list_of_markets.insert(0, 'select entire market')
 	scope.dropdown_markets = list_of_markets
 	# scope.dropdown_markets_re_render = True
 	
@@ -368,13 +372,20 @@ def render_scope_page(scope):
 		render_3_columns( 'Ticker for Company Profile', scope.ticker_for_company_profile, 'ticker_for_company_profile' )
 		render_3_columns( 'Ticker for Volume Analysis', scope.ticker_for_vol_predict	, 'ticker_for_vol_predict' )
 		render_3_columns( 'Ticker for Single Analysis', scope.ticker_for_daily			, 'ticker_for_daily' )
+		render_3_columns( 'Available Tickers ( selectbox )', scope.dropdown_ticker		, 'dropdown_ticker' )
 
 		st.markdown("""---""")
 		st.subheader('selectbox and multiselect content lists')
-		render_3_columns( 'Available Markets    ( selectbox )', scope.chosen_market, 'chosen_market' )
+		render_3_columns( 'Selected Market'		, scope.tickers_market, 'tickers_market' )
+		render_3_columns( 'Selected Industries' , scope.tickers_industries, 'tickers_industries' )
+		render_3_columns( 'Selected Tickers' 	, scope.tickers_tickers, 'tickers_tickers' )
+
+		render_3_columns( 'Update the Tickers Mult List' 	, scope.tickers_update_list, 'tickers_update_list' )
+		
+		render_3_columns( 'Available Markets    ( selectbox )', scope.dropdown_markets, 'dropdown_markets' )
 		render_3_columns( 'Available Industries ( multiselect )', scope.dropdown_industries, 'dropdown_industries' )
 		render_3_columns( 'Available Tickers    ( multiselect )', scope.dropdown_tickers, 'dropdown_tickers' )
-		render_3_columns( 'Available Tickers    ( selectbox )', scope.dropdown_ticker, 'dropdown_ticker' )
+		
 
 
 		st.markdown("""---""")

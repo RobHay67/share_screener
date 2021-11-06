@@ -44,8 +44,10 @@ def company_profile_ticker_selector(scope):
 								index=index_of_ticker, 
 								help='Select a ticker. Start typing to jump within list'
 								) 
-	with col3: load_tickers = st.button('Load Share Data File')
-	with col3: download_tickers = st.button( ( 'Download Previous ' + str(int(st.download_days)) + ' days') )
+	with col3: 
+		load_tickers = st.button('Load Share Data File')
+	with col3: 
+		download_tickers = st.button( ( 'Download Previous ' + str(int(st.download_days)) + ' days') )
 
 	scope.ticker_for_company_profile = ticker									# Store the selection for next session
 	

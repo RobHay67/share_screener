@@ -259,11 +259,11 @@ def download_from_yahoo_finance( scope ): # DONE
 def determine_download_groups_for_y_finance(scope): # DONE
 	scope.download_groups_for_y_finance = []
 
-	if scope.chosen_market != '< select entire market >':
+	if scope.tickers_market != 'select entire market':
 		scope.download_groups_for_y_finance = ( list(scope.ticker_index_file['industry_group'].unique() ))
-	elif len(scope.chosen_industries) != 0:
+	elif len(scope.tickers_industries) != 0:
 		scope.download_groups_for_y_finance = scope.selected_industry
-	elif len(scope.chosen_tickers) != 0:
+	elif len(scope.tickers_tickers) != 0:
 		scope.download_groups_for_y_finance.append('selected_tickers')
 	elif len(scope.chosen_single_ticker) != 0:
 		scope.download_groups_for_y_finance.append('selected_tickers')
@@ -354,30 +354,17 @@ def construct_list_of_share_codes(scope):
 	# Most detailed takes precedence
 	# ##############################
 
-	
-	# A single ticker
-	if scope.chosen_single_ticker != '< not selected >':
-		ticker = scope.chosen_single_ticker
-		render_results( scope, ticker, result='passed' )
-		ticker_list += [ticker]
-
-		if ticker in scope.share_data_loaded_list:
-			keep_exisiting_data = scope.share_data_files[ticker]
-			scope.share_data_files = {}
-			scope.share_data_files[ticker] = keep_exisiting_data
-		else:
-			scope.share_data_files = {}  # empty the loaded data
 
 	# Selected a ticker or tickers
-	elif len(scope.chosen_tickers) != 0:
-		for ticker in scope.chosen_tickers:
+	if len(scope.tickers_tickers) != 0:
+		for ticker in scope.tickers_tickers:
 			render_results( scope, ticker, result='passed' )
 			ticker_list += [ticker]	
 		pass
 
 	# Selected an Industry
-	elif len(scope.chosen_industries) != 0:
-		for industry in scope.chosen_industries:
+	elif len(scope.tickers_industries) != 0:
+		for industry in scope.tickers_industries:
 			render_results( scope, industry.upper(), result='passed' )
 			tickers_in_industry_group_df = scope.ticker_index_file[scope.ticker_index_file['industry_group'] == industry ]
 			tickers_in_industry = tickers_in_industry_group_df.index.tolist()
@@ -385,8 +372,8 @@ def construct_list_of_share_codes(scope):
 		pass
 	
 	# Selected an entire share market
-	elif scope.chosen_market != '< select entire market >':
-		render_results( scope, scope.selected_market.upper(), result='passed' )
+	elif scope.tickers_market != 'select entire market':
+		render_results( scope, scope.tickers_market.upper(), result='passed' )
 		available_tickers_for_this_market = scope.ticker_index_file.index.values.tolist()
 		ticker_list =  available_tickers_for_this_market
 	else:
@@ -395,7 +382,7 @@ def construct_list_of_share_codes(scope):
 	render_results(scope, 'Finished', final_print=True )
 
 	scope.tickers_for_multi = ticker_list
-	scope.update_ticker_list_required = False
+	scope.tickers_update_list = False
 
 	st.markdown("""---""")
 
