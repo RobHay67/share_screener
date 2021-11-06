@@ -132,8 +132,9 @@ def set_initial_scope(scope, project_description):
 		# Ticker Selections are stored in these variables
 		scope.update_ticker_list_required = False 				# TODO - do we need this
 		scope.tickers_for_multi = []
+		scope.ticker_for_company_profile = 'select a ticker'
 		scope.ticker_for_vol_predict = 'select a ticker'
-		
+		scope.ticker_for_daily = 'select a ticker'
 
 		# Share Data Files
 		scope.share_data_files = {}
@@ -143,11 +144,6 @@ def set_initial_scope(scope, project_description):
 		scope.share_data_usecols = ['date', 'open', 'high', 'low', 'close', 'volume']
 		scope.share_data_dtypes = {'open': 'float64', 'high': 'float64', 'low': 'float64', 'close': 'float64', 'volume': 'int64'}
 		scope.share_data_dates = ['date']
-
-		# Company Profile Page
-		scope.company_profile_ticker = 'select a ticker'
-		
-
 
 		# Market Dictionaries
 		scope.market_suffix = markets
@@ -165,6 +161,8 @@ def set_initial_scope(scope, project_description):
 		# Analysis Variables
 		scope.dropdown_colums = ['open', 'high', 'low', 'close', 'volume']
 
+
+
 		# Strategy Params
 		scope.strategy_name = 'None yet Selected', 
 		scope.strategy_print_header = True
@@ -181,6 +179,7 @@ def set_initial_scope(scope, project_description):
 		scope.chart_macd_on_price = {}
 		scope.chart_macd_on_volume = {}
 
+		# Prevent session_state from re-running during its use
 		st.session_state.initial_load = False
 		
 def refresh_ticker_dropdown_lists(scope):
@@ -268,7 +267,7 @@ def render_scope_page(scope):
 		st.markdown("""---""")
 		st.subheader('Ticker List for Single Share Code Analysis')
 		render_3_columns( 'Ticker List - for Volume Prediction', scope.ticker_for_vol_predict, 'ticker_for_vol_predict' )
-		render_3_columns( 'Ticker List - for Company Profile', scope.company_profile_ticker, 'company_profile_ticker' )
+		render_3_columns( 'Ticker List - for Company Profile', scope.ticker_for_company_profile, 'ticker_for_company_profile' )
 		# render_3_columns( 'Ticker List - for Volume Prediction', scope.ticker_for_vol_predict, 'ticker_for_vol_predict' )
 
 	if show_industries:
@@ -366,9 +365,9 @@ def render_scope_page(scope):
 
 		st.markdown("""---""")
 		st.subheader('Dropdown Menu - Single Purpose Ticker Selections')
-		render_3_columns( 'Ticker for Volume Analysis', scope.ticker_for_vol_predict, 'ticker_for_vol_predict' )
-		render_3_columns( 'Ticker for Volume Analysis', scope.company_profile_ticker, 'company_profile_ticker' )
-		render_3_columns( 'Ticker for Single Stock Analysis', scope.company_profile_ticker, 'NOT YET CONFIGURED' )
+		render_3_columns( 'Ticker for Company Profile', scope.ticker_for_company_profile, 'ticker_for_company_profile' )
+		render_3_columns( 'Ticker for Volume Analysis', scope.ticker_for_vol_predict	, 'ticker_for_vol_predict' )
+		render_3_columns( 'Ticker for Single Analysis', scope.ticker_for_daily			, 'ticker_for_daily' )
 
 		st.markdown("""---""")
 		st.subheader('selectbox and multiselect content lists')

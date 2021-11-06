@@ -17,7 +17,7 @@ def render_company_profile_page(scope):
 	
 	st.markdown("""---""")
 	
-	ticker = scope.company_profile_ticker
+	ticker = scope.ticker_for_company_profile
 
 	if ticker != 'select a ticker':	
 		meta_data, info = fetch_yfinance_metadata_for_company_profile(ticker)
@@ -36,7 +36,7 @@ def company_profile_ticker_selector(scope):
 	col1,col2,col3,col4 = st.columns([2,2,2,6])							# col2=4 is just a dummy to prevent the widget filling the whole screen
 	
 	dropdown_list = scope.dropdown_ticker
-	index_of_ticker = dropdown_list.index(scope.company_profile_ticker)
+	index_of_ticker = dropdown_list.index(scope.ticker_for_company_profile)
 
 	with col1: 
 		ticker = st.selectbox ( 'Select Ticker', 
@@ -47,7 +47,7 @@ def company_profile_ticker_selector(scope):
 	with col3: load_tickers = st.button('Load Share Data File')
 	with col3: download_tickers = st.button( ( 'Download Previous ' + str(int(st.download_days)) + ' days') )
 
-	scope.company_profile_ticker = ticker									# Store the selection for next session
+	scope.ticker_for_company_profile = ticker									# Store the selection for next session
 	
 	if ticker != 'select a ticker':	
 		st.header( scope.ticker_index_file.loc[ticker]['company_name'] )	
@@ -57,8 +57,6 @@ def company_profile_ticker_selector(scope):
 
 	if download_tickers:
 		st.warning('Need to configure the share downloader')
-		
-	return ticker
 
 @st.cache
 def fetch_yfinance_metadata_for_company_profile(ticker):
@@ -107,7 +105,7 @@ def render_general_meta_data(info):
 
 def plot_basic_chart(scope):
 	
-	ticker = scope.company_profile_ticker
+	ticker = scope.ticker_for_company_profile
 
 	st.subheader('Chart of all available ' + ticker + ' data') 
 

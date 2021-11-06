@@ -28,7 +28,6 @@ print ( 'A Refresh of the application has occured')
 import sys
 print(sys.version)
 print ( '-'*80)
-# print ('Page = ', st.session_state.display_page )
 print ( '*'*80)
 
 # Display Appropriate Page ====================================================================================== 
@@ -49,16 +48,12 @@ st.sidebar.button('Volume Prediction', on_click=set_page, args=('volume', ))
 st.sidebar.button('Daily Analysis'	 , on_click=set_page, args=('daily_analysis', ))
 
 st.sidebar.title('Quick Data ( Temp )')
-
 # ticker list and ticker data buttons
 st.sidebar.button( ('Show Ticker List ( ' + str((len(st.session_state.tickers_for_multi))) + ' )'), on_click=set_page, args=('ticker_list', ))
 st.sidebar.button( ('Show Share Data Files ( ' + str(len(st.session_state.share_data_files.keys())) + ' )'), on_click=set_page, args=('share_data_files', ))
 
-# Common Variables ----------------------------------------------------------------------------------------------
 st.sidebar.title('Variables')
 st.download_days = st.sidebar.number_input('change ( - / + )  number of days to download', min_value=1, max_value=1000, value=1, key='0')   
-
-# System Variables ---------------------------------------------------------------------------------------------
 st.sidebar.button('Session Variables', on_click=set_page, args=('scope', ))
 
 
