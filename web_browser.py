@@ -5,9 +5,9 @@ import streamlit as st
 # from share_data import load_tickers
 from ticker_index import render_ticker_index_page
 from share_data import render_share_data_page, render_share_data_file, render_ticker_list
-from company_profile import render_company_profile_page
-from daily_analysis import render_daily_analysis_page
-from volume_predict import render_volume_page
+from analysis_company import render_company_profile_page
+from analysis_daily import render_daily_analysis_page
+from analysis_volume import render_volume_page
 from scope import render_scope_page
 from multi_analysis import render_multi_analysis_page
 
