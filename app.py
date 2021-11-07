@@ -39,7 +39,7 @@ st.sidebar.button(('Share Index ( ' + str((len(st.session_state.ticker_index_fil
 
 st.sidebar.title('Analysis ( multiple tickers )')
 st.sidebar.button('Multi Ticker Analysis', on_click=set_page, args=('multi_analysis', ))
-st.sidebar.button( ('Load and Import Share Data ( ' + str((len(st.session_state.share_data_files))) + ' )'), on_click=set_page, args=('manage_share_data', ))
+# st.sidebar.button( ('Load and Import Share Data ( ' + str((len(st.session_state.share_data_files))) + ' )'), on_click=set_page, args=('manage_share_data', ))
 
 st.sidebar.title('Analysis ( single ticker )')
 st.sidebar.button('Company Profile'	 , on_click=set_page, args=('company_profile', ))

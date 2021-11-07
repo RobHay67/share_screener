@@ -1,7 +1,9 @@
 
 import streamlit as st
 
-from ticker_data import construct_list_of_ticker_codes
+# from ticker_data import construct_list_of_ticker_codes
+
+from ticker_data import load_ticker_data_files, load_and_download_ticker_data
 
 def render_multi_analysis_page(scope):
 	st.title('Analysis - Multiple Tickers')
@@ -15,30 +17,12 @@ def render_multi_analysis_page(scope):
 		st.error('Add some tickers')
 
 
-
-
-# Select Tickers -----------------------------------------------------------------------------------------------
-# def tickers_update_list(): st.session_state.tickers_update_list = True
-# st.sidebar.subheader('Choose Tickers (lowest takes precedence)')
-# market   = st.sidebar.selectbox  ('Choose a Market'  	, st.session_state.dropdown_markets   , on_change=tickers_update_list, help='Select an Entire Share Market for Analysis')
-# industry = st.sidebar.multiselect('Choose Industries'	, st.session_state.dropdown_industries, on_change=tickers_update_list, help='Quickly Select all tickers in a particular industry')
-# tickers  = st.sidebar.multiselect('Choose Tickers'   	, st.session_state.dropdown_tickers   , on_change=tickers_update_list, help='Select a ticker, or multiple tickers from the dropdown. Start typing to jump within list') 
-# ticker   = st.sidebar.selectbox  ('Choose a lone Ticker', st.session_state.dropdown_single_ticker   , on_change=tickers_update_list, help='Select a single ticker only. Start typing to jump within list') 
-
-# Update the ticker list if required (selector box has changed)
-# if st.session_state.tickers_update_list:
-# 	st.session_state.tickers_market = market
-# 	st.session_state.tickers_industries = industry
-# 	st.session_state.tickers_selected = tickers
-#	st.session_state.chosen_single_ticker = ticker
-# 	construct_list_of_ticker_codes(st.session_state)
-
-def tickers_update_list(): 
-	st.session_state.tickers_update_list = True
-
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Render Sections
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def render_selectors_for_multi_analysis(scope):
-	col1,col2,col3,col4 = st.columns([2,3,2,5])							# col2=4 is just a dummy to prevent the widget filling the whole screen
+	col1,col2,col3,col4,col5 = st.columns([2,3,2,2,3])							# col2=4 is just a dummy to prevent the widget filling the whole screen
 
 	dropdown_list_market = scope.dropdown_markets
 	index_for_market = dropdown_list_market.index(scope.tickers_market)
@@ -47,59 +31,144 @@ def render_selectors_for_multi_analysis(scope):
 	with col1: 
 		market = st.selectbox( 		'Add a Market to Ticker List',
 									dropdown_list_market, 
-									on_change=tickers_update_list,
 									index=index_for_market, 
 									help='Select an Entire Share Market for Analysis',
 									)
 	with col2: 
-		industry = st.multiselect(	label='Add an Industry or Industries',
+		industries = st.multiselect(label='Add an Industry or Industries',
 									options=scope.dropdown_industries,
 									default=scope.tickers_industries,
-									on_change=tickers_update_list,
 									help='Quickly Select all tickers in a particular industry',
 									)
 	with col3: 
-		tickers = st.multiselect( 	label='Add a Ticker(s) to the Ticker List',
+		tickers = st.multiselect( 	label='Add a Ticker or Tickers',
 									options=scope.dropdown_tickers,
 									default=scope.tickers_selected,
-									on_change=tickers_update_list,
 									help='Select a ticker, or multiple tickers from the dropdown. Start typing to jump within list'
 									)
 
-	if st.session_state.tickers_update_list:
-		st.session_state.tickers_market = market
-		st.session_state.tickers_industries = industry
-		st.session_state.tickers_selected = tickers
-		construct_list_of_ticker_codes(st.session_state)
+	# Store the results so the list repopulate after re-render
+	scope.tickers_market 	 = market
+	scope.tickers_industries = industries
+	scope.tickers_selected 	 = tickers
+	construct_ticker_list(scope)
 
+	print(scope.ticker_list)
+	print(scope.download_industries)
+	
+	if market != 'select entire market' or (len(industries) != 0) or len(tickers) != 0:
 
-# the loader and downloader needs to set the following :
+		with col4: load_tickers 	= st.button( 'Load Share Data File')
+		with col4: download_tickers = st.button(('Download Previous ' + str(int(st.download_days)) + ' days'))
 
-# scope.download_groups_for_y_finance = ['random_tickers']
+		if load_tickers : 
 
-# if scope.tickers_market != 'select entire market':
-# 	scope.download_groups_for_y_finance = ( list(scope.ticker_index_file['industry_group'].unique() ))
-# elif len(scope.tickers_industries) != 0:
-# 	scope.download_groups_for_y_finance = scope.tickers_industries				# TODO - test this one Rob as I needed to change it
-# elif len(scope.tickers_selected) != 0:
-# 	scope.download_groups_for_y_finance.append('random_tickers')
+			load_ticker_data_files(scope)
 
+		if download_tickers:
+		# 	print('running the download_tickers')
+		# 	scope.download_industries = ['random_tickers']
+			load_and_download_ticker_data(scope)
 
-
-
-
-
-
-# def update_ticker_list():
-# 	print( 'I have been called to update the ticker list')
-# 	print( 'Industries = ', st.session_state.tickers_industries )
-# 	construct_list_of_ticker_codes(st.session_state)
+		# if ticker_end_date < analysis_begin_date or (ticker_begin_date > analysis_begin_date and ticker_end_date < analysis_end_date) or ticker_begin_date > analysis_end_date :
 
 
 
-	# with col1: 
-	# 	ticker = st.selectbox ( 'Select Ticker', 
-	# 							dropdown_list, 
-	# 							index=index_of_ticker, 
-	# 							help='Select a ticker. Start typing to jump within list'
-	# 							) 
+
+
+# ==============================================================================================================================================================
+# Ticker List for Multi Ticker Analysis : Construct and Quick Show
+# ==============================================================================================================================================================
+def construct_ticker_list(scope):
+	
+	ticker_list = []
+	relevant_industries = []
+	
+	# ################################################################################
+	# Most detailed takes precedence
+	# ################################################################################
+
+	# Selected a ticker or tickers
+	if len(scope.tickers_selected) != 0:
+		for ticker in scope.tickers_selected:
+			ticker_list.append(ticker)
+			relevant_industries = ['random_tickers']
+		pass
+	# Selected an Industry
+	elif len(scope.tickers_industries) != 0:
+		for industry in scope.tickers_industries:
+			tickers_in_industry_df = scope.ticker_index_file[scope.ticker_index_file['industry_group'] == industry ]
+			tickers_in_industry = tickers_in_industry_df.index.tolist()
+			ticker_list += tickers_in_industry 
+			relevant_industries.append(industry)
+		pass
+	
+	# Selected an entire share market
+	elif scope.tickers_market != 'select entire market':
+		tickers_in_market = scope.ticker_index_file.index.values.tolist()
+		ticker_list.append(tickers_in_market)
+		relevant_industries = ( list(scope.ticker_index_file['industry_group'].unique() ))
+	
+	scope.ticker_list = ticker_list
+	scope.download_industries = relevant_industries
+
+
+
+
+
+
+
+
+
+
+
+
+# def construct_list_of_ticker_codes(scope):
+# 	st.header('Adding or Remove tickers from the Ticker List')
+# 	ticker_list = []
+	
+# 	render_results( scope, passed='Added these selections ticker list > ', passed_2='na', failed='na' )
+
+# 	# ##############################
+# 	# Most detailed takes precedence
+# 	# ##############################
+
+
+# 	# Selected a ticker or tickers
+# 	if len(scope.tickers_selected) != 0:
+# 		for ticker in scope.tickers_selected:
+# 			render_results( scope, ticker, result='passed' )
+# 			ticker_list += [ticker]	
+# 		pass
+
+# 	# Selected an Industry
+# 	elif len(scope.tickers_industries) != 0:
+# 		for industry in scope.tickers_industries:
+# 			render_results( scope, industry.upper(), result='passed' )
+# 			tickers_in_industry_group_df = scope.ticker_index_file[scope.ticker_index_file['industry_group'] == industry ]
+# 			tickers_in_industry = tickers_in_industry_group_df.index.tolist()
+# 			ticker_list += tickers_in_industry 
+# 		pass
+	
+# 	# Selected an entire share market
+# 	elif scope.tickers_market != 'select entire market':
+# 		render_results( scope, scope.tickers_market.upper(), result='passed' )
+# 		available_tickers_for_this_market = scope.ticker_index_file.index.values.tolist()
+# 		ticker_list =  available_tickers_for_this_market
+# 	else:
+# 		st.error('All Tickers removed from Ticker List')
+
+# 	render_results(scope, 'Finished', final_print=True )
+
+# 	scope.tickers_for_multi = ticker_list
+# 	scope.tickers_update_list = False
+
+# 	st.markdown("""---""")
+
+# 	st.subheader('Ticker List - after adding dropdown selections')
+# 	ticker_list_message = ''
+# 	for ticker in scope.tickers_for_multi:
+# 		ticker_list_message = ticker_list_message + ticker + ' - '
+# 	st.success(ticker_list_message)
+
+# 	st.write(('Number of tickers in Ticker List =  ( ' + str((len(scope.tickers_for_multi))) + ' ) tickers'))

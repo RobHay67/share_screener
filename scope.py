@@ -148,22 +148,25 @@ def set_initial_scope(scope, project_description):
 		scope.share_data_dtypes = {'open': 'float64', 'high': 'float64', 'low': 'float64', 'close': 'float64', 'volume': 'int64'}
 		scope.share_data_dates = ['date']
 
-		# Object to store the Tickers to be loaded or downloaded
-		scope.ticker_list = []
-
 		# Market Dictionaries
 		scope.market_suffix = markets
 		scope.market_public_holidays = public_holidays
 		scope.market_opening_hours = opening_hours	
 
+		# Object to store the Tickers to be loaded or downloaded
+		scope.ticker_list = []
+
 		# Download Ticker Variables
 		scope.download_days = 1
-		scope.download_groups_for_y_finance = []
+		scope.download_industries = []
+		# scope.download_ticker_string = ''
+
+		# scope.download_groups_for_y_finance = []
 		# scope.download_by_group = False						# only the multi selector would need to change this
-		scope.download_schema = None
+		# scope.download_schema = None
 		scope.download_schemas = download_share_data_schemas	
-		scope.download_yf_share_data = pd.DataFrame(columns=scope.share_data_usecols + ['ticker'] )
-		scope.download_yf_anomolies =  {}
+		scope.downloaded_yf_ticker_data = pd.DataFrame(columns=scope.share_data_usecols + ['ticker'] )
+		scope.downloaded_yf_anomolies =  {}
 
 		# Analysis Variables
 		scope.dropdown_colums = ['open', 'high', 'low', 'close', 'volume']
@@ -313,7 +316,7 @@ def render_scope_page(scope):
 		render_3_columns( 'Appropriate download method', scope.download_schema, 'download_schema' )
 		render_3_columns( 'Batched Groups of tickers for the download', scope.download_groups_for_y_finance, 'download_groups_for_y_finance' )
 		render_3_columns( 'Downloaded Data from y_finance', scope.chart_lines, 'chart_lines' )
-		render_3_columns( 'Error Messages from y_finance', scope.download_yf_anomolies, 'download_yf_anomolies' )
+		render_3_columns( 'Error Messages from y_finance', scope.downloaded_yf_anomolies, 'downloaded_yf_anomolies' )
 
 		st.markdown("""---""")
 		st.subheader('Available Schemas for the different downloads from y_finance')

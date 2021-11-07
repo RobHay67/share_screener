@@ -50,20 +50,19 @@ def company_profile_ticker_selector(scope):
 	
 	if ticker != 'select a ticker':	
 		st.header( scope.ticker_index_file.loc[ticker]['company_name'] )	
-		
+
+		with col3: load_tickers 	= st.button( 'Load Share Data File')
+		with col3: download_tickers = st.button(('Download Previous ' + str(int(st.download_days)) + ' days'))
+
+		# print(load_tickers, ' < > ', download_tickers)
+
 		scope.ticker_list = [ticker]
+		scope.download_industries = ['random_tickers']
 
-		with col3: load_tickers = st.button('Load Share Data File')
-		with col3: download_tickers = st.button( ( 'Download Previous ' + str(int(st.download_days)) + ' days') )
-
-		# Dont let these run unless we have selected a ticker
 		if load_tickers : 
-			# scope.download_group_method = ''
 			load_ticker_data_files(scope)
 
 		if download_tickers:
-			st.warning('Need to configure the share downloader')
-			scope.download_groups_for_y_finance = ['random_tickers']
 			load_and_download_ticker_data(scope)
 
 

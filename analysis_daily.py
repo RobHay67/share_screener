@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 
 from indicators import line_sma
 
-from ticker_data import load_ticker_data_files
+from ticker_data import load_ticker_data_files, load_and_download_ticker_data
 
 # TODO - Rob - just work on the end of day data and when we get this working we can wire in the 5 minute data
 # X  trend lines
