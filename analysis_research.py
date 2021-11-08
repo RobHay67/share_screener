@@ -8,31 +8,26 @@ import plotly.graph_objects as go
 # from ticker_data import load_ticker_data_files, load_and_download_ticker_data
 from ticker_loader import render_selectors_for_single_ticker
 
-
-		# scope.ticker				={
-		# 								'company_profile':'select a ticker',
-		# 								'volume_predict' :'select a ticker',
-		# 								'intraday'		 :'select a ticker',
-		# 								'single'		 :'select a ticker',
-		# 							}
 # ==============================================================================================================================================================
-# Company Profile Render Controller
+# Company Research Render Controller
 # ==============================================================================================================================================================
-def render_company_profile_page(scope):
-	st.header('Company Profile')
-	render_selectors_for_single_ticker(scope, 'company_profile' )
+def render_research_page(scope):
+	st.header('Company Research')
+	render_selectors_for_single_ticker(scope, 'research' )
 	st.markdown("""---""")
 	
-	ticker = scope.ticker['company_profile']
+	ticker = scope.ticker['research']
 
 	if ticker != 'select a ticker':	
-		meta_data, info = fetch_yfinance_metadata_for_company_profile(ticker)
+		meta_data, info, divs = fetch_yfinance_metadata(ticker)
 
 		render_company_general_info(info)
+		render_dividend_info(divs)
 		render_fundamental_info(info)
 		render_general_meta_data(info)
 		plot_basic_chart(scope)		
 		render_market_info(info)
+		render_ticker_data_file(scope)
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Company Profile Page Sections
@@ -40,10 +35,11 @@ def render_company_profile_page(scope):
 
 
 @st.cache
-def fetch_yfinance_metadata_for_company_profile(ticker):
+def fetch_yfinance_metadata(ticker):
 	metadata = yf.Ticker(ticker)
-	info = metadata.info 
-	return metadata, info
+	info = metadata.info
+	divs = metadata.dividends
+	return metadata, info, divs
 
 def render_company_general_info(info):
 	col1,col2 = st.columns([3,9])
@@ -58,9 +54,18 @@ def render_company_general_info(info):
 	for sentence in sentences:
 		with col2: st.write(sentence)
 
+def render_dividend_info(dividends):
+	st.markdown('##### Dividends') 
+	dividends = pd.DataFrame(dividends)
+	dividends.reset_index(inplace=True)
+	dividends.sort_values(by=['Date'], inplace=True, ascending=False)
+	my_expander = st.expander(label='Dividends')
+	my_expander.dataframe(dividends, 2000, 2000)	
+
+
+
 def render_fundamental_info(info):
-	st.markdown("""---""")
-	st.subheader('Fundamental Info') 
+	st.markdown('##### Fundamental Info') 
 		
 	render_2_columns( 'Enterprise Value (AUD)', info['enterpriseValue'])
 	render_2_columns( 'Enterprise To Revenue Ratio', info['enterpriseToRevenue'])
@@ -79,16 +84,15 @@ def render_fundamental_info(info):
 	render_2_columns( 'Payout Ratio', info['payoutRatio'])
 
 def render_general_meta_data(info):
-	st.subheader('General meta_data Info') 
+	st.markdown('##### General meta_data Info') 
 	st.markdown('** Market **: ' + info['market'])
 	st.markdown('** Exchange **: ' + info['exchange'])
 	st.markdown('** Quote Type **: ' + info['quoteType'])
 
 def plot_basic_chart(scope):
-	
-	ticker = scope.ticker['company_profile']
+	st.markdown('##### Chart of all available data') 
 
-	st.subheader('Chart of all available ' + ticker + ' data') 
+	ticker = scope.ticker['research']
 
 	if ticker in list(scope.share_data_files.keys()):
 		share_data = scope.share_data_files[ticker]
@@ -117,6 +121,7 @@ def plot_basic_chart(scope):
 		st.error('Load and/or Download Share Data to see the chart')
 
 def render_market_info(info):
+	st.markdown('##### Market Information') 
 	marketInfo = {
 					"Volume": info['volume'],
 					"Average Volume": info['averageVolume'],
@@ -132,6 +137,17 @@ def render_market_info(info):
 
 	marketDF = pd.DataFrame(data=marketInfo, index=[0])
 	st.table(marketDF)
+
+def render_ticker_data_file(scope): # DONE
+	st.markdown('##### Loaded and / or Downloaded share data.')
+
+	ticker = scope.ticker['research']
+
+	if ticker in list(scope.share_data_files.keys()):
+		ticker_data_file = scope.share_data_files[ticker]
+		ticker_data_file.sort_values(by=['date'], inplace=True, ascending=False)
+		my_expander = st.expander(label=ticker)
+		my_expander.dataframe(ticker_data_file, 2000, 2000)	
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------

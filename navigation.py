@@ -4,7 +4,7 @@ import streamlit as st
 from ticker_index import render_ticker_index_page
 from ticker_data import render_ticker_data_files, render_ticker_list
 
-from analysis_company import render_company_profile_page
+from analysis_research import render_research_page
 from analysis_intraday import render_intraday_analysis_page
 from analysis_multi import render_analysis_multi_page
 from analysis_single import render_single_analysis_page
@@ -31,7 +31,7 @@ def render_current_page(page):
 
 						'analysis_multi'	:render_analysis_multi_page,
 						'single_analysis'	:render_single_analysis_page,
-						'company_profile'	:render_company_profile_page,
+						'research'			:render_research_page,
 						'volume'			:render_volume_page,
 						'intraday_analysis'	:render_intraday_analysis_page,
 

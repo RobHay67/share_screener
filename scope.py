@@ -133,10 +133,10 @@ def set_initial_scope(scope, project_description):
 		scope.tickers_multi 				= None
 		# scope.tickers_for_multi 			= []
 		scope.ticker						={
-												'company_profile':'select a ticker',
-												'volume_predict' :'select a ticker',
-												'intraday'		 :'select a ticker',
-												'single'		 :'select a ticker',
+												'research'		:'select a ticker',
+												'volume_predict':'select a ticker',
+												'intraday'		:'select a ticker',
+												'single'		:'select a ticker',
 											}
 
 		# Share Data Files
@@ -375,7 +375,7 @@ def render_scope_page(scope):
 		with col5:
 			st.markdown('##### Current Selection')
 			st.write(scope.share_market)
-			st.write(scope.ticker['company_profile'])
+			st.write(scope.ticker['research'])
 			st.write(scope.ticker['volume_predict'])
 			st.write(scope.ticker['intraday'])
 			st.write(scope.ticker['single'])
@@ -387,7 +387,7 @@ def render_scope_page(scope):
 		with col6:
 			st.markdown('##### Selection Stored In')
 			st.write('< share_market >')
-			st.write("< ticker['company_profile'] >")
+			st.write("< ticker['research'] >")
 			st.write("< ticker['volume_predict'] >")
 			st.write("< ticker['intraday'] >")
 			st.write("< ticker['single'] >")

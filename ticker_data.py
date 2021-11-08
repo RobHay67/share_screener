@@ -18,8 +18,10 @@ def render_ticker_data_files(scope): # DONE
 	list_of_loaded_tickers.sort()
 
 	for ticker in list_of_loaded_tickers:
+		ticker_data_file = scope.share_data_files[ticker]
+		ticker_data_file.sort_values(by=['date'], inplace=True, ascending=False)
 		my_expander = st.expander(label=ticker)
-		my_expander.dataframe(scope.share_data_files[ticker], 2000, 2000)	
+		my_expander.dataframe(ticker_data_file, 2000, 2000)	
 
 def render_ticker_list(scope): # DONE
 	st.header('Ticker List')
@@ -125,9 +127,10 @@ def download_from_yahoo_finance( scope ): 													# TODO What Output to Ren
 	# group_by: group by column or ticker (‘column’/’ticker’, default is ‘column’)
 	# threads : use threads for mass downloading? (True/False/Integer)
 	# st.subheader('Downloading Ticker data from Yahoo Finance (as specified by the Ticker List')
+	
 	st.markdown('##### Downloading Ticker data from Yahoo Finance')
 	
-	period = str(st.download_days) + 'd'
+	period = str(st.download_days) + 'd' # 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo
 
 	reset_download_status(scope)
 
