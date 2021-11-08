@@ -33,13 +33,13 @@ ticker_index_schema ={
 def render_ticker_index_page(scope):
 
 	st.title('Maintain the Ticker Index File')
-
-	col1,col2 = st.columns([2,10])
+	col1,col2,col3,col4,col5 = st.columns([2,2,2,2,4])
+	# col1,col2 = st.columns([2,10])
 	with col1: st.success(('Ticker Index contains ( ' + str((len(scope.ticker_index_file))) + ' ) tickers'))
-	col1,col2,col3,col4 = st.columns([2,2,2,6])
-	with col1: download_ticker_index = st.button('Update Ticker Index File')
-	with col2: show_ticker_index = st.button('Show the Ticker Index File')
-	with col3: show_industries = st.button('Show Industry Summary')
+	# col1,col2,col3,col4 = st.columns([2,2,2,6])
+	with col2: download_ticker_index = st.button('Update Ticker Index File')
+	with col3: show_ticker_index = st.button('Show the Ticker Index File')
+	with col4: show_industries = st.button('Show Industry Summary')
 	
 	st.markdown("""---""")
 	
@@ -59,7 +59,6 @@ def render_ticker_index_page(scope):
 # TICKER INDEX FILE - loader and Saver
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def load_ticker_index_file( scope ):
-	print('i have been called')
 	st.title('Loading Ticker Index File')
 
 	if os.path.exists( scope.path_ticker_index ):
@@ -75,6 +74,7 @@ def load_ticker_index_file( scope ):
 		ticker_index.set_index('share_code', inplace=True)
 		# remove any delisted stocks here
 		scope.ticker_index_file = ticker_index
+		scope.update_lists_for_dropdowns = True
 	else: 
 		st.error( 'Ticker Index File does not exist at path > ' + str(scope.path_ticker_index) )
 		st.info( 'creating an empty ticker_index dataframe' )
@@ -91,11 +91,11 @@ def load_ticker_index_file( scope ):
 		st.error('Click on the Ticker Index button to update the Ticker Index')
 
 def save_ticker_index_file( scope ): # DONE
-	st.subheader('Save Ticker Index File')
+	# st.subheader('Save Ticker Index File')
 	saving_df = scope.ticker_index_file.copy()
 	saving_df.reset_index(inplace=True)      	 # ensure that the index is saved as a normal column
 	saving_df.to_csv( scope.path_ticker_index, index=False )
-	st.success('successfully saved Ticker Index file')
+	st.success('saved Ticker Index file')
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # TICKER INDEX FILE - Downloader + helpers
@@ -128,7 +128,7 @@ def refresh_ticker_index_file(scope):
 
 		st.success('number of downloaded ' + scope.share_market + ' ticker codes = ' + str(len(downloaded_ticker_info)))
 		update_ticker_index_with_latest_download(scope, downloaded_ticker_info )
-		scope.refresh_ticker_dropdown_lists = True
+		scope.update_lists_for_dropdowns = True
 	else:
 		st.error('DOWNLOAD Ticker data NOT YET CONFIGURED FOR ' + scope.share_market)
 		pass

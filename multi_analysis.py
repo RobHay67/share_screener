@@ -1,20 +1,22 @@
-
 import streamlit as st
-
-# from ticker_data import construct_list_of_ticker_codes
 
 from ticker_data import load_ticker_data_files, load_and_download_ticker_data
 
+
+
+
+# ==============================================================================================================================================================
+# Web Page Render Controller
+# ==============================================================================================================================================================
 def render_multi_analysis_page(scope):
 	st.title('Analysis - Multiple Tickers')
 
 	render_selectors_for_multi_analysis(scope)
 
-
-	if len(scope.tickers_for_multi) > 0:
-		st.info('We have some tickers')
-	else:
-		st.error('Add some tickers')
+	# if len(scope.ticker_list) > 0:
+	# 	st.info('We have some tickers')
+	# else:
+	# 	st.error('Add some tickers')
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -22,7 +24,7 @@ def render_multi_analysis_page(scope):
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def render_selectors_for_multi_analysis(scope):
-	col1,col2,col3,col4,col5 = st.columns([2,3,2,2,3])							# col2=4 is just a dummy to prevent the widget filling the whole screen
+	col1,col2,col3,col4,col5,col6 = st.columns([2,3,2,1.2,2,1.8])							# col2=4 is just a dummy to prevent the widget filling the whole screen
 
 	dropdown_list_market = scope.dropdown_markets
 	index_for_market = dropdown_list_market.index(scope.tickers_market)
@@ -58,8 +60,9 @@ def render_selectors_for_multi_analysis(scope):
 	
 	if market != 'select entire market' or (len(industries) != 0) or len(tickers) != 0:
 
-		with col4: load_tickers 	= st.button( 'Load Share Data File')
-		with col4: download_tickers = st.button(('Download Previous ' + str(int(st.download_days)) + ' days'))
+		with col4: load_tickers 	= st.button( 'Load Files')
+		with col4: download_tickers = st.button(('Add  ' + str(int(st.download_days)) + ' days'))
+		with col5: st.button('Clear Messages')
 
 		if load_tickers : 
 

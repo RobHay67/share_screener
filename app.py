@@ -8,7 +8,7 @@ project_description = 'Share Trader - DDT'
 
 
 from scope import set_initial_scope
-from scope import refresh_ticker_dropdown_lists
+from scope import update_lists_for_dropdowns
 from web_browser import render_current_page, set_page
 
 
@@ -16,9 +16,10 @@ from web_browser import render_current_page, set_page
 import streamlit as st
 st.set_page_config(layout="wide")
 set_initial_scope(st.session_state, project_description)
-# Update the dropdowns, but only on an initial build or after downloading new tickers from the ASX
-if st.session_state.update_dropdown_lists: 
-	refresh_ticker_dropdown_lists(st.session_state)
+
+# Update the lists utilised by dropdown widgets (but only after loading or changing the share index file)
+if st.session_state.update_lists_for_dropdowns: 
+	update_lists_for_dropdowns(st.session_state)
 
 
 # Temp Code to signal appl refresh ( delete later ) =============================================================
@@ -35,7 +36,9 @@ render_current_page(st.session_state.display_page)
 
 # Sidebar Action Buttons ======================================================================================= 
 st.sidebar.title(project_description)
-st.sidebar.button(('Share Index ( ' + str((len(st.session_state.ticker_index_file))) + ' )'), on_click=set_page, args=('ticker_index', ))
+st.sidebar.button(('Share Index  ( ' + str((len(st.session_state.ticker_index_file))) + ' )'), on_click=set_page, args=('ticker_index', ))
+st.sidebar.button(('Ticker List  ( ' + str((len(st.session_state.ticker_list))) + ' )'), on_click=set_page, args=('ticker_list', ))
+st.sidebar.button(('Ticker Files ( ' + str(len(st.session_state.share_data_files.keys())) + ' )'), on_click=set_page, args=('share_data_files', ))
 
 st.sidebar.title('Analysis ( multiple tickers )')
 st.sidebar.button('Multi Ticker Analysis', on_click=set_page, args=('multi_analysis', ))
@@ -48,8 +51,8 @@ st.sidebar.button('Daily Analysis'	 , on_click=set_page, args=('daily_analysis',
 
 st.sidebar.title('Quick Data ( Temp )')
 # ticker list and ticker data buttons
-st.sidebar.button( ('Show Ticker List ( ' + str((len(st.session_state.tickers_for_multi))) + ' )'), on_click=set_page, args=('ticker_list', ))
-st.sidebar.button( ('Show Share Data Files ( ' + str(len(st.session_state.share_data_files.keys())) + ' )'), on_click=set_page, args=('share_data_files', ))
+
+
 
 st.sidebar.title('Variables')
 st.download_days = st.sidebar.number_input('change ( - / + )  number of days to download', min_value=1, max_value=1000, value=1, key='0')   

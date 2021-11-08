@@ -89,10 +89,10 @@ download_share_data_schemas =    {
 # Scope out the Params Object == scope in streamlit
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def set_initial_scope(scope, project_description):
-	if 'initial_load' not in scope:
-		# set the initial state for the application - keep this to a minimum
+	if 'initial_load' not in scope:					# set the initial load state - keep this to a minimum
 		scope.initial_load = True
-		scope.update_dropdown_lists = True		# TODO - do we need to do this??
+		scope.update_lists_for_dropdowns = False	# Intially set to false, the loading or refreshing of the share index file has resposibility to set this
+			# TODO - do we need to do this??
 		scope.share_market = 'ASX'				# Set Initial Applications Selections
 		scope.display_page = 'initial_load'		# The homepage to display - 
 
@@ -130,48 +130,42 @@ def set_initial_scope(scope, project_description):
 		load_ticker_index_file(scope)
 
 		# Ticker Selections are stored in these variables
-		scope.tickers_market 		= 'select entire market'			# for the multi ticker selection screen
-		scope.tickers_industries 	= None
-		scope.tickers_selected 		= None
-		scope.tickers_for_multi 	= []
-		scope.tickers_update_list 	= False 							# This is utilised by the multi selectors to ensure smooth updates
-		scope.ticker_for_company_profile = 'select a ticker'
-		scope.ticker_for_vol_predict = 'select a ticker'
-		scope.ticker_for_daily = 'select a ticker'
+		scope.tickers_market 				= 'select entire market'	# for the multi ticker selection screen
+		scope.tickers_industries 			= None
+		scope.tickers_selected 				= None
+		scope.tickers_for_multi 			= []
+		# scope.tickers_update_list 			= False 					# This is utilised by the multi selectors to ensure smooth updates
+		scope.ticker_for_company_profile 	= 'select a ticker'
+		scope.ticker_for_vol_predict 		= 'select a ticker'
+		scope.ticker_for_daily 				= 'select a ticker'
 
 		# Share Data Files
-		scope.share_data_files = {}
-		scope.share_data_loaded_list = []
-		scope.share_data_missing_list = []
-		scope.share_data_schema = share_data_schema
-		scope.share_data_usecols = ['date', 'open', 'high', 'low', 'close', 'volume']
-		scope.share_data_dtypes = {'open': 'float64', 'high': 'float64', 'low': 'float64', 'close': 'float64', 'volume': 'int64'}
-		scope.share_data_dates = ['date']
+		scope.share_data_files 			= {}
+		scope.share_data_loaded_list 	= []
+		scope.share_data_missing_list 	= []
+		scope.share_data_schema 		= share_data_schema
+		scope.share_data_usecols 		= ['date', 'open', 'high', 'low', 'close', 'volume']
+		scope.share_data_dtypes 		= {'open': 'float64', 'high': 'float64', 'low': 'float64', 'close': 'float64', 'volume': 'int64'}
+		scope.share_data_dates 			= ['date']
 
 		# Market Dictionaries
-		scope.market_suffix = markets
+		scope.market_suffix 		 = markets
 		scope.market_public_holidays = public_holidays
-		scope.market_opening_hours = opening_hours	
+		scope.market_opening_hours 	 = opening_hours	
 
 		# Object to store the Tickers to be loaded or downloaded
 		scope.ticker_list = []
 
 		# Download Ticker Variables
-		scope.download_days = 1
-		scope.download_industries = []
-		# scope.download_ticker_string = ''
-
-		# scope.download_groups_for_y_finance = []
-		# scope.download_by_group = False						# only the multi selector would need to change this
-		# scope.download_schema = None
-		scope.download_schemas = download_share_data_schemas	
+		scope.download_days 			= 1
+		scope.download_industries 		= []
+		scope.download_schemas 			= download_share_data_schemas	
 		scope.downloaded_yf_ticker_data = pd.DataFrame(columns=scope.share_data_usecols + ['ticker'] )
-		scope.downloaded_yf_anomolies =  {}
+		scope.downloaded_yf_anomolies 	=  {}
+
 
 		# Analysis Variables
 		scope.dropdown_colums = ['open', 'high', 'low', 'close', 'volume']
-
-
 
 		# Strategy Params
 		scope.strategy_name = 'None yet Selected', 
@@ -192,40 +186,27 @@ def set_initial_scope(scope, project_description):
 		# Prevent session_state from re-running during its use
 		st.session_state.initial_load = False
 		
-def refresh_ticker_dropdown_lists(scope):
+def update_lists_for_dropdowns(scope):
 	print ( '\033[91m' + 'Dropdown Lists have been repopulated' + '\033[0m' )
 
-	# ---------------------------------------------------------------------------------------
-	# Single Share Market Selector
 	list_of_markets = list(scope.market_suffix.keys())
 	list_of_markets.insert(0, 'select entire market')
 	scope.dropdown_markets = list_of_markets
-	# scope.dropdown_markets_re_render = True
 	
-	# ---------------------------------------------------------------------------------------
-	# Multi Share Industry Selector
 	list_of_industries = scope.ticker_index_file['industry_group'].unique().tolist()
 	list_of_industries.sort()
 	scope.dropdown_industries = list_of_industries
-	# scope.dropdown_industries_re_render = True
 	
-	# ---------------------------------------------------------------------------------------
-	# Multi Share Ticker Selector
 	list_of_tickers = scope.ticker_index_file.index.values.tolist()
 	scope.dropdown_tickers = list_of_tickers
-	# scope.dropdown_tickers_re_render = True
-	# scope.dropdown_ticker_volume_re_render = True
-	
 
-	# ---------------------------------------------------------------------------------------
-	# Single Ticker Selector
-	list_of_tickers = scope.ticker_index_file.index.values.tolist()
-	list_of_tickers.insert(0, 'select a ticker')
-	scope.dropdown_ticker = list_of_tickers
+	alt_ticker_list = scope.ticker_index_file.index.values.tolist()
+	alt_ticker_list.insert(0, 'select a ticker')
+	scope.dropdown_ticker = alt_ticker_list
 	
 	# ---------------------------------------------------------------------------------------
-	# Dont run this again unless we have downloaded new share data
-	# scope.update_dropdown_lists = False
+	# Prevent executing this function again (until changes have been made to the share index)
+	scope.update_lists_for_dropdowns = False
 	
 # -----------------------------------------------------------------------------------------------------------------------------------
 # share file path generator
@@ -252,7 +233,7 @@ def render_scope_page(scope):
 	with col2: st.subheader('Data')
 	with col2: show_ticker_index = st.button('Ticker Index File ( ' + str((len(st.session_state.ticker_index_file))) + ' )')
 	with col2: show_share_data_files = st.button('Share Data Files ( ' + str(len(st.session_state.share_data_files.keys())) + ' )')
-	with col2: show_download = st.button('Download Settings')
+	with col2: show_download = st.button('Download Variables')
 
 	with col3: st.subheader('Analysis')
 	with col3: show_strategy = st.button('Strategy')
@@ -266,7 +247,7 @@ def render_scope_page(scope):
 	if show_tickers:
 		st.subheader('Ticker Lists')
 
-		render_3_columns( 'Ticker Dropdown Lists need updating', scope.update_dropdown_lists, 'update_dropdown_lists' )
+		render_3_columns( 'Ticker Dropdown Lists need updating', scope.update_lists_for_dropdowns, 'update_lists_for_dropdowns' )
 				
 		st.markdown("""---""")
 		st.subheader('Ticker List for Multi Share Code Analysis')
@@ -306,29 +287,34 @@ def render_scope_page(scope):
 			my_expander.dataframe(scope.share_data_files[ticker], 2000, 2000)
 
 	if show_download:
-		st.subheader('Download Parameters')
-
+		st.subheader('Download Variables')
 		render_3_columns( 'Number of Days to Download', scope.download_days, 'download_days' )
 
 		st.markdown("""---""")
 		st.subheader('Most Recent Download Variables and Data')
-
-		render_3_columns( 'Appropriate download method', scope.download_schema, 'download_schema' )
-		render_3_columns( 'Batched Groups of tickers for the download', scope.download_groups_for_y_finance, 'download_groups_for_y_finance' )
-		render_3_columns( 'Downloaded Data from y_finance', scope.chart_lines, 'chart_lines' )
-		render_3_columns( 'Error Messages from y_finance', scope.downloaded_yf_anomolies, 'downloaded_yf_anomolies' )
+		render_3_columns( 'Industry Groups for y_finance to iterate over', scope.download_industries, 'download_industries' )
+		render_3_columns( 'Downloaded Data from y_finance', scope.downloaded_yf_ticker_data, 'downloaded_yf_ticker_data' )
+		render_3_columns( 'Error Messages  from y_finance', scope.downloaded_yf_anomolies  , 'downloaded_yf_anomolies' )
+		render_3_columns( 'Current Ticker List', (str(len(scope.ticker_list)) + ' ticker(s)'), 'ticker_list' )
+		ticker_list_message = ''
+		for count, ticker in enumerate(scope.ticker_list):
+			ticker_list_message = ticker_list_message + ticker
+			if count < len(scope.ticker_list) - 1:
+				ticker_list_message += '  '
+		st.info(ticker_list_message)
 
 		st.markdown("""---""")
 		st.subheader('Available Schemas for the different downloads from y_finance')
-			
 		col1,col2,col3 = st.columns([2,4,2])
-		with col1: st.write('Download Schemas - Available')
-
 		list_of_schemas = list(scope.download_schemas.keys())
 		for schema in list_of_schemas:
-			with col2: st.write(schema)
-			schema_definition = scope.download_schemas[schema]
+			with col1: st.write(schema)
+			# schema_definition = scope.download_schemas[schema]
+			# schema_definition = pd.DataFrame(scope.download_schemas[schema])
+			# print( schema_definition)
 			with col2: st.write(scope.download_schemas[schema])
+			# with col2: st.dataframe(scope.strategy_price_columns, 100, 200)
+			# with col2: st.write(schema_definition)
 		with col3: st.write('< download_schemas >')
 
 	if show_strategy:
@@ -374,29 +360,72 @@ def render_scope_page(scope):
 		render_3_columns( 'Initial Run / load', scope.initial_load, 'initial_load' )
 
 		st.markdown("""---""")
-		st.subheader('Dropdown Menu - Single Purpose Ticker Selections')
-		render_3_columns( 'Ticker for Company Profile', scope.ticker_for_company_profile, 'ticker_for_company_profile' )
-		render_3_columns( 'Ticker for Volume Analysis', scope.ticker_for_vol_predict	, 'ticker_for_vol_predict' )
-		render_3_columns( 'Ticker for Single Analysis', scope.ticker_for_daily			, 'ticker_for_daily' )
-		render_3_columns( 'Available Tickers ( selectbox )', scope.dropdown_ticker		, 'dropdown_ticker' )
+		st.subheader('Ticker Selectors')
+		col1,col2,col3,col4,col5,col6,col7 = st.columns([1.5,1.5,1,2,2.5,2.5,1])
+		
+		with col1:
+			st.markdown('##### Selector')
+			st.write('Company Profile')
+			st.write('Volume Analysis')
+			st.write('Daily Analysis')
+			st.write('Share Market')
+			st.write('Industry')
+			st.write('Tickers')
 
+		with col2:
+			st.markdown('##### Contains')
+			st.write('Ticker in Index')
+			st.write('Ticker in Index')
+			st.write('Ticker in Index')
+			st.write('Share Markets')
+			st.write('Industry in Index')
+			st.write('Ticker in Index')
+
+		with col3:
+			st.markdown('##### Widget')
+			st.write('selectbox')
+			st.write('selectbox')
+			st.write('selectbox')
+			st.write('selectbox')
+			st.write('multiselect')
+			st.write('multiselect')
+
+		with col4:
+			st.markdown('##### Populated from')
+			st.write('< dropdown_ticker >')
+			st.write('< dropdown_ticker >')
+			st.write('< dropdown_ticker >')
+			st.write('< dropdown_markets >')
+			st.write('< dropdown_industries >')
+			st.write('< dropdown_tickers >')
+
+		with col5:
+			st.markdown('##### Selection Stored In')
+			st.write('< ticker_for_company_profile >')
+			st.write('< ticker_for_vol_predict >')
+			st.write('< ticker_for_daily >')
+			st.write('< tickers_market >')
+			st.write('< tickers_industries >')
+			st.write('< tickers_selected >')
+
+		with col6:
+			st.markdown('##### Current Selection')
+			st.write(scope.ticker_for_company_profile)
+			st.write(scope.ticker_for_vol_predict)
+			st.write(scope.ticker_for_daily)
+			st.write(scope.tickers_market)
+			st.write(scope.tickers_industries)
+			st.write(scope.tickers_selected)
+		
 		st.markdown("""---""")
-		st.subheader('selectbox and multiselect content lists')
-		render_3_columns( 'Selected Market'		, scope.tickers_market, 'tickers_market' )
-		render_3_columns( 'Selected Industries' , scope.tickers_industries, 'tickers_industries' )
-		render_3_columns( 'Selected Tickers' 	, scope.tickers_selected, 'tickers_selected' )
-
-		render_3_columns( 'Update the Tickers Mult List' 	, scope.tickers_update_list, 'tickers_update_list' )
-		
-		render_3_columns( 'Available Markets    ( selectbox )', scope.dropdown_markets, 'dropdown_markets' )
-		render_3_columns( 'Available Industries ( multiselect )', scope.dropdown_industries, 'dropdown_industries' )
-		render_3_columns( 'Available Tickers    ( multiselect )', scope.dropdown_tickers, 'dropdown_tickers' )
-		
-
+		st.subheader('Dropdown Lists (per above)')
+		render_3_columns( 'Available Markets    ( selectbox )'  , scope.dropdown_markets	, 'dropdown_markets' )
+		render_3_columns( 'Available Industries ( multiselect )', scope.dropdown_industries	, 'dropdown_industries' )
+		render_3_columns( 'Available Tickers    ( multiselect )', scope.dropdown_tickers	, 'dropdown_tickers' )
+		render_3_columns( 'Available Ticker     ( selectbox )'  , scope.dropdown_ticker		, 'dropdown_ticker' )
 
 		st.markdown("""---""")
 		st.subheader('Result Parameters')
-
 		render_3_columns( 'Result Passed', scope.result_passed, 'result_passed' )
 		render_3_columns( 'Result Passed_2', scope.result_passed_2, 'result_passed_2' )
 		render_3_columns( 'Result Failed', scope.result_failed, 'result_failed' )

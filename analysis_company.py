@@ -33,7 +33,7 @@ def render_company_profile_page(scope):
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def company_profile_ticker_selector(scope):
-	col1,col2,col3,col4 = st.columns([2,2,2,6])							# col2=4 is just a dummy to prevent the widget filling the whole screen
+	col1,col2,col3,col4,col5 = st.columns([2,2,1.2,2,4.8])
 	
 	dropdown_list = scope.dropdown_ticker
 	index_of_ticker = dropdown_list.index(scope.ticker_for_company_profile)
@@ -51,12 +51,13 @@ def company_profile_ticker_selector(scope):
 	if ticker != 'select a ticker':	
 		st.header( scope.ticker_index_file.loc[ticker]['company_name'] )	
 
-		with col3: load_tickers 	= st.button( 'Load Share Data File')
-		with col3: download_tickers = st.button(('Download Previous ' + str(int(st.download_days)) + ' days'))
+		with col3: load_tickers 	= st.button( 'Load File')
+		with col3: download_tickers = st.button(('Add ' + str(int(st.download_days)) + ' days'))
 
-		# print(load_tickers, ' < > ', download_tickers)
+		with col4: st.button('Clear Messages')
 
 		scope.ticker_list = [ticker]
+		# TODO - we need to set a flag that resets the ticker list button in the sidebar
 		scope.download_industries = ['random_tickers']
 
 		if load_tickers : 
@@ -77,7 +78,7 @@ def render_company_general_info(info):
 	col1,col2 = st.columns([3,9])
 	with col1: st.markdown('** Sector **: ' + info['sector'])
 	with col1: st.markdown('** Industry **: ' + info['industry'])
-	with col1: st.markdown('** Phone **: ' + info['phone'])
+	# with col1: st.markdown('** Phone **: ' + info['phone'])
 	with col1: st.markdown('** Address **: ' + info['address1'] + ', ' + info['city'] + ', ' + info['zip'] + ', '  +  info['country'])
 	with col1: st.markdown('** Website **: ' + info['website'])
 	with col2: st.markdown('** Business Summary **')
