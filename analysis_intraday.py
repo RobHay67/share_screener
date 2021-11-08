@@ -14,7 +14,7 @@ import mplfinance as mpf
 from indicators import line_sma
 
 # from ticker_data import load_ticker_data_files, load_and_download_ticker_data
-from ticker_loader import render_selectors_for_single_ticker
+from ticker_loader import render_selectors_for_single_ticker, render_ticker_data_file
 
 # TODO - Rob - just work on the end of day data and when we get this working we can wire in the 5 minute data
 
@@ -53,10 +53,11 @@ def render_intraday_analysis_page(scope):
 
 	if ticker != 'select a ticker':	
 		
-		plot_candlestick(scope)
+		# plot_candlestick(scope)
 		plot_basic_chart(scope)
 	# 	render_indicator_selectors(scope)
-		render_ticker_data(scope)
+		# render_ticker_data(scope)
+		render_ticker_data_file(scope, ticker)
 		
 
 	
@@ -319,19 +320,3 @@ def render_indicator_selectors(scope):
 
 		if sma_button: add_sma(scope)
 
-
-def render_ticker_data(scope):
-	ticker 		= scope.ticker['intraday']
-
-	st.write('Ticker Data for ' + ticker + '') 
-
-	if ticker in list(scope.share_data_files.keys()):
-		share_data 	= scope.share_data_files[ticker]
-
-		# Display the share data file
-		st.markdown("""---""")
-		st.write('Loaded and Downloaded share data.')
-		my_expander = st.expander(label=ticker)
-		my_expander.dataframe(share_data, 2000, 2000)
-	else:
-		st.error('Load / Download some ticker data')

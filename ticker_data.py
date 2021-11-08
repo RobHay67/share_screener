@@ -136,8 +136,8 @@ def download_from_yahoo_finance( scope ): 													# TODO What Output to Ren
 
 	for count, industry in enumerate(scope.download_industries):
 		download_message = ('downloading > ' + industry + ' ( ' + str(count+1) + ' of ' + str(len(scope.download_industries)) + ' )' )
-		# st.write(  download_message)
-		print ( download_message)
+		st.write(  download_message)
+		# print ( download_message)
 
 		download_ticker_string = generate_ticker_string_by_industry(scope, industry)
 

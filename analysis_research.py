@@ -6,7 +6,7 @@ import pandas as pd
 import plotly.graph_objects as go
 
 # from ticker_data import load_ticker_data_files, load_and_download_ticker_data
-from ticker_loader import render_selectors_for_single_ticker
+from ticker_loader import render_selectors_for_single_ticker, render_ticker_data_file
 
 # ==============================================================================================================================================================
 # Company Research Render Controller
@@ -27,7 +27,8 @@ def render_research_page(scope):
 		render_general_meta_data(info)
 		plot_basic_chart(scope)		
 		render_market_info(info)
-		render_ticker_data_file(scope)
+		# render_ticker_data_file(scope)
+		render_ticker_data_file(scope, ticker)
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Company Profile Page Sections
@@ -138,16 +139,7 @@ def render_market_info(info):
 	marketDF = pd.DataFrame(data=marketInfo, index=[0])
 	st.table(marketDF)
 
-def render_ticker_data_file(scope): # DONE
-	st.markdown('##### Loaded and / or Downloaded share data.')
 
-	ticker = scope.ticker['research']
-
-	if ticker in list(scope.share_data_files.keys()):
-		ticker_data_file = scope.share_data_files[ticker]
-		ticker_data_file.sort_values(by=['date'], inplace=True, ascending=False)
-		my_expander = st.expander(label=ticker)
-		my_expander.dataframe(ticker_data_file, 2000, 2000)	
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
