@@ -8,7 +8,7 @@ project_description = 'Share Trader - DDT'
 
 
 from scope import set_initial_scope
-from scope import update_lists_for_dropdowns
+from scope import dropdown_update_lists
 from navigation import render_current_page, set_page
 
 
@@ -18,8 +18,8 @@ st.set_page_config(layout="wide")
 set_initial_scope(st.session_state, project_description)
 
 # Update the lists utilised by dropdown widgets (but only after loading or changing the share index file)
-if st.session_state.update_lists_for_dropdowns: 
-	update_lists_for_dropdowns(st.session_state)
+if st.session_state.dropdown_update_lists: 
+	dropdown_update_lists(st.session_state)
 
 
 # Temp Code to signal appl refresh ( delete later ) =============================================================

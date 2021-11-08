@@ -91,7 +91,7 @@ download_share_data_schemas =    {
 def set_initial_scope(scope, project_description):
 	if 'initial_load' not in scope:					# set the initial load state - keep this to a minimum
 		scope.initial_load = True
-		scope.update_lists_for_dropdowns = False	# Intially set to false, the loading or refreshing of the share index file has resposibility to set this
+		scope.dropdown_update_lists = False	# Intially set to false, the loading or refreshing of the share index file has resposibility to set this
 			# TODO - do we need to do this??
 		scope.share_market = 'ASX'				# Set Initial Applications Selections
 		scope.display_page = 'initial_load'		# The homepage to display - 
@@ -130,8 +130,8 @@ def set_initial_scope(scope, project_description):
 		# Ticker Selections are stored in these variables
 		scope.tickers_market 				= 'select entire market'	# for the multi ticker selection screen
 		scope.tickers_industries 			= None
-		scope.tickers_selected 				= None
-		scope.tickers_for_multi 			= []
+		scope.tickers_multi 				= None
+		# scope.tickers_for_multi 			= []
 		scope.ticker						={
 												'company_profile':'select a ticker',
 												'volume_predict' :'select a ticker',
@@ -165,7 +165,7 @@ def set_initial_scope(scope, project_description):
 
 
 		# Analysis Variables
-		scope.dropdown_colums = ['open', 'high', 'low', 'close', 'volume']
+		scope.dropdown_ticker_columns = ['open', 'high', 'low', 'close', 'volume']
 
 		# Strategy Params
 		scope.strategy_name = 'None yet Selected', 
@@ -186,7 +186,7 @@ def set_initial_scope(scope, project_description):
 		# Prevent session_state from re-running during its use
 		st.session_state.initial_load = False
 		
-def update_lists_for_dropdowns(scope):
+def dropdown_update_lists(scope):
 	print ( '\033[91m' + 'Dropdown Lists have been repopulated' + '\033[0m' )
 
 	list_of_markets = list(scope.market_suffix.keys())
@@ -206,7 +206,7 @@ def update_lists_for_dropdowns(scope):
 	
 	# ---------------------------------------------------------------------------------------
 	# Prevent executing this function again (until changes have been made to the share index)
-	scope.update_lists_for_dropdowns = False
+	scope.dropdown_update_lists = False
 	
 # -----------------------------------------------------------------------------------------------------------------------------------
 # share file path generator
@@ -236,13 +236,14 @@ def render_scope_page(scope):
 	with col2: show_charting = st.button('Charting')
 
 	with col3: st.subheader('Session')
+	with col3: show_session = st.button('Session')
 	with col3: show_selectors = st.button('Selectors')
 	with col3: show_download = st.button('Download')
 	with col3: show_results = st.button('Results')
 
 
 	with col4: st.subheader('System')
-	with col4: show_application_variables = st.button('Application')
+	with col4: show_application = st.button('Application')
 	with col4: show_folders = st.button('Folders')
 	with col4: show_market = st.button('Share Market')
 
@@ -306,6 +307,14 @@ def render_scope_page(scope):
 		render_3_columns( 'Chart MACD on Price', scope.chart_macd_on_price, 'chart_macd_on_price' )
 		render_3_columns( 'Chart MACD on Volume', scope.chart_macd_on_volume, 'chart_macd_on_volume' )
 
+	if show_session:
+		st.subheader('Session Variables')
+
+		render_3_columns( 'Initial Load Description', scope.initial_load, 'initial_load' )
+		render_3_columns( 'Current Page to Display', scope.display_page, 'display_page' )
+		render_3_columns( 'Current Share Market', scope.share_market, 'share_market' )
+
+
 	if show_selectors:
 		st.subheader('Ticker Selectors and Selections')
 
@@ -317,6 +326,7 @@ def render_scope_page(scope):
 
 		with col1:
 			st.markdown('##### Selector')
+			st.write('Share Market')
 			st.write('Company Profile')
 			st.write('Volume Prediction')
 			st.write('Intra-Day')
@@ -324,9 +334,11 @@ def render_scope_page(scope):
 			st.write('Share Market')
 			st.write('Industry')
 			st.write('Tickers')
+			st.write('Ticker Column')
 
 		with col2:
 			st.markdown('##### Contains')
+			st.write('Target Market')
 			st.write('Ticker in Index')
 			st.write('Ticker in Index')
 			st.write('Ticker in Index')
@@ -334,19 +346,23 @@ def render_scope_page(scope):
 			st.write('Share Markets')
 			st.write('Industry in Index')
 			st.write('Ticker in Index')
+			st.write('Column for Calculation')
 
 		with col3:
 			st.markdown('##### Widget')
+			st.write('To Be Config')
 			st.write('selectbox')
 			st.write('selectbox')
 			st.write('selectbox')
 			st.write('selectbox')
 			st.write('selectbox')
+			st.write('multiselect')
 			st.write('multiselect')
 			st.write('multiselect')
 
 		with col4:
 			st.markdown('##### Populated from')
+			st.write('**Hard Coded')
 			st.write('< dropdown_ticker >')
 			st.write('< dropdown_ticker >')
 			st.write('< dropdown_ticker >')
@@ -354,26 +370,31 @@ def render_scope_page(scope):
 			st.write('< dropdown_markets >')
 			st.write('< dropdown_industries >')
 			st.write('< dropdown_tickers >')
+			st.write('[ hard coded list ]')
 
 		with col5:
 			st.markdown('##### Current Selection')
+			st.write(scope.share_market)
 			st.write(scope.ticker['company_profile'])
 			st.write(scope.ticker['volume_predict'])
 			st.write(scope.ticker['intraday'])
 			st.write(scope.ticker['single'])
 			st.write(scope.tickers_market)
 			st.write(scope.tickers_industries)
-			st.write(scope.tickers_selected)
+			st.write(scope.tickers_multi)
+			st.write(scope.dropdown_ticker_columns)
 
 		with col6:
 			st.markdown('##### Selection Stored In')
+			st.write('< share_market >')
 			st.write("< ticker['company_profile'] >")
 			st.write("< ticker['volume_predict'] >")
 			st.write("< ticker['intraday'] >")
 			st.write("< ticker['single'] >")
 			st.write('< tickers_market >')
 			st.write('< tickers_industries >')
-			st.write('< tickers_selected >')
+			st.write('< tickers_multi >')
+			st.write('  not stored ')			#TODO - we may need to store this for different indicators 
 
 		
 		
@@ -428,10 +449,11 @@ def render_scope_page(scope):
 		render_3_columns( 'Result Passed_2', scope.result_passed_2, 'result_passed_2' )
 		render_3_columns( 'Result Failed', scope.result_failed, 'result_failed' )
 
-	if show_application_variables:
+	if show_application:
 		st.subheader('General Application Parameters')
 		render_3_columns( 'Project Description', scope.project_description, 'project_description' )
 		render_3_columns( 'Project Start Time', datetime.fromtimestamp(scope.project_start_time).strftime('%Y-%m-%d %H:%M:%S %p'), 'project_start_time' )
+		render_3_columns( 'Current Share Market', scope.share_market, 'share_market' )
 	
 	if show_folders:
 		st.subheader('Folders and Paths')
@@ -555,6 +577,9 @@ def report_params(params ):
 
 # def chunkstring(string, length):
 # 	return (string[0+i:length+i] for i in range(0, len(string), length))
+
+
+
 
 
 

@@ -291,7 +291,7 @@ def update_download_status(scope): # TODO DONE - but needs robust testing on a l
 # 	if params.ticker_index['specified_trading_halt_codes'] != None:  # just make sure we have specified some codes
 # 		terminal_heading( params, ( 'editing share index to account for trading halt days' + cyan + '   Changed' + '  /  ' + purple + 'Failed' + white ), line_filler='-' )
 # 		output_result_to_terminal(params)
-# 		for ticker in params.analysis['tickers_for_multi']:
+# 		for ticker in params.analysis['ticker_list']:
 # 			missing_dates_string = str(params.ticker_index['file'].loc[ticker]['missing_dates'])
 # 			trading_halt_dates_string = str(params.ticker_index['file'].loc[ticker]['trading_halt_dates'])
 
@@ -333,7 +333,7 @@ def update_download_status(scope): # TODO DONE - but needs robust testing on a l
 # Primary Controller
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # def ensure_share_data_is_available(params):
-# 	if len(params.analysis['tickers_for_multi']) > 0:								# we have some share data to analyse
+# 	if len(params.analysis['ticker_list']) > 0:								# we have some share data to analyse
 # 		# load_ticker_data_files( params )
 # 		download_from_yahoo_finance( params )			
 # 		combine_downloaded_with_any_loaded_ticker_data(params)
@@ -386,7 +386,7 @@ def update_download_status(scope): # TODO DONE - but needs robust testing on a l
 # def download_tickers(scope):
 # 	st.header('Downloading Tickers from Yahoo Finance (as specified by the Ticker List)')
 
-# 	if len(scope.tickers_for_multi) != 0: 
+# 	if len(scope.ticker_list) != 0: 
 # 		st.subheader('Loading Tickers (as specified by the Ticker List)')
 
 # 		load_ticker_data_files(scope)
@@ -418,7 +418,7 @@ def update_download_status(scope): # TODO DONE - but needs robust testing on a l
 
 	# with col1: st.subheader('Load Share Data Files')
 	# with col1: st.subheader('(per ticker list)')
-	# with col1: st.write(('number of Files to Load = ( ' + str((len(scope.tickers_for_multi))) + ' )'))
+	# with col1: st.write(('number of Files to Load = ( ' + str((len(scope.ticker_list))) + ' )'))
 	# with col1: load_tickers = st.button('Load OHLCV Data')
 
 	# with col2: st.subheader('Download Latest Share Data')
@@ -432,7 +432,7 @@ def update_download_status(scope): # TODO DONE - but needs robust testing on a l
 	# if load_tickers:
 	# 	st.header('Loading Tickers (as specified by the Ticker List)')
 
-	# 	if len(scope.tickers_for_multi) != 0: 
+	# 	if len(scope.ticker_list) != 0: 
 	# 		load_ticker_data_files(scope)
 	# 	else:
 	# 		st.error('Ticker List does not contain any tickers - add tickers using the sidebar')
@@ -442,7 +442,7 @@ def update_download_status(scope): # TODO DONE - but needs robust testing on a l
 	# if download_tickers:
 	# 	st.header('Downloading Tickers from Yahoo Finance (as specified by the Ticker List)')
 
-	# 	if len(scope.tickers_for_multi) != 0: 
+	# 	if len(scope.ticker_list) != 0: 
 	# 		st.subheader('Loading Tickers (as specified by the Ticker List)')
 
 	# 		load_ticker_data_files(scope)
@@ -478,15 +478,15 @@ def update_download_status(scope): # TODO DONE - but needs robust testing on a l
 # 	if download_by_group == False:
 
 # 	# if we are multi download, we do what we normally do, otherwise we do the selected tickers method (for singles)
-# 	if scope.download_group_method == 'tickers_selected':
-# 		scope.download_groups_for_y_finance.append('tickers_selected')
+# 	if scope.download_group_method == 'tickers_multi':
+# 		scope.download_groups_for_y_finance.append('tickers_multi')
 # 	elif scope.download_group_method == 'tickers_multi':
 # 		if scope.tickers_market != 'select entire market':
 # 			scope.download_groups_for_y_finance = ( list(scope.ticker_index_file['industry_group'].unique() ))
 # 		elif len(scope.tickers_industries) != 0:
 # 			scope.download_groups_for_y_finance = scope.selected_industry
-# 		elif len(scope.tickers_selected) != 0:
-# 			scope.download_groups_for_y_finance.append('tickers_selected')
+# 		elif len(scope.tickers_multi) != 0:
+# 			scope.download_groups_for_y_finance.append('tickers_multi')
 # 	else:
 # 		st.error( ('The scope.download_group_method value > ' + scope.download_group_method + ' < which has not been configured') )
 

@@ -45,14 +45,14 @@ def render_selectors_for_analysis_multi(scope):
 	with col3: 
 		tickers = st.multiselect( 	label='Add a Ticker or Tickers',
 									options=scope.dropdown_tickers,
-									default=scope.tickers_selected,
+									default=scope.tickers_multi,
 									help='Select a ticker, or multiple tickers from the dropdown. Start typing to jump within list'
 									)
 
 	# Store the results so the list repopulate after re-render
 	scope.tickers_market 	 = market
 	scope.tickers_industries = industries
-	scope.tickers_selected 	 = tickers
+	scope.tickers_multi 	 = tickers
 	construct_ticker_list(scope)
 
 	print(scope.ticker_list)
@@ -92,8 +92,8 @@ def construct_ticker_list(scope):
 	# ################################################################################
 
 	# Selected a ticker or tickers
-	if len(scope.tickers_selected) != 0:
-		for ticker in scope.tickers_selected:
+	if len(scope.tickers_multi) != 0:
+		for ticker in scope.tickers_multi:
 			ticker_list.append(ticker)
 			relevant_industries = ['random_tickers']
 		pass
@@ -138,8 +138,8 @@ def construct_ticker_list(scope):
 
 
 # 	# Selected a ticker or tickers
-# 	if len(scope.tickers_selected) != 0:
-# 		for ticker in scope.tickers_selected:
+# 	if len(scope.tickers_multi) != 0:
+# 		for ticker in scope.tickers_multi:
 # 			render_results( scope, ticker, result='passed' )
 # 			ticker_list += [ticker]	
 # 		pass

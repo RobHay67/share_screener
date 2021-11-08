@@ -72,7 +72,7 @@ def load_ticker_index_file( scope ):
 		ticker_index.set_index('share_code', inplace=True)
 		# remove any delisted stocks here
 		scope.ticker_index_file = ticker_index
-		scope.update_lists_for_dropdowns = True
+		scope.dropdown_update_lists = True
 	else: 
 		st.error( 'Ticker Index File does not exist at path > ' + str(scope.path_ticker_index) )
 		st.info( 'creating an empty ticker_index dataframe' )
@@ -126,7 +126,7 @@ def refresh_ticker_index_file(scope):
 
 		st.success('number of downloaded ' + scope.share_market + ' ticker codes = ' + str(len(downloaded_ticker_info)))
 		update_ticker_index_with_latest_download(scope, downloaded_ticker_info )
-		scope.update_lists_for_dropdowns = True
+		scope.dropdown_update_lists = True
 	else:
 		st.error('DOWNLOAD Ticker data NOT YET CONFIGURED FOR ' + scope.share_market)
 		pass
