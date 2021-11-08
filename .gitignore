@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Ignore Data Folders during Development
+share_data/
+
+
 # C extensions
 *.so
 

@@ -5,15 +5,15 @@ import pandas as pd
 # import datetime as dt
 import plotly.graph_objects as go
 
-from ticker_data import load_ticker_data_files, load_and_download_ticker_data
-
+# from ticker_data import load_ticker_data_files, load_and_download_ticker_data
+from web_results import render_selectors_for_single_ticker
 
 # ==============================================================================================================================================================
 # Web Page Render Controller
 # ==============================================================================================================================================================
 def render_company_profile_page(scope):
 	st.title('Company Profile')
-	company_profile_ticker_selector(scope)
+	render_selectors_for_single_ticker(scope, 'ticker_for_company_profile' )
 	
 	st.markdown("""---""")
 	
@@ -29,43 +29,8 @@ def render_company_profile_page(scope):
 		render_market_info(info)
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Render Sections
+# Company Profile Page Sections
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-def company_profile_ticker_selector(scope):
-	col1,col2,col3,col4,col5 = st.columns([2,2,1.2,2,4.8])
-	
-	dropdown_list = scope.dropdown_ticker
-	index_of_ticker = dropdown_list.index(scope.ticker_for_company_profile)
-
-	with col1: 
-		ticker = st.selectbox ( 'Select Ticker', 
-								dropdown_list, 
-								index=index_of_ticker, 
-								help='Select a ticker. Start typing to jump within list'
-								) 
-	
-
-	scope.ticker_for_company_profile = ticker									# Store the selection for next session
-	
-	if ticker != 'select a ticker':	
-		st.header( scope.ticker_index_file.loc[ticker]['company_name'] )	
-
-		with col3: load_tickers 	= st.button( 'Load File')
-		with col3: download_tickers = st.button(('Add ' + str(int(st.download_days)) + ' days'))
-
-		with col4: st.button('Clear Messages')
-
-		scope.ticker_list = [ticker]
-		# TODO - we need to set a flag that resets the ticker list button in the sidebar
-		scope.download_industries = ['random_tickers']
-
-		if load_tickers : 
-			load_ticker_data_files(scope)
-
-		if download_tickers:
-			load_and_download_ticker_data(scope)
-
 
 
 @st.cache
@@ -79,7 +44,7 @@ def render_company_general_info(info):
 	with col1: st.markdown('** Sector **: ' + info['sector'])
 	with col1: st.markdown('** Industry **: ' + info['industry'])
 	# with col1: st.markdown('** Phone **: ' + info['phone'])
-	with col1: st.markdown('** Address **: ' + info['address1'] + ', ' + info['city'] + ', ' + info['zip'] + ', '  +  info['country'])
+	# with col1: st.markdown('** Address **: ' + info['address1'] + ', ' + info['city'] + ', ' + info['zip'] + ', '  +  info['country'])
 	with col1: st.markdown('** Website **: ' + info['website'])
 	with col2: st.markdown('** Business Summary **')
 	# paragraph = info['longBusinessSummary']

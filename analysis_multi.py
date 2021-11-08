@@ -8,10 +8,10 @@ from ticker_data import load_ticker_data_files, load_and_download_ticker_data
 # ==============================================================================================================================================================
 # Web Page Render Controller
 # ==============================================================================================================================================================
-def render_multi_analysis_page(scope):
+def render_analysis_multi_page(scope):
 	st.title('Analysis - Multiple Tickers')
 
-	render_selectors_for_multi_analysis(scope)
+	render_selectors_for_analysis_multi(scope)
 
 	# if len(scope.ticker_list) > 0:
 	# 	st.info('We have some tickers')
@@ -23,7 +23,7 @@ def render_multi_analysis_page(scope):
 # Render Sections
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def render_selectors_for_multi_analysis(scope):
+def render_selectors_for_analysis_multi(scope):
 	col1,col2,col3,col4,col5,col6 = st.columns([2,3,2,1.2,2,1.8])							# col2=4 is just a dummy to prevent the widget filling the whole screen
 
 	dropdown_list_market = scope.dropdown_markets

@@ -15,6 +15,7 @@ from web_results import render_results
 def render_ticker_data_files(scope): # DONE
 	st.header('Loaded and Downloaded share data.')
 	list_of_loaded_tickers = list(scope.share_data_files.keys())
+	list_of_loaded_tickers.sort()
 
 	for ticker in list_of_loaded_tickers:
 		my_expander = st.expander(label=ticker)

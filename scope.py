@@ -138,6 +138,7 @@ def set_initial_scope(scope, project_description):
 		scope.ticker_for_company_profile 	= 'select a ticker'
 		scope.ticker_for_vol_predict 		= 'select a ticker'
 		scope.ticker_for_daily 				= 'select a ticker'
+		scope.ticker_for_single				= 'select a ticker'
 
 		# Share Data Files
 		scope.share_data_files 			= {}
@@ -224,7 +225,7 @@ def generate_path_for_share_data_file( scope, ticker ): # DONE
 def render_scope_page(scope):
 	st.title('Application Parameters')
 
-	col1,col2,col3,col4 = st.columns([2,2,2,2])
+	col1,col2,col3,col4,col5,col6 = st.columns([2,2,2,2,2,2])
 
 	with col1: st.subheader('Lists')
 	with col1: show_tickers = st.button('Ticker Lists ( ' + str((len(scope.tickers_for_multi))) + ' )')
@@ -233,16 +234,22 @@ def render_scope_page(scope):
 	with col2: st.subheader('Data')
 	with col2: show_ticker_index = st.button('Ticker Index File ( ' + str((len(st.session_state.ticker_index_file))) + ' )')
 	with col2: show_share_data_files = st.button('Share Data Files ( ' + str(len(st.session_state.share_data_files.keys())) + ' )')
-	with col2: show_download = st.button('Download Variables')
+	
 
 	with col3: st.subheader('Analysis')
 	with col3: show_strategy = st.button('Strategy')
 	with col3: show_charting = st.button('Charting')
 
-	with col4: st.subheader('Parameters')
-	with col4: show_application_variables = st.button('Application Variables')
-	with col4: show_folders = st.button('Folder Locations')
-	with col4: show_market = st.button('Share Market Information')
+	with col4: st.subheader('Session')
+	with col4: show_selectors = st.button('Selectors')
+	with col4: show_download = st.button('Download')
+	with col4: show_results = st.button('Results')
+
+
+	with col5: st.subheader('System')
+	with col5: show_application_variables = st.button('Application')
+	with col5: show_folders = st.button('Folders')
+	with col5: show_market = st.button('Share Market')
 
 	if show_tickers:
 		st.subheader('Ticker Lists')
@@ -286,37 +293,6 @@ def render_scope_page(scope):
 			my_expander = st.expander(label=ticker)
 			my_expander.dataframe(scope.share_data_files[ticker], 2000, 2000)
 
-	if show_download:
-		st.subheader('Download Variables')
-		render_3_columns( 'Number of Days to Download', scope.download_days, 'download_days' )
-
-		st.markdown("""---""")
-		st.subheader('Most Recent Download Variables and Data')
-		render_3_columns( 'Industry Groups for y_finance to iterate over', scope.download_industries, 'download_industries' )
-		render_3_columns( 'Downloaded Data from y_finance', scope.downloaded_yf_ticker_data, 'downloaded_yf_ticker_data' )
-		render_3_columns( 'Error Messages  from y_finance', scope.downloaded_yf_anomolies  , 'downloaded_yf_anomolies' )
-		render_3_columns( 'Current Ticker List', (str(len(scope.ticker_list)) + ' ticker(s)'), 'ticker_list' )
-		ticker_list_message = ''
-		for count, ticker in enumerate(scope.ticker_list):
-			ticker_list_message = ticker_list_message + ticker
-			if count < len(scope.ticker_list) - 1:
-				ticker_list_message += '  '
-		st.info(ticker_list_message)
-
-		st.markdown("""---""")
-		st.subheader('Available Schemas for the different downloads from y_finance')
-		col1,col2,col3 = st.columns([2,4,2])
-		list_of_schemas = list(scope.download_schemas.keys())
-		for schema in list_of_schemas:
-			with col1: st.write(schema)
-			# schema_definition = scope.download_schemas[schema]
-			# schema_definition = pd.DataFrame(scope.download_schemas[schema])
-			# print( schema_definition)
-			with col2: st.write(scope.download_schemas[schema])
-			# with col2: st.dataframe(scope.strategy_price_columns, 100, 200)
-			# with col2: st.write(schema_definition)
-		with col3: st.write('< download_schemas >')
-
 	if show_strategy:
 		st.subheader('Strategy Parameters')
 		# TODO not sure what the final format of some of these objects should be
@@ -352,11 +328,9 @@ def render_scope_page(scope):
 		render_3_columns( 'Chart MACD on Price', scope.chart_macd_on_price, 'chart_macd_on_price' )
 		render_3_columns( 'Chart MACD on Volume', scope.chart_macd_on_volume, 'chart_macd_on_volume' )
 
-	if show_application_variables:
-		
-		st.subheader('General Application Parameters')
-		render_3_columns( 'Project Description', scope.project_description, 'project_description' )
-		render_3_columns( 'Project Start Time', datetime.fromtimestamp(scope.project_start_time).strftime('%Y-%m-%d %H:%M:%S %p'), 'project_start_time' )
+	if show_selectors:
+		st.subheader('Ticker Selectors and Selections')
+
 		render_3_columns( 'Initial Run / load', scope.initial_load, 'initial_load' )
 
 		st.markdown("""---""")
@@ -366,14 +340,16 @@ def render_scope_page(scope):
 		with col1:
 			st.markdown('##### Selector')
 			st.write('Company Profile')
-			st.write('Volume Analysis')
-			st.write('Daily Analysis')
+			st.write('Volume Prediction')
+			st.write('Intra-Day')
+			st.write('Single Ticker')
 			st.write('Share Market')
 			st.write('Industry')
 			st.write('Tickers')
 
 		with col2:
 			st.markdown('##### Contains')
+			st.write('Ticker in Index')
 			st.write('Ticker in Index')
 			st.write('Ticker in Index')
 			st.write('Ticker in Index')
@@ -387,6 +363,7 @@ def render_scope_page(scope):
 			st.write('selectbox')
 			st.write('selectbox')
 			st.write('selectbox')
+			st.write('selectbox')
 			st.write('multiselect')
 			st.write('multiselect')
 
@@ -395,27 +372,32 @@ def render_scope_page(scope):
 			st.write('< dropdown_ticker >')
 			st.write('< dropdown_ticker >')
 			st.write('< dropdown_ticker >')
+			st.write('< dropdown_ticker >')
 			st.write('< dropdown_markets >')
 			st.write('< dropdown_industries >')
 			st.write('< dropdown_tickers >')
 
 		with col5:
-			st.markdown('##### Selection Stored In')
-			st.write('< ticker_for_company_profile >')
-			st.write('< ticker_for_vol_predict >')
-			st.write('< ticker_for_daily >')
-			st.write('< tickers_market >')
-			st.write('< tickers_industries >')
-			st.write('< tickers_selected >')
-
-		with col6:
 			st.markdown('##### Current Selection')
 			st.write(scope.ticker_for_company_profile)
 			st.write(scope.ticker_for_vol_predict)
 			st.write(scope.ticker_for_daily)
+			st.write(scope.ticker_for_single)
 			st.write(scope.tickers_market)
 			st.write(scope.tickers_industries)
 			st.write(scope.tickers_selected)
+
+		with col6:
+			st.markdown('##### Selection Stored In')
+			st.write('< ticker_for_company_profile >')
+			st.write('< ticker_for_vol_predict >')
+			st.write('< ticker_for_daily >')
+			st.write('< ticker_for_single >')
+			st.write('< tickers_market >')
+			st.write('< tickers_industries >')
+			st.write('< tickers_selected >')
+
+		
 		
 		st.markdown("""---""")
 		st.subheader('Dropdown Lists (per above)')
@@ -424,12 +406,50 @@ def render_scope_page(scope):
 		render_3_columns( 'Available Tickers    ( multiselect )', scope.dropdown_tickers	, 'dropdown_tickers' )
 		render_3_columns( 'Available Ticker     ( selectbox )'  , scope.dropdown_ticker		, 'dropdown_ticker' )
 
+	if show_download:
+		st.subheader('Download Variables')
+		render_3_columns( 'Number of Days to Download', scope.download_days, 'download_days' )
+
+		st.markdown("""---""")
+		st.subheader('Most Recent Download Variables and Data')
+		render_3_columns( 'Industry Groups for y_finance to iterate over', scope.download_industries, 'download_industries' )
+		render_3_columns( 'Downloaded Data from y_finance', scope.downloaded_yf_ticker_data, 'downloaded_yf_ticker_data' )
+		render_3_columns( 'Error Messages  from y_finance', scope.downloaded_yf_anomolies  , 'downloaded_yf_anomolies' )
+		render_3_columns( 'Current Ticker List', (str(len(scope.ticker_list)) + ' ticker(s)'), 'ticker_list' )
+		ticker_list_message = ''
+		for count, ticker in enumerate(scope.ticker_list):
+			ticker_list_message = ticker_list_message + ticker
+			if count < len(scope.ticker_list) - 1:
+				ticker_list_message += '  '
+		st.info(ticker_list_message)
+
+		st.markdown("""---""")
+		st.subheader('Available Schemas for the different downloads from y_finance')
+		col1,col2,col3 = st.columns([2,4,2])
+		list_of_schemas = list(scope.download_schemas.keys())
+		for schema in list_of_schemas:
+			with col1: st.write(schema)
+			# schema_definition = scope.download_schemas[schema]
+			# schema_definition = pd.DataFrame(scope.download_schemas[schema])
+			# print( schema_definition)
+			with col2: st.write(scope.download_schemas[schema])
+			# with col2: st.dataframe(scope.strategy_price_columns, 100, 200)
+			# with col2: st.write(schema_definition)
+		with col3: st.write('< download_schemas >')
+	
+	if show_results:
+		st.subheader('Results from Most Recent Batch Process')
 		st.markdown("""---""")
 		st.subheader('Result Parameters')
 		render_3_columns( 'Result Passed', scope.result_passed, 'result_passed' )
 		render_3_columns( 'Result Passed_2', scope.result_passed_2, 'result_passed_2' )
 		render_3_columns( 'Result Failed', scope.result_failed, 'result_failed' )
 
+	if show_application_variables:
+		st.subheader('General Application Parameters')
+		render_3_columns( 'Project Description', scope.project_description, 'project_description' )
+		render_3_columns( 'Project Start Time', datetime.fromtimestamp(scope.project_start_time).strftime('%Y-%m-%d %H:%M:%S %p'), 'project_start_time' )
+	
 	if show_folders:
 		st.subheader('Folders and Paths')
 

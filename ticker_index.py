@@ -62,7 +62,8 @@ def load_ticker_index_file( scope ):
 	st.title('Loading Ticker Index File')
 
 	if os.path.exists( scope.path_ticker_index ):
-		st.info('loading ticker_index.csv file from ' +  str(scope.path_ticker_index) )
+		st.write('loading ticker_index.csv file from....... ')
+		st.markdown(('##### ' +  str(scope.path_ticker_index) ))
 
 		ticker_index = pd.read_csv(  scope.path_ticker_index, 
 									dtype=ticker_index_schema_csv_dtypes(),
@@ -70,7 +71,7 @@ def load_ticker_index_file( scope ):
 									)
 		# ticker_index['blue_chip'] = ticker_index['blue_chip'].astype(int)
 		ticker_index['listing_date'] = pd.to_datetime( ticker_index['listing_date'].dt.date  )
-		st.success('successfully loaded the ticker index file')
+		st.write('loaded the ticker index file')
 		ticker_index.set_index('share_code', inplace=True)
 		# remove any delisted stocks here
 		scope.ticker_index_file = ticker_index

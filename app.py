@@ -40,26 +40,18 @@ st.sidebar.button(('Share Index  ( ' + str((len(st.session_state.ticker_index_fi
 st.sidebar.button(('Ticker List  ( ' + str((len(st.session_state.ticker_list))) + ' )'), on_click=set_page, args=('ticker_list', ))
 st.sidebar.button(('Ticker Files ( ' + str(len(st.session_state.share_data_files.keys())) + ' )'), on_click=set_page, args=('share_data_files', ))
 
-st.sidebar.title('Analysis ( multiple tickers )')
-st.sidebar.button('Multi Ticker Analysis', on_click=set_page, args=('multi_analysis', ))
-# st.sidebar.button( ('Load and Import Share Data ( ' + str((len(st.session_state.share_data_files))) + ' )'), on_click=set_page, args=('manage_share_data', ))
+st.download_days = st.sidebar.number_input('change ( - / + )  number of days to download', min_value=1, max_value=6000, value=1, key='0')   
 
-st.sidebar.title('Analysis ( single ticker )')
+st.sidebar.title('Analysis ( multiple tickers )')
+st.sidebar.button('Ticker Analysis (multiple)', on_click=set_page, args=('analysis_multi', ))
+st.sidebar.button('Ticker Analysis (single)'  , on_click=set_page, args=('single_analysis', ))
 st.sidebar.button('Company Profile'	 , on_click=set_page, args=('company_profile', ))
 st.sidebar.button('Volume Prediction', on_click=set_page, args=('volume', ))
 st.sidebar.button('Daily Analysis'	 , on_click=set_page, args=('daily_analysis', ))
 
-st.sidebar.title('Quick Data ( Temp )')
-# ticker list and ticker data buttons
-
-
 
 st.sidebar.title('Variables')
-st.download_days = st.sidebar.number_input('change ( - / + )  number of days to download', min_value=1, max_value=1000, value=1, key='0')   
 st.sidebar.button('Session Variables', on_click=set_page, args=('scope', ))
-
-
-
 
 
 
