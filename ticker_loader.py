@@ -5,15 +5,23 @@ from ticker_data import load_ticker_data_files, load_and_download_ticker_data
 
 
 
-
+		# scope.ticker				={
+		# 								'company_profile':'select a ticker',
+		# 								'volume_predict' :'select a ticker',
+		# 								'intraday'		 :'select a ticker',
+		# 								'single'		 :'select a ticker',
+		# 							}
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Render Re-Usable Sections
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
-def render_selectors_for_single_ticker(scope, ticker_variable):
+def render_selectors_for_single_ticker(scope, ticker_key):
 	col1,col2,col3,col4,col5 = st.columns([2,2,1.2,2,4.8])
 	
 	dropdown_list = scope.dropdown_ticker
-	index_of_ticker = dropdown_list.index(scope[ticker_variable])
+	prior_selection = scope.ticker[ticker_key]
+	print(prior_selection)
+	# index_of_ticker = dropdown_list.index(scope[ticker_variable])
+	index_of_ticker = dropdown_list.index(prior_selection)
 
 	with col1: 
 		ticker = st.selectbox ( 'Select Ticker', 
@@ -22,8 +30,9 @@ def render_selectors_for_single_ticker(scope, ticker_variable):
 								help='Select a ticker. Start typing to jump within list'
 								) 
 	
-
-	scope[ticker_variable] = ticker									# Store the selection for next session
+	scope.ticker[ticker_key] = ticker							# Store the selection for next session
+	# ticker_variable = ticker									# Store the selection for next session
+	# scope[ticker_variable] = ticker									# Store the selection for next session
 	
 	if ticker != 'select a ticker':	
 		st.header( scope.ticker_index_file.loc[ticker]['company_name'] )	

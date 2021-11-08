@@ -8,16 +8,22 @@ import plotly.graph_objects as go
 # from ticker_data import load_ticker_data_files, load_and_download_ticker_data
 from ticker_loader import render_selectors_for_single_ticker
 
+
+		# scope.ticker				={
+		# 								'company_profile':'select a ticker',
+		# 								'volume_predict' :'select a ticker',
+		# 								'intraday'		 :'select a ticker',
+		# 								'single'		 :'select a ticker',
+		# 							}
 # ==============================================================================================================================================================
 # Company Profile Render Controller
 # ==============================================================================================================================================================
 def render_company_profile_page(scope):
 	st.header('Company Profile')
-	render_selectors_for_single_ticker(scope, 'ticker_for_company_profile' )
-	
+	render_selectors_for_single_ticker(scope, 'company_profile' )
 	st.markdown("""---""")
 	
-	ticker = scope.ticker_for_company_profile
+	ticker = scope.ticker['company_profile']
 
 	if ticker != 'select a ticker':	
 		meta_data, info = fetch_yfinance_metadata_for_company_profile(ticker)
@@ -80,7 +86,7 @@ def render_general_meta_data(info):
 
 def plot_basic_chart(scope):
 	
-	ticker = scope.ticker_for_company_profile
+	ticker = scope.ticker['company_profile']
 
 	st.subheader('Chart of all available ' + ticker + ' data') 
 

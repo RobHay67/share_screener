@@ -62,7 +62,7 @@ def combine_downloaded_with_any_loaded_ticker_data(scope): # WIP - change to che
 			ticker_data = scope.downloaded_yf_ticker_data[scope.downloaded_yf_ticker_data['ticker'] == ticker]	# subset to a specific ticker in the downloaded data
 			ticker_data = ticker_data[scope.share_data_usecols]												# standardise the columns
 			ticker_data = ticker_data[ticker_data['volume'] != 0]											# drop rows where volume is zero 
-			if ticker in scope.share_data_loaded_list:														# we have an exisiting share_data_file so we concatenate the data
+			if ticker in scope.downloaded_loaded_list:														# we have an exisiting share_data_file so we concatenate the data
 				scope.share_data_files[ticker] = pd.concat([scope.share_data_files[ticker], ticker_data]).drop_duplicates(subset=['date'], keep='last')
 				render_results( scope, ticker, result='passed' )
 			else:
@@ -79,17 +79,17 @@ def combine_downloaded_with_any_loaded_ticker_data(scope): # WIP - change to che
 def load_ticker_data_files( scope ):
 	render_results( scope, passed='LOADED Share Data Files > ', failed='MISSING Share Data Files for > ', passed_2='na' )
 
-	# scope.share_data_loaded_list = []					# TODO - I dont beleive we need to reset these lists - they should just grow with the session
-	# scope.share_data_missing_list = []				# TODO - I dont beleive we need to reset these lists - they should just grow with the session
+	# scope.downloaded_loaded_list = []					# TODO - I dont beleive we need to reset these lists - they should just grow with the session
+	# scope.downloaded_missing_list = []				# TODO - I dont beleive we need to reset these lists - they should just grow with the session
 	
 	for ticker in scope.ticker_list:
 		generate_path_for_share_data_file(scope, ticker )
 		if os.path.exists( scope.path_share_data_file ):
 			load_a_file(scope, ticker )
-			scope.share_data_loaded_list.append(ticker)
+			scope.downloaded_loaded_list.append(ticker)
 			render_results( scope, ticker, result='passed' )
 		else:
-			scope.share_data_missing_list.append(ticker)
+			scope.downloaded_missing_list.append(ticker)
 			render_results( scope, ticker, result='failed' )
 	render_results(scope, 'Finished', final_print=True )
 

@@ -54,11 +54,12 @@ def add_sma(scope):
 
 def render_intraday_analysis_page(scope):
 	st.header('Intra-Day Analysis')
-	render_selectors_for_single_ticker(scope, 'ticker_for_intraday' )
-
+	# render_selectors_for_single_ticker(scope, 'ticker_for_intraday' )
+	render_selectors_for_single_ticker(scope, 'intraday')
 	st.markdown("""---""")
 
-	ticker = scope.ticker_for_intraday
+	# ticker = scope.ticker_for_intraday
+	ticker = scope.ticker['intraday']
 
 	if ticker != 'select a ticker':	
 
@@ -104,7 +105,7 @@ def render_intraday_analysis_page(scope):
 
 def plot_basic_chart(scope):
 	
-	ticker = scope.ticker_for_intraday
+	ticker = scope.ticker['intraday']
 
 	st.write('Chart of all available ' + ticker + ' data') 
 
@@ -190,7 +191,7 @@ def render_indicator_selectors(scope):
 
 
 def render_ticker_data(scope):
-	ticker 		= scope.ticker_for_intraday
+	ticker 		= scope.ticker['intraday']
 
 	st.write('Ticker Data for ' + ticker + '') 
 

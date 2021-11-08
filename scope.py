@@ -97,9 +97,6 @@ def set_initial_scope(scope, project_description):
 		scope.display_page = 'initial_load'		# The homepage to display - 
 
 	if scope.initial_load:
-		# Streamlit Params
-		
-
 		# Project Params
 		scope.project_description = project_description
 		scope.project_start_time = time.time()
@@ -126,6 +123,7 @@ def set_initial_scope(scope, project_description):
 		scope.path_ticker_index = pathlib.Path.home().joinpath( scope.folder_share_data, 'ticker_index.csv' )
 		scope.path_website_file = pathlib.Path.home().joinpath( scope.folder_website, 'strategy_results.json' )
 		scope.path_share_data_file = 'not yet set',
+		
 		# Load the Ticker Index File
 		load_ticker_index_file(scope)
 
@@ -134,16 +132,17 @@ def set_initial_scope(scope, project_description):
 		scope.tickers_industries 			= None
 		scope.tickers_selected 				= None
 		scope.tickers_for_multi 			= []
-		# scope.tickers_update_list 			= False 					# This is utilised by the multi selectors to ensure smooth updates
-		scope.ticker_for_company_profile 	= 'select a ticker'
-		scope.ticker_for_vol_predict 		= 'select a ticker'
-		scope.ticker_for_intraday 			= 'select a ticker'
-		scope.ticker_for_single				= 'select a ticker'
+		scope.ticker						={
+												'company_profile':'select a ticker',
+												'volume_predict' :'select a ticker',
+												'intraday'		 :'select a ticker',
+												'single'		 :'select a ticker',
+											}
 
 		# Share Data Files
 		scope.share_data_files 			= {}
-		scope.share_data_loaded_list 	= []
-		scope.share_data_missing_list 	= []
+		scope.downloaded_loaded_list 	= []
+		scope.downloaded_missing_list 	= []
 		scope.share_data_schema 		= share_data_schema
 		scope.share_data_usecols 		= ['date', 'open', 'high', 'low', 'close', 'volume']
 		scope.share_data_dtypes 		= {'open': 'float64', 'high': 'float64', 'low': 'float64', 'close': 'float64', 'volume': 'int64'}
@@ -227,53 +226,25 @@ def render_scope_page(scope):
 
 	col1,col2,col3,col4,col5,col6 = st.columns([2,2,2,2,2,2])
 
-	with col1: st.subheader('Lists')
-	with col1: show_tickers = st.button('Ticker Lists ( ' + str((len(scope.tickers_for_multi))) + ' )')
+	with col1: st.subheader('Data')
+	with col1: show_ticker_index = st.button('Ticker Index File ( ' + str((len(st.session_state.ticker_index_file))) + ' )')
+	with col1: show_share_data_files = st.button('Share Data Files ( ' + str(len(st.session_state.share_data_files.keys())) + ' )')
 	with col1: show_industries = st.button('Industries')
-
-	with col2: st.subheader('Data')
-	with col2: show_ticker_index = st.button('Ticker Index File ( ' + str((len(st.session_state.ticker_index_file))) + ' )')
-	with col2: show_share_data_files = st.button('Share Data Files ( ' + str(len(st.session_state.share_data_files.keys())) + ' )')
 	
+	with col2: st.subheader('Analysis')
+	with col2: show_strategy = st.button('Strategy')
+	with col2: show_charting = st.button('Charting')
 
-	with col3: st.subheader('Analysis')
-	with col3: show_strategy = st.button('Strategy')
-	with col3: show_charting = st.button('Charting')
-
-	with col4: st.subheader('Session')
-	with col4: show_selectors = st.button('Selectors')
-	with col4: show_download = st.button('Download')
-	with col4: show_results = st.button('Results')
+	with col3: st.subheader('Session')
+	with col3: show_selectors = st.button('Selectors')
+	with col3: show_download = st.button('Download')
+	with col3: show_results = st.button('Results')
 
 
-	with col5: st.subheader('System')
-	with col5: show_application_variables = st.button('Application')
-	with col5: show_folders = st.button('Folders')
-	with col5: show_market = st.button('Share Market')
-
-	if show_tickers:
-		st.subheader('Ticker Lists')
-
-		render_3_columns( 'Ticker Dropdown Lists need updating', scope.update_lists_for_dropdowns, 'update_lists_for_dropdowns' )
-				
-		st.markdown("""---""")
-		st.subheader('Ticker List for Multi Share Code Analysis')
-		render_3_columns( 'Ticker List - Multi', scope.tickers_for_multi, 'tickers_for_multi' )
-		render_3_columns( 'Loaded Ticker List', scope.share_data_loaded_list, 'share_data_loaded_list' )
-		render_3_columns( 'Missing Ticker List', scope.share_data_missing_list, 'share_data_missing_list' )
-
-		st.markdown("""---""")
-		st.subheader('Ticker List for Single Share Code Analysis')
-		render_3_columns( 'Ticker List - for Volume Prediction', scope.ticker_for_vol_predict, 'ticker_for_vol_predict' )
-		render_3_columns( 'Ticker List - for Company Profile', scope.ticker_for_company_profile, 'ticker_for_company_profile' )
-		# render_3_columns( 'Ticker List - for Volume Prediction', scope.ticker_for_vol_predict, 'ticker_for_vol_predict' )
-
-	if show_industries:
-		st.subheader('Share Index File contains the following Industries')
-		industry_group_count = pd.DataFrame(scope.ticker_index_file['industry_group'].value_counts())
-		industry_group_count.index.name = 'Industry'
-		industry_group_count.columns =['No of Codes']
-		st.dataframe(industry_group_count, 2000, 1200)
+	with col4: st.subheader('System')
+	with col4: show_application_variables = st.button('Application')
+	with col4: show_folders = st.button('Folders')
+	with col4: show_market = st.button('Share Market')
 
 	if show_ticker_index:
 		col1,col2 = st.columns([6,2])
@@ -282,6 +253,8 @@ def render_scope_page(scope):
 		st.dataframe(scope.ticker_index_file, 2000, 1200)
 
 	if show_share_data_files:
+		st.subheader('Loaded Ticker Files')
+		render_3_columns( 'Loaded Ticker List', scope.downloaded_loaded_list, 'downloaded_loaded_list' )
 
 		col1,col2 = st.columns([6,2])
 		with col1: st.subheader('Loaded and Downloaded share data.')
@@ -292,6 +265,13 @@ def render_scope_page(scope):
 		for ticker in list_of_loaded_tickers:
 			my_expander = st.expander(label=ticker)
 			my_expander.dataframe(scope.share_data_files[ticker], 2000, 2000)
+	
+	if show_industries:
+		st.subheader('Share Index File contains the following Industries')
+		industry_group_count = pd.DataFrame(scope.ticker_index_file['industry_group'].value_counts())
+		industry_group_count.index.name = 'Industry'
+		industry_group_count.columns =['No of Codes']
+		st.dataframe(industry_group_count, 2000, 1200)
 
 	if show_strategy:
 		st.subheader('Strategy Parameters')
@@ -303,23 +283,21 @@ def render_scope_page(scope):
 		col1,col2,col3 = st.columns([2,4,2])
 		with col1: st.write('Price Columns')
 		with col2: st.dataframe(scope.strategy_price_columns, 100, 200)
-		with col3: st.write('strategy_price_columns')
+		with col3: st.write('< strategy_price_columns >')
 		
 		render_3_columns( 'Print Count', scope.strategy_print_count, 'strategy_print_count' )
 		render_3_columns( 'Build Header', scope.strategy_build_header, 'strategy_build_header' )
 		render_3_columns( 'Header', scope.strategy_header, 'strategy_header' )
 		render_3_columns( 'Print Line', scope.strategy_print_line, 'strategy_print_line' )
-		# render_3_columns( 'JSON Dicitionary', scope.strategy_json_dict, 'strategy_json_dict' )
-		render_3_columns( 'Chart', scope.chart_lines, 'chart_lines' )
 		
 		col1,col2 = st.columns([6,2])
 		with col1: st.write('Json Dicitionary')
-		with col2: st.write('strategy_json_dict')
+		with col2: st.write('< strategy_json_dict >')
 		st.write(scope.strategy_json_dict)
 
 		col1,col2 = st.columns([6,2])
 		with col1: st.write('Results Dataframe')
-		with col2: st.write('strategy_results')
+		with col2: st.write('< strategy_results >')
 		st.dataframe(scope.strategy_results, 2000, 1200)
 
 	if show_charting:
@@ -336,7 +314,7 @@ def render_scope_page(scope):
 		st.markdown("""---""")
 		st.subheader('Ticker Selectors')
 		col1,col2,col3,col4,col5,col6,col7 = st.columns([1.5,1.5,1,2,2.5,2.5,1])
-		
+
 		with col1:
 			st.markdown('##### Selector')
 			st.write('Company Profile')
@@ -379,20 +357,20 @@ def render_scope_page(scope):
 
 		with col5:
 			st.markdown('##### Current Selection')
-			st.write(scope.ticker_for_company_profile)
-			st.write(scope.ticker_for_vol_predict)
-			st.write(scope.ticker_for_intraday)
-			st.write(scope.ticker_for_single)
+			st.write(scope.ticker['company_profile'])
+			st.write(scope.ticker['volume_predict'])
+			st.write(scope.ticker['intraday'])
+			st.write(scope.ticker['single'])
 			st.write(scope.tickers_market)
 			st.write(scope.tickers_industries)
 			st.write(scope.tickers_selected)
 
 		with col6:
 			st.markdown('##### Selection Stored In')
-			st.write('< ticker_for_company_profile >')
-			st.write('< ticker_for_vol_predict >')
-			st.write('< ticker_for_intraday >')
-			st.write('< ticker_for_single >')
+			st.write("< ticker['company_profile'] >")
+			st.write("< ticker['volume_predict'] >")
+			st.write("< ticker['intraday'] >")
+			st.write("< ticker['single'] >")
 			st.write('< tickers_market >')
 			st.write('< tickers_industries >')
 			st.write('< tickers_selected >')
@@ -407,14 +385,19 @@ def render_scope_page(scope):
 		render_3_columns( 'Available Ticker     ( selectbox )'  , scope.dropdown_ticker		, 'dropdown_ticker' )
 
 	if show_download:
-		st.subheader('Download Variables')
+		st.markdown('##### Download Variables')
 		render_3_columns( 'Number of Days to Download', scope.download_days, 'download_days' )
 
 		st.markdown("""---""")
-		st.subheader('Most Recent Download Variables and Data')
+		st.markdown('##### Most Recent Download Variables and Data')
 		render_3_columns( 'Industry Groups for y_finance to iterate over', scope.download_industries, 'download_industries' )
+		render_3_columns( 'Loaded Ticker List', scope.downloaded_loaded_list, 'downloaded_loaded_list' )
+		render_3_columns( 'Missing Ticker List', scope.downloaded_missing_list, 'downloaded_missing_list' )
 		render_3_columns( 'Downloaded Data from y_finance', scope.downloaded_yf_ticker_data, 'downloaded_yf_ticker_data' )
 		render_3_columns( 'Error Messages  from y_finance', scope.downloaded_yf_anomolies  , 'downloaded_yf_anomolies' )
+
+		st.markdown("""---""")
+		st.markdown('##### Most Recent Ticker List which would have been utilised by the above variables')
 		render_3_columns( 'Current Ticker List', (str(len(scope.ticker_list)) + ' ticker(s)'), 'ticker_list' )
 		ticker_list_message = ''
 		for count, ticker in enumerate(scope.ticker_list):

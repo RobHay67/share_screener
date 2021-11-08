@@ -23,7 +23,7 @@ def render_select_ticker_for_volume(scope):
 	col1,col2 = st.columns([2,10])														# col2 is just a dummy to prevent the widget filling the whole screen
 
 	dropdown_list = scope.dropdown_ticker
-	index_of_ticker = dropdown_list.index(scope.ticker_for_vol_predict)
+	index_of_ticker = dropdown_list.index(scope.ticker['volume_predict'])
 
 	with col1: 
 		ticker = st.selectbox ( 'Select Ticker', 
@@ -32,7 +32,7 @@ def render_select_ticker_for_volume(scope):
 								help='Select a ticker. Start typing to jump within list'
 								) 
 	
-	scope.ticker_for_vol_predict = ticker									# Store the selection for next session
+	scope.ticker['volume_predict'] = ticker												# Store the selection for next session
 	
 	if ticker != 'select a ticker':	
 		st.header( scope.ticker_index_file.loc[ticker]['company_name'] )					# Render the company name
