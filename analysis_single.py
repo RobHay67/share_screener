@@ -3,12 +3,15 @@ import streamlit as st
 
 
 
-from web_results import render_selectors_for_single_ticker
+from ticker_loader import render_selectors_for_single_ticker
 
 
+# ==============================================================================================================================================================
+# Single Ticker Analysis Render Controller
+# ==============================================================================================================================================================
 
 
 def render_single_analysis_page(scope):
-	st.title('Analysis - Single Ticker')
+	st.header('Analysis - Single Ticker')
 
 	render_selectors_for_single_ticker(scope, 'ticker_for_single')

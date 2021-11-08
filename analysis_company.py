@@ -6,13 +6,13 @@ import pandas as pd
 import plotly.graph_objects as go
 
 # from ticker_data import load_ticker_data_files, load_and_download_ticker_data
-from web_results import render_selectors_for_single_ticker
+from ticker_loader import render_selectors_for_single_ticker
 
 # ==============================================================================================================================================================
-# Web Page Render Controller
+# Company Profile Render Controller
 # ==============================================================================================================================================================
 def render_company_profile_page(scope):
-	st.title('Company Profile')
+	st.header('Company Profile')
 	render_selectors_for_single_ticker(scope, 'ticker_for_company_profile' )
 	
 	st.markdown("""---""")
@@ -108,7 +108,7 @@ def plot_basic_chart(scope):
 
 		st.warning('ROB to change chart to candlestick and maybe add a widget for the date range')
 	else:
-			st.error('Load and/or Download Share Data to see the chart')
+		st.error('Load and/or Download Share Data to see the chart')
 
 def render_market_info(info):
 	marketInfo = {

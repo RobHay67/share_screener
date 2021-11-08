@@ -31,12 +31,9 @@ ticker_index_schema ={
 # Browser Render Controller : Display Ticker Index, Count of tickers by Industry and Update the Ticker Index
 # ==============================================================================================================================================================
 def render_ticker_index_page(scope):
-
-	st.title('Maintain the Ticker Index File')
-	col1,col2,col3,col4,col5 = st.columns([2,2,2,2,4])
-	# col1,col2 = st.columns([2,10])
+	st.header('Ticker Index File')
+	col1,col2,col3,col4,col5 = st.columns([3,2,2,2,3])
 	with col1: st.success(('Ticker Index contains ( ' + str((len(scope.ticker_index_file))) + ' ) tickers'))
-	# col1,col2,col3,col4 = st.columns([2,2,2,6])
 	with col2: download_ticker_index = st.button('Update Ticker Index File')
 	with col3: show_ticker_index = st.button('Show the Ticker Index File')
 	with col4: show_industries = st.button('Show Industry Summary')

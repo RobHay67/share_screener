@@ -6,10 +6,10 @@ from ticker_data import load_ticker_data_files, load_and_download_ticker_data
 
 
 # ==============================================================================================================================================================
-# Web Page Render Controller
+# Mult Ticker Analysis Render Controller
 # ==============================================================================================================================================================
 def render_analysis_multi_page(scope):
-	st.title('Analysis - Multiple Tickers')
+	st.header('Analysis - Multiple Tickers')
 
 	render_selectors_for_analysis_multi(scope)
 

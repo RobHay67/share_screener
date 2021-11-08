@@ -17,7 +17,3 @@
 # Volume Predictor			selectbox	dropdown_ticker			ticker_for_vol_predict							share_data_files[ticker]
 # Daily Analysis			selectbox	dropdown_ticker			ticker_for_daily								share_data_files[ticker]
 
-
-col1,col2,col3,col4 = st.columns([2,2,2,6])		
-
-Company Profile			Ticker-selector space buttons 

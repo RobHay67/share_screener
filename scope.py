@@ -137,7 +137,7 @@ def set_initial_scope(scope, project_description):
 		# scope.tickers_update_list 			= False 					# This is utilised by the multi selectors to ensure smooth updates
 		scope.ticker_for_company_profile 	= 'select a ticker'
 		scope.ticker_for_vol_predict 		= 'select a ticker'
-		scope.ticker_for_daily 				= 'select a ticker'
+		scope.ticker_for_intraday 			= 'select a ticker'
 		scope.ticker_for_single				= 'select a ticker'
 
 		# Share Data Files
@@ -381,7 +381,7 @@ def render_scope_page(scope):
 			st.markdown('##### Current Selection')
 			st.write(scope.ticker_for_company_profile)
 			st.write(scope.ticker_for_vol_predict)
-			st.write(scope.ticker_for_daily)
+			st.write(scope.ticker_for_intraday)
 			st.write(scope.ticker_for_single)
 			st.write(scope.tickers_market)
 			st.write(scope.tickers_industries)
@@ -391,7 +391,7 @@ def render_scope_page(scope):
 			st.markdown('##### Selection Stored In')
 			st.write('< ticker_for_company_profile >')
 			st.write('< ticker_for_vol_predict >')
-			st.write('< ticker_for_daily >')
+			st.write('< ticker_for_intraday >')
 			st.write('< ticker_for_single >')
 			st.write('< tickers_market >')
 			st.write('< tickers_industries >')

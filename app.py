@@ -9,7 +9,7 @@ project_description = 'Share Trader - DDT'
 
 from scope import set_initial_scope
 from scope import update_lists_for_dropdowns
-from web_browser import render_current_page, set_page
+from navigation import render_current_page, set_page
 
 
 # Set Up Streamlit Environment ==================================================================================
@@ -36,7 +36,7 @@ render_current_page(st.session_state.display_page)
 
 # Sidebar Action Buttons ======================================================================================= 
 st.sidebar.title(project_description)
-st.sidebar.button(('Share Index  ( ' + str((len(st.session_state.ticker_index_file))) + ' )'), on_click=set_page, args=('ticker_index', ))
+st.sidebar.button(('Ticker Index ( ' + str((len(st.session_state.ticker_index_file))) + ' )'), on_click=set_page, args=('ticker_index', ))
 st.sidebar.button(('Ticker List  ( ' + str((len(st.session_state.ticker_list))) + ' )'), on_click=set_page, args=('ticker_list', ))
 st.sidebar.button(('Ticker Files ( ' + str(len(st.session_state.share_data_files.keys())) + ' )'), on_click=set_page, args=('share_data_files', ))
 
@@ -47,7 +47,7 @@ st.sidebar.button('Ticker Analysis (multiple)', on_click=set_page, args=('analys
 st.sidebar.button('Ticker Analysis (single)'  , on_click=set_page, args=('single_analysis', ))
 st.sidebar.button('Company Profile'	 , on_click=set_page, args=('company_profile', ))
 st.sidebar.button('Volume Prediction', on_click=set_page, args=('volume', ))
-st.sidebar.button('Daily Analysis'	 , on_click=set_page, args=('daily_analysis', ))
+st.sidebar.button('Intra-Day Analysis'	 , on_click=set_page, args=('intraday_analysis', ))
 
 
 st.sidebar.title('Variables')

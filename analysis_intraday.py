@@ -7,9 +7,12 @@ import plotly.graph_objects as go
 
 from indicators import line_sma
 
-from ticker_data import load_ticker_data_files, load_and_download_ticker_data
+# from ticker_data import load_ticker_data_files, load_and_download_ticker_data
+from ticker_loader import render_selectors_for_single_ticker
 
 # TODO - Rob - just work on the end of day data and when we get this working we can wire in the 5 minute data
+
+
 # X  trend lines
 # 1  def line_sma( params, share_df, column, no_of_days=10 ):   
 # 2  def line_ema( params, share_df, column, no_of_days, temp_ema=False ):
@@ -33,7 +36,7 @@ from ticker_data import load_ticker_data_files, load_and_download_ticker_data
 
 
 def add_sma(scope):
-	ticker 		= scope.ticker_for_daily
+	ticker 		= scope.ticker_for_intraday
 	share_data 	= scope.share_data_files[ticker]
 	
 	st.info('Adding an SMA to this dataframe')
@@ -46,21 +49,22 @@ def add_sma(scope):
 
 
 # ==============================================================================================================================================================
-# Web Page Render Controller
+# Daily Analysis Render Controller
 # ==============================================================================================================================================================
 
-def render_daily_analysis_page(scope):
-	st.title('Daily Analysis Page')
-	company_profile_ticker_selector(scope)
+def render_intraday_analysis_page(scope):
+	st.header('Intra-Day Analysis')
+	render_selectors_for_single_ticker(scope, 'ticker_for_intraday' )
 
 	st.markdown("""---""")
 
-	ticker = scope.ticker_for_daily
+	ticker = scope.ticker_for_intraday
 
 	if ticker != 'select a ticker':	
+
 		plot_basic_chart(scope)
-		render_indicator_selectors(scope)
-		render_share_data(scope)
+	# 	render_indicator_selectors(scope)
+		render_ticker_data(scope)
 		
 
 	
@@ -71,38 +75,38 @@ def render_daily_analysis_page(scope):
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-def company_profile_ticker_selector(scope):
-	col1,col2,col3,col4 = st.columns([2,2,2,6])							# col2=4 is just a dummy to prevent the widget filling the whole screen
+# def company_profile_ticker_selector(scope):
+# 	col1,col2,col3,col4 = st.columns([2,2,2,6])							# col2=4 is just a dummy to prevent the widget filling the whole screen
 	
-	dropdown_list = scope.dropdown_ticker
-	index_of_ticker = dropdown_list.index(scope.ticker_for_daily)
+# 	dropdown_list = scope.dropdown_ticker
+# 	index_of_ticker = dropdown_list.index(scope.ticker_for_intraday)
 
-	with col1: 
-		ticker = st.selectbox ( 'Select Ticker', 
-								dropdown_list, 
-								index=index_of_ticker, 
-								help='Select a ticker. Start typing to jump within list'
-								) 
-	with col3: load_tickers = st.button('Load Share Data File')
-	with col3: download_tickers = st.button( ( 'Download Previous ' + str(int(st.download_days)) + ' days') )
+# 	with col1: 
+# 		ticker = st.selectbox ( 'Select Ticker', 
+# 								dropdown_list, 
+# 								index=index_of_ticker, 
+# 								help='Select a ticker. Start typing to jump within list'
+# 								) 
+# 	with col3: load_tickers = st.button('Load Share Data File')
+# 	with col3: download_tickers = st.button( ( 'Download Previous ' + str(int(st.download_days)) + ' days') )
 
-	scope.ticker_for_daily = ticker									# Store the selection for next session
+# 	scope.ticker_for_intraday = ticker									# Store the selection for next session
 	
-	if ticker != 'select a ticker':	
-		st.header( scope.ticker_index_file.loc[ticker]['company_name'] )	
+# 	if ticker != 'select a ticker':	
+# 		st.header( scope.ticker_index_file.loc[ticker]['company_name'] )	
 
-	if load_tickers : 
-		load_ticker_data_files(scope, [ticker])
+# 	if load_tickers : 
+# 		load_ticker_data_files(scope, [ticker])
 
-	if download_tickers:
-		st.warning('Need to configure the share downloader')
+# 	if download_tickers:
+# 		st.warning('Need to configure the share downloader')
 
 
 def plot_basic_chart(scope):
 	
-	ticker = scope.ticker_for_daily
+	ticker = scope.ticker_for_intraday
 
-	st.subheader('Chart of all available ' + ticker + ' data') 
+	st.write('Chart of all available ' + ticker + ' data') 
 
 	if ticker in list(scope.share_data_files.keys()):
 		share_data = scope.share_data_files[ticker]
@@ -128,14 +132,14 @@ def plot_basic_chart(scope):
 
 		st.warning('ROB to change chart to candlestick and maybe add a widget for the date range')
 	else:
-			st.error('Load and/or Download Share Data to see the chart')
+		st.error('Load / Download some ticker data')
 
 
 def render_indicator_selectors(scope):
 
-	ticker = scope.ticker_for_daily
+	ticker = scope.ticker_for_intraday
 
-	st.subheader('Add Indicators to the Chart for ' + ticker + '') 
+	st.write('Add Indicators to the Chart for ' + ticker + '') 
 
 	# Ensure we have some share data before attempting to do any of the following
 	if ticker in list(scope.share_data_files.keys()):
@@ -185,12 +189,18 @@ def render_indicator_selectors(scope):
 		if sma_button: add_sma(scope)
 
 
-def render_share_data(scope):
-	ticker 		= scope.ticker_for_daily
-	share_data 	= scope.share_data_files[ticker]
+def render_ticker_data(scope):
+	ticker 		= scope.ticker_for_intraday
 
-	# Display the share data file
-	st.markdown("""---""")
-	st.write('Loaded and Downloaded share data.')
-	my_expander = st.expander(label=ticker)
-	my_expander.dataframe(share_data, 2000, 2000)
+	st.write('Ticker Data for ' + ticker + '') 
+
+	if ticker in list(scope.share_data_files.keys()):
+		share_data 	= scope.share_data_files[ticker]
+
+		# Display the share data file
+		st.markdown("""---""")
+		st.write('Loaded and Downloaded share data.')
+		my_expander = st.expander(label=ticker)
+		my_expander.dataframe(share_data, 2000, 2000)
+	else:
+		st.error('Load / Download some ticker data')
