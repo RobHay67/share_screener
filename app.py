@@ -1,8 +1,11 @@
 # streamlit run app.py
+# -------------------------------------------------
 # git push -u origin <branch>
+# git branch -d <branch>   will delete local branch
 # pipenv install flask==0.12.1
 
-
+# pipenv install mplfinance===0.12.7a5
+							# 0.12.7a17     
 
 project_description = 'Share Trader - DDT'
 

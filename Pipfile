@@ -9,6 +9,8 @@ streamlit = "*"
 pathlib = "*"
 datetime = "*"
 yfinance = "==0.1.64"
+mplfinance = "===0.12.7a5"
+matplotlib = "*"
 
 [dev-packages]
 

@@ -5,6 +5,12 @@ import pandas as pd
 import datetime as dt
 import plotly.graph_objects as go
 
+# import matplotlib.pyplot as plt
+# from matplotlib.pylab import date2num
+# from mplfinance.original_flavor import candlestick_ohlc
+import mplfinance as mpf
+
+
 from indicators import line_sma
 
 # from ticker_data import load_ticker_data_files, load_and_download_ticker_data
@@ -32,22 +38,6 @@ from ticker_loader import render_selectors_for_single_ticker
 
 
 
-
-
-
-def add_sma(scope):
-	ticker 		= scope.ticker_for_intraday
-	share_data 	= scope.share_data_files[ticker]
-	
-	st.info('Adding an SMA to this dataframe')
-
-	# line_sma( params, share_df, column, no_of_days=10 ):
-	share_data['test'] = 'this is a test'
-
-
-
-
-
 # ==============================================================================================================================================================
 # Daily Analysis Render Controller
 # ==============================================================================================================================================================
@@ -71,6 +61,22 @@ def render_intraday_analysis_page(scope):
 
 	
 	
+
+
+
+def add_sma(scope):
+	ticker 		= scope.ticker_for_intraday
+	share_data 	= scope.share_data_files[ticker]
+	
+	st.info('Adding an SMA to this dataframe')
+
+	# line_sma( params, share_df, column, no_of_days=10 ):
+	share_data['test'] = 'this is a test'
+
+
+
+
+
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Render Sections
@@ -115,6 +121,8 @@ def plot_basic_chart(scope):
 		fig = go.Figure(
 				data=go.Scatter(x=share_data['date'], y=share_data['close'])
 			)
+
+		print(fig)
 		fig.update_layout(
 			title={
 				'text': "Stock Prices Over Past ??????? Years",
@@ -136,15 +144,121 @@ def plot_basic_chart(scope):
 	else:
 		st.error('Load / Download some ticker data')
 
+
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Render Candlestick Chart
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 def plot_candlestick(scope):
 	ticker = scope.ticker['intraday']
 	st.write('Chart of all available ' + ticker + ' data < candle stick format >') 
 	if ticker in list(scope.share_data_files.keys()):
-		share_data = scope.share_data_files[ticker]
+		plot_data = scope.share_data_files[ticker].copy()
 
-		st.info('Plot the Candlestick right here RObbie')
+		plot_data.set_index('date', inplace=True)
+
+		# print(plot_data)
+		# print(plot_data.dtypes)
+
+		# fig = mpf.Figure(
+		# 		data=go.Scatter(x=share_data['date'], y=share_data['close'])
+		# 	)
+		fig = mpf.figure(style='yahoo',figsize=(7,8))
+		ax1 = fig.add_subplot(2,1,1)
+		ax2 = fig.add_subplot(2,1,2)
+
+		mpf.plot(plot_data,ax=ax1,volume=ax2, savefig='test-fig.png')
 
 
+		mpf.plot(plot_data,volume=True,tight_layout=True,figscale=0.75)
+
+
+
+
+		# ok - this works but only dumps to a PNG
+		# Plot candlestick.
+		# Add volume.
+		# Add moving averages: 3,6,9.
+		# Save graph to *.png.
+		mpf.plot(plot_data, type='candle', style='charles',   # tight option??
+					title='S&P 500, Nov 2019',
+					ylabel='Price ($)',
+					ylabel_lower='Shares \nTraded',
+					volume=True, 
+					mav=(3,6,9), 
+					savefig='test-mplfiance.png',
+					)
+
+		# st.plotly_chart(fig, use_container_width=True)
+
+
+		# st.info('Plot the Candlestick right here RObbie')
+
+		# fig = plt.figure()
+
+		# axes_candle = fig.add_axes((0, 0.72, 1, 0.32))              # The dimensions [left, bottom, width, height] of the new axes.
+		# axes_candle.xaxis_date()                                    # Format x-axis ticks as dates
+
+		# ohlc = []
+
+		# for date, row in share_data.iterrows():
+		# 	openp, highp, lowp, closep = row[:4]
+		# 	ohlc.append([date2num(date), openp, highp, lowp, closep])
+
+		# print (ohlc)
+		# # axes_candle.set_title( ticker.upper() + ' - ' + params.share_index.at[ticker, 'company_name'] )
+	
+		# # for chart_line in scope.chart_lines: 
+		# # 	axes_candle.plot( share_data.index, share_data[chart_line], label=chart_line )
+
+
+		# candlestick_ohlc( axes_candle, ohlc, colorup='g', colordown='r', width=0.3 )
+
+
+# this is the initial caller
+# plot_chart( params, analysis_df, ticker )
+
+
+def plot_chart( params, share_df, ticker ):
+	# chart_df   = share_df.copy()
+	# %matplotlib tk
+	share_df = share_df.iloc[-params.analysis_no_of_days:]                        # Filter number of observations for plot
+	
+	# Create figure, set axes and plot the candlestick graph (always)
+	fig = plt.figure()
+	fig.set_size_inches((20, 10))   							# w / h
+	# plt.style.use('dark_background')
+	axes_candle = fig.add_axes((0, 0.72, 1, 0.32))              # The dimensions [left, bottom, width, height] of the new axes.
+	axes_candle.xaxis_date()                                    # Format x-axis ticks as dates
+	
+	plot_candlestick( params, share_df, axes_candle, ticker )                       
+   
+	# Save the chart as PNG
+#     fig.savefig("charts/" + ticker + ".png", bbox_inches="tight")
+	
+	plt.show()
+
+
+
+def plot_candlestick_original( params, share_data, axes_candle, ticker ): 
+	# Get nested list of date, open, high, low and close prices
+	ohlc = []
+
+	for date, row in share_data.iterrows():
+		openp, highp, lowp, closep = row[:4]
+		ohlc.append([date2num(date), openp, highp, lowp, closep])
+
+	axes_candle.set_title( ticker.upper() + ' - ' + params.share_index.at[ticker, 'company_name'] )
+	
+	for chart_line in params.chart_lines: 
+		axes_candle.plot( share_data.index, share_data[chart_line], label=chart_line )
+
+    # ax_candle.scatter( share_df.index, share_df['trade_buy' ],   label = 'Buy',  marker = 'X', color = 'blue' )
+    # ax_candle.scatter( share_df.index, share_df['trade_sell'],   label = 'Sell', marker = 'v', color = 'orange'   )
+	
+	candlestick_ohlc( axes_candle, ohlc, colorup='g', colordown='r', width=0.3 )
+	axes_candle.legend()
 
 
 
