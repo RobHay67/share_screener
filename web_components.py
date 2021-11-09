@@ -3,19 +3,11 @@ import streamlit as st
 
 from ticker_data import load_ticker_data_files, load_and_download_ticker_data
 
-
-
-		# scope.ticker				={
-		# 								'company_profile':'select a ticker',
-		# 								'volume_predict' :'select a ticker',
-		# 								'intraday'		 :'select a ticker',
-		# 								'single'		 :'select a ticker',
-		# 							}
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Render Re-Usable Sections
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
-def render_selectors_for_single_ticker(scope, ticker_key):
-	col1,col2,col3,col4,col5 = st.columns([2,2,1.2,2,4.8])
+def render_data_loader(scope, ticker_key):
+	col1,col2,col3,col4,col5,col6 = st.columns([2.0, 2.0, 2.0, 2.0, 2.0, 1.8])
 	
 	dropdown_list = scope.dropdown_ticker
 	prior_selection = scope.ticker[ticker_key]
@@ -24,26 +16,27 @@ def render_selectors_for_single_ticker(scope, ticker_key):
 	index_of_ticker = dropdown_list.index(prior_selection)
 
 	with col1: 
-		ticker = st.selectbox ( 'Select Ticker', 
+		ticker = st.selectbox ( 'Select a Ticker', 
 								dropdown_list, 
 								index=index_of_ticker, 
-								help='Select a ticker. Start typing to jump within list'
+								help='Choose a ticker for analysis. Start typing to jump within list'
 								) 
 	
 	scope.ticker[ticker_key] = ticker							# Store the selection for next session
-	# ticker_variable = ticker									# Store the selection for next session
-	# scope[ticker_variable] = ticker									# Store the selection for next session
 	
 	if ticker != 'select a ticker':	
-		st.header( scope.ticker_index_file.loc[ticker]['company_name'] )	
-
-		with col3: load_tickers 	= st.button( 'Load File')
-		with col3: download_tickers = st.button(('Add ' + str(int(st.download_days)) + ' days'))
-
-		with col4: st.button('Clear Messages')
+		
+		with col3: st.download_days = st.number_input( 'number of days to download', 
+														min_value=1, 
+														max_value=6000, 
+														value=1, 						# Default Value to display
+														key='1')   
+		
+		with col4: load_tickers 	= st.button( 'Load File')
+		with col4: download_tickers = st.button(('Add ' + str(int(st.download_days)) + ' days'))
+		with col5: st.button('Clear All Messages')
 
 		scope.ticker_list = [ticker]
-		# TODO - we need to set a flag that resets the ticker list button in the sidebar
 		scope.download_industries = ['random_tickers']
 
 		if load_tickers : 
@@ -51,6 +44,16 @@ def render_selectors_for_single_ticker(scope, ticker_key):
 
 		if download_tickers:
 			load_and_download_ticker_data(scope)
+
+		# Add a Count of the rows in anyloaded dataframe
+		if ticker in list(scope.share_data_files.keys()):
+			no_of_rows = str(len(scope.share_data_files[ticker]))
+		else: no_of_rows = '0'
+		
+		with col5: st.write(('No of Rows = ' + no_of_rows))
+		
+
+		st.header( scope.ticker_index_file.loc[ticker]['company_name'] )
 
 
 def render_ticker_data_file(scope, ticker): # WIP

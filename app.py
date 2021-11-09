@@ -43,7 +43,7 @@ st.sidebar.button(('Ticker Index ( ' + str((len(st.session_state.ticker_index_fi
 st.sidebar.button(('Ticker List  ( ' + str((len(st.session_state.ticker_list))) + ' )'), on_click=set_page, args=('ticker_list', ))
 st.sidebar.button(('Ticker Files ( ' + str(len(st.session_state.share_data_files.keys())) + ' )'), on_click=set_page, args=('share_data_files', ))
 
-st.download_days = st.sidebar.number_input('change ( - / + )  number of days to download', min_value=1, max_value=6000, value=1, key='0')   
+# st.download_days = st.sidebar.number_input('change ( - / + )  number of days to download', min_value=1, max_value=6000, value=1, key='0')   
 
 st.sidebar.title('Analysis ( multiple tickers )')
 st.sidebar.button('Ticker Analysis (multiple)'	, on_click=set_page, args=('analysis_multi', ))

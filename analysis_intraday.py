@@ -14,7 +14,7 @@ import mplfinance as mpf
 from indicators import line_sma
 
 # from ticker_data import load_ticker_data_files, load_and_download_ticker_data
-from web_components import render_selectors_for_single_ticker, render_ticker_data_file
+from web_components import render_data_loader, render_ticker_data_file
 
 # TODO - Rob - just work on the end of day data and when we get this working we can wire in the 5 minute data
 
@@ -44,7 +44,7 @@ from web_components import render_selectors_for_single_ticker, render_ticker_dat
 
 def render_intraday_analysis_page(scope):
 	st.header('Intra-Day Analysis')
-	render_selectors_for_single_ticker(scope, 'intraday')
+	render_data_loader(scope, 'intraday')
 	st.markdown("""---""")
 
 	ticker = scope.ticker['intraday']

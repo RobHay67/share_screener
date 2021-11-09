@@ -6,14 +6,14 @@ import pandas as pd
 import plotly.graph_objects as go
 
 # from ticker_data import load_ticker_data_files, load_and_download_ticker_data
-from web_components import render_selectors_for_single_ticker, render_ticker_data_file
+from web_components import render_data_loader, render_ticker_data_file
 
 # ==============================================================================================================================================================
 # Company Research Render Controller
 # ==============================================================================================================================================================
 def render_research_page(scope):
 	st.header('Company Research')
-	render_selectors_for_single_ticker(scope, 'research' )
+	render_data_loader(scope, 'research' )
 	st.markdown("""---""")
 	
 	ticker = scope.ticker['research']
