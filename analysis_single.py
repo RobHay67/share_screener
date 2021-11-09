@@ -3,7 +3,7 @@ import streamlit as st
 
 
 
-from ticker_loader import render_selectors_for_single_ticker, render_ticker_data_file
+from web_components import render_selectors_for_single_ticker, render_ticker_data_file
 
 
 # ==============================================================================================================================================================
@@ -16,4 +16,4 @@ def render_single_analysis_page(scope):
 
 	render_selectors_for_single_ticker(scope, 'single')
 
-	render_ticker_data_file(scope, ticker)
+	# render_ticker_data_file(scope, ticker)

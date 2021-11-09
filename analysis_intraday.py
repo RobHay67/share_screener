@@ -14,7 +14,7 @@ import mplfinance as mpf
 from indicators import line_sma
 
 # from ticker_data import load_ticker_data_files, load_and_download_ticker_data
-from ticker_loader import render_selectors_for_single_ticker, render_ticker_data_file
+from web_components import render_selectors_for_single_ticker, render_ticker_data_file
 
 # TODO - Rob - just work on the end of day data and when we get this working we can wire in the 5 minute data
 
@@ -44,24 +44,59 @@ from ticker_loader import render_selectors_for_single_ticker, render_ticker_data
 
 def render_intraday_analysis_page(scope):
 	st.header('Intra-Day Analysis')
-	# render_selectors_for_single_ticker(scope, 'ticker_for_intraday' )
 	render_selectors_for_single_ticker(scope, 'intraday')
 	st.markdown("""---""")
 
-	# ticker = scope.ticker_for_intraday
 	ticker = scope.ticker['intraday']
 
-	if ticker != 'select a ticker':	
+	if ticker in list(scope.share_data_files.keys()):
+		share_data = scope.share_data_files[ticker]
+	# if ticker != 'select a ticker':	
 		
-		# plot_candlestick(scope)
-		plot_basic_chart(scope)
+
+		# test_our_data(scope, ticker, share_data)
+		# test_plots(scope, ticker)
+
+		plot_candlestick(scope, ticker, share_data)
+		plot_basic_chart(scope, ticker)
 	# 	render_indicator_selectors(scope)
-		# render_ticker_data(scope)
 		render_ticker_data_file(scope, ticker)
 		
 
-	
-	
+def plot_candlestick(scope, ticker, share_data):
+	st.title('Chart of all available ' + ticker + ' data < candle stick format >') 
+
+	# print (share_data)
+	# print(share_data.dtypes)
+
+	fig = go.Figure(data=[go.Candlestick(x=share_data['date'],		# Object
+                open=share_data['open'],						# float
+                high=share_data['high'],						# float
+                low=share_data['low'],							# float
+                close=share_data['close'])])					# float
+
+
+	# fig.show()
+	st.plotly_chart(fig, use_container_width=True)
+
+
+def test_plots(scope, ticker):
+	df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv')
+
+	# print(df)
+	# print(df.dtypes)
+
+	fig = go.Figure(data=[go.Candlestick(x=df['Date'],		# Object
+                open=df['AAPL.Open'],						# float
+                high=df['AAPL.High'],						# float
+                low=df['AAPL.Low'],							# float
+                close=df['AAPL.Close'])])					# float
+
+	# fig.show()
+	st.plotly_chart(fig, use_container_width=True)
+
+
+
 
 
 
@@ -75,64 +110,9 @@ def add_sma(scope):
 	share_data['test'] = 'this is a test'
 
 
-
-
-
-
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Render Sections
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-# def company_profile_ticker_selector(scope):
-# 	col1,col2,col3,col4 = st.columns([2,2,2,6])							# col2=4 is just a dummy to prevent the widget filling the whole screen
-	
-# 	dropdown_list = scope.dropdown_ticker
-# 	index_of_ticker = dropdown_list.index(scope.ticker_for_intraday)
-
-# 	with col1: 
-# 		ticker = st.selectbox ( 'Select Ticker', 
-# 								dropdown_list, 
-# 								index=index_of_ticker, 
-# 								help='Select a ticker. Start typing to jump within list'
-# 								) 
-# 	with col3: load_tickers = st.button('Load Share Data File')
-# 	with col3: download_tickers = st.button( ( 'Download Previous ' + str(int(st.download_days)) + ' days') )
-
-# 	scope.ticker_for_intraday = ticker									# Store the selection for next session
-	
-# 	if ticker != 'select a ticker':	
-# 		st.header( scope.ticker_index_file.loc[ticker]['company_name'] )	
-
-# 	if load_tickers : 
-# 		load_ticker_data_files(scope, [ticker])
-
-# 	if download_tickers:
-# 		st.warning('Need to configure the share downloader')
-
-
-def plot_basic_chart(scope):
-	
-	ticker = scope.ticker['intraday']
-
-	st.write('Chart of all available ' + ticker + ' data') 
-
-	if ticker in list(scope.share_data_files.keys()):
-		share_data = scope.share_data_files[ticker]
-		fig = go.Figure(
-				data=go.Scatter(x=share_data['date'], y=share_data['close'])
-			)
-
-		print(fig)
-		fig.update_layout(
-			title={
-				'text': "Stock Prices Over Past ??????? Years",
-				'y':0.9,
-				'x':0.5,
-				'xanchor': 'center',
-				'yanchor': 'top'})
-		st.plotly_chart(fig, use_container_width=True)
-
 		# start = dt.datetime.today()-dt.timedelta(2 * 365)
 		# end = dt.datetime.today()
 		# df = yf.download(ticker,start,end)
@@ -141,7 +121,26 @@ def plot_basic_chart(scope):
 		# 		data=go.Scatter(x=df['Date'], y=df['Adj Close'])
 		# 	)
 
-		st.warning('ROB to change chart to candlestick and maybe add a widget for the date range')
+def plot_basic_chart(scope, ticker):
+	st.write('Chart of all available ' + ticker + ' data') 
+
+	if ticker in list(scope.share_data_files.keys()):
+		share_data = scope.share_data_files[ticker]
+		fig = go.Figure(
+				data=go.Scatter(x=share_data['date'], y=share_data['close'])
+			)
+		# print ( '='*100)
+		# print('fig from plot basic chart ') 
+		# print(fig)
+		# print ( '='*100)
+		fig.update_layout(
+			title={
+				'text': "Stock Prices Over Past ??????? Years",
+				'y':0.9,
+				'x':0.5,
+				'xanchor': 'center',
+				'yanchor': 'top'})
+		st.plotly_chart(fig, use_container_width=True)
 	else:
 		st.error('Load / Download some ticker data')
 
@@ -151,70 +150,79 @@ def plot_basic_chart(scope):
 # Render Candlestick Chart
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def plot_candlestick(scope):
-	ticker = scope.ticker['intraday']
-	st.write('Chart of all available ' + ticker + ' data < candle stick format >') 
-	if ticker in list(scope.share_data_files.keys()):
-		plot_data = scope.share_data_files[ticker].copy()
+# def plot_candlestick(scope, ticker):
+# 	st.title('Chart of all available ' + ticker + ' data < candle stick format >') 
+# 	if ticker in list(scope.share_data_files.keys()):
+# 		plot_data = scope.share_data_files[ticker].copy()
 
-		plot_data.set_index('date', inplace=True)
+# 		plot_data.set_index('date', inplace=True)
 
-		# print(plot_data)
-		# print(plot_data.dtypes)
+# 		# print(plot_data)
+# 		# print(plot_data.dtypes)
 
-		# fig = mpf.Figure(
-		# 		data=go.Scatter(x=share_data['date'], y=share_data['close'])
-		# 	)
-		fig = mpf.figure(style='yahoo',figsize=(7,8))
-		ax1 = fig.add_subplot(2,1,1)
-		ax2 = fig.add_subplot(2,1,2)
+# 		# fig = mpf.Figure(
+# 		# 		data=go.Scatter(x=share_data['date'], y=share_data['close'])
+# 		# 	)
 
-		mpf.plot(plot_data,ax=ax1,volume=ax2, savefig='test-fig.png')
+# 		# Lets try https://github.com/matplotlib/mplfinance/blob/master/examples/external_axes.ipynb
+# 		fig = mpf.figure(style='yahoo',figsize=(7,8))
+# 		ax1 = fig.add_subplot(2,1,1)
+# 		ax2 = fig.add_subplot(2,1,2)
 
+# 		mpf.plot(plot_data,ax=ax1,volume=ax2)
 
-		mpf.plot(plot_data,volume=True,tight_layout=True,figscale=0.75)
-
-
-
-
-		# ok - this works but only dumps to a PNG
-		# Plot candlestick.
-		# Add volume.
-		# Add moving averages: 3,6,9.
-		# Save graph to *.png.
-		mpf.plot(plot_data, type='candle', style='charles',   # tight option??
-					title='S&P 500, Nov 2019',
-					ylabel='Price ($)',
-					ylabel_lower='Shares \nTraded',
-					volume=True, 
-					mav=(3,6,9), 
-					savefig='test-mplfiance.png',
-					)
-
-		# st.plotly_chart(fig, use_container_width=True)
+# 		print ( '='*100)
+# 		print('fig from plot CANDLESTICK') 
+# 		print(fig)
+# 		print ( '='*100)
 
 
-		# st.info('Plot the Candlestick right here RObbie')
+# 		mpf.plot(plot_data,ax=ax1,volume=ax2, savefig='test-fig.png')
 
-		# fig = plt.figure()
 
-		# axes_candle = fig.add_axes((0, 0.72, 1, 0.32))              # The dimensions [left, bottom, width, height] of the new axes.
-		# axes_candle.xaxis_date()                                    # Format x-axis ticks as dates
+# 		# mpf.plot(plot_data,volume=True,tight_layout=True,figscale=0.75)
+# 		st.plotly_chart(fig, use_container_width=True)
 
-		# ohlc = []
 
-		# for date, row in share_data.iterrows():
-		# 	openp, highp, lowp, closep = row[:4]
-		# 	ohlc.append([date2num(date), openp, highp, lowp, closep])
 
-		# print (ohlc)
-		# # axes_candle.set_title( ticker.upper() + ' - ' + params.share_index.at[ticker, 'company_name'] )
+# 		# ok - this works but only dumps to a PNG
+# 		# Plot candlestick.
+# 		# Add volume.
+# 		# Add moving averages: 3,6,9.
+# 		# Save graph to *.png.
+# 		mpf.plot(plot_data, type='candle', style='charles',   # tight option??
+# 					title='S&P 500, Nov 2019',
+# 					ylabel='Price ($)',
+# 					ylabel_lower='Shares \nTraded',
+# 					volume=True, 
+# 					mav=(3,6,9), 
+# 					savefig='test-mplfiance.png',
+# 					)
+
+# 		# st.plotly_chart(fig, use_container_width=True)
+
+
+# 		# st.info('Plot the Candlestick right here RObbie')
+
+# 		# fig = plt.figure()
+
+# 		# axes_candle = fig.add_axes((0, 0.72, 1, 0.32))              # The dimensions [left, bottom, width, height] of the new axes.
+# 		# axes_candle.xaxis_date()                                    # Format x-axis ticks as dates
+
+# 		# ohlc = []
+
+# 		# for date, row in share_data.iterrows():
+# 		# 	openp, highp, lowp, closep = row[:4]
+# 		# 	ohlc.append([date2num(date), openp, highp, lowp, closep])
+
+# 		# print (ohlc)
+# 		# # axes_candle.set_title( ticker.upper() + ' - ' + params.share_index.at[ticker, 'company_name'] )
 	
-		# # for chart_line in scope.chart_lines: 
-		# # 	axes_candle.plot( share_data.index, share_data[chart_line], label=chart_line )
+# 		# # for chart_line in scope.chart_lines: 
+# 		# # 	axes_candle.plot( share_data.index, share_data[chart_line], label=chart_line )
 
 
-		# candlestick_ohlc( axes_candle, ohlc, colorup='g', colordown='r', width=0.3 )
+# 		# candlestick_ohlc( axes_candle, ohlc, colorup='g', colordown='r', width=0.3 )
 
 
 # this is the initial caller

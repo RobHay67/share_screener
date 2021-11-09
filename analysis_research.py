@@ -6,7 +6,7 @@ import pandas as pd
 import plotly.graph_objects as go
 
 # from ticker_data import load_ticker_data_files, load_and_download_ticker_data
-from ticker_loader import render_selectors_for_single_ticker, render_ticker_data_file
+from web_components import render_selectors_for_single_ticker, render_ticker_data_file
 
 # ==============================================================================================================================================================
 # Company Research Render Controller
