@@ -314,7 +314,6 @@ def render_scope_page(scope):
 		render_3_columns( 'Current Page to Display', scope.display_page, 'display_page' )
 		render_3_columns( 'Current Share Market', scope.share_market, 'share_market' )
 
-
 	if show_selectors:
 		st.subheader('Ticker Selectors and Selections')
 
@@ -322,88 +321,92 @@ def render_scope_page(scope):
 
 		st.markdown("""---""")
 		st.subheader('Ticker Selectors')
-		col1,col2,col3,col4,col5,col6,col7 = st.columns([1.5,1.5,1,2,2.5,2.5,1])
+		col1,col2,col3,col4,col5,col6,col7 = st.columns([1.5, 1.5, 1.0, 2.2, 2.5, 2.5, 0.8])
 
-		with col1:
-			st.markdown('##### Selector')
-			st.write('Share Market')
-			st.write('Company Profile')
-			st.write('Volume Prediction')
-			st.write('Intra-Day')
-			st.write('Single Ticker')
-			st.write('Share Market')
-			st.write('Industry')
-			st.write('Tickers')
-			st.write('Ticker Column')
+		# Column Headings
+		with col1: st.markdown('##### Selector')
+		with col2: st.markdown('##### Contains')
+		with col3: st.markdown('##### Widget')
+		with col4: st.markdown('##### Populated from')
+		with col5: st.markdown('##### Current Selection')
+		with col6: st.markdown('##### Selection Stored In')
 
-		with col2:
-			st.markdown('##### Contains')
-			st.write('Target Market')
-			st.write('Ticker in Index')
-			st.write('Ticker in Index')
-			st.write('Ticker in Index')
-			st.write('Ticker in Index')
-			st.write('Share Markets')
-			st.write('Industry in Index')
-			st.write('Ticker in Index')
-			st.write('Column for Calculation')
+		# Share Market
+		with col1: st.write('Share Market')
+		with col2: st.write('Target Market')
+		with col3: st.write('To Be Config')
+		with col4: st.write('**Hard Coded')
+		with col5: st.write(scope.share_market)
+		with col6: st.write('< share_market >')
 
-		with col3:
-			st.markdown('##### Widget')
-			st.write('To Be Config')
-			st.write('selectbox')
-			st.write('selectbox')
-			st.write('selectbox')
-			st.write('selectbox')
-			st.write('selectbox')
-			st.write('multiselect')
-			st.write('multiselect')
-			st.write('multiselect')
+		# Research
+		with col1: st.write('Research')
+		with col2: st.write('Ticker in Index')
+		with col3: st.write('selectbox')
+		with col4: st.write('< dropdown_ticker >')
+		with col5: st.write(scope.ticker['research'])
+		with col6: st.write("< ticker['research'] >")
+		# Volume Prediction
+		with col1: st.write('Volume Prediction')
+		with col2: st.write('Ticker in Index')
+		with col3: st.write('selectbox')
+		with col4: st.write('< dropdown_ticker >')
+		with col5: st.write(scope.ticker['volume_predict'])
+		with col6: st.write("< ticker['volume_predict'] >")
+		# Intrad-Day Analysis
+		with col1: st.write('Intra-Day')
+		with col2: st.write('Ticker in Index')
+		with col3: st.write('selectbox')
+		with col4: st.write('< dropdown_ticker >')
+		with col5: st.write(scope.ticker['intraday'])
+		with col6: st.write("< ticker['intraday'] >")
+		# Single Ticker Selector
+		with col1: st.write('Single Ticker')
+		with col2: st.write('Ticker in Index')
+		with col3: st.write('selectbox')
+		with col4: st.write('< dropdown_ticker >')
+		with col5: st.write(scope.ticker['single'])
+		with col6: st.write("< ticker['single'] >")
+		# Share Market
+		with col1: st.write('Share Market')
+		with col2: st.write('Share Markets')
+		with col3: st.write('selectbox')
+		with col4: st.write('< dropdown_markets >')
+		with col5: st.write(scope.tickers_market)
+		with col6: st.write('< tickers_market >')
 
-		with col4:
-			st.markdown('##### Populated from')
-			st.write('**Hard Coded')
-			st.write('< dropdown_ticker >')
-			st.write('< dropdown_ticker >')
-			st.write('< dropdown_ticker >')
-			st.write('< dropdown_ticker >')
-			st.write('< dropdown_markets >')
-			st.write('< dropdown_industries >')
-			st.write('< dropdown_tickers >')
-			st.write('[ hard coded list ]')
+		# Industry Selector
+		with col1: st.write('Industry')
+		with col2: st.write('Industry in Index')
+		with col3: st.write('multiselect')
+		with col4: st.write('< dropdown_industries >')
+		with col5: st.write(scope.tickers_industries)
+		with col6: st.write('< tickers_industries >')
 
-		with col5:
-			st.markdown('##### Current Selection')
-			st.write(scope.share_market)
-			st.write(scope.ticker['research'])
-			st.write(scope.ticker['volume_predict'])
-			st.write(scope.ticker['intraday'])
-			st.write(scope.ticker['single'])
-			st.write(scope.tickers_market)
-			st.write(scope.tickers_industries)
-			st.write(scope.tickers_multi)
-			st.write(scope.dropdown_ticker_columns)
+		# Share Market
+		with col1: st.write('Tickers')
+		with col2: st.write('Ticker in Index')
+		with col3: st.write('multiselect')
+		with col4: st.write('< dropdown_tickers >')
+		with col5: st.write(scope.tickers_multi)
+		with col6: st.write('< tickers_multi >')
 
-		with col6:
-			st.markdown('##### Selection Stored In')
-			st.write('< share_market >')
-			st.write("< ticker['research'] >")
-			st.write("< ticker['volume_predict'] >")
-			st.write("< ticker['intraday'] >")
-			st.write("< ticker['single'] >")
-			st.write('< tickers_market >')
-			st.write('< tickers_industries >')
-			st.write('< tickers_multi >')
-			st.write('  not stored ')			#TODO - we may need to store this for different indicators 
-
-		
+		# Ticker Indicator Column O-H-L-C-V
+		with col1: st.write('Ticker Column')
+		with col2: st.write('Calculate on col')
+		with col3: st.write('multiselect')
+		with col4: st.write('< dropdown_ticker_columns >')
+		with col5: st.write('  not stored ')
+		with col6: st.write('  not stored ')			#TODO - we may need to store this for different indicators 
+	
 		
 		st.markdown("""---""")
 		st.subheader('Dropdown Lists (per above)')
-		render_3_columns( 'Available Markets    ( selectbox )'  , scope.dropdown_markets	, 'dropdown_markets' )
-		render_3_columns( 'Available Industries ( multiselect )', scope.dropdown_industries	, 'dropdown_industries' )
-		render_3_columns( 'Available Tickers    ( multiselect )', scope.dropdown_tickers	, 'dropdown_tickers' )
-		render_3_columns( 'Available Ticker     ( selectbox )'  , scope.dropdown_ticker		, 'dropdown_ticker' )
+		render_3_columns( 'Share Market  ( selectbox )'  , scope.dropdown_markets		, 'dropdown_markets' )
+		render_3_columns( 'Industry      ( multiselect )', scope.dropdown_industries	, 'dropdown_industries' )
+		render_3_columns( 'Tickers       ( multiselect )', scope.dropdown_tickers		, 'dropdown_tickers' )
+		render_3_columns( 'Ticker        ( selectbox )'  , scope.dropdown_ticker		, 'dropdown_ticker' )
+		render_3_columns( 'Ticker Column ( selectbox )'  , scope.dropdown_ticker_columns, 'dropdown_ticker_columns' )
 
 	if show_download:
 		st.markdown('##### Download Variables')
