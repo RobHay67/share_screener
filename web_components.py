@@ -7,7 +7,7 @@ from ticker_data import load_ticker_data_files, load_and_download_ticker_data
 # Render Re-Usable Sections
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 def render_data_loader(scope, ticker_key):
-	col1,col2,col3,col4,col5,col6 = st.columns([2.0, 2.0, 2.0, 2.0, 2.0, 1.8])
+	col1,col2,col3,col4,col5,col6,col7 = st.columns([2.0, 0.5, 2.0, 1.5, 1.5, 2.0, 2.5])
 	
 	dropdown_list = scope.dropdown_ticker
 	prior_selection = scope.ticker[ticker_key]
@@ -34,7 +34,7 @@ def render_data_loader(scope, ticker_key):
 		
 		with col4: load_tickers 	= st.button( 'Load File')
 		with col4: download_tickers = st.button(('Add ' + str(int(st.download_days)) + ' days'))
-		with col5: st.button('Clear All Messages')
+		with col6: st.button('Clear temp messages')
 
 		scope.ticker_list = [ticker]
 		scope.download_industries = ['random_tickers']
@@ -47,13 +47,27 @@ def render_data_loader(scope, ticker_key):
 
 		# Add a Count of the rows in anyloaded dataframe
 		if ticker in list(scope.share_data_files.keys()):
-			no_of_rows = str(len(scope.share_data_files[ticker]))
-		else: no_of_rows = '0'
+			min_value = 1
+			no_of_rows = len(scope.share_data_files[ticker])
+			max_value = no_of_rows-1 if no_of_rows > 0 else 0
+			default_value = 300 if max_value > 300 else max_value
+		else: 
+			min_value,max_value,default_value,no_of_rows=0,0,0,0		
 		
-		with col5: st.write(('No of Rows = ' + no_of_rows))
+		with col6: st.write(('No of Loaded Rows = ' + str(no_of_rows)))
 		
 
-		st.header( scope.ticker_index_file.loc[ticker]['company_name'] )
+		# Render the Company Name and a Share Limiter control
+		col1,col2,col3,col4 = st.columns([7.5, 1.7, 0.5, 2.3])
+		with col1: st.header( scope.ticker_index_file.loc[ticker]['company_name'] )
+		with col2: scope.analysis_limit_share_data = st.number_input( 	'limit analysis to X rows', 
+																		min_value=min_value, 
+																		max_value=max_value, 
+																		value=default_value,
+																		key='1')  
+		with col3: scope.analysis_apply_limit = st.radio( 	"apply",
+															('True','False'))
+		
 
 
 def render_ticker_data_file(scope, ticker): # WIP

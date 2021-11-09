@@ -3,38 +3,19 @@ import streamlit as st
 import yfinance as yf
 import pandas as pd
 import datetime as dt
-import plotly.graph_objects as go
-
-# import matplotlib.pyplot as plt
-# from matplotlib.pylab import date2num
-# from mplfinance.original_flavor import candlestick_ohlc
-import mplfinance as mpf
 
 
+
+
+
+from web_charts import plot_candlestick, plot_basic_chart
 from indicators import line_sma
 
-# from ticker_data import load_ticker_data_files, load_and_download_ticker_data
 from web_components import render_data_loader, render_ticker_data_file
 
-# TODO - Rob - just work on the end of day data and when we get this working we can wire in the 5 minute data
 
 
-# X  trend lines
-# 1  def line_sma( params, share_df, column, no_of_days=10 ):   
-# 2  def line_ema( params, share_df, column, no_of_days, temp_ema=False ):
-# 99 def volume_per_minute(params, share_df, ticker ):
-# # Complex Measures
-# def trend_sma_50_low( params, share_df ):
-# 5  def recent_price_moves( params, share_df, lookback_days=5 ):
-# 3  def macd( params, share_df, short=12, long=26, signal=9):
-# def highs_and_lows( params, share_df ):
-# X  Momentum Oscillation
-# 4  def rsi( params, share_df, no_of_days=14 ):
-# 6  def stochastic_oscillator(params, share_df, lookback_days=14, slow_k=3, signal=3):
-# # Technical Analysis measures (traditional)
-# x def add_rsi( params, share_df, column, no_of_days=14):
-# X  Trend Line Columns - Naming Convention Helpers - what was the original column name
-# def determine_original_column_name( column ):
+
 
 
 
@@ -50,50 +31,42 @@ def render_intraday_analysis_page(scope):
 	ticker = scope.ticker['intraday']
 
 	if ticker in list(scope.share_data_files.keys()):
-		share_data = scope.share_data_files[ticker]
-	# if ticker != 'select a ticker':	
+		# col1,col2 = st.columns([2, 10])
+		df_row_limit = None if scope.analysis_apply_limit=='False' else int(scope.analysis_limit_share_data)
+
+		share_data = get_share_data(scope, ticker, df_row_limit)
+
+		plot_candlestick(share_data)
 		
 
-		# test_our_data(scope, ticker, share_data)
-		# test_plots(scope, ticker)
-
-		plot_candlestick(scope, ticker, share_data)
 		plot_basic_chart(scope, ticker)
 	# 	render_indicator_selectors(scope)
-		render_ticker_data_file(scope, ticker)
+		# render_ticker_data_file(scope, ticker)
 		
 
-def plot_candlestick(scope, ticker, share_data):
-	st.title('Chart of all available ' + ticker + ' data < candle stick format >') 
 
-	# print (share_data)
-	# print(share_data.dtypes)
+@st.cache
+def get_share_data(scope, ticker, df_row_limit ):
 
-	fig = go.Figure(data=[go.Candlestick(x=share_data['date'],		# Object
-                open=share_data['open'],						# float
-                high=share_data['high'],						# float
-                low=share_data['low'],							# float
-                close=share_data['close'])])					# float
+	share_data = scope.share_data_files[ticker].copy()
+
+	if df_row_limit != None:
+		share_data.sort_values(by=['date'], inplace=True, ascending=False)
+		share_data = share_data.head(df_row_limit)
+		
+	return share_data
+
+# def limit_button(df_row_limit):
+	
 
 
-	# fig.show()
-	st.plotly_chart(fig, use_container_width=True)
 
 
-def test_plots(scope, ticker):
-	df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv')
 
-	# print(df)
-	# print(df.dtypes)
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Render Sections
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-	fig = go.Figure(data=[go.Candlestick(x=df['Date'],		# Object
-                open=df['AAPL.Open'],						# float
-                high=df['AAPL.High'],						# float
-                low=df['AAPL.Low'],							# float
-                close=df['AAPL.Close'])])					# float
-
-	# fig.show()
-	st.plotly_chart(fig, use_container_width=True)
 
 
 
@@ -108,169 +81,6 @@ def add_sma(scope):
 
 	# line_sma( params, share_df, column, no_of_days=10 ):
 	share_data['test'] = 'this is a test'
-
-
-# -------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Render Sections
-# -------------------------------------------------------------------------------------------------------------------------------------------------------------
-		# start = dt.datetime.today()-dt.timedelta(2 * 365)
-		# end = dt.datetime.today()
-		# df = yf.download(ticker,start,end)
-		# df = df.reset_index()
-		# fig = go.Figure(
-		# 		data=go.Scatter(x=df['Date'], y=df['Adj Close'])
-		# 	)
-
-def plot_basic_chart(scope, ticker):
-	st.write('Chart of all available ' + ticker + ' data') 
-
-	if ticker in list(scope.share_data_files.keys()):
-		share_data = scope.share_data_files[ticker]
-		fig = go.Figure(
-				data=go.Scatter(x=share_data['date'], y=share_data['close'])
-			)
-		# print ( '='*100)
-		# print('fig from plot basic chart ') 
-		# print(fig)
-		# print ( '='*100)
-		fig.update_layout(
-			title={
-				'text': "Stock Prices Over Past ??????? Years",
-				'y':0.9,
-				'x':0.5,
-				'xanchor': 'center',
-				'yanchor': 'top'})
-		st.plotly_chart(fig, use_container_width=True)
-	else:
-		st.error('Load / Download some ticker data')
-
-
-
-# -------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Render Candlestick Chart
-# -------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-# def plot_candlestick(scope, ticker):
-# 	st.title('Chart of all available ' + ticker + ' data < candle stick format >') 
-# 	if ticker in list(scope.share_data_files.keys()):
-# 		plot_data = scope.share_data_files[ticker].copy()
-
-# 		plot_data.set_index('date', inplace=True)
-
-# 		# print(plot_data)
-# 		# print(plot_data.dtypes)
-
-# 		# fig = mpf.Figure(
-# 		# 		data=go.Scatter(x=share_data['date'], y=share_data['close'])
-# 		# 	)
-
-# 		# Lets try https://github.com/matplotlib/mplfinance/blob/master/examples/external_axes.ipynb
-# 		fig = mpf.figure(style='yahoo',figsize=(7,8))
-# 		ax1 = fig.add_subplot(2,1,1)
-# 		ax2 = fig.add_subplot(2,1,2)
-
-# 		mpf.plot(plot_data,ax=ax1,volume=ax2)
-
-# 		print ( '='*100)
-# 		print('fig from plot CANDLESTICK') 
-# 		print(fig)
-# 		print ( '='*100)
-
-
-# 		mpf.plot(plot_data,ax=ax1,volume=ax2, savefig='test-fig.png')
-
-
-# 		# mpf.plot(plot_data,volume=True,tight_layout=True,figscale=0.75)
-# 		st.plotly_chart(fig, use_container_width=True)
-
-
-
-# 		# ok - this works but only dumps to a PNG
-# 		# Plot candlestick.
-# 		# Add volume.
-# 		# Add moving averages: 3,6,9.
-# 		# Save graph to *.png.
-# 		mpf.plot(plot_data, type='candle', style='charles',   # tight option??
-# 					title='S&P 500, Nov 2019',
-# 					ylabel='Price ($)',
-# 					ylabel_lower='Shares \nTraded',
-# 					volume=True, 
-# 					mav=(3,6,9), 
-# 					savefig='test-mplfiance.png',
-# 					)
-
-# 		# st.plotly_chart(fig, use_container_width=True)
-
-
-# 		# st.info('Plot the Candlestick right here RObbie')
-
-# 		# fig = plt.figure()
-
-# 		# axes_candle = fig.add_axes((0, 0.72, 1, 0.32))              # The dimensions [left, bottom, width, height] of the new axes.
-# 		# axes_candle.xaxis_date()                                    # Format x-axis ticks as dates
-
-# 		# ohlc = []
-
-# 		# for date, row in share_data.iterrows():
-# 		# 	openp, highp, lowp, closep = row[:4]
-# 		# 	ohlc.append([date2num(date), openp, highp, lowp, closep])
-
-# 		# print (ohlc)
-# 		# # axes_candle.set_title( ticker.upper() + ' - ' + params.share_index.at[ticker, 'company_name'] )
-	
-# 		# # for chart_line in scope.chart_lines: 
-# 		# # 	axes_candle.plot( share_data.index, share_data[chart_line], label=chart_line )
-
-
-# 		# candlestick_ohlc( axes_candle, ohlc, colorup='g', colordown='r', width=0.3 )
-
-
-# this is the initial caller
-# plot_chart( params, analysis_df, ticker )
-
-
-def plot_chart( params, share_df, ticker ):
-	# chart_df   = share_df.copy()
-	# %matplotlib tk
-	share_df = share_df.iloc[-params.analysis_no_of_days:]                        # Filter number of observations for plot
-	
-	# Create figure, set axes and plot the candlestick graph (always)
-	fig = plt.figure()
-	fig.set_size_inches((20, 10))   							# w / h
-	# plt.style.use('dark_background')
-	axes_candle = fig.add_axes((0, 0.72, 1, 0.32))              # The dimensions [left, bottom, width, height] of the new axes.
-	axes_candle.xaxis_date()                                    # Format x-axis ticks as dates
-	
-	plot_candlestick( params, share_df, axes_candle, ticker )                       
-   
-	# Save the chart as PNG
-#     fig.savefig("charts/" + ticker + ".png", bbox_inches="tight")
-	
-	plt.show()
-
-
-
-def plot_candlestick_original( params, share_data, axes_candle, ticker ): 
-	# Get nested list of date, open, high, low and close prices
-	ohlc = []
-
-	for date, row in share_data.iterrows():
-		openp, highp, lowp, closep = row[:4]
-		ohlc.append([date2num(date), openp, highp, lowp, closep])
-
-	axes_candle.set_title( ticker.upper() + ' - ' + params.share_index.at[ticker, 'company_name'] )
-	
-	for chart_line in params.chart_lines: 
-		axes_candle.plot( share_data.index, share_data[chart_line], label=chart_line )
-
-    # ax_candle.scatter( share_df.index, share_df['trade_buy' ],   label = 'Buy',  marker = 'X', color = 'blue' )
-    # ax_candle.scatter( share_df.index, share_df['trade_sell'],   label = 'Sell', marker = 'v', color = 'orange'   )
-	
-	candlestick_ohlc( axes_candle, ohlc, colorup='g', colordown='r', width=0.3 )
-	axes_candle.legend()
-
-
-
 
 
 
@@ -327,4 +137,25 @@ def render_indicator_selectors(scope):
 
 
 		if sma_button: add_sma(scope)
+
+
+
+# X  trend lines
+# 1  def line_sma( params, share_df, column, no_of_days=10 ):   
+# 2  def line_ema( params, share_df, column, no_of_days, temp_ema=False ):
+# 99 def volume_per_minute(params, share_df, ticker ):
+# # Complex Measures
+# def trend_sma_50_low( params, share_df ):
+# 5  def recent_price_moves( params, share_df, lookback_days=5 ):
+# 3  def macd( params, share_df, short=12, long=26, signal=9):
+# def highs_and_lows( params, share_df ):
+# X  Momentum Oscillation
+# 4  def rsi( params, share_df, no_of_days=14 ):
+# 6  def stochastic_oscillator(params, share_df, lookback_days=14, slow_k=3, signal=3):
+# # Technical Analysis measures (traditional)
+# x def add_rsi( params, share_df, column, no_of_days=14):
+# X  Trend Line Columns - Naming Convention Helpers - what was the original column name
+# def determine_original_column_name( column ):
+
+
 

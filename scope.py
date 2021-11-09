@@ -163,9 +163,11 @@ def set_initial_scope(scope, project_description):
 		scope.downloaded_yf_ticker_data = pd.DataFrame(columns=scope.share_data_usecols + ['ticker'] )
 		scope.downloaded_yf_anomolies 	=  {}
 
-
 		# Analysis Variables
 		scope.dropdown_ticker_columns = ['open', 'high', 'low', 'close', 'volume']
+		scope.analysis_limit_share_data = 300
+		scope.analysis_apply_limit = False
+
 
 		# Strategy Params
 		scope.strategy_name = 'None yet Selected', 
