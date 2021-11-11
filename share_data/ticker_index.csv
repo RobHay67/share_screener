@@ -313,7 +313,7 @@ BGP.AX,BRISCOE GROUP AUSTRALASIA LIMITED,retailing,2017-07-20,1023758980.0,10:00
 BGT.AX,BIO-GENE TECHNOLOGY LTD,materials,2017-11-29,31838133.0,10:00:00,360.0,zz_not_yet_tagged,,,,
 BHD.AX,BENJAMIN HORNIGOLD LIMITED,not_applic,2017-05-12,6763467.0,10:00:00,360.0,zz_not_yet_tagged,,,,
 BHL.AX,BOYUAN HOLDINGS LIMITED,real_estate,2016-10-31,0.0,10:00:00,360.0,zz_not_yet_tagged,,,,
-BHP.AX,BHP GROUP LIMITED,materials,1885-08-13,106297557798.0,10:00:00,360.0,zz_not_yet_tagged,,,,
+BHP.AX,BHP GROUP LIMITED,materials,1885-08-13,106297557798.0,10:00:00,360.0,zz_not_yet_tagged,downloaded,,,
 BID.AX,BILL IDENTITY LIMITED,software_and_services,2011-01-27,52366814.0,10:00:00,360.0,zz_not_yet_tagged,,,,
 BIO.AX,BIOME AUSTRALIA LIMITED,class_pend,2000-01-01,0.0,10:00:00,360.0,zz_not_yet_tagged,,,,
 BIQ.AX,BUILDINGIQ INC,software_and_services,2015-12-17,0.0,10:00:00,360.0,zz_not_yet_tagged,,,,

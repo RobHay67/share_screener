@@ -13,6 +13,10 @@ def render_analysis_multi_page(scope):
 
 	render_selectors_for_analysis_multi(scope)
 
+	st.info('I expect the output of any analysis is going to be a list of stocks for further analysis')
+
+	# we migth be able to jumpt to single stock analysis from any list - that migth be cool!!!
+
 	# if len(scope.ticker_list) > 0:
 	# 	st.info('We have some tickers')
 	# else:

@@ -166,7 +166,7 @@ def set_initial_scope(scope, project_description):
 		# Analysis Variables
 		scope.dropdown_ticker_columns = ['open', 'high', 'low', 'close', 'volume']
 		scope.analysis_limit_share_data = 300
-		scope.analysis_apply_limit = False
+		# scope.analysis_apply_limit = False
 
 
 		# Strategy Params

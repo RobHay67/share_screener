@@ -70,7 +70,7 @@ def combine_downloaded_with_any_loaded_ticker_data(scope): # WIP - change to che
 			else:
 				scope.share_data_files[ticker] = ticker_data												# its brand new - so we can just add it to the dictionary
 				render_results( scope, ticker, result='passed_2' )
-			scope.share_data_files[ticker].sort_values(by=['date'], inplace=True)							# sort the share data into date order ascending
+			scope.share_data_files[ticker].sort_values(by=['date'], inplace=True, ascending=False)			# sort the share data into date order ascending
 	render_results(scope, 'Finished', final_print=True )
 	save_ticker_data_files( scope )
 
