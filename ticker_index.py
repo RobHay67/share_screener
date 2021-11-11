@@ -35,8 +35,8 @@ def render_ticker_index_page(scope):
 	col1,col2,col3,col4,col5 = st.columns([3,2,2,2,3])
 	with col1: st.success(('Ticker Index contains ( ' + str((len(scope.ticker_index_file))) + ' ) tickers'))
 	with col2: download_ticker_index = st.button('Update Ticker Index File')
-	with col3: show_ticker_index = st.button('Show the Ticker Index File')
-	with col4: show_industries = st.button('Show Industry Summary')
+	with col3: show_ticker_index = st.button('Ticker Index File')
+	with col4: show_industries = st.button('Industry Summary')
 	
 	st.markdown("""---""")
 	
