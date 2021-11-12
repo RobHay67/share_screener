@@ -2,10 +2,11 @@ import streamlit as st
 
 
 
-from web_charts import plot_candlestick, plot_line_chart, plot_candlestick_seperate_volume, financial_chart_tutorial
+from charts.web_charts import plot_candlestick, plot_line_chart, plot_candlestick_seperate_volume, financial_chart_tutorial
 # from indicators import line_sma
 
-from web_components import render_data_loader
+# from web_components import render_data_loader
+from web.data_loader import render_data_loader
 
 from analysis.share_data import extract_ticker
 

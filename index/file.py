@@ -3,9 +3,9 @@ import pandas as pd
 import streamlit as st
 
 
-from ticker.index.schema import schema
-from ticker.index.schema import csv_dates
-from ticker.index.schema import csv_dtypes
+from index.schema import schema
+from index.schema import csv_dates
+from index.schema import csv_dtypes
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # TICKER INDEX FILE - loader and Saver

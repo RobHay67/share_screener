@@ -2,8 +2,8 @@
 import streamlit as st
 
 
-from ticker.index.download import new_tickers_from_web
-from ticker.index.reports import industry_report
+from index.download import new_tickers_from_web
+from index.reports import industry_report
 
 
 

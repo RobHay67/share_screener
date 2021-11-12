@@ -1,8 +1,9 @@
 import streamlit as st
 
-from ticker_data import load_ticker_data_files, load_and_download_ticker_data
+# from ticker_data import load_ticker_data_files, load_and_download_ticker_data
 
-
+from ticker.tickers.file import load_ticker_data_files
+from ticker.tickers.download import load_and_download_ticker_data
 
 
 # ==============================================================================================================================================================

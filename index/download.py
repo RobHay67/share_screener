@@ -5,7 +5,7 @@ import streamlit as st
 
 
 
-from ticker.index.update import with_latest_download
+from index.update import with_latest_download
 
 
 

@@ -16,18 +16,25 @@ import streamlit as st
 
 project_description = 'DDT - Data Driven Trading'
 
-from scope import set_streamlit_config, set_initial_scope, update_dropdown_lists
-from navigation import set_page, render_current_page
+from config.streamlit import set_streamlit_config
+from scope.initial import set_scope
+from scope.dropdown_lists import update_dropdowns
+
+
+# from scope import set_streamlit_config
+# from navigation import set_page, render_current_page
+from web.navigation import set_page, render_current_page
+
 
 
 # Set Up the Initial Streamlit Environment ======================================================================
 set_streamlit_config()
-set_initial_scope(st.session_state, project_description)
+set_scope(st.session_state, project_description)
 
 # Update the lists utilised by dropdown widgets 
 #  (but only after loading or changing/refreshing the share index file)
 if st.session_state.dropdown_lists_need_updating: 
-	update_dropdown_lists(st.session_state)
+	update_dropdowns(st.session_state)
 
 
 # Temp Code to signal appl refresh ( delete later ) *************************************************************

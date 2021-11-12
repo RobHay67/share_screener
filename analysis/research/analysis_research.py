@@ -6,29 +6,13 @@ import pandas as pd
 import plotly.graph_objects as go
 
 # from ticker_data import load_ticker_data_files, load_and_download_ticker_data
-from web_components import render_data_loader, render_ticker_data_file
+# from web_components import render_ticker_file
 
-# ==============================================================================================================================================================
-# Company Research Render Controller
-# ==============================================================================================================================================================
-def render_research_page(scope):
-	st.header('Company Research')
-	render_data_loader(scope, 'research' )
-	st.markdown("""---""")
-	
-	ticker = scope.ticker['research']
+from web.ticker_file import render_ticker_file
 
-	if ticker != 'select a ticker':	
-		meta_data, info, divs = fetch_yfinance_metadata(ticker)
+from web.data_loader import render_data_loader
 
-		render_company_general_info(info)
-		render_dividend_info(divs)
-		render_fundamental_info(info)
-		render_general_meta_data(info)
-		plot_basic_chart(scope)		
-		render_market_info(info)
-		# render_ticker_data_file(scope)
-		render_ticker_data_file(scope, ticker)
+
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Company Profile Page Sections

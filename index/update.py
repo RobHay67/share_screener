@@ -4,13 +4,13 @@ import streamlit as st
 
 from web.results import render_results
 
-from ticker.index.schema import default_values
-from ticker.index.schema import data_types
+from index.schema import default_values
+from index.schema import data_types
 
-from ticker.index.file import save_index
-from ticker.index.times import open_time
-from ticker.index.times import trading_minutes
-from ticker.index.schema import schema
+from index.file import save_index
+from index.times import open_time
+from index.times import trading_minutes
+from index.schema import schema
 
 
 def with_latest_download(scope, downloaded_ticker_info ):
