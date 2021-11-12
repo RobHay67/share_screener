@@ -11,7 +11,7 @@ from index.reports import industry_report
 # Browser Render Controller : Display Ticker Index, Count of tickers by Industry and Update the Ticker Index
 # ==============================================================================================================================================================
 
-def render_index_page(scope):
+def index_page(scope):
 	st.header('Ticker Index File')
 	col1,col2,col3,col4,col5 = st.columns([3,2,2,2,3])
 	with col1: st.success(('Ticker Index contains ( ' + str((len(scope.ticker_index_file))) + ' ) tickers'))

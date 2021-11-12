@@ -17,7 +17,7 @@ from charts.line import plot_line_chart
 # ==============================================================================================================================================================
 # Mult Ticker Analysis
 # ==============================================================================================================================================================
-def render_multi_page(scope):
+def multi_tickers_page(scope):
 	st.header('Analysis - Multiple Tickers')
 
 	multi_loader(scope)
@@ -35,7 +35,7 @@ def render_multi_page(scope):
 # ==============================================================================================================================================================
 # Single Ticker Analysis
 # ==============================================================================================================================================================
-def render_single(scope):
+def single_ticker_page(scope):
 	st.header('Analysis - Single Ticker')
 
 	single_loader(scope, 'single')
@@ -51,7 +51,7 @@ from analysis.intraday import add_sma
 
 from analysis.intraday import indicator_selectors, alternative_indicators
 
-def render_intraday(scope):
+def intraday_page(scope):
 	st.header('Intra Day Analysis')
 	
 	single_loader(scope, 'intraday')
@@ -99,7 +99,7 @@ import pytz
 
 from analysis.volume import render_volume_prediction
 
-def render_volume(scope):
+def volume_page(scope):
 	st.title('Predict Closing Volume to End of Today')
 	st.write('Extrapolating the Current Volume to the End of today')
 	single_loader(scope, 'volume' )
@@ -157,7 +157,7 @@ from analysis.company_info import plot_basic_chart
 
 
 
-def render_research(scope):
+def research_page(scope):
 	st.header('Company Research')
 	single_loader(scope, 'research' )
 	st.markdown("""---""")

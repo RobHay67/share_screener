@@ -1,16 +1,9 @@
-
 import pandas as pd
-
-
 import streamlit as st
 
 
-
-
 from web.results import render_results
-
 from tickers.file import save_tickers
-
 from tickers.y_finance import download_from_yahoo_finance
 
 
@@ -31,12 +24,10 @@ def load_and_download_ticker_data( scope ):
 
 
 
-
-
-
-
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Combiner - concatenates any downloaded data with any loaded data resulting in a complete (hopefully) temporal history of existing share data
+# Combiner
+#   	concatenates any downloaded data with any loaded data 
+# 		resulting in a complete (hopefully) temporal history of existing share data
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def combine_downloaded_with_any_loaded_ticker_data(scope): # TODO - change to check for loaded ticker
 	st.markdown('##### Combine download with previously Loaded ticker data')

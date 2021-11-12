@@ -5,7 +5,13 @@
 import streamlit as st
 
 
-def render_ticker_data_files(scope): # DONE
+
+
+
+
+
+
+def ticker_data_files(scope): # DONE
 	st.header('Loaded and Downloaded share data.')
 	list_of_loaded_tickers = list(scope.share_data_files.keys())
 	list_of_loaded_tickers.sort()
@@ -17,8 +23,7 @@ def render_ticker_data_files(scope): # DONE
 		my_expander.dataframe(ticker_data_file, 2000, 2000)	
 
 
-		
-def render_ticker_list(scope): # DONE
+def ticker_list(scope): # DONE
 	st.header('Ticker List')
 	st.subheader('target tickers for analysis')
 	st.write('use sidebar to add tickers to this list)')
