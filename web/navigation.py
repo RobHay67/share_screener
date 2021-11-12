@@ -3,7 +3,7 @@ import streamlit as st
 
 from index.web_page import render_index_page
 from tickers.reports import render_ticker_data_files, render_ticker_list
-from scope.web_page import render_scope_page
+from scope.render import scope_page
 
 
 from analysis.web_pages import render_multi_page
@@ -35,7 +35,7 @@ def render_current_page(page):
 						'ticker_index'		:render_index_page,
 						'ticker_list'		:render_ticker_list,
 						'share_data_files'	:render_ticker_data_files,
-						'scope'				:render_scope_page,
+						'scope'				:scope_page,
 
 						'analysis_multi'	:render_multi_page,
 						'single_analysis'	:render_single,
@@ -46,7 +46,6 @@ def render_current_page(page):
 					}
 
 	if page in list(page_render_map.keys()):
-		print(page)
 		page_render_map[page](st.session_state)
 	else:
 		st.warning( ('No Page yet selected > ' + page) )

@@ -26,6 +26,13 @@ def set_scope(scope, project_description):
 		scope.display_page = 'initial_load'			# The homepage to display on first load
 
 	if scope.initial_load:
+
+		# Streamlit Variables
+		scope.st_button = None
+
+
+
+
 		# Project Params
 		scope.project_description = project_description
 		scope.project_start_time = time.time()
@@ -40,11 +47,6 @@ def set_scope(scope, project_description):
 		
 		# Folders
 		scope.folder_project = pathlib.Path(__file__).parent.parent.resolve()
-
-		print( '='*1000)
-		print(scope.folder_project)
-
-
 		scope.folder_share_data = pathlib.Path.home().joinpath( scope.folder_project, 'files' )
 		scope.folder_results_analysis = pathlib.Path.home().joinpath( scope.folder_project, scope.folder_share_data, 'results_analysis' )
 		scope.folder_website = pathlib.Path.home().joinpath( scope.folder_project, scope.folder_share_data, 'website' )

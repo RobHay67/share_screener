@@ -1,16 +1,5 @@
 
-# ========================================================================================================================================================================
-# Branch Strategy
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-#                          -      Main  (picked up by Streamlit)	_
-#						/					|							\
-#					/						|							  \	
-#          release_01					release_02						release_03
-#				|						 /		   \						|		\
-#				|						/			\						|		 \
-#		add_sidebar   				load_data	save_data				add_charts   all_market_strategy
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# general idea we can more easily role back to a release branch (hopefully) and see the flow of the branch into the release
+
 
 
 
@@ -43,18 +32,6 @@
 
 # Common Browser 
 
-
-
-
-
-
-# ========================================================================================================================================================================
-# Primary Objects
-#  description			type					Description
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Ticker Index 			DataFrame  				A list of all tickers available to the application
-# share_data_files		dict of DataFrames		All Share Data files indexed by Ticker Code
-# share_data			DatafFrame				A Specific Ticker Extract from the share_data_files which can be manipulated - ie moving averages
 
 
 
