@@ -7,7 +7,9 @@ import time
 from datetime import datetime, timedelta 
 import streamlit as st
 
-from ticker_index import load_ticker_index_file
+# from ticker_index import load_ticker_index_file
+
+from ticker.index.file import load_index
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Config - Market Information
@@ -85,16 +87,45 @@ download_share_data_schemas =    {
 							}
 
 
+
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Streamlit CONFIG  (TODO not sure this belongs in this spot - but its convenient for the moment)
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+def set_streamlit_config():
+	
+	# Set the Browser Tab Name for the App
+	st.set_page_config( 
+			page_title='DDT - Data Driven Trading', 
+			page_icon='📊',
+			layout="wide",								# Allow wide Screen to be taken advantage of
+			)
+	
+	# Padding Between Controls
+	padding = 1.0
+	st.markdown(f""" <style>
+		.reportview-container .main .block-container{{
+			padding-top: {padding}rem;
+			padding-right: {padding}rem;
+			padding-left: {padding}rem;
+			padding-bottom: {padding}rem;
+		}} </style> """, unsafe_allow_html=True)
+
+
+
+
+
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Scope out the Params Object == scope in streamlit
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def set_initial_scope(scope, project_description):
 	if 'initial_load' not in scope:					# set the initial load state - keep this to a minimum
 		scope.initial_load = True
-		scope.dropdown_update_lists = False	# Intially set to false, the loading or refreshing of the share index file has resposibility to set this
-			# TODO - do we need to do this??
-		scope.share_market = 'ASX'				# Set Initial Applications Selections
-		scope.display_page = 'initial_load'		# The homepage to display - 
+		scope.dropdown_lists_need_updating = False	# Intially set to false, the loading or refreshing of the 
+													# share index file has resposibility to set this, but can
+													# only do this after loading the share index file
+		scope.share_market = 'ASX'					# Set Initial Default Share Market - we gotta start somewhere
+		scope.display_page = 'initial_load'			# The homepage to display on first load
 
 	if scope.initial_load:
 		# Project Params
@@ -111,21 +142,20 @@ def set_initial_scope(scope, project_description):
 		
 		# Folders
 		scope.folder_project = pathlib.Path(__file__).parent.resolve()
-		scope.folder_share_data = pathlib.Path.home().joinpath( scope.folder_project, 'share_data' )
+		scope.folder_share_data = pathlib.Path.home().joinpath( scope.folder_project, 'files' )
 		scope.folder_results_analysis = pathlib.Path.home().joinpath( scope.folder_project, scope.folder_share_data, 'results_analysis' )
 		scope.folder_website = pathlib.Path.home().joinpath( scope.folder_project, scope.folder_share_data, 'website' )
 		if not os.path.isdir( scope.folder_project ) : os.makedirs( scope.folder_project )
 		if not os.path.isdir( scope.folder_share_data ) : os.makedirs( scope.folder_share_data )
 		if not os.path.isdir( scope.folder_results_analysis ) : os.makedirs( scope.folder_results_analysis )
 		if not os.path.isdir( scope.folder_website ) : os.makedirs( scope.folder_website )
-		
 		# File Paths
 		scope.path_ticker_index = pathlib.Path.home().joinpath( scope.folder_share_data, 'ticker_index.csv' )
 		scope.path_website_file = pathlib.Path.home().joinpath( scope.folder_website, 'strategy_results.json' )
 		scope.path_share_data_file = 'not yet set',
 		
 		# Load the Ticker Index File
-		load_ticker_index_file(scope)
+		load_index(scope)
 
 		# Ticker Selections are stored in these variables
 		scope.tickers_market 				= 'select entire market'	# for the multi ticker selection screen
@@ -188,7 +218,7 @@ def set_initial_scope(scope, project_description):
 		# Prevent session_state from re-running during its use
 		st.session_state.initial_load = False
 		
-def dropdown_update_lists(scope):
+def update_dropdown_lists(scope):
 	print ( '\033[91m' + 'Dropdown Lists have been repopulated' + '\033[0m' )
 
 	list_of_markets = list(scope.market_suffix.keys())
@@ -208,16 +238,9 @@ def dropdown_update_lists(scope):
 	
 	# ---------------------------------------------------------------------------------------
 	# Prevent executing this function again (until changes have been made to the share index)
-	scope.dropdown_update_lists = False
+	scope.dropdown_lists_need_updating = False
 	
-# -----------------------------------------------------------------------------------------------------------------------------------
-# share file path generator
-# -----------------------------------------------------------------------------------------------------------------------------------
 
-def generate_path_for_share_data_file( scope, ticker ): # DONE
-	file_name = ( ticker.replace( '.', '_' ) ) + '.csv'
-	file_path = pathlib.Path.home().joinpath( scope.folder_share_data, file_name )
-	scope.path_share_data_file = file_path
 
 # ==============================================================================================================================================================
 # Render all Scope Variables
@@ -320,6 +343,7 @@ def render_scope_page(scope):
 		st.subheader('Ticker Selectors and Selections')
 
 		render_3_columns( 'Initial Run / load', scope.initial_load, 'initial_load' )
+		render_3_columns( 'Do the Dropdown Lists Need Refreshing ?', scope.dropdown_lists_need_updating, 'dropdown_lists_need_updating' )
 
 		st.markdown("""---""")
 		st.subheader('Ticker Selectors')

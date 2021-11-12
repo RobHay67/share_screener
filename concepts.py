@@ -13,10 +13,48 @@
 # general idea we can more easily role back to a release branch (hopefully) and see the flow of the branch into the release
 
 
+
+# ========================================================================================================================================================================
+# Application Module Structure
+# 
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#
+# Initial loader	app.py
+#					|
+#					1) scope.py    		( Initial config for streamlit and global variables required by the app )
+#					2) navigation.py	( renders the appropriate page based on the sidebar button selectors )
+
+
+
+#					analysis_intraday.py
+#					analysis_multi.py
+#					analysis_research.py
+#					analysis_single.py
+#					analysis_volume.py
+
+#					indicators.py
+#					navigation.py
+#					scope.py
+#					ticker_data.py
+#					ticker_index.py
+#					web_charts.py
+#					web_components.py
+#					web_results.py
+
+# Common Browser 
+
+
+
+
+
+
+# ========================================================================================================================================================================
 # Primary Objects
+#  description			type					Description
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Ticker Index 			DataFrame  				A list of all tickers available to the application
 # share_data_files		dict of DataFrames		All Share Data files indexed by Ticker Code
-
+# share_data			DatafFrame				A Specific Ticker Extract from the share_data_files which can be manipulated - ie moving averages
 
 
 

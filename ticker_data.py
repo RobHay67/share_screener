@@ -3,10 +3,12 @@ import pandas as pd
 import yfinance as yf					# https://github.com/ranaroussi/yfinance
 # import datetime
 import os
+import pathlib
 
-from ticker_index import save_ticker_index_file
-from scope import generate_path_for_share_data_file
-from web_results import render_results
+# from ticker_index import save_ticker_index_file
+from ticker.index.file import save_index
+# from scope import generate_path_for_share_data_file
+from web.results import render_results
 
 # ==============================================================================================================================================================
 # Browser Render Controllers : 
@@ -223,7 +225,18 @@ def update_download_status(scope): # TODO DONE - but needs robust testing on a l
 			scope.ticker_index_file.at[ticker, 'yahoo_status'] = 'delisted'
 		else:
 			st.write( ticker + ' - download error = ' + str(error_message))
-	save_ticker_index_file(scope)
+	save_index(scope)
+
+
+# -----------------------------------------------------------------------------------------------------------------------------------
+# share file path generator
+# -----------------------------------------------------------------------------------------------------------------------------------
+
+def generate_path_for_share_data_file( scope, ticker ):
+	file_name = ( ticker.replace( '.', '_' ) ) + '.csv'
+	file_path = pathlib.Path.home().joinpath( scope.folder_share_data, file_name )
+	scope.path_share_data_file = file_path
+
 
 
 
@@ -267,7 +280,7 @@ def update_download_status(scope): # TODO DONE - but needs robust testing on a l
 # 				store_missing_dates( params, ticker, None )
 # 				output_result_to_terminal( params, ticker, result='passed' )
 # 		output_result_to_terminal(params, (' - dates good for ' + cyan + str(params.terminal['count_passed']) + white + ' and gaps with ' + purple + str(params.terminal['count_failed']) + white), final_print=True )
-# 		save_ticker_index_file(params)
+# 		save_index(params)
 # 		params.analysis['check_dates'] = False			# To prevent this function being run twice
 # 		if params.reports['missing_dates']: print_missing_dates(params)
 
@@ -308,7 +321,7 @@ def update_download_status(scope): # TODO DONE - but needs robust testing on a l
 # 			params.ticker_index['file'].at[ticker, 'missing_dates'] = None  # as they are no longer missing - we have them accounted for in the trading_halt_days
 # 			output_result_to_terminal( params, ticker, result='passed' )
 # 		print ('')
-# 		save_ticker_index_file(params)
+# 		save_index(params)
 # 	# rerun the date checker to make sure the result is what we wanted
 # 	params.analysis['check_dates'] = True
 # 	check_share_data_for_missing_dates(params)

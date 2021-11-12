@@ -19,61 +19,11 @@ from web_components import render_data_loader, render_ticker_data_file
 
 
 
-# ==============================================================================================================================================================
-# Daily Analysis Render Controller
-# ==============================================================================================================================================================
-
-def render_intraday_analysis_page(scope):
-	st.header('Intra-Day Analysis')
-	render_data_loader(scope, 'intraday')
-	st.markdown("""---""")
-
-	ticker = scope.ticker['intraday']
-
-	
 
 
-	if ticker in list(scope.share_data_files.keys()):
-		# col1,col2 = st.columns([2, 10])
-		df_row_limit = None if scope.analysis_apply_limit=='False' else int(scope.analysis_limit_share_data)
-
-		share_data = get_share_data(scope, ticker, df_row_limit)  # this only gets refreshed if the ticker changes or the no of rows changes
-
-		# TODO - this might be the place to add measures - but only if the have not already been add
-		# so - we might collect the measures from the screen.....
-		# add the measures to a list and pass the list to a cached function that is responsible
-		# 	a) adding any new measures
-		# 	b) deleted any removed measures
-		# ????? should we record the selected measures if we change screen --- maybe the widgets will keep it 
-		# render_alternative_indicators(scope)
-
-
-		# render_indicator_selectors(scope)
-		
-		# Financial Chart adds the following
-		# Index(['date', 'open', 'high', 'low', 'close', 'volume', 'MA20', 'MA5'], dtype='object')
-
-		# financial_chart_tutorial(share_data)
-
-		plot_candlestick_seperate_volume(share_data)
-
-		plot_candlestick(share_data)
-		
-		plot_line_chart(share_data)
 
 		
 
-
-@st.cache
-def get_share_data(scope, ticker, df_row_limit ):
-
-	share_data = scope.share_data_files[ticker].copy()
-
-	if df_row_limit != None:
-		share_data.sort_values(by=['date'], inplace=True, ascending=False)
-		share_data = share_data.head(df_row_limit)
-		
-	return share_data
 
 # def limit_button(df_row_limit):
 	

@@ -3,6 +3,10 @@ import streamlit as st
 
 from ticker_data import load_ticker_data_files, load_and_download_ticker_data
 
+
+
+
+
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Render Re-Usable Sections
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -66,8 +70,6 @@ def render_data_loader(scope, ticker_dropdown_selection):
 		with col3: scope.analysis_apply_limit = st.radio( 	"apply",
 															('True','False'))
 		
-
-
 def render_ticker_data_file(scope, ticker): # WIP
 	st.markdown('##### Loaded and / or Downloaded share data.')
 

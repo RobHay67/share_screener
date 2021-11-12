@@ -12,33 +12,33 @@
 
 
 
-
-
-project_description = 'Share Trader - DDT'
-
-
-from scope import set_initial_scope
-from scope import dropdown_update_lists
-from navigation import render_current_page, set_page
-
-
-# Set Up Streamlit Environment ==================================================================================
 import streamlit as st
-st.set_page_config(layout="wide")
+
+project_description = 'DDT - Data Driven Trading'
+
+from scope import set_streamlit_config, set_initial_scope, update_dropdown_lists
+from navigation import set_page, render_current_page
+
+
+# Set Up the Initial Streamlit Environment ======================================================================
+set_streamlit_config()
 set_initial_scope(st.session_state, project_description)
 
-# Update the lists utilised by dropdown widgets (but only after loading or changing the share index file)
-if st.session_state.dropdown_update_lists: 
-	dropdown_update_lists(st.session_state)
+# Update the lists utilised by dropdown widgets 
+#  (but only after loading or changing/refreshing the share index file)
+if st.session_state.dropdown_lists_need_updating: 
+	update_dropdown_lists(st.session_state)
 
 
-# Temp Code to signal appl refresh ( delete later ) =============================================================
+# Temp Code to signal appl refresh ( delete later ) *************************************************************
 print ( '='*80)
 print ( 'A Refresh of the application has occured')
 import sys
 print(sys.version)
 print ( '-'*80)
 print ( '*'*80)
+# ***************************************************************************************************************
+
 
 # Display Appropriate Page ====================================================================================== 
 render_current_page(st.session_state.display_page)
@@ -83,3 +83,7 @@ st.sidebar.checkbox('add Announcements')
 # 	for key in sorted(st.session_state):
 # 		print ( key)
 # print ( '-'*100)
+
+
+
+
