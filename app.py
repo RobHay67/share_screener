@@ -8,6 +8,8 @@
 							# 0.12.7a17     
 
 
+
+
 # TODO - remove un-needed libraries - ie TA maybe some other have been installed
 
 
@@ -19,13 +21,7 @@ project_description = 'DDT - Data Driven Trading'
 from config.streamlit import set_streamlit_config
 from scope.initial import set_scope
 from scope.dropdown_lists import update_dropdowns
-
-
-# from scope import set_streamlit_config
-# from navigation import set_page, render_current_page
 from web.navigation import set_page, render_current_page
-
-
 
 # Set Up the Initial Streamlit Environment ======================================================================
 set_streamlit_config()
@@ -83,6 +79,9 @@ st.sidebar.title('Additional')
 st.sidebar.checkbox('add Bollinger Bands')
 st.sidebar.checkbox('add Dividends')
 st.sidebar.checkbox('add Announcements')
+
+
+
 
 # print( 'List of all keys in the st.session_state')
 # if 'initial_load' in st.session_state:

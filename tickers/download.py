@@ -39,7 +39,7 @@ def download_from_yahoo_finance( scope ): 													# TODO What Output to Ren
 	
 	st.markdown('##### Downloading Ticker data from Yahoo Finance')
 	
-	period = str(st.download_days) + 'd' # 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo
+	period = str(scope.download_days) + 'd' # 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo
 
 	reset_download_status(scope)
 

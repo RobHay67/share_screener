@@ -1,32 +1,20 @@
 
 import streamlit as st
-import yfinance as yf
 import pandas as pd
-# import datetime as dt
-import plotly.graph_objects as go
-
-# from ticker_data import load_ticker_data_files, load_and_download_ticker_data
-# from web_components import render_ticker_file
-
-from web.ticker_file import render_ticker_file
-
-from web.data_loader import render_data_loader
-
-
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Company Profile Page Sections
+# Company Research Page Sections
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+def dividends(dividends):
+	st.markdown('##### Dividends') 
+	dividends = pd.DataFrame(dividends)
+	dividends.reset_index(inplace=True)
+	dividends.sort_values(by=['Date'], inplace=True, ascending=False)
+	my_expander = st.expander(label='Dividends')
+	my_expander.dataframe(dividends, 2000, 2000)
 
-@st.cache
-def fetch_yfinance_metadata(ticker):
-	metadata = yf.Ticker(ticker)
-	info = metadata.info
-	divs = metadata.dividends
-	return metadata, info, divs
-
-def render_company_general_info(info):
+def company_general(info):
 	col1,col2 = st.columns([3,9])
 	with col1: st.markdown('** Sector **: ' + info['sector'])
 	with col1: st.markdown('** Industry **: ' + info['industry'])
@@ -39,17 +27,7 @@ def render_company_general_info(info):
 	for sentence in sentences:
 		with col2: st.write(sentence)
 
-def render_dividend_info(dividends):
-	st.markdown('##### Dividends') 
-	dividends = pd.DataFrame(dividends)
-	dividends.reset_index(inplace=True)
-	dividends.sort_values(by=['Date'], inplace=True, ascending=False)
-	my_expander = st.expander(label='Dividends')
-	my_expander.dataframe(dividends, 2000, 2000)	
-
-
-
-def render_fundamental_info(info):
+def fundamental(info):
 	st.markdown('##### Fundamental Info') 
 		
 	render_2_columns( 'Enterprise Value (AUD)', info['enterpriseValue'])
@@ -68,13 +46,14 @@ def render_fundamental_info(info):
 	render_2_columns( 'Five year Avg Dividend Yield (%)', info['fiveYearAvgDividendYield'])
 	render_2_columns( 'Payout Ratio', info['payoutRatio'])
 
-def render_general_meta_data(info):
+def general(info):
 	st.markdown('##### General meta_data Info') 
 	st.markdown('** Market **: ' + info['market'])
 	st.markdown('** Exchange **: ' + info['exchange'])
 	st.markdown('** Quote Type **: ' + info['quoteType'])
 
 def plot_basic_chart(scope):
+	import plotly.graph_objects as go
 	st.markdown('##### Chart of all available data') 
 
 	ticker = scope.ticker['research']
@@ -92,20 +71,11 @@ def plot_basic_chart(scope):
 				'xanchor': 'center',
 				'yanchor': 'top'})
 		st.plotly_chart(fig, use_container_width=True)
-
-		# start = dt.datetime.today()-dt.timedelta(2 * 365)
-		# end = dt.datetime.today()
-		# df = yf.download(ticker,start,end)
-		# df = df.reset_index()
-		# fig = go.Figure(
-		# 		data=go.Scatter(x=df['Date'], y=df['Adj Close'])
-		# 	)
-
 		st.warning('ROB to change chart to candlestick and maybe add a widget for the date range')
 	else:
 		st.error('Load and/or Download Share Data to see the chart')
 
-def render_market_info(info):
+def market_info(info):
 	st.markdown('##### Market Information') 
 	marketInfo = {
 					"Volume": info['volume'],
@@ -122,9 +92,6 @@ def render_market_info(info):
 
 	marketDF = pd.DataFrame(data=marketInfo, index=[0])
 	st.table(marketDF)
-
-
-
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # helpers

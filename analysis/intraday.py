@@ -4,42 +4,11 @@ import yfinance as yf
 import pandas as pd
 import datetime as dt
 
-
-
-
-
-from web_charts import plot_candlestick, plot_line_chart, plot_candlestick_seperate_volume, financial_chart_tutorial
-from indicators import line_sma
-
-from web_components import render_data_loader, render_ticker_data_file
-
-
-
-
-
-
-
-
-
-
-		
-
-
-# def limit_button(df_row_limit):
-	
-
-
-
-
+from indicators.indicators import line_sma
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Render Sections
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
-# def render_chart_selectors(scope):
-
-
-
-
 
 
 def add_sma(scope):
@@ -52,7 +21,7 @@ def add_sma(scope):
 	share_data['test'] = 'this is a test'
 
 
-def render_alternative_indicators(scope):
+def alternative_indicators(scope):
 	st.number_input('Pick a number', 0, 10)
 	st.slider('Pick a number', 0, 100)
 	st.select_slider('Pick a size', ['S', 'M', 'L'])
@@ -75,7 +44,7 @@ def render_alternative_indicators(scope):
 	with col4: sma_button = st.button('Add SMA', key='3409823042')
 
 
-def render_indicator_selectors(scope):
+def indicator_selectors(scope):
 
 	# ticker = scope.ticker_for_intraday
 

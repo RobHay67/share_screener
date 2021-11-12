@@ -67,7 +67,7 @@ def set_scope(scope, project_description):
 		# scope.tickers_for_multi 			= []
 		scope.ticker						={
 												'research'		:'select a ticker',
-												'volume_predict':'select a ticker',
+												'volume'		:'select a ticker',
 												'intraday'		:'select a ticker',
 												'single'		:'select a ticker',
 											}

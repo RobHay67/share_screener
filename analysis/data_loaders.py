@@ -1,34 +1,80 @@
+
 import streamlit as st
 
-# from ticker_data import load_ticker_data_files, load_and_download_ticker_data
 
-from ticker.tickers.file import load_ticker_data_files
-from ticker.tickers.download import load_and_download_ticker_data
+from tickers.file import load_ticker_data_files
+from tickers.download import load_and_download_ticker_data
 
 
-# ==============================================================================================================================================================
-# Mult Ticker Analysis Render Controller
-# ==============================================================================================================================================================
-def render_analysis_multi_page(scope):
-	st.header('Analysis - Multiple Tickers')
+def single_loader(scope, ticker_dropdown_selection):
 
-	render_selectors_for_analysis_multi(scope)
+	col1,col2,col3,col4,col5,col6 = st.columns([2.0, 2.0, 1.5, 1.5, 2.0, 3.0])
+	
+	dropdown_list = scope.dropdown_ticker
+	previous_selection = scope.ticker[ticker_dropdown_selection]
+	index_of_ticker = dropdown_list.index(previous_selection)
 
-	st.info('I expect the output of any analysis is going to be a list of stocks for further analysis')
+	with col1: 
+		ticker = st.selectbox ( 'Select a Ticker', 
+								dropdown_list, 
+								index=index_of_ticker, 
+								help='Choose a ticker for analysis. Start typing to jump within list'
+								) 
+	
+	scope.ticker[ticker_dropdown_selection] = ticker		# Store the selection for next session
+	
+	if ticker != 'select a ticker':	
+		with col3: st.download_days = st.number_input( 'download days', 
+														min_value=1, 
+														max_value=6000, 
+														value=1, 						# Default Value to display
+														key='1')   
+		
+		with col4: load_tickers 	= st.button( 'Load File')
+		with col4: download_tickers = st.button(('Add ' + str(int(st.download_days)) + ' day'))
+		with col5: st.button('Clear temp messages')
 
-	# we migth be able to jumpt to single stock analysis from any list - that migth be cool!!!
+		scope.ticker_list = [ticker]
+		scope.download_industries = ['random_tickers']
 
-	# if len(scope.ticker_list) > 0:
-	# 	st.info('We have some tickers')
-	# else:
-	# 	st.error('Add some tickers')
+		if load_tickers : 
+			load_ticker_data_files(scope)
+
+		if download_tickers:
+			load_and_download_ticker_data(scope)
+
+		# Add a Count of the rows in anyloaded dataframe
+		if ticker in list(scope.share_data_files.keys()):
+			min_value = 1
+			no_of_rows = len(scope.share_data_files[ticker])
+			max_value = no_of_rows if no_of_rows > 0 else 0
+			default_value = 300 if max_value > 300 else max_value
+		else: 
+			min_value,max_value,default_value,no_of_rows=0,0,0,0		
+		
+		with col5: st.write(('No of Loaded Rows = ' + str(no_of_rows)))
+		
+
+		# Render the Company Name and a Share Limiter control
+		col1,col2,col3,col4 = st.columns([7.0, 1.7, 0.3, 3.0])
+		with col1: st.header( scope.ticker_index_file.loc[ticker]['company_name'] )
+		with col2: scope.analysis_limit_share_data = st.number_input( 	'limit analysis to X rows', 
+																		min_value=min_value, 
+																		max_value=max_value, 
+																		value=default_value,
+																		key='1')  
+		with col3: scope.analysis_apply_limit = st.radio( 	"apply",
+															('True','False'))
+		
+
+
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Render Sections
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def render_selectors_for_analysis_multi(scope):
+def multi_loader(scope):
 	col1,col2,col3,col4,col5,col6 = st.columns([2,3,2,1.2,2,1.8])							# col2=4 is just a dummy to prevent the widget filling the whole screen
 
 	dropdown_list_market = scope.dropdown_markets
@@ -61,12 +107,12 @@ def render_selectors_for_analysis_multi(scope):
 	construct_ticker_list(scope)
 
 	print(scope.ticker_list)
-	print(scope.download_industries)
+	# print(scope.download_industries)
 	
 	if market != 'select entire market' or (len(industries) != 0) or len(tickers) != 0:
 
 		with col4: load_tickers 	= st.button( 'Load Files')
-		with col4: download_tickers = st.button(('Add  ' + str(int(st.download_days)) + ' days'))
+		with col4: download_tickers = st.button(('Add  ' + str(int(scope.download_days)) + ' days'))
 		with col5: st.button('Clear Messages')
 
 		if load_tickers : 
@@ -79,8 +125,6 @@ def render_selectors_for_analysis_multi(scope):
 			load_and_download_ticker_data(scope)
 
 		# if ticker_end_date < analysis_begin_date or (ticker_begin_date > analysis_begin_date and ticker_end_date < analysis_end_date) or ticker_begin_date > analysis_end_date :
-
-
 
 
 
@@ -114,69 +158,8 @@ def construct_ticker_list(scope):
 	# Selected an entire share market
 	elif scope.tickers_market != 'select entire market':
 		tickers_in_market = scope.ticker_index_file.index.values.tolist()
-		ticker_list.append(tickers_in_market)
+		ticker_list = tickers_in_market
 		relevant_industries = ( list(scope.ticker_index_file['industry_group'].unique() ))
 	
 	scope.ticker_list = ticker_list
 	scope.download_industries = relevant_industries
-
-
-
-
-
-
-
-
-
-
-
-
-# def construct_list_of_ticker_codes(scope):
-# 	st.header('Adding or Remove tickers from the Ticker List')
-# 	ticker_list = []
-	
-# 	render_results( scope, passed='Added these selections ticker list > ', passed_2='na', failed='na' )
-
-# 	# ##############################
-# 	# Most detailed takes precedence
-# 	# ##############################
-
-
-# 	# Selected a ticker or tickers
-# 	if len(scope.tickers_multi) != 0:
-# 		for ticker in scope.tickers_multi:
-# 			render_results( scope, ticker, result='passed' )
-# 			ticker_list += [ticker]	
-# 		pass
-
-# 	# Selected an Industry
-# 	elif len(scope.tickers_industries) != 0:
-# 		for industry in scope.tickers_industries:
-# 			render_results( scope, industry.upper(), result='passed' )
-# 			tickers_in_industry_group_df = scope.ticker_index_file[scope.ticker_index_file['industry_group'] == industry ]
-# 			tickers_in_industry = tickers_in_industry_group_df.index.tolist()
-# 			ticker_list += tickers_in_industry 
-# 		pass
-	
-# 	# Selected an entire share market
-# 	elif scope.tickers_market != 'select entire market':
-# 		render_results( scope, scope.tickers_market.upper(), result='passed' )
-# 		available_tickers_for_this_market = scope.ticker_index_file.index.values.tolist()
-# 		ticker_list =  available_tickers_for_this_market
-# 	else:
-# 		st.error('All Tickers removed from Ticker List')
-
-# 	render_results(scope, 'Finished', final_print=True )
-
-# 	scope.tickers_for_multi = ticker_list
-# 	scope.tickers_update_list = False
-
-# 	st.markdown("""---""")
-
-# 	st.subheader('Ticker List - after adding dropdown selections')
-# 	ticker_list_message = ''
-# 	for ticker in scope.tickers_for_multi:
-# 		ticker_list_message = ticker_list_message + ticker + ' - '
-# 	st.success(ticker_list_message)
-
-# 	st.write(('Number of tickers in Ticker List =  ( ' + str((len(scope.tickers_for_multi))) + ' ) tickers'))

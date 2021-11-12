@@ -2,19 +2,18 @@
 import streamlit as st
 
 from index.web_page import render_index_page
-
-
-# from ticker_data import render_ticker_data_files, render_ticker_list
 from tickers.reports import render_ticker_data_files, render_ticker_list
-
-# from analysis_research import render_research_page
-from analysis.intraday.web_page import render_intraday  
-
-
-# from analysis_multi import render_analysis_multi_page
-# from analysis_single import render_single_analysis_page
-# from analysis_volume import render_volume_page
 from scope.web_page import render_scope_page
+
+
+from analysis.web_pages import render_multi_page
+# from analysis_single import render_single_analysis_page
+from analysis.web_pages import render_single
+from analysis.web_pages import render_intraday  
+from analysis.web_pages import render_volume
+# from analysis_volume import render_volume_page
+from analysis.web_pages import render_research  
+
 
 # from ticker_data import load_ticker_data_files, load_and_download_ticker_data
 from tickers.file import load_ticker_data_files
@@ -36,14 +35,13 @@ def render_current_page(page):
 						'ticker_index'		:render_index_page,
 						'ticker_list'		:render_ticker_list,
 						'share_data_files'	:render_ticker_data_files,
-
-						# 'analysis_multi'	:render_analysis_multi_page,
-						# 'single_analysis'	:render_single_analysis_page,
-						# 'research'			:render_research_page,
-						# 'volume'			:render_volume_page,
-						'intraday_analysis'	:render_intraday,
-
 						'scope'				:render_scope_page,
+
+						'analysis_multi'	:render_multi_page,
+						'single_analysis'	:render_single,
+						'intraday_analysis'	:render_intraday,
+						'volume'			:render_volume,
+						'research'			:render_research,
 
 					}
 
