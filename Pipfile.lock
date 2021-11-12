@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "3b4cae97bbaeb5023833820486912fbfaef8de9cee2f4cdcfdcea494864f2c32"
+            "sha256": "0a48e56257cd2a46f699bad414430931562364b451c36e6461d5181b2445047a"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -832,6 +832,14 @@
             "markers": "python_version >= '3.6'",
             "version": "==8.4.0"
         },
+        "plotly": {
+            "hashes": [
+                "sha256:6598393e898a9c5ae78397f76f07002ec41fd92e5f746d3b9806248d53885643",
+                "sha256:c3da90d41cab36722048eaa5d0eee7a286a55982835980e5f183e5536b823f07"
+            ],
+            "index": "pypi",
+            "version": "==5.3.1"
+        },
         "prometheus-client": {
             "hashes": [
                 "sha256:1b12ba48cee33b9b0b9de64a1047cbd3c5f2d0ab6ebcead7ddda613a750ec3c5",
@@ -951,6 +959,12 @@
             ],
             "markers": "python_version >= '3.5'",
             "version": "==2.10.0"
+        },
+        "pympler": {
+            "hashes": [
+                "sha256:f2cbe7df622117af890249f2dea884eb702108a12d729d264b7c5983a6e06e47"
+            ],
+            "version": "==0.9"
         },
         "pyparsing": {
             "hashes": [
@@ -1096,11 +1110,11 @@
         },
         "streamlit": {
             "hashes": [
-                "sha256:20d8620614f80653b79b58aa7d74c0e3a6f6cb9fcaf9046828b2f6e13db8701b",
-                "sha256:e4afa5b4cf1a193b6e19afdf53826dce5be48b040541d2eb761747ef67100024"
+                "sha256:36846f56973f019c980a65739fcd6b621591a0c5aae1caee959b238b1432ebb7",
+                "sha256:f13f7463d53fb866a1d07dccfacb60333c56dc9f34b001f310475beee71a08a5"
             ],
             "index": "pypi",
-            "version": "==1.1.0"
+            "version": "==1.2.0"
         },
         "ta": {
             "hashes": [
@@ -1108,6 +1122,14 @@
             ],
             "index": "pypi",
             "version": "==0.7.0"
+        },
+        "tenacity": {
+            "hashes": [
+                "sha256:43242a20e3e73291a28bcbcacfd6e000b02d3857a9a9fff56b297a27afdc932f",
+                "sha256:f78f4ea81b0fabc06728c11dc2a8c01277bfc5181b321a4770471902e3eb844a"
+            ],
+            "markers": "python_version >= '3.6'",
+            "version": "==8.0.1"
         },
         "terminado": {
             "hashes": [
