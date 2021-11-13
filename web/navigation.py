@@ -22,14 +22,14 @@ def render_current_page(page):
 
 						'ticker_index'		:index_page,
 						'ticker_list'		:ticker_list,
-						'share_data_files'	:ticker_data_files,
+						'ticker_files'		:ticker_data_files,
 						'scope'				:scope_page,
 
-						'analysis_multi'	:multi_tickers_page,
 						'single_analysis'	:single_ticker_page,
 						'intraday_analysis'	:intraday_page,
 						'volume'			:volume_page,
 						'research'			:research_page,
+						'analysis_multi'	:multi_tickers_page,
 
 					}
 

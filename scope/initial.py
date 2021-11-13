@@ -74,22 +74,6 @@ def set_scope(scope, project_description):
 												'volume'		:'select a ticker',
 												'research'		:'select a ticker',
 											}
-		# Object to store the Tickers to be loaded or downloaded
-		# scope.ticker_list = []
-
-		# matbe we could try something like
-		scope.pages  ={
-			'multi'			:{'ticker_list':[]				 , },
-			'single'		:{'ticker_list':'select a ticker', },
-			'intraday'		:{'ticker_list':'select a ticker', },
-			'volume'		:{'ticker_list':'select a ticker', },
-			'research'		:{'ticker_list':'select a ticker', },
-
-		}
-
-
-
-
 
 		# Share Data Files
 		scope.share_data_files 			= {}
