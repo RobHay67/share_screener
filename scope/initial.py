@@ -67,12 +67,29 @@ def set_scope(scope, project_description):
 		scope.tickers_industries 			= None
 		scope.tickers_multi 				= None
 		# scope.tickers_for_multi 			= []
-		scope.ticker						={
-												'research'		:'select a ticker',
-												'volume'		:'select a ticker',
-												'intraday'		:'select a ticker',
+		scope.ticker_list					={	
+												'multi'			: [],
 												'single'		:'select a ticker',
+												'intraday'		:'select a ticker',
+												'volume'		:'select a ticker',
+												'research'		:'select a ticker',
 											}
+		# Object to store the Tickers to be loaded or downloaded
+		# scope.ticker_list = []
+
+		# matbe we could try something like
+		scope.pages  ={
+			'multi'			:{'ticker_list':[]				 , },
+			'single'		:{'ticker_list':'select a ticker', },
+			'intraday'		:{'ticker_list':'select a ticker', },
+			'volume'		:{'ticker_list':'select a ticker', },
+			'research'		:{'ticker_list':'select a ticker', },
+
+		}
+
+
+
+
 
 		# Share Data Files
 		scope.share_data_files 			= {}
@@ -88,8 +105,7 @@ def set_scope(scope, project_description):
 		scope.market_public_holidays = public_holidays
 		scope.market_opening_hours 	 = opening_hours	
 
-		# Object to store the Tickers to be loaded or downloaded
-		scope.ticker_list = []
+
 
 		# Download Ticker Variables
 		scope.download_days 			= 1

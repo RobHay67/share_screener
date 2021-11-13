@@ -56,7 +56,7 @@ def plot_basic_chart(scope):
 	import plotly.graph_objects as go
 	st.markdown('##### Chart of all available data') 
 
-	ticker = scope.ticker['research']
+	ticker = scope.ticker_list['research']
 
 	if ticker in list(scope.share_data_files.keys()):
 		share_data = scope.share_data_files[ticker]
@@ -105,9 +105,3 @@ def render_2_columns( description, variable ):
 
 
 
-
-
-
-
-
-# we want to be able to 

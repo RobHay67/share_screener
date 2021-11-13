@@ -3,8 +3,8 @@ import streamlit as st
 
 
 from web.results import render_results
-from tickers.file import save_tickers
-from tickers.y_finance import download_from_yahoo_finance
+from ticker.save import save_tickers
+from ticker.y_finance import download_from_yahoo_finance
 
 
 # ==============================================================================================================================================================

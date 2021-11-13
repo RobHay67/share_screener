@@ -3,6 +3,9 @@ import streamlit as st
 
 
 
+
+
+# this only gets refreshed if the ticker changes or the number of rows changes
 @st.cache
 def extract_ticker(scope, ticker, df_row_limit ):
 

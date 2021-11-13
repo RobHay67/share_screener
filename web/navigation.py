@@ -5,7 +5,7 @@ import streamlit as st
 from scope.render import welcome_page
 
 from index.render import index_page
-from tickers.render import ticker_data_files, ticker_list
+from ticker.render import ticker_data_files, ticker_list
 from scope.render import scope_page
 from analysis.render import multi_tickers_page
 from analysis.render import single_ticker_page

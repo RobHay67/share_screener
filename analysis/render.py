@@ -5,7 +5,7 @@
 import streamlit as st
 
 
-from analysis.data_loaders import single_loader, multi_loader
+from ticker.render import single_loader, multi_loader
 
 from analysis.share_data import extract_ticker
 
@@ -36,11 +36,18 @@ def multi_tickers_page(scope):
 # Single Ticker Analysis
 # ==============================================================================================================================================================
 def single_ticker_page(scope):
-	st.header('Analysis - Single Ticker')
+	st.header('Single Ticker Analysis')
 
 	single_loader(scope, 'single')
 
+	st.markdown("""---""")
+	
+	# print ('ticker list in scope = ', scope.ticker_list)
+	ticker = scope.ticker_list['single']
+
 	# render_ticker_data_file(scope, ticker)
+	if ticker in list(scope.share_data_files.keys()):
+		st.write('This is where we do some stuff')
 
 
 # ==============================================================================================================================================================
@@ -58,7 +65,7 @@ def intraday_page(scope):
 	
 	st.markdown("""---""")
 
-	ticker = scope.ticker['intraday']
+	ticker = scope.ticker_list['intraday']
 
 
 	if ticker in list(scope.share_data_files.keys()):
@@ -105,7 +112,7 @@ def volume_page(scope):
 	single_loader(scope, 'volume' )
 	st.markdown("""---""")
 	
-	ticker = scope.ticker['volume']
+	ticker = scope.ticker_list['volume']
 
 	local_time		= datetime.now()													# Current local time
 	market_timezone = scope.market_opening_hours[scope.share_market]['timezone']		# Timezone for the share market
@@ -149,7 +156,7 @@ def volume_page(scope):
 # ==============================================================================================================================================================
 # Company Research
 # ==============================================================================================================================================================
-from tickers.y_finance import fetch_yfinance_metadata
+from ticker.y_finance import fetch_yfinance_metadata
 from analysis.company_info import company_general, dividends, fundamental, general, market_info
 from web.ticker_file import render_ticker_file
 # TODO - delete this later
@@ -162,7 +169,7 @@ def research_page(scope):
 	single_loader(scope, 'research' )
 	st.markdown("""---""")
 	
-	ticker = scope.ticker['research']
+	ticker = scope.ticker_list['research']
 
 	if ticker != 'select a ticker':	
 		meta_data, info, divs = fetch_yfinance_metadata(ticker)
