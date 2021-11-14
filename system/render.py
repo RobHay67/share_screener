@@ -4,7 +4,7 @@ import streamlit as st
 # -----------------------------------------------------------------------------------------------------------------------------------
 # Output Ticker Iteration to Browser
 # -----------------------------------------------------------------------------------------------------------------------------------
-def render_results(scope, output=None, result=None, final_print=False, passed='', passed_2='', failed='' ):
+def results(scope, output=None, result=None, final_print=False, passed='', passed_2='', failed='' ):
 	# I think what we do here is just build 3 list and save them
 
 	if output == None:

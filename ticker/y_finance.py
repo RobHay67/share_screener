@@ -4,7 +4,7 @@ import yfinance as yf					# https://github.com/ranaroussi/yfinance
 import streamlit as st
 
 
-from web.results import render_results
+from system.render import results
 from index.save import save_index
 
 from ticker.schema import ticker_file_schema, ticker_file_usecols
@@ -126,7 +126,7 @@ def store_yf_download_in_scope( scope, download_ticker_string, yf_download, down
 
 	scope.download_yf_files = pd.concat([scope.download_yf_files, yf_download], sort=False)
 	scope.downloaded_yf_anomolies.update(download_errors)	# store any errors
-	render_results( scope, passed='Downloaded these Shares > ', passed_2='na', failed='Falied to Download > ' )
+	results( scope, passed='Downloaded these Shares > ', passed_2='na', failed='Falied to Download > ' )
 	failed_download_list = []
 	for ticker, error in download_errors.items():
 		failed_download_list.append(ticker)
@@ -135,10 +135,10 @@ def store_yf_download_in_scope( scope, download_ticker_string, yf_download, down
 	
 	for ticker in ticker_list:
 		if ticker not in failed_download_list:
-			render_results( scope, ticker, result='passed' )
+			results( scope, ticker, result='passed' )
 		else:
-			render_results( scope, ticker, result='failed' )
-	render_results(scope, 'Finished', final_print=True )
+			results( scope, ticker, result='failed' )
+	results(scope, 'Finished', final_print=True )
 
 
 

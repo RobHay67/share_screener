@@ -1,6 +1,6 @@
 import pandas as pd
 import streamlit as st
-from web.results import render_results
+from system.render import results
 from ticker.save import save_tickers
 
 from ticker.schema import ticker_file_usecols
@@ -11,11 +11,11 @@ from ticker.schema import ticker_file_usecols
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def combine_loaded_and_download_ticker_data(scope): # TODO - change to check for loaded ticker
 	st.markdown('##### Combine download with previously Loaded ticker data')
-	render_results( scope, 
-					passed='COMBINED > ', 
-					passed_2='CREATED new files > ', 
-					failed='na' 
-					)
+	results(scope, 
+			passed='COMBINED > ', 
+			passed_2='CREATED new files > ', 
+			failed='na' 
+			)
 
 	ticker_list = scope.ticker_list[scope.display_page]
 
@@ -27,11 +27,11 @@ def combine_loaded_and_download_ticker_data(scope): # TODO - change to check for
 			ticker_data = ticker_data[ticker_data['volume'] != 0]										# drop rows where volume is zero 
 			if ticker in scope.downloaded_loaded_list:													# we have an exisiting share_data_file so we concatenate the data
 				scope.share_data_files[ticker] = pd.concat([scope.share_data_files[ticker], ticker_data]).drop_duplicates(subset=['date'], keep='last')
-				render_results( scope, ticker, result='passed' )
+				results( scope, ticker, result='passed' )
 			else:
 				scope.share_data_files[ticker] = ticker_data											# its brand new - so we can just add it to the dictionary
-				render_results( scope, ticker, result='passed_2' )
+				results( scope, ticker, result='passed_2' )
 			scope.share_data_files[ticker].sort_values(by=['date'], inplace=True, ascending=False)		# sort the share data into date order ascending
-	render_results(scope, 'Finished', final_print=True )
+	results(scope, 'Finished', final_print=True )
 	save_tickers( scope )
 

@@ -2,7 +2,7 @@ import os
 import pathlib
 import pandas as pd
 
-from web.results import render_results
+from system.render import results
 
 
 from ticker.path import generate_path_for_share_data_file
@@ -10,12 +10,12 @@ from ticker.path import generate_path_for_share_data_file
 
 
 def save_tickers( scope ): # DONE
-	render_results( scope, passed='Files SAVED > ', failed='na', passed_2='na' )
+	results( scope, passed='Files SAVED > ', failed='na', passed_2='na' )
 	for ticker in scope.share_data_files:
 		generate_path_for_share_data_file(scope, ticker )
 		save_ticker( scope, scope.share_data_files[ticker] )
-		render_results( scope, ticker, result='passed' )
-	render_results(scope, 'Finished', final_print=True )
+		results( scope, ticker, result='passed' )
+	results(scope, 'Finished', final_print=True )
 
 def save_ticker( scope, dataframe ): # DONE
 	saving_df = dataframe.copy()

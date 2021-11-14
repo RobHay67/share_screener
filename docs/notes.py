@@ -7,20 +7,6 @@
 # cyan        = '\033[96m'
 # white 		= '\033[0m'
 
-# downloading new share data is resulting in these records being added to the share Index file - why???
-
-multi,,,,,,,,set_for_download,,,
-single,,,,,,,,set_for_download,,,
-intraday,,,,,,,,set_for_download,,,
-volume,,,,,,,,set_for_download,,,
-research,,,,,,,,set_for_download,,,
-RESEARCH,,,,,,,,delisted,,,
-VOLUME,,,,,,,,delisted,,,
-INTRADAY,,,,,,,,delisted,,,
-MULTI,,,,,,,,delisted,,,
-SINGLE,,,,,,,,delisted,,,
-
-
 
 # ========================================================================================================================================================================
 # Application Module Structure

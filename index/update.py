@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 
 
-from web.results import render_results
+from system.render import results
 
 from index.schema import default_values
 from index.schema import data_types
@@ -20,7 +20,7 @@ def with_latest_download(scope, downloaded_ticker_info ):
 
 	downloaded_ticker_info = apply_defaults_to_missing_values(scope, downloaded_ticker_info)
 	downloaded_ticker_info.set_index('share_code', inplace=True)
-	render_results( scope, passed='Updating these Tickers > ', passed_2='Adding these Tickers > ', failed='not applicable > ' )
+	results( scope, passed='Updating these Tickers > ', passed_2='Adding these Tickers > ', failed='not applicable > ' )
 
 	for ticker, row in downloaded_ticker_info.iterrows(): 
 		# 
@@ -30,14 +30,14 @@ def with_latest_download(scope, downloaded_ticker_info ):
 			row['minutes_per_day'] = trading_minutes( scope, ticker )
 			row['blue_chip'] = schema['blue_chip']['default']
 			scope.ticker_index_file = scope.ticker_index_file.append(row)
-			render_results( scope, ticker, result='passed_2' )
+			results( scope, ticker, result='passed_2' )
 		else:
 			scope.ticker_index_file.at[ticker, 'company_name'] = row['company_name']
 			scope.ticker_index_file.at[ticker, 'listing_date'] = row['listing_date']
 			scope.ticker_index_file.at[ticker, 'industry_group'] = row['industry_group']
 			scope.ticker_index_file.at[ticker, 'market_cap'] = row['market_cap']
-			render_results( scope, ticker, result='passed' )
-	render_results(scope, 'Finished', final_print=True )
+			results( scope, ticker, result='passed' )
+	results(scope, 'Finished', final_print=True )
 	scope.ticker_index_file = apply_defaults_to_missing_values(scope, scope.ticker_index_file)
 	scope.ticker_index_file['listing_date'] = pd.to_datetime( scope.ticker_index_file['listing_date'].dt.date  )
 	scope.ticker_index_file = scope.ticker_index_file.sort_index()

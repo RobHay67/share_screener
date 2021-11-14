@@ -24,31 +24,29 @@ def set_scope(scope, project_description):
 													# only do this after loading the share index file
 		scope.share_market = 'ASX'					# Set Initial Default Share Market - we gotta start somewhere
 		scope.display_page = 'initial_load'			# The homepage to display on first load
-		scope.ticker_index_file = {}
+		scope_folders(scope)						# Required before we can attempt to load the data
+		
 
 	if scope.initial_load:
+		# Project / System Variables
+		scope.project_description = project_description
+		scope.project_start_time = time.time()
 
 		# Streamlit Variables
 		scope.st_button = None
-
-		# Project Params
-		scope.project_description = project_description
-		scope.project_start_time = time.time()
-				
-		# Results - for batch processing of multiple tickers
-		scope.results = { 'passed':'', 'passed_2':'', 'failed':'', 'passed_count':0, 'passed_2_count':0, 'failed_count':0 }
-		
-		scope_folders(scope)
-		
-		# Primary Application Objects
-		load_ticker_index_file(scope)				# adds the scope.ticker_index_file
-		scope.share_data_files 			= {}		# TODO rename to ticker_data_files
-
 
 		# Ticker Selections are stored in these variables
 		scope.selected_market 				= 'select entire market'	# for the multi ticker selection screen
 		scope.selected_industries 			= None
 		scope.selected_tickers 				= None
+		
+		# Primary Application Objects
+		scope.ticker_index_file = {}
+		load_ticker_index_file(scope)
+		scope.share_data_files 			= {}		# TODO rename to ticker_data_files
+
+
+		# Stored Ticker Selections and lists
 		scope.ticker_list					= {	
 												'multi'			: [],
 												'single'		:['select a ticker'],
@@ -57,7 +55,7 @@ def set_scope(scope, project_description):
 												'research'		:['select a ticker'],
 											}
 
-		# Download Ticker Variables
+		# Download Ticker Variables # TODO - Move this to a module when finished
 		scope.download_days 			= 5
 		scope.download_industries 		= []
 		scope.download_yf_files			= {}
@@ -72,6 +70,9 @@ def set_scope(scope, project_description):
 
 		scope_strategy(scope)
 		scope_chart(scope)
+
+		# Results - for batch processing of multiple tickers
+		scope.results = { 'passed':'', 'passed_2':'', 'failed':'', 'passed_count':0, 'passed_2_count':0, 'failed_count':0 }
 
 		# Prevent session_state from re-running during its use
 		st.session_state.initial_load = False
