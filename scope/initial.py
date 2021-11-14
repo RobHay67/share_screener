@@ -67,7 +67,6 @@ def set_scope(scope, project_description):
 
 
 		# Analysis Variables
-		
 		scope.analysis_limit_share_data = 300
 		# scope.analysis_apply_limit = False
 

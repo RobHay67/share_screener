@@ -7,10 +7,9 @@ import streamlit as st
 
 
 from ticker.multi_ticker_list import update_multi_ticker_list
-
-
 from ticker.load import load_single_ticker_file, load_multiple_ticker_files
 from ticker.download import load_and_download_ticker_data
+# from ticker.render import ticker_data_files
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Reports
@@ -29,7 +28,6 @@ def ticker_data_files(scope): #
 		ticker_data_file.sort_values(by=['date'], inplace=True, ascending=False)
 		my_expander = st.expander(label=ticker)
 		my_expander.dataframe(ticker_data_file, 2000, 2000)	
-
 
 def ticker_list(scope): # 
 	st.subheader('Ticker List(s)')
@@ -59,25 +57,17 @@ def ticker_list(scope): #
 
 	with col2: st.write(ticker_list_message)
 
-
 def ticker_file(scope, ticker): # WIP
-	# st.markdown('##### Loaded and / or Downloaded share data.')
-
-	# ticker = scope.ticker['research']
 
 	if ticker in list(scope.share_data_files.keys()):
 		ticker_data_file = scope.share_data_files[ticker]
 		ticker_data_file.sort_values(by=['date'], inplace=True, ascending=False)
-		my_expander = st.expander(label=ticker)
+		my_expander = st.expander(label=ticker, expanded=True)
 		my_expander.dataframe(ticker_data_file, 2000, 2000)	
-	# else:
-	# 	st.error('Load / Download some ticker data')
-
-
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Load a Single Ticker
+# Single Ticker Loader
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def single_loader(scope, page):
@@ -117,7 +107,7 @@ def single_loader(scope, page):
 		
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Load a batch of tickers
+# Multi Ticker Loader
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def multi_loader(scope):
@@ -143,53 +133,16 @@ def multi_loader(scope):
 
 		if download_tickers:
 			# scope.download_industries is establised by the update_multi_ticker_list() function
-		# 	print('running the download_tickers')
-		# 	scope.download_industries = ['random_tickers']
 			load_and_download_ticker_data(scope)
 
+		with col5: show_ticker_files = st.button(('Loaded Files = ' + str(len(scope.share_data_files.keys()))))
 
-
+		if show_ticker_files:
+			ticker_data_files(scope)
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Re-Usable Components for the Ticker Loaders
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
-def select_a_market(scope):
-
-	previous_selection = scope.selected_market
-
-	selected_market = st.selectbox(
-									label='Add a Market to Ticker List',
-									options=scope.dropdown_markets, 
-									index=scope.dropdown_markets.index(previous_selection), 
-									help='Select an Entire Share Market for Analysis',
-									key='1'
-									)
-
-	scope.selected_market = selected_market
-
-def select_industries(scope):
-
-	selected_industries = st.multiselect(
-									label='Add an Industry or Industries',
-									options=scope.dropdown_industries, 
-									default=scope.selected_industries, 
-									help='Quickly Select all tickers in a particular industry',
-									key='2'
-									)
-
-	scope.selected_industries = selected_industries
-
-def select_tickers(scope):
-
-	selected_tickers = st.multiselect(
-									label='Add a Ticker or Tickers',
-									options=scope.dropdown_tickers, 
-									default=scope.selected_tickers, 
-									help='Select a ticker, or multiple tickers from the dropdown. Start typing to jump within list',
-									key='3'
-									)
-
-	scope.selected_tickers = selected_tickers
 
 def select_a_ticker_dropdown(scope, page):
 	
@@ -247,3 +200,41 @@ def limit_analysis(scope, min_value, max_value, default_value):
 
 	# Store the selection for smoother transition between pages
 	scope.analysis_limit_share_data = input_analysis_days
+
+def select_a_market(scope):
+
+	previous_selection = scope.selected_market
+
+	selected_market = st.selectbox(
+									label='Add a Market to Ticker List',
+									options=scope.dropdown_markets, 
+									index=scope.dropdown_markets.index(previous_selection), 
+									help='Select an Entire Share Market for Analysis',
+									key='1'
+									)
+
+	scope.selected_market = selected_market
+
+def select_industries(scope):
+
+	selected_industries = st.multiselect(
+									label='Add an Industry or Industries',
+									options=scope.dropdown_industries, 
+									default=scope.selected_industries, 
+									help='Quickly Select all tickers in a particular industry',
+									key='2'
+									)
+
+	scope.selected_industries = selected_industries
+
+def select_tickers(scope):
+
+	selected_tickers = st.multiselect(
+									label='Add a Ticker or Tickers',
+									options=scope.dropdown_tickers, 
+									default=scope.selected_tickers, 
+									help='Select a ticker, or multiple tickers from the dropdown. Start typing to jump within list',
+									key='3'
+									)
+
+	scope.selected_tickers = selected_tickers

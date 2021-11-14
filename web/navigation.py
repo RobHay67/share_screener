@@ -22,7 +22,7 @@ def render_current_page(page):
 
 						'ticker_index'	:index_page,
 						'ticker_list'	:ticker_list,
-						'ticker_files'	:ticker_data_files,
+						# 'ticker_files'	:ticker_data_files,
 						'scope'			:scope_page,
 
 						'single'		:single_ticker_page,
