@@ -20,7 +20,7 @@ def ticker_data_files(scope): #
 	st.subheader('Loaded and downloaded Ticker data.')
 	st.markdown("""---""")
 
-	
+
 	list_of_loaded_tickers = list(scope.share_data_files.keys())
 	list_of_loaded_tickers.sort()
 
@@ -39,16 +39,16 @@ def ticker_list(scope): #
 	col1,col2 = st.columns([2,10])
 
 	with col1: st.markdown('##### Single Ticker Analysis')
-	with col2: st.write(scope.ticker_list['single'])
+	with col2: st.write(scope.ticker_list['single'][0])
 
 	with col1: st.markdown('##### Intra Day Analysis')
-	with col2: st.write(scope.ticker_list['intraday'])
+	with col2: st.write(scope.ticker_list['intraday'][0])
 
 	with col1: st.markdown('##### Volume Prediction')
-	with col2: st.write(scope.ticker_list['volume'])
+	with col2: st.write(scope.ticker_list['volume'][0])
 
 	with col1: st.markdown('##### Research Ticker')
-	with col2: st.write(scope.ticker_list['research'])
+	with col2: st.write(scope.ticker_list['research'][0])
 
 	with col1: st.markdown('##### Multi Ticker Analysis List')
 	ticker_list_message = ''
@@ -58,6 +58,20 @@ def ticker_list(scope): #
 			ticker_list_message += '  '
 
 	with col2: st.write(ticker_list_message)
+
+
+def ticker_file(scope, ticker): # WIP
+	# st.markdown('##### Loaded and / or Downloaded share data.')
+
+	# ticker = scope.ticker['research']
+
+	if ticker in list(scope.share_data_files.keys()):
+		ticker_data_file = scope.share_data_files[ticker]
+		ticker_data_file.sort_values(by=['date'], inplace=True, ascending=False)
+		my_expander = st.expander(label=ticker)
+		my_expander.dataframe(ticker_data_file, 2000, 2000)	
+	# else:
+	# 	st.error('Load / Download some ticker data')
 
 
 
@@ -71,7 +85,7 @@ def single_loader(scope, page):
 	col1,col2,col3,col4,col5,col6 = st.columns([2.0, 2.0, 1.5, 1.5, 2.0, 3.0])
 	with col1: select_a_ticker_dropdown(scope, page)
 
-	ticker = scope.ticker_list[page]
+	ticker = scope.ticker_list[page][0]
 	
 	if ticker != 'select a ticker':	
 		with col3: download_days_input(scope)
@@ -89,7 +103,10 @@ def single_loader(scope, page):
 
 		min_value, max_value, default_value, no_of_rows = no_of_loaded_rows(scope, ticker)
 
-		with col5: st.write(('No of Loaded Rows = ' + str(no_of_rows)))
+		with col5: show_ticker_data = st.button(('Loaded Rows = ' + str(no_of_rows)))
+
+		if show_ticker_data:
+			ticker_file(scope, ticker)
 
 		# Render the Company Name and an Analysis Row Limit controller
 		col1,col2,col3,col4 = st.columns([7.0, 1.7, 0.3, 3.0])
@@ -112,10 +129,9 @@ def multi_loader(scope):
 	with col2: select_industries(scope)
 	with col3: select_tickers(scope)
 	
-	if scope.tickers_market != 'select entire market' or (len(scope.tickers_industries) != 0) or len(scope.tickers_multi) != 0:
+	if scope.selected_market != 'select entire market' or (len(scope.selected_industries) != 0) or len(scope.selected_tickers) != 0:
 		
 		update_multi_ticker_list(scope)
-		print(scope.ticker_list['multi'])
 
 		with col4: load_tickers 	= st.button( 'Load Files')
 		with col4: download_tickers = st.button(('Add  ' + str(int(scope.download_days)) + ' days'))
@@ -139,7 +155,7 @@ def multi_loader(scope):
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 def select_a_market(scope):
 
-	previous_selection = scope.tickers_market
+	previous_selection = scope.selected_market
 
 	selected_market = st.selectbox(
 									label='Add a Market to Ticker List',
@@ -149,36 +165,36 @@ def select_a_market(scope):
 									key='1'
 									)
 
-	scope.tickers_market = selected_market
+	scope.selected_market = selected_market
 
 def select_industries(scope):
 
 	selected_industries = st.multiselect(
 									label='Add an Industry or Industries',
 									options=scope.dropdown_industries, 
-									default=scope.tickers_industries, 
+									default=scope.selected_industries, 
 									help='Quickly Select all tickers in a particular industry',
 									key='2'
 									)
 
-	scope.tickers_industries = selected_industries
+	scope.selected_industries = selected_industries
 
 def select_tickers(scope):
 
 	selected_tickers = st.multiselect(
 									label='Add a Ticker or Tickers',
 									options=scope.dropdown_tickers, 
-									default=scope.tickers_multi, 
+									default=scope.selected_tickers, 
 									help='Select a ticker, or multiple tickers from the dropdown. Start typing to jump within list',
 									key='3'
 									)
 
-	scope.tickers_multi = selected_tickers
+	scope.selected_tickers = selected_tickers
 
 def select_a_ticker_dropdown(scope, page):
 	
 	# Previous Selection
-	previous_ticker_for_page = scope.ticker_list[page]
+	previous_ticker_for_page = scope.ticker_list[page][0]
 
 	# render the selector defalted to the stored ticker for this page
 	selected_ticker = st.selectbox ( label='Select a Ticker', 
@@ -188,7 +204,7 @@ def select_a_ticker_dropdown(scope, page):
 								key=page,
 								) 
 	# Store the selection so we can easily swap pages
-	scope.ticker_list[page] = selected_ticker
+	scope.ticker_list[page] = [selected_ticker]
 
 def download_days_input(scope):
 

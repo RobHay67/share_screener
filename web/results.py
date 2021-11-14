@@ -1,7 +1,6 @@
 
 import streamlit as st
 
-
 # -----------------------------------------------------------------------------------------------------------------------------------
 # Output Ticker Iteration to Browser
 # -----------------------------------------------------------------------------------------------------------------------------------
@@ -10,35 +9,31 @@ def render_results(scope, output=None, result=None, final_print=False, passed=''
 
 	if output == None:
 		# this is the initial run so set all the defails
-		# width_of_next_output = 0
-		scope.result_passed=passed
-		scope.result_passed_2=passed_2
-		scope.result_failed=failed
-		scope.result_passed_count = 0
-		scope.result_passed_2_count = 0
-		scope.result_failed_count = 0
+		scope.results['passed']=passed
+		scope.results['passed_2']=passed_2
+		scope.results['failed']=failed
+		scope.results['passed_count'] = 0
+		scope.results['passed_2_count'] = 0
+		scope.results['failed_count'] = 0
 
 	# Store the results
 	if result=='passed':
-		scope.result_passed = scope.result_passed + str(output) + ' '
-		scope.result_passed_count +=1
+		scope.results['passed'] = scope.results['passed'] + str(output) + ' '
+		scope.results['passed_count'] +=1
 	elif result=='passed_2':
-		scope.result_passed_2 = scope.result_passed_2 + str(output) + ' '
-		scope.result_passed_2_count +=1
+		scope.results['passed_2'] = scope.results['passed_2'] + str(output) + ' '
+		scope.results['passed_2_count'] +=1
 	elif result=='failed':
-		scope.result_failed = scope.result_failed + str(output) + ' '
-		scope.result_failed_count +=1
+		scope.results['failed'] = scope.results['failed'] + str(output) + ' '
+		scope.results['failed_count'] +=1
 
-	# print (scope.result_passed)
 	if final_print: 
-		scope.result_passed = scope.result_passed + ' < ( ' + str(scope.result_passed_count) + ' )'
-		scope.result_passed_2 = scope.result_passed_2 + ' < ( ' + str(scope.result_passed_2_count) + ' )'
-		scope.result_failed = scope.result_failed + ' < ( ' + str(scope.result_failed_count) + ' )'
+		scope.results['passed']   = scope.results['passed']   + ' < ( ' + str(scope.results['passed_count']) + ' )'
+		scope.results['passed_2'] = scope.results['passed_2'] + ' < ( ' + str(scope.results['passed_2_count']) + ' )'
+		scope.results['failed']   = scope.results['failed']   + ' < ( ' + str(scope.results['failed_count']) + ' )'
 
-		if scope.result_passed_count > 0: st.info(scope.result_passed)
-		if scope.result_passed_2_count > 0: st.warning(scope.result_passed_2)
-
-		# if len(scope.result_failed) != 0:
-		if scope.result_failed_count > 0: st.error(scope.result_failed)
+		if scope.results['passed_count'] > 0: st.info(scope.results['passed'])
+		if scope.results['passed_2_count'] > 0: st.warning(scope.results['passed_2'])
+		if scope.results['failed_count'] > 0: st.error(scope.results['failed'])
 
 

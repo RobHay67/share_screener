@@ -18,18 +18,18 @@ from analysis.render import research_page
 def render_current_page(page):
 	print( 'Rendering > ', page)
 	page_render_map = {
-						'initial_load'		:welcome_page,
+						'initial_load'	:welcome_page,
 
-						'ticker_index'		:index_page,
-						'ticker_list'		:ticker_list,
-						'ticker_files'		:ticker_data_files,
-						'scope'				:scope_page,
+						'ticker_index'	:index_page,
+						'ticker_list'	:ticker_list,
+						'ticker_files'	:ticker_data_files,
+						'scope'			:scope_page,
 
-						'single_analysis'	:single_ticker_page,
-						'intraday_analysis'	:intraday_page,
-						'volume'			:volume_page,
-						'research'			:research_page,
-						'analysis_multi'	:multi_tickers_page,
+						'single'		:single_ticker_page,
+						'intraday'		:intraday_page,
+						'volume'		:volume_page,
+						'research'		:research_page,
+						'multi'			:multi_tickers_page,
 
 					}
 

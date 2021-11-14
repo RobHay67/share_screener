@@ -13,14 +13,14 @@ def update_multi_ticker_list(scope):
 	# ################################################################################
 
 	# Selected a ticker or tickers
-	if len(scope.tickers_multi) != 0:
-		for ticker in scope.tickers_multi:
+	if len(scope.selected_tickers) != 0:
+		for ticker in scope.selected_tickers:
 			ticker_list.append(ticker)
 			relevant_industries = ['random_tickers']
 		pass
 	# Selected an Industry
-	elif len(scope.tickers_industries) != 0:
-		for industry in scope.tickers_industries:
+	elif len(scope.selected_industries) != 0:
+		for industry in scope.selected_industries:
 			tickers_in_industry_df = scope.ticker_index_file[scope.ticker_index_file['industry_group'] == industry ]
 			tickers_in_industry = tickers_in_industry_df.index.tolist()
 			ticker_list += tickers_in_industry 
@@ -28,7 +28,7 @@ def update_multi_ticker_list(scope):
 		pass
 	
 	# Selected an entire share market
-	elif scope.tickers_market != 'select entire market':
+	elif scope.selected_market != 'select entire market':
 		tickers_in_market = scope.ticker_index_file.index.values.tolist()
 		ticker_list = tickers_in_market
 		relevant_industries = ( list(scope.ticker_index_file['industry_group'].unique() ))

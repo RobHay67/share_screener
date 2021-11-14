@@ -44,11 +44,35 @@ def single_ticker_page(scope):
 	
 	# print ('ticker list in scope = ', scope.ticker_list)
 	ticker = scope.ticker_list['single']
-
-	# render_ticker_data_file(scope, ticker)
+	
 	if ticker in list(scope.share_data_files.keys()):
 		st.write('This is where we do some stuff')
+		# col1,col2 = st.columns([2, 10])
+		df_row_limit = None if scope.analysis_apply_limit=='False' else int(scope.analysis_limit_share_data)
 
+		share_data = extract_ticker(scope, ticker, df_row_limit)  # this only gets refreshed if the ticker changes or the no of rows changes
+
+		# TODO - this might be the place to add measures - but only if the have not already been add
+		# so - we might collect the measures from the screen.....
+		# add the measures to a list and pass the list to a cached function that is responsible
+		# 	a) adding any new measures
+		# 	b) deleted any removed measures
+		# ????? should we record the selected measures if we change screen --- maybe the widgets will keep it 
+		# render_alternative_indicators(scope)
+
+
+		# indicator_selectors(scope)
+		
+		# Financial Chart adds the following
+		# Index(['date', 'open', 'high', 'low', 'close', 'volume', 'MA20', 'MA5'], dtype='object')
+
+		# financial_chart_tutorial(share_data)
+
+		plot_candlestick_seperate_volume(share_data)
+
+	# 	plot_candlestick(share_data)
+		
+	# 	plot_line_chart(share_data)
 
 # ==============================================================================================================================================================
 # Intra Day Analysis
@@ -158,7 +182,8 @@ def volume_page(scope):
 # ==============================================================================================================================================================
 from ticker.y_finance import fetch_yfinance_metadata
 from analysis.company_info import company_general, dividends, fundamental, general, market_info
-from web.ticker_file import render_ticker_file
+# from web.ticker_file import render_ticker_file
+from ticker.render import ticker_file
 # TODO - delete this later
 from analysis.company_info import plot_basic_chart
 
@@ -181,6 +206,6 @@ def research_page(scope):
 		plot_basic_chart(scope)		
 		market_info(info)
 		# render_ticker_file(scope)
-		render_ticker_file(scope, ticker)
+		ticker_file(scope, ticker)
 
 

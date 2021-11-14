@@ -37,15 +37,15 @@ import streamlit as st
 
 
 # 	# Selected a ticker or tickers
-# 	if len(scope.tickers_multi) != 0:
-# 		for ticker in scope.tickers_multi:
+# 	if len(scope.selected_tickers) != 0:
+# 		for ticker in scope.selected_tickers:
 # 			render_results( scope, ticker, result='passed' )
 # 			ticker_list += [ticker]	
 # 		pass
 
 # 	# Selected an Industry
-# 	elif len(scope.tickers_industries) != 0:
-# 		for industry in scope.tickers_industries:
+# 	elif len(scope.selected_industries) != 0:
+# 		for industry in scope.selected_industries:
 # 			render_results( scope, industry.upper(), result='passed' )
 # 			tickers_in_industry_group_df = scope.ticker_index_file[scope.ticker_index_file['industry_group'] == industry ]
 # 			tickers_in_industry = tickers_in_industry_group_df.index.tolist()
@@ -53,8 +53,8 @@ import streamlit as st
 # 		pass
 	
 # 	# Selected an entire share market
-# 	elif scope.tickers_market != 'select entire market':
-# 		render_results( scope, scope.tickers_market.upper(), result='passed' )
+# 	elif scope.selected_market != 'select entire market':
+# 		render_results( scope, scope.selected_market.upper(), result='passed' )
 # 		available_tickers_for_this_market = scope.ticker_index_file.index.values.tolist()
 # 		ticker_list =  available_tickers_for_this_market
 # 	else:

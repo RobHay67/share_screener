@@ -4,13 +4,16 @@ import yfinance as yf					# https://github.com/ranaroussi/yfinance
 import streamlit as st
 
 
-# from tickers.download import reset_download_status, update_download_status
 from web.results import render_results
-from index.file import save_index
+from index.save import save_index
 
+from ticker.schema import ticker_file_schema, ticker_file_usecols
 
+from ticker.schema import y_finance_schemas
 # ==============================================================================================================================================================
+#
 # Yahoo Finance 
+#
 # ==============================================================================================================================================================
 
 
@@ -25,9 +28,6 @@ def fetch_yfinance_metadata(ticker):
 	divs = metadata.dividends
 	return metadata, info, divs
 
-
-
-	
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # download ticker data for a single or group of tickers
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ def download_from_yahoo_finance( scope ): 													# TODO What Output to Ren
 	
 	period = str(scope.download_days) + 'd' # 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo
 
-	reset_download_status(scope)
+	# reset_download_status(scope)
 
 	for count, industry in enumerate(scope.download_industries):
 		download_message = ('downloading > ' + industry + ' ( ' + str(count+1) + ' of ' + str(len(scope.download_industries)) + ' )' )
@@ -60,35 +60,37 @@ def download_from_yahoo_finance( scope ): 													# TODO What Output to Ren
 			yf_download = yf_download.stack(level=0).rename_axis(['Date', 'Ticker']).reset_index(level=1)
 		yf_download = format_columns_in_downloaded_share_data( scope, yf_download, download_schema )	
 		store_yf_download_in_scope( scope, download_ticker_string, yf_download, yf.shared._ERRORS )
-	update_download_status(scope)
+	# update_download_status(scope)
 
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Update Share Index with download status information
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def reset_download_status(scope): # TODO - test output
-	for ticker in scope.ticker_list:
-		scope.ticker_index_file.at[ticker, 'yahoo_status'] = 'set_for_download'
+# def reset_download_status(scope): # TODO - ERROR - which tickers are being updated????
+	# ticker_list = list(scope.ticker_list[scope.display_page])
+	# for ticker in ticker_list:
+	# 	scope.ticker_index_file.at[ticker, 'yahoo_status'] = 'set_for_download'
 
-def update_download_status(scope): # TODO DONE - but needs robust testing on a large group - also > # TODO What Output to Render
-	for ticker in scope.downloaded_yf_ticker_data['ticker'].unique():
-		scope.ticker_index_file.at[ticker, 'yahoo_status'] = 'downloaded'
-	for ticker, error_message in scope.downloaded_yf_anomolies.items():
-		if error_message == 'No data found, symbol may be delisted':
-			scope.ticker_index_file.at[ticker, 'yahoo_status'] = 'delisted'
-		else:
-			st.write( ticker + ' - download error = ' + str(error_message))
-	save_index(scope)
+# def update_download_status(scope): # TODO DONE - but needs robust testing on a large group - also > # TODO What Output to Render
+	# for ticker in scope.download_yf_files['ticker'].unique():
+	# 	scope.ticker_index_file.at[ticker, 'yahoo_status'] = 'downloaded'
+	# for ticker, error_message in scope.downloaded_yf_anomolies.items():
+	# 	if error_message == 'No data found, symbol may be delisted':
+	# 		scope.ticker_index_file.at[ticker, 'yahoo_status'] = 'delisted'
+	# 	else:
+	# 		st.write( ticker + ' - download error = ' + str(error_message))
+	# save_index(scope)
 
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Yahoo Finance - helpers
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def generate_ticker_string_by_industry(scope, industry): # DONE
+def generate_ticker_string_by_industry(scope, industry): # OK
+
 	if industry == 'random_tickers': 							# we have selected specific tickers 
-		batch_of_tickers = scope.ticker_list
+		batch_of_tickers = scope.ticker_list[scope.display_page] 
 	else: 														# user has selected a share market, industry or multiple industries
 		industry_tickers = scope.ticker_index_file[scope.ticker_index_file['industry_group'] == industry ]
 		batch_of_tickers = industry_tickers.index.tolist()
@@ -99,16 +101,18 @@ def generate_ticker_string_by_industry(scope, industry): # DONE
 		if len(download_ticker_string) != 0:
 			download_ticker_string += " "
 		download_ticker_string =  download_ticker_string + ticker
-	
+
 	return download_ticker_string
 
 def format_columns_in_downloaded_share_data( scope, yf_download, download_schema ): # DONE
 	yf_download.reset_index(inplace=True)   # remove any index set during import - we will set the index later
 
-	for col_no in scope.download_schemas[download_schema]:
-		provider_column_name    = scope.download_schemas[download_schema][col_no]['col_name']
+	for col_no in y_finance_schemas[download_schema]:
+		provider_column_name    = y_finance_schemas[download_schema][col_no]['col_name']
 		if col_no < 50:                 	# its a column we are keeping - anything tagged with a key above 50 can be removed
-			application_column_name = scope.share_data_schema[col_no]['col_name']
+			# application_column_name = scope.ticker_file_schema[col_no]['col_name']
+			application_column_name = ticker_file_schema[col_no]['col_name']
+			
 			yf_download.rename(columns = { provider_column_name : application_column_name }, inplace = True)
 		else:                           	# its a column we do not need so lets delete it
 			del yf_download[provider_column_name]
@@ -117,10 +121,10 @@ def format_columns_in_downloaded_share_data( scope, yf_download, download_schema
 
 def store_yf_download_in_scope( scope, download_ticker_string, yf_download, download_errors ): # TODO What Output to Render
 	# store the downloaded data in a single dictionary
-	scope.downloaded_yf_ticker_data = pd.DataFrame(columns=scope.share_data_usecols + ['ticker'] )		# Reset for each download
+	scope.download_yf_files = pd.DataFrame(columns=ticker_file_usecols + ['ticker'] )		# Reset for each download
 	scope.downloaded_yf_anomolies 	=  {}																# Reset for each download
 
-	scope.downloaded_yf_ticker_data = pd.concat([scope.downloaded_yf_ticker_data, yf_download], sort=False)
+	scope.download_yf_files = pd.concat([scope.download_yf_files, yf_download], sort=False)
 	scope.downloaded_yf_anomolies.update(download_errors)	# store any errors
 	render_results( scope, passed='Downloaded these Shares > ', passed_2='na', failed='Falied to Download > ' )
 	failed_download_list = []

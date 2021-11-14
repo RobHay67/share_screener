@@ -278,11 +278,11 @@ from web.results import render_results
 # 	if scope.download_group_method == 'tickers_multi':
 # 		scope.download_groups_for_y_finance.append('tickers_multi')
 # 	elif scope.download_group_method == 'tickers_multi':
-# 		if scope.tickers_market != 'select entire market':
+# 		if scope.selected_market != 'select entire market':
 # 			scope.download_groups_for_y_finance = ( list(scope.ticker_index_file['industry_group'].unique() ))
-# 		elif len(scope.tickers_industries) != 0:
+# 		elif len(scope.selected_industries) != 0:
 # 			scope.download_groups_for_y_finance = scope.selected_industry
-# 		elif len(scope.tickers_multi) != 0:
+# 		elif len(scope.selected_tickers) != 0:
 # 			scope.download_groups_for_y_finance.append('tickers_multi')
 # 	else:
 # 		st.error( ('The scope.download_group_method value > ' + scope.download_group_method + ' < which has not been configured') )

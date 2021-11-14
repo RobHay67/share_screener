@@ -1,10 +1,10 @@
-
+import pandas as pd
 import streamlit as st
 
 from datetime import datetime 
 
 
-
+from ticker.render import ticker_list
 
 
 def welcome_page(scope):
@@ -26,6 +26,7 @@ def scope_page(scope):
 			'show_ticker_index'	:ticker_index,
 			'show_ticker_files'	:ticker_files,
 			'show_industries'	:industries,
+			'show_ticker_lists'	:ticker_lists,
 			'show_strategy'		:strategy,
 			'show_charting'		:charting,
 			'show_session'		:session,
@@ -34,7 +35,6 @@ def scope_page(scope):
 			'show_results'		:results,
 			'show_application'	:application,
 			'show_folders'		:folders,
-			'show_market'		:market,
 			}
 
 		scope_page[st.session_state.st_button](scope)
@@ -54,6 +54,7 @@ def button_selectors(scope):
 	with col1: st.button('Ticker Index File ( ' + str((len(scope.ticker_index_file))) + ' )', on_click=set_st_button, args=('show_ticker_index', ))
 	with col1: st.button('Share Data Files ( ' + str(len(scope.share_data_files.keys())) + ' )', on_click=set_st_button, args=('show_ticker_files', ))
 	with col1: st.button('Industries', on_click=set_st_button, args=('show_industries', ))
+	with col1: st.button('Ticker Lists', on_click=set_st_button, args=('show_ticker_lists', ))
 	
 	with col2: st.subheader('Analysis')
 	with col2: st.button('Strategy', on_click=set_st_button, args=('show_strategy', ))
@@ -68,7 +69,7 @@ def button_selectors(scope):
 	with col4: st.subheader('System')
 	with col4: st.button('Application', on_click=set_st_button, args=('show_application', ))
 	with col4: st.button('Folders', on_click=set_st_button, args=('show_folders', ))
-	with col4: st.button('Share Market', on_click=set_st_button, args=('show_market', ))
+	# with col4: st.button('Share Market', on_click=set_st_button, args=('show_market', ))
 
 
 
@@ -98,6 +99,9 @@ def industries(scope):
 	industry_group_count.index.name = 'Industry'
 	industry_group_count.columns =['No of Codes']
 	st.dataframe(industry_group_count, 2000, 1200)
+
+def ticker_lists(scope):
+	ticker_list(scope)
 
 
 
@@ -171,57 +175,56 @@ def selectors(scope):
 	with col5: st.write(scope.share_market)
 	with col6: st.write('< share_market >')
 
-	# Research
-	with col1: st.write('Research')
-	with col2: st.write('Ticker in Index')
-	with col3: st.write('selectbox')
-	with col4: st.write('< dropdown_ticker >')
-	with col5: st.write(scope.ticker_list['research'])
-	with col6: st.write("< ticker['research'] >")
-	# Volume Prediction
-	with col1: st.write('Volume Prediction')
-	with col2: st.write('Ticker in Index')
-	with col3: st.write('selectbox')
-	with col4: st.write('< dropdown_ticker >')
-	with col5: st.write(scope.ticker_list['volume'])
-	with col6: st.write("< ticker['volume_predict'] >")
-	# Intrad-Day Analysis
-	with col1: st.write('Intra-Day')
-	with col2: st.write('Ticker in Index')
-	with col3: st.write('selectbox')
-	with col4: st.write('< dropdown_ticker >')
-	with col5: st.write(scope.ticker_list['intraday'])
-	with col6: st.write("< ticker['intraday'] >")
 	# Single Ticker Selector
 	with col1: st.write('Single Ticker')
-	with col2: st.write('Ticker in Index')
+	with col2: st.write('Ticker from Index')
 	with col3: st.write('selectbox')
 	with col4: st.write('< dropdown_ticker >')
-	with col5: st.write(scope.ticker_list['single'])
-	with col6: st.write("< ticker['single'] >")
+	with col5: st.write(scope.ticker_list['single'][0])
+	with col6: st.write("< ticker_list['single'] >")
+	# Intra Day Analysis
+	with col1: st.write('Intra Day')
+	with col2: st.write('Ticker from Index')
+	with col3: st.write('selectbox')
+	with col4: st.write('< dropdown_ticker >')
+	with col5: st.write(scope.ticker_list['intraday'][0])
+	with col6: st.write("< ticker_list['intraday'] >")
+	# Volume Prediction
+	with col1: st.write('Volume Prediction')
+	with col2: st.write('Ticker from Index')
+	with col3: st.write('selectbox')
+	with col4: st.write('< dropdown_ticker >')
+	with col5: st.write(scope.ticker_list['volume'][0])
+	with col6: st.write("< ticker_list['volume'] >")
+	# Research
+	with col1: st.write('Research')
+	with col2: st.write('Ticker from Index')
+	with col3: st.write('selectbox')
+	with col4: st.write('< dropdown_ticker >')
+	with col5: st.write(scope.ticker_list['research'][0])
+	with col6: st.write("< ticker_list['research'] >")
 	# Share Market
 	with col1: st.write('Share Market')
-	with col2: st.write('Share Markets')
+	with col2: st.write('Selected Share Market')
 	with col3: st.write('selectbox')
 	with col4: st.write('< dropdown_markets >')
-	with col5: st.write(scope.tickers_market)
-	with col6: st.write('< tickers_market >')
-
+	with col5: st.write(scope.selected_market)
+	with col6: st.write('< selected_market >')
 	# Industry Selector
-	with col1: st.write('Industry')
-	with col2: st.write('Industry in Index')
+	with col1: st.write('Selected Industry')
+	with col2: st.write('Selected Industry(s)')
 	with col3: st.write('multiselect')
 	with col4: st.write('< dropdown_industries >')
-	with col5: st.write(scope.tickers_industries)
-	with col6: st.write('< tickers_industries >')
-
-	# Share Market
-	with col1: st.write('Tickers')
-	with col2: st.write('Ticker in Index')
+	with col5: st.write(scope.selected_industries)
+	with col6: st.write('< selected_industries >')
+	# Multi Ticker Selector
+	with col1: st.write('Selected Tickers (Multi)')
+	with col2: st.write('Ticker(s) from Index')
 	with col3: st.write('multiselect')
 	with col4: st.write('< dropdown_tickers >')
-	with col5: st.write(scope.tickers_multi)
-	with col6: st.write('< tickers_multi >')
+	with col5: st.write(scope.selected_tickers)
+	with col6: st.write("< selected_tickers >")
+
 
 	# Ticker Indicator Column O-H-L-C-V
 	with col1: st.write('Ticker Column')
@@ -249,7 +252,7 @@ def download(scope):
 	render_3_columns( 'Industry Groups for y_finance to iterate over', scope.download_industries, 'download_industries' )
 	render_3_columns( 'Loaded Ticker List', scope.downloaded_loaded_list, 'downloaded_loaded_list' )
 	render_3_columns( 'Missing Ticker List', scope.downloaded_missing_list, 'downloaded_missing_list' )
-	render_3_columns( 'Downloaded Data from y_finance', scope.downloaded_yf_ticker_data, 'downloaded_yf_ticker_data' )
+	render_3_columns( 'Downloaded Data from y_finance', scope.ticker_data_files_yf, 'ticker_data_files_yf' )
 	render_3_columns( 'Error Messages  from y_finance', scope.downloaded_yf_anomolies  , 'downloaded_yf_anomolies' )
 
 	st.markdown("""---""")
@@ -261,20 +264,6 @@ def download(scope):
 		if count < len(scope.ticker_list) - 1:
 			ticker_list_message += '  '
 	st.info(ticker_list_message)
-
-	st.markdown("""---""")
-	st.subheader('Available Schemas for the different downloads from y_finance')
-	col1,col2,col3 = st.columns([2,4,2])
-	list_of_schemas = list(scope.download_schemas.keys())
-	for schema in list_of_schemas:
-		with col1: st.write(schema)
-		# schema_definition = scope.download_schemas[schema]
-		# schema_definition = pd.DataFrame(scope.download_schemas[schema])
-		# print( schema_definition)
-		with col2: st.write(scope.download_schemas[schema])
-		# with col2: st.dataframe(scope.strategy_price_columns, 100, 200)
-		# with col2: st.write(schema_definition)
-	with col3: st.write('< download_schemas >')
 
 def results(scope):
 	st.subheader('Results from Most Recent Batch Process')
@@ -304,18 +293,6 @@ def folders(scope):
 	render_3_columns( 'Path for Share Index File', scope.path_ticker_index, 'path_ticker_index', diff_col_size )
 	render_3_columns( 'Path for Website Output File', scope.path_website_file, 'path_website_file', diff_col_size )
 	render_3_columns( 'Path for Share Data File', scope.path_share_data_file, 'path_share_data_file', diff_col_size )
-
-def market(scope):
-	st.subheader('Market Parameters')
-	st.info( ('Current Share Market = ' + str(scope.share_market)) )
-
-	render_3_columns( 'Share Market Suffix', scope.market_suffix, 'market_suffix' )
-	
-	st.markdown("""---""")
-	st.subheader('Market Dates - Opening times and Public Holidays')
-
-	render_3_columns( 'Public Holidays', scope.market_public_holidays, 'market_public_holidays' )
-	render_3_columns( 'Opening Hours', scope.market_opening_hours, 'market_opening_hours' )
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -4,6 +4,9 @@ import pandas as pd
 from web.results import render_results
 from ticker.path import generate_path_for_share_data_file
 
+
+from ticker.schema import ticker_file_usecols, ticker_file_dtypes, ticker_file_dates
+
 # ==============================================================================================================================================================
 # Ticker Data : loaders and savers
 # ==============================================================================================================================================================
@@ -48,10 +51,10 @@ def actual_loader( scope, ticker ): # DONE
 									scope.path_share_data_file, 
 									header      = 0,
 									# nrows       = params.row_limitor, 
-									usecols     = scope.share_data_usecols,
+									usecols     = ticker_file_usecols,
 									# index_col   = 'date', 
-									dtype       = scope.share_data_dtypes,
-									parse_dates = scope.share_data_dates,
+									dtype       = ticker_file_dtypes,
+									parse_dates = ticker_file_dates,
 									)
 	scope.share_data_files[ticker] = share_data_file
 

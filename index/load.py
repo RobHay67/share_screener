@@ -7,10 +7,12 @@ from index.schema import schema
 from index.schema import csv_dates
 from index.schema import csv_dtypes
 
+from index.save import save_index
+
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # TICKER INDEX FILE - loader and Saver
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def load_index( scope ):
+def load_ticker_index_file( scope ):
 	st.title('Loading Ticker Index File')
 
 	if os.path.exists( scope.path_ticker_index ):
@@ -43,12 +45,7 @@ def load_index( scope ):
 		st.markdown("""---""")
 		st.error('Click on the Ticker Index button to update the Ticker Index')
 
-def save_index( scope ): # DONE
-	# st.subheader('Save Ticker Index File')
-	saving_df = scope.ticker_index_file.copy()
-	saving_df.reset_index(inplace=True)      	 # ensure that the index is saved as a normal column
-	saving_df.to_csv( scope.path_ticker_index, index=False )
-	st.success('saved Ticker Index file')
+
 
 
 

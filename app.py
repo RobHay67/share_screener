@@ -59,11 +59,11 @@ st.sidebar.title('Analysis')
 # col1,col2 = st.sidebar.columns(2)
 
 
-st.sidebar.button('Single'  	, on_click=set_page, args=('single_analysis', ))
-st.sidebar.button('Intra-Day'	, on_click=set_page, args=('intraday_analysis', ))
+st.sidebar.button('Single'  	, on_click=set_page, args=('single', ))
+st.sidebar.button('Intra-Day'	, on_click=set_page, args=('intraday', ))
 st.sidebar.button('Volume'		, on_click=set_page, args=('volume', ))
 st.sidebar.button('Research'	, on_click=set_page, args=('research', ))
-st.sidebar.button('Multiple'	, on_click=set_page, args=('analysis_multi', ))
+st.sidebar.button('Multiple'	, on_click=set_page, args=('multi', ))
 
 
 st.sidebar.title('Charts')
