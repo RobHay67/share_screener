@@ -5,8 +5,8 @@ from ticker.load import load_single_ticker_file, load_multiple_ticker_files
 from ticker.download import load_and_download_ticker_data
 from ticker.analysis_df import establish_analysis_df
 
-from system.ticker_files import render_a_ticker_file, render_all_loaded_ticker_files
-from system.analysis import render_an_analysis_file, render_all_analysis_files
+from system.ticker_files import view_a_ticker_file, view_all_loaded_ticker_files
+from system.analysis import view_an_analysis_file, view_all_analysis_files
 
 
 
@@ -51,10 +51,10 @@ def single_loader(scope, page):
 			
 
 			if show_ticker_data:
-				render_a_ticker_file(scope, ticker)
+				view_a_ticker_file(scope, ticker)
 
 			if show_analysis_data:
-				render_an_analysis_file(scope)
+				view_an_analysis_file(scope)
 
 			# Render the Company Name
 			col1,col2,col3,col4 = st.columns([7.0, 1.7, 0.3, 3.0])
@@ -111,10 +111,10 @@ def multi_loader(scope):
 
 
 		if show_ticker_files:
-			render_all_loaded_ticker_files(scope)
+			view_all_loaded_ticker_files(scope)
 
 		if show_analysis_files:
-			render_all_analysis_files(scope)
+			view_all_analysis_files(scope)
 
 
 

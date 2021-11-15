@@ -8,7 +8,7 @@ import pathlib
 # from ticker_index import save_ticker_index_file
 from ticker.index.file import save_index
 # from scope import generate_path_for_share_data_file
-from web.results import render_results
+from web.results import view_results
 
 # ==============================================================================================================================================================
 # Browser Render Controllers : 
@@ -142,7 +142,7 @@ from web.results import render_results
 # ==============================================================================================================================================================
 # Browser Render Controller : Load and / or  Download share data
 # ==============================================================================================================================================================
-# def render_ticker_data_fetcher(scope, ticker_list):
+# def view_ticker_data_fetcher(scope, ticker_list):
 
 # 	if isinstance(ticker_list, str): ticker_list = [ticker_list]
 
@@ -204,11 +204,11 @@ from web.results import render_results
 
 
 
-# def render_ticker_data_page(scope):
+# def view_ticker_data_page(scope):
 # 	st.title('Load and/or Download Share Data')
 # 	st.info(('Current number of Loaded Files ( ' + str((len(scope.ticker_data_files))) + ' )'))
 
-# 	render_ticker_data_fetcher(scope, ['test'])
+# 	view_ticker_data_fetcher(scope, ['test'])
 
 
 	# col1,col2 = st.columns([4,4])

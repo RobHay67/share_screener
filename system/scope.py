@@ -3,23 +3,23 @@ import streamlit as st
 
 
 
-from system.app import scope_app, render_app
-from system.pages import scope_pages, render_pages
-from system.download import scope_download, render_download, render_download_days
-from system.results import scope_results, render_results
+from system.app import scope_app, view_app
+from system.pages import scope_pages, view_pages
+from system.download import scope_download, view_download, view_download_days
+from system.results import scope_results, view_results
 
-from system.project import scope_project, render_project
-from system.folders import scope_folders, render_folders
+from system.project import scope_project, view_project
+from system.folders import scope_folders, view_folders
 
-from system.analysis import scope_analysis, render_analysis, render_analysis_row_limit
-from system.strategy import scope_strategy, render_strategy
-from system.chart import scope_chart, render_chart
+from system.analysis import scope_analysis, view_analysis, view_analysis_row_limit
+from system.strategy import scope_strategy, view_strategy
+from system.chart import scope_chart, view_chart
 
 from index.download import new_tickers_from_web
-from system.index import scope_index, render_index
+from system.index import scope_index, view_index
 from index.industries import industry_report
 
-from system.ticker_files import scope_ticker_files, render_all_loaded_ticker_files
+from system.ticker_files import scope_ticker_files, view_all_loaded_ticker_files
 
 
 
@@ -58,45 +58,46 @@ def set_scope(scope, project_description):
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Render Scope Variables (by Group)
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def render_scope(scope):
+def view_scope(scope):
 	st.title('User Setting')
 	col1,col2,col3,col4,col5,col6 = st.columns([2,2,2,2,2,2])
 	with col1: st.subheader('Download Days')
-	with col1: render_download_days(scope)
+	with col1: view_download_days(scope)
 	with col2: st.subheader('Analysis Row Limit')
-	with col2: render_analysis_row_limit(scope)
+	with col2: view_analysis_row_limit(scope)
 
 
 	st.markdown("""---""")
-	st.title('Application Setting')
+	st.subheader('Application Setting')
 
 	button_selectors(scope)
+	st.markdown("""---""")
 
 	if st.session_state.st_button != None:
 		scope_page = {
 			# Column 1
 
 			# Column 2
-			'show_app'				:render_app,
-			'show_pages'			:render_pages,
-			'show_results'			:render_results,
-			'show_download'			:render_download,
+			'show_app'				:view_app,
+			'show_pages'			:view_pages,
+			'show_results'			:view_results,
+			'show_download'			:view_download,
 			# Column 3
-			'show_project'			:render_project,
-			'show_folders'			:render_folders,
+			'show_project'			:view_project,
+			'show_folders'			:view_folders,
 
 			# Column 4
-			'show_analysis'			:render_analysis,
-			'show_strategy'			:render_strategy,
-			'show_charting'			:render_chart,
+			'show_analysis'			:view_analysis,
+			'show_strategy'			:view_strategy,
+			'show_charting'			:view_chart,
 			
 			# Column 5
 			'import_tickers'		:new_tickers_from_web,
-			'show_ticker_index'		:render_index,
+			'show_ticker_index'		:view_index,
 			'show_industries'		:industry_report,
 
 			# Column 6			
-			'show_ticker_files'		:render_all_loaded_ticker_files,
+			'show_ticker_files'		:view_all_loaded_ticker_files,
 
 			}
 

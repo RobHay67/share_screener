@@ -1,6 +1,6 @@
 import streamlit as st
 
-from system.reports import render_3_columns
+from system.reports import view_3_columns
 
 def scope_app(scope):
 	# System Wide Variables
@@ -11,15 +11,15 @@ def scope_app(scope):
 													# only do this after loading the share index file
 	scope.st_button = None
 
-def render_app(scope):
+def view_app(scope):
 	st.subheader('Share Market')
-	render_3_columns( 'Current Share Market <hard coded>', scope.share_market, 'share_market' )
+	view_3_columns( 'Current Share Market <hard coded>', scope.share_market, 'share_market' )
 
 	st.subheader('Behavioural')
-	render_3_columns( 'Initial Load ?', scope.initial_load, 'initial_load' )
-	render_3_columns( 'Current Page to Display', scope.display_page, 'display_page' )
-	render_3_columns( 'Do the Dropdown Lists Need Refreshing ?', scope.dropdown_lists_need_updating, 'dropdown_lists_need_updating' )
+	view_3_columns( 'Initial Load ?', scope.initial_load, 'initial_load' )
+	view_3_columns( 'Current Page to Display', scope.display_page, 'display_page' )
+	view_3_columns( 'Do the Dropdown Lists Need Refreshing ?', scope.dropdown_lists_need_updating, 'dropdown_lists_need_updating' )
 	
 	st.subheader('Streamlit Reusable Variables')
-	render_3_columns( 'Streamlit Latest Button Pressed', scope.st_button, 'st_button' )
+	view_3_columns( 'Streamlit Latest Button Pressed', scope.st_button, 'st_button' )
 

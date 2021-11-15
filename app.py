@@ -15,7 +15,7 @@ project_description = 'DDT - Data Driven Trading'
 from config.streamlit import set_streamlit_config
 from system.scope import set_scope
 from system.dropdowns import update_dropdowns
-from system.navigation import set_page, render_current_page
+from system.navigation import set_page, view_current_page
 
 # Set Up the Initial Streamlit Environment ======================================================================
 set_streamlit_config()
@@ -31,7 +31,7 @@ print ( '\033[94mApplication Refreshed >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
 # Display Appropriate Page
-render_current_page(st.session_state.display_page)
+view_current_page(st.session_state.display_page)
 
 # Sidebar Action Buttons
 st.sidebar.title(project_description)

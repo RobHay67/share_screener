@@ -2,7 +2,7 @@ import os
 import pathlib
 import streamlit as st
 
-from system.reports import render_3_columns
+from system.reports import view_3_columns
 
 # Folders
 def scope_folders(scope):
@@ -22,17 +22,17 @@ def scope_folders(scope):
 
 
 
-def render_folders(scope):
+def view_folders(scope):
 	
 
 	diff_col_size = [2,6,2]
 	st.subheader('Folders')
-	render_3_columns( 'Project', scope.folder_project, 'folder_project', diff_col_size )
-	render_3_columns( 'Share Data', scope.folder_share_data, 'folder_share_data', diff_col_size )
-	render_3_columns( 'Results Analysis', scope.folder_results_analysis, 'folder_results_analysis', diff_col_size )
-	render_3_columns( 'Website Output', scope.folder_website, 'folder_website', diff_col_size )
+	view_3_columns( 'Project', scope.folder_project, 'folder_project', diff_col_size )
+	view_3_columns( 'Share Data', scope.folder_share_data, 'folder_share_data', diff_col_size )
+	view_3_columns( 'Results Analysis', scope.folder_results_analysis, 'folder_results_analysis', diff_col_size )
+	view_3_columns( 'Website Output', scope.folder_website, 'folder_website', diff_col_size )
 
 	st.subheader('Paths to Specific Objects')
-	render_3_columns( 'Path for Share Index File', scope.path_ticker_index, 'path_ticker_index', diff_col_size )
-	render_3_columns( 'Path for Website Output File', scope.path_website_file, 'path_website_file', diff_col_size )
-	render_3_columns( 'Path for Share Data File', scope.path_share_data_file, 'path_share_data_file', diff_col_size )
+	view_3_columns( 'Path for Share Index File', scope.path_ticker_index, 'path_ticker_index', diff_col_size )
+	view_3_columns( 'Path for Website Output File', scope.path_website_file, 'path_website_file', diff_col_size )
+	view_3_columns( 'Path for Share Data File', scope.path_share_data_file, 'path_share_data_file', diff_col_size )

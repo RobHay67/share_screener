@@ -9,7 +9,7 @@ from ticker.controller import single_loader, multi_loader
 
 # from analysis.ticker_data import analysis_df
 
-from analysis.volume import render_volume_page
+from analysis.volume import view_volume_page
 from analysis.research import company_general, dividends, fundamental, general, market_info
 
 
@@ -65,7 +65,7 @@ def single_ticker_page(scope):
 		# 	a) adding any new measures
 		# 	b) deleted any removed measures
 		# ????? should we record the selected measures if we change screen --- maybe the widgets will keep it 
-		# render_alternative_indicators(scope)
+		# view_alternative_indicators(scope)
 
 
 		# indicator_selectors(scope)
@@ -112,7 +112,7 @@ def intraday_page(scope):
 		# 	a) adding any new measures
 		# 	b) deleted any removed measures
 		# ????? should we record the selected measures if we change screen --- maybe the widgets will keep it 
-		# render_alternative_indicators(scope)
+		# view_alternative_indicators(scope)
 
 
 		# indicator_selectors(scope)
@@ -140,7 +140,7 @@ def volume_page(scope):
 	single_loader(scope, 'volume' )
 	st.markdown("""---""")
 	
-	render_volume_page(scope)
+	view_volume_page(scope)
 
 
 # ==============================================================================================================================================================
@@ -166,6 +166,6 @@ def research_page(scope):
 		general(info)
 		plot_basic_chart(scope)		
 		market_info(info)
-		render_ticker_file(scope, ticker)
+		view_ticker_file(scope, ticker)
 
 

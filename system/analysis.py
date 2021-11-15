@@ -1,6 +1,6 @@
 import streamlit as st
 
-from system.reports import render_3_columns
+from system.reports import view_3_columns
 
 
 def scope_analysis(scope):
@@ -11,13 +11,13 @@ def scope_analysis(scope):
 	# scope.analysis_apply_limit = False
 
 
-def render_analysis(scope):
+def view_analysis(scope):
 	st.subheader('Analysis Variables')
-	render_3_columns( 'Analysis Row Limit', scope.analysis_row_limit, 'analysis_row_limit' )
+	view_3_columns( 'Analysis Row Limit', scope.analysis_row_limit, 'analysis_row_limit' )
 
 
 
-def render_analysis_row_limit(scope): # limit_analysis
+def view_analysis_row_limit(scope): # limit_analysis
 
 	previous_selection = int(scope.analysis_row_limit)
 
@@ -34,7 +34,7 @@ def render_analysis_row_limit(scope): # limit_analysis
 
 
 
-def render_all_analysis_files(scope): # 
+def view_all_analysis_files(scope): # 
 	st.subheader('Loaded and downloaded Ticker data.')
 	col1,col2 = st.columns([6,2])
 	with col1: st.write('Loaded and Downloaded share data stored in > ')
@@ -53,7 +53,7 @@ def render_all_analysis_files(scope): #
 		# TODO - this is where the sorting of the dataframes should occur - we can probably do it in one go and then undo it at the end
 		my_expander.dataframe(analysis_df, 2000, 2000)	
 
-def render_an_analysis_file(scope): # WIP
+def view_an_analysis_file(scope): # WIP
 	ticker = scope.selected[scope.display_page]['ticker_list'][0]
 	analysis_df = scope.selected[scope.display_page]['analysis_df'][ticker]
 	analysis_df.sort_values(by=['date'], inplace=True, ascending=False)

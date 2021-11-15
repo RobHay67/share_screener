@@ -1,6 +1,6 @@
 import streamlit as st
 
-# from system.reports import render_3_columns
+# from system.reports import view_3_columns
 
 
 def scope_pages(scope):
@@ -13,38 +13,38 @@ def scope_pages(scope):
 					'research'	:{'analysis_df':{}, 'ticker_list':['select a ticker']},
 					}
 
-def render_pages(scope):
+def view_pages(scope):
 	col_size_list = [1.5, 1.5, 1.0, 2.2, 2.5, 2.5, 0.8]
 
 	col1,col2,col3,col4,col5,col6,col7 = st.columns(col_size_list)
 
 	st.subheader('Single Analysis Pages')
 	st.markdown('#### Ticker Selectors')
-	render_headings(scope, col_size_list)
-	render_single(scope, col_size_list)
-	render_intra_day(scope, col_size_list)
-	render_volume(scope, col_size_list)
-	render_research(scope, col_size_list)
+	view_headings(scope, col_size_list)
+	view_single(scope, col_size_list)
+	view_intra_day(scope, col_size_list)
+	view_volume(scope, col_size_list)
+	view_research(scope, col_size_list)
 	st.markdown("""---""")
 
 
 	st.subheader('Multi Analysis Page')
 	st.markdown('#### Ticker List Construction Selectors')
-	render_headings(scope, col_size_list)
-	render_market(scope, col_size_list)
-	render_industry(scope, col_size_list)
-	render_tickers(scope, col_size_list)
+	view_headings(scope, col_size_list)
+	view_market(scope, col_size_list)
+	view_industry(scope, col_size_list)
+	view_tickers(scope, col_size_list)
 	st.markdown("""---""")
 	
 
 	st.subheader('Drop Down Lists (with Contents)')
-	render_dropdowns(scope)
+	view_dropdowns(scope)
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Components - Single Ticker Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def render_headings(scope, col_size_list):
+def view_headings(scope, col_size_list):
 	col1,col2,col3,col4,col5,col6,col7 = st.columns(col_size_list)
 	with col1: st.markdown('##### Selector')
 	with col2: st.markdown('##### Contains')
@@ -53,7 +53,7 @@ def render_headings(scope, col_size_list):
 	with col5: st.markdown('##### Current Selection')
 	with col6: st.markdown('##### Selection Stored In')
 
-def render_single(scope, col_size_list):
+def view_single(scope, col_size_list):
 	col1,col2,col3,col4,col5,col6,col7 = st.columns(col_size_list)
 	with col1: st.write('Single Ticker')
 	with col2: st.write('Ticker from Index')
@@ -62,7 +62,7 @@ def render_single(scope, col_size_list):
 	with col5: st.write(scope.selected['single']['ticker_list'][0])
 	with col6: st.write("< ticker_list['single'] >")
 
-def render_intra_day(scope, col_size_list):
+def view_intra_day(scope, col_size_list):
 	col1,col2,col3,col4,col5,col6,col7 = st.columns(col_size_list)
 	with col1: st.write('Intra Day')
 	with col2: st.write('Ticker from Index')
@@ -71,7 +71,7 @@ def render_intra_day(scope, col_size_list):
 	with col5: st.write(scope.selected['intraday']['ticker_list'][0])
 	with col6: st.write("< ticker_list['intraday'] >")
 
-def render_volume(scope, col_size_list):
+def view_volume(scope, col_size_list):
 	col1,col2,col3,col4,col5,col6,col7 = st.columns(col_size_list)
 	with col1: st.write('Volume Prediction')
 	with col2: st.write('Ticker from Index')
@@ -80,7 +80,7 @@ def render_volume(scope, col_size_list):
 	with col5: st.write(scope.selected['volume']['ticker_list'][0])
 	with col6: st.write("< ticker_list['volume'] >")
 
-def render_research(scope, col_size_list):
+def view_research(scope, col_size_list):
 	col1,col2,col3,col4,col5,col6,col7 = st.columns(col_size_list)
 	with col1: st.write('Research')
 	with col2: st.write('Ticker from Index')
@@ -92,7 +92,7 @@ def render_research(scope, col_size_list):
 # Components - Multi Ticker Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def render_market(scope, col_size_list):
+def view_market(scope, col_size_list):
 	col1,col2,col3,col4,col5,col6,col7 = st.columns(col_size_list)
 	with col1: st.write('Share Market')
 	with col2: st.write('Selected Share Market')
@@ -101,7 +101,7 @@ def render_market(scope, col_size_list):
 	with col5: st.write(scope.selected['multi']['market'])
 	with col6: st.write('< selected_market >')
 
-def render_industry(scope, col_size_list):
+def view_industry(scope, col_size_list):
 	col1,col2,col3,col4,col5,col6,col7 = st.columns(col_size_list)
 	with col1: st.write('Selected Industry')
 	with col2: st.write('Selected Industry(s)')
@@ -110,7 +110,7 @@ def render_industry(scope, col_size_list):
 	with col5: st.write(scope.selected['multi']['industries'])
 	with col6: st.write('< selected_industries >')
 
-def render_tickers(scope, col_size_list):
+def view_tickers(scope, col_size_list):
 	col1,col2,col3,col4,col5,col6,col7 = st.columns(col_size_list)
 	with col1: st.write('Selected Tickers (Multi)')
 	with col2: st.write('Ticker(s) from Index')
@@ -122,7 +122,7 @@ def render_tickers(scope, col_size_list):
 # Components - Dropdowns
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def render_dropdowns(scope):
+def view_dropdowns(scope):
 	col1,col2,col3,col4,col5,col6 = st.columns([2,2,2,2,2,2])
 	
 	with col1: st.markdown('##### Page')

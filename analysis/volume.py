@@ -6,7 +6,7 @@ import pytz
 from config.markets import opening_hours
 
 
-def render_volume_page(scope):
+def view_volume_page(scope):
 
 	ticker = scope.selected['volume']['ticker_list'][0]
 
@@ -14,7 +14,7 @@ def render_volume_page(scope):
 	market_timezone = opening_hours[scope.share_market]['timezone']		# Timezone for the share market
 	market_time = datetime.now(pytz.timezone(market_timezone))			# Current Market time
 
-	render_local_vs_market_time(local_time, market_time)
+	view_local_vs_market_time(local_time, market_time)
 	
 	if ticker != 'select a ticker':
 
@@ -54,10 +54,10 @@ def render_volume_page(scope):
 
 		# TODO - we could use a POC model over the recent history and plot the prediction against this - we could smooth in accordance with the POC curve
 
-		render_prediction( ticker_open_time, minutes_elapsed, ticker_remaining_minutes, ticker_closing_time, 
+		view_prediction( ticker_open_time, minutes_elapsed, ticker_remaining_minutes, ticker_closing_time, 
 							volume_to_date, ticker_average_vol_per_minute, extrapolated_daily_volume, ticker_minutes_per_day)
 
-def render_local_vs_market_time(local_time, market_time): # DONE
+def view_local_vs_market_time(local_time, market_time): # DONE
 	col1,col2,col3 = st.columns([1,1,1])
 	with col1:st.write('Local Time')
 	with col2:st.write(str(local_time.strftime('%H:%M:%S %p')))
@@ -69,7 +69,7 @@ def render_local_vs_market_time(local_time, market_time): # DONE
 
 	st.markdown("""---""")
 
-def render_prediction(ticker_open_time, minutes_elapsed, ticker_remaining_minutes, ticker_closing_time, 
+def view_prediction(ticker_open_time, minutes_elapsed, ticker_remaining_minutes, ticker_closing_time, 
 						volume_to_date, ticker_average_vol_per_minute, extrapolated_daily_volume, ticker_minutes_per_day):
 		# Render the results of the calculations
 		col1,col2,col3 = st.columns([1,1,1])

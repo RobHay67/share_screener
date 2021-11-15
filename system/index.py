@@ -9,7 +9,7 @@ def scope_index(scope):
 	load_ticker_index_file(scope)
 	
 
-def render_index(scope):
+def view_index(scope):
 	col1,col2 = st.columns([6,2])
 	
 	with col1: st.subheader('Ticker Index File')
