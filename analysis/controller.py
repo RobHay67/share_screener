@@ -7,7 +7,7 @@ import streamlit as st
 
 from ticker.controller import single_loader, multi_loader
 
-from analysis.share_data import extract_ticker
+# from analysis.ticker_data import analysis_df
 
 from analysis.volume import render_volume_page
 from analysis.research import company_general, dividends, fundamental, general, market_info
@@ -18,8 +18,6 @@ from charts.candlestick import plot_candlestick_seperate_volume, plot_candlestic
 from charts.line import plot_line_chart
 
 from ticker.y_finance import fetch_yfinance_metadata
-
-from ticker.files import render_ticker_file
 
 # ==============================================================================================================================================================
 # Mult Ticker Analysis
@@ -55,9 +53,11 @@ def single_ticker_page(scope):
 	if ticker in list(scope.ticker_data_files.keys()):
 		st.write('This is where we do some stuff')
 		# col1,col2 = st.columns([2, 10])
-		df_row_limit = None if scope.analysis_apply_limit=='False' else int(scope.analysis_limit_share_data)
+		# df_row_limit = None if scope.analysis_apply_limit=='False' else int(scope.analysis_row_limit)
 
-		share_data = extract_ticker(scope, ticker, df_row_limit)  # this only gets refreshed if the ticker changes or the no of rows changes
+		df_row_limit = int(scope.analysis_row_limit)
+
+		# share_data = analysis_df(scope, ticker, df_row_limit)  # this only gets refreshed if the ticker changes or the no of rows changes
 
 		# TODO - this might be the place to add measures - but only if the have not already been add
 		# so - we might collect the measures from the screen.....
@@ -75,7 +75,7 @@ def single_ticker_page(scope):
 
 		# financial_chart_tutorial(share_data)
 
-		plot_candlestick_seperate_volume(share_data)
+		# plot_candlestick_seperate_volume(share_data)
 
 	# 	plot_candlestick(share_data)
 		
@@ -96,14 +96,15 @@ def intraday_page(scope):
 	
 	st.markdown("""---""")
 
-	ticker = scope.selected['ticker_list']['intraday'][0]
+	ticker = scope.selected['intraday']['ticker_list'][0]
 
 
 	if ticker in list(scope.ticker_data_files.keys()):
 		# col1,col2 = st.columns([2, 10])
-		df_row_limit = None if scope.analysis_apply_limit=='False' else int(scope.analysis_limit_share_data)
+		# df_row_limit = None if scope.analysis_apply_limit=='False' else int(scope.analysis_row_limit)
 
-		share_data = extract_ticker(scope, ticker, df_row_limit)  # this only gets refreshed if the ticker changes or the no of rows changes
+		print('We are here')
+		# share_data = analysis_df(scope, ticker, df_row_limit)  # this only gets refreshed if the ticker changes or the no of rows changes
 
 		# TODO - this might be the place to add measures - but only if the have not already been add
 		# so - we might collect the measures from the screen.....
@@ -121,7 +122,7 @@ def intraday_page(scope):
 
 		# financial_chart_tutorial(share_data)
 
-		plot_candlestick_seperate_volume(share_data)
+		# plot_candlestick_seperate_volume(share_data)
 
 	# 	plot_candlestick(share_data)
 		
@@ -165,7 +166,6 @@ def research_page(scope):
 		general(info)
 		plot_basic_chart(scope)		
 		market_info(info)
-		# render_ticker_file(scope)
 		render_ticker_file(scope, ticker)
 
 

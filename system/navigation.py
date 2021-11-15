@@ -6,7 +6,7 @@ from system.scope import welcome_page
 
 # from index.controller import index_page
 # from ticker.render import ticker_data_files, ticker_list
-from system.scope import scope_page
+from system.scope import render_scope
 from analysis.controller import multi_tickers_page
 from analysis.controller import single_ticker_page
 from analysis.controller import intraday_page  
@@ -19,7 +19,7 @@ def render_current_page(page):
 	# print( 'Rendering > ', page)
 	page_render_map = {
 						'initial_load'	:welcome_page,
-						'scope'			:scope_page,
+						'scope'			:render_scope,
 
 						'single'		:single_ticker_page,
 						'intraday'		:intraday_page,

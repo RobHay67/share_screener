@@ -3,7 +3,15 @@ import streamlit as st
 from ticker.multi_ticker_list import update_multi_ticker_list
 from ticker.load import load_single_ticker_file, load_multiple_ticker_files
 from ticker.download import load_and_download_ticker_data
-from ticker.files import render_ticker_file, render_ticker_files
+from ticker.analysis_df import establish_analysis_df
+
+from system.ticker_files import render_a_ticker_file, render_all_loaded_ticker_files
+from system.analysis import render_an_analysis_file, render_all_analysis_files
+
+
+
+
+
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -17,10 +25,13 @@ def single_loader(scope, page):
 	ticker = scope.selected[page]['ticker_list'][0]
 	
 	if ticker != 'select a ticker':	
-		with col3: download_days_input(scope)
-		with col4: load_tickers 	= st.button( 'Load File')
-		with col4: download_tickers = st.button(('Add ' + str(int(scope.download_days)) + ' day'))
-		with col5: st.button('Clear temp messages')
+		download_button_msg = 'Download ' + str(int(scope.download_days)) + ' day'
+		if scope.download_days > 1: download_button_msg += 's'
+
+		with col4: load_tickers 	= st.button( 'Load This File')
+		with col4: download_tickers = st.button(download_button_msg)
+		with col6: st.button('Clear any messages')
+		
 
 		if load_tickers : 
 			scope.download_industries = ['random_tickers']									# used for y_finance downloading
@@ -30,20 +41,25 @@ def single_loader(scope, page):
 			scope.download_industries = ['random_tickers']									# used for y_finance downloading
 			load_and_download_ticker_data(scope)
 
-		min_value, max_value, default_value, no_of_rows = no_of_loaded_rows(scope, ticker)
+		if ticker in list(scope.ticker_data_files.keys()):
+			no_of_loaded_rows = len(scope.ticker_data_files[ticker])
+			establish_analysis_df(scope, ticker, no_of_loaded_rows)
+			no_of_analysis_rows = len(scope.selected[scope.display_page]['analysis_df'][ticker])
 
-		with col5: show_ticker_data = st.button(('Loaded Rows = ' + str(no_of_rows)))
+			with col5: show_ticker_data = st.button(('Loaded Rows = ' + str(no_of_loaded_rows)))
+			with col5: show_analysis_data = st.button(('Analysis Rows = ' + str(no_of_analysis_rows)))
+			
 
-		if show_ticker_data:
-			render_ticker_file(scope, ticker)
+			if show_ticker_data:
+				render_a_ticker_file(scope, ticker)
 
-		# Render the Company Name and an Analysis Row Limit controller
-		col1,col2,col3,col4 = st.columns([7.0, 1.7, 0.3, 3.0])
-		with col1: st.header( scope.ticker_index.loc[ticker]['company_name'] )
-		with col2: limit_analysis(scope, min_value, max_value, default_value)
-		with col3: scope.analysis_apply_limit = st.radio( 	"apply",
-															('True','False'))
-		
+			if show_analysis_data:
+				render_an_analysis_file(scope)
+
+			# Render the Company Name
+			col1,col2,col3,col4 = st.columns([7.0, 1.7, 0.3, 3.0])
+			with col1: st.header( scope.ticker_index.loc[ticker]['company_name'] )
+
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Multi Ticker Loader
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -51,18 +67,21 @@ def multi_loader(scope):
 	
 	col1,col2,col3,col4,col5,col6 = st.columns([2,3,2,1.2,2,1.8])
 
-	# TODO - store this information with the ticker_lists ????
 	with col1: select_a_market(scope)
 	with col2: select_industries(scope)
 	with col3: select_tickers(scope)
 	
 	if scope.selected['multi']['market'] != 'select entire market' or (len(scope.selected['multi']['industries']) != 0) or len(scope.selected['multi']['tickers']) != 0:
+		total_loaded_rows, total_analysis_rows = 0, 0
 		
-		update_multi_ticker_list(scope)
+		download_button_msg = 'Download ' + str(int(scope.download_days)) + ' day'
+		if scope.download_days > 1: download_button_msg += 's'
 
-		with col4: load_tickers 	= st.button( 'Load Files')
-		with col4: download_tickers = st.button(('Add  ' + str(int(scope.download_days)) + ' days'))
-		with col5: st.button('Clear Messages')
+		with col4: load_tickers 	= st.button( 'Load These Files')
+		with col4: download_tickers = st.button(download_button_msg)
+		with col6: st.button('Clear any Messages')
+
+		update_multi_ticker_list(scope)
 
 		if load_tickers : 
 			# scope.download_industries is establised by the update_multi_ticker_list() function
@@ -72,10 +91,32 @@ def multi_loader(scope):
 			# scope.download_industries is establised by the update_multi_ticker_list() function
 			load_and_download_ticker_data(scope)
 
-		with col5: show_ticker_files = st.button(('Loaded Files = ' + str(len(scope.ticker_data_files.keys()))))
+		# iterate through loaded ticker list and call the establish_analysis_df method 
+		list_of_loaded_files = list(scope.ticker_data_files.keys())
+		no_of_loaded_files = len(list_of_loaded_files)
+
+		for ticker in list_of_loaded_files:
+			no_of_loaded_rows = len(scope.ticker_data_files[ticker])
+			establish_analysis_df(scope, ticker, no_of_loaded_rows)
+
+			no_of_analysis_rows = len(scope.selected['multi']['analysis_df'][ticker])
+
+			total_loaded_rows += no_of_loaded_rows
+			total_analysis_rows += no_of_analysis_rows
+
+		no_of_analysis_files = len(scope.selected['multi']['analysis_df'])
+
+		with col5: show_ticker_files   = st.button(('Loaded Files   = ' + str(no_of_loaded_files)   + ' rows = ' + str(total_loaded_rows)))
+		with col5: show_analysis_files = st.button(('Analysis Files = ' + str(no_of_analysis_files) + ' rows = ' + str(total_analysis_rows)))
+
 
 		if show_ticker_files:
-			render_ticker_files(scope)
+			render_all_loaded_ticker_files(scope)
+
+		if show_analysis_files:
+			render_all_analysis_files(scope)
+
+
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Single Ticker Page Helpers
@@ -141,44 +182,19 @@ def select_tickers(scope):
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Helpers for All Pages - Options and Buttons
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
-def download_days_input(scope):
 
-	# default_value = int(scope.download_days)	# could not get this to work
 
-	# render the number input widget
-	input_download_days = st.number_input( 
-								'download days', 
-								min_value=1, 
-								max_value=6000, 
-								value=5, 						# Default Value to display (would revert on every second try)
-								key='1'
-								)   
+# def no_of_loaded_rows(scope, ticker):
 
-	# Store the selection for smoother transition between pages
-	scope.download_days = input_download_days
+# 	min_value,max_value,default_value,no_of_rows=0,0,0,0	
 
-def no_of_loaded_rows(scope, ticker):
-
-	min_value,max_value,default_value,no_of_rows=0,0,0,0	
-
-	# Count the rows in loaded dataframe
-	if ticker in list(scope.ticker_data_files.keys()):
-		min_value = 1
-		no_of_rows = len(scope.ticker_data_files[ticker])
-		max_value = no_of_rows if no_of_rows > 0 else 0
-		default_value = 300 if max_value > 300 else max_value		
+# 	# Count the rows in loaded dataframe
+# 	if ticker in list(scope.ticker_data_files.keys()):
+# 		min_value = 1
+# 		no_of_rows = len(scope.ticker_data_files[ticker])
+# 		max_value = no_of_rows if no_of_rows > 0 else 0
+# 		default_value = 300 if max_value > 300 else max_value		
 	
-	return min_value,max_value,default_value,no_of_rows
+# 	return min_value,max_value,default_value,no_of_rows
 
-def limit_analysis(scope, min_value, max_value, default_value):
 
-	input_analysis_days = st.number_input( 	
-								'limit analysis to X rows', 
-								min_value=min_value, 
-								max_value=max_value, 
-								value=default_value,
-								key='2'
-								)  
-
-	# Store the selection for smoother transition between pages
-	scope.analysis_limit_share_data = input_analysis_days

@@ -35,9 +35,7 @@ render_current_page(st.session_state.display_page)
 
 # Sidebar Action Buttons
 st.sidebar.title(project_description)
-# st.sidebar.button(('Ticker Index ( ' + str((len(st.session_state.ticker_index_file))) + ' )'), on_click=set_page, args=('ticker_index', ))
 st.sidebar.button('Settings', on_click=set_page, args=('scope', ))
-# st.download_days = st.sidebar.number_input('change ( - / + )  number of days to download', min_value=1, max_value=6000, value=1, key='0')   
 
 st.sidebar.title('Analysis')
 st.sidebar.button('Single'  	, on_click=set_page, args=('single', ))

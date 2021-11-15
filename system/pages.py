@@ -4,21 +4,13 @@ import streamlit as st
 
 
 def scope_pages(scope):
-
-
-	# Multi Analysis Page Variables  # TODO - thiese should be in with the misnames ticker_list
-	# scope.selected['multi']['market'] 				= 'select entire market'	# for the multi ticker selection screen
-	# scope.selected['multi']['industries'] 			= None
-	# scope.selected['multi']['tickers'] 				= None
-
-
 	# Page Specific Variables
 	scope.selected={											# TODO - refactor to "selected"
-					'multi'		:{'ticker_list':[], 				'market':'select entire market', 'industries':None, 'tickers':None  },
-					'single'	:{'ticker_list':['select a ticker']},
-					'intraday'	:{'ticker_list':['select a ticker']},
-					'volume'	:{'ticker_list':['select a ticker']},
-					'research'	:{'ticker_list':['select a ticker']},
+					'multi'		:{'analysis_df':{}, 'ticker_list':[], 				'market':'select entire market', 'industries':None, 'tickers':None  },
+					'single'	:{'analysis_df':{}, 'ticker_list':['select a ticker']},
+					'intraday'	:{'analysis_df':{}, 'ticker_list':['select a ticker']},
+					'volume'	:{'analysis_df':{}, 'ticker_list':['select a ticker']},
+					'research'	:{'analysis_df':{}, 'ticker_list':['select a ticker']},
 					}
 
 def render_pages(scope):
@@ -177,3 +169,32 @@ def render_dropdowns(scope):
 
 
 
+
+
+# TODO - rob - this was the original report showing all the ticker selectors
+
+# def selected_tickers_for_each_page(scope): # 
+# 	st.subheader('Selected Ticker(s) for each Page')
+
+# 	col1,col2 = st.columns([2,10])
+
+# 	with col1: st.markdown('##### Single Ticker Analysis')
+# 	with col2: st.write(scope.selected['single']['ticker_list'][0])
+
+# 	with col1: st.markdown('##### Intra Day Analysis')
+# 	with col2: st.write(scope.selected['intraday']['ticker_list'][0])
+
+# 	with col1: st.markdown('##### Volume Prediction')
+# 	with col2: st.write(scope.selected['volume']['ticker_list'][0])
+
+# 	with col1: st.markdown('##### Research Ticker')
+# 	with col2: st.write(scope.selected['research']['ticker_list'][0])
+
+# 	with col1: st.markdown('##### Multi Ticker Analysis List')
+# 	ticker_list_message = ''
+# 	for count, ticker in enumerate(scope.selected['multi']['ticker_list']):
+# 		ticker_list_message = ticker_list_message + ticker
+# 		if count < len(scope.selected['multi']['ticker_list']) - 1:
+# 			ticker_list_message += '  '
+
+# 	with col2: st.write(ticker_list_message)
