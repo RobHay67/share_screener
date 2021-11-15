@@ -56,10 +56,10 @@ def plot_basic_chart(scope):
 	import plotly.graph_objects as go
 	st.markdown('##### Chart of all available data') 
 
-	ticker = scope.ticker_list['research']
+	ticker = scope.selected['research']['ticker_list'][0]
 
-	if ticker in list(scope.share_data_files.keys()):
-		share_data = scope.share_data_files[ticker]
+	if ticker in list(scope.ticker_data_files.keys()):
+		share_data = scope.ticker_data_files[ticker]
 		fig = go.Figure(
 				data=go.Scatter(x=share_data['date'], y=share_data['close'])
 			)

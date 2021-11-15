@@ -206,7 +206,7 @@ from web.results import render_results
 
 # def render_ticker_data_page(scope):
 # 	st.title('Load and/or Download Share Data')
-# 	st.info(('Current number of Loaded Files ( ' + str((len(scope.share_data_files))) + ' )'))
+# 	st.info(('Current number of Loaded Files ( ' + str((len(scope.ticker_data_files))) + ' )'))
 
 # 	render_ticker_data_fetcher(scope, ['test'])
 
@@ -279,7 +279,7 @@ from web.results import render_results
 # 		scope.download_groups_for_y_finance.append('tickers_multi')
 # 	elif scope.download_group_method == 'tickers_multi':
 # 		if scope.selected_market != 'select entire market':
-# 			scope.download_groups_for_y_finance = ( list(scope.ticker_index_file['industry_group'].unique() ))
+# 			scope.download_groups_for_y_finance = ( list(scope.ticker_index['industry_group'].unique() ))
 # 		elif len(scope.selected_industries) != 0:
 # 			scope.download_groups_for_y_finance = scope.selected_industry
 # 		elif len(scope.selected_tickers) != 0:
@@ -295,7 +295,7 @@ from web.results import render_results
 # 		tickers_list = scope.ticker_list
 # 	else:
 # 		# we have selected a specific market, industry or multiple industries
-# 		tickers_in_industry_group_df = scope.ticker_index_file[scope.ticker_index_file['industry_group'] == y_finance_group ]
+# 		tickers_in_industry_group_df = scope.ticker_index[scope.ticker_index['industry_group'] == y_finance_group ]
 # 		tickers_list = tickers_in_industry_group_df.index.tolist()
 	
 # 	 # store the appropriate type of download for y_finance

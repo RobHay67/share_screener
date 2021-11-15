@@ -13,8 +13,8 @@ import streamlit as st
 project_description = 'DDT - Data Driven Trading'
 
 from config.streamlit import set_streamlit_config
-from scope.set import set_scope
-from scope.dropdowns import update_dropdowns
+from system.scope import set_scope
+from system.dropdowns import update_dropdowns
 from system.navigation import set_page, render_current_page
 
 # Set Up the Initial Streamlit Environment ======================================================================
@@ -35,8 +35,8 @@ render_current_page(st.session_state.display_page)
 
 # Sidebar Action Buttons
 st.sidebar.title(project_description)
-st.sidebar.button(('Ticker Index ( ' + str((len(st.session_state.ticker_index_file))) + ' )'), on_click=set_page, args=('ticker_index', ))
-st.sidebar.button('Settings (scope)', on_click=set_page, args=('scope', ))
+# st.sidebar.button(('Ticker Index ( ' + str((len(st.session_state.ticker_index_file))) + ' )'), on_click=set_page, args=('ticker_index', ))
+st.sidebar.button('Settings', on_click=set_page, args=('scope', ))
 # st.download_days = st.sidebar.number_input('change ( - / + )  number of days to download', min_value=1, max_value=6000, value=1, key='0')   
 
 st.sidebar.title('Analysis')

@@ -3,32 +3,33 @@ from datetime import datetime
 from datetime import timedelta
 import pytz
 
+from config.markets import opening_hours
 
 
 def render_volume_page(scope):
-	local_time=datetime.now()															# Current local time
-	market_timezone = scope.market_opening_hours[scope.share_market]['timezone']		# Timezone for the share market
-	market_time = datetime.now(pytz.timezone(market_timezone))							# Current Market time
 
-	st.title('Predict Closing Volume to End of Today')
-	st.write('Extrapolating the Current Volume to the End of today')
-	st.markdown("""---""")
+	ticker = scope.selected['volume']['ticker_list'][0]
+
+	local_time=datetime.now()											# Current local time
+	market_timezone = opening_hours[scope.share_market]['timezone']		# Timezone for the share market
+	market_time = datetime.now(pytz.timezone(market_timezone))			# Current Market time
 
 	render_local_vs_market_time(local_time, market_time)
-	st.markdown("""---""")
+	
+	if ticker != 'select a ticker':
 
-	ticker = render_select_ticker_for_volume(scope)
-	st.markdown("""---""")
-
-	if ticker != 'select a ticker':	
-		# Ticker Master Data
-		ticker_opening_time 	= scope.ticker_index_file.loc[ticker]['opening_time']
-		ticker_minutes_per_day 	= scope.ticker_index_file.loc[ticker]['minutes_per_day']
-		
-		# Current Volume setter
+		# Current Volume Level - Input by the User
 		col1,col2 = st.columns([2,10])
 		with col1: ticker_current_volume = st.number_input("Current Volume", value=0, format="%d")
-				
+
+		###########################################################################################
+		# Predict Total Daily Volume based on current Volume and known information about the ticker
+		###########################################################################################
+
+		# Relevant Times for this Ticker
+		ticker_opening_time 	= scope.ticker_index_file.loc[ticker]['opening_time']
+		ticker_minutes_per_day 	= scope.ticker_index_file.loc[ticker]['minutes_per_day']
+						
 		# Build the open time for this ticker
 		open_hour 	= int(ticker_opening_time[:2])
 		open_minute = int(ticker_opening_time[3:5])
@@ -51,41 +52,12 @@ def render_volume_page(scope):
 		ticker_closing_time = datetime.strptime(ticker_opening_time, '%H:%M:%S')
 		ticker_closing_time = ticker_closing_time + timedelta(minutes=ticker_minutes_per_day)
 
-		# Render the results of the calculations
-		col1,col2,col3 = st.columns([1,1,1])
+		# TODO - we could use a POC model over the recent history and plot the prediction against this - we could smooth in accordance with the POC curve
 
-		with col1:st.write('Opening Time (for this ticker')
-		with col2:st.write(str(ticker_open_time.strftime('%H:%M:%S %p')))
-		with col3:st.write('-')
+		render_prediction( ticker_open_time, minutes_elapsed, ticker_remaining_minutes, ticker_closing_time, 
+							volume_to_date, ticker_average_vol_per_minute, extrapolated_daily_volume, ticker_minutes_per_day)
 
-		with col1:st.write('Total Minutes Elapsed')
-		with col2:st.write(str(minutes_elapsed))
-		with col3:st.write('-')
-
-		with col1:st.write('Remaining Minutes')
-		with col2:st.write(str(ticker_remaining_minutes))
-		with col3:st.write('-')
-
-		with col1:st.write('Closing Time (for this ticker)')
-		with col2:st.write(str(ticker_closing_time.strftime('%H:%M:%S %p')))
-		with col3:st.write('-')
-
-		with col1:st.write('Current Volume')
-		with col2:st.write(str(volume_to_date))
-		with col3:st.write('-')
-
-		with col1:st.subheader('Average Volume per Minute')
-		with col2:st.subheader(str(int(ticker_average_vol_per_minute)) )
-		with col3:st.write('( ', str(volume_to_date), ' / ', str(minutes_elapsed), ' )')	
-
-		with col1:st.subheader('Extrapolated End of Day Volume')
-		with col2:st.subheader(str(extrapolated_daily_volume) )
-		with col3:st.write('( '+ str(int(ticker_average_vol_per_minute))+' x '+ str(ticker_minutes_per_day)+' )')
-
-	else:
-		st.warning('Firstly select a ticker from the above dropdown list')
-
-def render_local_vs_market_time(local_time, market_time):
+def render_local_vs_market_time(local_time, market_time): # DONE
 	col1,col2,col3 = st.columns([1,1,1])
 	with col1:st.write('Local Time')
 	with col2:st.write(str(local_time.strftime('%H:%M:%S %p')))
@@ -95,27 +67,10 @@ def render_local_vs_market_time(local_time, market_time):
 	with col2:st.subheader(str(market_time.strftime('%H:%M:%S %p')))
 	with col3:st.write(str(market_time.strftime('%Y-%m-%d')))
 
-def render_select_ticker_for_volume(scope):
-	col1,col2 = st.columns([2,10])														# col2 is just a dummy to prevent the widget filling the whole screen
+	st.markdown("""---""")
 
-	dropdown_list = scope.dropdown_ticker
-	index_of_ticker = dropdown_list.index(scope.ticker['volume_predict'])
-
-	with col1: 
-		ticker = st.selectbox ( 'Select Ticker', 
-								dropdown_list, 
-								index=index_of_ticker, 
-								help='Select a ticker. Start typing to jump within list'
-								) 
-	
-	scope.ticker['volume_predict'] = ticker												# Store the selection for next session
-	
-	if ticker != 'select a ticker':	
-		st.header( scope.ticker_index_file.loc[ticker]['company_name'] )					# Render the company name
-	
-	return ticker
-
-def render_volume_prediction(ticker_open_time, minutes_elapsed, ticker_remaining_minutes, ticker_closing_time, volume_to_date, ticker_average_vol_per_minute, extrapolated_daily_volume, ticker_minutes_per_day):
+def render_prediction(ticker_open_time, minutes_elapsed, ticker_remaining_minutes, ticker_closing_time, 
+						volume_to_date, ticker_average_vol_per_minute, extrapolated_daily_volume, ticker_minutes_per_day):
 		# Render the results of the calculations
 		col1,col2,col3 = st.columns([1,1,1])
 
@@ -146,8 +101,5 @@ def render_volume_prediction(ticker_open_time, minutes_elapsed, ticker_remaining
 		with col1:st.subheader('Extrapolated End of Day Volume')
 		with col2:st.subheader(str(extrapolated_daily_volume) )
 		with col3:st.write('( '+ str(int(ticker_average_vol_per_minute))+' x '+ str(ticker_minutes_per_day)+' )')
-
-
-
 
 

@@ -4,7 +4,7 @@ import yfinance as yf					# https://github.com/ranaroussi/yfinance
 import streamlit as st
 
 
-from system.render import results
+from system.results import results
 from index.save import save_index
 
 from ticker.schema import ticker_file_schema, ticker_file_usecols
@@ -68,16 +68,16 @@ def download_from_yahoo_finance( scope ): 													# TODO What Output to Ren
 # Update Share Index with download status information
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # def reset_download_status(scope): # TODO - ERROR - which tickers are being updated????
-	# ticker_list = list(scope.ticker_list[scope.display_page])
+	# ticker_list = list(scope.selected[scope.display_page]['ticker_list'])
 	# for ticker in ticker_list:
-	# 	scope.ticker_index_file.at[ticker, 'yahoo_status'] = 'set_for_download'
+	# 	scope.ticker_index.at[ticker, 'yahoo_status'] = 'set_for_download'
 
 # def update_download_status(scope): # TODO DONE - but needs robust testing on a large group - also > # TODO What Output to Render
 	# for ticker in scope.download_yf_files['ticker'].unique():
-	# 	scope.ticker_index_file.at[ticker, 'yahoo_status'] = 'downloaded'
+	# 	scope.ticker_index.at[ticker, 'yahoo_status'] = 'downloaded'
 	# for ticker, error_message in scope.downloaded_yf_anomolies.items():
 	# 	if error_message == 'No data found, symbol may be delisted':
-	# 		scope.ticker_index_file.at[ticker, 'yahoo_status'] = 'delisted'
+	# 		scope.ticker_index.at[ticker, 'yahoo_status'] = 'delisted'
 	# 	else:
 	# 		st.write( ticker + ' - download error = ' + str(error_message))
 	# save_index(scope)
@@ -90,9 +90,9 @@ def download_from_yahoo_finance( scope ): 													# TODO What Output to Ren
 def generate_ticker_string_by_industry(scope, industry): # OK
 
 	if industry == 'random_tickers': 							# we have selected specific tickers 
-		batch_of_tickers = scope.ticker_list[scope.display_page] 
+		batch_of_tickers = scope.selected[scope.display_page]['ticker_list']
 	else: 														# user has selected a share market, industry or multiple industries
-		industry_tickers = scope.ticker_index_file[scope.ticker_index_file['industry_group'] == industry ]
+		industry_tickers = scope.ticker_index[scope.ticker_index['industry_group'] == industry ]
 		batch_of_tickers = industry_tickers.index.tolist()
 
 	# Create a readable list of the tickers for Y_Finance

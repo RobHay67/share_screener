@@ -15,14 +15,14 @@ def update_dropdowns(scope):
 	list_of_markets.insert(0, 'select entire market')
 	scope.dropdown_markets = list_of_markets
 	
-	list_of_industries = scope.ticker_index_file['industry_group'].unique().tolist()
+	list_of_industries = scope.ticker_index['industry_group'].unique().tolist()
 	list_of_industries.sort()
 	scope.dropdown_industries = list_of_industries
 	
-	list_of_tickers = scope.ticker_index_file.index.values.tolist()
+	list_of_tickers = scope.ticker_index.index.values.tolist()
 	scope.dropdown_tickers = list_of_tickers
 
-	alt_ticker_list = scope.ticker_index_file.index.values.tolist()
+	alt_ticker_list = scope.ticker_index.index.values.tolist()
 	alt_ticker_list.insert(0, 'select a ticker')
 	scope.dropdown_ticker = alt_ticker_list
 	

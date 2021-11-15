@@ -28,7 +28,7 @@ def load_ticker_index_file( scope ):
 		st.write('loaded the ticker index file')
 		ticker_index.set_index('share_code', inplace=True)
 		# remove any delisted stocks here
-		scope.ticker_index_file = ticker_index
+		scope.ticker_index = ticker_index
 		scope.dropdown_lists_need_updating = True
 	else: 
 		st.error( 'Ticker Index File does not exist at path > ' + str(scope.path_ticker_index) )
@@ -40,7 +40,7 @@ def load_ticker_index_file( scope ):
 		st.success('successfully created empty Ticker Index dataframe')
 		ticker_index.set_index('share_code', inplace=True)
 		# remove any delisted stocks here
-		scope.ticker_index_file = ticker_index
+		scope.ticker_index = ticker_index
 		save_index(scope)
 		st.markdown("""---""")
 		st.error('Click on the Ticker Index button to update the Ticker Index')

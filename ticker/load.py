@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-from system.render import results
+from system.results import results
 from ticker.path import generate_path_for_share_data_file
 
 
@@ -10,18 +10,6 @@ from ticker.schema import ticker_file_usecols, ticker_file_dtypes, ticker_file_d
 # ==============================================================================================================================================================
 # Ticker Data : loaders and savers
 # ==============================================================================================================================================================
-def load_multiple_ticker_files( scope ):
-	results(scope, 
-			passed='LOADED Share Data Files > ', 
-			failed='MISSING Share Data Files for > ', 
-			passed_2='na' 
-			)
-	
-	for ticker in scope.ticker_list['multi']:
-		generate_path_for_share_data_file(scope, ticker )
-		verify_and_load(scope, ticker)
-	
-	results(scope, 'Finished', final_print=True )
 
 def load_single_ticker_file(scope, ticker):
 	
@@ -33,11 +21,25 @@ def load_single_ticker_file(scope, ticker):
 
 	generate_path_for_share_data_file(scope, ticker )
 
-	verify_and_load(scope, ticker)
+	verify_existence_and_load(scope, ticker)
 
 	results(scope, 'Finished', final_print=True )
 
-def verify_and_load(scope, ticker):
+def load_multiple_ticker_files( scope ):
+	results(scope, 
+			passed='LOADED Share Data Files > ', 
+			failed='MISSING Share Data Files for > ', 
+			passed_2='na' 
+			)
+	
+	for ticker in scope.selected['multi']['ticker_list']:
+		generate_path_for_share_data_file(scope, ticker )
+		verify_existence_and_load(scope, ticker)
+	
+	results(scope, 'Finished', final_print=True )
+
+
+def verify_existence_and_load(scope, ticker):
 	if os.path.exists( scope.path_share_data_file ):
 		actual_loader(scope, ticker )
 		scope.downloaded_loaded_list.append(ticker)
@@ -56,7 +58,7 @@ def actual_loader( scope, ticker ): # DONE
 									dtype       = ticker_file_dtypes,
 									parse_dates = ticker_file_dates,
 									)
-	scope.share_data_files[ticker] = share_data_file
+	scope.ticker_data_files[ticker] = share_data_file
 
 
 

@@ -10,7 +10,10 @@ from index.update import with_latest_download
 
 
 def new_tickers_from_web(scope):
-	st.info('Downloading Ticker Index information for the ' + scope.share_market)
+	st.header('Downloading Ticker Index information for the ' + scope.share_market)
+	st.subheader('Downloading Ticker Master Data from https://asx.api.markitdigital.com and adding to the Ticker Index File')
+	st.markdown("""---""")
+	
 	if scope.share_market == 'ASX':
 		url = 'https://asx.api.markitdigital.com/asx-research/1.0/companies/directory/file?'
 		column_names = ['share_code', 'company_name', 'listing_date', 'industry_group', 'market_cap' ]

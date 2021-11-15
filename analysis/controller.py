@@ -5,14 +5,21 @@
 import streamlit as st
 
 
-from ticker.render import single_loader, multi_loader
+from ticker.controller import single_loader, multi_loader
 
 from analysis.share_data import extract_ticker
+
+from analysis.volume import render_volume_page
+from analysis.research import company_general, dividends, fundamental, general, market_info
+
 
 from charts.finance import financial_chart_tutorial
 from charts.candlestick import plot_candlestick_seperate_volume, plot_candlestick
 from charts.line import plot_line_chart
 
+from ticker.y_finance import fetch_yfinance_metadata
+
+from ticker.files import render_ticker_file
 
 # ==============================================================================================================================================================
 # Mult Ticker Analysis
@@ -26,7 +33,7 @@ def multi_tickers_page(scope):
 
 	# we migth be able to jumpt to single stock analysis from any list - that migth be cool!!!
 
-	# if len(scope.ticker_list) > 0:
+	# if len(scope.selected['ticker_list']) > 0:
 	# 	st.info('We have some tickers')
 	# else:
 	# 	st.error('Add some tickers')
@@ -42,10 +49,10 @@ def single_ticker_page(scope):
 
 	st.markdown("""---""")
 	
-	# print ('ticker list in scope = ', scope.ticker_list)
-	ticker = scope.ticker_list['single']
+	# print ('ticker list in scope = ', scope.selected['ticker_list'])
+	ticker = scope.selected['single']['ticker_list'][0]
 	
-	if ticker in list(scope.share_data_files.keys()):
+	if ticker in list(scope.ticker_data_files.keys()):
 		st.write('This is where we do some stuff')
 		# col1,col2 = st.columns([2, 10])
 		df_row_limit = None if scope.analysis_apply_limit=='False' else int(scope.analysis_limit_share_data)
@@ -89,10 +96,10 @@ def intraday_page(scope):
 	
 	st.markdown("""---""")
 
-	ticker = scope.ticker_list['intraday']
+	ticker = scope.selected['ticker_list']['intraday'][0]
 
 
-	if ticker in list(scope.share_data_files.keys()):
+	if ticker in list(scope.ticker_data_files.keys()):
 		# col1,col2 = st.columns([2, 10])
 		df_row_limit = None if scope.analysis_apply_limit=='False' else int(scope.analysis_limit_share_data)
 
@@ -124,11 +131,7 @@ def intraday_page(scope):
 # ==============================================================================================================================================================
 # Volume Prediction
 # ==============================================================================================================================================================
-from datetime import datetime
-from datetime import timedelta
-import pytz
 
-from analysis.volume import render_volume_prediction
 
 def volume_page(scope):
 	st.title('Predict Closing Volume to End of Today')
@@ -136,65 +139,22 @@ def volume_page(scope):
 	single_loader(scope, 'volume' )
 	st.markdown("""---""")
 	
-	ticker = scope.ticker_list['volume']
-
-	local_time		= datetime.now()													# Current local time
-	market_timezone = scope.market_opening_hours[scope.share_market]['timezone']		# Timezone for the share market
-	market_time 	= datetime.now(pytz.timezone(market_timezone))						# Current Market time
-
-	if ticker != 'select a ticker':	
-		# Ticker Master Data
-		ticker_opening_time 	= scope.ticker_index_file.loc[ticker]['opening_time']
-		ticker_minutes_per_day 	= scope.ticker_index_file.loc[ticker]['minutes_per_day']
-
-		# Current Volume setter
-		col1,col2 = st.columns([2,10])
-		with col1: ticker_current_volume = st.number_input("Current Volume", value=0, format="%d")
-
-		# Build the open time for this ticker
-		open_hour 	= int(ticker_opening_time[:2])
-		open_minute = int(ticker_opening_time[3:5])
-		open_second = int(ticker_opening_time[6:8])
-		ticker_open_time=market_time.replace(hour=open_hour, minute=open_minute, second=open_second)
-		
-		# minutes difference
-		diff_in_seconds = (market_time - ticker_open_time).total_seconds()
-		minutes_elapsed = divmod(diff_in_seconds, 60)[0]
-		if minutes_elapsed > ticker_minutes_per_day: minutes_elapsed = ticker_minutes_per_day
-		
-		# Now extrapolate
-		ticker_average_vol_per_minute = ticker_current_volume / minutes_elapsed
-		ticker_remaining_minutes = ticker_minutes_per_day - minutes_elapsed
-		if ticker_remaining_minutes < 0: ticker_remaining_minutes = 0
-		extrapolated_daily_volume = "{:8,.0f}".format(ticker_average_vol_per_minute * ticker_minutes_per_day)
-		volume_to_date =  "{:8,.0f}".format(ticker_current_volume)
-		
-		# calc the closing time for this ticker
-		ticker_closing_time = datetime.strptime(ticker_opening_time, '%H:%M:%S')
-		ticker_closing_time = ticker_closing_time + timedelta(minutes=ticker_minutes_per_day)
-
-		render_volume_prediction(ticker_open_time, minutes_elapsed, ticker_remaining_minutes, ticker_closing_time, volume_to_date, ticker_average_vol_per_minute, extrapolated_daily_volume, ticker_minutes_per_day)
-
+	render_volume_page(scope)
 
 
 # ==============================================================================================================================================================
 # Company Research
 # ==============================================================================================================================================================
-from ticker.y_finance import fetch_yfinance_metadata
-from analysis.company_info import company_general, dividends, fundamental, general, market_info
-# from web.ticker_file import render_ticker_file
-from ticker.render import ticker_file
+
 # TODO - delete this later
-from analysis.company_info import plot_basic_chart
-
-
+from analysis.research import plot_basic_chart
 
 def research_page(scope):
 	st.header('Company Research')
 	single_loader(scope, 'research' )
 	st.markdown("""---""")
 	
-	ticker = scope.ticker_list['research']
+	ticker = scope.selected['research']['ticker_list'][0]
 
 	if ticker != 'select a ticker':	
 		meta_data, info, divs = fetch_yfinance_metadata(ticker)
@@ -206,6 +166,6 @@ def research_page(scope):
 		plot_basic_chart(scope)		
 		market_info(info)
 		# render_ticker_file(scope)
-		ticker_file(scope, ticker)
+		render_ticker_file(scope, ticker)
 
 

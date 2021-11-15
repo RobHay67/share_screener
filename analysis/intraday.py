@@ -13,7 +13,7 @@ from indicators.indicators import line_sma
 
 def add_sma(scope):
 	ticker 		= scope.ticker_for_intraday
-	share_data 	= scope.share_data_files[ticker]
+	share_data 	= scope.ticker_data_files[ticker]
 	
 	st.info('Adding an SMA to this dataframe')
 
@@ -51,8 +51,8 @@ def indicator_selectors(scope):
 	st.write('Add Indicators to the Chart for ' + '') 
 
 	# Ensure we have some share data before attempting to do any of the following
-	# if ticker in list(scope.share_data_files.keys()):
-		# share_data = scope.share_data_files[ticker]
+	# if ticker in list(scope.ticker_data_files.keys()):
+		# share_data = scope.ticker_data_files[ticker]
 
 	# Add Buttons
 	col1,col2,col3,col4,col5,col6,col7 = st.columns([1,1,1,1,1,1,1])
