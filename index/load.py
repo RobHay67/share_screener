@@ -6,7 +6,6 @@ import streamlit as st
 from index.schema import schema
 from index.schema import csv_dates
 from index.schema import csv_dtypes
-
 from index.save import save_index
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------

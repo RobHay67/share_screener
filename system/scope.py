@@ -16,27 +16,12 @@ from system.strategy import scope_strategy, view_strategy
 from system.chart import scope_chart, view_chart
 
 from index.download import new_tickers_from_web
-from system.index import scope_index, view_index
-from index.industries import industry_report
+from system.ticker_index import scope_index, view_index
+from system.industries import view_industries
 
 from system.ticker_files import scope_ticker_files, view_all_loaded_ticker_files
 
 
-
-
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Welcome Page # TODO - this should be a page or the system variables page - nice i like this idea
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def welcome_page(scope):
-	st.title(scope.project_description)
-	st.success('Loaded and Ready for Analysis')
-
-
-
-
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Scope Variables
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def set_scope(scope, project_description):
 	if 'initial_load' not in scope:					# set the initial load state - keep this to a minimum
 		scope.initial_load = True
@@ -55,9 +40,7 @@ def set_scope(scope, project_description):
 		scope_index(scope)
 		st.session_state.initial_load = False		# Prevent session_state from re-running during its use
 
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Render Scope Variables (by Group)
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 def view_scope(scope):
 	st.title('User Setting')
 	col1,col2,col3,col4,col5,col6 = st.columns([2,2,2,2,2,2])
@@ -74,43 +57,40 @@ def view_scope(scope):
 	st.markdown("""---""")
 
 	if st.session_state.st_button != None:
-		scope_page = {
-			# Column 1
+		show_settings_page(scope)
 
-			# Column 2
-			'show_app'				:view_app,
-			'show_pages'			:view_pages,
-			'show_results'			:view_results,
-			'show_download'			:view_download,
-			# Column 3
-			'show_project'			:view_project,
-			'show_folders'			:view_folders,
-
-			# Column 4
-			'show_analysis'			:view_analysis,
-			'show_strategy'			:view_strategy,
-			'show_charting'			:view_chart,
-			
-			# Column 5
-			'import_tickers'		:new_tickers_from_web,
-			'show_ticker_index'		:view_index,
-			'show_industries'		:industry_report,
-
-			# Column 6			
-			'show_ticker_files'		:view_all_loaded_ticker_files,
-
-			}
-
-		scope_page[st.session_state.st_button](scope)
 		
-	scope.st_button =  None
-
-
-
 		
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Components
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
+def show_settings_page(scope):
+
+	scope_page = {
+			# Column 1
+			'show_app'				:view_app,
+			'show_pages'			:view_pages,
+			'show_results'			:view_results,
+			'show_download'			:view_download,
+			# Column 2
+			'show_project'			:view_project,
+			'show_folders'			:view_folders,
+			# Column 3
+			'show_analysis'			:view_analysis,
+			'show_strategy'			:view_strategy,
+			'show_charting'			:view_chart,
+			# Column 4
+			'import_tickers'		:new_tickers_from_web,
+			'show_ticker_index'		:view_index,
+			'show_industries'		:view_industries,
+			# Column 5			
+			'show_ticker_files'		:view_all_loaded_ticker_files,
+			}
+
+	scope_page[st.session_state.st_button](scope)
+
+	scope.st_button =  None
+
 def button_selectors(scope):
 	col1,col2,col3,col4,col5,col6 = st.columns([2,2,2,2,2,2])
 
@@ -137,9 +117,6 @@ def button_selectors(scope):
 	with col5: st.subheader('Ticker Files') # DONE
 	with col5: st.button('Share Data Files ( ' + str(len(scope.ticker_data_files.keys())) + ' )', on_click=set_st_button, args=('show_ticker_files', ))
 	
-	
-
-
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Helpers
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------

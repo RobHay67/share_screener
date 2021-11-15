@@ -1,7 +1,5 @@
 import streamlit as st
 
-# from system.reports import view_3_columns
-
 
 def scope_pages(scope):
 	# Page Specific Variables
@@ -18,7 +16,7 @@ def view_pages(scope):
 
 	col1,col2,col3,col4,col5,col6,col7 = st.columns(col_size_list)
 
-	st.subheader('Single Analysis Pages')
+	st.subheader('Single Analysis Pages + Settings')
 	st.markdown('#### Ticker Selectors')
 	view_headings(scope, col_size_list)
 	view_single(scope, col_size_list)
@@ -28,7 +26,7 @@ def view_pages(scope):
 	st.markdown("""---""")
 
 
-	st.subheader('Multi Analysis Page')
+	st.subheader('Multi Analysis Page + Settings')
 	st.markdown('#### Ticker List Construction Selectors')
 	view_headings(scope, col_size_list)
 	view_market(scope, col_size_list)

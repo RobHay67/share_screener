@@ -4,11 +4,14 @@ from system.results import results
 from ticker.save import save_tickers
 
 from ticker.schema import ticker_file_usecols
+
+
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Combiner
 #   	concatenates any downloaded data with any loaded data 
 # 		resulting in a complete (hopefully) temporal history of existing share data
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 def combine_loaded_and_download_ticker_data(scope): # TODO - change to check for loaded ticker
 	st.markdown('##### Combine download with previously Loaded ticker data')
 	results(scope, 

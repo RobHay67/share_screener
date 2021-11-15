@@ -2,7 +2,7 @@ import os
 import pathlib
 import streamlit as st
 
-from system.reports import view_3_columns
+from system.view import view_3_columns
 
 # Folders
 def scope_folders(scope):
@@ -14,6 +14,7 @@ def scope_folders(scope):
 	if not os.path.isdir( scope.folder_share_data ) : os.makedirs( scope.folder_share_data )
 	if not os.path.isdir( scope.folder_results_analysis ) : os.makedirs( scope.folder_results_analysis )
 	if not os.path.isdir( scope.folder_website ) : os.makedirs( scope.folder_website )
+	
 	# File Paths
 	scope.path_ticker_index = pathlib.Path.home().joinpath( scope.folder_share_data, 'ticker_index.csv' )
 	scope.path_website_file = pathlib.Path.home().joinpath( scope.folder_website, 'strategy_results.json' )
@@ -23,9 +24,9 @@ def scope_folders(scope):
 
 
 def view_folders(scope):
-	
 
 	diff_col_size = [2,6,2]
+
 	st.subheader('Folders')
 	view_3_columns( 'Project', scope.folder_project, 'folder_project', diff_col_size )
 	view_3_columns( 'Share Data', scope.folder_share_data, 'folder_share_data', diff_col_size )

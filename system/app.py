@@ -1,6 +1,6 @@
 import streamlit as st
 
-from system.reports import view_3_columns
+from system.view import view_3_columns
 
 def scope_app(scope):
 	# System Wide Variables

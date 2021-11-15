@@ -166,6 +166,6 @@ def research_page(scope):
 		general(info)
 		plot_basic_chart(scope)		
 		market_info(info)
-		view_ticker_file(scope, ticker)
+		# view_ticker_file(scope, ticker)
 
 

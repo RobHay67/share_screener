@@ -1,6 +1,5 @@
 import streamlit as st
 
-from ticker.multi_ticker_list import update_multi_ticker_list
 from ticker.load import load_single_ticker_file, load_multiple_ticker_files
 from ticker.download import load_and_download_ticker_data
 from ticker.analysis_df import establish_analysis_df
@@ -137,7 +136,6 @@ def select_a_ticker(scope, page):
 	# Store the selection so we can easily swap pages
 	scope.selected[page]['ticker_list'] = [selected_ticker]
 
-
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Multi Page - Selectors
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -178,6 +176,52 @@ def select_tickers(scope):
 									)
 
 	scope.selected['multi']['tickers'] = selected_tickers
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Multi Page - Ticker List Constructor
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+def update_multi_ticker_list(scope):
+	
+	ticker_list = []
+	relevant_industries = []
+	
+	# ################################################################################
+	# Most detailed takes precedence
+	# ################################################################################
+
+	# Selected a ticker or tickers
+	if len(scope.selected['multi']['tickers']) != 0:
+		for ticker in scope.selected['multi']['tickers']:
+			ticker_list.append(ticker)
+			relevant_industries = ['random_tickers']
+		pass
+	# Selected an Industry
+	elif len(scope.selected['multi']['industries']) != 0:
+		for industry in scope.selected['multi']['industries']:
+			tickers_in_industry_df = scope.ticker_index[scope.ticker_index['industry_group'] == industry ]
+			tickers_in_industry = tickers_in_industry_df.index.tolist()
+			ticker_list += tickers_in_industry 
+			relevant_industries.append(industry)
+		pass
+	
+	# Selected an entire share market
+	elif scope.selected['multi']['market'] != 'select entire market':
+		tickers_in_market = scope.ticker_index.index.values.tolist()
+		ticker_list = tickers_in_market
+		relevant_industries = ( list(scope.ticker_index['industry_group'].unique() ))
+	
+	scope.selected['multi']['ticker_list'] = ticker_list
+	scope.download_industries = relevant_industries
+
+
+
+
+
+
+
+
+
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Helpers for All Pages - Options and Buttons

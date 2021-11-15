@@ -1,6 +1,6 @@
 import streamlit as st
 
-from system.reports import view_3_columns
+from system.view import view_3_columns
 
 
 def scope_analysis(scope):
@@ -14,8 +14,6 @@ def scope_analysis(scope):
 def view_analysis(scope):
 	st.subheader('Analysis Variables')
 	view_3_columns( 'Analysis Row Limit', scope.analysis_row_limit, 'analysis_row_limit' )
-
-
 
 def view_analysis_row_limit(scope): # limit_analysis
 
@@ -31,8 +29,6 @@ def view_analysis_row_limit(scope): # limit_analysis
 
 	# Store the selection for smoother transition between pages
 	scope.analysis_row_limit = input_analysis_days
-
-
 
 def view_all_analysis_files(scope): # 
 	st.subheader('Loaded and downloaded Ticker data.')

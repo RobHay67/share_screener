@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-from system.reports import view_3_columns
+from system.view import view_3_columns
 
 
 
@@ -21,16 +21,17 @@ def view_results(scope):
 	view_3_columns( 'Count Passed', scope.results['passed_count'], "result['passed_count']" )
 	view_3_columns( 'Count Passed_2', scope.results['passed_2_count'], "result['passed_2_count']" )
 	view_3_columns( 'Count Failed', scope.results['failed_count'], "result['failed_count']" )
-	
+
+
+
 # -----------------------------------------------------------------------------------------------------------------------------------
 # Output Ticker Iteration to Browser
 # -----------------------------------------------------------------------------------------------------------------------------------
 
 def results(scope, output=None, result=None, final_print=False, passed='', passed_2='', failed='' ):
-	# I think what we do here is just build 3 list and save them
 
 	if output == None:
-		# this is the initial run so set all the defails
+		# this is the initial run so set all the counts to zero
 		scope.results['passed']=passed
 		scope.results['passed_2']=passed_2
 		scope.results['failed']=failed
