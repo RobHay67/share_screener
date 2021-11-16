@@ -16,6 +16,7 @@ from config.streamlit import set_streamlit_config
 from system.scope import set_scope
 from system.dropdowns import update_dropdowns
 from system.navigation import set_page, view_current_page
+# from system.chart import chart_change
 
 # Set Up the Initial Streamlit Environment ======================================================================
 set_streamlit_config()
@@ -35,7 +36,8 @@ view_current_page(st.session_state.display_page)
 
 # Sidebar Action Buttons
 st.sidebar.title(project_description)
-st.sidebar.button('Settings', on_click=set_page, args=('scope', ))
+st.sidebar.button('Charting', on_click=set_page, args=('charts', ))
+st.sidebar.button('Defaults', on_click=set_page, args=('user', ))
 
 st.sidebar.title('Analysis')
 st.sidebar.button('Single'  	, on_click=set_page, args=('single', ))
@@ -44,21 +46,8 @@ st.sidebar.button('Volume'		, on_click=set_page, args=('volume', ))
 st.sidebar.button('Research'	, on_click=set_page, args=('research', ))
 st.sidebar.button('Multiple'	, on_click=set_page, args=('multi', ))
 
-st.sidebar.title('Charts')
-st.sidebar.checkbox('CandleStick', value=True)
-st.sidebar.checkbox('Line')
-st.sidebar.checkbox('MACD')
-st.sidebar.checkbox('Stochastic')
-st.sidebar.checkbox('?? Ichi Moku')
-st.sidebar.checkbox('?? Heikin Ashi')
-st.sidebar.checkbox('?? VAC')
-st.sidebar.checkbox('?? Volume Oscillator')
-
-st.sidebar.title('Additional')
-st.sidebar.checkbox('add Bollinger Bands')
-st.sidebar.checkbox('add Dividends')
-st.sidebar.checkbox('add Announcements')
-
+st.sidebar.title('System Settings')
+st.sidebar.button('Settings', on_click=set_page, args=('scope', ))
 
 
 

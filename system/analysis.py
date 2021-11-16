@@ -1,34 +1,20 @@
 import streamlit as st
 
-from system.view import view_3_columns
+# from system.view import view_3_columns
 
 
-def scope_analysis(scope):
+# def scope_analysis(scope):
 	# Analysis Variables
 	# Analysis_dfs are stored in the page variables
 
-	scope.analysis_row_limit = 300
+	# scope.analysis_row_limit = 300
 	# scope.analysis_apply_limit = False
 
 
-def view_analysis(scope):
-	st.subheader('Analysis Variables')
-	view_3_columns( 'Analysis Row Limit', scope.analysis_row_limit, 'analysis_row_limit' )
+# def view_analysis(scope):
+# 	st.subheader('Analysis Variables')
+# 	view_3_columns( 'Analysis Row Limit', scope.analysis_row_limit, 'analysis_row_limit' )
 
-def view_analysis_row_limit(scope): # limit_analysis
-
-	previous_selection = int(scope.analysis_row_limit)
-
-	input_analysis_days = st.number_input( 	
-										'limit analysis dataframes to this many rows (by date - most recent)', 
-										min_value=0, 
-										# max_value=max_value, 
-										value=previous_selection,
-										key='95'
-										)  
-
-	# Store the selection for smoother transition between pages
-	scope.analysis_row_limit = input_analysis_days
 
 def view_all_analysis_files(scope): # 
 	st.subheader('Loaded and downloaded Ticker data.')

@@ -14,9 +14,11 @@ from ta.momentum import StochasticOscillator
 def financial_chart_tutorial(share_data):
 	# https://python.plainenglish.io/a-simple-guide-to-plotly-for-plotting-financial-chart-54986c996682
 
-	print('test')
+	print(share_data)
 
-	fig = go.Figure(go.Candlestick(x=share_data.index,
+	fig = go.Figure(go.Candlestick(
+		# x=share_data.index,
+		x=share_data['date'],
 		open=share_data['open'],
 		high=share_data['high'],
 		low=share_data['low'],
@@ -106,7 +108,7 @@ def financial_chart_tutorial(share_data):
 	# add subplot properties when initializing fig variable
 	fig = make_subplots(rows=4, cols=1, shared_xaxes=True,
                     vertical_spacing=0.01, 
-                    row_heights=[0.5,0.1,0.2,0.2])				# this does the heigh of each plot - not sure if this is proportional or otherwise
+                    row_heights=[0.5,0.1,0.2,0.2])				# this does the height of each plot - not sure if this is proportional or otherwise
 
 	# update y-axis label										# this add the labels to each plot along the side
 	fig.update_yaxes(title_text="Price", row=1, col=1)
@@ -163,7 +165,7 @@ def financial_chart_tutorial(share_data):
 	fig.add_trace(go.Bar(x=share_data.index, 
                      y=share_data['volume'],
                      marker_color=colors
-                    ), row=2, col=1)
+                    ), row=2, col=1)											# this is chart 2 - row=chart position
 
 
 

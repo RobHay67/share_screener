@@ -1,10 +1,57 @@
-
+import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 from charts.options import render_chart_options
 
+
+
+
+def view_candlestick(share_df):
+	print('This is the candlestick')
+
+	fig = basic_candlestick(share_df)
+	fig = include_range_slider(fig, False)
+	# fig = remove_empty_dates(fig, share_df)
+	fig = hide_weekends(fig)
+
+
+
+
+	# fig.show()
+	st.plotly_chart(fig, use_container_width=True)
+
+
+
+def basic_candlestick(share_df):
+	fig = go.Figure(go.Candlestick(
+									# x=share_data.index,
+									x		= share_df['date'],
+									open	= share_df['open'],
+									high	= share_df['high'],
+									low		= share_df['low'],
+									close	= share_df['close'])
+					)
+	return fig
+
+
+def include_range_slider(fig, option=True):
+	# remove the rangeslider
+	fig.update_layout(xaxis_rangeslider_visible=option)
+	return fig
+
+def remove_empty_dates(fig, share_df):
+	# removing all empty dates
+	dt_all = pd.date_range(start=share_df.index[0],end=share_df.index[-1])				# build complete timeline from start date to end date
+	dt_obs = [d.strftime("%Y-%m-%d") for d in pd.to_datetime(share_df.index)]			# retrieve the dates that ARE in the original datset
+	dt_breaks = [d for d in dt_all.strftime("%Y-%m-%d").tolist() if not d in dt_obs]	# define dates with missing values
+	fig.update_xaxes(rangebreaks=[dict(values=dt_breaks)])
+	return fig
+
+def hide_weekends(fig):
+	fig.update_xaxes(rangebreaks=[{ 'pattern': 'day of week', 'bounds': [6, 1]}])
+	return fig
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Candlestick Chart - add volume as secondary but linked x axis chart

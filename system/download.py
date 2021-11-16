@@ -7,7 +7,7 @@ from system.view import view_3_columns
 
 def scope_download(scope):
 	# Download Ticker Variables
-	scope.download_days 			= 5
+	# scope.download_days 			= 5  # now in user settings
 	scope.download_industries 		= []
 	scope.download_yf_files			= {}
 	scope.downloaded_loaded_list 	= []
@@ -17,8 +17,8 @@ def scope_download(scope):
 
 def view_download(scope):
 
-	st.markdown('##### Download Variables')
-	view_3_columns( 'Number of Days to Download', scope.download_days, 'download_days' )
+	# st.markdown('##### Download Variables')
+	# view_3_columns( 'Number of Days to Download', scope.download_days, 'download_days' )
 
 	st.markdown('##### Most Recent Download Variables and Data')
 	view_3_columns( 'Industry Groups for y_finance to iterate over', scope.download_industries, 'download_industries' )
@@ -29,17 +29,3 @@ def view_download(scope):
 
 
 
-def view_download_days(scope):
-
-	previous_selection = int(scope.download_days)
-
-	input_download_days = st.number_input( 
-											'Number of most recent business days to download from Y_Finance', 
-											min_value=1, 
-											# max_value=6000, 
-											value=previous_selection, 						# Default Value to display (would revert on every second try)
-											key='97'
-											)   
-
-	# Store the selection for smoother transition between pages
-	scope.download_days = input_download_days

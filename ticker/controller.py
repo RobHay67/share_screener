@@ -58,6 +58,7 @@ def single_loader(scope, page):
 			# Render the Company Name
 			col1,col2,col3,col4 = st.columns([7.0, 1.7, 0.3, 3.0])
 			with col1: st.header( scope.ticker_index.loc[ticker]['company_name'] )
+			
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Multi Ticker Loader

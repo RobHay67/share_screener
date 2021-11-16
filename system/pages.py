@@ -3,7 +3,7 @@ import streamlit as st
 
 def scope_pages(scope):
 	# Page Specific Variables
-	scope.selected={											# TODO - refactor to "selected"
+	scope.selected={
 					'multi'		:{'analysis_df':{}, 'ticker_list':[], 				'market':'select entire market', 'industries':None, 'tickers':None  },
 					'single'	:{'analysis_df':{}, 'ticker_list':['select a ticker']},
 					'intraday'	:{'analysis_df':{}, 'ticker_list':['select a ticker']},

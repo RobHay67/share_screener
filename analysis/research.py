@@ -2,9 +2,23 @@
 import streamlit as st
 import pandas as pd
 
+from ticker.y_finance import fetch_yfinance_metadata
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Company Research Page Sections
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+def view_research_page(ticker):
+	
+	meta_data, info, divs = fetch_yfinance_metadata(ticker)
+
+	company_general(info)
+	dividends(divs)
+	fundamental(info)
+	general(info)
+	plot_basic_chart(scope)		
+	market_info(info)
+	# view_ticker_file(scope, ticker)
+
 
 def dividends(dividends):
 	st.markdown('##### Dividends') 
