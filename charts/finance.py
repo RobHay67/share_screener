@@ -120,12 +120,13 @@ def financial_chart_tutorial(share_data):
 
 	# Plot OHLC on 1st subplot (using the codes from before)
 
-	fig.add_trace(go.Candlestick(x=share_data.index,	
+	fig.add_trace(go.Candlestick(
+								x=share_data.index,	
 								open=share_data['open'],
 								high=share_data['high'],
 								low=share_data['low'],
 								close=share_data['close'], 
-								showlegend=False))
+								showlegend=False))									# chart 1 - but does not have any specification please > default=1
 	
 	# add moving average traces
 	fig.add_trace(go.Scatter(x=share_data.index, 
@@ -154,62 +155,60 @@ def financial_chart_tutorial(share_data):
 
 
 
-	# Plot volume trace on 2nd row 
-	# fig.add_trace(go.Bar(x=share_data.index, 
-	# 					y=share_data['volume']
-	# 					), row=2, col=1)
-
-	# Plot volume trace on 2nd row - TODO Alternative -
+	# Plot VOLUME trace on 2nd row
 	colors = ['green' if row['open'] - row['close'] >= 0 
           else 'red' for index, row in share_data.iterrows()]
-	fig.add_trace(go.Bar(x=share_data.index, 
-                     y=share_data['volume'],
-                     marker_color=colors
-                    ), row=2, col=1)											# this is chart 2 - row=chart position
+	fig.add_trace(go.Bar(
+						x=share_data.index, 
+                     	y=share_data['volume'],
+                     	marker_color=colors
+                    	), row=2, col=1)											# this is chart 2 - row=chart position
 
 
 
 
 	# Plot MACD trace on 3rd row
-	# fig.add_trace(go.Bar(x=share_data.index, 
-	# 					y=macd.macd_diff()
-	# 					), row=3, col=1)
-	colors = ['green' if val >= 0 
-			else 'red' for val in macd.macd_diff()]
-	fig.add_trace(go.Bar(x=share_data.index, 
-                     y=macd.macd_diff(),
-                     marker_color=colors
-                    ), row=3, col=1)
+	colors = ['green' if val >= 0 else 'red' for val in macd.macd_diff()]
+	fig.add_trace(go.Bar(
+							x=share_data.index, 
+                     		y=macd.macd_diff(),
+                     		marker_color=colors
+                    	), row=3, col=1)										# chart 3 please
 
-	fig.add_trace(go.Scatter(x=share_data.index,
+	fig.add_trace(go.Scatter(
+							x=share_data.index,
 							y=macd.macd(),
 							line=dict(color='black', width=2)
-							), row=3, col=1)
-	fig.add_trace(go.Scatter(x=share_data.index,
+							), row=3, col=1)									# chart 3 please
+	fig.add_trace(go.Scatter(
+							x=share_data.index,
 							y=macd.macd_signal(),
 							line=dict(color='blue', width=1)
-							), row=3, col=1)
+							), row=3, col=1) 									# chart 3 please
 
 
 	# Plot MACD trace on 3rd row - TODO - Alternative
 	
 
-
-
-	# Plot stochastics trace on 4th row
-	fig.add_trace(go.Scatter(x=share_data.index,
+	# Plot STOCHASTIC trace on 4th row
+	fig.add_trace(go.Scatter(
+							x=share_data.index,
 							y=stoch.stoch(),
 							line=dict(color='black', width=2)
-							), row=4, col=1)
-	fig.add_trace(go.Scatter(x=share_data.index,
+							), row=4, col=1)									# chart 4 please
+	fig.add_trace(go.Scatter(
+							x=share_data.index,
 							y=stoch.stoch_signal(),
 							line=dict(color='blue', width=1)
 							), row=4, col=1)
 	# update layout by changing the plot size, hiding legends & rangeslider, and removing gaps between dates
-	fig.update_layout(height=900, width=1200, 
-					showlegend=False, 
-					xaxis_rangeslider_visible=False,
-					xaxis_rangebreaks=[dict(values=dt_breaks)])
+	fig.update_layout(	
+						height=900, 
+						width=1200, 
+						showlegend=False, 
+						xaxis_rangeslider_visible=False,
+						xaxis_rangebreaks=[dict(values=dt_breaks)]
+						)
 
 	# removing white space									# TODO - expalnds the plots into the whitespace - cool
 	fig.update_layout(margin=go.layout.Margin(

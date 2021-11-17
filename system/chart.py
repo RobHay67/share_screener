@@ -20,12 +20,13 @@ def scope_chart(scope):
 					'stochastic':True,
 					'ichi_moku':False,
 					
-					'line':False,		
+					'bollinger_bands':False,
+					
 					'volume':True,
 					'vac':False,
 					'vol_osclillator':False,
 
-					'bollinger_bands':False,
+					'line':False,		
 
 					'dividends':False,
 					'announcements':False,
