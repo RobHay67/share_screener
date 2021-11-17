@@ -5,7 +5,7 @@ import streamlit as st
 from home.view import view_project_welcome
 from scope.view import view_scope
 from scope.user.view import view_user
-from charts.view import view_chart
+from analysis.charts.view import view_chart
 from analysis.controller import single_ticker_page, intraday_page, volume_page, research_page, multi_tickers_page
 
 

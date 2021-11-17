@@ -5,7 +5,7 @@ from plotly.subplots import make_subplots
 
 
 
-from charts.options import render_chart_options
+from analysis.charts.options import render_chart_options
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------

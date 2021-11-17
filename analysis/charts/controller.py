@@ -5,7 +5,7 @@ from plotly.subplots import make_subplots
 import streamlit as st
 
 
-from charts.candlestick import view_candlestick
+from analysis.charts.candlestick import view_candlestick
 
 def render_selected_charts(scope, ticker):
 	

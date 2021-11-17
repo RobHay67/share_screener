@@ -12,7 +12,7 @@ from scope.folders.view import view_folders
 
 from scope.user.view import view_user
 from scope.strategy.view import view_strategy
-from charts.view import view_chart
+from analysis.charts.view import view_chart
 
 from index.download.controller import download_new_ticker_data
 from index.view import view_index, view_industries

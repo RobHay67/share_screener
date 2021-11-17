@@ -4,7 +4,7 @@ from scope.pages.scope import scope_pages
 from scope.folders.scope import scope_folders
 from scope.download.scope import scope_download
 from scope.strategy.scope import scope_strategy
-from charts.scope import scope_chart
+from analysis.charts.scope import scope_chart
 from scope.results.scope import scope_results
 from scope.user.scope import scope_user
 from ticker.scope import scope_ticker_files

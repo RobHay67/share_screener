@@ -8,6 +8,12 @@ from analysis.research.general import general
 from analysis.research.market_info import market_info
 
 
+
+# TODO - I like this example from the ASX for CBA - https://www2.asx.com.au/markets/company/cba
+
+
+
+
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Company Research Page Sections
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -4,6 +4,10 @@ def scope_chart(scope):
 	scope.chart_macd_on_volume = {}
 
 
+	# we cound record all the attributes that the user sets right here
+
+
+
 	scope.chart = {
 					'candlestick':True,
 					'heiken_ashi':False,
@@ -27,3 +31,5 @@ def scope_chart(scope):
 
 
 
+# what can we do with a candle stick
+# - add an sma or an ema

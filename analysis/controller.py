@@ -12,11 +12,11 @@ from ticker.loaders.multi_loader import multi_loader
 from analysis.volume.controller import volume_prediction
 from analysis.research.controller import view_research_page
 
-from charts.controller import render_selected_charts
+from analysis.charts.controller import render_selected_charts
 
-from charts.finance import financial_chart_tutorial
-from charts.candlestick import plot_candlestick_seperate_volume, plot_candlestick
-from charts.line import plot_line_chart
+from analysis.charts.finance import financial_chart_tutorial
+from analysis.charts.candlestick import plot_candlestick_seperate_volume, plot_candlestick
+from analysis.charts.line import plot_line_chart
 
 
 
