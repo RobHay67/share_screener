@@ -117,9 +117,57 @@ def plot_volume(fig, chart_title, plot_df, row_no, col_no):
 	fig.update_yaxes(title_text=chart_title, row=row_no, col=col_no)
 
 
+# def plot_macd(fig, chart_title, plot_df, row_no, col_no):
 
 
 
+
+
+def old_plot_macd( params, share_df, fig, axes_candle ):
+	axes_macd   = fig.add_axes((0, 0.48, 1, 0.20), sharex = axes_candle )
+	
+	column_name = determine_original_column_name( params.chart_macd_on_volume['macd'] )
+
+	macd_col_name      = params.chart_macd_on_volume['macd']
+	histogram_col_name = params.chart_macd_on_volume['hist']
+	signal_col_name    = params.chart_macd_on_volume['sigl']
+
+	# work out colours for the MACD - i.e. below zero = 'red'
+	macd_hist_colors = []
+   
+	for index, row in share_df.iterrows():
+		if row[histogram_col_name] > 0: macd_hist_colors.append('green')
+		else:                               macd_hist_colors.append('red')
+	
+	axes_macd.plot (share_df.index, share_df[macd_col_name],          label="macd")
+	axes_macd.bar(  share_df.index, share_df[histogram_col_name] * 3, label="hist",   color=macd_hist_colors)
+	axes_macd.plot( share_df.index, share_df[signal_col_name],        label="signal")
+	axes_macd.set_title('MACD on ' + column_name + ' Column')
+	axes_macd.legend()
+
+
+def old_plot_basic_chart(scope):
+	import plotly.graph_objects as go
+	st.markdown('##### Chart of all available data') 
+
+	ticker = scope.selected['research']['ticker_list'][0]
+
+	if ticker in list(scope.ticker_data_files.keys()):
+		share_data = scope.ticker_data_files[ticker]
+		fig = go.Figure(
+				data=go.Scatter(x=share_data['date'], y=share_data['close'])
+			)
+		fig.update_layout(
+			title={
+				'text': "Stock Prices Over Past ??????? Years",
+				'y':0.9,
+				'x':0.5,
+				'xanchor': 'center',
+				'yanchor': 'top'})
+		st.plotly_chart(fig, use_container_width=True)
+		st.warning('ROB to change chart to candlestick and maybe add a widget for the date range')
+	else:
+		st.error('Load and/or Download Share Data to see the chart')
 
 # =========================================================================================
 # Spare Code

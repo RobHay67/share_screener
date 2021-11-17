@@ -2,10 +2,10 @@ import os
 import pathlib
 import pandas as pd
 
-from system.results import results
+from results.view import results
 
 
-from ticker.path import generate_path_for_share_data_file
+from ticker.helpers.path import generate_path_for_share_data_file
 
 
 
