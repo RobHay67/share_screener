@@ -8,47 +8,49 @@ from view.scope_var import three_cols
 
 def view_chart(scope):
 	
-	st.subheader('User Chart Selections (for all pages')
+	st.subheader('User Charts Selections and Settings  (Applies to all Analysis pages)')
 	
 	col1,col2,col3 = st.columns(3)
 	
 	
 	with col1: st.subheader('Primary Charts')
-	with col1: scope.chart['candlestick'] 	= st.checkbox('CandleStick', value=scope.chart['candlestick'])
-	with col1: st.write('Scatter')
-	with col1: st.write('Bar')
-	with col1: scope.chart['line'] 			= st.checkbox('Line Chart', value=scope.chart['line'])
-	with col1: scope.chart['heiken_ashi'] 	= st.checkbox('Heikin Ashi', value=scope.chart['heiken_ashi'])
+	with col1: scope.charts['candlestick']['display'] 	= st.checkbox('CandleStick (tech indicators)', value=scope.charts['candlestick']['display'])
+	with col1: scope.charts['scatter']['display'] 		= st.checkbox('Scatter (tech indicators)', value=scope.charts['scatter']['display'])
+	with col1: scope.charts['bar']['display'] 			= st.checkbox('Bar (tech indicators)', value=scope.charts['bar']['display'])
+	with col1: scope.charts['line']['display'] 			= st.checkbox('Line charts (tech indicators)', value=scope.charts['line']['display']) 		# TODO I tried embedding the params in the line grpah - see if this works
+	with col1: scope.charts['heiken_ashi']['display'] 	= st.checkbox('Heikin Ashi (tech indicators)', value=scope.charts['heiken_ashi']['display'])
 
 	with col2: st.subheader('Secondary Charts')
-	with col2: st.write('rendered in additional to Primary - no other indicators')
-	with col2: scope.chart['volume'] 			= st.checkbox('Volume', value=scope.chart['volume'])
-	with col2: scope.chart['macd'] 				= st.checkbox('MACD', value=scope.chart['macd'])
-	with col2: scope.chart['stochastic'] 		= st.checkbox('Stochastic', value=scope.chart['stochastic'])
-	with col2: scope.chart['rsi'] 				= st.checkbox('RSI', value=scope.chart['rsi'])
-	with col2: scope.chart['vac'] 				= st.checkbox('VAC', value=scope.chart['vac'])
-	with col2: scope.chart['vol_osclillator'] 	= st.checkbox('Volume Oscillator', value=scope.chart['vol_osclillator'])
-	with col2: st.write('Volume Per Minute - might be an indicator')
+	with col2: scope.charts['volume']['display'] 		= st.checkbox('Volume  (None)', value=scope.charts['volume']['display'])
+	with col2: scope.charts['macd']['display'] 			= st.checkbox('MACD (charts sepecific params)', value=scope.charts['macd']['display'])
+	with col2: scope.charts['stochastic']['display'] 	= st.checkbox('Stochastic (charts sepecific params)', value=scope.charts['stochastic']['display'])
+	with col2: scope.charts['rsi']['display'] 			= st.checkbox('RSI (charts sepecific params)', value=scope.charts['rsi']['display'])
+	with col2: scope.charts['vac']['display'] 			= st.checkbox('VAC  (None)', value=scope.charts['vac']['display'])
+	with col2: scope.charts['vol_osssy']['display'] 	= st.checkbox('Volume Oscillator   (charts sepecific params)', value=scope.charts['vol_osssy']['display'])
 	
-	# Overlayed on Primary Chart (maybe these are our technical indicators)
-	with col3: st.subheader('Technical Indicators')
-	with col3: st.write('applied to Primary Charts')
-	with col3: scope.chart['bollinger_bands'] = st.checkbox('add Bollinger Bands', value=scope.chart['bollinger_bands'])
-	with col3: scope.chart['ichi_moku'] 	= st.checkbox('Ichi Moku', value=scope.chart['ichi_moku'])
-	with col3: scope.chart['dividends'] = st.checkbox('add Dividends', value=scope.chart['dividends'])
-	with col3: scope.chart['announcements'] = st.checkbox('add Announcements', value=scope.chart['announcements'])
-	with col3: st.write('EMA')
-	with col3: st.write('SMA')
-	with col3: st.write('WMA - check if useful')
-	with col3: st.write('Volume by Price - check if useful')
-	with col3: st.write('Daily Ichi Moku')
+	
+	# # Overlayed on Primary charts (maybe these are our technical indicators)
+	# with col3: st.subheader('Technical Indicators')
+	# with col3: st.write('applied to Primary Charts')
+	# # with col3: 
+	# with col3: scope.charts['ichi_moku'] 	= st.checkbox('Ichi Moku', value=scope.charts['ichi_moku'])
+	# with col3: scope.charts['dividends'] = st.checkbox('add Dividends', value=scope.charts['dividends'])
+	# with col3: scope.charts['announcements'] = st.checkbox('add Announcements', value=scope.charts['announcements'])
+	# with col3: st.write('EMA')
+	# with col3: st.write('SMA')
+	# with col3: st.write('WMA - check if useful')
+	# with col3: st.write('Volume by Price - check if useful')
+	# with col3: st.write('Daily Ichi Moku')
+	# with col3: st.write('Volume Per Minute - might be an indicator')
 
 	st.markdown("""---""")
 
-	st.subheader('Charting Parameters')
-	three_cols( 'Chart Line', scope.chart_lines, 'chart_lines' )
-	three_cols( 'Chart MACD on Price', scope.chart_macd_on_price, 'chart_macd_on_price' )
-	three_cols( 'Chart MACD on Volume', scope.chart_macd_on_volume, 'chart_macd_on_volume' )
+
+def view_technical_indicators(scope):
+	col1,col2,col3 = st.columns(3)
+
+
+	with col1: scope.charts['ti_bollinger_bands'] = st.checkbox('Bollinger Bands', value=scope.charts['bollinger_bands'])
 
 
 

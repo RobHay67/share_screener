@@ -4,8 +4,8 @@ import yfinance as yf
 import pandas as pd
 import datetime as dt
 
-from indicators.indicators import line_sma
-
+# from analysis.tech.indicators import line_sma
+from analysis.tech_indicators.indicators import line_sma
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Render Sections
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------

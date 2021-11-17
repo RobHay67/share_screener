@@ -52,6 +52,14 @@ def single_ticker_page(scope):
 		# ????? should we record the selected measures if we change screen --- maybe the widgets will keep it 
 		# view_alternative_indicators(scope)
 
+
+		# add_indicators_to_analysis_df(scope, ticker, sma )
+# 
+
+
+
+
+
 		render_selected_charts(scope, ticker)
 		# indicator_selectors(scope)
 		
@@ -85,7 +93,7 @@ def intraday_page(scope):
 		print('We are here')
 		# share_data = analysis_df(scope, ticker, df_row_limit)  # this only gets refreshed if the ticker changes or the no of rows changes
 
-		# TODO - this might be the place to add measures - but only if the have not already been add
+		# TODO - this might be the place to add measures - but only if the have not already been added
 		# so - we might collect the measures from the screen.....
 		# add the measures to a list and pass the list to a cached function that is responsible
 		# 	a) adding any new measures
