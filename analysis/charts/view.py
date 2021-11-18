@@ -33,14 +33,14 @@ def view_charts(scope):
 
 	with col1: 
 		st.markdown('##### Simple Moving Averages (SMA)')
-		view_ma(scope, 'sma_1')
-		view_ma(scope, 'sma_2')
-		view_ma(scope, 'sma_3')
+		view_moving_average(scope, 'sma_1')
+		view_moving_average(scope, 'sma_2')
+		view_moving_average(scope, 'sma_3')
 	with col2:
 		st.markdown('##### Exponential Moving Averages (EMA)')
-		view_ma(scope, 'ema_1')
-		view_ma(scope, 'ema_2')
-		view_ma(scope, 'ema_3')
+		view_moving_average(scope, 'ema_1')
+		view_moving_average(scope, 'ema_2')
+		view_moving_average(scope, 'ema_3')
 	with col3:
 		view_dividends(scope)
 		view_announcements(scope)
@@ -73,8 +73,8 @@ def view_stochastic(scope):
 	scope_dict = scope.charts
 	dict_key = 'stochastic'
 	active_control(scope, scope_dict, dict_key)
-	edit_column(scope, scope_dict, dict_key )
-	edit_number(scope, scope_dict, dict_key, 'periods' )
+	# edit_price(scope, scope_dict, dict_key )
+	edit_number(scope, scope_dict, dict_key, 'lookback_days' )
 	edit_number(scope, scope_dict, dict_key, 'slow' )
 	edit_number(scope, scope_dict, dict_key, 'signal' )
 	st.markdown("""---""")
@@ -84,7 +84,7 @@ def view_macd(scope):
 	scope_dict = scope.charts
 	dict_key = 'macd'
 	active_control(scope, scope_dict, dict_key)
-	edit_column(scope, scope_dict, dict_key )
+	edit_price(scope, scope_dict, dict_key )
 	edit_number(scope, scope_dict, dict_key, 'long' )
 	edit_number(scope, scope_dict, dict_key, 'short' )
 	edit_number(scope, scope_dict, dict_key, 'signal' )
@@ -95,15 +95,15 @@ def view_rsi(scope):
 	scope_dict = scope.charts
 	dict_key = 'rsi'
 	active_control(scope, scope_dict, dict_key)
-	edit_column(scope, scope_dict, dict_key )
+	edit_ohlcv(scope, scope_dict, dict_key )
 	edit_number(scope, scope_dict, dict_key, 'periods' )
 	st.markdown("""---""")
 
-def view_ma(scope, dict_key):
+def view_moving_average(scope, dict_key):
 	scope_dict = scope.measures
 	active_control(scope, scope_dict, dict_key)
 	edit_number(scope, scope_dict, dict_key, 'periods' )
-	edit_column(scope, scope_dict, dict_key )
+	edit_price(scope, scope_dict, dict_key )
 	st.markdown("""---""")
 
 def view_bollinger_bands(scope):
@@ -111,7 +111,7 @@ def view_bollinger_bands(scope):
 	scope_dict = scope.measures
 	dict_key = 'bollinger_bands'
 	active_control(scope, scope_dict, dict_key)
-	edit_column(scope, scope_dict, dict_key )
+	edit_price(scope, scope_dict, dict_key )
 	edit_number(scope, scope_dict, dict_key, 'length' )
 	edit_number(scope, scope_dict, dict_key, 'shift_up' )
 	edit_number(scope, scope_dict, dict_key, 'shift_down' )
@@ -167,22 +167,31 @@ def edit_number(scope, scope_dict, dict_key, column ):
 		# print(dict_key, ' forced an update to scope.charts_changed == TRUE') # TODO - remove later
 		scope.rebuild_plot_df = True
 
-def edit_column(scope, scope_dict, dict_key ):
+def edit_ohlcv(scope, scope_dict, dict_key ):
 	display_name = scope_dict[dict_key]['name']
 	previous_column = scope_dict[dict_key]['params']['column']
 	selected_column = st.selectbox ( 
 									label=('Column for ' + display_name), 
-									options=scope.dropdown_ticker_columns,
-									index=scope.dropdown_ticker_columns.index(previous_column), 
+									options=scope.dropdown_ohlcv_columns,
+									index=scope.dropdown_ohlcv_columns.index(previous_column), 
 									key=dict_key,
 									) 
 	scope_dict[dict_key]['params']['column'] = selected_column
 	if selected_column != previous_column:
-		# print('-'*100)
-		# print(dict_key, ' forced an update to scope.charts_changed == TRUE') # TODO - remove later
 		scope.rebuild_plot_df = True
 
-
+def edit_price(scope, scope_dict, dict_key ):
+	display_name = scope_dict[dict_key]['name']
+	previous_column = scope_dict[dict_key]['params']['column']
+	selected_column = st.selectbox ( 
+									label=('Column for ' + display_name), 
+									options=scope.dropdown_price_columns,
+									index=scope.dropdown_price_columns.index(previous_column), 
+									key=dict_key,
+									) 
+	scope_dict[dict_key]['params']['column'] = selected_column
+	if selected_column != previous_column:
+		scope.rebuild_plot_df = True
 
 
 

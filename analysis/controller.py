@@ -29,12 +29,11 @@ def single_ticker_page(scope):
 	single_loader(scope, 'single')
 	st.markdown("""---""")
 	
-	# print ('ticker list in scope = ', scope.selected['ticker_list'])
 	ticker = scope.selected['single']['ticker_list'][0]
 	
 	if ticker in list(scope.ticker_data_files.keys()):
 
-		scope.rebuild_plot_df = True
+		# scope.rebuild_plot_df = True
 
 		if scope.rebuild_plot_df: 
 			create_plot_df(scope, ticker)			

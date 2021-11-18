@@ -21,7 +21,7 @@ def render_selected_charts(scope, ticker):
 	plot_df = scope.selected[scope.display_page]['plot_df'][ticker]
 
 
-	print(plot_df)
+	# print(plot_df)
 
 	# TODO looks like we add a trace for any overlays to the charts after rendering the chart - where the hell do we store this info
 	# TODO height may need to end up be some relative proportion that is then fed into an over all height or number of charts to work out the actual value
@@ -61,13 +61,13 @@ def render_selected_charts(scope, ticker):
 			chart_title = charts_schema[chart]['title']
 			charts_schema[chart]['function'](fig, chart_title, plot_df, row_no, col_no)
 
-		# add any measures
-		fig.add_trace(go.Scatter(
-							x=plot_df['date'], 
-							y=plot_df['sma_1'], 
-							opacity=0.7, 
-							line=dict(color='blue', width=2), 
-							name='sma_1'))
+		# add any measures # TODO abstract ths out
+		# fig.add_trace(go.Scatter(
+		# 					x=plot_df['date'], 
+		# 					y=plot_df['sma_1'], 
+		# 					opacity=0.7, 
+		# 					line=dict(color='blue', width=2), 
+		# 					name='sma_1'))
 
 
 

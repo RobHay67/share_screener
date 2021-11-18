@@ -9,7 +9,10 @@ from config.markets import markets
 def update_dropdowns(scope):
 	print ( '\033[91m' + 'Dropdown Lists have been repopulated' + '\033[0m' )
 
-	scope.dropdown_ticker_columns = ['open', 'high', 'low', 'close', 'volume']
+	scope.dropdown_ohlcv_columns 	= ['open', 'high', 'low', 'close', 'volume']
+	scope.dropdown_price_columns 	= ['open', 'high', 'low', 'close' 			]
+
+
 	
 	list_of_markets = list(markets.keys())
 	list_of_markets.insert(0, 'select entire market')
