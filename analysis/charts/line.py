@@ -43,3 +43,30 @@ def plot_line_chart(share_data):
 
 
 
+
+
+
+
+
+def old_plot_basic_chart(scope):
+	import plotly.graph_objects as go
+	st.markdown('##### Chart of all available data') 
+
+	ticker = scope.selected['research']['ticker_list'][0]
+
+	if ticker in list(scope.ticker_data_files.keys()):
+		share_data = scope.ticker_data_files[ticker]
+		fig = go.Figure(
+				data=go.Scatter(x=share_data['date'], y=share_data['close'])
+			)
+		fig.update_layout(
+			title={
+				'text': "Stock Prices Over Past ??????? Years",
+				'y':0.9,
+				'x':0.5,
+				'xanchor': 'center',
+				'yanchor': 'top'})
+		st.plotly_chart(fig, use_container_width=True)
+		st.warning('ROB to change chart to candlestick and maybe add a widget for the date range')
+	else:
+		st.error('Load and/or Download Share Data to see the chart')

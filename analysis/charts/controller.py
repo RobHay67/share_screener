@@ -5,7 +5,13 @@ from plotly.subplots import make_subplots
 import streamlit as st
 
 
-from analysis.charts.candlestick import view_candlestick
+from analysis.charts.candlestick import plot_candlestick
+
+
+
+
+
+
 
 def render_selected_charts(scope, ticker):
 	
@@ -26,12 +32,12 @@ def render_selected_charts(scope, ticker):
 	# TODO looks like we add a trace for any overlays to the charts after rendering the chart - where the hell do we store this info
 	# TODO height may need to end up be some relative proportion that is then fed into an over all height or number of charts to work out the actual value
 
-	charts_schema = {
-					'candlestick'	:{'title':'Price'	, 'relative_height':5, 'function':plot_candlestick },
-					'volume'		:{'title':'Volume'	, 'relative_height':1, 'function':plot_volume },
-					'macd'			:{'title':'MACD'	, 'relative_height':2, 'function':plot_volume },
-					'stochastic'	:{'title':'Stoch'	, 'relative_height':2, 'function':plot_volume },
-					}
+	# charts_schema = {
+	# 				'candlestick'	:{'title':'Price'	, 'relative_height':5, 'function':plot_candlestick },
+	# 				'volume'		:{'title':'Volume'	, 'relative_height':1, 'function':plot_volume },
+	# 				'macd'			:{'title':'MACD'	, 'relative_height':2, 'function':plot_volume },
+	# 				'stochastic'	:{'title':'Stoch'	, 'relative_height':2, 'function':plot_volume },
+	# 				}
 
 	# Construct the schemas required for the selected charts
 	for chart in charts_schema.keys():
@@ -101,92 +107,9 @@ def proportional_row_heights(relative_row_heights):
 
 	return relative_row_heights
 
-# -------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Chart Config
-# -------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-def plot_candlestick(fig, chart_title, plot_df, row_no, col_no):
-	fig.add_trace( 	go.Candlestick(
-									x		= plot_df['date'],
-									open	= plot_df['open'],
-									high	= plot_df['high'],
-									low		= plot_df['low'],
-									close	= plot_df['close']
-								), 
-					row=row_no, 
-					col=col_no
-					)	
-	fig.update_yaxes(title_text=chart_title, row=row_no, col=col_no)
-
-def plot_volume(fig, chart_title, plot_df, row_no, col_no):
-	# Colour the bars on the chart
-	colors = ['green' if row['open'] - row['close'] >= 0 else 'red' for index, row in plot_df.iterrows()]
-	
-	fig.add_trace(	go.Bar(
-							x=plot_df['date'],
-							y=plot_df['volume'],
-							marker_color=colors
-							), 
-					row=row_no, 
-					col=col_no
-					)
-	fig.update_yaxes(title_text=chart_title, row=row_no, col=col_no)
-
-
-# def plot_macd(fig, chart_title, plot_df, row_no, col_no):
-
-
-
-
-
-def old_plot_macd( params, share_df, fig, axes_candle ):
-	axes_macd   = fig.add_axes((0, 0.48, 1, 0.20), sharex = axes_candle )
-	
-	column_name = determine_original_column_name( params.chart_macd_on_volume['macd'] )
-
-	macd_col_name      = params.chart_macd_on_volume['macd']
-	histogram_col_name = params.chart_macd_on_volume['hist']
-	signal_col_name    = params.chart_macd_on_volume['sigl']
-
-	# work out colours for the MACD - i.e. below zero = 'red'
-	macd_hist_colors = []
-   
-	for index, row in share_df.iterrows():
-		if row[histogram_col_name] > 0: macd_hist_colors.append('green')
-		else:                               macd_hist_colors.append('red')
-	
-	axes_macd.plot (share_df.index, share_df[macd_col_name],          label="macd")
-	axes_macd.bar(  share_df.index, share_df[histogram_col_name] * 3, label="hist",   color=macd_hist_colors)
-	axes_macd.plot( share_df.index, share_df[signal_col_name],        label="signal")
-	axes_macd.set_title('MACD on ' + column_name + ' Column')
-	axes_macd.legend()
-
-
-def old_plot_basic_chart(scope):
-	import plotly.graph_objects as go
-	st.markdown('##### Chart of all available data') 
-
-	ticker = scope.selected['research']['ticker_list'][0]
-
-	if ticker in list(scope.ticker_data_files.keys()):
-		share_data = scope.ticker_data_files[ticker]
-		fig = go.Figure(
-				data=go.Scatter(x=share_data['date'], y=share_data['close'])
-			)
-		fig.update_layout(
-			title={
-				'text': "Stock Prices Over Past ??????? Years",
-				'y':0.9,
-				'x':0.5,
-				'xanchor': 'center',
-				'yanchor': 'top'})
-		st.plotly_chart(fig, use_container_width=True)
-		st.warning('ROB to change chart to candlestick and maybe add a widget for the date range')
-	else:
-		st.error('Load and/or Download Share Data to see the chart')
 
 # =========================================================================================
-# Spare Code
+# Y Axis Format TODO - move into the individual chart rendering!
 # =========================================================================================
 
 # Format the Axis
@@ -198,53 +121,3 @@ def old_plot_basic_chart(scope):
 #               width=1200,
 #               showlegend=False,
 #               title_text=Current_Stock_Profile.shortName)
-
-
-
-
-
-
-	# for key, value in scope.charts.items():
-	# 	print( key.ljust(20), value)
-
-
-# print ( '='*80)
-
-# if scope.charts['candlestick']:
-# 	no_of_charts += 1
-# 	print ('render the candlestick')
-# 	# view_candlestick(analysis_df)
-
-# if scope.charts['volume']:
-# 	print ('render the volume bar chart')
-
-
-# if scope.charts['line']:
-# 	print ('render the line')
-
-# if scope.charts['macd']:
-# 	print ('render the macd')
-
-# if scope.charts['stochastic']:
-# 	print ('render the stochastic')
-
-# if scope.charts['ichi_moku']:
-# 	print ('render the ichi_moku')
-
-# if scope.charts['heiken_ashi']:
-# 	print ('render the heiken_ashi')
-
-# if scope.charts['vac']:
-# 	print ('render the vac')
-
-# if scope.charts['vol_osclillator']:
-# 	print ('render the vol_osclillator')
-
-# if scope.charts['bollinger_bands']:
-# 	print ('render the bollinger_bands')
-
-# if scope.charts['dividends']:
-# 	print ('render the dividends')
-
-# if scope.charts['announcements']:
-# 	print ('render the announcements')

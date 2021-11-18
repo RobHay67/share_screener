@@ -34,3 +34,30 @@ def macd(scope, plot_df, chart):
 
 
 
+
+
+
+
+def old_plot_macd( params, share_df, fig, axes_candle ):
+	axes_macd   = fig.add_axes((0, 0.48, 1, 0.20), sharex = axes_candle )
+	
+	column_name = determine_original_column_name( params.chart_macd_on_volume['macd'] )
+
+	macd_col_name      = params.chart_macd_on_volume['macd']
+	histogram_col_name = params.chart_macd_on_volume['hist']
+	signal_col_name    = params.chart_macd_on_volume['sigl']
+
+	# work out colours for the MACD - i.e. below zero = 'red'
+	macd_hist_colors = []
+   
+	for index, row in share_df.iterrows():
+		if row[histogram_col_name] > 0: macd_hist_colors.append('green')
+		else:                               macd_hist_colors.append('red')
+	
+	axes_macd.plot (share_df.index, share_df[macd_col_name],          label="macd")
+	axes_macd.bar(  share_df.index, share_df[histogram_col_name] * 3, label="hist",   color=macd_hist_colors)
+	axes_macd.plot( share_df.index, share_df[signal_col_name],        label="signal")
+	axes_macd.set_title('MACD on ' + column_name + ' Column')
+	axes_macd.legend()
+
+

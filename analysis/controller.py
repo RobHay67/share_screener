@@ -18,7 +18,7 @@ from analysis.charts.finance import financial_chart_tutorial
 # from analysis.charts.candlestick import plot_candlestick_seperate_volume, plot_candlestick
 # from analysis.charts.line import plot_line_chart
 
-from analysis.measures.controller import create_plot_df
+from analysis.charts.plot_df import create_plot_df
 
 
 # ==============================================================================================================================================================

@@ -1,11 +1,44 @@
-import pandas as pd
-import streamlit as st
 import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-
-from analysis.charts.options import render_chart_options
 
 
+
+def plot_candlestick(fig, chart_title, plot_df, row_no, col_no):
+	fig.add_trace( 	go.Candlestick(
+									x		= plot_df['date'],
+									open	= plot_df['open'],
+									high	= plot_df['high'],
+									low		= plot_df['low'],
+									close	= plot_df['close']
+								), 
+					row=row_no, 
+					col=col_no
+					)	
+	fig.update_yaxes(title_text=chart_title, row=row_no, col=col_no)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Old Code - TODO - delete this when we are happy with the candlestick
+# # -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# import pandas as pd
+# import streamlit as st
+# import plotly.graph_objects as go
+# from plotly.subplots import make_subplots
+
+# from analysis.charts.options import render_chart_options
 
 
 def view_candlestick(share_df):
@@ -22,8 +55,6 @@ def view_candlestick(share_df):
 	# fig.show()
 	st.plotly_chart(fig, use_container_width=True)
 
-
-
 def basic_candlestick(share_df):
 	fig = go.Figure(go.Candlestick(
 									# x=share_data.index,
@@ -34,7 +65,6 @@ def basic_candlestick(share_df):
 									close	= share_df['close'])
 					)
 	return fig
-
 
 def include_range_slider(fig, option=True):
 	# remove the rangeslider
@@ -139,9 +169,7 @@ def plot_candlestick_seperate_volume(share_data):
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Candlestick Chart - with Embedded Volume
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-def plot_candlestick(share_data):
+def plot_candlestick_embedded_volume(share_data):
 	st.markdown('###### Candlestick Chart < initial 1 >')
 	# show = render_radio_options(1)
 	show = render_chart_options(1)
