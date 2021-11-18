@@ -27,9 +27,13 @@ def create_analysis_df(scope, ticker, analysis_row_limit, no_of_loaded_rows ):
 	share_data = scope.ticker_data_files[ticker].copy()
 
 	if analysis_row_limit != None:
-		share_data.sort_values(by=['date'], inplace=True, ascending=False)
+		# share_data.sort_values(by=['date'], inplace=True, ascending=True)
 		share_data = share_data.head(analysis_row_limit)
-		
+	
+	# System flag to indication that the plot_df will require a rebuild 
+	# because we have changed the analysis_df on which it is based.
+	scope.rebuild_plot_df = True
+
 	return share_data
 
 

@@ -6,13 +6,12 @@ from scope.pages.view import view_pages
 from scope.results.view import view_results
 from scope.download.view import view_download
 
-
 from scope.project.view import view_project
 from scope.folders.view import view_folders
 
 from scope.user.view import view_user
 from scope.strategy.view import view_strategy
-from analysis.charts.view import view_chart
+from analysis.charts.view import view_charts
 
 from index.download.controller import download_new_ticker_data
 from index.view import view_index, view_industries
@@ -36,7 +35,7 @@ def render_selected_scope_page(scope):
 			# 'show_analysis'			:view_analysis,
 			'show_user'				:view_user,
 			'show_strategy'			:view_strategy,
-			'show_charting'			:view_chart,
+			'show_charting'			:view_charts,
 			# Column 4
 			'import_tickers'		:download_new_ticker_data,
 			'show_ticker_index'		:view_index,
@@ -86,11 +85,6 @@ def view_scope(scope):
 		render_selected_scope_page(scope)
 
 		
-		
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Components
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Helpers
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------

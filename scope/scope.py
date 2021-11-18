@@ -5,7 +5,7 @@ from scope.folders.scope import scope_folders
 from scope.download.scope import scope_download
 from scope.strategy.scope import scope_strategy
 from analysis.charts.scope import scope_chart
-from analysis.tech_indicators.scope import scope_tech_indicators
+from analysis.measures.scope import scope_measures
 from scope.results.scope import scope_results
 from scope.user.scope import scope_user
 from ticker.scope import scope_ticker_files
@@ -23,7 +23,7 @@ def set_scope(scope, project_description):
 		scope_download(scope)
 		scope_strategy(scope)
 		scope_chart(scope)
-		scope_tech_indicators(scope)
+		scope_measures(scope)
 		scope_results(scope)
 		scope_user(scope)
 		scope_ticker_files(scope)

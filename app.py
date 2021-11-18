@@ -14,7 +14,7 @@ project_description = 'DDT - Data Driven Trading'
 
 from config.streamlit import set_streamlit_config
 from scope.scope import set_scope
-from index.download.refresh_selectors import update_dropdowns
+from scope.dropdowns.refresh_selectors import update_dropdowns
 
 from navigation.page import store_page
 from navigation.controller import view_selected_page 

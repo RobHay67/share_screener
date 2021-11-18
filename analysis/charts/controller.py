@@ -16,7 +16,12 @@ def render_selected_charts(scope, ticker):
 	chart_render_list = []
 
 	# any measures (SMA or EMA) should have been added at this stage, we just need to know we need to render them
-	plot_df = scope.selected[scope.display_page]['analysis_df'][ticker]
+	# print(scope.selected[scope.display_page]['plot_df'])
+
+	plot_df = scope.selected[scope.display_page]['plot_df'][ticker]
+
+
+	print(plot_df)
 
 	# TODO looks like we add a trace for any overlays to the charts after rendering the chart - where the hell do we store this info
 	# TODO height may need to end up be some relative proportion that is then fed into an over all height or number of charts to work out the actual value
@@ -31,9 +36,8 @@ def render_selected_charts(scope, ticker):
 	# Construct the schemas required for the selected charts
 	for chart in charts_schema.keys():
 		print('Checking if we need to render >', chart)
-		if scope.chart[chart]:
+		if scope.charts[chart]:
 			no_of_charts += 1
-			print(charts_schema[chart]['relative_height'])
 			relative_row_heights.append(charts_schema[chart]['relative_height'])
 			chart_render_list.append(chart)
 
@@ -56,6 +60,18 @@ def render_selected_charts(scope, ticker):
 			row_no = chart_no+1 
 			chart_title = charts_schema[chart]['title']
 			charts_schema[chart]['function'](fig, chart_title, plot_df, row_no, col_no)
+
+		# add any measures
+		fig.add_trace(go.Scatter(
+							x=plot_df['date'], 
+							y=plot_df['sma_1'], 
+							opacity=0.7, 
+							line=dict(color='blue', width=2), 
+							name='sma_1'))
+
+
+
+
 
 		# format the charts
 		fig.update_layout(	
@@ -188,47 +204,47 @@ def old_plot_basic_chart(scope):
 
 
 
-	# for key, value in scope.chart.items():
+	# for key, value in scope.charts.items():
 	# 	print( key.ljust(20), value)
 
 
 # print ( '='*80)
 
-# if scope.chart['candlestick']:
+# if scope.charts['candlestick']:
 # 	no_of_charts += 1
 # 	print ('render the candlestick')
 # 	# view_candlestick(analysis_df)
 
-# if scope.chart['volume']:
+# if scope.charts['volume']:
 # 	print ('render the volume bar chart')
 
 
-# if scope.chart['line']:
+# if scope.charts['line']:
 # 	print ('render the line')
 
-# if scope.chart['macd']:
+# if scope.charts['macd']:
 # 	print ('render the macd')
 
-# if scope.chart['stochastic']:
+# if scope.charts['stochastic']:
 # 	print ('render the stochastic')
 
-# if scope.chart['ichi_moku']:
+# if scope.charts['ichi_moku']:
 # 	print ('render the ichi_moku')
 
-# if scope.chart['heiken_ashi']:
+# if scope.charts['heiken_ashi']:
 # 	print ('render the heiken_ashi')
 
-# if scope.chart['vac']:
+# if scope.charts['vac']:
 # 	print ('render the vac')
 
-# if scope.chart['vol_osclillator']:
+# if scope.charts['vol_osclillator']:
 # 	print ('render the vol_osclillator')
 
-# if scope.chart['bollinger_bands']:
+# if scope.charts['bollinger_bands']:
 # 	print ('render the bollinger_bands')
 
-# if scope.chart['dividends']:
+# if scope.charts['dividends']:
 # 	print ('render the dividends')
 
-# if scope.chart['announcements']:
+# if scope.charts['announcements']:
 # 	print ('render the announcements')

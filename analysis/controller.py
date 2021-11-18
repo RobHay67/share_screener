@@ -15,18 +15,11 @@ from analysis.research.controller import view_research_page
 from analysis.charts.controller import render_selected_charts
 
 from analysis.charts.finance import financial_chart_tutorial
-from analysis.charts.candlestick import plot_candlestick_seperate_volume, plot_candlestick
-from analysis.charts.line import plot_line_chart
+# from analysis.charts.candlestick import plot_candlestick_seperate_volume, plot_candlestick
+# from analysis.charts.line import plot_line_chart
 
+from analysis.measures.controller import create_plot_df
 
-
-# scope.selected={											# TODO - refactor to "selected"
-# 	'multi'		:{'analysis_df':{}, 'ticker_list':[], 				'market':'select entire market', 'industries':None, 'tickers':None  },
-# 	'single'	:{'analysis_df':{}, 'ticker_list':['select a ticker']},
-# 	'intraday'	:{'analysis_df':{}, 'ticker_list':['select a ticker']},
-# 	'volume'	:{'analysis_df':{}, 'ticker_list':['select a ticker']},
-# 	'research'	:{'analysis_df':{}, 'ticker_list':['select a ticker']},
-# 	}
 
 # ==============================================================================================================================================================
 # Single Ticker Analysis
@@ -40,28 +33,16 @@ def single_ticker_page(scope):
 	ticker = scope.selected['single']['ticker_list'][0]
 	
 	if ticker in list(scope.ticker_data_files.keys()):
-		
-		st.error('We need to add the columns as dictated by the chart we have selected')
-		st.error('We will also need to have the indicator setting stored somewhere')
 
-		# TODO - this might be the place to add measures - but only if the have not already been add
-		# so - we might collect the measures from the screen.....
-		# add the measures to a list and pass the list to a cached function that is responsible
-		# 	a) adding any new measures
-		# 	b) deleted any removed measures
-		# ????? should we record the selected measures if we change screen --- maybe the widgets will keep it 
-		# view_alternative_indicators(scope)
+		scope.rebuild_plot_df = True
 
-
-		# add_indicators_to_analysis_df(scope, ticker, sma )
+		if scope.rebuild_plot_df: 
+			create_plot_df(scope, ticker)			
+		else:
+			print( '\033[91mNot Rebuilding the Plot_df\033[0m')
 # 
 
-
-
-
-
 		render_selected_charts(scope, ticker)
-		# indicator_selectors(scope)
 		
 		# Financial Chart adds the following
 		# Index(['date', 'open', 'high', 'low', 'close', 'volume', 'MA20', 'MA5'], dtype='object')
@@ -73,18 +54,13 @@ def single_ticker_page(scope):
 # ==============================================================================================================================================================
 # Intra Day Analysis
 # ==============================================================================================================================================================
-# TODO - this will need to be moved later
-from analysis.intra_day.intraday import add_sma
-from analysis.intra_day.intraday import indicator_selectors, alternative_indicators
+
 def intraday_page(scope):
-	st.header('Intra Day Analysis')
-	
+	st.header('Intra Day Analysis')	
 	single_loader(scope, 'intraday')
-	
 	st.markdown("""---""")
 
 	ticker = scope.selected['intraday']['ticker_list'][0]
-
 
 	if ticker in list(scope.ticker_data_files.keys()):
 		# col1,col2 = st.columns([2, 10])
@@ -93,16 +69,6 @@ def intraday_page(scope):
 		print('We are here')
 		# share_data = analysis_df(scope, ticker, df_row_limit)  # this only gets refreshed if the ticker changes or the no of rows changes
 
-		# TODO - this might be the place to add measures - but only if the have not already been added
-		# so - we might collect the measures from the screen.....
-		# add the measures to a list and pass the list to a cached function that is responsible
-		# 	a) adding any new measures
-		# 	b) deleted any removed measures
-		# ????? should we record the selected measures if we change screen --- maybe the widgets will keep it 
-		# view_alternative_indicators(scope)
-
-
-		# indicator_selectors(scope)
 		
 		# Financial Chart adds the following
 		# Index(['date', 'open', 'high', 'low', 'close', 'volume', 'MA20', 'MA5'], dtype='object')
