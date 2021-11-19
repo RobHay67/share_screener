@@ -7,7 +7,11 @@ import plotly.graph_objects as go
 
 
 
-def candle_plot(fig, chart_title, chart_df, row_no, col_no):
+def candle_plot(fig, scope, chart, chart_df, row_no, col_no):
+
+	chart_title = scope.charts[chart]['plot']['title']
+	yaxis_format = scope.charts[chart]['plot']['yaxis']
+
 	fig.add_trace( 	go.Candlestick(
 									x		= chart_df['date'],
 									open	= chart_df['open'],
@@ -18,18 +22,13 @@ def candle_plot(fig, chart_title, chart_df, row_no, col_no):
 					row=row_no, 
 					col=col_no
 					)	
-	fig.update_yaxes(title_text=chart_title, row=row_no, col=col_no)
-
-
-
-
-
-
-
-
-
-
-
+	
+	fig.update_yaxes( 
+					title_text=chart_title, 
+					tickformat=yaxis_format,  
+					row=row_no, 
+					col=col_no
+					)
 
 
 

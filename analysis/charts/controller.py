@@ -20,8 +20,8 @@ def render_selected_charts(scope, ticker):
 		
 		for chart_no, chart in enumerate(requested_charts):
 			row_no = chart_no+1 
-			chart_title = scope.charts[chart]['plot']['title']
-			scope.charts[chart]['plot']['function'](fig, chart_title, chart_df, row_no, col_no)
+			print(chart)
+			scope.charts[chart]['plot']['function'](fig, scope, chart, chart_df, row_no, col_no)
 			
 			for overlay in requested_overlays:
 				scope.charts[overlay]['plot']['function'](fig, overlay, chart_df, row_no, col_no)
@@ -83,12 +83,20 @@ def chart_structure(no_of_charts, chart_heights):
 def format_chart_layout(scope, fig, ticker):
 	# format the overall chart and sub_chart layout
 	fig.update_layout(	
-						title=ticker,
+						title={
+								'text': ticker,
+								'font_color':'blue',
+								'font_size':25,
+								'y':1,
+								'x':0.5,
+								'xanchor': 'center',
+								'yanchor': 'top'
+								},
 						height=scope.chart_height, 
 						# width=1200, 
 						showlegend=False, 
 						xaxis_rangeslider_visible=False,
-						margin=go.layout.Margin(l=20, r=20, b=20, t=20)
+						margin=go.layout.Margin(l=20, r=20, b=20, t=35)
 						# xaxis_rangebreaks=[dict(values=dt_breaks)]
 						)
 
@@ -104,7 +112,4 @@ def format_chart_layout(scope, fig, ticker):
 #               yaxis2_tickformat='$',
 #               yaxis3_tickformat='$',
 #               yaxis4_tickformat='$',
-#               height=750,
-#               width=1200,
-#               showlegend=False,
 #               title_text=Current_Stock_Profile.shortName)
