@@ -40,11 +40,13 @@ def render_selected_charts(scope, ticker):
 	# 				}
 
 	# Construct the schemas required for the selected charts
-	for chart in charts_schema.keys():
-		print('Checking if we need to render >', chart)
-		if scope.charts[chart]:
+	for chart in scope.charts.keys():
+		# print('Checking if we need to render >', chart)
+		# print(scope.charts[chart])
+		if scope.charts[chart]['active'] == True and scope.charts[chart]['chart_schema'] != None:
+			print('Rendering > ', chart)
 			no_of_charts += 1
-			relative_row_heights.append(charts_schema[chart]['relative_height'])
+			relative_row_heights.append(scope.charts[chart]['chart_schema']['height'])
 			chart_render_list.append(chart)
 
 	# Render the selected Charts
@@ -64,8 +66,8 @@ def render_selected_charts(scope, ticker):
 		# plot requested charts
 		for chart_no, chart in enumerate(chart_render_list):
 			row_no = chart_no+1 
-			chart_title = charts_schema[chart]['title']
-			charts_schema[chart]['function'](fig, chart_title, plot_df, row_no, col_no)
+			chart_title = scope.charts[chart]['chart_schema']['title']
+			scope.charts[chart]['chart_schema']['function'](fig, chart_title, plot_df, row_no, col_no)
 
 		# add any measures # TODO abstract ths out
 		# fig.add_trace(go.Scatter(

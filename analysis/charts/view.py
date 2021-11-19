@@ -15,7 +15,7 @@ def view_charts(scope):
 	with col2: 
 		st.subheader('Primary Charts')	
 		view_chart(scope, 'bar')
-		view_chart(scope, 'line')  		# TODO I tried embedding the params in the line grpah - see if this works
+		view_chart(scope, 'line')  		# TODO I tried embedding the data_cols in the line grpah - see if this works
 	with col3:
 		st.subheader('_')	
 		view_chart(scope, 'heiken_ashi')
@@ -55,81 +55,70 @@ def view_charts(scope):
 # -------------------------------------------------------------------------------------------------------------------------------------
 # view Contollers
 # -------------------------------------------------------------------------------------------------------------------------------------
-def view_chart(scope, dict_key):
-	scope_dict = scope.charts
-	active_control(scope, scope_dict, dict_key)
+def view_chart(scope, chart):
+	active_control(scope, chart)
 
 def view_volume_oscillator(scope):
 	st.markdown('##### Volume Oscillator')
-	scope_dict = scope.charts
-	dict_key = 'vol_osssy'
-	active_control(scope, scope_dict, dict_key)
-	edit_number(scope, scope_dict, dict_key, 'fast' )
-	edit_number(scope, scope_dict, dict_key, 'slow' )
+	chart = 'vol_osssy'
+	active_control(scope, chart)
+	edit_number(scope, chart, 'fast' )
+	edit_number(scope, chart, 'slow' )
 	st.markdown("""---""")
 
 def view_stochastic(scope):
 	st.markdown('##### Stochastic Oscillator')
-	scope_dict = scope.charts
-	dict_key = 'stochastic'
-	active_control(scope, scope_dict, dict_key)
-	# edit_price(scope, scope_dict, dict_key )
-	edit_number(scope, scope_dict, dict_key, 'lookback_days' )
-	edit_number(scope, scope_dict, dict_key, 'slow' )
-	edit_number(scope, scope_dict, dict_key, 'signal' )
+	chart = 'stochastic'
+	active_control(scope, chart)
+	# edit_price(scope, chart )
+	edit_number(scope, chart, 'lookback_days' )
+	edit_number(scope, chart, 'slow' )
+	edit_number(scope, chart, 'signal' )
 	st.markdown("""---""")
 
 def view_macd(scope):
 	st.markdown('##### Moving Average, Convergence, Divergence (MACD)')
-	scope_dict = scope.charts
-	dict_key = 'macd'
-	active_control(scope, scope_dict, dict_key)
-	edit_price(scope, scope_dict, dict_key )
-	edit_number(scope, scope_dict, dict_key, 'long' )
-	edit_number(scope, scope_dict, dict_key, 'short' )
-	edit_number(scope, scope_dict, dict_key, 'signal' )
+	chart = 'macd'
+	active_control(scope, chart)
+	edit_price(scope, chart )
+	edit_number(scope, chart, 'long' )
+	edit_number(scope, chart, 'short' )
+	edit_number(scope, chart, 'signal' )
 	st.markdown("""---""")
 
 def view_rsi(scope):
 	st.markdown('##### Relative Strength Index (RSI)')
-	scope_dict = scope.charts
-	dict_key = 'rsi'
-	active_control(scope, scope_dict, dict_key)
-	edit_ohlcv(scope, scope_dict, dict_key )
-	edit_number(scope, scope_dict, dict_key, 'periods' )
+	chart = 'rsi'
+	active_control(scope, chart)
+	edit_ohlcv(scope, chart )
+	edit_number(scope, chart, 'periods' )
 	st.markdown("""---""")
 
-def view_moving_average(scope, dict_key):
-	scope_dict = scope.measures
-	active_control(scope, scope_dict, dict_key)
-	edit_number(scope, scope_dict, dict_key, 'periods' )
-	edit_price(scope, scope_dict, dict_key )
+def view_moving_average(scope, chart):
+	active_control(scope, chart)
+	edit_number(scope, chart, 'periods' )
+	edit_price(scope, chart )
 	st.markdown("""---""")
 
 def view_bollinger_bands(scope):
 	st.markdown('##### Relative Strength Index (RSI)')
-	scope_dict = scope.measures
-	dict_key = 'bollinger_bands'
-	active_control(scope, scope_dict, dict_key)
-	edit_price(scope, scope_dict, dict_key )
-	edit_number(scope, scope_dict, dict_key, 'length' )
-	edit_number(scope, scope_dict, dict_key, 'shift_up' )
-	edit_number(scope, scope_dict, dict_key, 'shift_down' )
+	chart = 'bollinger_bands'
+	active_control(scope, chart)
+	edit_price(scope, chart )
+	edit_number(scope, chart, 'length' )
+	edit_number(scope, chart, 'shift_up' )
+	edit_number(scope, chart, 'shift_down' )
 	st.subheader('Moving Average Type - Rob to configure')		# TODO - Simple, Weighted, Exponential, Wilders
 	st.markdown("""---""")
 
 def view_dividends(scope):
 	st.markdown('##### Dividends')
-	scope_dict = scope.measures
-	dict_key = 'dividends'
-	active_control(scope, scope_dict, dict_key)
+	active_control(scope, 'dividends')
 	st.markdown("""---""")
 
 def view_announcements(scope):
 	st.markdown('##### Announcements')
-	scope_dict = scope.measures
-	dict_key = 'announcements'
-	active_control(scope, scope_dict, dict_key)
+	active_control(scope, 'announcements')
 	st.markdown("""---""")
 
 # -------------------------------------------------------------------------------------------------------------------------------------
@@ -137,23 +126,25 @@ def view_announcements(scope):
 # -------------------------------------------------------------------------------------------------------------------------------------
 
 
-def active_control(scope, scope_dict, dict_key ):		# NOTE : sets the scope.charts_changed value to TRUE which can be utilised by the analysis_df builder
-	display_name = scope_dict[dict_key]['name']
-	previous_active_status = scope_dict[dict_key]['active']
+def active_control(scope, chart ):		# NOTE : sets the scope.charts_changed value to TRUE which can be utilised by the analysis_df builder
+	display_name = scope.charts[chart]['name']
+
+	previous_active_status = scope.charts[chart]['active']
 	new_active_status = st.checkbox( 
 								display_name, 
 								value=previous_active_status,
 								)
-	scope_dict[dict_key]['active'] = new_active_status
+	scope.charts[chart]['active'] = new_active_status
 	if new_active_status == True and previous_active_status == False:
 		# print('-'*100)
-		# print(dict_key, ' forced an update to scope.charts_changed == TRUE') # TODO - remove later
+		# print(chart, ' forced an update to scope.charts_changed == TRUE') # TODO - remove later
 		scope.rebuild_plot_df = True
 
-def edit_number(scope, scope_dict, dict_key, column ):
-	display_name = scope_dict[dict_key]['name']
+def edit_number(scope, chart, column ):
+	display_name = scope.charts[chart]['name']
 	column_name = column.capitalize()
-	previous_period = int(scope_dict[dict_key]['params'][column])
+	# previous_period = int(scope.charts[chart]['data_cols'][column])
+	previous_period = int(scope.charts[chart]['data_cols'][column])
 	input_period_no = st.number_input(
 										# column_name,
 										label=(column_name + ' for ' + display_name), 
@@ -161,35 +152,35 @@ def edit_number(scope, scope_dict, dict_key, column ):
 										value=previous_period,
 										key=display_name
 										)  
-	scope_dict[dict_key]['params']['periods'] = input_period_no
+	scope.charts[chart]['data_cols'][column] = input_period_no
 	if input_period_no != previous_period:
 		# print('-'*100)
-		# print(dict_key, ' forced an update to scope.charts_changed == TRUE') # TODO - remove later
+		# print(chart, ' forced an update to scope.charts_changed == TRUE') # TODO - remove later
 		scope.rebuild_plot_df = True
 
-def edit_ohlcv(scope, scope_dict, dict_key ):
-	display_name = scope_dict[dict_key]['name']
-	previous_column = scope_dict[dict_key]['params']['column']
+def edit_ohlcv(scope, chart ):
+	display_name = scope.charts[chart]['name']
+	previous_column = scope.charts[chart]['data_cols']['column']
 	selected_column = st.selectbox ( 
 									label=('Column for ' + display_name), 
 									options=scope.dropdown_ohlcv_columns,
 									index=scope.dropdown_ohlcv_columns.index(previous_column), 
-									key=dict_key,
+									key=chart,
 									) 
-	scope_dict[dict_key]['params']['column'] = selected_column
+	scope.charts[chart]['data_cols']['column'] = selected_column
 	if selected_column != previous_column:
 		scope.rebuild_plot_df = True
 
-def edit_price(scope, scope_dict, dict_key ):
-	display_name = scope_dict[dict_key]['name']
-	previous_column = scope_dict[dict_key]['params']['column']
+def edit_price(scope, chart ):
+	display_name = scope.charts[chart]['name']
+	previous_column = scope.charts[chart]['data_cols']['column']
 	selected_column = st.selectbox ( 
 									label=('Column for ' + display_name), 
 									options=scope.dropdown_price_columns,
 									index=scope.dropdown_price_columns.index(previous_column), 
-									key=dict_key,
+									key=chart,
 									) 
-	scope_dict[dict_key]['params']['column'] = selected_column
+	scope.charts[chart]['data_cols']['column'] = selected_column
 	if selected_column != previous_column:
 		scope.rebuild_plot_df = True
 

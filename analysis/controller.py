@@ -33,7 +33,7 @@ def single_ticker_page(scope):
 	
 	if ticker in list(scope.ticker_data_files.keys()):
 
-		# scope.rebuild_plot_df = True
+		scope.rebuild_plot_df = True
 
 		if scope.rebuild_plot_df: 
 			create_plot_df(scope, ticker)			
