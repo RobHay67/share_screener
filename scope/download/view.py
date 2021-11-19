@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-from view.scope_var import three_cols
+from views.scope_var import three_cols
 
 
 def view_download(scope):

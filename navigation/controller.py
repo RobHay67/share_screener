@@ -5,8 +5,9 @@ import streamlit as st
 from home.view import view_project_welcome
 from scope.view import view_scope
 from scope.user.view import view_user
-from analysis.charts.view import view_primary, view_secondary
-from analysis.controller import single_ticker_page, intraday_page, volume_page, research_page, multi_tickers_page
+from analysis.charts.views.primary import view_primary
+from analysis.charts.views.secondary import view_secondary
+from analysis.controller import single_ticker_analysis, intraday_analysis, volume_analysis, research_analysis, multi_tickers_analysis
 
 
 def view_selected_page(page):
@@ -16,11 +17,11 @@ def view_selected_page(page):
 						'charts_primary'	:view_primary,
 						'charts_secondary'	:view_secondary,
 						'user'				:view_user,
-						'single'			:single_ticker_page,
-						'intraday'			:intraday_page,
-						'volume'			:volume_page,
-						'research'			:research_page,
-						'multi'				:multi_tickers_page,
+						'single'			:single_ticker_analysis,
+						'intraday'			:intraday_analysis,
+						'volume'			:volume_analysis,
+						'research'			:research_analysis,
+						'multi'				:multi_tickers_analysis,
 						'scope'				:view_scope,
 					}
 

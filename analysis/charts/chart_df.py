@@ -6,6 +6,7 @@ def create_chart_df(scope, ticker ):
 
 	chart_df = scope.selected[scope.display_page]['analysis_df'][ticker].copy()
 	chart_df.sort_values(by=['date'], inplace=True, ascending=True)	
+	
 
 	for chart in scope.charts.keys():
 		if scope.charts[chart]['active'] == True and scope.charts[chart]['data_cols'] != None:		# chart / overlay is requested AND there appears to be a data column spec to render

@@ -1,14 +1,11 @@
 import streamlit as st
 
-from ticker.downloader.controller import load_and_download_ticker_data
+from ticker.views.selectors import select_a_ticker
 from ticker.loaders.controller import load_ticker_or_tickers
-
-from ticker.view.ticker import view_a_ticker_file
-from ticker.view.selectors import select_a_ticker
-
+from ticker.downloader.controller import load_and_download_ticker_data
 from analysis.analysis_df import establish_analysis_df
-from analysis.view import view_an_analysis_file
-
+from ticker.views.ticker import view_a_ticker_file
+from analysis.views.analysis_files import view_an_analysis_file
 
 def single_loader(scope, page):
 	col1,col2,col3,col4,col5,col6 = st.columns([2.0, 2.0, 1.5, 1.5, 2.0, 3.0])

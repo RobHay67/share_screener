@@ -1,30 +1,18 @@
-
-
-
-
 import streamlit as st
-
 
 from ticker.loaders.single_loader import single_loader
 from ticker.loaders.multi_loader import multi_loader
 
-# from analysis.volume.controller import volume_page
 from analysis.volume.controller import volume_prediction
 from analysis.research.controller import view_research_page
 
+from analysis.charts.chart_df import create_chart_df
 from analysis.charts.controller import render_selected_charts
 
-# from analysis.charts.finance import financial_chart_tutorial
-# from analysis.charts.candlestick import plot_candlestick_seperate_volume, plot_candlestick
-# from analysis.charts.line import plot_line_chart
-
-from analysis.charts.chart_df import create_chart_df
-
-
-# ==============================================================================================================================================================
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Single Ticker Analysis
-# ==============================================================================================================================================================
-def single_ticker_page(scope):
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------
+def single_ticker_analysis(scope):			# TODO - these should be renamed to single_ticker_analysis
 	st.header('Single Ticker Analysis')
 	single_loader(scope, 'single')
 	st.markdown("""---""")
@@ -32,29 +20,21 @@ def single_ticker_page(scope):
 	ticker = scope.selected['single']['ticker_list'][0]
 	
 	if ticker in list(scope.ticker_data_files.keys()):
-
-		scope.rebuild_chart_df = True
+		scope.rebuild_chart_df = True								# TODO remove after the builder works
 
 		if scope.rebuild_chart_df: 
 			create_chart_df(scope, ticker)							# TODO - add the cache to this as a screen change may warrant a refresh - ie we are looking at NAB in another screen
 		else:
 			print( '\033[91mNot Rebuilding the chart_df\033[0m')
-# 
 
 		render_selected_charts(scope, ticker)
 		
-		# Financial Chart adds the following
-		# Index(['date', 'open', 'high', 'low', 'close', 'volume', 'MA20', 'MA5'], dtype='object')
-		# print( scope.ticker_data_files['CBA.AX'])
-		# share_data = scope.selected['single']['analysis_df'][ticker]
-		# financial_chart_tutorial(scope, ticker)
 
-
-# ==============================================================================================================================================================
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Intra Day Analysis
-# ==============================================================================================================================================================
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def intraday_page(scope):
+def intraday_analysis(scope):
 	st.header('Intra Day Analysis')	
 	single_loader(scope, 'intraday')
 	st.markdown("""---""")
@@ -81,7 +61,7 @@ def intraday_page(scope):
 	# 	plot_line_chart(share_data)
 
 
-def volume_page(scope):
+def volume_analysis(scope):
 	st.title('Predict Closing Volume to End of Today')
 	st.write('Extrapolating the Current Volume to the End of today')
 	single_loader(scope, 'volume' )
@@ -91,10 +71,10 @@ def volume_page(scope):
 	if ticker != 'select a ticker':	
 		volume_prediction(scope)
 
-# ==============================================================================================================================================================
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Company Research
-# ==============================================================================================================================================================
-def research_page(scope):
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------
+def research_analysis(scope):
 	st.header('Company Research')
 	single_loader(scope, 'research' )
 	st.markdown("""---""")
@@ -106,10 +86,10 @@ def research_page(scope):
 		
 
 
-# ==============================================================================================================================================================
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Mult Ticker Analysis
-# ==============================================================================================================================================================
-def multi_tickers_page(scope):
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------
+def multi_tickers_analysis(scope):
 	st.header('Analysis - Multiple Tickers')
 
 	multi_loader(scope)
@@ -126,19 +106,3 @@ def multi_tickers_page(scope):
 
 
 
-
-
-# col1,col2,col3,col4,col5,col6,col7,col8 = st.columns(8)
-# with col1: st.write('Select Options')
-# Options for the chart
-# st.write('<style>div.row-widget.stRadio > div{flex-direction:row;justify-content: left;}</style>', unsafe_allow_html=True)
-# with col2: show_weekends 	= st.radio("weekends", ('Hide','Show'), key=1)
-# with col3: show_volume 		= st.radio("volume"  , ('Hide','Show'), key=2)
-
-# st.write('<style>div.row-widget.stRadio > div{flex-direction:row;justify-content: left;}</style>', unsafe_allow_html=True)
-# with col1: st.checkbox('CandleStick', value=True, key='1')
-# with col2: st.checkbox('Line', key='2')
-
-
-
-# col1,col2 = st.columns([2, 10])
