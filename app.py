@@ -30,17 +30,19 @@ view_selected_page(scope.display_page)
 
 # Sidebar Action Buttons
 st.sidebar.title(project_description)
-st.sidebar.button('Charting'	, on_click=store_page, args=('charts', ))
+st.sidebar.subheader('Charts')
+st.sidebar.button('Primary'		, on_click=store_page, args=('charts_primary', ))
+st.sidebar.button('Secondary'	, on_click=store_page, args=('charts_secondary', ))
 st.sidebar.button('Defaults'	, on_click=store_page, args=('user', ))
 
-st.sidebar.title('Analysis')
+st.sidebar.subheader('Analysis')
 st.sidebar.button('Single'  	, on_click=store_page, args=('single', ))
 st.sidebar.button('Intra-Day'	, on_click=store_page, args=('intraday', ))
 st.sidebar.button('Volume'		, on_click=store_page, args=('volume', ))
 st.sidebar.button('Research'	, on_click=store_page, args=('research', ))
 st.sidebar.button('Multiple'	, on_click=store_page, args=('multi', ))
 
-st.sidebar.title('System Settings')
+st.sidebar.subheader('System Settings')
 st.sidebar.button('Settings', on_click=store_page, args=('scope', ))
 
 

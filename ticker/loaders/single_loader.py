@@ -1,16 +1,16 @@
 import streamlit as st
 
-# from ticker.loaders.single_loader import load_single_ticker_file
-from ticker.loaders.controller import load_ticker_or_tickers
 from ticker.downloader.controller import load_and_download_ticker_data
-from ticker.analysis_df import establish_analysis_df
+from ticker.loaders.controller import load_ticker_or_tickers
+
 from ticker.view.ticker import view_a_ticker_file
-from analysis.view import view_an_analysis_file
 from ticker.view.selectors import select_a_ticker
+
+from analysis.analysis_df import establish_analysis_df
+from analysis.view import view_an_analysis_file
 
 
 def single_loader(scope, page):
-
 	col1,col2,col3,col4,col5,col6 = st.columns([2.0, 2.0, 1.5, 1.5, 2.0, 3.0])
 	with col1: select_a_ticker(scope, page)
 
@@ -23,7 +23,6 @@ def single_loader(scope, page):
 		with col4: load_tickers 	= st.button( 'Load This File')
 		with col4: download_tickers = st.button(download_button_msg)
 		with col6: st.button('Clear any messages')
-		
 
 		if load_tickers : 
 			scope.download_industries = ['random_tickers']									# used for y_finance downloading
@@ -40,13 +39,9 @@ def single_loader(scope, page):
 
 			with col5: show_ticker_data = st.button(('Loaded Rows = ' + str(no_of_loaded_rows)))
 			with col5: show_analysis_data = st.button(('Analysis Rows = ' + str(no_of_analysis_rows)))
-			
 
-			if show_ticker_data:
-				view_a_ticker_file(scope, ticker)
-
-			if show_analysis_data:
-				view_an_analysis_file(scope)
+			if show_ticker_data		: view_a_ticker_file(scope, ticker)
+			if show_analysis_data	: view_an_analysis_file(scope)
 
 			# Render the Company Name
 			col1,col2,col3,col4 = st.columns([7.0, 1.7, 0.3, 3.0])

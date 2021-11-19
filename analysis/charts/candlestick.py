@@ -2,19 +2,23 @@ import plotly.graph_objects as go
 
 
 
-def plot_candlestick(fig, chart_title, plot_df, row_no, col_no):
+
+# candle_cols - No Additional Columns are required to render the CandleStick Chart
+
+
+
+def candle_plot(fig, chart_title, chart_df, row_no, col_no):
 	fig.add_trace( 	go.Candlestick(
-									x		= plot_df['date'],
-									open	= plot_df['open'],
-									high	= plot_df['high'],
-									low		= plot_df['low'],
-									close	= plot_df['close']
+									x		= chart_df['date'],
+									open	= chart_df['open'],
+									high	= chart_df['high'],
+									low		= chart_df['low'],
+									close	= chart_df['close']
 								), 
 					row=row_no, 
 					col=col_no
 					)	
 	fig.update_yaxes(title_text=chart_title, row=row_no, col=col_no)
-
 
 
 

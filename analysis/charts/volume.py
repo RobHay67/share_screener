@@ -4,13 +4,13 @@ import plotly.graph_objects as go
 
 
 
-def plot_volume(fig, chart_title, plot_df, row_no, col_no):
+def volume_plot(fig, chart_title, chart_df, row_no, col_no):
 	# Colour the bars on the chart
-	colors = ['green' if row['open'] - row['close'] >= 0 else 'red' for index, row in plot_df.iterrows()]
+	colors = ['green' if row['open'] - row['close'] >= 0 else 'red' for index, row in chart_df.iterrows()]
 	
 	fig.add_trace(	go.Bar(
-							x=plot_df['date'],
-							y=plot_df['volume'],
+							x=chart_df['date'],
+							y=chart_df['volume'],
 							marker_color=colors
 							), 
 					row=row_no, 

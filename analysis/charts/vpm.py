@@ -2,7 +2,7 @@
 
 
 
-def vpm(scope, plot_df, measure):
+def vpm_cols(scope, chart_df, measure):
 	# Add a Volume Per Minute (VPM)
 
 	# Not on Investpedia - Rob made this one up specifically for Volume
@@ -11,4 +11,8 @@ def vpm(scope, plot_df, measure):
 
 	minutes_per_day = scope.ticker_index.loc[ticker]['minutes_per_day']
 
-	plot_df['vpm'] = (plot_df['volume'] / minutes_per_day).astype(int)
+	chart_df['vpm'] = (chart_df['volume'] / minutes_per_day).astype(int)
+
+
+def vpm_plot():
+	print( 'VPM plot')

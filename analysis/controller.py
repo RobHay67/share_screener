@@ -14,11 +14,11 @@ from analysis.research.controller import view_research_page
 
 from analysis.charts.controller import render_selected_charts
 
-from analysis.charts.finance import financial_chart_tutorial
+# from analysis.charts.finance import financial_chart_tutorial
 # from analysis.charts.candlestick import plot_candlestick_seperate_volume, plot_candlestick
 # from analysis.charts.line import plot_line_chart
 
-from analysis.charts.plot_df import create_plot_df
+from analysis.charts.chart_df import create_chart_df
 
 
 # ==============================================================================================================================================================
@@ -33,12 +33,12 @@ def single_ticker_page(scope):
 	
 	if ticker in list(scope.ticker_data_files.keys()):
 
-		scope.rebuild_plot_df = True
+		scope.rebuild_chart_df = True
 
-		if scope.rebuild_plot_df: 
-			create_plot_df(scope, ticker)			
+		if scope.rebuild_chart_df: 
+			create_chart_df(scope, ticker)							# TODO - add the cache to this as a screen change may warrant a refresh - ie we are looking at NAB in another screen
 		else:
-			print( '\033[91mNot Rebuilding the Plot_df\033[0m')
+			print( '\033[91mNot Rebuilding the chart_df\033[0m')
 # 
 
 		render_selected_charts(scope, ticker)

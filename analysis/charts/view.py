@@ -2,6 +2,76 @@ import streamlit as st
 
 # https://www.investopedia.com/investing/market-reversals-and-how-spot-them/
 
+
+def view_primary(scope):
+	col1,col2,col3,col4,col5,col6 = st.columns([1,1,1,1,1,1])
+	with col1: st.subheader('Primary Charts')
+	with col1: st.write('applies to all analysis pages')
+	with col2: 
+		st.write(' ')
+		view_chart(scope, 'candlestick')
+	with col3: 
+		st.write(' ')
+		view_chart(scope, 'scatter')
+	with col4: 
+		st.write(' ')
+		view_chart(scope, 'bar')
+	with col5: 
+		st.write(' ')
+		view_chart(scope, 'line')  		# TODO I tried embedding the data_cols in the line grpah - see if this works
+	with col6: 
+		st.write(' ')
+		view_chart(scope, 'heiken_ashi')
+
+
+	st.markdown("""---""")
+	col1,col2 = st.columns([1,9])
+	with col1: st.subheader('Overlays')
+	with col2: 
+		st.write(' ')
+		st.write('applies to all of the above selected Primary Charts')
+
+	col1,col2,col3,col4,col5 = st.columns([1,1,1,1,1])
+
+	with col1: 
+		view_dividends(scope)
+		view_announcements(scope)
+	with col2: 
+		view_bollinger_bands(scope)
+
+	with col3:
+		st.markdown('##### Simple Moving Averages (SMA)')
+		view_moving_average(scope, 'sma_1')
+		view_moving_average(scope, 'sma_2')
+		view_moving_average(scope, 'sma_3')
+	with col4:
+		st.markdown('##### Exponential Moving Averages (EMA)')
+		view_moving_average(scope, 'ema_1')
+		view_moving_average(scope, 'ema_2')
+		view_moving_average(scope, 'ema_3')
+	
+def view_secondary(scope):
+	st.header('Secondary Charts')
+	st.write('applies to all analysis pages')
+
+	col1,col2,col3,col4,col5,col6,col7 = st.columns([1,1,1,1,1,1,1])
+	
+	with col1: 
+		st.markdown('##### Non Configurable Charts')
+		view_chart(scope, 'volume')
+		view_chart(scope, 'vac')
+		view_chart(scope, 'vol_per_minute')
+	# with col2: 
+	with col3: view_macd(scope)
+	with col4: view_rsi(scope)
+	with col5: view_stochastic(scope)
+	with col6: view_volume_oscillator(scope)
+
+		
+
+
+
+
 def view_charts(scope):
 	
 	st.subheader('User Charts Selections and Settings  (Applies to all Analysis pages)')
@@ -51,7 +121,7 @@ def view_charts(scope):
 	with col5: view_stochastic(scope)
 	with col5: view_volume_oscillator(scope)
 
-	print( 'scope.rebuild_plot_df = ', scope.rebuild_plot_df)
+	print( 'scope.rebuild_chart_df = ', scope.rebuild_chart_df)
 # -------------------------------------------------------------------------------------------------------------------------------------
 # view Contollers
 # -------------------------------------------------------------------------------------------------------------------------------------
@@ -101,7 +171,7 @@ def view_moving_average(scope, chart):
 	st.markdown("""---""")
 
 def view_bollinger_bands(scope):
-	st.markdown('##### Relative Strength Index (RSI)')
+	st.markdown('##### Bollinger Bands')
 	chart = 'bollinger_bands'
 	active_control(scope, chart)
 	edit_price(scope, chart )
@@ -138,7 +208,7 @@ def active_control(scope, chart ):		# NOTE : sets the scope.charts_changed value
 	if new_active_status == True and previous_active_status == False:
 		# print('-'*100)
 		# print(chart, ' forced an update to scope.charts_changed == TRUE') # TODO - remove later
-		scope.rebuild_plot_df = True
+		scope.rebuild_chart_df = True
 
 def edit_number(scope, chart, column ):
 	display_name = scope.charts[chart]['name']
@@ -156,7 +226,7 @@ def edit_number(scope, chart, column ):
 	if input_period_no != previous_period:
 		# print('-'*100)
 		# print(chart, ' forced an update to scope.charts_changed == TRUE') # TODO - remove later
-		scope.rebuild_plot_df = True
+		scope.rebuild_chart_df = True
 
 def edit_ohlcv(scope, chart ):
 	display_name = scope.charts[chart]['name']
@@ -169,7 +239,7 @@ def edit_ohlcv(scope, chart ):
 									) 
 	scope.charts[chart]['data_cols']['column'] = selected_column
 	if selected_column != previous_column:
-		scope.rebuild_plot_df = True
+		scope.rebuild_chart_df = True
 
 def edit_price(scope, chart ):
 	display_name = scope.charts[chart]['name']
@@ -182,7 +252,7 @@ def edit_price(scope, chart ):
 									) 
 	scope.charts[chart]['data_cols']['column'] = selected_column
 	if selected_column != previous_column:
-		scope.rebuild_plot_df = True
+		scope.rebuild_chart_df = True
 
 
 

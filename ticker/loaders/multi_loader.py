@@ -5,7 +5,7 @@ from analysis.view import  view_all_analysis_files
 from scope.pages.ticker_list import update_multi_ticker_list
 from ticker.loaders.controller import load_ticker_or_tickers
 from ticker.downloader.controller import load_and_download_ticker_data
-from ticker.analysis_df import establish_analysis_df
+from analysis.analysis_df import establish_analysis_df
 from ticker.view.all_tickers import view_all_loaded_ticker_files
 
 from ticker.view.selectors import select_a_market, select_industries, select_tickers

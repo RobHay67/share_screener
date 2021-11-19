@@ -36,41 +36,6 @@ def verify_existence_and_load(scope, ticker):
 
 
 
-		
-
-# def load_single_ticker_file(scope, ticker):
-	
-# 	results(scope, 
-# 			passed='LOADED Share Data Files > ', 
-# 			failed='MISSING Share Data Files for > ', 
-# 			passed_2='na',
-# 			)
-
-# 	generate_path_for_share_data_file(scope, ticker )
-
-# 	verify_existence_and_load(scope, ticker)
-
-# 	results(scope, 'Finished', final_print=True )
-
-# def load_multiple_ticker_files( scope ):
-# 	results(scope, 
-# 			passed='LOADED Share Data Files > ', 
-# 			failed='MISSING Share Data Files for > ', 
-# 			passed_2='na' 
-# 			)
-	
-# 	for ticker in scope.selected['multi']['ticker_list']:
-# 		generate_path_for_share_data_file(scope, ticker )
-# 		verify_existence_and_load(scope, ticker)
-	
-# 	results(scope, 'Finished', final_print=True )
-
-
-
-
-
-
-
 
 
 
