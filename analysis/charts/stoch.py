@@ -46,3 +46,26 @@ def stoch_cols(scope, chart_df, chart):
 
 def stoch_plot():
 	print ('Stoch Plot')
+
+
+
+# Copied from the Finance Tutorial
+
+
+# stoch = StochasticOscillator(high=share_data['high'],
+# 							close=share_data['close'],
+# 							low=share_data['low'],
+# 							window=14, 
+# 							smooth_window=3)
+
+# # Plot STOCHASTIC trace on 4th row
+# fig.add_trace(go.Scatter(
+# 						x=share_data.index,
+# 						y=stoch.stoch(),
+# 						line=dict(color='black', width=2)
+# 						), row=4, col=1)									# chart 4 please
+# fig.add_trace(go.Scatter(
+# 						x=share_data.index,
+# 						y=stoch.stoch_signal(),
+# 						line=dict(color='blue', width=1)
+# 						), row=4, col=1)

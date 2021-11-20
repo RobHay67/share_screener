@@ -1,5 +1,4 @@
-
-
+import plotly.graph_objects as go
 
 
 def ema_cols( scope, chart_df, chart):
@@ -14,3 +13,14 @@ def ema_cols( scope, chart_df, chart):
 
 
 
+def ema_plot(fig, overlay, chart_df, row_no, col_no):
+	fig.add_trace(go.Scatter(
+								x		= chart_df['date'], 
+								y		= chart_df[overlay], 
+								opacity	= 0.7, 
+								line	= dict(color='blue', width=2), 
+								name	= overlay
+							), 
+					row		= row_no, 
+					col		= col_no
+				)

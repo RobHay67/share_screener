@@ -20,7 +20,7 @@ from analysis.charts.stoch 			import stoch_plot, stoch_cols
 
 # Overlays -------------------------------------------
 from analysis.charts.overlays.sma 	import sma_cols, sma_plot
-from analysis.charts.overlays.ema 	import ema_cols
+from analysis.charts.overlays.ema 	import ema_cols, ema_plot
 
 
 
@@ -81,9 +81,9 @@ chart_schema = {
 		'sma_1' 			: { active:True , name:'SMA-1'				, overlay:True	, plot:{ function:sma_plot }, 														data_cols:{ function:sma_cols, column:'close', periods:21 	} },
 		'sma_2' 			: { active:False, name:'SMA-2'				, overlay:True	, plot:{ function:sma_plot }, 														data_cols:{ function:sma_cols, column:'close', periods:50 	} },
 		'sma_3' 			: { active:False, name:'SMA-3'				, overlay:True	, plot:{ function:sma_plot }, 														data_cols:{ function:sma_cols, column:'close', periods:200	} },
-		'ema_1' 			: { active:True , name:'EMA-1'				, overlay:True	, plot:{ function:sma_plot }, 														data_cols:{ function:ema_cols, column:'close', periods:21 	} },
-		'ema_2' 			: { active:False, name:'EMA-2'				, overlay:True	, plot:{ function:sma_plot }, 														data_cols:{ function:ema_cols, column:'close', periods:50 	} },
-		'ema_3' 			: { active:False, name:'EMA-3'				, overlay:True	, plot:{ function:sma_plot }, 														data_cols:{ function:ema_cols, column:'close', periods:200 } },
+		'ema_1' 			: { active:True , name:'EMA-1'				, overlay:True	, plot:{ function:ema_plot }, 														data_cols:{ function:ema_cols, column:'close', periods:21 	} },
+		'ema_2' 			: { active:False, name:'EMA-2'				, overlay:True	, plot:{ function:ema_plot }, 														data_cols:{ function:ema_cols, column:'close', periods:50 	} },
+		'ema_3' 			: { active:False, name:'EMA-3'				, overlay:True	, plot:{ function:ema_plot }, 														data_cols:{ function:ema_cols, column:'close', periods:200 } },
 		'bollinger_bands' 	: { active:False, name:'Bollinger Bands'	, overlay:True	, plot:{ function:sma_plot }, 														data_cols:{ function:ema_cols, column:'close', length:20, shift_up:2, shift_down:2, m_a_type:'simple', } },
 		'dividends' 		: { active:False, name:'Dividends'			, overlay:True	, plot:{ function:sma_plot }, 														data_cols:None },		# TODO - we could still plot into the plot_df
 		'announcements' 	: { active:False, name:'Announcements'		, overlay:True	, plot:{ function:sma_plot }, 														data_cols:None },		# TODO - we are still going to need a chart here

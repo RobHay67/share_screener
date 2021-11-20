@@ -39,6 +39,33 @@ def macd_plot():
 
 
 
+# Copied from the finance tutorial
+# macd = MACD(close=share_data['close'], 
+# 				window_slow=26,
+# 				window_fast=12, 
+# 				window_sign=9)
+
+
+# # Plot MACD trace on 3rd row
+# colors = ['green' if val >= 0 else 'red' for val in macd.macd_diff()]
+# fig.add_trace(go.Bar(
+# 						x=share_data.index, 
+# 						y=macd.macd_diff(),
+# 						marker_color=colors
+# 					), row=3, col=1)										# chart 3 please
+
+# fig.add_trace(go.Scatter(
+# 						x=share_data.index,
+# 						y=macd.macd(),
+# 						line=dict(color='black', width=2)
+# 						), row=3, col=1)									# chart 3 please
+# fig.add_trace(go.Scatter(
+# 						x=share_data.index,
+# 						y=macd.macd_signal(),
+# 						line=dict(color='blue', width=1)
+# 						), row=3, col=1) 									# chart 3 please
+
+
 
 
 
