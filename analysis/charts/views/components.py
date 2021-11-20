@@ -1,56 +1,43 @@
 import streamlit as st
 
 
-from analysis.charts.views.helpers import edit_active, edit_number, edit_ohlcv, edit_price
-
-
+from analysis.charts.views.helpers import edit_active, edit_number, edit_ohlcv, edit_price, edit_colour
 
 # -------------------------------------------------------------------------------------------------------------------------------------
-# view Contollers
+# Primary and Secondary Charts
 # -------------------------------------------------------------------------------------------------------------------------------------
+
 def render_activate_chart(scope, chart):
 	edit_active(scope, chart)
+# -------------------------------------------------------------------------------------------------------------------------------------
+# Primary Chart Components
+# -------------------------------------------------------------------------------------------------------------------------------------
+def render_primary_chart(scope, chart):
+	st.write('.')
+	render_activate_chart(scope, chart)
+	
+def render_primary_chart_height(scope):
 
-def render_volume_oscillator(scope):
-	st.markdown('##### Volume Oscillator')
-	chart = 'vol_osssy'
-	edit_active(scope, chart)
-	edit_number(scope, chart, 'fast' )
-	edit_number(scope, chart, 'slow' )
-	st.markdown("""---""")
+	# st.subheader('Chart Height (pixels)')
 
-def render_stochastic(scope):
-	st.markdown('##### Stochastic Oscillator')
-	chart = 'stochastic'
-	edit_active(scope, chart)
-	# edit_price(scope, chart )
-	edit_number(scope, chart, 'lookback_days' )
-	edit_number(scope, chart, 'slow' )
-	edit_number(scope, chart, 'signal' )
-	st.markdown("""---""")
+	previous_selection = int(scope.primary_chart_height)
 
-def render_macd(scope):
-	st.markdown('##### Moving Average, Convergence, Divergence (MACD)')
-	chart = 'macd'
-	edit_active(scope, chart)
-	edit_price(scope, chart )
-	edit_number(scope, chart, 'long' )
-	edit_number(scope, chart, 'short' )
-	edit_number(scope, chart, 'signal' )
-	st.markdown("""---""")
+	input_chart_height = st.number_input( 	
+										'Primary Chart Height', 
+										min_value=0, 
+										value=previous_selection,
+										key='95'
+										)  
+	scope.primary_chart_height = input_chart_height
 
-def render_rsi(scope):
-	st.markdown('##### Relative Strength Index (RSI)')
-	chart = 'rsi'
-	edit_active(scope, chart)
-	edit_ohlcv(scope, chart )
-	edit_number(scope, chart, 'periods' )
-	st.markdown("""---""")
-
-def render_moving_average(scope, chart):
+# -------------------------------------------------------------------------------------------------------------------------------------
+# Overlays
+# -------------------------------------------------------------------------------------------------------------------------------------
+def render_moving_average(scope, chart):  # SMA or EMA
 	edit_active(scope, chart)
 	edit_number(scope, chart, 'periods' )
 	edit_price(scope, chart )
+	edit_colour(scope, chart )
 	st.markdown("""---""")
 
 def render_bollinger_bands(scope):
@@ -73,5 +60,49 @@ def render_announcements(scope):
 	# st.markdown('##### Announcements')
 	edit_active(scope, 'announcements')
 	st.markdown("""---""")
+# -------------------------------------------------------------------------------------------------------------------------------------
+# Secondary Charts
+# -------------------------------------------------------------------------------------------------------------------------------------
+
+def render_macd(scope):
+	st.markdown('##### Moving Average, Convergence, Divergence (MACD)')
+	chart = 'macd'
+	edit_active(scope, chart)
+	edit_price(scope, chart )
+	edit_number(scope, chart, 'long' )
+	edit_number(scope, chart, 'short' )
+	edit_number(scope, chart, 'signal' )
+	st.markdown("""---""")
+
+def render_rsi(scope):
+	st.markdown('##### Relative Strength Index (RSI)')
+	chart = 'rsi'
+	edit_active(scope, chart)
+	edit_ohlcv(scope, chart )
+	edit_number(scope, chart, 'periods' )
+	st.markdown("""---""")
+
+def render_stochastic(scope):
+	st.markdown('##### Stochastic Oscillator')
+	chart = 'stochastic'
+	edit_active(scope, chart)
+	# edit_price(scope, chart )
+	edit_number(scope, chart, 'lookback_days' )
+	edit_number(scope, chart, 'slow' )
+	edit_number(scope, chart, 'signal' )
+	st.markdown("""---""")
+
+def render_volume_oscillator(scope):
+	st.markdown('##### Volume Oscillator')
+	chart = 'vol_osssy'
+	edit_active(scope, chart)
+	edit_number(scope, chart, 'fast' )
+	edit_number(scope, chart, 'slow' )
+	st.markdown("""---""")
+
+
+
+
+
 
 

@@ -4,7 +4,6 @@ import streamlit as st
 
 def edit_active(scope, chart ):
 
-	# display_name = st.markdown('##### ' + scope.charts[chart]['name'] )
 	display_name =  '' + scope.charts[chart]['name']
 	
 	previous_active_status = scope.charts[chart]['active']
@@ -65,5 +64,22 @@ def edit_price(scope, chart ):
 	scope.charts[chart]['data_cols']['column'] = selected_column
 	
 	if selected_column != previous_column:
+		scope.rebuild_chart_df = True
+
+def edit_colour(scope, chart ):
+	
+	display_name = scope.charts[chart]['name']
+	
+	previous_colour = scope.charts[chart]['plot']['colour']
+
+	selected_colour = st.selectbox ( 
+									label=('Colour for ' + display_name), 
+									options=scope.chart_colours,
+									index=scope.chart_colours.index(previous_colour), 
+									key=chart,
+									) 
+	scope.charts[chart]['plot']['colour'] = selected_colour
+
+	if selected_colour != previous_colour:
 		scope.rebuild_chart_df = True
 

@@ -1,3 +1,10 @@
+
+
+
+chart_colours = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black']
+
+
+
 # ==============================================================================================================================================================
 # Technical Indicator Specification for the charts
 # ==============================================================================================================================================================
@@ -39,6 +46,7 @@ active 			= 'active'				# True or False - is this technical Indicator is being a
 # Chart Releated Parameters -------------------------------------------------------------------------------------------------------
 plot			= 'plot'				# Dictionary of Plot Parameters for Rendering this chart
 function 		= 'function'			# The function to render this chart
+colour			= 'colour'				# Default Colour for certain lines
 title			= 'title'				# The Title to be rendered for this chart
 height			= 'height'				# height for the chart - this is a relative height
 yaxis			= 'yaxis'				# Format for the Y Axis on the charts
@@ -64,11 +72,11 @@ m_a_type 		= 'm_a_type'			# Bollinger Bands
 
 chart_schema = {
 		# Primary Charts -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-		'candlestick'		: { active:True , name:'CandleStick'		, overlay:False	, plot:{ function:candle_plot 	, title:'Price'		, height:1, yaxis:'$,.2f' 	}, 	data_cols:None, },
-		'scatter'			: { active:False, name:'Scatter'			, overlay:False	, plot:{ function:None			, title:''			, height:1, yaxis:'$,.2f'	}, 	data_cols:None, },
-		'bar'				: { active:False, name:'Bar'				, overlay:False	, plot:{ function:None			, title:''			, height:1, yaxis:'$,.2f' 	}, 	data_cols:None, },
-		'line'				: { active:False, name:'Line charts'		, overlay:False	, plot:{ function:None			, title:''			, height:1, yaxis:'$,.2f' 	}, 	data_cols:None, },
-		'heiken_ashi'		: { active:False, name:'Heikin Ashi'		, overlay:False	, plot:{ function:None			, title:''			, height:1, yaxis:'$,.2f' 	}, 	data_cols:None, },
+		'candlestick'		: { active:True , name:'CandleStick'		, overlay:False	, plot:{ function:candle_plot 	, title:'Price'		, height:2, yaxis:'$,.2f' 	}, 	data_cols:None, },
+		'scatter'			: { active:False, name:'Scatter'			, overlay:False	, plot:{ function:None			, title:''			, height:2, yaxis:'$,.2f'	}, 	data_cols:None, },
+		'bar'				: { active:False, name:'Bar'				, overlay:False	, plot:{ function:None			, title:''			, height:2, yaxis:'$,.2f' 	}, 	data_cols:None, },
+		'line'				: { active:False, name:'Line charts'		, overlay:False	, plot:{ function:None			, title:''			, height:2, yaxis:'$,.2f' 	}, 	data_cols:None, },
+		'heiken_ashi'		: { active:False, name:'Heikin Ashi'		, overlay:False	, plot:{ function:None			, title:''			, height:2, yaxis:'$,.2f' 	}, 	data_cols:None, },
 		# Secondary Charts -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		'volume'			: { active:True , name:'Volume'				, overlay:False	, plot:{ function:volume_plot	, title:'Volume'	, height:1, yaxis:',.' 		}, 	data_cols:None, },
 		'vol_per_minute'	: { active:False, name:'Volume Per Minute'	, overlay:False	, plot:{ function:vpm_plot		, title:''			, height:1, yaxis:',.' 		}, 	data_cols:None, },  # TODO is this a chart or on overlay - maybe just to the volume chart - I dont know
@@ -78,17 +86,17 @@ chart_schema = {
 		'vol_osssy'			: { active:False, name:'Volume Oscillator'	, overlay:False , plot:{ function:None 			, title:''			, height:1, yaxis:'$,.2f' 	}, 	data_cols:{ function:None			, column:'volume', fast:14, slow:21 } },
 		'stochastic'		: { active:False , name:'Stochastic'		, overlay:False , plot:{ function:stoch_plot	, title:'Stochastic', height:1, yaxis:'$,.2f' 	}, 	data_cols:{ function:stoch_cols	, lookback_days:14, slow:3, signal:3 } },
 		# Overlays ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-		'sma_1' 			: { active:True , name:'SMA-1'				, overlay:True	, plot:{ function:sma_plot }, 														data_cols:{ function:sma_cols, column:'close', periods:21 	} },
-		'sma_2' 			: { active:False, name:'SMA-2'				, overlay:True	, plot:{ function:sma_plot }, 														data_cols:{ function:sma_cols, column:'close', periods:50 	} },
-		'sma_3' 			: { active:False, name:'SMA-3'				, overlay:True	, plot:{ function:sma_plot }, 														data_cols:{ function:sma_cols, column:'close', periods:200	} },
-		'ema_1' 			: { active:True , name:'EMA-1'				, overlay:True	, plot:{ function:ema_plot }, 														data_cols:{ function:ema_cols, column:'close', periods:21 	} },
-		'ema_2' 			: { active:False, name:'EMA-2'				, overlay:True	, plot:{ function:ema_plot }, 														data_cols:{ function:ema_cols, column:'close', periods:50 	} },
-		'ema_3' 			: { active:False, name:'EMA-3'				, overlay:True	, plot:{ function:ema_plot }, 														data_cols:{ function:ema_cols, column:'close', periods:200 } },
-		'bollinger_bands' 	: { active:False, name:'Bollinger Bands'	, overlay:True	, plot:{ function:sma_plot }, 														data_cols:{ function:ema_cols, column:'close', length:20, shift_up:2, shift_down:2, m_a_type:'simple', } },
-		'dividends' 		: { active:False, name:'Dividends'			, overlay:True	, plot:{ function:sma_plot }, 														data_cols:None },		# TODO - we could still plot into the plot_df
-		'announcements' 	: { active:False, name:'Announcements'		, overlay:True	, plot:{ function:sma_plot }, 														data_cols:None },		# TODO - we are still going to need a chart here
-		'ichi_moku' 		: { active:False, name:'Icki Moku' 			, overlay:True	, plot:{ function:sma_plot }, 														data_cols:None },		# TODO - Rob to work out if this needs speccing
-		'ichi_moku_daily'	: { active:False, name:'Icki Moku Daily'	, overlay:True	, plot:{ function:sma_plot }, 														data_cols:None },		# TODO - Rob to work out if this needs speccing
+		'sma_1' 			: { active:True , name:'SMA-1'				, overlay:True	, plot:{ function:sma_plot, colour:'blue' }, 										data_cols:{ function:sma_cols, column:'close', periods:21 	} },
+		'sma_2' 			: { active:False, name:'SMA-2'				, overlay:True	, plot:{ function:sma_plot, colour:'blue' }, 										data_cols:{ function:sma_cols, column:'close', periods:50 	} },
+		'sma_3' 			: { active:False, name:'SMA-3'				, overlay:True	, plot:{ function:sma_plot, colour:'blue' }, 										data_cols:{ function:sma_cols, column:'close', periods:200	} },
+		'ema_1' 			: { active:True , name:'EMA-1'				, overlay:True	, plot:{ function:ema_plot, colour:'blue' }, 										data_cols:{ function:ema_cols, column:'close', periods:21 	} },
+		'ema_2' 			: { active:False, name:'EMA-2'				, overlay:True	, plot:{ function:ema_plot, colour:'blue' }, 										data_cols:{ function:ema_cols, column:'close', periods:50 	} },
+		'ema_3' 			: { active:False, name:'EMA-3'				, overlay:True	, plot:{ function:ema_plot, colour:'blue' }, 										data_cols:{ function:ema_cols, column:'close', periods:200 } },
+		'bollinger_bands' 	: { active:False, name:'Bollinger Bands'	, overlay:True	, plot:{ function:sma_plot, colour:'blue' }, 										data_cols:{ function:ema_cols, column:'close', length:20, shift_up:2, shift_down:2, m_a_type:'simple', } },
+		'dividends' 		: { active:False, name:'Dividends'			, overlay:True	, plot:{ function:sma_plot, colour:'blue' }, 										data_cols:None },		# TODO - we could still plot into the plot_df
+		'announcements' 	: { active:False, name:'Announcements'		, overlay:True	, plot:{ function:sma_plot, colour:'blue' }, 										data_cols:None },		# TODO - we are still going to need a chart here
+		'ichi_moku' 		: { active:False, name:'Icki Moku' 			, overlay:True	, plot:{ function:sma_plot, colour:'blue' }, 										data_cols:None },		# TODO - Rob to work out if this needs speccing
+		'ichi_moku_daily'	: { active:False, name:'Icki Moku Daily'	, overlay:True	, plot:{ function:sma_plot, colour:'blue' }, 										data_cols:None },		# TODO - Rob to work out if this needs speccing
 
 		}
 

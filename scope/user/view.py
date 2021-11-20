@@ -15,9 +15,6 @@ def view_user(scope):
 	with col2: st.subheader('Analysis Row Limit')
 	with col2: view_analysis_row_limit(scope)
 
-	with col3: st.subheader('Chart Height (pixels)')
-	with col3: view_chart_height(scope)
-
 	st.markdown("""---""")
 
 
@@ -49,14 +46,3 @@ def view_analysis_row_limit(scope): # limit_analysis
 										)  
 	scope.analysis_row_limit = input_analysis_days
 
-def view_chart_height(scope): # limit_analysis
-
-	previous_selection = int(scope.chart_height)
-
-	input_chart_height = st.number_input( 	
-										'Adjust height of chart section (depends on your resolution)', 
-										min_value=0, 
-										value=previous_selection,
-										key='95'
-										)  
-	scope.chart_height = input_chart_height
