@@ -27,7 +27,9 @@ def sma_plot(scope, fig, overlay, chart_df, row_no, col_no):
 											'color':line_colour, 
 											'width':2
 											}, 
-								name	= overlay
+								name	= overlay,
+								showlegend = True,
+								
 							), 
 					row		= row_no, 
 					col		= col_no

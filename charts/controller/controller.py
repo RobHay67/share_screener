@@ -2,14 +2,14 @@ import streamlit as st
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-from charts.helpers.main_plot import create_plotly_schema, create_main_plot, format_main_plot
-from charts.helpers.sub_plot import add_subplot
+from charts.controller.main_plot import create_plotly_schema, create_main_plot, format_main_plot
+from charts.controller.sub_plot import add_subplot
 
 
 
 
 
-def render_selected_charts(scope, ticker):
+def view_charts(scope, ticker):
 	chart_df		= scope.selected[scope.display_page]['chart_df'][ticker]
 	plotly_schema 	= create_plotly_schema(scope)
 	if plotly_schema['no_of_charts'] > 0:

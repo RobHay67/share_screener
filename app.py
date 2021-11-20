@@ -8,6 +8,14 @@
 							# 0.12.7a17     
 
 
+import pandas as pd
+pd.set_option('display.max_rows', 5000)
+pd.set_option('display.max_columns', 500)
+pd.set_option('display.width', 1000)
+
+
+
+
 import streamlit as st
 
 project_description = 'DDT - Data Driven Trading'

@@ -7,7 +7,7 @@ from analysis.volume.controller import volume_prediction
 from analysis.research.controller import view_research_page
 
 from charts.model.chart_df import create_chart_df
-from charts.controller.controller import render_selected_charts
+from charts.controller.controller import view_charts
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Single Ticker Analysis
@@ -21,7 +21,7 @@ def single_ticker_analysis(scope):			# TODO - these should be renamed to single_
 	
 	if ticker in list(scope.ticker_data_files.keys()):
 		create_chart_df(scope, ticker)	
-		render_selected_charts(scope, ticker)
+		view_charts(scope, ticker)
 		
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------

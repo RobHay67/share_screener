@@ -54,7 +54,7 @@ def format_main_plot(scope, fig, ticker):
 								},
 						height=scope.primary_chart_height, 
 						# width=1200, 
-						showlegend=False, 
+						# showlegend=False, 
 						xaxis_rangeslider_visible=False,
 						margin=go.layout.Margin(l=20, r=20, b=20, t=35),
 						

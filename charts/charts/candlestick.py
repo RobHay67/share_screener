@@ -17,7 +17,8 @@ def candle_plot(scope, fig, chart, chart_df, row_no, col_no):
 									close	= chart_df['close']
 								), 
 					row=row_no, 
-					col=col_no
+					col=col_no,
+					# showlegend=True, This errrors
 					)	
 	
 

@@ -62,7 +62,7 @@ import numpy as np
 # Complex measure with trend Lines
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def trend_sma_50_low( params, share_df ):
-	report_function( params, f'Simple Moving Average on low price - number of days = 50' )
+	# report_function( params, f'Simple Moving Average on low price - number of days = 50' )
 	share_df['sma'] = share_df['low'].rolling(window=50).mean()
 	share_df['sma_50_l'] = np.where( share_df['low'] > share_df['sma'], '^', 'v' ) 		# add the trend direction
 	share_df.drop([ 'sma'], axis=1, inplace=True)	
@@ -70,7 +70,7 @@ def trend_sma_50_low( params, share_df ):
 
 def recent_price_moves( params, share_df, lookback_days=5 ):
 	for column in params.strategy['price_columns'] + ['volume']:
-		report_function( params, f'Price direction on {column} today and over the past {lookback_days} days' )
+		# report_function( params, f'Price direction on {column} today and over the past {lookback_days} days' )
 		trend_col_name = 'c_' + str(column[:1])
 		lookback_col_name = 'lb_' + str(column[:1])		
 		share_df['yesterday'] = np.where( share_df[column] > share_df[column].shift(1), 1, 0 )
@@ -112,7 +112,7 @@ def recent_price_moves( params, share_df, lookback_days=5 ):
 def highs_and_lows( params, share_df ):
 
 	for column in params.strategy['price_columns'] + ['volume']:
-		report_function( params, f'peaks and troughs on {column}' ) 
+		# report_function( params, f'peaks and troughs on {column}' ) 
 		p_and_t_col_name = 'pt_' +  str(column[:1])
 
 		share_df['highs'] 	= np.where( share_df[column] > share_df[column].shift(1), share_df[column], 0)  # peaks   today is > yesterday so its a high
