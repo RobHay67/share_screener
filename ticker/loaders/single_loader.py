@@ -3,7 +3,7 @@ import streamlit as st
 from ticker.views.selectors import select_a_ticker
 from ticker.loaders.controller import load_ticker_or_tickers
 from ticker.downloader.controller import load_and_download_ticker_data
-from analysis.analysis_df import establish_analysis_df
+from analysis.model.analysis_df import establish_analysis_df
 from ticker.views.ticker import view_a_ticker_file
 from analysis.views.analysis_files import view_an_analysis_file
 
@@ -30,7 +30,7 @@ def single_loader(scope, page):
 			load_and_download_ticker_data(scope)
 
 		if ticker in list(scope.ticker_data_files.keys()):
-			no_of_loaded_rows = len(scope.ticker_data_files[ticker])
+			no_of_loaded_rows = int(len(scope.ticker_data_files[ticker]))
 			establish_analysis_df(scope, ticker, no_of_loaded_rows)
 			no_of_analysis_rows = len(scope.selected[scope.display_page]['analysis_df'][ticker])
 

@@ -5,8 +5,8 @@ import streamlit as st
 from home.view import view_project_welcome
 from scope.view import view_scope
 from scope.user.view import view_user
-from analysis.charts.views.primary import view_primary
-from analysis.charts.views.secondary import view_secondary
+from charts.views.primary import view_primary
+from charts.views.secondary import view_secondary
 from analysis.controller import single_ticker_analysis, intraday_analysis, volume_analysis, research_analysis, multi_tickers_analysis
 
 

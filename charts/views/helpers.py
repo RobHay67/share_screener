@@ -13,9 +13,6 @@ def edit_active(scope, chart ):
 								)
 	scope.charts[chart]['active'] = new_active_status
 	
-	if new_active_status == True and previous_active_status == False:
-		scope.rebuild_chart_df = True
-
 def edit_number(scope, chart, column ):
 	
 	display_name = scope.charts[chart]['name']
@@ -31,9 +28,6 @@ def edit_number(scope, chart, column ):
 										)  
 	scope.charts[chart]['data_cols'][column] = input_period_no
 	
-	if input_period_no != previous_period:
-		scope.rebuild_chart_df = True
-
 def edit_ohlcv(scope, chart ):
 	
 	display_name = scope.charts[chart]['name']
@@ -47,9 +41,6 @@ def edit_ohlcv(scope, chart ):
 									) 
 	scope.charts[chart]['data_cols']['column'] = selected_column
 	
-	if selected_column != previous_column:
-		scope.rebuild_chart_df = True
-
 def edit_price(scope, chart ):
 	
 	display_name = scope.charts[chart]['name']
@@ -63,9 +54,6 @@ def edit_price(scope, chart ):
 									) 
 	scope.charts[chart]['data_cols']['column'] = selected_column
 	
-	if selected_column != previous_column:
-		scope.rebuild_chart_df = True
-
 def edit_colour(scope, chart ):
 	
 	display_name = scope.charts[chart]['name']
@@ -79,7 +67,4 @@ def edit_colour(scope, chart ):
 									key=chart,
 									) 
 	scope.charts[chart]['plot']['colour'] = selected_colour
-
-	if selected_colour != previous_colour:
-		scope.rebuild_chart_df = True
 

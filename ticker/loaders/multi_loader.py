@@ -4,7 +4,7 @@ from ticker.views.selectors import select_a_market, select_industries, select_ti
 from scope.pages.ticker_list import update_multi_ticker_list
 from ticker.loaders.controller import load_ticker_or_tickers
 from ticker.downloader.controller import load_and_download_ticker_data
-from analysis.analysis_df import establish_analysis_df
+from analysis.model.analysis_df import establish_analysis_df
 from ticker.views.all_tickers import view_all_loaded_ticker_files
 from analysis.views.analysis_files import view_all_analysis_files
 
@@ -43,7 +43,7 @@ def multi_loader(scope):
 		no_of_loaded_files = len(list_of_loaded_files)
 
 		for ticker in list_of_loaded_files:
-			no_of_loaded_rows = len(scope.ticker_data_files[ticker])
+			no_of_loaded_rows = int(len(scope.ticker_data_files[ticker]))
 			establish_analysis_df(scope, ticker, no_of_loaded_rows)
 
 			no_of_analysis_rows = len(scope.selected['multi']['analysis_df'][ticker])

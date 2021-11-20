@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-from analysis.charts.views.helpers import edit_active, edit_number, edit_ohlcv, edit_price, edit_colour
+from charts.views.helpers import edit_active, edit_number, edit_ohlcv, edit_price, edit_colour
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 # Primary and Secondary Charts

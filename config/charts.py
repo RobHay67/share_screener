@@ -11,23 +11,23 @@ chart_colours = ['blue','orange','green','red','LightSkyBlue','ForestGreen','Ste
 
 
 # Primary Charts -------------------------------------
-from analysis.charts.candlestick 	import candle_plot
-from analysis.charts.volume 		import volume_plot
-from analysis.charts.macd 			import macd_plot
-from analysis.charts.rsi 			import rsi_plot
-from analysis.charts.stoch 			import stoch_plot
-from analysis.charts.vpm 			import vpm_plot, vpm_cols
-# from analysis.charts.roc									# TODO - not sure what this one is ROb - investigate and add in - i think it might be a primary chart
+from charts.candlestick 	import candle_plot
+from charts.volume 		import volume_plot
+from charts.macd 			import macd_plot
+from charts.rsi 			import rsi_plot
+from charts.stoch 			import stoch_plot
+from charts.vpm 			import vpm_plot, vpm_cols
+# from charts.roc									# TODO - not sure what this one is ROb - investigate and add in - i think it might be a primary chart
 
 # Secondary Charts -----------------------------------
-from analysis.charts.macd 			import macd_plot, macd_cols
-from analysis.charts.rsi 			import rsi_plot, rsi_cols
+from charts.macd 			import macd_plot, macd_cols
+from charts.rsi 			import rsi_plot, rsi_cols
 # from analysis.charts.				# Volume Oscillator					# TODO
-from analysis.charts.stoch 			import stoch_plot, stoch_cols
+from charts.stoch 			import stoch_plot, stoch_cols
 
 # Overlays -------------------------------------------
-from analysis.charts.overlays.sma 	import sma_cols, sma_plot
-from analysis.charts.overlays.ema 	import ema_cols, ema_plot
+from charts.overlays.sma 	import sma_cols, sma_plot
+from charts.overlays.ema 	import ema_cols, ema_plot
 
 
 
@@ -66,9 +66,6 @@ shift_up 		= 'shift_up'			# Bollinger Bands
 shift_down 		= 'shift_down'			# Bollinger Bands
 m_a_type 		= 'm_a_type'			# Bollinger Bands
 
-
-# '$,.2f'
-# ',.'
 
 chart_schema = {
 		# Primary Charts -------------------------------------------------------------------------------------------------------------------------------------------------------------------------

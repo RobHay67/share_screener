@@ -2,8 +2,8 @@
 import streamlit as st
 
 from scope.user.view import view_user
-from analysis.charts.views.primary import view_primary
-from analysis.charts.views.secondary import view_secondary
+from charts.views.primary import view_primary
+from charts.views.secondary import view_secondary
 from scope.pages.view import view_pages
 from scope.strategy.view import view_strategy
 

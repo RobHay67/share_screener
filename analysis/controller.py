@@ -6,8 +6,8 @@ from ticker.loaders.multi_loader import multi_loader
 from analysis.volume.controller import volume_prediction
 from analysis.research.controller import view_research_page
 
-from analysis.charts.chart_df import create_chart_df
-from analysis.charts.controller import render_selected_charts
+from charts.model.chart_df import create_chart_df
+from charts.controller.controller import render_selected_charts
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Single Ticker Analysis
@@ -20,13 +20,7 @@ def single_ticker_analysis(scope):			# TODO - these should be renamed to single_
 	ticker = scope.selected['single']['ticker_list'][0]
 	
 	if ticker in list(scope.ticker_data_files.keys()):
-		scope.rebuild_chart_df = True								# TODO remove after the builder works
-
-		if scope.rebuild_chart_df: 
-			create_chart_df(scope, ticker)							# TODO - add the cache to this as a screen change may warrant a refresh - ie we are looking at NAB in another screen
-		else:
-			print( '\033[91mNot Rebuilding the chart_df\033[0m')
-
+		create_chart_df(scope, ticker)	
 		render_selected_charts(scope, ticker)
 		
 

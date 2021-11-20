@@ -1,14 +1,12 @@
+import streamlit as st
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-
-
-from analysis.charts.helpers.main_plot import create_plotly_schema, create_main_plot, format_main_plot
-from analysis.charts.helpers.sub_plot import add_subplot
+from charts.helpers.main_plot import create_plotly_schema, create_main_plot, format_main_plot
+from charts.helpers.sub_plot import add_subplot
 
 
 
-import streamlit as st
 
 
 def render_selected_charts(scope, ticker):
