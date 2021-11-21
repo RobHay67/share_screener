@@ -1,5 +1,5 @@
 import numpy as np
-
+import plotly.graph_objects as go
 
 
 
@@ -15,22 +15,28 @@ def stoch_cols(scope, chart_df, chart):
 	# https://school.stockcharts.com/doku.php?id=technical_indicators:stochastic_oscillator_fast_slow_and_full
 
 
-	lookback_days	= scope.charts[chart]['params']['lookback_days']   # lookback days
-	signal 			= scope.charts[chart]['params']['signal']
-	slow_k 			= scope.charts[chart]['params']['slow']
+	lookback_days	= scope.charts[chart]['data_cols']['lookback_days']   # lookback days
+	signal 			= scope.charts[chart]['data_cols']['signal']
+	slow_k 			= scope.charts[chart]['data_cols']['slow']
 
 	chart_df['highest_high'] 	= chart_df['high'].rolling(window=lookback_days).max()
 	chart_df['lowest_low'] 		= chart_df['low'].rolling(window=lookback_days).min()
 	chart_df['stoch_fast_K'] 	= ( ( (chart_df['close'] - chart_df['lowest_low']) / (chart_df['highest_high'] - chart_df['lowest_low']) ) * 100 )
-	print(chart_df)
+	# print(chart_df)
 	
 	chart_df['stoch_fast_D'] 	= chart_df['stoch_fast_K'].rolling(window=3).mean()
 	chart_df['stoch_slow_K'] 	= chart_df['stoch_fast_K'].rolling(window=slow_k).mean()							# ANZ - stoch_length = 14    (black)
 	chart_df['stoch_slow_D'] 	= chart_df['stoch_slow_K'].rolling(window=signal).mean()							# ANZ - signal_length = 3    (red)    utilises the signal
 
+	chart_df['stoch_slow_K'] = chart_df['stoch_slow_K'] / 100
+	chart_df['stoch_slow_D'] = chart_df['stoch_slow_D'] / 100
+
+	chart_df['stoch_overbuy'] 	= 0.8
+	chart_df['stoch_oversold'] 	= 0.2
+
 	chart_df['above_or_below'] 	= np.where( chart_df['stoch_slow_K'] > chart_df['stoch_slow_D'], 1, 0 )			# Above or Below    1 = slow_k is above Signal line. 0 = the slow_k is below the signal line
-	chart_df['stoch_x'] 			= chart_df['above_or_below'].diff().fillna(0).astype(int)						# Point of Change   1 = cross in up direction and -1 cross down
-	chart_df['stoch_x'] 			= np.where( ( chart_df['stoch_x'] == +1), 'x_up',
+	chart_df['stoch_x'] 		= chart_df['above_or_below'].diff().fillna(0).astype(int)						# Point of Change   1 = cross in up direction and -1 cross down
+	chart_df['stoch_x'] 		= np.where( ( chart_df['stoch_x'] == +1), 'x_up',
 								  np.where( ( chart_df['stoch_x'] == -1), 'x_dn', '--') )
 	# chart_df['stoch_trend'] 	= np.where( chart_df['stoch_slow_K'] > chart_df['stoch_slow_D'].shift(1), '/', '\\' )
 	chart_df['stoch_zone']		=   np.where( ( chart_df['stoch_slow_K'] > 80), 'sell', 
@@ -44,28 +50,41 @@ def stoch_cols(scope, chart_df, chart):
 	
 
 
-def stoch_plot():
-	print ('Stoch Plot')
+def stoch_plot(scope, fig, chart, chart_df, row_no, col_no):
+	# Stochastic Line
+	fig.add_trace( go.Scatter(
+								x		= chart_df['date'],
+								y		= chart_df['stoch_slow_K'],
+								line	= dict(color='black', width=2),
+								), 
+					row=row_no, 
+					col=col_no,
+					)	
+	# Signal Line
+	fig.add_trace( go.Scatter(
+								x		= chart_df['date'],
+								y		= chart_df['stoch_slow_D'],
+								line	= dict(color='red', width=2),
+								), 
+					row=row_no, 
+					col=col_no,
+					)
+	# Over Brought Line
+	fig.add_trace( go.Scatter(
+								x		= chart_df['date'],
+								y		= chart_df['stoch_overbuy'],
+								line	= dict(color='red', width=2, dash="dot"),
+								), 
+					row=row_no, 
+					col=col_no,
+					)
+	# Over Sold Line
+	fig.add_trace( go.Scatter(
+								x		= chart_df['date'],
+								y		= chart_df['stoch_oversold'],
+								line	= dict(color='blue', width=2, dash="dot"),
+								), 
+					row=row_no, 
+					col=col_no,
+					)
 
-
-
-# Copied from the Finance Tutorial
-
-
-# stoch = StochasticOscillator(high=share_data['high'],
-# 							close=share_data['close'],
-# 							low=share_data['low'],
-# 							window=14, 
-# 							smooth_window=3)
-
-# # Plot STOCHASTIC trace on 4th row
-# fig.add_trace(go.Scatter(
-# 						x=share_data.index,
-# 						y=stoch.stoch(),
-# 						line=dict(color='black', width=2)
-# 						), row=4, col=1)									# chart 4 please
-# fig.add_trace(go.Scatter(
-# 						x=share_data.index,
-# 						y=stoch.stoch_signal(),
-# 						line=dict(color='blue', width=1)
-# 						), row=4, col=1)

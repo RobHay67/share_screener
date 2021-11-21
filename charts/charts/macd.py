@@ -31,11 +31,9 @@ def macd_cols(scope, chart_df, chart):
 
 	chart_df.drop(['above_or_below'], axis=1, inplace=True)
 	
-
-
 def macd_plot(scope, fig, chart, chart_df, row_no, col_no):
 
-	print(chart_df[['date', 'macd_short', 'macd_long', 'macd_col', 'macd_signal', 'macd_histogram' ]].tail(10))
+	# print(chart_df[['date', 'macd_short', 'macd_long', 'macd_col', 'macd_signal', 'macd_histogram' ]].tail(10))
 
 	histogram_colours = ['green' if row['macd_histogram'] >=0 else 'red' for index, row in chart_df.iterrows()]
 
@@ -68,6 +66,11 @@ def macd_plot(scope, fig, chart, chart_df, row_no, col_no):
 					row=row_no, 
 					col=col_no,
 					)
+
+
+
+
+
 
 
 

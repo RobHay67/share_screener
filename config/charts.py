@@ -76,13 +76,13 @@ chart_schema = {
 		'line'				: { active:False, name:'Line charts'		, overlay:False	, plot:{ function:None			, title:''			, height:2, yaxis:'$,.2f' 	}, 	data_cols:None, },
 		'heiken_ashi'		: { active:False, name:'Heikin Ashi'		, overlay:False	, plot:{ function:None			, title:''			, height:2, yaxis:'$,.2f' 	}, 	data_cols:None, },
 		# Secondary Charts -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-		'volume'			: { active:False , name:'Volume'			, overlay:False	, plot:{ function:volume_plot	, title:'Volume'	, height:1, yaxis:',.' 		}, 	data_cols:None, },
+		'volume'			: { active:True , name:'Volume'			, overlay:False	, plot:{ function:volume_plot	, title:'Volume'	, height:1, yaxis:',.' 		}, 	data_cols:None, },
 		'vol_per_minute'	: { active:False, name:'Volume Per Minute'	, overlay:False	, plot:{ function:vpm_plot		, title:''			, height:1, yaxis:',.' 		}, 	data_cols:None, },  # TODO is this a chart or on overlay - maybe just to the volume chart - I dont know
 		'vac'				: { active:False, name:'VAC'				, overlay:False	, plot:{ function:None			, title:''			, height:1, yaxis:',.' 		}, 	data_cols:None, },
 		'macd'				: { active:True , name:'MACD'				, overlay:False	, plot:{ function:macd_plot		, title:'MACD'		, height:1, yaxis:',.' 		}, 	data_cols:{ function:macd_cols, column:'close', long:26, short:12, signal:9 } },
-		'rsi'				: { active:False , name:'RSI'				, overlay:False	, plot:{ function:rsi_plot		, title:''			, height:1, yaxis:'$,.2f' 	}, 	data_cols:{ function:rsi_cols, column:'close', periods:10, }, },
+		'rsi'				: { active:True , name:'RSI'				, overlay:False	, plot:{ function:rsi_plot, title:'RSI'			, height:1, yaxis:'.2%' 	}, 	data_cols:{ function:rsi_cols, column:'close', periods:10, }, },
 		'vol_osssy'			: { active:False, name:'Volume Oscillator'	, overlay:False , plot:{ function:None 			, title:''			, height:1, yaxis:'$,.2f' 	}, 	data_cols:{ function:None	 , column:'volume', fast:14, slow:21 } },
-		'stochastic'		: { active:False , name:'Stochastic'		, overlay:False , plot:{ function:stoch_plot	, title:'Stochastic', height:1, yaxis:'$,.2f' 	}, 	data_cols:{ function:stoch_cols	, lookback_days:14, slow:3, signal:3 } },
+		'stochastic'		: { active:True , name:'Stochastic'		, overlay:False , plot:{ function:stoch_plot	, title:'Stochastic', height:1, yaxis:'.2%' 	}, 	data_cols:{ function:stoch_cols	, lookback_days:14, slow:3, signal:3 } },
 		# Overlays ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		'sma_1' 			: { active:False, name:'SMA-1'				, overlay:True	, plot:{ function:sma_plot, colour:'blue' 		}, 									data_cols:{ function:sma_cols, column:'close', periods:21 	} },
 		'sma_2' 			: { active:False, name:'SMA-2'				, overlay:True	, plot:{ function:sma_plot, colour:'yellow'		}, 									data_cols:{ function:sma_cols, column:'close', periods:50 	} },
@@ -109,9 +109,9 @@ chart_schema = {
 # vol_per_minute	scope
 # vac
 # macd				DONE
-# rsi
+# rsi				wip
 # vol_osssy
-# stochastic
+# stochastic		DONE
 # sma_1				DONE
 # sma_2				DONE
 # sma_3				DONE
