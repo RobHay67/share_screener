@@ -29,14 +29,6 @@ def analysis_params(params):
 	params.analysis['check_dates'] = True
 
 	# Market Variables
-	# params.analysis['market'] = args.share_market
-	# params.analysis['entire_market'] = args.analyse_entire_market
-	# params.analysis['industry_group'] = args.analyse_industry_group
-	# params.analysis['specified_share_codes'] = args.analyse_specified_share_codes
-	
-	# TICKER LIST - primary iterator
-	# TODO
-	# construct_list_of_ticker_codes(params)
 
 	# set trading variables
 	# params.analysis['trade_value'] = args.analysis_trade_value

@@ -9,6 +9,8 @@ from analysis.research.controller import view_research_page
 from charts.model.chart_df import create_chart_df
 from charts.controller.controller import view_charts
 
+from analysis.multi.criteria import view_multi_criteria
+
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Single Ticker Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -87,6 +89,8 @@ def multi_tickers_analysis(scope):
 	st.header('Analysis - Multiple Tickers')
 
 	multi_loader(scope)
+
+	view_multi_criteria(scope)
 
 	st.info('I expect the output of any analysis is going to be a list of stocks for further analysis')
 

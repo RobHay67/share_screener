@@ -7,22 +7,18 @@ def add_subplot(scope, fig, chart_df, plotly_schema):
 		row_no = chart_no+1 
 		col_no = plotly_schema['col_no']
 
-		print( 'Chart =  ', chart, 'Row = ', row_no, ' Col_no = ', col_no)
+		# print( 'Chart =  ', chart, 'Row = ', row_no, ' Col_no = ', col_no)
 
-		scope.charts[chart]['plot']['function'](scope, fig, chart, chart_df, row_no, col_no)	# add sub_plot			# TODO - uncomment after testing
-
-		# For Testing Purposes only
-		# from charts.charts.candlestick import candle_plot																# TODO - REMOVE AFTER TESTING
-		# from charts.charts.macd import macd_plot																		# TODO - REMOVE AFTER TESTING
-		# candle_plot(scope, fig, chart, chart_df, row_no, 1)															# TODO - REMOVE AFTER TESTING
-		# macd_plot(scope, fig, chart, chart_df, row_no, col_no)														# TODO - REMOVE AFTER TESTING
-
+		scope.charts[chart]['plot']['function'](scope, fig, chart, chart_df, row_no, col_no)	# add sub_plot
 		fig = format_sub_plot(scope, fig, chart, row_no, 1 )
 		
-		# for overlay in plotly_schema['requested_overlays']:															# TODO - uncomment after testing
-		# 	scope.charts[overlay]['plot']['function'](scope, fig, overlay, chart_df, row_no, col_no)					# TODO - uncomment after testing
+		if scope.charts[chart]['apply_overlay'] == True:										# only apply overlays to relevant charts
+			for overlay in plotly_schema['requested_overlays']:
+				scope.charts[overlay]['plot']['function'](scope, fig, overlay, chart_df, row_no, col_no)
 
 	return fig
+
+
 
 def format_sub_plot(scope, fig, chart, row_no, col_no):
 
@@ -39,7 +35,7 @@ def format_sub_plot(scope, fig, chart, row_no, col_no):
 					side 		= 'left',
 					row			= row_no, 
 					col			= col_no,
-					showgrid	= True,				# Horizontal Lines
+					showgrid	= False,				# Horizontal Lines
 					)
 
 	return fig

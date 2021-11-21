@@ -35,13 +35,13 @@ def macd_plot(scope, fig, chart, chart_df, row_no, col_no):
 
 	# print(chart_df[['date', 'macd_short', 'macd_long', 'macd_col', 'macd_signal', 'macd_histogram' ]].tail(10))
 
-	histogram_colours = ['green' if row['macd_histogram'] >=0 else 'red' for index, row in chart_df.iterrows()]
+	histogram_colours = ['seagreen' if row['macd_histogram'] >=0 else 'sienna' for index, row in chart_df.iterrows()]
 
 	# MACD (diff) Line
 	fig.add_trace( go.Scatter(
 								x		= chart_df['date'],
 								y		= chart_df['macd_col'],
-								line	= dict(color='black', width=2),
+								line	= dict(color='blue', width=2),
 								), 
 					row=row_no, 
 					col=col_no,

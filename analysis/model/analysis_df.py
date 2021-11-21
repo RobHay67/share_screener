@@ -22,9 +22,9 @@ def establish_analysis_df(scope, ticker, no_of_loaded_rows):
 @st.cache
 def create_analysis_df(scope, ticker, analysis_row_limit, no_of_loaded_rows ):
 	print ( '\033[91m' + ticker + ' > create_analysis_df has been called \033[0m')
-	print ( 'Ticker        = ', ticker)
-	print ( 'Analysis Rows = ', analysis_row_limit)
-	print ( 'Loaded   Rows = ', no_of_loaded_rows)
+	# print ( 'Ticker        = ', ticker)
+	# print ( 'Analysis Rows = ', analysis_row_limit)
+	# print ( 'Loaded   Rows = ', no_of_loaded_rows)
 	
 
 	share_data = scope.ticker_data_files[ticker].copy()

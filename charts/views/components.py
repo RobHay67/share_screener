@@ -74,12 +74,23 @@ def render_macd(scope):
 	edit_number(scope, chart, 'signal' )
 	st.markdown("""---""")
 
+def render_macd_vol(scope):
+	st.markdown('##### Moving Average, Convergence, Divergence (MACD) - Volume Only')
+	chart = 'macd_vol'
+	edit_active(scope, chart)
+	st.write('Column for MACD')
+	st.write('Volume')
+	edit_number(scope, chart, 'long' )
+	edit_number(scope, chart, 'short' )
+	edit_number(scope, chart, 'signal' )
+	st.markdown("""---""")
+
 def render_rsi(scope):
 	st.markdown('##### Relative Strength Index (RSI)')
 	chart = 'rsi'
 	edit_active(scope, chart)
 	edit_ohlcv(scope, chart )
-	edit_number(scope, chart, 'periods' )
+	edit_number(scope, chart, 'lookback_days' )
 	st.markdown("""---""")
 
 def render_stochastic(scope):

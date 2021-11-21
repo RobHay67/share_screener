@@ -1,44 +1,89 @@
 
 
+from numpy.lib.shape_base import column_stack
 import streamlit as st
-from plotly.subplots import make_subplots
+import plotly.graph_objects as go
+
+
+# from analysis.charts.options import render_chart_options
+
+# line_cols - No Additional Columns are required to render the Line Chart
+def line_cols(scope, chart_df, chart):
+	column 			= scope.charts[chart]['data_cols']['column']
+
+	chart_df['rsi'] = chart_df[column]
 
 
 
-from analysis.charts.options import render_chart_options
+def line_plot(scope, fig, chart, chart_df, row_no, col_no):
 
-
-# -------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Line Chart
-# -------------------------------------------------------------------------------------------------------------------------------------------------------------
-def plot_line_chart(share_data):
-	st.markdown('##### Line Chart')
-
-	# show = render_radio_options(33)
-	show = render_chart_options(33, show_col_checkboxes=True)
-
-	if show['volume'] == 'Show': show['columns']['volume'] = 'LightSkyBlue'
-
-	fig = make_subplots(specs=[[{"secondary_y": True}]])
-
-	x_data = share_data['date']
-	for col_name, col_colour in show['columns'].items():
-		if col_name != 'volume'	: plot_type, secondary = go.Scatter	, True
-		else					: plot_type, secondary = go.Bar		, False
-
-		fig.add_trace(plot_type(
-									x = x_data,
-									y 		= share_data[col_name],
-									name	= col_name,
-									marker_color = col_colour,
-								), secondary_y=secondary)
+	# column 	= scope.charts[chart]['data_cols']['column']
+	colors = ['yellow', 'green', 'red', 'blue']
+	#         open        high    low    close
+	columns = scope.dropdown_price_columns
 	
-	if show['weekends'] == 'Hide':
-		fig.update_xaxes(rangebreaks=[{ 'pattern': 'day of week', 'bounds': [6, 1]}])
+	for pos, column in enumerate(columns):
+		# print(column)
 
-	fig.update_layout(height=800)
+		fig.add_trace( go.Scatter(
+								x		= chart_df['date'],
+								y		= chart_df[column],
+								name 	= column,
+								visible = True,
+								line	= dict(color=colors[pos], width=2),
+								), 
+					row=row_no, 
+					col=col_no,
+					)	
+		
 
-	st.plotly_chart(fig, use_container_width=True)
+		# The below was adding buttons - but not correctly
+		# um = [ {} for _ in range(len(columns)) ]
+		# buttons = []
+		# menuadjustment = 0.15
+
+		# buttonX = -0.1
+		# buttonY = 1 + menuadjustment
+		# for i, col in enumerate(columns):
+		# 	button = dict(method='restyle',
+		# 				label=col,
+		# 				visible=True,
+		# 				args=[{'visible':True,
+		# 						'line.color' : colors[i]}, [i]],
+		# 				args2 = [{'visible': False,
+		# 							'line.color' : colors[i]}, [i]],
+		# 				)
+			
+		# 	# adjust some button features
+		# 	buttonY = buttonY-menuadjustment
+		# 	um[i]['buttons'] = [button]
+		# 	um[i]['showactive'] = False
+		# 	um[i]['y'] = buttonY
+		# 	um[i]['x'] = buttonX
+
+		# # add a button to toggle all traces on and off
+		# button2 = dict(method='restyle',
+		# 			label='All',
+		# 			visible=True,
+		# 			args=[{'visible':True}],
+		# 			args2 = [{'visible': False}],
+		# 			)
+		# # assign button2 to an updatemenu and make some adjustments
+		# um.append(dict())
+		# um[i+1]['buttons'] = [button2]
+		# um[i+1]['showactive'] = True
+		# um[i+1]['y']=buttonY - menuadjustment
+		# um[i+1]['x'] = buttonX
+			
+		# # add dropdown menus to the figure
+		# fig.update_layout(showlegend=True, updatemenus=um)
+
+		# # adjust button type
+		# for m in fig.layout.updatemenus:
+		# 	m['type'] = 'buttons'
+
+		# # f = fig.full_figure_for_development(warn=False)
+		# # fig.show()
 
 
 
@@ -46,27 +91,53 @@ def plot_line_chart(share_data):
 
 
 
+# # create figure
+# fig = go.Figure()
 
+# # Add surface trace
+# fig.add_trace(go.Surface(z=df.values.tolist(), colorscale="Viridis"))
 
-def old_plot_basic_chart(scope):
-	import plotly.graph_objects as go
-	st.markdown('##### Chart of all available data') 
+# # Update plot sizing
+# fig.update_layout(
+#     width=800,
+#     height=900,
+#     autosize=False,
+#     margin=dict(t=0, b=0, l=0, r=0),
+#     template="plotly_white",
+# )
 
-	ticker = scope.selected['research']['ticker_list'][0]
+# # Update 3D scene options
+# fig.update_scenes(
+#     aspectratio=dict(x=1, y=1, z=0.7),
+#     aspectmode="manual"
+# )
 
-	if ticker in list(scope.ticker_data_files.keys()):
-		share_data = scope.ticker_data_files[ticker]
-		fig = go.Figure(
-				data=go.Scatter(x=share_data['date'], y=share_data['close'])
-			)
-		fig.update_layout(
-			title={
-				'text': "Stock Prices Over Past ??????? Years",
-				'y':0.9,
-				'x':0.5,
-				'xanchor': 'center',
-				'yanchor': 'top'})
-		st.plotly_chart(fig, use_container_width=True)
-		st.warning('ROB to change chart to candlestick and maybe add a widget for the date range')
-	else:
-		st.error('Load and/or Download Share Data to see the chart')
+# # Add dropdown
+# fig.update_layout(
+#     updatemenus=[
+#         dict(
+#             type = "buttons",
+#             direction = "left",
+#             buttons = list([ 
+# 							dict(args=["type", "surface"],label="3D Surface", method="restyle"),
+#                 			dict(args=["type", "heatmap"],label="Heatmap"   , method="restyle")
+#             			]),
+#             pad={"r": 10, "t": 10},
+#             showactive=True,
+#             x=0.11,
+#             xanchor="left",
+#             y=1.1,
+#             yanchor="top"
+#         ),
+#     ]
+# )
+
+# # Add annotation
+# fig.update_layout(
+#     annotations=[
+#         dict(text="Trace type:", showarrow=False,
+#                              x=0, y=1.08, yref="paper", align="left")
+#     ]
+# )
+
+# fig.show()

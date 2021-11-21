@@ -18,14 +18,14 @@ def create_plotly_schema(scope):
 
 	# Based on the User Selections - construct lists and variables of objects that need rendering
 	for chart in scope.charts.keys():
-		if scope.charts[chart]['active'] == True and scope.charts[chart]['overlay'] == False: 			# Charts - Selected (active) and IS NOT an overlay
+		if scope.charts[chart]['active'] == True and scope.charts[chart]['is_overlay'] == False: 			# Charts - Selected (active) and IS NOT an overlay
 			plotly_schema['no_of_charts'] = plotly_schema['no_of_charts'] + 1
-			plotly_schema['chart_heights'].append(scope.charts[chart]['plot']['height'])
+			plotly_schema['chart_heights'].append(scope.charts[chart]['plot']['scale'])
 			plotly_schema['requested_charts'].append(chart)
-		elif  scope.charts[chart]['active'] == True and scope.charts[chart]['overlay'] == True:			# Overlays - Selected (active) and IS an overlay
+		elif  scope.charts[chart]['active'] == True and scope.charts[chart]['is_overlay'] == True:			# Overlays - Selected (active) and IS an overlay
 			plotly_schema['requested_overlays'].append(chart)	
 
-	plotly_schema = make_chart_heights_proportional(plotly_schema)
+	plotly_schema = make_chart_heights_proportional(scope, plotly_schema)
 
 	return plotly_schema
 
@@ -52,9 +52,9 @@ def format_main_plot(scope, fig, ticker):
 								'xanchor'	: 'center',
 								'yanchor'	: 'top'
 								},
-						height=scope.primary_chart_height, 
+						height = scope.charts_total_height,
 						# width=1200, 
-						# showlegend=False, 
+						showlegend=False, 							# Not Possible to have individual legends per subplot
 						xaxis_rangeslider_visible=False,
 						margin=go.layout.Margin(l=20, r=20, b=20, t=35),
 						
@@ -87,11 +87,12 @@ def format_main_plot(scope, fig, ticker):
 # Chart Helpers
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def make_chart_heights_proportional(plotly_schema):
-	relative_total = sum(plotly_schema['chart_heights'])
-	for pos, relative_height in enumerate(plotly_schema['chart_heights']):
-		proportional_height = relative_height / relative_total
-		plotly_schema['chart_heights'][pos] = proportional_height
+def make_chart_heights_proportional(scope, plotly_schema):
+	for pos, percentage_height in enumerate(plotly_schema['chart_heights']):
+		chart_pixel_height = scope.primary_chart_height * percentage_height
+		plotly_schema['chart_heights'][pos] = chart_pixel_height
+
+	scope.charts_total_height = sum(plotly_schema['chart_heights'])
 	return plotly_schema
 
 
@@ -135,3 +136,10 @@ def make_chart_heights_proportional(plotly_schema):
 # 	fig.update_xaxes(rangebreaks=[dict(values=dt_breaks)])
 # 	fig.update_layout(xaxis_rangebreaks=[dict(values=dt_breaks)])						# Removes anny dates without data - but i need to test this
 # 	return fig
+
+
+# for the relative column size
+# relative_total = sum(plotly_schema['chart_heights'])
+# for pos, relative_height in enumerate(plotly_schema['chart_heights']):
+# 	proportional_height = relative_height / relative_total
+# 	plotly_schema['chart_heights'][pos] = proportional_height
