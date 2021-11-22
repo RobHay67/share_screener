@@ -5,7 +5,8 @@ from ticker.loaders.multi_loader import multi_loader
 
 # from analysis.volume.controller import volume_prediction				# TODO is the name too long
 st.write( 'right before trying to load volume_predict')
-from analysis.volume.control import volume_predict				# TODO is the name too long
+# from analysis.volume.control import volume_predict				# TODO is the name too long
+from analysis.volume import volume_predict
 st.write( 'just loaded volume_predict')
 # from index.download.controller import download_new_ticker_data		# This was too long
 # from index.download.update import update_index_with_downloaded_data 	# This was also too long
