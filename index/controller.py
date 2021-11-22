@@ -5,8 +5,8 @@ import streamlit as st
 
 
 
-from index.download.update import update_index_with_downloaded_data
-
+# from index.download.update import update_index_with_downloaded_data
+from index.update import update_index_with_downloaded_data
 
 
 def download_new_ticker_data(scope):
