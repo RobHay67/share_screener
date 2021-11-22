@@ -6,7 +6,7 @@ import streamlit as st
 
 
 # from index.download.update import update_index_with_downloaded_data
-from index.update import update_index_with_downloaded_data
+from index.update import update_index
 
 
 def download_new_ticker_data(scope):
@@ -39,7 +39,7 @@ def download_new_ticker_data(scope):
 		downloaded_ticker_info['industry_group'] = downloaded_ticker_info['industry_group'].str.lower()
 
 		st.success('number of downloaded ' + scope.share_market + ' ticker codes = ' + str(len(downloaded_ticker_info)))
-		update_index_with_downloaded_data(scope, downloaded_ticker_info )
+		update_index(scope, downloaded_ticker_info )
 		scope.dropdown_lists_need_updating = True
 	else:
 		st.error('DOWNLOAD Ticker data NOT YET CONFIGURED FOR ' + scope.share_market)

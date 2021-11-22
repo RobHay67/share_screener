@@ -13,7 +13,7 @@ from index.times import trading_minutes
 from index.schema import schema
 
 
-def update_index_with_downloaded_data(scope, downloaded_ticker_info ):
+def update_index(scope, downloaded_ticker_info ):
 	st.info( 'Updating the records in the Ticker Index file ')
 
 	add_records_counter = 0
