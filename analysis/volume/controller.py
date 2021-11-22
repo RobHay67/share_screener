@@ -9,7 +9,7 @@ from analysis.volume.times import view_local_vs_market_time
 
 from analysis.volume.view import prediction
 
-def volume_prediction(scope):
+def volume_predict(scope):
 	ticker = scope.selected['volume']['ticker_list'][0]
 
 	local_time=datetime.now()											# Current local time
