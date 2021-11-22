@@ -4,7 +4,7 @@ from ticker.loaders.single_loader import single_loader
 from ticker.loaders.multi_loader import multi_loader
 
 # from analysis.volume.controller import volume_prediction				# TODO is the name too long
-from analysis.volume.controller import volume_predict				# TODO is the name too long
+from analysis.volume.control import volume_predict				# TODO is the name too long
 # from index.download.controller import download_new_ticker_data		# This was too long
 # from index.download.update import update_index_with_downloaded_data 	# This was also too long
 from analysis.research.controller import view_research_page
@@ -68,7 +68,7 @@ def volume_analysis(scope):
 	ticker = scope.selected['volume']['ticker_list'][0]
 
 	if ticker != 'select a ticker':	
-		volume_prediction(scope)
+		volume_predict(scope)
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Company Research
