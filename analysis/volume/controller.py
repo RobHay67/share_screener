@@ -5,9 +5,8 @@ import pytz
 
 from config.markets import opening_hours
 
-from analysis.volume.times import view_local_vs_market_time
-
-from analysis.volume.view import prediction
+from analysis.views.times import view_local_vs_market_time
+from analysis.views.volume import prediction
 
 def volume_prediction(scope):
 	ticker = scope.selected['volume']['ticker_list'][0]

@@ -15,9 +15,7 @@ from scope.project.view import view_project
 from scope.app.view import view_app
 from scope.folders.view import view_folders
 
-# from index.download.controller import download_new_ticker_data
-# from index.download.controller import download_new_ticker_data
-from index.controller import download_new_ticker_data
+from index.download.downloader import new_ticker_data
 from index.view import view_index, view_industries
 from ticker.views.all_tickers import view_all_loaded_ticker_files
 
@@ -39,7 +37,7 @@ def render_selected_scope_page(scope):
 			'view_app'				:view_app,
 			'view_folders'			:view_folders,
 			# Column 4
-			'import_tickers'		:download_new_ticker_data,
+			'import_tickers'		:new_ticker_data,
 			'view_ticker_index'		:view_index,
 			'view_industries'		:view_industries,
 			# Column 5			
