@@ -1,11 +1,11 @@
 import streamlit as st
 
 from ticker.downloader.y_finance import fetch_yfinance_metadata
-from analysis.research.company_general import company_general
-from analysis.research.dividends import dividends
-from analysis.research.fundamental import fundamental
-from analysis.research.general import general
-from analysis.research.market_info import market_info
+from analysis.views.research.company_general import company_general
+from analysis.views.research.dividends import dividends
+from analysis.views.research.fundamental import fundamental
+from analysis.views.research.general import general
+from analysis.views.research.market_info import market_info
 
 
 

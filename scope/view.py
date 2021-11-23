@@ -15,7 +15,7 @@ from scope.project.view import view_project
 from scope.app.view import view_app
 from scope.folders.view import view_folders
 
-from index.download.downloader import new_ticker_data
+from index.downloader import new_ticker_data
 from index.view import view_index, view_industries
 from ticker.views.all_tickers import view_all_loaded_ticker_files
 

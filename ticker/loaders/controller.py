@@ -1,7 +1,7 @@
 import os
 
 from results.view import results
-from ticker.helpers.path import generate_path_for_share_data_file
+from ticker.path import generate_path_for_share_data_file
 from ticker.loaders.load import load_a_ticker
 
 

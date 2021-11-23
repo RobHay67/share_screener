@@ -3,7 +3,7 @@ import streamlit as st
 from results.view import results
 from ticker.save import save_tickers
 
-from ticker.schema import ticker_file_usecols
+from config.ticker import ticker_file_usecols
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------

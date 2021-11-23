@@ -7,9 +7,9 @@ import streamlit as st
 from results.view import results
 from index.save import save_index
 
-from ticker.schema import ticker_file_schema, ticker_file_usecols
+from config.ticker import ticker_file_schema, ticker_file_usecols
 
-from ticker.schema import y_finance_schemas
+from config.ticker import y_finance_schemas
 # ==============================================================================================================================================================
 #
 # Yahoo Finance 

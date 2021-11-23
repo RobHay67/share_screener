@@ -3,13 +3,13 @@ import streamlit as st
 from ticker.loaders.single_loader import single_loader
 from ticker.loaders.multi_loader import multi_loader
 
-from analysis.volume.controller import volume_prediction
-from analysis.research.controller import view_research_page
+from analysis.volume import volume_prediction
+from analysis.research import view_research_page
 
 from charts.model.chart_df import create_chart_df
-from charts.controller.controller import view_charts
+from charts.controller import view_charts
 
-from analysis.multi.criteria import view_multi_criteria
+from analysis.views.multi_analysis import view_multi_criteria
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Single Ticker Analysis

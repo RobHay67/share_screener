@@ -2,8 +2,8 @@ import streamlit as st
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-from charts.controller.main_plot import create_plotly_schema, create_main_plot, format_main_plot
-from charts.controller.sub_plot import add_subplot
+from charts.main_plot import create_plotly_schema, create_main_plot, format_main_plot
+from charts.sub_plot import add_subplot
 
 
 
