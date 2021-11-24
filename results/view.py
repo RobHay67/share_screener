@@ -9,12 +9,12 @@ def results(scope, output=None, result=None, final_print=False, passed='', passe
 
 	if output == None:
 		# this is the initial run so set all the counts to zero
-		scope.results['passed']=passed
-		scope.results['passed_2']=passed_2
-		scope.results['failed']=failed
-		scope.results['passed_count'] = 0
+		scope.results['passed']			= passed
+		scope.results['passed_2']		= passed_2
+		scope.results['failed']			= failed
+		scope.results['passed_count'] 	= 0
 		scope.results['passed_2_count'] = 0
-		scope.results['failed_count'] = 0
+		scope.results['failed_count'] 	= 0
 
 	# Store the results
 	if result=='passed':
@@ -32,9 +32,9 @@ def results(scope, output=None, result=None, final_print=False, passed='', passe
 		scope.results['passed_2'] = scope.results['passed_2'] + ' < ( ' + str(scope.results['passed_2_count']) + ' )'
 		scope.results['failed']   = scope.results['failed']   + ' < ( ' + str(scope.results['failed_count']) + ' )'
 
-		if scope.results['passed_count'] > 0: st.info(scope.results['passed'])
-		if scope.results['passed_2_count'] > 0: st.warning(scope.results['passed_2'])
-		if scope.results['failed_count'] > 0: st.error(scope.results['failed'])
+		# if scope.results['passed_count'] > 0: st.info(scope.results['passed'])
+		# if scope.results['passed_2_count'] > 0: st.warning(scope.results['passed_2'])
+		# if scope.results['failed_count'] > 0: st.error(scope.results['failed'])
 
 
 

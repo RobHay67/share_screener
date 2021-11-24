@@ -1,12 +1,12 @@
 import streamlit as st
 
-from ticker.loaders.single_loader import single_loader
-from ticker.loaders.multi_loader import multi_loader
+from ticker.views.single_loader import single_loader
+from ticker.views.multi_loader import multi_loader
 
 from analysis.volume import volume_prediction
 from analysis.research import view_research_page
 
-from charts.model.chart_df import create_chart_df
+# from charts.model.chart_df import create_chart_df
 from charts.controller import view_charts
 
 from analysis.views.multi_analysis import view_multi_criteria
@@ -14,15 +14,15 @@ from analysis.views.multi_analysis import view_multi_criteria
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Single Ticker Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def single_ticker_analysis(scope):			# TODO - these should be renamed to single_ticker_analysis
+def single_ticker_analysis(scope):
 	st.header('Single Ticker Analysis')
 	single_loader(scope, 'single')
 	st.markdown("""---""")
 	
-	ticker = scope.selected['single']['ticker_list'][0]
+	ticker = scope.pages['single']['ticker_list'][0]
 	
 	if ticker in list(scope.ticker_data_files.keys()):
-		create_chart_df(scope, ticker)	
+		# create_chart_df(scope, ticker)	
 		view_charts(scope, ticker)
 		
 
@@ -35,7 +35,7 @@ def intraday_analysis(scope):
 	single_loader(scope, 'intraday')
 	st.markdown("""---""")
 
-	ticker = scope.selected['intraday']['ticker_list'][0]
+	ticker = scope.pages['intraday']['ticker_list'][0]
 
 	if ticker in list(scope.ticker_data_files.keys()):
 		# col1,col2 = st.columns([2, 10])
@@ -62,7 +62,7 @@ def volume_analysis(scope):
 	st.write('Extrapolating the Current Volume to the End of today')
 	single_loader(scope, 'volume' )
 	st.markdown("""---""")
-	ticker = scope.selected['volume']['ticker_list'][0]
+	ticker = scope.pages['volume']['ticker_list'][0]
 
 	if ticker != 'select a ticker':	
 		volume_prediction(scope)
@@ -75,7 +75,7 @@ def research_analysis(scope):
 	single_loader(scope, 'research' )
 	st.markdown("""---""")
 	
-	ticker = scope.selected['research']['ticker_list'][0]
+	ticker = scope.pages['research']['ticker_list'][0]
 
 	if ticker != 'select a ticker':	
 		view_research_page(ticker)
@@ -96,7 +96,7 @@ def multi_tickers_analysis(scope):
 
 	# we migth be able to jumpt to single stock analysis from any list - that migth be cool!!!
 
-	# if len(scope.selected['ticker_list']) > 0:
+	# if len(scope.pages['ticker_list']) > 0:
 	# 	st.info('We have some tickers')
 	# else:
 	# 	st.error('Add some tickers')

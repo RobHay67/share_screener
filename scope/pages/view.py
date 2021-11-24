@@ -47,7 +47,7 @@ def view_single(scope, col_size_list):
 	with col2: st.write('Ticker from Index')
 	with col3: st.write('selectbox')
 	with col4: st.write('< dropdown_ticker >')
-	with col5: st.write(scope.selected['single']['ticker_list'][0])
+	with col5: st.write(scope.pages['single']['ticker_list'][0])
 	with col6: st.write("< ticker_list['single'] >")
 
 def view_intra_day(scope, col_size_list):
@@ -56,7 +56,7 @@ def view_intra_day(scope, col_size_list):
 	with col2: st.write('Ticker from Index')
 	with col3: st.write('selectbox')
 	with col4: st.write('< dropdown_ticker >')
-	with col5: st.write(scope.selected['intraday']['ticker_list'][0])
+	with col5: st.write(scope.pages['intraday']['ticker_list'][0])
 	with col6: st.write("< ticker_list['intraday'] >")
 
 def view_volume(scope, col_size_list):
@@ -65,7 +65,7 @@ def view_volume(scope, col_size_list):
 	with col2: st.write('Ticker from Index')
 	with col3: st.write('selectbox')
 	with col4: st.write('< dropdown_ticker >')
-	with col5: st.write(scope.selected['volume']['ticker_list'][0])
+	with col5: st.write(scope.pages['volume']['ticker_list'][0])
 	with col6: st.write("< ticker_list['volume'] >")
 
 def view_research(scope, col_size_list):
@@ -74,7 +74,7 @@ def view_research(scope, col_size_list):
 	with col2: st.write('Ticker from Index')
 	with col3: st.write('selectbox')
 	with col4: st.write('< dropdown_ticker >')
-	with col5: st.write(scope.selected['research']['ticker_list'][0])
+	with col5: st.write(scope.pages['research']['ticker_list'][0])
 	with col6: st.write("< ticker_list['research'] >")
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Components - Multi Ticker Analysis
@@ -86,7 +86,7 @@ def view_market(scope, col_size_list):
 	with col2: st.write('Selected Share Market')
 	with col3: st.write('selectbox')
 	with col4: st.write('< dropdown_markets >')
-	with col5: st.write(scope.selected['multi']['market'])
+	with col5: st.write(scope.pages['multi']['market'])
 	with col6: st.write('< selected_market >')
 
 def view_industry(scope, col_size_list):
@@ -95,7 +95,7 @@ def view_industry(scope, col_size_list):
 	with col2: st.write('Selected Industry(s)')
 	with col3: st.write('multiselect')
 	with col4: st.write('< dropdown_industries >')
-	with col5: st.write(scope.selected['multi']['industries'])
+	with col5: st.write(scope.pages['multi']['industries'])
 	with col6: st.write('< selected_industries >')
 
 def view_tickers(scope, col_size_list):
@@ -104,59 +104,70 @@ def view_tickers(scope, col_size_list):
 	with col2: st.write('Ticker(s) from Index')
 	with col3: st.write('multiselect')
 	with col4: st.write('< dropdown_tickers >')
-	with col5: st.write(scope.selected['multi']['tickers'])
+	with col5: st.write(scope.pages['multi']['tickers'])
 	with col6: st.write("< selected_tickers >")
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Components - Dropdowns
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def view_dropdowns(scope):
-	col1,col2,col3,col4,col5,col6 = st.columns([2,2,2,2,2,2])
+	col1,col2,col3,col4,col5,col6,col7 = st.columns([2,2,2,2,2,2,2])
 	
-	with col1: st.markdown('##### Page')
-	with col1: st.markdown('##### Description')
-	with col1: st.markdown('##### st.Type')
-	with col1: st.markdown('##### Selection Store In')
-	with col1: st.markdown('##### Defaults to')
-	with col1: st.markdown('##### Selector Contents')
+	with col1: 
+		st.markdown('##### Page')
+		st.markdown('##### Description')
+		st.markdown('##### st.Type')
+		st.markdown('##### Selection Store In')
+		st.markdown('##### Defaults to')
+		st.markdown('##### Selector Contents')
 	
-	with col2: st.markdown('##### Multi')
-	with col2: st.write('Market')
-	with col2: st.write('selectbox')
-	with col2: st.markdown( ('##### < dropdown_markets >') )
-	with col2: st.write('previous selection')
-	with col2: st.selectbox(label='Add a Market to Ticker List', options=scope.dropdown_markets,	key='91')
+	with col2:
+		st.markdown('##### Multi')
+		st.write('Market')
+		st.write('selectbox')
+		st.markdown( ('##### < dropdown_markets >') )
+		st.write('previous selection')
+		st.selectbox(label='Add a Market to Ticker List', options=scope.dropdown_markets,	key='91')
 
-	with col3: st.markdown('##### Multi')
-	with col3: st.write('Industry')
-	with col3: st.write('dropdown_industries')
-	with col3: st.markdown( ('##### < dropdown_industries >') )
-	with col3: st.write('previous selection')
-	with col3: st.multiselect(label='Add an Industry or Industries', options=scope.dropdown_industries,	key='92')
+	with col3: 
+		st.markdown('##### Multi')
+		st.write('Industry')
+		st.write('dropdown_industries')
+		st.markdown( ('##### < dropdown_industries >') )
+		st.write('previous selection')
+		st.multiselect(label='Add an Industry or Industries', options=scope.dropdown_industries,	key='92')
 
-	with col4: st.markdown('##### Multi')
-	with col4: st.write('Tickers')
-	with col4: st.write('multiselect')
-	with col4: st.markdown( ('##### < dropdown_tickers >') )
-	with col4: st.write('previous selection')
-	with col4: st.multiselect(label='Add a Ticker or Tickers', options=scope.dropdown_tickers,	key='93')
+	with col4: 
+		st.markdown('##### Multi')
+		st.write('Tickers')
+		st.write('multiselect')
+		st.markdown( ('##### < dropdown_tickers >') )
+		st.write('previous selection')
+		st.multiselect(label='Add a Ticker or Tickers', options=scope.dropdown_tickers,	key='93')
 
-	with col5: st.markdown('##### Single')
-	with col5: st.write('Ticker')
-	with col5: st.write('selectbox')
-	with col5: st.markdown( ('##### < dropdown_ticker >') )
-	with col5: st.write('previous selection')
-	with col5: st.selectbox(label='Select a Ticker', options=scope.dropdown_ticker,	key='94')
+	with col5: 
+		st.markdown('##### Single')
+		st.write('Ticker')
+		st.write('selectbox')
+		st.markdown( ('##### < dropdown_ticker >') )
+		st.write('previous selection')
+		st.selectbox(label='Select a Ticker', options=scope.dropdown_ticker,	key='94')
 
-	with col6: st.markdown('##### All')
-	with col6: st.write('Ticker File Column')
-	with col6: st.write('selectbox')
-	with col6: st.markdown( ('##### < dropdown_ticker_columns >') )
-	with col6: st.write('close')
-	with col6: st.selectbox(label='Select a Column', options=scope.dropdown_ticker_columns,	key='95')
+	with col6: 
+		st.markdown('##### All')
+		st.write('Ticker OHLCV Columns')
+		st.write('selectbox')
+		st.markdown( ('##### < dropdown_ticker_columns >') )
+		st.write('close')
+		st.selectbox(label='Select a Column', options=scope.dropdown_ohlcv_columns,	key='95')
 
-
-
+	with col7: 
+		st.markdown('##### All')
+		st.write('Ticker File Columns')
+		st.write('selectbox')
+		st.markdown( ('##### < dropdown_ticker_columns >') )
+		st.write('close')
+		st.selectbox(label='Select a Column', options=scope.dropdown_price_columns,	key='96')
 
 
 # TODO - rob - this was the original report showing all the ticker selectors
@@ -167,22 +178,22 @@ def view_dropdowns(scope):
 # 	col1,col2 = st.columns([2,10])
 
 # 	with col1: st.markdown('##### Single Ticker Analysis')
-# 	with col2: st.write(scope.selected['single']['ticker_list'][0])
+# 	with col2: st.write(scope.pages['single']['ticker_list'][0])
 
 # 	with col1: st.markdown('##### Intra Day Analysis')
-# 	with col2: st.write(scope.selected['intraday']['ticker_list'][0])
+# 	with col2: st.write(scope.pages['intraday']['ticker_list'][0])
 
 # 	with col1: st.markdown('##### Volume Prediction')
-# 	with col2: st.write(scope.selected['volume']['ticker_list'][0])
+# 	with col2: st.write(scope.pages['volume']['ticker_list'][0])
 
 # 	with col1: st.markdown('##### Research Ticker')
-# 	with col2: st.write(scope.selected['research']['ticker_list'][0])
+# 	with col2: st.write(scope.pages['research']['ticker_list'][0])
 
 # 	with col1: st.markdown('##### Multi Ticker Analysis List')
 # 	ticker_list_message = ''
-# 	for count, ticker in enumerate(scope.selected['multi']['ticker_list']):
+# 	for count, ticker in enumerate(scope.pages['multi']['ticker_list']):
 # 		ticker_list_message = ticker_list_message + ticker
-# 		if count < len(scope.selected['multi']['ticker_list']) - 1:
+# 		if count < len(scope.pages['multi']['ticker_list']) - 1:
 # 			ticker_list_message += '  '
 
 # 	with col2: st.write(ticker_list_message)

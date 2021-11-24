@@ -17,7 +17,9 @@ from scope.folders.view import view_folders
 
 from index.downloader import new_ticker_data
 from index.view import view_index, view_industries
-from ticker.views.all_tickers import view_all_loaded_ticker_files
+from ticker.views.dataframes import view_ticker_data_files
+from analysis.views.dataframes import view_analysis_dfs
+from charts.views.dataframes import view_chart_dfs
 
 
 def render_selected_scope_page(scope):
@@ -41,8 +43,9 @@ def render_selected_scope_page(scope):
 			'view_ticker_index'		:view_index,
 			'view_industries'		:view_industries,
 			# Column 5			
-			'view_ticker_files'		:view_all_loaded_ticker_files,
-			# 'view_analysis'			:view_analysis,
+			'view_ticker_files'		:view_ticker_data_files,
+			'view_analysis_dfs'		:view_analysis_dfs,
+			'view_chart_dfs'		:view_chart_dfs,
 			
 			}
 
@@ -80,8 +83,10 @@ def view_scope(scope):
 	with col4: st.button('Ticker Index Report ( ' + str((len(scope.ticker_index))) + ' )', on_click=set_st_button, args=('view_ticker_index', ))
 	with col4: st.button('Industry Report', on_click=set_st_button, args=('view_industries', ))
 
-	with col5: st.subheader('Ticker Files') # DONE
+	with col5: st.subheader('Ticker DataFrames') # DONE
 	with col5: st.button('Share Data Files ( ' + str(len(scope.ticker_data_files.keys())) + ' )', on_click=set_st_button, args=('view_ticker_files', ))
+	with col5: st.button('Analysis Dataframes ( ?? )', on_click=set_st_button, args=('view_analysis_dfs', ))
+	with col5: st.button('Charting Dataframes ( ?? )', on_click=set_st_button, args=('view_chart_dfs', ))
 	
 	st.markdown("""---""")
 	if st.session_state.st_button != None:

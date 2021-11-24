@@ -12,6 +12,9 @@ def edit_active(scope, chart ):
 								value=previous_active_status,
 								)
 	scope.charts[chart]['active'] = new_active_status
+
+	if new_active_status != previous_active_status : chart_df_may_need_a_refresh(scope)
+
 	
 def edit_number(scope, chart, column ):
 	
@@ -27,6 +30,9 @@ def edit_number(scope, chart, column ):
 										key=display_name
 										)  
 	scope.charts[chart]['data_cols'][column] = input_period_no
+
+	if input_period_no != previous_period : chart_df_may_need_a_refresh(scope)
+
 	
 def edit_ohlcv(scope, chart ):
 	
@@ -40,6 +46,8 @@ def edit_ohlcv(scope, chart ):
 									key=chart,
 									) 
 	scope.charts[chart]['data_cols']['column'] = selected_column
+
+	if selected_column != previous_column : chart_df_may_need_a_refresh(scope)
 	
 def edit_price(scope, chart ):
 	
@@ -53,6 +61,8 @@ def edit_price(scope, chart ):
 									key=chart,
 									) 
 	scope.charts[chart]['data_cols']['column'] = selected_column
+
+	if selected_column != previous_column : chart_df_may_need_a_refresh(scope)
 	
 def edit_colour(scope, chart ):
 	
@@ -68,3 +78,12 @@ def edit_colour(scope, chart ):
 									) 
 	scope.charts[chart]['plot']['colour'] = selected_colour
 
+	# does not require a refresh_chart_df to be set to Trueh
+
+
+
+
+def chart_df_may_need_a_refresh(scope):
+	for page in scope.selected.keys():
+		print(page)
+		scope.selected[page]['refresh_chart_df'] = True

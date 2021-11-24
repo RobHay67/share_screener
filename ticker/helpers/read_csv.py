@@ -2,6 +2,9 @@ import pandas as pd
 
 from config.ticker import ticker_file_usecols, ticker_file_dtypes, ticker_file_dates
 
+
+
+
 def load_a_ticker( scope, ticker ): # DONE
 	share_data_file = pd.read_csv (  
 									scope.path_share_data_file, 

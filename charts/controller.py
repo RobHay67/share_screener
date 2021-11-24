@@ -10,7 +10,7 @@ from charts.sub_plot import add_subplot
 
 
 def view_charts(scope, ticker):
-	chart_df		= scope.selected[scope.display_page]['chart_df'][ticker]
+	chart_df		= scope.pages[scope.display_page]['chart_df'][ticker]
 	plotly_schema 	= create_plotly_schema(scope)
 	if plotly_schema['no_of_charts'] > 0:
 		fig = create_main_plot(plotly_schema)
