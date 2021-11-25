@@ -3,14 +3,14 @@ import os
 from results.view import results
 from ticker.helpers.path import generate_path_for_share_data_file
 from ticker.model.read_csv import load_ticker
-from ticker.views.loading import view_results
+from ticker.views.results import view_results
 
 def load_tickers(scope, ticker_list):				# will be given a single ticker or a list of tickers
 	page = scope.page_to_display
 
 	results(scope, 
-			passed='LOADED Share Data Files > ', 
-			failed='MISSING Share Data Files for > ', 
+			passed='Loaded files > ', 
+			failed='Missing files > ', 
 			passed_2='na',
 			)
 
