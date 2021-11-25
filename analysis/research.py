@@ -20,7 +20,12 @@ from analysis.views.research.market_info import market_info
 
 def view_research_page(ticker):
 	
-	meta_data, info, divs = fetch_yfinance_metadata(ticker)
+	# meta_data, info, divs = fetch_yfinance_metadata(ticker)
+
+	metadata = fetch_yfinance_metadata(ticker)
+	info 	= metadata.info
+	divs 	= metadata.dividends
+
 
 	company_general(info)
 	dividends(divs)

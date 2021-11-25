@@ -21,8 +21,9 @@ from charts.charts.stoch 		import stoch_plot, stoch_cols
 # from charts.roc													# TODO - not sure what this one is ROb - investigate and add in - i think it might be a primary chart
 											
 # Overlays -------------------------------------------
-from charts.overlays.sma 	import sma_cols, sma_plot
-from charts.overlays.ema 	import ema_cols, ema_plot
+from charts.overlays.sma 		import sma_cols, sma_plot
+from charts.overlays.ema 		import ema_cols, ema_plot
+from charts.overlays.dividends 	import dividend_cols, dividend_plot
 
 
 # ==============================================================================================================================================================
@@ -64,17 +65,17 @@ chart_schema = {
 		'candlestick'		: { active:True , name:'CandleStick'		, is_overlay:False, apply_overlay:True , plot:{ function:candle_plot 	, title:'Price'			, scale:1.00, yaxis:'$,.2f' }, 	data_cols:None, },
 		'scatter'			: { active:False, name:'Scatter'			, is_overlay:False, apply_overlay:False, plot:{ function:None			, title:''				, scale:0.80, yaxis:'$,.2f'	}, 	data_cols:None, },
 		'bar'				: { active:False, name:'Bar'				, is_overlay:False, apply_overlay:False, plot:{ function:None			, title:''				, scale:0.80, yaxis:'$,.2f' }, 	data_cols:None, },
-		'line'				: { active:True , name:'Line charts'		, is_overlay:False, apply_overlay:True , plot:{ function:line_plot		, title:'Line'			, scale:0.50, yaxis:'$,.2f' }, 	data_cols:{function:line_cols, column:'close'}, },
+		'line'				: { active:False , name:'Line charts'		, is_overlay:False, apply_overlay:True , plot:{ function:line_plot		, title:'Line'			, scale:0.50, yaxis:'$,.2f' }, 	data_cols:{function:line_cols, column:'close'}, },
 		'heiken_ashi'		: { active:False, name:'Heikin Ashi'		, is_overlay:False, apply_overlay:False, plot:{ function:None			, title:''				, scale:0.80, yaxis:'$,.2f' }, 	data_cols:None, },
 		# Secondary Charts -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-		'volume'			: { active:True , name:'Volume'				, is_overlay:False, apply_overlay:False, plot:{ function:volume_plot	, title:'Volume'		, scale:0.25, yaxis:',.' 	}, 	data_cols:None, },
+		'volume'			: { active:False , name:'Volume'				, is_overlay:False, apply_overlay:False, plot:{ function:volume_plot	, title:'Volume'		, scale:0.25, yaxis:',.' 	}, 	data_cols:None, },
 		'vol_per_minute'	: { active:False, name:'Volume Per Minute'	, is_overlay:False, apply_overlay:False, plot:{ function:vpm_plot		, title:''				, scale:0.25, yaxis:',.' 	}, 	data_cols:None, },  # TODO is this a chart or on is_overlay - maybe just to the volume chart - I dont know
 		'vac'				: { active:False, name:'VAC'				, is_overlay:False, apply_overlay:False, plot:{ function:None			, title:''				, scale:0.25, yaxis:',.' 	}, 	data_cols:None, },
-		'macd'				: { active:True , name:'MACD'				, is_overlay:False, apply_overlay:False, plot:{ function:macd_plot		, title:'MACD'			, scale:0.50, yaxis:',.' 	}, 	data_cols:{ function:macd_cols		, column:'close'	, long:26, short:12, signal:9 } },
-		'macd_vol'			: { active:True , name:'MACD on Volume'		, is_overlay:False, apply_overlay:False, plot:{ function:macd_vol_plot	, title:'MACD (Volume)'	, scale:0.50, yaxis:',.' 	}, 	data_cols:{ function:macd_vol_cols	, column:'volume'	, long:26, short:12, signal:9 } },
-		'rsi'				: { active:True , name:'RSI'				, is_overlay:False, apply_overlay:False, plot:{ function:rsi_plot		, title:'RSI'			, scale:0.50, yaxis:'.2%' 	}, 	data_cols:{ function:rsi_cols		, column:'close'	, lookback_days:10, }, },
+		'macd'				: { active:False , name:'MACD'				, is_overlay:False, apply_overlay:False, plot:{ function:macd_plot		, title:'MACD'			, scale:0.50, yaxis:',.' 	}, 	data_cols:{ function:macd_cols		, column:'close'	, long:26, short:12, signal:9 } },
+		'macd_vol'			: { active:False , name:'MACD on Volume'		, is_overlay:False, apply_overlay:False, plot:{ function:macd_vol_plot	, title:'MACD (Volume)'	, scale:0.50, yaxis:',.' 	}, 	data_cols:{ function:macd_vol_cols	, column:'volume'	, long:26, short:12, signal:9 } },
+		'rsi'				: { active:False , name:'RSI'				, is_overlay:False, apply_overlay:False, plot:{ function:rsi_plot		, title:'RSI'			, scale:0.50, yaxis:'.2%' 	}, 	data_cols:{ function:rsi_cols		, column:'close'	, lookback_days:10, }, },
 		'vol_osssy'			: { active:False, name:'Volume Oscillator'	, is_overlay:False, apply_overlay:False, plot:{ function:None 			, title:''				, scale:0.75, yaxis:'$,.2f' }, 	data_cols:{ function:None	 		, column:'volume'	, fast:14, slow:21 } },
-		'stochastic'		: { active:True , name:'Stochastic'			, is_overlay:False, apply_overlay:False, plot:{ function:stoch_plot		, title:'Stochastic'	, scale:0.50, yaxis:'.2%' 	}, 	data_cols:{ function:stoch_cols		, lookback_days:14, slow:3, signal:3 } },
+		'stochastic'		: { active:False , name:'Stochastic'			, is_overlay:False, apply_overlay:False, plot:{ function:stoch_plot		, title:'Stochastic'	, scale:0.50, yaxis:'.2%' 	}, 	data_cols:{ function:stoch_cols		, lookback_days:14, slow:3, signal:3 } },
 		# Overlays ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		'sma_1' 			: { active:False, name:'SMA-1'				, is_overlay:True , apply_overlay:False, plot:{ function:sma_plot, colour:'blue' 		}, 									data_cols:{ function:sma_cols, column:'close', periods:21 	} },
 		'sma_2' 			: { active:False, name:'SMA-2'				, is_overlay:True , apply_overlay:False, plot:{ function:sma_plot, colour:'yellow'		}, 									data_cols:{ function:sma_cols, column:'close', periods:50 	} },
@@ -83,7 +84,7 @@ chart_schema = {
 		'ema_2' 			: { active:False, name:'EMA-2'				, is_overlay:True , apply_overlay:False, plot:{ function:ema_plot, colour:'blue' 		}, 									data_cols:{ function:ema_cols, column:'close', periods:50 	} },
 		'ema_3' 			: { active:False, name:'EMA-3'				, is_overlay:True , apply_overlay:False, plot:{ function:ema_plot, colour:'SteelBlue' 	}, 									data_cols:{ function:ema_cols, column:'close', periods:200 } },
 		'bollinger_bands' 	: { active:False, name:'Bollinger Bands'	, is_overlay:True , apply_overlay:False, plot:{ function:sma_plot, colour:'black' 		}, 									data_cols:{ function:ema_cols, column:'close', length:20, shift_up:2, shift_down:2, m_a_type:'simple', } },
-		'dividends' 		: { active:False, name:'Dividends'			, is_overlay:True , apply_overlay:False, plot:{ function:sma_plot, colour:'black' 		}, 									data_cols:None },		# TODO - we could still plot into the plot_df
+		'dividends' 		: { active:True, name:'Dividends'			, is_overlay:True , apply_overlay:False, plot:{ function:dividend_plot, colour:'black' 		}, 									data_cols:{ function:dividend_cols} },		# TODO - we could still plot into the plot_df
 		'announcements' 	: { active:False, name:'Announcements'		, is_overlay:True , apply_overlay:False, plot:{ function:sma_plot, colour:'black' 		}, 									data_cols:None },		# TODO - we are still going to need a chart here
 		'ichi_moku' 		: { active:False, name:'Icki Moku' 			, is_overlay:True , apply_overlay:False, plot:{ function:sma_plot, colour:'black' 		}, 									data_cols:None },		# TODO - Rob to work out if this needs speccing
 		'ichi_moku_daily'	: { active:False, name:'Icki Moku Daily'	, is_overlay:True , apply_overlay:False, plot:{ function:sma_plot, colour:'black' 		}, 									data_cols:None },		# TODO - Rob to work out if this needs speccing
@@ -101,7 +102,7 @@ chart_schema = {
 # vol_per_minute	scope
 # vac
 # macd				DONE
-# macd_vol			WIP
+# macd_vol			DONE
 # rsi				DONE
 # vol_osssy
 # stochastic		DONE
@@ -112,7 +113,7 @@ chart_schema = {
 # ema_2				DONE		
 # ema_3				DONE				
 # bollinger_bands
-# dividends
+# dividends			WIP
 # announcements
 # ichi_moku
 # ichi_moku_daily

@@ -84,6 +84,6 @@ def edit_colour(scope, chart ):
 
 
 def chart_df_may_need_a_refresh(scope):
-	for page in scope.selected.keys():
+	for page in scope.pages.keys():
 		print(page)
-		scope.selected[page]['refresh_chart_df'] = True
+		scope.pages[page]['refresh_chart_df'] = True

@@ -15,7 +15,7 @@ def create_chart_df(scope, ticker_list):
 
 				for chart in scope.charts.keys():														# Check if need additional columns for any selected charts
 					if scope.charts[chart]['active'] == True:											# User has selected to display this chart
-						if scope.charts[chart]['data_cols'] != None:									# This chart has additional columns (config contain the column details)
+						if scope.charts[chart]['data_cols'] != None:									# This chart has additional columns (config contains the column details)
 							scope.charts[chart]['data_cols']['function'](scope, chart_df, chart)		# Call the column adding function
 				
 				# store the chart_df along with any additional columns that have been added

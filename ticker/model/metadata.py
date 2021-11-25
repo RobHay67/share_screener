@@ -6,11 +6,17 @@ import yfinance as yf					# https://github.com/ranaroussi/yfinance
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # download Meta Data for a single Ticker
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-@st.cache
+# @st.cache
+# def fetch_yfinance_metadata(ticker):
+# 	metadata = yf.Ticker(ticker)
+# 	info = metadata.info
+# 	divs = metadata.dividends
+# 	return metadata, info, divs
+
+
+
+@st.cache(allow_output_mutation=True)
 def fetch_yfinance_metadata(ticker):
-	metadata = yf.Ticker(ticker)
-	info = metadata.info
-	divs = metadata.dividends
-	return metadata, info, divs
+	return yf.Ticker(ticker)
 
 

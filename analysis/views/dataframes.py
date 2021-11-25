@@ -10,8 +10,10 @@ def view_analysis_dfs(scope, page='all'):
 		with col2: st.write("< scope.pages[page]['analysis_df'] >")	
 		st.markdown("""---""")
 		list_of_pages = list(scope.pages.keys())
+		render_expanded = False
 	else:
 		list_of_pages = [page]
+		render_expanded = True
 
 	# Create a disctionary of tickers to iterate over
 	list_of_tickers = {}
@@ -26,7 +28,7 @@ def view_analysis_dfs(scope, page='all'):
 		analysis_df = scope.pages[page]['analysis_df'][ticker]
 		no_of_rows = str(len(analysis_df))
 		analysis_df.sort_values(by=['date'], inplace=True, ascending=False)
-		my_expander = st.expander(label=(ticker+' ( ' + no_of_rows + ' )'))
+		my_expander = st.expander(label=(ticker+' ( ' + no_of_rows + ' )'), expanded=render_expanded)
 		my_expander.dataframe(analysis_df, 2000, 2000)	
 		analysis_df.sort_values(by=['date'], inplace=True, ascending=True)
 
