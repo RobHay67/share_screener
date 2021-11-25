@@ -10,8 +10,8 @@ from ticker.downloader import download_tickers
 from ticker.views.dataframes import view_ticker_data_files
 from analysis.views.dataframes import view_analysis_dfs
 from charts.views.dataframes import view_chart_dfs
-from ticker.views.scope import set_download_days
-from analysis.views.scope import set_analysis_row_limit
+from ticker.views.download import set_download_days
+from analysis.views.analysis import set_analysis_row_limit
 
 
 def ticker_loader(scope, page):

@@ -23,7 +23,6 @@ def view_download(scope):
 
 
 def set_download_days(scope):
-
 	previous_selection = int(scope.download_days)
 
 	input_download_days = st.number_input( 
@@ -31,9 +30,9 @@ def set_download_days(scope):
 											min_value=1, 
 											value=previous_selection, 						# Default Value to display (would revert on every second try)
 											key='97'
-											)   
-	scope.download_days = input_download_days
+											)
 
+	input_download_days = int(input_download_days)
 
-
-
+	if input_download_days != previous_selection:
+		scope.download_days = input_download_days

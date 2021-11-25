@@ -2,12 +2,12 @@
 import streamlit as st
 
 from pages.view.scope import view_pages
-from analysis.views.scope import view_analysis
+from analysis.views.analysis import view_analysis
 from charts.views.primary import view_primary
 from charts.views.secondary import view_secondary
 
 from scope.view.strategy import view_strategy
-from ticker.views.scope import view_download
+from ticker.views.download import view_download
 
 from scope.view.results import view_results
 

@@ -28,14 +28,14 @@ def set_analysis_row_limit(scope):
 										key='95'
 										)  
 	
+	input_analysis_days = int(input_analysis_days)
+
 
 	if input_analysis_days != previous_selection:
-		# Store the Result
 		scope.analysis_row_limit = input_analysis_days
 
 		# reset STATUS to prevent unnecesary updates 
 		# (as this applies to all pages - they all need a refresh)
 		for page in scope.pages:
 			scope.pages[page]['refresh_analysis_df'] = True
-
 
