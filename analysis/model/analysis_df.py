@@ -1,43 +1,29 @@
-import streamlit as st
+def create_analysis_df(scope, ticker_list):
 
+	page 				= scope.page_to_display
+	analysis_row_limit 	= int(scope.analysis_row_limit)
+	refresh_analysis_df = scope.pages[page]['refresh_analysis_df']
 
-# from analysis.model.chart_df import create_chart_df
+	# so we only refresh if we have been asked to
+	if refresh_analysis_df == True:
+		for ticker in ticker_list:
+			print ( '\033[93m' + ticker + ' > create_analysis_df\033[0m')
 
-def establish_analysis_df(scope, page, ticker, loaded_df_row_count):
+			if ticker in scope.ticker_data_files:
+				analysis_df = scope.ticker_data_files[ticker].copy()
 
-	df_row_limit = int(scope.analysis_row_limit)
+				# limit analysis to user specified row limit
+				if analysis_row_limit != None : analysis_df = analysis_df.head(analysis_row_limit) 
+				
+				# store the new analysis_df
+				scope.pages[page]['analysis_df'][ticker] = analysis_df
 
-	# Establish the Analysis_df for this ticker
-	analysis_df = create_analysis_df(scope, page, ticker, df_row_limit, loaded_df_row_count)  
-	scope.pages[scope.display_page]['analysis_df'][ticker] = analysis_df
+				# reset STATUS to prevent unnecesary updates
+				scope.pages[page]['refresh_analysis_df'] 	= False
+				scope.pages[page]['refresh_chart_df'] 		= True
+	# else:
+	# 	print ( '\033[92m' + 'create_analysis_df is NOT being re-run\033[0m')
 
-
-
-# Cached Function - only reload when one of the following values changes
-# 	ticker 				> new ticker = new df required
-#	df_row_limit 		> User want a different number of rows to analyse
-# 	loaded_df_row_count > User has loaded more rows, so the analysis df will need to be updated as we might have newer data
-
-
-@st.cache
-def create_analysis_df(scope, page, ticker, analysis_row_limit, loaded_df_row_count ):
-	print ( '\033[91m' + ticker + ' > create_analysis_df has been called \033[0m')
-	# the loaded_df_row_count variable is only used to trigger a new run of this code - ie prevent runs on data already loaded
-	
-	# print ( 'Ticker        = ', ticker)
-	# print ( 'Analysis Rows = ', analysis_row_limit)
-	# print ( 'Loaded   Rows = ', loaded_df_row_count)
-	
-
-	share_data = scope.ticker_data_files[ticker].copy()
-
-	if analysis_row_limit != None:
-		share_data = share_data.head(analysis_row_limit)
-	
-	scope.pages[page]['refresh_chart_df'] = True
-
-
-	return share_data
 
 
 

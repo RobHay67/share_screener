@@ -1,6 +1,10 @@
 
 
 def scope_pages(scope):
+
+	scope.page_to_display = 'home_page'				# The homepage to display on first load
+													# This also stores the current active page
+
 	# Page Specific Variables
 	scope.pages={
 					'multi'		:{
@@ -42,13 +46,6 @@ def scope_pages(scope):
 								'refresh_chart_df'		: True,
 								},
 					}
-
-
-
-
-# A refresh of the chart_df is required if :
-#	1) The Analysis_df is refreshed / changed - i.e. new data downloaded
-#	2) A Change has been made to the charting parameters - i.e we changed the SMA from 21 days to 7 days
 
 
 

@@ -15,4 +15,4 @@ def view_folders(scope):
 	st.subheader('Paths to Specific Objects')
 	three_cols( 'Path for Share Index File', scope.path_ticker_index, 'path_ticker_index', diff_col_size )
 	three_cols( 'Path for Website Output File', scope.path_website_file, 'path_website_file', diff_col_size )
-	three_cols( 'Path for Share Data File', scope.path_share_data_file, 'path_share_data_file', diff_col_size )
+	three_cols( 'Path for Share Data File', scope.path_ticker_data_file, 'path_ticker_data_file', diff_col_size )

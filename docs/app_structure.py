@@ -49,21 +49,3 @@ from _typeshed import FileDescriptor
 # 
 
 
-
-
-# config
-#		- navigation
-#			x view
-#			- controller
-#		- settings
-#			- system
-#			- user
-#				- chart
-#				- defaults
-##
-##
-##
-##
-##
-##
-#

@@ -15,4 +15,4 @@ def scope_folders(scope):
 	# File Paths
 	scope.path_ticker_index = pathlib.Path.home().joinpath( scope.folder_share_data, 'ticker_index.csv' )
 	scope.path_website_file = pathlib.Path.home().joinpath( scope.folder_website, 'strategy_results.json' )
-	scope.path_share_data_file = 'not yet set'
+	scope.path_ticker_data_file = 'not yet set'

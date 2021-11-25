@@ -1,15 +1,15 @@
 
 import pandas as pd
 import yfinance as yf					# https://github.com/ranaroussi/yfinance
-import streamlit as st
 
+from config.ticker import ticker_file_schema, ticker_file_usecols, y_finance_schemas
 
+from ticker.views.loading import download_industry_message
 from results.view import results
-from index.save import save_index
 
-from config.ticker import ticker_file_schema, ticker_file_usecols
+from index.save import save_index			# TODO we may need to get this working again
 
-from config.ticker import y_finance_schemas
+
 # ==============================================================================================================================================================
 #
 # Yahoo Finance 
@@ -18,34 +18,21 @@ from config.ticker import y_finance_schemas
 
 
 
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# download Meta Data for a single Ticker
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
-@st.cache
-def fetch_yfinance_metadata(ticker):
-	metadata = yf.Ticker(ticker)
-	info = metadata.info
-	divs = metadata.dividends
-	return metadata, info, divs
+
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # download ticker data for a single or group of tickers
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def download_from_yahoo_finance( scope ): 													# TODO What Output to Render
+def download_from_yahoo_finance(scope): 													# TODO What Output to Render
 	# group_by: group by column or ticker (‘column’/’ticker’, default is ‘column’)
 	# threads : use threads for mass downloading? (True/False/Integer)
-	# st.subheader('Downloading Ticker data from Yahoo Finance (as specified by the Ticker List')
-	
-	st.markdown('##### Downloading Ticker data from Yahoo Finance')
-	
+
 	period = str(scope.download_days) + 'd' # 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo
 
 	# reset_download_status(scope)
 
 	for count, industry in enumerate(scope.download_industries):
-		download_message = ('downloading > ' + industry + ' ( ' + str(count+1) + ' of ' + str(len(scope.download_industries)) + ' )' )
-		st.write(  download_message)
-		# print ( download_message)
+		render_download_message(scope, count, industry)
 
 		download_ticker_string = generate_ticker_string_by_industry(scope, industry)
 
@@ -68,7 +55,9 @@ def download_from_yahoo_finance( scope ): 													# TODO What Output to Ren
 # Update Share Index with download status information
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # def reset_download_status(scope): # TODO - ERROR - which tickers are being updated????
-	# ticker_list = list(scope.selected[scope.display_page]['ticker_list'])
+	# page = scope.page_to_display
+
+	# ticker_list = list(scope.selected[page]['ticker_list'])
 	# for ticker in ticker_list:
 	# 	scope.ticker_index.at[ticker, 'yahoo_status'] = 'set_for_download'
 
@@ -87,10 +76,23 @@ def download_from_yahoo_finance( scope ): 													# TODO What Output to Ren
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Yahoo Finance - helpers
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
+def render_download_message(scope, count, industry):
+	page = scope.page_to_display
+
+	if industry == 'random_tickers':
+		download_message = ('Yahoo Finance downloading > ' + scope.pages[page]['ticker_list'][0] )
+	else:
+		download_message = ('Yahoo Finance downloading > ' + industry + ' ( ' + str(count+1) + ' of ' + str(len(scope.download_industries)) + ' )' )
+	
+	download_industry_message(scope, download_message)
+
+
 def generate_ticker_string_by_industry(scope, industry): # OK
 
+	page = scope.page_to_display
+
 	if industry == 'random_tickers': 							# we have selected specific tickers 
-		batch_of_tickers = scope.selected[scope.display_page]['ticker_list']
+		batch_of_tickers = scope.pages[page]['ticker_list']
 	else: 														# user has selected a share market, industry or multiple industries
 		industry_tickers = scope.ticker_index[scope.ticker_index['industry_group'] == industry ]
 		batch_of_tickers = industry_tickers.index.tolist()
@@ -126,7 +128,7 @@ def store_yf_download_in_scope( scope, download_ticker_string, yf_download, down
 
 	scope.download_yf_files = pd.concat([scope.download_yf_files, yf_download], sort=False)
 	scope.downloaded_yf_anomolies.update(download_errors)	# store any errors
-	results( scope, passed='Downloaded these Shares > ', passed_2='na', failed='Falied to Download > ' )
+	results( scope, passed='Downloaded > ', passed_2='na', failed='Falied to Download > ' )
 	failed_download_list = []
 	for ticker, error in download_errors.items():
 		failed_download_list.append(ticker)

@@ -24,15 +24,14 @@
 #							|					|
 #							|    analysis_df   	|						Dataframe - copy of Ticker or Tickers being analysed
 #							|					|						User defined file size - i.e. latest X rows - limit analysis to 100 rows for faster analysis
-#							---------------------						Only refreshes when the ticker_data_file has changed - i.e. we downloaded more data
+#							---------------------						ONLY refreshes when the ticker_data_file has changed - i.e. we downloaded more data
 
 
 
-#							---------------------
-#							|					|
-#							|      chart_df   	|						Dataframe - copy of analysis_df on which plotting columns are added
+#							---------------------						Dataframe - copy of analysis_df on which plotting columns are added
 #							|					|						i.e. 20 day SMA plot column
-#							---------------------
-
+#							|      chart_df   	|						REFRESH occurens when :after analysis_df changes
+#							|					|						a) the analysis_df changes
+#							---------------------						b) use makes a change to most of the charting parameters (except colour)
 
 

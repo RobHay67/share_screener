@@ -63,10 +63,10 @@ def view_scope(scope):
 	col1,col2,col3,col4,col5,col6 = st.columns([2,2,2,2,2,2])
 
 	with col1: st.subheader('User Selections')
+	with col1: st.button('Page Settings', on_click=set_st_button, args=('view_pages', ))
 	with col1: st.button('User Defaults', on_click=set_st_button, args=('view_user', ))
 	with col1: st.button('User Primary Charts', on_click=set_st_button, args=('view_primary', ))
 	with col1: st.button('User Secondary Charts', on_click=set_st_button, args=('view_secondary', ))
-	with col1: st.button('Page Selections', on_click=set_st_button, args=('view_pages', ))
 	with col1: st.button('Strategy', on_click=set_st_button, args=('view_strategy', ))
 
 	with col2: st.subheader('Application')

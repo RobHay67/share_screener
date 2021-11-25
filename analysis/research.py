@@ -1,6 +1,6 @@
 import streamlit as st
 
-from ticker.y_finance import fetch_yfinance_metadata
+from ticker.model.metadata import fetch_yfinance_metadata
 from analysis.views.research.company_general import company_general
 from analysis.views.research.dividends import dividends
 from analysis.views.research.fundamental import fundamental

@@ -36,6 +36,8 @@ def view_download_days(scope):
 
 def view_analysis_row_limit(scope): # limit_analysis
 
+	page = scope.page_to_display
+
 	previous_selection = int(scope.analysis_row_limit)
 
 	input_analysis_days = st.number_input( 	
@@ -44,5 +46,14 @@ def view_analysis_row_limit(scope): # limit_analysis
 										value=previous_selection,
 										key='95'
 										)  
-	scope.analysis_row_limit = input_analysis_days
+	
+
+	if input_analysis_days != previous_selection:
+		# Store the Result
+		scope.analysis_row_limit = input_analysis_days
+
+		# reset STATUS to prevent unnecesary updates 
+		# (as this applies to all pages - they all need a refresh)
+		for page in scope.pages:
+			scope.pages[page]['refresh_analysis_df'] = True
 

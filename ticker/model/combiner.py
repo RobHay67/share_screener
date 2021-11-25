@@ -1,7 +1,6 @@
 import pandas as pd
-import streamlit as st
+
 from results.view import results
-from ticker.save import save_tickers
 
 from config.ticker import ticker_file_usecols
 
@@ -13,15 +12,16 @@ from config.ticker import ticker_file_usecols
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def combine_loaded_and_download_ticker_data(scope): # TODO - change to check for loaded ticker
-	st.markdown('##### Combine download with previously Loaded ticker data')
+
 	results(scope, 
-			passed='COMBINED > ', 
-			passed_2='CREATED new files > ', 
+			passed='Combined > ', 
+			passed_2='Created new files > ', 
 			failed='na' 
 			)
 
-	ticker_list = scope.selected[scope.display_page]['ticker_list']
+	page = scope.page_to_display
 
+	ticker_list = scope.pages[page]['ticker_list']
 
 	for ticker in ticker_list:																			# iterate through the target tickers
 		if ticker in scope.download_yf_files['ticker'].unique():										# if we have downloaded data (we may have nothing)
@@ -36,5 +36,5 @@ def combine_loaded_and_download_ticker_data(scope): # TODO - change to check for
 				results( scope, ticker, result='passed_2' )
 			scope.ticker_data_files[ticker].sort_values(by=['date'], inplace=True, ascending=False)		# sort the share data into date order ascending
 	results(scope, 'Finished', final_print=True )
-	save_tickers( scope )
+
 

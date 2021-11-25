@@ -10,9 +10,12 @@ from charts.views.secondary import view_secondary
 from analysis.controller import single_ticker_analysis, intraday_analysis, volume_analysis, research_analysis, multi_tickers_analysis
 
 
-def view_selected_page(page):
+def view_selected_page(scope):
+	
+	page = scope.page_to_display
 	# print( 'Rendering > ', page)
-	page_view_map = {
+	
+	page_map = {
 						'home_page'			:view_project_welcome,
 						'charts_primary'	:view_primary,
 						'charts_secondary'	:view_secondary,
@@ -25,15 +28,15 @@ def view_selected_page(page):
 						'scope'				:view_scope,
 					}
 
-	if page in list(page_view_map.keys()):
-		page_view_map[page](st.session_state)
-	else:
-		st.warning( ('No Page yet selected > ' + page) )
+	if page in list(page_map.keys()):
+		page_map[page](scope)
+	# else:
+	# 	st.warning( ('No Page yet selected > ' + page) )
 
 
 
 # Helper - stores the selected page from the sidebar so we stay where we are on re-renders
 def store_page(page:str):
-	st.session_state.display_page = page
+	st.session_state.page_to_display = page
 
 

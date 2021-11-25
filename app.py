@@ -35,7 +35,7 @@ if scope.dropdown_lists_need_updating:
 
 print ( '\033[94mApplication Refreshed >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> \033[0m')
 
-view_selected_page(scope.display_page)
+view_selected_page(scope)
 
 # Sidebar Action Buttons
 st.sidebar.title(project_description)

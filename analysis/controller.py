@@ -1,28 +1,29 @@
 import streamlit as st
 
-from ticker.views.single_loader import single_loader
-from ticker.views.multi_loader import multi_loader
+# from ticker.views.ticker_loader import ticker_loader
+# from ticker.views.multi_loader import multi_loader
 
 from analysis.volume import volume_prediction
 from analysis.research import view_research_page
 
-# from charts.model.chart_df import create_chart_df
 from charts.controller import view_charts
 
 from analysis.views.multi_analysis import view_multi_criteria
+
+from ticker.loader import ticker_loader
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Single Ticker Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def single_ticker_analysis(scope):
 	st.header('Single Ticker Analysis')
-	single_loader(scope, 'single')
+	ticker_loader(scope, 'single')
+	
 	st.markdown("""---""")
 	
 	ticker = scope.pages['single']['ticker_list'][0]
 	
 	if ticker in list(scope.ticker_data_files.keys()):
-		# create_chart_df(scope, ticker)	
 		view_charts(scope, ticker)
 		
 
@@ -32,7 +33,7 @@ def single_ticker_analysis(scope):
 
 def intraday_analysis(scope):
 	st.header('Intra Day Analysis')	
-	single_loader(scope, 'intraday')
+	ticker_loader(scope, 'intraday')
 	st.markdown("""---""")
 
 	ticker = scope.pages['intraday']['ticker_list'][0]
@@ -60,7 +61,7 @@ def intraday_analysis(scope):
 def volume_analysis(scope):
 	st.title('Predict Closing Volume to End of Today')
 	st.write('Extrapolating the Current Volume to the End of today')
-	single_loader(scope, 'volume' )
+	ticker_loader(scope, 'volume' )
 	st.markdown("""---""")
 	ticker = scope.pages['volume']['ticker_list'][0]
 
@@ -72,7 +73,7 @@ def volume_analysis(scope):
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def research_analysis(scope):
 	st.header('Company Research')
-	single_loader(scope, 'research' )
+	ticker_loader(scope, 'research' )
 	st.markdown("""---""")
 	
 	ticker = scope.pages['research']['ticker_list'][0]
@@ -88,9 +89,11 @@ def research_analysis(scope):
 def multi_tickers_analysis(scope):
 	st.header('Analysis - Multiple Tickers')
 
-	multi_loader(scope)
 
+	# multi_loader(scope)
+	ticker_loader(scope, 'multi')
 	view_multi_criteria(scope)
+
 
 	st.info('I expect the output of any analysis is going to be a list of stocks for further analysis')
 

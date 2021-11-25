@@ -2,7 +2,6 @@
 def scope_app(scope):
 	# System Wide Variables
 	scope.share_market = 'ASX'						# Set Initial Default Share Market - we gotta start somewhere
-	scope.display_page = 'home_page'				# The homepage to display on first load
 	scope.dropdown_lists_need_updating = False		# Intially set to false, the loading or refreshing of the 
 													# share index file has resposibility to set this, but can
 													# only do this after loading the share index file
