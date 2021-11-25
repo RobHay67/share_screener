@@ -1,4 +1,4 @@
-
+import streamlit as st
 
 
 
@@ -32,6 +32,9 @@
 
 def scope_analysis(scope):
 	
+	scope.analysis_row_limit 	= 100
+
+
 	scope.volume_trend = 'up'
 	scope.volume_lookback_days = 3
 
@@ -49,5 +52,13 @@ def scope_analysis(scope):
 
 
 
-	
+
+
+
+
+
+
+
+
+
 

@@ -3,6 +3,7 @@ from scope.pages.ticker_list import update_multi_ticker_list
 
 
 
+
 def ticker_selectors(scope,page):
 	
 	we_are_loading = False
@@ -30,5 +31,8 @@ def ticker_selectors(scope,page):
 			we_are_loading = True
 			scope.download_industries = ['random_tickers']									# used for y_finance downloading
 			ticker_list = [scope.pages[page]['ticker_list'][0]]
+
+
+	
 
 	return we_are_loading, ticker_list

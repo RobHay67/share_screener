@@ -1,14 +1,15 @@
 # import pandas as pd
 import streamlit as st
 
-from scope.user.view import view_user
-print('I am right at this point')
+from scope.pages.view import view_pages
+from analysis.views.scope import view_analysis
 from charts.views.primary import view_primary
 from charts.views.secondary import view_secondary
-from scope.pages.view import view_pages
-from scope.strategy.view import view_strategy
 
-from scope.download.view import view_download
+from scope.strategy.view import view_strategy
+from ticker.views.scope import view_download
+
+
 from scope.results.view import view_results
 
 from scope.project.view import view_project
@@ -26,10 +27,11 @@ def render_selected_scope_page(scope):
 
 	scope_page = {
 			# Column 1
-			'view_user'				:view_user,
+			'view_pages'			:view_pages,
+			'view_analysis'			:view_analysis,
 			'view_primary'			:view_primary,
 			'view_secondary'		:view_secondary,
-			'view_pages'			:view_pages,
+			
 			'view_strategy'			:view_strategy,
 			# Column 2
 			'view_download'			:view_download,
@@ -57,14 +59,13 @@ def render_selected_scope_page(scope):
 
 
 def view_scope(scope):
-	st.header('Application Setting')
-	# button_selectors(scope)
-
 	col1,col2,col3,col4,col5,col6 = st.columns([2,2,2,2,2,2])
+
+	st.header('Application Setting')
 
 	with col1: st.subheader('User Selections')
 	with col1: st.button('Page Settings', on_click=set_st_button, args=('view_pages', ))
-	with col1: st.button('User Defaults', on_click=set_st_button, args=('view_user', ))
+	with col1: st.button('Analysis Settings', on_click=set_st_button, args=('view_analysis', ))
 	with col1: st.button('User Primary Charts', on_click=set_st_button, args=('view_primary', ))
 	with col1: st.button('User Secondary Charts', on_click=set_st_button, args=('view_secondary', ))
 	with col1: st.button('Strategy', on_click=set_st_button, args=('view_strategy', ))

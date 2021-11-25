@@ -10,6 +10,8 @@ from ticker.downloader import download_tickers
 from ticker.views.dataframes import view_ticker_data_files
 from analysis.views.dataframes import view_analysis_dfs
 from charts.views.dataframes import view_chart_dfs
+from ticker.views.scope import set_download_days
+from analysis.views.scope import set_analysis_row_limit
 
 
 def ticker_loader(scope, page):
@@ -19,7 +21,9 @@ def ticker_loader(scope, page):
 	we_are_loading, ticker_list = ticker_selectors(scope, page)
 
 	if we_are_loading:
-		with scope.col1: download_new_data = download_button(scope)
+		with scope.col1: download_new_data = download_button(scope)		
+		with scope.col4: set_download_days(scope)
+		with scope.col4: set_analysis_row_limit(scope)
 		with scope.col6: clear_messages_button(scope)
 
 		load_tickers(scope, ticker_list)													# AUTO load whatever ticker data we have	

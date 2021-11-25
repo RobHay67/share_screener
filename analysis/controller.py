@@ -39,8 +39,6 @@ def intraday_analysis(scope):
 	ticker = scope.pages['intraday']['ticker_list'][0]
 
 	if ticker in list(scope.ticker_data_files.keys()):
-		# col1,col2 = st.columns([2, 10])
-		# df_row_limit = None if scope.analysis_apply_limit=='False' else int(scope.analysis_row_limit)
 
 		print('We are here')
 		# share_data = analysis_df(scope, ticker, df_row_limit)  # this only gets refreshed if the ticker changes or the no of rows changes

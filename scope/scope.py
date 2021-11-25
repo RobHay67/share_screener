@@ -2,16 +2,15 @@ from scope.project.scope import scope_project
 from scope.app.scope import scope_app
 from scope.pages.scope import scope_pages
 from scope.folders.scope import scope_folders
-from scope.download.scope import scope_download
+from ticker.scope import scope_download
 from scope.strategy.scope import scope_strategy
 from charts.scope import scope_chart
 # from analysis.measures.scope import scope_measures
 from scope.results.scope import scope_results
-from scope.user.scope import scope_user
-from ticker.scope import scope_ticker_files
+from ticker.scope import scope_tickers
 
 from index.scope import scope_index
-
+from analysis.scope import scope_analysis
 
 def set_scope(scope, project_description):
 	if 'we_need_to_load_the_ticker_index' not in scope:		# set the initial load state - keep this to a minimum
@@ -25,8 +24,8 @@ def set_scope(scope, project_description):
 		scope_chart(scope)
 		# scope_measures(scope)
 		scope_results(scope)
-		scope_user(scope)
-		scope_ticker_files(scope)
+		scope_analysis(scope)
+		scope_tickers(scope)
 
 	if scope.we_need_to_load_the_ticker_index:
 		scope_index(scope)
