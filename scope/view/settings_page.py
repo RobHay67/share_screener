@@ -1,20 +1,19 @@
 # import pandas as pd
 import streamlit as st
 
-from scope.pages.view import view_pages
+from pages.view.scope import view_pages
 from analysis.views.scope import view_analysis
 from charts.views.primary import view_primary
 from charts.views.secondary import view_secondary
 
-from scope.strategy.view import view_strategy
+from scope.view.strategy import view_strategy
 from ticker.views.scope import view_download
 
+from scope.view.results import view_results
 
-from scope.results.view import view_results
-
-from scope.project.view import view_project
-from scope.app.view import view_app
-from scope.folders.view import view_folders
+from scope.view.project import view_project
+from scope.view.app import view_app
+from scope.view.folders import view_folders
 
 from index.downloader import new_ticker_data
 from index.view import view_index, view_industries

@@ -1,8 +1,3 @@
-import streamlit as st
-
-
-def scope_tickers(scope):
-	scope.ticker_data_files = {}
 
 
 def scope_download(scope):

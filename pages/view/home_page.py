@@ -9,7 +9,3 @@ def view_project_welcome(scope):
 
 
 
-
-
-
-

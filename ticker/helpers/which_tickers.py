@@ -1,5 +1,5 @@
 from ticker.views.dropdowns import select_a_market, select_industries, select_tickers, select_a_ticker
-from scope.pages.ticker_list import update_multi_ticker_list
+from pages.model.ticker_list import update_multi_ticker_list
 
 
 
