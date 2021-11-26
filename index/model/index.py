@@ -1,4 +1,4 @@
-from index.load import load_ticker_index_file
+from index.model.load import load_ticker_index_file
 
 
 def scope_index(scope):

@@ -5,9 +5,9 @@ import yfinance as yf					# https://github.com/ranaroussi/yfinance
 from config.ticker import ticker_file_schema, ticker_file_usecols, y_finance_schemas
 
 from ticker.views.results import download_industry_message
-from results.view import results
+from pages.view.results import results
 
-from index.save import save_index			# TODO we may need to get this working again
+from index.model.save import save_index			# TODO we may need to get this working again
 
 
 # ==============================================================================================================================================================
@@ -15,6 +15,8 @@ from index.save import save_index			# TODO we may need to get this working again
 # Yahoo Finance 
 #
 # ==============================================================================================================================================================
+
+
 
 
 

@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-from views.two_cols import view_2_columns
+from pages.view.two_cols import view_2_columns
 
 
 def fundamental(info):

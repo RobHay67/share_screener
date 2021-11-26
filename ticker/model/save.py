@@ -2,7 +2,7 @@ import os
 import pathlib
 import pandas as pd
 
-from results.view import results
+from pages.view.results import results
 
 
 from ticker.helpers.path import generate_path_for_share_data_file

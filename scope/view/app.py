@@ -1,6 +1,6 @@
 import streamlit as st
 
-from views.scope_var import three_cols
+from pages.view.three_cols import three_cols
 
 
 def view_app(scope):

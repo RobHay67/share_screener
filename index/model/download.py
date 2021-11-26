@@ -6,10 +6,10 @@ import streamlit as st
 
 
 # from index.download.update import update_index_with_downloaded_data
-from index.update import update_index
+from index.model.update import update_index
 
 
-def new_ticker_data(scope):
+def download_ticker_index_data(scope):
 	st.header('Downloading Ticker Index information for the ' + scope.share_market)
 	st.subheader('Downloading Ticker Master Data from https://asx.api.markitdigital.com and adding to the Ticker Index File')
 	st.markdown("""---""")

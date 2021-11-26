@@ -6,7 +6,7 @@ import streamlit as st
 from config.index import schema
 from config.index import csv_dates
 from config.index import csv_dtypes
-from index.save import save_index
+from index.model.save import save_index
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # TICKER INDEX FILE - loader and Saver

@@ -2,7 +2,7 @@ import streamlit as st
 from datetime import datetime 
 
 
-from views.scope_var import three_cols
+from pages.view.three_cols import three_cols
 
 def view_project(scope):
 	st.subheader('General Application Parameters')

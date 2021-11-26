@@ -2,13 +2,13 @@ import pandas as pd
 import streamlit as st
 
 
-from results.view import results
+from pages.view.results import results
 
 from config.index import default_values
 from config.index import data_types
 from config.index import schema
 
-from index.save import save_index
+from index.model.save import save_index
 from config.markets import open_time
 from config.markets import trading_minutes
 

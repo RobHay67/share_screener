@@ -1,33 +1,6 @@
 import streamlit as st
 
-
-
-
-# candlestick
-#	close above open for the past X days
-
-# line and volume
-# 	COLUMN > (HIGHER or LOWER) > last X days
-
-# MACD
-#		trending UP or DOWN
-#		crossed UP or DOWN
-# 		hostogram is STRONG or WEAK
-
-
-
-# SMA and EMA
-# 	for COLUMN trading ABOVE or BELOW this average
-
-
-# RSI
-#	COLUMN in the BUY / SELL / MIDDLE range
-
-# Stochastic
-# 	COLUMN in the BUY / SELL / MIDDLE range
-#	COLUMN crossed UP or DOWN
-
-
+from pages.model.set_refresh_analysis import set_refresh_analysis_for_all_pages
 
 
 def scope_analysis(scope):
@@ -37,8 +10,6 @@ def scope_analysis(scope):
 
 	scope.volume_trend = 'up'
 	scope.volume_lookback_days = 3
-
-
 
 	scope.rsi_level = 0.50
 	scope.rsi_column = 'close'
@@ -55,7 +26,15 @@ def scope_analysis(scope):
 
 
 
+def set_analysis_row_limit():
 
+	analysis_row_limit = st.sidebar.number_input( 
+							'No of Rows for Analysis', 
+							min_value=100, 
+							key='89',
+							on_change=set_refresh_analysis_for_all_pages, 
+							)
+	return analysis_row_limit
 
 
 

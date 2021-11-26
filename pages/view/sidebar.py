@@ -1,11 +1,12 @@
 import streamlit as st
 
 from pages.model.set_page import set_page
+from analysis.model.analysis import set_analysis_row_limit
+from ticker.model.download import set_download_days
 
 
 
 def view_sidebar(scope):
-	# Sidebar Action Buttons
 	
 	st.sidebar.title(scope.project_description)
 
@@ -22,6 +23,13 @@ def view_sidebar(scope):
 	# st.sidebar.button('Defaults'			, on_click=set_page, args=('user', ))
 
 	st.sidebar.subheader('System Settings')
-	st.sidebar.button('Settings', on_click=set_page, args=('scope', ))
+	st.sidebar.button('Settings'			, on_click=set_page, args=('scope', ))
+	scope.download_days 					= set_download_days()
+	scope.analysis_row_limit 				= set_analysis_row_limit()
+
+
+
+
+
 
 

@@ -18,15 +18,18 @@ from analysis.model.analysis import scope_analysis
 
 from scope.dropdowns import update_dropdowns
 
-
+from pages.view.sidebar import view_sidebar
+from pages.controller import view_selected_page
 
 
 def set_scope(scope):
 	
 	set_streamlit_page_config()								# should only run onetime
 
-	if 'initial_load' not in scope:			# set the initial load state
-		scope.initial_load = True
+	if 'initial_load' not in scope:			
+		scope.initial_load = True			# set the initial load state 
+											# prevents this section from runnning again and
+											# allows the ticker index to load next
 
 		scope_project(scope)
 		scope_app(scope)					# This contains all the application settings
@@ -38,17 +41,21 @@ def set_scope(scope):
 		scope_results(scope)
 		scope_analysis(scope)
 		scope_tickers(scope)
+		
 
-	if scope.initial_load:
+	if scope.initial_load:					# This will only run one time after the initial load has occured
 		scope_index(scope)
 		scope.initial_load = False			# Prevent session_state from re-running during its use
 
 	if scope.dropdown_lists_need_updating: 
 		update_dropdowns(scope)
 
+	view_sidebar(scope)						# Render the Sidebar
+	view_selected_page(scope)				# Render the selected Page
 
 	return scope
 
 
 
+	
 

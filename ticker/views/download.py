@@ -1,6 +1,6 @@
 import streamlit as st
 
-from views.scope_var import three_cols
+from pages.view.three_cols import three_cols
 
 
 
@@ -21,18 +21,18 @@ def view_download(scope):
 
 
 
+# TODO - delete this later
+# def set_download_days(scope):
+# 	previous_selection = int(scope.download_days)
 
-def set_download_days(scope):
-	previous_selection = int(scope.download_days)
+# 	input_download_days = st.number_input( 
+# 											'Days to Download (recent)', 
+# 											min_value=1, 
+# 											value=previous_selection, 						# Default Value to display (would revert on every second try)
+# 											key='97'
+# 											)
 
-	input_download_days = st.number_input( 
-											'Days to Download (recent)', 
-											min_value=1, 
-											value=previous_selection, 						# Default Value to display (would revert on every second try)
-											key='97'
-											)
+# 	input_download_days = int(input_download_days)
 
-	input_download_days = int(input_download_days)
-
-	if input_download_days != previous_selection:
-		scope.download_days = input_download_days
+# 	if input_download_days != previous_selection:
+# 		scope.download_days = input_download_days

@@ -15,12 +15,14 @@ from scope.view.project import view_project
 from scope.view.app import view_app
 from scope.view.folders import view_folders
 
-from index.downloader import new_ticker_data
+from index.model.download import download_ticker_index_data
 from index.view import view_index, view_industries
 from ticker.views.dataframes import view_ticker_data_files
 from analysis.views.dataframes import view_analysis_dfs
 from charts.views.dataframes import view_chart_dfs
 
+
+from scope.model.set_scope_button import set_st_button
 
 def render_selected_scope_page(scope):
 
@@ -40,7 +42,7 @@ def render_selected_scope_page(scope):
 			'view_app'				:view_app,
 			'view_folders'			:view_folders,
 			# Column 4
-			'import_tickers'		:new_ticker_data,
+			'import_tickers'		:download_ticker_index_data,
 			'view_ticker_index'		:view_index,
 			'view_industries'		:view_industries,
 			# Column 5			
@@ -58,9 +60,9 @@ def render_selected_scope_page(scope):
 
 
 def view_scope(scope):
-	col1,col2,col3,col4,col5,col6 = st.columns([2,2,2,2,2,2])
-
 	st.header('Application Setting')
+
+	col1,col2,col3,col4,col5,col6 = st.columns([2,2,2,2,2,2])
 
 	with col1: st.subheader('User Selections')
 	with col1: st.button('Page Settings', on_click=set_st_button, args=('view_pages', ))
@@ -91,12 +93,4 @@ def view_scope(scope):
 	st.markdown("""---""")
 	if st.session_state.st_button != None:
 		render_selected_scope_page(scope)
-
-		
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Helpers
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def set_st_button(button:str):
-	# print( 'Selected Button > ', button)
-	st.session_state.st_button = button
 

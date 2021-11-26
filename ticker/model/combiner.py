@@ -1,6 +1,6 @@
 import pandas as pd
 
-from results.view import results
+from pages.view.results import results
 
 from config.ticker import ticker_file_usecols
 
