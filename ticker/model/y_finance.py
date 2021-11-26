@@ -107,12 +107,12 @@ def generate_ticker_string_by_industry(scope, industry): # OK
 	return download_ticker_string
 
 def format_columns_in_downloaded_share_data( scope, yf_download, download_schema ): # DONE
+	
 	yf_download.reset_index(inplace=True)   # remove any index set during import - we will set the index later
 
 	for col_no in y_finance_schemas[download_schema]:
 		provider_column_name    = y_finance_schemas[download_schema][col_no]['col_name']
 		if col_no < 50:                 	# its a column we are keeping - anything tagged with a key above 50 can be removed
-			# application_column_name = scope.ticker_file_schema[col_no]['col_name']
 			application_column_name = ticker_file_schema[col_no]['col_name']
 			
 			yf_download.rename(columns = { provider_column_name : application_column_name }, inplace = True)
