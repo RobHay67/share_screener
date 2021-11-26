@@ -1,6 +1,6 @@
 
 from pages.view.home_page import view_project_welcome
-from scope.view.settings_page import view_scope
+from config.view.config_page import view_scope
 from charts.views.primary import view_primary
 from charts.views.secondary import view_secondary
 from analysis.controller import single_ticker_analysis, intraday_analysis, volume_analysis, research_analysis, multi_tickers_analysis

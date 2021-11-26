@@ -22,6 +22,7 @@ def load_ticker_index_file( scope ):
 									dtype=csv_dtypes(schema),
 									parse_dates=csv_dates(schema),
 									)
+
 		# ticker_index['blue_chip'] = ticker_index['blue_chip'].astype(int)
 		ticker_index['listing_date'] = pd.to_datetime( ticker_index['listing_date'].dt.date  )
 		st.write('loaded the ticker index file')

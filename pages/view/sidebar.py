@@ -1,7 +1,7 @@
 import streamlit as st
 
 from pages.model.set_page import set_page
-from analysis.model.analysis import set_analysis_row_limit
+from config.model.set_analysis_limit import set_analysis_row_limit
 from ticker.model.download import set_download_days
 
 

@@ -6,23 +6,23 @@ from analysis.views.analysis import view_analysis
 from charts.views.primary import view_primary
 from charts.views.secondary import view_secondary
 
-from scope.view.strategy import view_strategy
+from config.strategy import view_strategy
 from ticker.views.download import view_download
 
-from scope.view.results import view_results
+from config.results import view_results
 
-from scope.view.project import view_project
-from scope.view.app import view_app
-from scope.view.folders import view_folders
+from config.app import view_app
+from config.folders import view_folders
 
 from index.model.download import download_ticker_index_data
-from index.view import view_index, view_industries
+from index.view.index import view_index
+from index.view.industries import view_industries
 from ticker.views.dataframes import view_ticker_data_files
 from analysis.views.dataframes import view_analysis_dfs
 from charts.views.dataframes import view_chart_dfs
 
 
-from scope.model.set_scope_button import set_st_button
+from config.model.set_scope_button import set_st_button
 
 def render_selected_scope_page(scope):
 
@@ -38,7 +38,6 @@ def render_selected_scope_page(scope):
 			'view_download'			:view_download,
 			'view_results'			:view_results,
 			# Column 3
-			'view_project'			:view_project,
 			'view_app'				:view_app,
 			'view_folders'			:view_folders,
 			# Column 4
@@ -60,24 +59,23 @@ def render_selected_scope_page(scope):
 
 
 def view_scope(scope):
-	st.header('Application Setting')
+	st.header('Configuration Setting')
 
 	col1,col2,col3,col4,col5,col6 = st.columns([2,2,2,2,2,2])
 
-	with col1: st.subheader('User Selections')
-	with col1: st.button('Page Settings', on_click=set_st_button, args=('view_pages', ))
-	with col1: st.button('Analysis Settings', on_click=set_st_button, args=('view_analysis', ))
-	with col1: st.button('User Primary Charts', on_click=set_st_button, args=('view_primary', ))
-	with col1: st.button('User Secondary Charts', on_click=set_st_button, args=('view_secondary', ))
+	with col1: st.subheader('Session Settings')
+	with col1: st.button('Page(s)', on_click=set_st_button, args=('view_pages', ))
+	with col1: st.button('Download', on_click=set_st_button, args=('view_download', ))
+	with col1: st.button('Analysis', on_click=set_st_button, args=('view_analysis', ))
 	with col1: st.button('Strategy', on_click=set_st_button, args=('view_strategy', ))
+	with col1: st.button('Results', on_click=set_st_button, args=('view_results', ))
 
-	with col2: st.subheader('Application')
-	with col2: st.button('Download', on_click=set_st_button, args=('view_download', ))
-	with col2: st.button('Results', on_click=set_st_button, args=('view_results', ))
+	with col2: st.subheader('Chart Settings')
+	with col2: st.button('User Primary Charts', on_click=set_st_button, args=('view_primary', ))
+	with col2: st.button('User Secondary Charts', on_click=set_st_button, args=('view_secondary', ))
 	
 	with col3: st.subheader('System') # DONE
-	with col3: st.button('Project', on_click=set_st_button, args=('view_project', ))
-	with col3: st.button('Global', on_click=set_st_button, args=('view_app', ))
+	with col3: st.button('Application', on_click=set_st_button, args=('view_app', ))
 	with col3: st.button('Folders', on_click=set_st_button, args=('view_folders', ))
 	
 	with col4: st.subheader('Ticker Index') # DONE
