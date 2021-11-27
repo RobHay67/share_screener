@@ -4,9 +4,9 @@ import streamlit as st
 
 from pages.view.results import results
 
-from config.index import default_values
-from config.index import data_types
-from config.index import schema
+from config.index_schema import default_values
+from config.index_schema import data_types
+from config.index_schema import schema
 
 from index.model.save import save_index
 from config.markets import open_time

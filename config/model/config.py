@@ -5,14 +5,14 @@
 from config.streamlit import set_streamlit_page_config
 
 from config.app import scope_app
-from pages.model.pages import scope_pages
+from config.pages import scope_pages
 from config.folders import scope_folders
-from ticker.model.download import scope_download
+from config.download import scope_download
 from config.strategy import scope_strategy
-from charts.model.charts import scope_chart
+from config.charts import scope_chart
 from config.results import scope_results
-from ticker.model.tickers import scope_tickers
-from index.model.index import scope_index
+from config.ticker import scope_tickers
+from config.index import scope_index
 from config.analysis import scope_analysis
 
 from config.model.dropdowns import update_dropdowns

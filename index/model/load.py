@@ -3,9 +3,9 @@ import pandas as pd
 import streamlit as st
 
 
-from config.index import schema
-from config.index import csv_dates
-from config.index import csv_dtypes
+from config.index_schema import schema
+from config.index_schema import csv_dates
+from config.index_schema import csv_dtypes
 from index.model.save import save_index
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
