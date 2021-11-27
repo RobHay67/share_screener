@@ -20,7 +20,7 @@ pd.set_option('display.width', 1000)
 
 import streamlit as st
 
-from config.model.config import set_scope
+from config.controller import set_scope
 from pages.view.sidebar import view_sidebar
 from pages.controller import view_selected_page
 
@@ -28,6 +28,13 @@ print ( '\033[94m' + 'Application Re-Rendering Now ' + '>'*50 + '\033[0m')
 scope = set_scope(st.session_state)
 view_sidebar(scope)						# Render the Sidebar
 view_selected_page(scope)				# Render the selected Page
+
+
+
+
+
+
+
 
 
 

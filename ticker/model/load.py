@@ -3,7 +3,7 @@ import os
 from pages.view.results import results
 from ticker.helpers.path import generate_path_for_share_data_file
 from ticker.model.read_csv import load_ticker
-from ticker.views.results import view_results
+from pages.view.results import view_results
 
 def load_tickers(scope, ticker_list):				# will be given a single ticker or a list of tickers
 	page = scope.page_to_display

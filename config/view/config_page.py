@@ -1,18 +1,19 @@
 # import pandas as pd
 import streamlit as st
 
-from pages.view.scope import view_pages
+from pages.view.pages import view_pages
+
 from analysis.views.analysis import view_analysis
 from charts.views.primary import view_primary
 from charts.views.secondary import view_secondary
 
-from config.strategy import view_strategy
-from ticker.views.download import view_download
+from config.helpers.strategy import view_strategy
+from config.helpers.download import view_download
 
-from config.results import view_results
+from config.helpers.results import view_results
 
-from config.app import view_app
-from config.folders import view_folders
+from config.helpers.app import view_app
+from config.helpers.folders import view_folders
 
 from index.model.download import download_ticker_index_data
 from index.view.index import view_index

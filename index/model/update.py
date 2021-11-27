@@ -4,13 +4,13 @@ import streamlit as st
 
 from pages.view.results import results
 
-from config.index_schema import default_values
-from config.index_schema import data_types
-from config.index_schema import schema
+from config.helpers.index_schema import default_values
+from config.helpers.index_schema import data_types
+from config.helpers.index_schema import schema
 
 from index.model.save import save_index
-from config.markets import open_time
-from config.markets import trading_minutes
+from config.helpers.markets import open_time
+from config.helpers.markets import trading_minutes
 
 
 def update_index(scope, downloaded_ticker_info ):

@@ -2,7 +2,7 @@ import pandas as pd
 
 from pages.view.results import results
 
-from config.ticker import ticker_file_usecols
+from config.helpers.ticker import ticker_file_usecols
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------

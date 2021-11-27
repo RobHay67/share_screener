@@ -1,23 +1,19 @@
-
-# Scope Controller
-
-
-from config.streamlit import set_streamlit_page_config
-
-from config.app import scope_app
-from config.pages import scope_pages
-from config.folders import scope_folders
-from config.download import scope_download
-from config.strategy import scope_strategy
-from config.charts import scope_chart
-from config.results import scope_results
-from config.ticker import scope_tickers
-from config.index import scope_index
-from config.analysis import scope_analysis
+from config.helpers.analysis import scope_analysis
+from config.helpers.app import scope_app
+from config.helpers.charts import scope_chart
+from config.helpers.download import scope_download
+from config.helpers.folders import scope_folders
+from config.helpers.index import scope_index
+from config.helpers.pages import scope_pages
+from config.helpers.results import scope_results
+from config.helpers.strategy import scope_strategy
+from config.helpers.streamlit import set_streamlit_page_config
+from config.helpers.ticker import scope_tickers
 
 from config.model.dropdowns import update_dropdowns
 
-
+# TODO - need to eliminate as many of these as we can - have the code refer directly to the config module 
+# instead of storing it in the scope - ie folders
 
 
 def set_scope(scope):
@@ -51,7 +47,7 @@ def set_scope(scope):
 	return scope
 
 
-
+# For Testing Purposes Only
 def print_scope_to_terminal(scope):
 	print( 'List of all keys in the st.session_state')
 	if 'initial_load' in scope:

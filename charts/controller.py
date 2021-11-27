@@ -1,15 +1,13 @@
 import streamlit as st
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
 
-from charts.main_plot import create_plotly_schema, create_main_plot, format_main_plot
-from charts.sub_plot import add_subplot
-
-
+from charts.helpers.plotly_schema import create_plotly_schema
+from charts.helpers.main_plot import create_main_plot 
+from charts.helpers.main_plot import format_main_plot
+from charts.helpers.sub_plot import add_subplot
 
 
 
-def view_charts(scope, ticker):
+def plot_charts(scope, ticker):
 	page 			= scope.page_to_display
 	chart_df		= scope.pages[page]['chart_df'][ticker]
 	plotly_schema 	= create_plotly_schema(scope)

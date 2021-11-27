@@ -1,7 +1,7 @@
 
 
 
-from config.markets import markets
+from config.helpers.markets import markets
 
 
 

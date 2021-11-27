@@ -3,7 +3,7 @@ import pathlib
 
 
 def scope_folders(scope):
-	scope.folder_project = pathlib.Path(__file__).parent.parent.resolve()
+	scope.folder_project = pathlib.Path(__file__).parent.parent.parent.resolve()
 	scope.folder_share_data = pathlib.Path.home().joinpath( scope.folder_project, 'files' )
 	scope.folder_results_analysis = pathlib.Path.home().joinpath( scope.folder_project, scope.folder_share_data, 'results_analysis' )
 	scope.folder_website = pathlib.Path.home().joinpath( scope.folder_project, scope.folder_share_data, 'website' )

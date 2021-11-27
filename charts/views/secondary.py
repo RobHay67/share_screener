@@ -1,7 +1,12 @@
 import streamlit as st
 
 
-from charts.views.components import render_activate_chart, render_macd, render_macd_vol, render_rsi, render_stochastic, render_volume_oscillator
+from charts.views.partials import render_activate_chart
+from charts.views.partials import render_macd
+from charts.views.partials import render_macd_vol
+from charts.views.partials import render_rsi
+from charts.views.partials import render_stochastic
+from charts.views.partials import render_volume_oscillator
 
 
 

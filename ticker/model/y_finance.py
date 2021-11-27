@@ -2,9 +2,11 @@
 import pandas as pd
 import yfinance as yf					# https://github.com/ranaroussi/yfinance
 
-from config.ticker import ticker_file_schema, ticker_file_usecols, y_finance_schemas
+from config.helpers.ticker import ticker_file_schema
+from config.helpers.ticker import ticker_file_usecols
+from config.helpers.ticker import y_finance_schemas
 
-from ticker.views.results import download_industry_message
+from pages.view.results import download_industry_message
 from pages.view.results import results
 
 from index.model.save import save_index			# TODO we may need to get this working again

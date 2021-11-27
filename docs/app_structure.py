@@ -12,8 +12,6 @@
 
 # so what are my features
 
-from _typeshed import FileDescriptor
-
 
 # a) ticker_index
 # b) ticker Files

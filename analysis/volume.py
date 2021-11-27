@@ -3,7 +3,7 @@ from datetime import datetime
 from datetime import timedelta
 import pytz
 
-from config.markets import opening_hours
+from config.helpers.markets import opening_hours
 
 from analysis.views.times import view_local_vs_market_time
 from analysis.views.volume import prediction

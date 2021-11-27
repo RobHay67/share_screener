@@ -1,3 +1,15 @@
+
+
+def scope_download(scope):
+	scope.download_days 			= 7
+	scope.download_industries 		= []
+	scope.download_yf_files			= {}
+	scope.downloaded_loaded_list 	= []
+	scope.downloaded_missing_list 	= []
+	scope.downloaded_yf_anomolies 	= {}
+
+
+
 import streamlit as st
 
 from pages.view.three_cols import three_cols
@@ -36,3 +48,5 @@ def view_download(scope):
 
 # 	if input_download_days != previous_selection:
 # 		scope.download_days = input_download_days
+
+

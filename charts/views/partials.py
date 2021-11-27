@@ -1,7 +1,12 @@
 import streamlit as st
 
 
-from charts.views.helpers import edit_active, edit_number, edit_ohlcv, edit_price, edit_colour
+
+from config.model.set_chart_active import edit_active
+from config.model.set_number import edit_number
+from config.model.set_ohlcv import edit_ohlcv
+from config.model.set_ohlcv import edit_price
+from config.model.set_colour import edit_colour
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 # Primary and Secondary Charts
@@ -9,6 +14,8 @@ from charts.views.helpers import edit_active, edit_number, edit_ohlcv, edit_pric
 
 def render_activate_chart(scope, chart):
 	edit_active(scope, chart)
+
+
 # -------------------------------------------------------------------------------------------------------------------------------------
 # Primary Chart Components
 # -------------------------------------------------------------------------------------------------------------------------------------
@@ -30,36 +37,6 @@ def render_primary_chart_height(scope):
 										)  
 	scope.primary_chart_height = input_chart_height
 
-# -------------------------------------------------------------------------------------------------------------------------------------
-# Overlays
-# -------------------------------------------------------------------------------------------------------------------------------------
-def render_moving_average(scope, chart):  # SMA or EMA
-	edit_active(scope, chart)
-	edit_number(scope, chart, 'periods' )
-	edit_price(scope, chart )
-	edit_colour(scope, chart )
-	st.markdown("""---""")
-
-def render_bollinger_bands(scope):
-	# st.markdown('##### Bollinger Bands')
-	chart = 'bollinger_bands'
-	edit_active(scope, chart)
-	edit_price(scope, chart )
-	edit_number(scope, chart, 'length' )
-	edit_number(scope, chart, 'shift_up' )
-	edit_number(scope, chart, 'shift_down' )
-	st.subheader('Moving Average Type - Rob to configure')		# TODO - Simple, Weighted, Exponential, Wilders
-	st.markdown("""---""")
-
-def render_dividends(scope):
-	# st.markdown('##### Dividends')
-	edit_active(scope, 'dividends')
-	st.markdown("""---""")
-
-def render_announcements(scope):
-	# st.markdown('##### Announcements')
-	edit_active(scope, 'announcements')
-	st.markdown("""---""")
 # -------------------------------------------------------------------------------------------------------------------------------------
 # Secondary Charts
 # -------------------------------------------------------------------------------------------------------------------------------------
@@ -111,7 +88,36 @@ def render_volume_oscillator(scope):
 	edit_number(scope, chart, 'slow' )
 	st.markdown("""---""")
 
+# -------------------------------------------------------------------------------------------------------------------------------------
+# Overlays
+# -------------------------------------------------------------------------------------------------------------------------------------
+def render_moving_average(scope, chart):  # SMA or EMA
+	edit_active(scope, chart)
+	edit_number(scope, chart, 'periods' )
+	edit_price(scope, chart )
+	edit_colour(scope, chart )
+	st.markdown("""---""")
 
+def render_bollinger_bands(scope):
+	# st.markdown('##### Bollinger Bands')
+	chart = 'bollinger_bands'
+	edit_active(scope, chart)
+	edit_price(scope, chart )
+	edit_number(scope, chart, 'length' )
+	edit_number(scope, chart, 'shift_up' )
+	edit_number(scope, chart, 'shift_down' )
+	st.subheader('Moving Average Type - Rob to configure')		# TODO - Simple, Weighted, Exponential, Wilders
+	st.markdown("""---""")
+
+def render_dividends(scope):
+	# st.markdown('##### Dividends')
+	edit_active(scope, 'dividends')
+	st.markdown("""---""")
+
+def render_announcements(scope):
+	# st.markdown('##### Announcements')
+	edit_active(scope, 'announcements')
+	st.markdown("""---""")
 
 
 

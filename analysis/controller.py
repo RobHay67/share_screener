@@ -1,30 +1,31 @@
 import streamlit as st
 
-# from ticker.views.ticker_loader import ticker_loader
-# from ticker.views.multi_loader import multi_loader
+
+from ticker.loader import ticker_loader
+from charts.controller import plot_charts
 
 from analysis.volume import volume_prediction
 from analysis.research import view_research_page
 
-from charts.controller import view_charts
 
-from analysis.views.multi_analysis import view_multi_criteria
 
-from ticker.loader import ticker_loader
+from analysis.views.multi_analysis import view_multi_criteria			#TODO fleshing out some ideas
+
+
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Single Ticker Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def single_ticker_analysis(scope):
-	st.header('Single Ticker Analysis')
+	st.subheader('Ticker Analysis')
 	ticker_loader(scope, 'single')
 	
 	st.markdown("""---""")
 	
 	ticker = scope.pages['single']['ticker_list'][0]
 	
-	if ticker in list(scope.ticker_data_files.keys()):
-		view_charts(scope, ticker)
+	if ticker in list(scope.ticker_data_files.keys()):			# TODO - this should be the approrpiate chart_df
+		plot_charts(scope, ticker)
 		
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -2,18 +2,19 @@
 
 from ticker.views.load_screen import set_cols
 from ticker.helpers.which_tickers import ticker_selectors
-from ticker.views.buttons import download_button, clear_messages_button, ticker_file_button, analysis_dfs_button, chart_dfs_button
+from ticker.views.buttons.download import download_button
+from ticker.views.buttons.clear_message import clear_messages_button
+from ticker.views.buttons.ticker_file import ticker_file_button
+from ticker.views.buttons.analysis_dfs import analysis_dfs_button
+from ticker.views.buttons.chart_dfs import chart_dfs_button
+
 from ticker.model.load import load_tickers
 from analysis.model.analysis_df import create_analysis_df
 from charts.model.chart_df import create_chart_df
-from ticker.downloader import download_tickers
+from ticker.download import download_tickers
 from ticker.views.dataframes import view_ticker_data_files
 from analysis.views.dataframes import view_analysis_dfs
 from charts.views.dataframes import view_chart_dfs
-
-# TODO delete comments
-# from ticker.views.download import set_download_days
-# from analysis.views.analysis import set_analysis_row_limit
 
 
 def ticker_loader(scope, page):
@@ -24,8 +25,6 @@ def ticker_loader(scope, page):
 
 	if we_are_loading:
 		with scope.col1: download_new_data = download_button(scope)		
-		# with scope.col4: set_download_days(scope)
-		# with scope.col4: set_analysis_row_limit(scope)
 		with scope.col6: clear_messages_button(scope)
 
 		load_tickers(scope, ticker_list)													# AUTO load whatever ticker data we have	
