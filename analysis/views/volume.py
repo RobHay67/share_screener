@@ -2,7 +2,14 @@ import streamlit as st
 
 
 
-def prediction(ticker_open_time, minutes_elapsed, ticker_remaining_minutes, ticker_closing_time, 
+def input_volume():
+	col1,col2 = st.columns([2,10])
+	with col1: ticker_current_volume = st.number_input("Current Volume", value=0, format="%d")
+	return ticker_current_volume
+
+
+
+def view_prediction(ticker_open_time, minutes_elapsed, ticker_remaining_minutes, ticker_closing_time, 
 						volume_to_date, ticker_average_vol_per_minute, extrapolated_daily_volume, ticker_minutes_per_day):
 		# Render the results of the calculations
 		col1,col2,col3 = st.columns([1,1,1])

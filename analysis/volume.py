@@ -1,26 +1,33 @@
-import streamlit as st
 from datetime import datetime
 from datetime import timedelta
 import pytz
 
 from config.helpers.markets import opening_hours
 
+from analysis.views.titles import analysis_titles
 from analysis.views.times import view_local_vs_market_time
-from analysis.views.volume import prediction
+from analysis.views.volume import input_volume
+from analysis.views.volume import view_prediction
 
-def volume_prediction(scope):
-	ticker = scope.selected['volume']['ticker_list'][0]
 
-	local_time=datetime.now()											# Current local time
-	market_timezone = opening_hours[scope.share_market]['timezone']		# Timezone for the share market
-	market_time = datetime.now(pytz.timezone(market_timezone))			# Current Market time
-	view_local_vs_market_time(local_time, market_time)
+from ticker.loader import ticker_loader
 
-	if ticker != 'select a ticker':
-		# Current Volume Level - Input by the User
-		col1,col2 = st.columns([2,10])
-		with col1: ticker_current_volume = st.number_input("Current Volume", value=0, format="%d")
 
+def analysis_volume_page(scope):
+
+	analysis_titles(scope, 'Predict Closing Volume to End of Today', 'volume')
+
+	ticker = scope.pages['volume']['ticker_list'][0]
+
+	if ticker != 'select a ticker':	
+		# ticker = scope.selected['volume']['ticker_list'][0]
+
+		local_time=datetime.now()											# Current local time
+		market_timezone = opening_hours[scope.share_market]['timezone']		# Timezone for the share market
+		market_time = datetime.now(pytz.timezone(market_timezone))			# Current Market time
+		view_local_vs_market_time(local_time, market_time)
+
+		ticker_current_volume = input_volume()
 		###########################################################################################
 		# Predict Total Daily Volume based on current Volume and known information about the ticker
 		###########################################################################################
@@ -53,7 +60,7 @@ def volume_prediction(scope):
 
 		# TODO - we could use a POC model over the recent history and plot the prediction against this - we could smooth in accordance with the POC curve
 
-		prediction( ticker_open_time, minutes_elapsed, ticker_remaining_minutes, ticker_closing_time, 
+		view_prediction( ticker_open_time, minutes_elapsed, ticker_remaining_minutes, ticker_closing_time, 
 							volume_to_date, ticker_average_vol_per_minute, extrapolated_daily_volume, ticker_minutes_per_day)
 
 

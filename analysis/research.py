@@ -1,11 +1,34 @@
-import streamlit as st
 
+from ticker.loader import ticker_loader
 from ticker.model.metadata import fetch_yfinance_metadata
-from analysis.views.research.company_general import company_general
+
+from analysis.views.titles import analysis_titles
+
+from analysis.views.research.info import company_general
+from analysis.views.research.info import business_summary
+from analysis.views.research.info import fundamental
+from analysis.views.research.info import general
+from analysis.views.research.info import market_info
+
 from analysis.views.research.dividends import dividends
-from analysis.views.research.fundamental import fundamental
-from analysis.views.research.general import general
-from analysis.views.research.market_info import market_info
+
+from analysis.views.research.investors import institutional
+from analysis.views.research.investors import major
+
+from analysis.views.research.financials import annual
+from analysis.views.research.financials import quarterly
+from analysis.views.research.financials import balance_sheet
+from analysis.views.research.financials import balance_sheet_qtr
+
+from analysis.views.research.financials import cashflow
+from analysis.views.research.financials import cashflow_qtr
+
+
+from analysis.views.research.financials import earnings
+from analysis.views.research.financials import earnings_qtr
+
+from analysis.views.research.calendar import calendar
+from analysis.views.research.news import news
 
 
 
@@ -13,28 +36,41 @@ from analysis.views.research.market_info import market_info
 
 
 
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Company Research
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------
+def analysis_research_page(scope):
+	analysis_titles(scope, 'Company Research', 'research')
 
-# -------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Company Research Page Sections
-# -------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-def view_research_page(ticker):
 	
-	# meta_data, info, divs = fetch_yfinance_metadata(ticker)
+	ticker = scope.pages['research']['ticker_list'][0]
 
-	metadata = fetch_yfinance_metadata(ticker)
-	info 	= metadata.info
-	divs 	= metadata.dividends
+	if ticker != 'select a ticker':	
+		metadata = fetch_yfinance_metadata(ticker)
 
+		company_general(metadata)
+		business_summary(metadata)
+		fundamental(metadata)
+		general(metadata)
+		market_info(metadata)
 
-	company_general(info)
-	dividends(divs)
-	fundamental(info)
-	general(info)
-	# plot_basic_chart(scope)		
-	market_info(info)
-	# view_ticker_file(scope, ticker)
+		dividends(metadata)
+		major(metadata)
+		institutional(metadata)
+		annual(metadata)
+		quarterly(metadata)
+		balance_sheet(metadata)
+		balance_sheet_qtr(metadata)
+		cashflow(metadata)
+		cashflow_qtr(metadata)
+		earnings(metadata)
+		earnings_qtr(metadata)
 
+		calendar(metadata)
+		news(metadata)
+
+		# plot_basic_chart(scope)		
+		# view_ticker_file(scope, ticker)
 
 
 
