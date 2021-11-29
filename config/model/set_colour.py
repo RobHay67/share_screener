@@ -2,21 +2,21 @@ import streamlit as st
 
 
 
-def edit_colour(scope, chart ):
+def edit_colour(scope, schema, key ):
+
+	display_name = scope[schema][key]['name']
 	
-	display_name = scope.charts[chart]['name']
-	
-	previous_colour = scope.charts[chart]['plot']['colour']
+	previous_colour = scope[schema][key]['plot']['colour']
 
 	selected_colour = st.selectbox ( 
 									label=('Colour for ' + display_name), 
 									options=scope.chart_colours,
 									index=scope.chart_colours.index(previous_colour), 
-									key=chart,
+									key=key,
 									) 
-	scope.charts[chart]['plot']['colour'] = selected_colour
+	scope[schema][key]['plot']['colour'] = selected_colour
 
-	# does not require a refresh_chart_df to be set to Trueh
+	# does not require a refresh_chart_df to be set to TRUE
 
 
 

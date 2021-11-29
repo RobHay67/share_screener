@@ -17,7 +17,7 @@ trend			= 'trend'				# the trend or direction of the trend - up or down
 
 
 
-trends = [ 'up', 'down' ]
+trend_direction = [ 'up', 'down' ]
 
 
 analysis_schema = {
@@ -75,6 +75,7 @@ def scope_analysis(scope):
 	
 	scope.analysis 	= analysis_schema
 	scope.analysis_row_limit 	= 100
+	scope.analysis_trend = trend_direction
 	
 
 	# scope.volume_trend = 'up'

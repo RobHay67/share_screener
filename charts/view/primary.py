@@ -6,10 +6,14 @@ from charts.view.partials import render_bollinger_bands
 from charts.view.partials import render_dividends
 from charts.view.partials import render_moving_average
 from charts.view.partials import render_primary_chart
-from charts.view.partials import render_primary_chart_height
+
+from config.model.set_chart_height import set_primary_chart_height
 
 
 def view_primary(scope):
+
+
+	schema = scope.charts
 
 	# ----------------------------------------------------------------------
 	# Primary Charts
@@ -19,7 +23,8 @@ def view_primary(scope):
 	with col1: st.header('Primary Charts')
 	with col2: st.write('.')
 	with col2: st.write('.')
-	with col2: render_primary_chart_height(scope)
+	with col2: set_primary_chart_height(scope)
+
 	with col3: render_primary_chart(scope, 'candlestick')
 	with col4: render_primary_chart(scope, 'scatter')
 	with col5: render_primary_chart(scope, 'bar')

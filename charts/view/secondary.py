@@ -11,9 +11,11 @@ from charts.view.partials import render_volume_oscillator
 
 
 def view_secondary(scope):
+
+	schema = scope.charts
+
 	st.header('Secondary Charts')
 	st.write('appears on all single ticker analysis pages')
-	
 	st.markdown("""---""")
 
 	col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([1.5,0.5,1,1,1,1,1,1])
