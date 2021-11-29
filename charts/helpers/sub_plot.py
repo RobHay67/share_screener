@@ -33,7 +33,7 @@ def format_sub_plot(scope, fig, chart, row_no, col_no):
 	fig.update_yaxes( 
 					title_text	= sub_plot_title, 
 					tickformat	= yaxis_format,  
-					side 		= 'left',
+					# side 		= 'left',
 					row			= row_no, 
 					col			= col_no,
 					showgrid	= False,				# Horizontal Lines

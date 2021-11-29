@@ -10,7 +10,8 @@ def volume_plot(scope, fig, chart, chart_df, row_no, col_no):
 	# Close Up 		= Green
 	# Close Down 	= Red
 	# colors = ['green' if row['open'] - row['close'] >= 0 else 'red' for index, row in chart_df.iterrows()]
-	colors = ['seagreen' if row['close'] - row['open'] >= 0 else 'sienna' for index, row in chart_df.iterrows()]
+	# colors = ['seagreen' if row['close'] - row['open'] >= 0 else 'sienna' for index, row in chart_df.iterrows()]
+	colors = ['seagreen' if row['close'] - row['open'] >= 0 else 'salmon' for index, row in chart_df.iterrows()]
 	
 	fig.add_trace(	go.Bar(
 							x=chart_df['date'],

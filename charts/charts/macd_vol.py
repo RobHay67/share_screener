@@ -31,11 +31,11 @@ def macd_vol_cols(scope, chart_df, chart):
 
 	chart_df.drop(['above_or_below'], axis=1, inplace=True)
 	
+
+
 def macd_vol_plot(scope, fig, chart, chart_df, row_no, col_no):
 
-	# print(chart_df[['date', 'macd_vol_short', 'macd_vol_long', 'macd_vol_col', 'macd_vol_signal', 'macd_vol_histogram' ]].tail(10))
-
-	histogram_colours = ['seagreen' if row['macd_vol_histogram'] >=0 else 'sienna' for index, row in chart_df.iterrows()]
+	histogram_colours = ['seagreen' if row['macd_vol_histogram'] >=0 else 'salmon' for index, row in chart_df.iterrows()]
 
 	# MACD (diff) Line
 	fig.add_trace( go.Scatter(
