@@ -15,4 +15,5 @@ def edit_active(scope, chart ):
 								)
 	scope.charts[chart]['active'] = new_active_status
 
-	if new_active_status != previous_active_status : set_refresh_charts_for_all_pages(scope)
+	if new_active_status != previous_active_status : 
+		set_refresh_charts_for_all_pages(scope)

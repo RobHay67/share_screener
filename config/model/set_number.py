@@ -20,7 +20,8 @@ def edit_number(scope, chart, column ):
 										)  
 	scope.charts[chart]['data_cols'][column] = input_period_no
 
-	if input_period_no != previous_period : set_refresh_charts_for_all_pages(scope)
+	if input_period_no != previous_period : 
+		set_refresh_charts_for_all_pages(scope)
 
 	
 

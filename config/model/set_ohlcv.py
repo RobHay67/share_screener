@@ -17,7 +17,8 @@ def edit_ohlcv(scope, chart ):
 									) 
 	scope.charts[chart]['data_cols']['column'] = selected_column
 
-	if selected_column != previous_column : set_refresh_charts_for_all_pages(scope)
+	if selected_column != previous_column : 
+		set_refresh_charts_for_all_pages(scope)
 	
 def edit_price(scope, chart ):
 	
@@ -32,6 +33,7 @@ def edit_price(scope, chart ):
 									) 
 	scope.charts[chart]['data_cols']['column'] = selected_column
 
-	if selected_column != previous_column : set_refresh_charts_for_all_pages(scope)
+	if selected_column != previous_column : 
+		set_refresh_charts_for_all_pages(scope)
 
 

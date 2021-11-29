@@ -24,9 +24,9 @@ def ticker_picker(scope, page):
 
 	set_cols(scope, page)
 
-	we_are_loading, ticker_list = ticker_selectors(scope, page)
+	selected_tickers_so_lets_load, ticker_list = ticker_selectors(scope, page)
 
-	if we_are_loading:
+	if selected_tickers_so_lets_load:
 		with scope.col1: download_new_data = download_button(scope)		
 		with scope.col6: clear_messages_button(scope)
 

@@ -3,6 +3,7 @@ from pages.view.home_page import view_project_welcome
 from config.view.config_page import view_scope
 from charts.view.primary import view_primary
 from charts.view.secondary import view_secondary
+from analysis.view.analysis import view_analysis
 
 from analysis.single import analysis_ticker_page
 from analysis.research import analysis_research_page
@@ -25,6 +26,7 @@ def render_selected_page(scope):
 						'multi'				:analysis_multi_page,
 						'charts_primary'	:view_primary,
 						'charts_secondary'	:view_secondary,
+						'analysis'			:view_analysis,
 						'scope'				:view_scope,
 					}
 

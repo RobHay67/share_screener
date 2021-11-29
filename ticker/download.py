@@ -21,8 +21,6 @@ def download_tickers(scope):
 
 	# reset STATUS to prevent unnecesary updates
 	scope.download_industries 					= [] 			# Reset for next download
-	scope.pages[page]['refresh_analysis_df'] 	= True
-	scope.pages[page]['refresh_chart_df'] 		= True
 
 
 

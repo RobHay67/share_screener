@@ -16,22 +16,28 @@ def load_tickers(scope, ticker_list):				# will be given a single ticker or a li
 
 	for ticker in ticker_list:
 		if ticker not in scope.ticker_data_files:					# Ensure it has not already been loaded
-			print ( '\033[93m' + ticker + ' > loading ticker file\033[0m')
+			
 			path_for_ticker_file(scope, ticker )
 
 			if os.path.exists( scope.path_ticker_data_file ):
+				print ( '\033[93m' + ticker + ' < load_tickers > loading ticker file\033[0m')
 				load_ticker(scope, ticker )
 				scope.downloaded_loaded_list.append(ticker)
 				store_results( scope, ticker, result='passed' )
+				scope.pages[page]['refresh_analysis_df'][ticker] = True
+				scope.pages[page]['refresh_chart_df'][ticker] 	 = True
 			else:
+				print ( '\033[91m' + ticker + ' < load_tickers > local File not available\033[0m')
 				scope.downloaded_missing_list.append(ticker)
 				store_results( scope, ticker, result='failed' )
+				scope.pages[page]['refresh_analysis_df'][ticker] = False
+				scope.pages[page]['refresh_chart_df'][ticker] 	 = False
 			
 			# reset STATUS to prevent unnecesary updates
-			scope.pages[page]['refresh_analysis_df'] = True
-			scope.pages[page]['refresh_chart_df'] 	 = True
-		# else:
-		# 	print ( '\033[92m' + ticker + ' > skipping load\033[0m')
+			
+
+		else:
+			print ( '\033[92m' + ticker + ' < load_tickers > skipping as ticker already in scope.ticker_data_files \033[0m')
 
 	store_results(scope, 'Finished', final_print=True )
 	

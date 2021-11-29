@@ -16,4 +16,9 @@ def analysis_multi_page(scope):
 	# TODO we migth be able to jumpt to single stock analysis from any list - that migth be cool!!!
 
 
+	# if ticker in scope.pages['multi']['chart_df'].keys():	
+	# for ticker in scope.pages['multi']['ticker_list']:
+		# print (ticker)
+
+
 

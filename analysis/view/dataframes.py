@@ -11,6 +11,9 @@ def view_analysis_dfs(scope, page='all'):
 		st.markdown("""---""")
 		list_of_pages = list(scope.pages.keys())
 		render_expanded = False
+	elif page == 'multi':
+		list_of_pages = [page]
+		render_expanded = False
 	else:
 		list_of_pages = [page]
 		render_expanded = True
@@ -20,7 +23,8 @@ def view_analysis_dfs(scope, page='all'):
 	for page in list_of_pages:
 		for ticker in scope.pages[page]['ticker_list']:
 			if ticker != 'select a ticker':
-				list_of_tickers[ticker] = page
+				if ticker in scope.pages[page]['analysis_df']:
+					list_of_tickers[ticker] = page
 
 	# Render the dataframes in alphabetical order
 	for ticker in sorted(list_of_tickers.keys()):

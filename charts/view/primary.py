@@ -1,7 +1,12 @@
 import streamlit as st
 
 
-from charts.view.partials import render_announcements, render_bollinger_bands, render_dividends, render_moving_average, render_primary_chart, render_primary_chart_height
+from charts.view.partials import render_announcements
+from charts.view.partials import render_bollinger_bands
+from charts.view.partials import render_dividends
+from charts.view.partials import render_moving_average
+from charts.view.partials import render_primary_chart
+from charts.view.partials import render_primary_chart_height
 
 
 def view_primary(scope):
