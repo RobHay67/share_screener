@@ -3,24 +3,24 @@ import streamlit as st
 
 from pages.view.pages import view_pages
 
-from analysis.views.analysis import view_analysis
-from charts.views.primary import view_primary
-from charts.views.secondary import view_secondary
+from analysis.view.analysis import view_analysis
+from charts.view.primary import view_primary
+from charts.view.secondary import view_secondary
 
-from config.helpers.strategy import view_strategy
-from config.helpers.download import view_download
+from config.initial_scope.strategy import view_strategy
+from config.initial_scope.download import view_download
 
-from config.helpers.results import view_results
+from config.initial_scope.results import view_results
 
-from config.helpers.app import view_app
-from config.helpers.folders import view_folders
+from config.initial_scope.app import view_app
+from config.initial_scope.folders import view_folders
 
-from index.model.download import download_ticker_index_data
+from index.download import download_ticker_index_data
 from index.view.index import view_index
 from index.view.industries import view_industries
-from ticker.views.dataframes import view_ticker_data_files
-from analysis.views.dataframes import view_analysis_dfs
-from charts.views.dataframes import view_chart_dfs
+from ticker.view.dataframes import view_ticker_data_files
+from analysis.view.dataframes import view_analysis_dfs
+from charts.view.dataframes import view_chart_dfs
 
 
 from config.model.set_scope_button import set_st_button

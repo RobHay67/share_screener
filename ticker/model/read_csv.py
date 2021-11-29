@@ -1,8 +1,8 @@
 import pandas as pd
 
-from config.helpers.ticker import ticker_file_usecols
-from config.helpers.ticker import ticker_file_dtypes
-from config.helpers.ticker import ticker_file_dates
+from config.initial_scope.ticker import ticker_file_usecols
+from config.initial_scope.ticker import ticker_file_dtypes
+from config.initial_scope.ticker import ticker_file_dates
 
 
 

@@ -2,15 +2,14 @@ from datetime import datetime
 from datetime import timedelta
 import pytz
 
-from config.helpers.markets import opening_hours
+from config.initial_scope.markets import opening_hours
 
-from analysis.views.titles import analysis_titles
-from analysis.views.times import view_local_vs_market_time
-from analysis.views.volume import input_volume
-from analysis.views.volume import view_prediction
+from analysis.view.titles import analysis_titles
+from analysis.view.times import view_local_vs_market_time
+from analysis.view.volume import input_volume
+from analysis.view.volume import view_prediction
 
-
-from ticker.loader import ticker_loader
+from picker.controller import ticker_picker
 
 
 def analysis_volume_page(scope):

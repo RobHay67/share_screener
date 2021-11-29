@@ -18,7 +18,7 @@ import pathlib
 
 # from ticker_index import save_ticker_index_file
 # from ticker.index.file import save_index
-# # from scope import generate_path_for_share_data_file
+# # from scope import path_for_ticker_file
 # from web.results import view_results
 
 

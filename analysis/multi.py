@@ -1,7 +1,7 @@
 		
-from analysis.views.titles import analysis_titles
+from analysis.view.titles import analysis_titles
 
-from analysis.views.multi_analysis import view_multi_criteria			#TODO fleshing out some ideas
+from analysis.view.multi_analysis import view_multi_criteria			#TODO fleshing out some ideas
 
 
 

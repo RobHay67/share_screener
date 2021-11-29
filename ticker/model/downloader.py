@@ -1,13 +1,13 @@
-
-import pandas as pd
 import yfinance as yf					# https://github.com/ranaroussi/yfinance
+import pandas as pd
 
-from config.helpers.ticker import ticker_file_schema
-from config.helpers.ticker import ticker_file_usecols
-from config.helpers.ticker import y_finance_schemas
+
+from config.initial_scope.ticker import ticker_file_schema
+from config.initial_scope.ticker import ticker_file_usecols
+from config.initial_scope.ticker import y_finance_schemas
 
 from pages.view.results import download_industry_message
-from pages.view.results import results
+from config.model.set_results import store_results
 
 from index.model.save import save_index			# TODO we may need to get this working again
 
@@ -132,7 +132,13 @@ def store_yf_download_in_scope( scope, download_ticker_string, yf_download, down
 
 	scope.download_yf_files = pd.concat([scope.download_yf_files, yf_download], sort=False)
 	scope.downloaded_yf_anomolies.update(download_errors)	# store any errors
-	results( scope, passed='Downloaded > ', passed_2='na', failed='Falied to Download > ' )
+	
+	store_results( 	scope, 
+					passed='Downloaded > ', 
+					passed_2='na', 
+					failed='Falied to Download > ' 
+					)
+	
 	failed_download_list = []
 	for ticker, error in download_errors.items():
 		failed_download_list.append(ticker)
@@ -141,10 +147,10 @@ def store_yf_download_in_scope( scope, download_ticker_string, yf_download, down
 	
 	for ticker in ticker_list:
 		if ticker not in failed_download_list:
-			results( scope, ticker, result='passed' )
+			store_results( scope, ticker, result='passed' )
 		else:
-			results( scope, ticker, result='failed' )
-	results(scope, 'Finished', final_print=True )
+			store_results( scope, ticker, result='failed' )
+	store_results(scope, 'Finished', final_print=True )
 
 
 

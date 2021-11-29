@@ -1,34 +1,34 @@
 
-from ticker.loader import ticker_loader
+from picker.controller import ticker_picker
 from ticker.model.metadata import fetch_yfinance_metadata
 
-from analysis.views.titles import analysis_titles
+from analysis.view.titles import analysis_titles
 
-from analysis.views.research.info import company_general
-from analysis.views.research.info import business_summary
-from analysis.views.research.info import fundamental
-from analysis.views.research.info import general
-from analysis.views.research.info import market_info
+from analysis.view.research.info import company_general
+from analysis.view.research.info import business_summary
+from analysis.view.research.info import fundamental
+from analysis.view.research.info import general
+from analysis.view.research.info import market_info
 
-from analysis.views.research.dividends import dividends
+from analysis.view.research.dividends import dividends
 
-from analysis.views.research.investors import institutional
-from analysis.views.research.investors import major
+from analysis.view.research.investors import institutional
+from analysis.view.research.investors import major
 
-from analysis.views.research.financials import annual
-from analysis.views.research.financials import quarterly
-from analysis.views.research.financials import balance_sheet
-from analysis.views.research.financials import balance_sheet_qtr
+from analysis.view.research.financials import annual
+from analysis.view.research.financials import quarterly
+from analysis.view.research.financials import balance_sheet
+from analysis.view.research.financials import balance_sheet_qtr
 
-from analysis.views.research.financials import cashflow
-from analysis.views.research.financials import cashflow_qtr
+from analysis.view.research.financials import cashflow
+from analysis.view.research.financials import cashflow_qtr
 
 
-from analysis.views.research.financials import earnings
-from analysis.views.research.financials import earnings_qtr
+from analysis.view.research.financials import earnings
+from analysis.view.research.financials import earnings_qtr
 
-from analysis.views.research.calendar import calendar
-from analysis.views.research.news import news
+from analysis.view.research.calendar import calendar
+from analysis.view.research.news import news
 
 
 

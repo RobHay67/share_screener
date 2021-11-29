@@ -6,7 +6,7 @@ from config.model.set_download_days import set_download_days
 
 
 
-def view_sidebar(scope):
+def render_sidebar(scope):
 	
 	st.sidebar.title(scope.project_description)
 

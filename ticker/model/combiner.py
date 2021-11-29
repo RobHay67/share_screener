@@ -1,8 +1,8 @@
 import pandas as pd
 
-from pages.view.results import results
+from config.model.set_results import store_results
 
-from config.helpers.ticker import ticker_file_usecols
+from config.initial_scope.ticker import ticker_file_usecols
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -13,7 +13,7 @@ from config.helpers.ticker import ticker_file_usecols
 
 def combine_loaded_and_download_ticker_data(scope): # TODO - change to check for loaded ticker
 
-	results(scope, 
+	store_results(scope, 
 			passed='Combined > ', 
 			passed_2='Created new files > ', 
 			failed='na' 
@@ -30,11 +30,11 @@ def combine_loaded_and_download_ticker_data(scope): # TODO - change to check for
 			ticker_data = ticker_data[ticker_data['volume'] != 0]										# drop rows where volume is zero 
 			if ticker in scope.downloaded_loaded_list:													# we have an exisiting share_data_file so we concatenate the data
 				scope.ticker_data_files[ticker] = pd.concat([scope.ticker_data_files[ticker], ticker_data]).drop_duplicates(subset=['date'], keep='last')
-				results( scope, ticker, result='passed' )
+				store_results( scope, ticker, result='passed' )
 			else:
 				scope.ticker_data_files[ticker] = ticker_data											# its brand new - so we can just add it to the dictionary
-				results( scope, ticker, result='passed_2' )
+				store_results( scope, ticker, result='passed_2' )
 			scope.ticker_data_files[ticker].sort_values(by=['date'], inplace=True, ascending=False)		# sort the share data into date order ascending
-	results(scope, 'Finished', final_print=True )
+	store_results(scope, 'Finished', final_print=True )
 
 

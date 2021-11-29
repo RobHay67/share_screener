@@ -1,8 +1,8 @@
 
 from pages.view.home_page import view_project_welcome
 from config.view.config_page import view_scope
-from charts.views.primary import view_primary
-from charts.views.secondary import view_secondary
+from charts.view.primary import view_primary
+from charts.view.secondary import view_secondary
 
 from analysis.single import analysis_ticker_page
 from analysis.research import analysis_research_page
@@ -11,7 +11,7 @@ from analysis.volume import analysis_volume_page
 from analysis.multi import  analysis_multi_page
 
 
-def view_selected_page(scope):
+def render_selected_page(scope):
 	
 	page = scope.page_to_display
 	# print( 'Rendering > ', page)

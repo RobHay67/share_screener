@@ -1,7 +1,7 @@
 
 
 
-from config.helpers.markets import markets
+from config.initial_scope.markets import markets
 
 
 

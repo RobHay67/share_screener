@@ -1,10 +1,10 @@
 
 import streamlit as st
 
-from ticker.loader import ticker_loader
+from picker.controller import ticker_picker
 
 
 def analysis_titles(scope, title, page ):
 	st.subheader(title)
-	ticker_loader(scope, page)
+	ticker_picker(scope, page)
 	st.markdown("""---""")

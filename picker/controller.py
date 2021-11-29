@@ -1,23 +1,26 @@
 # A single function that handles all of the data loading
 
-from ticker.views.load_screen import set_cols
-from ticker.helpers.which_tickers import ticker_selectors
-from ticker.views.buttons.download import download_button
-from ticker.views.buttons.clear_message import clear_messages_button
-from ticker.views.buttons.ticker_file import ticker_file_button
-from ticker.views.buttons.analysis_dfs import analysis_dfs_button
-from ticker.views.buttons.chart_dfs import chart_dfs_button
+from picker.view.load_screen import set_cols
 
-from ticker.model.load import load_tickers
-from analysis.model.analysis_df import create_analysis_df
-from charts.model.chart_df import create_chart_df
+from ticker.load import load_tickers
 from ticker.download import download_tickers
-from ticker.views.dataframes import view_ticker_data_files
-from analysis.views.dataframes import view_analysis_dfs
-from charts.views.dataframes import view_chart_dfs
+from ticker.view.dataframes import view_ticker_data_files
+
+from analysis.model.analysis_df import create_analysis_df
+from analysis.view.dataframes import view_analysis_dfs
+from charts.model.chart_df import create_chart_df
+from charts.view.dataframes import view_chart_dfs
+
+from picker.helpers.which_tickers import ticker_selectors
+from picker.buttons.download import download_button
+from picker.buttons.clear_message import clear_messages_button
+from picker.buttons.ticker_file import ticker_file_button
+from picker.buttons.analysis_dfs import analysis_dfs_button
+from picker.buttons.chart_dfs import chart_dfs_button
 
 
-def ticker_loader(scope, page):
+
+def ticker_picker(scope, page):
 
 	set_cols(scope, page)
 

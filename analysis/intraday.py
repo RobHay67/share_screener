@@ -1,4 +1,4 @@
-from analysis.views.titles import analysis_titles
+from analysis.view.titles import analysis_titles
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
