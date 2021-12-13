@@ -11,7 +11,7 @@ def view_analysis_dfs(scope, page='all'):
 		st.markdown("""---""")
 		list_of_pages = list(scope.pages.keys())
 		render_expanded = False
-	elif page == 'multi':
+	elif page == 'screener':
 		list_of_pages = [page]
 		render_expanded = False
 	else:

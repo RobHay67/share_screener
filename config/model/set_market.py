@@ -3,7 +3,7 @@ import streamlit as st
 
 def select_a_market(scope):
 
-	previous_selection = scope.pages['multi']['market']
+	previous_selection = scope.pages['screener']['market']
 
 	selected_market = st.selectbox(
 									label='Add a Market to Ticker List',
@@ -13,4 +13,4 @@ def select_a_market(scope):
 									key='1'
 									)
 
-	scope.pages['multi']['market'] = selected_market
+	scope.pages['screener']['market'] = selected_market

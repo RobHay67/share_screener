@@ -38,7 +38,7 @@
 #				b) 
 #
 #				ok - now it gets tough
-#				do we add the measures before trying to render the charts????
+#				do we add the metrics before trying to render the charts????
 #
 #
 #

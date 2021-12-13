@@ -7,7 +7,7 @@ def scope_pages(scope):
 
 	# Page Specific Variables
 	scope.pages={
-					'multi'		:{
+					'screener'	:{
 								'ticker_list'			: [], 
 								'analysis_df'			: {}, 
 								'chart_df'				: {},

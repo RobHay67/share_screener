@@ -12,7 +12,7 @@ def view_ticker_data_files(scope, page='all'):
 		st.markdown("""---""")
 		list_of_pages = list(scope.pages.keys()) 	# all of the pages
 		render_expanded = False
-	elif page == 'multi':
+	elif page == 'screener':
 		list_of_pages = [page]
 		render_expanded = False
 	else:

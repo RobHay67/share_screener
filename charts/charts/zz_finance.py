@@ -40,7 +40,7 @@
 
 
 	# TODO Rob note that the dataframe may need to be sorted in ascending order for these to work correctly - probably best to apply these 
-	# measures before doing the sort - or maybe change the data displayers to sort and then un-sort
+	# metrics before doing the sort - or maybe change the data displayers to sort and then un-sort
 
 	# add moving averages to dataframe
 	# share_data.sort_values(by=['date'], inplace=True, ascending=True)	

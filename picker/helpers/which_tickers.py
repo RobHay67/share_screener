@@ -11,7 +11,7 @@ def ticker_selectors(scope,page):
 	selected_tickers_so_lets_load = False
 	ticker_list = []
 
-	if page != 'multi':
+	if page != 'screener':
 		# One of the Single Ticker Pages
 
 		with scope.col1: select_a_ticker(scope, page)
@@ -29,14 +29,14 @@ def ticker_selectors(scope,page):
 		with scope.col2: select_industries(scope)
 		with scope.col2: select_a_market(scope)
 
-		market 		= scope.pages['multi']['market'] != 'select entire market'
-		industries 	= len(scope.pages['multi']['industries']) != 0
-		tickers 	= len(scope.pages['multi']['tickers']) != 0
+		market 		= scope.pages['screener']['market'] != 'select entire market'
+		industries 	= len(scope.pages['screener']['industries']) != 0
+		tickers 	= len(scope.pages['screener']['tickers']) != 0
 
 		if market or industries or tickers: 
 			selected_tickers_so_lets_load = True
 			update_multi_ticker_list(scope)													# scope.download_industries is establised by this function
-			ticker_list = scope.pages['multi']['ticker_list']
+			ticker_list = scope.pages['screener']['ticker_list']
 
 
 	return selected_tickers_so_lets_load, ticker_list

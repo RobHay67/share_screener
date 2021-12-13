@@ -15,10 +15,10 @@ def render_sidebar(scope):
 	st.sidebar.button('Intra-Day'			, on_click=set_page, args=('intraday', ))
 	st.sidebar.button('Volume'				, on_click=set_page, args=('volume', ))
 	st.sidebar.button('Research'			, on_click=set_page, args=('research', ))
-	st.sidebar.button('Multiple'			, on_click=set_page, args=('multi', ))
-	st.sidebar.button('Measures'  			, on_click=set_page, args=('analysis', ))
+	st.sidebar.button('Screener'			, on_click=set_page, args=('screener', ))
+	st.sidebar.button('Screener Metrics'	, on_click=set_page, args=('metrics', ))
 
-	st.sidebar.subheader('Charts')
+	st.sidebar.subheader('Chart Settings')
 	st.sidebar.button('Primary Charts'  	, on_click=set_page, args=('charts_primary', ))
 	st.sidebar.button('Secondary Charts'	, on_click=set_page, args=('charts_secondary', ))
 	# st.sidebar.button('Defaults'			, on_click=set_page, args=('user', ))
@@ -26,10 +26,10 @@ def render_sidebar(scope):
 	# st.sidebar.subheader('Analysis')
 	
 
-	st.sidebar.subheader('System Settings')
+	st.sidebar.subheader('Download and Analysis Settings')
 	scope.download_days 					= set_download_days()
 	scope.analysis_row_limit 				= set_analysis_row_limit()
-	st.sidebar.button('Settings'			, on_click=set_page, args=('scope', ))
+	st.sidebar.button('Settings > all'		, on_click=set_page, args=('scope', ))
 
 
 

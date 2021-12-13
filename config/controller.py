@@ -1,4 +1,5 @@
 from config.initial_scope.analysis import scope_analysis
+from config.initial_scope.screener import scope_screener
 from config.initial_scope.app import scope_app
 from config.initial_scope.charts import scope_chart
 from config.initial_scope.download import scope_download
@@ -35,6 +36,7 @@ def set_scope(scope):
 		scope_chart(scope)
 		scope_results(scope)
 		scope_analysis(scope)
+		scope_screener(scope)
 		scope_tickers(scope)
 
 		view_project_welcome(scope)			# Render the home page

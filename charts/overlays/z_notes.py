@@ -116,7 +116,7 @@ def indicator_selectors(scope):
 # 1  def line_sma( params, share_df, column, no_of_days=10 ):   
 # 2  def line_ema( params, share_df, column, no_of_days, temp_ema=False ):
 # 99 def volume_per_minute(params, share_df, ticker ):
-# # Complex Measures
+# # Complex Metrics
 # def trend_sma_50_low( params, share_df ):
 # 5  def recent_price_moves( params, share_df, lookback_days=5 ):
 # 3  def macd( params, share_df, short=12, long=26, signal=9):
@@ -124,7 +124,7 @@ def indicator_selectors(scope):
 # X  Momentum Oscillation
 # 4  def rsi( params, share_df, no_of_days=14 ):
 # 6  def stochastic_oscillator(params, share_df, lookback_days=14, slow_k=3, signal=3):
-# # Technical Analysis measures (traditional)
+# # Technical Analysis metrics (traditional)
 # x def add_rsi( params, share_df, column, no_of_days=14):
 # X  Trend Line Columns - Naming Convention Helpers - what was the original column name
 # def determine_original_column_name( column ):

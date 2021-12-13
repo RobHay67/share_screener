@@ -4,7 +4,7 @@ import streamlit as st
 
 def select_tickers(scope):
 
-	previous_selection = scope.pages['multi']['tickers']
+	previous_selection = scope.pages['screener']['tickers']
 
 	new_selection = st.multiselect(
 									label='Add a Ticker or Tickers',
@@ -14,4 +14,4 @@ def select_tickers(scope):
 									key='3'
 									)
 
-	scope.pages['multi']['tickers'] = new_selection
+	scope.pages['screener']['tickers'] = new_selection

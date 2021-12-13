@@ -6,8 +6,6 @@ from config.model.set_chart_refresh import set_refresh_charts_for_all_pages
 
 def edit_active(scope, schema, key ):
 
-	print(key)
-
 	display_name =  '' + scope[schema][key]['name']
 	
 	previous_active_status = scope[schema][key]['active']
