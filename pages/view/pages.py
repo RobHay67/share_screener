@@ -16,7 +16,7 @@ def view_pages(scope):
 	st.markdown("""---""")
 
 
-	st.subheader('Multi Analysis Page + Settings')
+	st.subheader('Screener Page + Settings')
 	st.markdown('#### Ticker List Construction Selectors')
 	view_headings(scope, col_size_list)
 	view_market(scope, col_size_list)

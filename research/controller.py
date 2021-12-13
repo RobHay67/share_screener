@@ -2,33 +2,33 @@
 from picker.controller import ticker_picker
 from ticker.model.metadata import fetch_yfinance_metadata
 
-from analysis.view.titles import analysis_titles
+from pages.view.analysis_title import analysis_titles
 
-from analysis.view.research.info import company_general
-from analysis.view.research.info import business_summary
-from analysis.view.research.info import fundamental
-from analysis.view.research.info import general
-from analysis.view.research.info import market_info
+from research.view.info import company_general
+from research.view.info import business_summary
+from research.view.info import fundamental
+from research.view.info import general
+from research.view.info import market_info
 
-from analysis.view.research.dividends import dividends
+from research.view.dividends import dividends
 
-from analysis.view.research.investors import institutional
-from analysis.view.research.investors import major
+from research.view.investors import institutional
+from research.view.investors import major
 
-from analysis.view.research.financials import annual
-from analysis.view.research.financials import quarterly
-from analysis.view.research.financials import balance_sheet
-from analysis.view.research.financials import balance_sheet_qtr
+from research.view.financials import annual
+from research.view.financials import quarterly
+from research.view.financials import balance_sheet
+from research.view.financials import balance_sheet_qtr
 
-from analysis.view.research.financials import cashflow
-from analysis.view.research.financials import cashflow_qtr
+from research.view.financials import cashflow
+from research.view.financials import cashflow_qtr
 
 
-from analysis.view.research.financials import earnings
-from analysis.view.research.financials import earnings_qtr
+from research.view.financials import earnings
+from research.view.financials import earnings_qtr
 
-from analysis.view.research.calendar import calendar
-from analysis.view.research.news import news
+from research.view.calendar import calendar
+from research.view.news import news
 
 
 
@@ -39,7 +39,7 @@ from analysis.view.research.news import news
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Company Research
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def analysis_research_page(scope):
+def view_research_page(scope):
 	analysis_titles(scope, 'Company Research', 'research')
 
 	

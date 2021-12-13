@@ -1,6 +1,6 @@
-		
-from screener.view import screener_title
-from screener.view import example_settings			#TODO fleshing out some ideas
+from pages.view.analysis_title import analysis_titles		
+# from screener.view.title import screener_title
+from screener.view.example import example_settings			#TODO fleshing out some ideas
 
 
 
@@ -8,9 +8,11 @@ from screener.view import example_settings			#TODO fleshing out some ideas
 # Mult Ticker Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def view_ticker_screener(scope):
-	screener_title(scope, 'Ticker Screener', 'screener')
+	analysis_titles(scope, 'Ticker Screener', 'screener')
 
 	example_settings(scope)
+
+	
 
 	# TODO we migth be able to jumpt to single stock analysis from any list - that migth be cool!!!
 

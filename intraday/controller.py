@@ -1,11 +1,12 @@
-from analysis.view.titles import analysis_titles
+from pages.view.analysis_title import analysis_titles
+from pages.view.analysis_title import analysis_titles
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Intra Day Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def analysis_intraday_page(scope):
+def view_intraday_page(scope):
 	analysis_titles(scope, 'Intra Day Analysis', 'intraday')
 
 	ticker = scope.pages['intraday']['ticker_list'][0]

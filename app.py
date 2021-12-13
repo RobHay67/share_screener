@@ -25,6 +25,7 @@ from pages.view.sidebar import render_sidebar
 from pages.controller import render_selected_page
 
 print ( '\033[94m' + 'Application Re-Rendering Now ' + '>'*50 + '\033[0m')
+
 scope = set_scope(st.session_state)
 render_sidebar(scope)						# Render the Sidebar
 render_selected_page(scope)				# Render the selected Page

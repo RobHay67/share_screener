@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 
 def add_subplot(scope, fig, chart_df, plotly_schema):
 	for chart_no, chart in enumerate(plotly_schema['requested_charts']):
-		print('Adding Chart > ', chart)
+		# print('Adding Chart > ', chart)
 		row_no = chart_no+1 
 		col_no = plotly_schema['col_no']
 
@@ -14,7 +14,7 @@ def add_subplot(scope, fig, chart_df, plotly_schema):
 		
 		if scope.charts[chart]['apply_overlay'] == True:										# only apply overlays to relevant charts
 			for overlay in plotly_schema['requested_overlays']:
-				print('Adding Overlay > ', overlay)
+				# print('Adding Overlay > ', overlay)
 				scope.charts[overlay]['plot']['function'](scope, fig, overlay, chart_df, row_no, col_no)
 
 	return fig

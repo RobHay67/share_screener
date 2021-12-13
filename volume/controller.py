@@ -4,15 +4,15 @@ import pytz
 
 from config.initial_scope.markets import opening_hours
 
-from analysis.view.titles import analysis_titles
-from analysis.view.times import view_local_vs_market_time
-from analysis.view.volume import input_volume
-from analysis.view.volume import view_prediction
+from pages.view.analysis_title import analysis_titles
+from volume.view.times import view_local_vs_market_time
+from volume.view.input_volume import view_input_volume
+from volume.view.prediction import view_prediction
 
 from picker.controller import ticker_picker
 
 
-def analysis_volume_page(scope):
+def view_volume_page(scope):
 
 	analysis_titles(scope, 'Predict Closing Volume to End of Today', 'volume')
 
@@ -26,7 +26,7 @@ def analysis_volume_page(scope):
 		market_time = datetime.now(pytz.timezone(market_timezone))			# Current Market time
 		view_local_vs_market_time(local_time, market_time)
 
-		ticker_current_volume = input_volume()
+		ticker_current_volume = view_input_volume()
 		###########################################################################################
 		# Predict Total Daily Volume based on current Volume and known information about the ticker
 		###########################################################################################

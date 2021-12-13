@@ -9,41 +9,31 @@ def scope_pages(scope):
 	scope.pages={
 					'screener'	:{
 								'ticker_list'			: [], 
-								'analysis_df'			: {}, 
-								'chart_df'				: {},
-								'refresh_analysis_df'	: {},
-								'refresh_chart_df'		: {}, 
+								'screener_df'			: {}, 
+								'refresh_ticker_df'		: {},
 								'market'				: 'select entire market', 
 								'industries'			: None, 
 								'tickers'				: None,  
 									},
 					'single'	:{
 								'ticker_list'			: ['select a ticker'],
-								'analysis_df'			: {}, 
 								'chart_df'				: {}, 
-								'refresh_analysis_df'	: {},
-								'refresh_chart_df'		: {},
+								'refresh_ticker_df'		: {},
 								},
 					'intraday'	:{
 								'ticker_list'			: ['select a ticker'],
-								'analysis_df'			: {}, 
 								'chart_df'				: {}, 
-								'refresh_analysis_df'	: {},
-								'refresh_chart_df'		: {},
+								'refresh_ticker_df'		: {},
 								},
 					'volume'	:{
 								'ticker_list'			: ['select a ticker'],
-								'analysis_df'			: {}, 
 								'chart_df'				: {}, 
-								'refresh_analysis_df'	: {},
-								'refresh_chart_df'		: {},
+								'refresh_ticker_df'		: {},
 								},
 					'research'	:{
 								'ticker_list'			: ['select a ticker'],
-								'analysis_df'			: {}, 
 								'chart_df'				: {}, 
-								'refresh_analysis_df'	: {},
-								'refresh_chart_df'		: {},
+								'refresh_ticker_df'		: {},
 								},
 					}
 

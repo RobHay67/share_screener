@@ -16,7 +16,7 @@ def render_sidebar(scope):
 	st.sidebar.button('Volume'				, on_click=set_page, args=('volume', ))
 	st.sidebar.button('Research'			, on_click=set_page, args=('research', ))
 	st.sidebar.button('Screener'			, on_click=set_page, args=('screener', ))
-	st.sidebar.button('Screener Metrics'	, on_click=set_page, args=('metrics', ))
+	st.sidebar.button('Screener Metrics'	, on_click=set_page, args=('metrics', ), key='1')
 
 	st.sidebar.subheader('Chart Settings')
 	st.sidebar.button('Primary Charts'  	, on_click=set_page, args=('charts_primary', ))

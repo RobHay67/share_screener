@@ -36,24 +36,32 @@
 from charts.charts.candlestick 	import candle_plot
 # from charts.charts.scatter										# TODO
 # from charts.charts.bar											# TODO
-from charts.charts.line 		import line_plot, line_cols
+from charts.charts.line 		import line_plot
 # from charts.charts.heikin_ashi
 
 # Secondary Charts -----------------------------------
 from charts.charts.volume 		import volume_plot
 # from charts.charts.vac											# TODO
-from charts.charts.vpm 			import vpm_plot, vpm_cols
-from charts.charts.macd 		import macd_plot, macd_cols
-from charts.charts.macd_vol		import macd_vol_plot, macd_vol_cols
-from charts.charts.rsi 			import rsi_plot, rsi_cols
-from charts.charts.stoch 		import stoch_plot, stoch_cols
+from metrics.vpm				import vpm_cols
+from charts.charts.vpm 			import vpm_plot
+from metrics.macd				import macd_cols
+from charts.charts.macd 		import macd_plot
+from metrics.macd_on_volume		import macd_vol_cols
+from charts.charts.macd_vol		import macd_vol_plot
+from metrics.rsi 				import rsi_cols
+from charts.charts.rsi 			import rsi_plot
+from metrics.stochastic			import stoch_cols
+from charts.charts.stoch 		import stoch_plot
 # from analysis.charts.				# Volume Oscillator				# TODO
 # from charts.roc													# TODO - not sure what this one is ROb - investigate and add in - i think it might be a primary chart
 											
 # Overlays -------------------------------------------
-from charts.overlays.sma 		import sma_cols, sma_plot
-from charts.overlays.ema 		import ema_cols, ema_plot
-from charts.overlays.dividends 	import dividend_cols, dividend_plot
+from metrics.sma				import sma_cols
+from charts.overlays.sma 		import sma_plot
+from metrics.ema				import ema_cols
+from charts.overlays.ema 		import ema_plot
+from metrics.dividends			import dividend_cols
+from charts.overlays.dividends 	import dividend_plot
 
 
 # ==============================================================================================================================================================
@@ -143,7 +151,7 @@ chart_schema = {
 													yaxis		: '$,.2f' 
 												}, 	
 								data_cols		: {
-													function	: line_cols, 
+													function	: None, 
 													column		: 'close',
 												},
 							},

@@ -1,17 +1,12 @@
 
 
-from numpy.lib.shape_base import column_stack
-import streamlit as st
 import plotly.graph_objects as go
 
 
-# from analysis.charts.options import render_chart_options
+
 
 # line_cols - No Additional Columns are required to render the Line Chart
-def line_cols(scope, chart_df, chart):
-	column 			= scope.charts[chart]['data_cols']['column']
 
-	chart_df['rsi'] = chart_df[column]
 
 
 

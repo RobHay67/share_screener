@@ -16,7 +16,7 @@ def edit_colour(scope, schema, key ):
 									) 
 	scope[schema][key]['plot']['colour'] = selected_colour
 
-	# does not require a refresh_chart_df to be set to TRUE
+	# does not require a refresh_ticker_df to be set to TRUE
 
 
 

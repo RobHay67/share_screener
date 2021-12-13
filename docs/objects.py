@@ -7,32 +7,49 @@
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # ticker_index 									DataFrame  				A list of all tickers available to the application
 # ticker_data_files								dict of DataFrames		All Share Data files indexed by Ticker Code
-# scope.selected[page]['analysis_df'][ticker]	DataFrame				A Specific Ticker Extract from the share_data_files for a particular analysis page
-# scope.selected[page]['plot_df]['ticker]		DataFrame				A single Ticker copy of the analysis_df with all the metrics added for plotting
+# scope.selected[page]['screener_df'][ticker]		DataFrame				Copy of selected ticker(s) from share_data_files with all metrics added for screening
+# scope.selected[page]['plot_df]['ticker]		DataFrame				Copy of selected ticker(s) from share_data_files with all metrics added for plotting
+
+
+#																				-----------------------------
+#																				|							|
+#			dictionary of all loaded and downloaded OHLCV ticker data			|  scope.ticker_data_files  |	
+#																				|							|
+#																				-----------------------------
+#																							|
+#																							|
+#							  													  subset ticker_data_files
+#																			  /								\
+#																			 /								 \
+#																			/								  \
+#																		   /								   \
+#													---------------------										---------------------
+#													|					|										|					|
+#													|    screener_df   	|										|      chart_df   	|
+#													|					|										|					|
+#													---------------------										---------------------
+#
+# Copy Ticker(s)from <ticker_data_files>					yes															yes
+# Limit rows to <analysis_row_limit> 						yes															yes				default = 100	
+# Refresh when <ticker_data_file> changes					yes															yes				i.e. we downloaded more data
 
 
 
 
-#							------------------------------
-#							|  scope.ticker_data_files   |				Dictionary of all loaded and downloaded (combined) OHLCV ticker data - this is saved
-#							------------------------------
-
-#							  subset of ticker_data_files
 
 
-#								---------------------
-#								|					|
-#								|    analysis_df   	|						Dataframe - copy of Ticker or Tickers being analysed
-#								|					|						User defined file size - i.e. latest X rows - limit analysis to 100 rows for faster analysis
-#								---------------------						ONLY refreshes when the ticker_data_file has changed - i.e. we downloaded more data
+
+
+
+
 #										  |
-#								  copy analysis_df
+#								  copy screener_df
 # 									add metrics
 #								          |
-#								---------------------						Dataframe - copy of analysis_df on which plotting columns are added
+#								---------------------						Dataframe - copy of screener_df on which plotting columns are added
 #								|					|						i.e. 20 day SMA plot column
-#								|      chart_df   	|						REFRESH occurens when :after analysis_df changes
-#								|					|						a) the analysis_df changes
+#								|      chart_df   	|						REFRESH occurens when :after screener_df changes
+#								|					|						a) the screener_df changes
 #								---------------------						b) use makes a change to most of the charting parameters (except colour)
 
 

@@ -4,6 +4,8 @@ from config.model.set_results import store_results
 
 from config.initial_scope.ticker import ticker_file_usecols
 
+from config.model.set_page_df_refresh import set_refresh_df_for_ticker_in_all_pages
+
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Combiner
@@ -38,8 +40,8 @@ def combine_loaded_and_download_ticker_data(scope): # TODO - change to check for
 				store_results( scope, ticker, result='passed_2' )
 			scope.ticker_data_files[ticker].sort_values(by=['date'], inplace=True, ascending=False)		# sort the share data into date order ascending
 
-			scope.pages[page]['refresh_analysis_df'][ticker] 	= True									# Analysis can use this new data
-			scope.pages[page]['refresh_chart_df'][ticker]		= True									# Charting can use this new data
+			set_refresh_df_for_ticker_in_all_pages(scope, ticker)
+					
 	store_results(scope, 'Finished', final_print=True )
 
 

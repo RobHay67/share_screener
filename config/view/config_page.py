@@ -3,7 +3,7 @@ import streamlit as st
 
 from pages.view.pages import view_pages
 
-from screener.view import view_metrics
+from screener.view.metrics import view_metrics
 from charts.view.primary import view_primary
 from charts.view.secondary import view_secondary
 
@@ -19,7 +19,7 @@ from index.download import download_ticker_index_data
 from index.view.index import view_index
 from index.view.industries import view_industries
 from ticker.view.dataframes import view_ticker_data_files
-from analysis.view.dataframes import view_analysis_dfs
+from screener.view.dataframes import view_screener_dfs
 from charts.view.dataframes import view_chart_dfs
 
 
@@ -47,7 +47,7 @@ def render_selected_scope_page(scope):
 			'view_industries'		:view_industries,
 			# Column 5			
 			'view_ticker_files'		:view_ticker_data_files,
-			'view_analysis_dfs'		:view_analysis_dfs,
+			'view_analysis_dfs'		:view_screener_dfs,
 			'view_chart_dfs'		:view_chart_dfs,
 			
 			}
