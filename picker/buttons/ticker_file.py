@@ -11,6 +11,6 @@ def ticker_file_button(scope, ticker_list):
 			loaded_df_row_count 	= int(len(scope.ticker_data_files[ticker]))
 			total_loaded_rows 		+= loaded_df_row_count
 
-	loaded_dfs_button_message 	= ('Loaded dfs = ' + str(no_of_loaded_files) + ' rows = ' + str(total_loaded_rows))
+	loaded_dfs_button_message 	= (str(no_of_loaded_files) + ' Loaded dfs - rows = ' + str(total_loaded_rows))
 
 	return st.button(loaded_dfs_button_message)

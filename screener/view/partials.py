@@ -9,9 +9,9 @@ from config.model.set_number import edit_number
 
 
 def render_ohlcv_trend(scope, measure, column):
-	edit_active(scope, 'screener_trends', measure)
+	edit_active(scope, 'screener_schema', measure)
 	st.write('Column = ', column)
-	edit_trend(scope, 'screener_trends', measure)
-	edit_number(scope, 'screener_trends', measure, 'duration' )
-	edit_number(scope, 'screener_trends', measure, 'timespan' )
+	edit_trend(scope, 'screener_schema', measure)
+	edit_number(scope, 'screener_schema', measure, 'duration' )
+	edit_number(scope, 'screener_schema', measure, 'timespan' )
 	st.markdown("""---""")

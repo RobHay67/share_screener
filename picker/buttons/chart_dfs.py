@@ -12,7 +12,7 @@ def chart_dfs_button(scope, page, ticker_list):
 			chart_df_row_count 	 = len(scope.pages[page]['chart_df'][ticker])
 			total_chart_df_rows += chart_df_row_count
 
-	chart_dfs_button_message 	= ('Charting dfs = ' + str(chart_df_ticker_count)  		+ ' rows = ' + str(total_chart_df_rows))
+	chart_dfs_button_message 	= (str(chart_df_ticker_count) + ' Charting dfs - rows = ' + str(total_chart_df_rows))
 	
 	return st.button(chart_dfs_button_message)
 

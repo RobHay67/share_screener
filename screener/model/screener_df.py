@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 def create_screener_df(scope, ticker_list):
 
 	page 				= scope.page_to_display

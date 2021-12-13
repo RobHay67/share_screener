@@ -1,11 +1,11 @@
-
+from metrics.trends import 
 
 
 
 # ==============================================================================================================================================================
 # Analysis Specification (included the tech indicators where appropriate)
 # ==============================================================================================================================================================
-
+metric_function = 'metric_function'		# The function to add the columns for this metric
 active 			= 'active'				# True or False - The Analysis is active or inactive (displayed or not displayed)
 name 			= 'name'				# The display name for the Analysis (used in the settings page)
 column 			= 'column'				# OHLCV column required for the Analysis
@@ -20,10 +20,10 @@ trend_direction = [ 'up', 'down' ]
 
 
 
-trend_schema = {
+screener_schema = {
 					'trend_open'	: {
-										active			: True,
-										name			: 'Trend of Open Price',
+										active			: False,
+										name			: 'Open trend',
 										column 			: 'open',
 										trend			: 'up',
 										duration		: 4,
@@ -31,31 +31,32 @@ trend_schema = {
 									},
 					'trend_high'	: {
 										active			: True,
-										name			: 'Trend of High Price',
+										name			: 'High trend',
 										column 			: 'high',
 										trend			: 'up',
-										duration		: 4,
-										timespan		: 10,
+										duration		: 5,
+										timespan		: 5,
+										metric_function	: 
 									},
 					'trend_low'	: {
-										active			: True,
-										name			: 'Trend of Low Price',
+										active			: False,
+										name			: 'Low trend',
 										column 			: 'low',
 										trend			: 'up',
 										duration		: 4,
 										timespan		: 10,
 									},
 					'trend_close'	: {
-										active			: True,
-										name			: 'Trend of Close Price',
+										active			: False,
+										name			: 'Close trend',
 										column 			: 'close',
 										trend			: 'up',
 										duration		: 4,
 										timespan		: 10,
 									},
 					'trend_volume'	: {
-										active			: True,
-										name			: 'Trend of Volume',
+										active			: False,
+										name			: 'Volume trend',
 										column 			: 'volume',
 										trend			: 'up',
 										duration		: 4,
@@ -66,8 +67,8 @@ trend_schema = {
 
 def scope_screener(scope):
 	
-	scope.screener_trends 	= trend_schema
-	scope.screener_trend = trend_direction
+	scope.screener_schema = screener_schema
+	scope.screener_trends = trend_direction
 
 
 

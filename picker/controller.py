@@ -16,7 +16,7 @@ from picker.helpers.which_tickers import ticker_selectors
 from picker.buttons.download import download_button
 from picker.buttons.clear_message import clear_messages_button
 from picker.buttons.ticker_file import ticker_file_button
-from picker.buttons.analysis_dfs import screener_dfs_button
+from picker.buttons.screener_dfs import screener_dfs_button
 from picker.buttons.chart_dfs import chart_dfs_button
 
 
