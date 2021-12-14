@@ -13,7 +13,9 @@ def set_refresh_df_all_tickers_in_all_pages():
 		for ticker in st.session_state.pages[page]['refresh_ticker_df'].keys():
 			st.session_state.pages[page]['refresh_ticker_df'][ticker] = True
 
-def set_refresh_chart_dfs_for_most_pages(scope):
+
+
+def set_refresh_chart_dfs_for_non_screener_pages(scope):
 	# One of the Chart Metrics has changed
 	for page in scope.pages.keys():
 		if page != 'screener':

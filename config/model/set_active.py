@@ -1,9 +1,8 @@
 
 import streamlit as st
 
-
-# from config.model.set_chart_refresh import set_refresh_charts_for_all_pages
-from config.model.set_page_df_refresh import set_refresh_chart_dfs_for_most_pages
+from config.model.set_page_df_refresh import set_refresh_chart_dfs_for_non_screener_pages
+from config.model.set_page_df_refresh import set_refresh_screener_dfs_for_screener_page
 
 def edit_active(scope, schema, key ):
 
@@ -19,8 +18,11 @@ def edit_active(scope, schema, key ):
 
 	scope[schema][key]['active'] = new_active_status
 
-	if new_active_status != previous_active_status : 
+	if new_active_status != previous_active_status : 				# set to refresh pages if something has been changed
 		if schema == 'charts':
-			set_refresh_chart_dfs_for_most_pages(scope)
-
+			set_refresh_chart_dfs_for_non_screener_pages(scope)
+		elif schema == 'screener_tests':
+			set_refresh_screener_dfs_for_screener_page(scope)
+		else:
+			print ( '\033[91m' + ' < edit_active > function provided with unknown schema > ' + schema + '\033[0m')
 

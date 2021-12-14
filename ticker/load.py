@@ -21,7 +21,7 @@ def load_tickers(scope, ticker_list):				# I will be provided with a single tick
 			path_for_ticker_file(scope, ticker )
 
 			if os.path.exists( scope.path_ticker_data_file ):
-				print ( '\033[93m' + ticker + ' < load_tickers > loading ticker file\033[0m')
+				print ( '\033[96m' + ticker + ' < load_tickers > loading ticker file\033[0m')
 				load_ticker(scope, ticker )
 				scope.downloaded_loaded_list.append(ticker)
 				store_results( scope, ticker, result='passed' )
@@ -31,7 +31,7 @@ def load_tickers(scope, ticker_list):				# I will be provided with a single tick
 				scope.downloaded_missing_list.append(ticker)
 				store_results( scope, ticker, result='failed' )
 		else:
-			print ( '\033[92m' + ticker + ' skipping < load_tickers > as ticker already in scope.ticker_data_files \033[0m')
+			print ( '\033[92m' + ticker + ' skipping < load_tickers > as ticker already loaded into scope.ticker_data_files \033[0m')
 
 		
 

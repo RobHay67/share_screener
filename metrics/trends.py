@@ -4,24 +4,12 @@ import numpy as np
 
 def trend_cols(scope, screener_df, test):
 
-	test_name = 'test_' + test
+	test_name 	= 'test_' + test
 
 	column 		= scope.screener_tests[test]['column']
 	trend 		= scope.screener_tests[test]['trend']
 	duration	= int(scope.screener_tests[test]['duration'])
 	timespan 	= int(scope.screener_tests[test]['timespan'])
-
-
-	print ( '='*100)
-	print ( 'adding a trend on column > ', column )
-	print ( 'trend direction          > ', trend )
-	print ( 'trend duration           > ', duration )
-	print ( 'trend timespan           > ', timespan )
-
-
-
-
-	print ( '='*100)
 	
 	screener_df['temp_shifted'] = screener_df[column].shift(1)
 	screener_df['temp_shifted'] = screener_df['temp_shifted'].fillna(0.0).astype(float)
@@ -34,7 +22,11 @@ def trend_cols(scope, screener_df, test):
 
 	screener_df[test_name] = np.where( screener_df['temp_trend_total'] >= duration, 'passed', 'failed')
 
-	print(screener_df.tail(10))
+	screener_df.drop(['temp_shifted', 'temp_trend', 'temp_trend_total'], axis=1, inplace=True)
+
+
+
+
 
 
 

@@ -1,9 +1,8 @@
 import streamlit as st
 
 
-# from config.model.set_chart_refresh import set_refresh_charts_for_all_pages
-from config.model.set_page_df_refresh import set_refresh_chart_dfs_for_most_pages
-
+from config.model.set_page_df_refresh import set_refresh_chart_dfs_for_non_screener_pages
+from config.model.set_page_df_refresh import set_refresh_screener_dfs_for_screener_page
 
 	
 def edit_number(scope, schema, key, column ):
@@ -12,28 +11,29 @@ def edit_number(scope, schema, key, column ):
 	column_name = column.capitalize()
 	
 	if schema == 'charts':
-		previous_period = int(scope[schema][key]['data_cols'][column])
+		previous_number = int(scope[schema][key]['data_cols'][column])
 	else:
-		previous_period = int(scope[schema][key][column])
+		previous_number = int(scope[schema][key][column])
 
 
-	input_period_no = st.number_input(
+	new_number = st.number_input(
 										# column_name,
 										label=(column_name + ' for ' + display_name), 
 										min_value=0, 
-										value=previous_period,
+										value=previous_number,
 										key=display_name
 										)  
 
-	if schema == 'charts':
-		scope[schema][key]['data_cols'][column] = input_period_no
-		if input_period_no != previous_period :
-			set_refresh_chart_dfs_for_most_pages(scope)
-	else:
-		scope[schema][key][column] = input_period_no
+	if new_number != previous_number : 					# set to refresh pages if something has been changed
+		if schema == 'charts':
+			scope[schema][key]['data_cols'][column] = new_number
+			set_refresh_chart_dfs_for_non_screener_pages(scope)
+		elif schema == 'screener_tests':
+			scope[schema][key][column] = new_number
+			set_refresh_screener_dfs_for_screener_page(scope)
+		else:
+			print ( '\033[91m' + ' < edit_number > function provided with unknown schema > ' + schema + '\033[0m')
 
-
-	
 
 	
 

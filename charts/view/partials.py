@@ -1,12 +1,10 @@
 import streamlit as st
 
 
-
-# from config.model.set_chart_active import edit_active
 from config.model.set_active import edit_active
 from config.model.set_number import edit_number
 from config.model.set_ohlcv import edit_ohlcv
-from config.model.set_ohlcv import edit_price
+from config.model.set_ohlcv import edit_ohlc
 from config.model.set_colour import edit_colour
 
 # -------------------------------------------------------------------------------------------------------------------------------------
@@ -34,7 +32,7 @@ def render_macd(scope):
 	st.markdown('##### Moving Average, Convergence, Divergence (MACD)')
 	chart = 'macd'
 	edit_active(scope, 'charts', chart)
-	edit_price(scope, 'charts', chart )
+	edit_ohlc(scope, 'charts', chart )
 	edit_number(scope, 'charts', chart, 'long' )
 	edit_number(scope, 'charts', chart, 'short' )
 	edit_number(scope, 'charts', chart, 'signal' )
@@ -63,7 +61,7 @@ def render_stochastic(scope):
 	st.markdown('##### Stochastic Oscillator')
 	chart = 'stochastic'
 	edit_active(scope, 'charts', chart)
-	# edit_price(scope, chart )
+	# edit_ohlc(scope, chart )
 	edit_number(scope, 'charts', chart, 'lookback_days' )
 	edit_number(scope, 'charts', chart, 'slow' )
 	edit_number(scope, 'charts', chart, 'signal' )
@@ -83,7 +81,7 @@ def render_volume_oscillator(scope):
 def render_moving_average(scope, chart):  # SMA or EMA
 	edit_active(scope, 'charts', chart)
 	edit_number(scope, 'charts', chart, 'periods' )
-	edit_price(scope, 'charts', chart )
+	edit_ohlc(scope, 'charts', chart )
 	edit_colour(scope, 'charts', chart )
 	st.markdown("""---""")
 
@@ -91,7 +89,7 @@ def render_bollinger_bands(scope):
 	# st.markdown('##### Bollinger Bands')
 	chart = 'bollinger_bands'
 	edit_active(scope, 'charts', chart)
-	edit_price(scope, 'charts', chart )
+	edit_ohlc(scope, 'charts', chart )
 	edit_number(scope, 'charts', chart, 'length' )
 	edit_number(scope, 'charts', chart, 'shift_up' )
 	edit_number(scope, 'charts', chart, 'shift_down' )
