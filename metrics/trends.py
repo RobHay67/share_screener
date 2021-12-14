@@ -2,11 +2,39 @@
 import numpy as np
 
 
-def trend_cols(scope, chart_df, chart):
+def trend_cols(scope, screener_df, test):
+
+	test_name = 'test_' + test
+
+	column 		= scope.screener_tests[test]['column']
+	trend 		= scope.screener_tests[test]['trend']
+	duration	= int(scope.screener_tests[test]['duration'])
+	timespan 	= int(scope.screener_tests[test]['timespan'])
 
 
+	print ( '='*100)
+	print ( 'adding a trend on column > ', column )
+	print ( 'trend direction          > ', trend )
+	print ( 'trend duration           > ', duration )
+	print ( 'trend timespan           > ', timespan )
+
+
+
+
+	print ( '='*100)
 	
+	screener_df['temp_shifted'] = screener_df[column].shift(1)
+	screener_df['temp_shifted'] = screener_df['temp_shifted'].fillna(0.0).astype(float)
+	if trend == 'up':
+		screener_df['temp_trend'] = np.where( screener_df[column] > screener_df['temp_shifted'], 1, 0 )
+	else:
+		screener_df['temp_trend'] = np.where( screener_df[column] < screener_df['temp_shifted'], 1, 0 )
 
+	screener_df['temp_trend_total'] = screener_df['temp_trend'].rolling(timespan, min_periods=1).sum().astype(int)
+
+	screener_df[test_name] = np.where( screener_df['temp_trend_total'] >= duration, 'passed', 'failed')
+
+	print(screener_df.tail(10))
 
 
 
@@ -39,7 +67,7 @@ def recent_price_moves( params, share_df, lookback_days=5 ):
 
 # This is Fliss simple strategy
 
-def fliss_simple()
+def fliss_simple():
 	lookback_days = 3
 
 	for ticker in params.share_data['files']:

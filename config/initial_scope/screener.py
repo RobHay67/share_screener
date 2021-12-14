@@ -1,4 +1,4 @@
-from metrics.trends import 
+from metrics.trends import trend_cols
 
 
 
@@ -20,7 +20,7 @@ trend_direction = [ 'up', 'down' ]
 
 
 
-screener_schema = {
+screener_tests = {
 					'trend_open'	: {
 										active			: False,
 										name			: 'Open trend',
@@ -28,6 +28,7 @@ screener_schema = {
 										trend			: 'up',
 										duration		: 4,
 										timespan		: 10,
+										metric_function	: trend_cols,
 									},
 					'trend_high'	: {
 										active			: True,
@@ -36,7 +37,7 @@ screener_schema = {
 										trend			: 'up',
 										duration		: 5,
 										timespan		: 5,
-										metric_function	: 
+										metric_function	: trend_cols,
 									},
 					'trend_low'	: {
 										active			: False,
@@ -45,6 +46,7 @@ screener_schema = {
 										trend			: 'up',
 										duration		: 4,
 										timespan		: 10,
+										metric_function	: trend_cols,
 									},
 					'trend_close'	: {
 										active			: False,
@@ -53,6 +55,7 @@ screener_schema = {
 										trend			: 'up',
 										duration		: 4,
 										timespan		: 10,
+										metric_function	: trend_cols,
 									},
 					'trend_volume'	: {
 										active			: False,
@@ -61,13 +64,14 @@ screener_schema = {
 										trend			: 'up',
 										duration		: 4,
 										timespan		: 10,
+										metric_function	: trend_cols,
 									},
 					}
 
 
 def scope_screener(scope):
 	
-	scope.screener_schema = screener_schema
+	scope.screener_tests = screener_tests
 	scope.screener_trends = trend_direction
 
 
