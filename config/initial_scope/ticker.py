@@ -3,6 +3,7 @@
 
 def scope_tickers(scope):
 	scope.ticker_data_files = {}
+	scope.loaded_ticker_list = []
 
 
 	

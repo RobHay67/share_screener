@@ -18,7 +18,7 @@ from config.initial_scope.folders import view_folders
 from index.download import download_ticker_index_data
 from index.view.index import view_index
 from index.view.industries import view_industries
-from ticker.view.dataframes import view_ticker_data_files
+from tickers.view.dataframes import view_ticker_data_files
 from screener.view.dataframes import view_screener_dfs
 from charts.view.dataframes import view_chart_dfs
 
@@ -85,7 +85,7 @@ def view_scope(scope):
 	with col4: st.button('Industry Report', on_click=set_st_button, args=('view_industries', ))
 
 	with col5: st.subheader('Ticker DataFrames') # DONE
-	with col5: st.button('Share Data Files ( ' + str(len(scope.ticker_data_files.keys())) + ' )', on_click=set_st_button, args=('view_ticker_files', ))
+	with col5: st.button('Loaded Ticker Data Files ( ' + str(len(scope.ticker_data_files.keys())) + ' )', on_click=set_st_button, args=('view_ticker_files', ))
 	with col5: st.button('Analysis Dataframes ( ?? )', on_click=set_st_button, args=('view_analysis_dfs', ))
 	with col5: st.button('Charting Dataframes ( ?? )', on_click=set_st_button, args=('view_chart_dfs', ))
 	

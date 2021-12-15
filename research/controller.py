@@ -1,6 +1,6 @@
 
 from picker.controller import ticker_picker
-from ticker.model.metadata import fetch_yfinance_metadata
+from tickers.model.metadata import fetch_yfinance_metadata
 
 from pages.view.analysis_title import analysis_titles
 

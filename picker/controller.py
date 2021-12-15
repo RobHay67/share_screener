@@ -2,9 +2,9 @@
 
 from picker.view.load_screen import set_cols
 
-from ticker.load import load_tickers
-from ticker.download import download_tickers
-from ticker.view.dataframes import view_ticker_data_files
+from tickers.load import load_tickers
+from tickers.download import download_tickers
+from tickers.view.dataframes import view_ticker_data_files
 
 from screener.model.screener_dfs import update_screener_dfs
 from screener.view.dataframes import view_screener_dfs

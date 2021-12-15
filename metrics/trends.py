@@ -4,8 +4,6 @@ import numpy as np
 
 def trend_cols(scope, screener_df, test):
 
-	test_name 	= 'test_' + test
-
 	column 		= scope.screener_tests[test]['column']
 	trend 		= scope.screener_tests[test]['trend']
 	duration	= int(scope.screener_tests[test]['duration'])
@@ -20,7 +18,7 @@ def trend_cols(scope, screener_df, test):
 
 	screener_df['temp_trend_total'] = screener_df['temp_trend'].rolling(timespan, min_periods=1).sum().astype(int)
 
-	screener_df[test_name] = np.where( screener_df['temp_trend_total'] >= duration, 'passed', 'failed')
+	screener_df[test] = np.where( screener_df['temp_trend_total'] >= duration, 'passed', 'failed')
 
 	screener_df.drop(['temp_shifted', 'temp_trend', 'temp_trend_total'], axis=1, inplace=True)
 
