@@ -23,7 +23,7 @@ def load_tickers(scope, ticker_list):				# I will be provided with a single tick
 			if os.path.exists( scope.path_ticker_data_file ):										# A local file is available to load
 				print ( '\033[92m' + ticker.ljust(10) + '> loading local ticker file \033[0m')
 				load_ticker(scope, ticker )
-				scope.loaded_ticker_list.append(ticker)
+				# scope.loaded_ticker_list.append(ticker)
 				store_results( scope, ticker, result='passed' )
 				set_refresh_df_for_ticker_in_all_pages(scope, ticker, True)
 			else:																					# The expected Local file is not available

@@ -1,4 +1,3 @@
-from config.initial_scope.analysis import scope_analysis
 from config.initial_scope.screener import scope_screener
 from config.initial_scope.app import scope_app
 from config.initial_scope.charts import scope_chart
@@ -35,7 +34,6 @@ def set_scope(scope):
 		scope_strategy(scope)
 		scope_chart(scope)
 		scope_results(scope)
-		scope_analysis(scope)
 		scope_screener(scope)
 		scope_tickers(scope)
 

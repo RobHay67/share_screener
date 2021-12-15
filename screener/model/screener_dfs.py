@@ -7,7 +7,7 @@ from screener.model.test_results import screener_all_active_test_results
 def update_screener_dfs(scope, ticker_list):
 
 	page 				= scope.page_to_display
-	analysis_row_limit 	= int(scope.analysis_row_limit)
+	page_row_limit 	= int(scope.page_row_limit)
 
 	if page == 'screener':
 		for ticker in ticker_list:
@@ -17,8 +17,8 @@ def update_screener_dfs(scope, ticker_list):
 					screener_df = scope.ticker_data_files[ticker].copy()
 					screener_df.sort_values(by=['date'], inplace=True, ascending=True)		
 
-					if analysis_row_limit != None : 
-						screener_df = screener_df.tail(analysis_row_limit) 												# limit analysis to user specified row limit
+					if page_row_limit != None : 
+						screener_df = screener_df.tail(page_row_limit) 												# limit analysis to user specified row limit
 
 					for test in scope.screener_tests.keys():	
 						if scope.screener_tests[test]['active'] == True:												# User has chosen to run this test

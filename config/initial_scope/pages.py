@@ -5,6 +5,8 @@ def scope_pages(scope):
 	scope.page_to_display = 'home_page'				# The homepage to display on first load
 													# This also stores the current active page
 
+	scope.page_row_limit = 100
+
 	# Page Specific Variables
 	scope.pages={
 					'screener'	:{

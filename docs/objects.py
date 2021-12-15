@@ -30,7 +30,7 @@
 #													---------------------										---------------------
 #
 # Copy Ticker(s)from <ticker_data_files>					yes															yes
-# Limit rows to <analysis_row_limit> 						yes															yes				default = 100	
+# Limit rows to <page_row_limit> 							yes															yes				default = 100	
 # Refresh when <ticker_data_file> changes					yes															yes				i.e. we downloaded more data
 
 

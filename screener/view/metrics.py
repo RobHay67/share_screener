@@ -8,7 +8,7 @@ from screener.view.partials import render_ohlcv_trend
 
 def view_metrics(scope):
 	st.header('Screener Metrics')
-	three_cols( 'Limit for the Number of (recent) rows in any Analysis', scope.analysis_row_limit, 'analysis_row_limit' )
+	three_cols( 'Limit for the Number of (recent) rows in each Analysis Page', scope.page_row_limit, 'page_row_limit' )
 	st.markdown("""---""")
 
 	col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([1,1,1,1,1,1,1,1])

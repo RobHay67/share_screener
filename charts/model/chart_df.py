@@ -2,7 +2,7 @@
 def update_chart_df(scope, ticker_list):
 	
 	page 				= scope.page_to_display
-	analysis_row_limit 	= int(scope.analysis_row_limit)
+	page_row_limit 	= int(scope.page_row_limit)
 	
 	if page != 'screener':
 		for ticker in ticker_list:
@@ -11,8 +11,8 @@ def update_chart_df(scope, ticker_list):
 					print ( '\033[92m' + ticker.ljust(10) + '> adding ticker to chart_df where page = ' + page + '\033[0m')
 					chart_df = scope.ticker_data_files[ticker].copy()
 					chart_df.sort_values(by=['date'], inplace=True, ascending=True)		
-					if analysis_row_limit != None : 
-						chart_df = chart_df.head(analysis_row_limit) 										# limit analysis to user specified row limit
+					if page_row_limit != None : 
+						chart_df = chart_df.head(page_row_limit) 										# limit analysis to user specified row limit
 
 					for chart in scope.charts.keys():														# Check if need additional columns for any selected charts
 						if scope.charts[chart]['active'] == True:											# User has selected to display this chart
