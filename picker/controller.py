@@ -6,10 +6,10 @@ from ticker.load import load_tickers
 from ticker.download import download_tickers
 from ticker.view.dataframes import view_ticker_data_files
 
-from screener.model.screener_dfs import create_screener_dfs
+from screener.model.screener_dfs import update_screener_dfs
 from screener.view.dataframes import view_screener_dfs
 
-from charts.model.chart_df import create_chart_df
+from charts.model.chart_df import update_chart_df
 from charts.view.dataframes import view_chart_dfs
 
 from picker.helpers.which_tickers import ticker_selectors
@@ -33,8 +33,8 @@ def ticker_picker(scope, page):
 
 		load_tickers(scope, ticker_list)													# AUTO load whatever ticker data we have	
 		if download_new_data: download_tickers(scope)
-		create_screener_dfs(scope, ticker_list)												# Code only runs if refresh_ticker_df set to TRUE
-		create_chart_df(scope, ticker_list)													# Code only runs if refresh_ticker_df set to TRUE
+		update_screener_dfs(scope, ticker_list)												# Code only runs if refresh_ticker_df set to TRUE
+		update_chart_df(scope, ticker_list)													# Code only runs if refresh_ticker_df set to TRUE
 
 		with scope.col5: show_ticker_files = ticker_file_button(scope, ticker_list)
 

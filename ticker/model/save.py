@@ -12,16 +12,21 @@ def save_tickers(scope):
 	page 		= scope.page_to_display
 	ticker_list = scope.pages[page]['ticker_list']
 
+	print(ticker_list)
+
 	store_results( 	scope, 
 				passed='Saved > ', 
-				failed='na', 
+				failed='No File to Save', 
 				passed_2='na'
 				)
 
 	for ticker in ticker_list:
-		path_for_ticker_file(scope, ticker )
-		save_ticker( scope, scope.ticker_data_files[ticker] )
-		store_results( scope, ticker, result='passed' )
+		if ticker in scope.ticker_data_files:														# if its not in here, it will not be available
+			path_for_ticker_file(scope, ticker )
+			save_ticker( scope, scope.ticker_data_files[ticker] )
+			store_results( scope, ticker, result='passed' )
+		else:
+			store_results( scope, ticker, result='failed' )
 	
 	store_results(scope, 'Finished', final_print=True )
 

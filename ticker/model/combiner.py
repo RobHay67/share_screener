@@ -17,7 +17,7 @@ def combine_loaded_and_download_ticker_data(scope): # TODO - change to check for
 
 	store_results(scope, 
 			passed='Combined > ', 
-			passed_2='Created new files > ', 
+			passed_2='Created NEW Local files > ', 
 			failed='na' 
 			)
 
@@ -40,7 +40,7 @@ def combine_loaded_and_download_ticker_data(scope): # TODO - change to check for
 				store_results( scope, ticker, result='passed_2' )
 			scope.ticker_data_files[ticker].sort_values(by=['date'], inplace=True, ascending=False)		# sort the share data into date order ascending
 
-			set_refresh_df_for_ticker_in_all_pages(scope, ticker)
+			set_refresh_df_for_ticker_in_all_pages(scope, ticker, True)
 					
 	store_results(scope, 'Finished', final_print=True )
 

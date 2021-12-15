@@ -1,10 +1,12 @@
 import streamlit as st
 
 
-def set_refresh_df_for_ticker_in_all_pages(scope, ticker):
+
+
+def set_refresh_df_for_ticker_in_all_pages(scope, ticker, result):
 	# This occurs when we have loaded some ticker data or downloaded some new ticker data
 	for page in scope.pages.keys():
-		scope.pages[page]['refresh_ticker_df'][ticker] = True
+		scope.pages[page]['refresh_ticker_df'][ticker] = result
 
 
 def set_refresh_df_all_tickers_in_all_pages():

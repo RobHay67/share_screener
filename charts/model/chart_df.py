@@ -1,5 +1,5 @@
 
-def create_chart_df(scope, ticker_list):
+def update_chart_df(scope, ticker_list):
 	
 	page 				= scope.page_to_display
 	analysis_row_limit 	= int(scope.analysis_row_limit)
@@ -8,7 +8,7 @@ def create_chart_df(scope, ticker_list):
 		for ticker in ticker_list:
 			if scope.pages[page]['refresh_ticker_df'][ticker] == True:										# so we only refresh if we have been asked to
 				if ticker in scope.ticker_data_files:														# if its not in here, it will not be available
-					print ( '\033[96m' + ticker + ' < create_chart_df    > adding ticker to chart_df where page = ' + page + '\033[0m')
+					print ( '\033[92m' + ticker.ljust(10) + '> adding ticker to chart_df where page = ' + page + '\033[0m')
 					chart_df = scope.ticker_data_files[ticker].copy()
 					chart_df.sort_values(by=['date'], inplace=True, ascending=True)		
 					if analysis_row_limit != None : 
@@ -24,8 +24,8 @@ def create_chart_df(scope, ticker_list):
 					
 					scope.pages[page]['refresh_ticker_df'][ticker] = False									# reset STATUS to prevent unnecesary updates
 				else:
-					print ( '\033[91m' + ticker + ' ERROR < create_chart_df    > ticker file missing from scope.pages[page][screener_df]\033[0m')
+					print ( '\033[91m' + ticker.ljust(10) + '> ticker file missing from scope.ticker_data_files \033[0m')
 			else:
-				print ( '\033[92m' + ticker + ' skipping < create_chart_df > refresh not requested \033[0m')
+				print ( '\033[96m' + ticker.ljust(10) + '> refresh_ticker_df not requested \033[0m')
 
 
