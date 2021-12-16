@@ -2,9 +2,9 @@ import yfinance as yf					# https://github.com/ranaroussi/yfinance
 import pandas as pd
 
 
-from config.initial_scope.ticker import ticker_file_schema
-from config.initial_scope.ticker import ticker_file_usecols
-from config.initial_scope.ticker import y_finance_schemas
+from config.params.ticker_files import ticker_file_schema
+from config.params.ticker_files import ticker_file_usecols
+from config.params.ticker_files import y_finance_schemas
 
 from pages.view.results import download_industry_message
 from config.model.set_results import store_results

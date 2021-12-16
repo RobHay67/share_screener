@@ -2,7 +2,7 @@ import pandas as pd
 
 from config.model.set_results import store_results
 
-from config.initial_scope.ticker import ticker_file_usecols
+from config.params.ticker_files import ticker_file_usecols
 
 from config.model.set_page_df_refresh import set_refresh_df_for_ticker_in_all_pages
 
@@ -34,8 +34,7 @@ def combine_loaded_and_download_ticker_data(scope): # TODO - change to check for
 			ticker_data = ticker_data[ticker_data['volume'] != 0]										# drop rows where volume is zero 
 
 			if len(ticker_data)>0:																		# We may have no data after dropping the zero volume rows
-				# if ticker in scope.loaded_ticker_list:													# we have an exisiting share_data_file so we concatenate the data
-				if ticker in scope.ticker_data_files.keys():												# we have an exisiting share_data_file so we concatenate the data
+				if ticker in scope.ticker_data_files.keys():											# we have an exisiting share_data_file so we concatenate the data
 					scope.ticker_data_files[ticker] = pd.concat([scope.ticker_data_files[ticker], ticker_data]).drop_duplicates(subset=['date'], keep='last')
 					store_results( scope, ticker, result='passed' )
 				else:

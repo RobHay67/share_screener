@@ -1,5 +1,9 @@
 import streamlit as st
 
+from pages.view.three_cols import three_cols
+
+
+
 
 def scope_results(scope):
 	# Results - for batch processing of multiple tickers
@@ -11,12 +15,6 @@ def scope_results(scope):
 						'passed_2_count':0, 
 						'failed_count':0 
 					}
-
-
-import streamlit as st
-
-from pages.view.three_cols import three_cols
-
 
 
 def view_results(scope):

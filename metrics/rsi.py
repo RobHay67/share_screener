@@ -11,8 +11,8 @@ def rsi_cols(scope, chart_df, chart):
 
 	# https://www.alpharithms.com/relative-strength-index-rsi-in-python-470209/   Python Calculation methodology
 
-	column 			= scope.charts[chart]['data_cols']['column']
-	lookback_days	= scope.charts[chart]['data_cols']['lookback_days']
+	column 			= scope.charts[chart]['metrics']['column']
+	lookback_days	= scope.charts[chart]['metrics']['lookback_days']
 
 	chart_df['rsi_delta'] 		= chart_df[column].diff()
 	chart_df['rsi_gain']		= np.where(chart_df['rsi_delta'] >= 0, chart_df['rsi_delta']     , 0)

@@ -7,20 +7,20 @@ from screener.view.metrics import view_metrics
 from charts.view.primary import view_primary
 from charts.view.secondary import view_secondary
 
-from config.initial_scope.strategy import view_strategy
-from config.initial_scope.download import view_download
+from config.params.strategy import view_strategy
+from config.params.download import view_download
 
-from config.initial_scope.results import view_results
+from config.params.results import view_results
 
-from config.initial_scope.app import view_app
-from config.initial_scope.folders import view_folders
+from config.params.app import view_app
+from config.params.folders import view_folders
 
 from index.download import download_ticker_index_data
 from index.view.index import view_index
 from index.view.industries import view_industries
 from tickers.view.dataframes import view_ticker_data_files
-from screener.view.dataframes import view_screener_dfs
-from charts.view.dataframes import view_chart_dfs
+from pages.view.dataframes import view_screener_dfs
+from pages.view.dataframes import view_chart_dfs
 
 
 from config.model.set_scope_button import set_st_button

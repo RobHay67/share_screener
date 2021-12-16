@@ -2,13 +2,13 @@ import pandas as pd
 
 from config.model.set_results import store_results
 
-from config.initial_scope.index_schema import default_values
-from config.initial_scope.index_schema import data_types
-from config.initial_scope.index_schema import schema
+from config.params.index_schema import default_values
+from config.params.index_schema import data_types
+from config.params.index_schema import schema
 
 from index.model.save import save_index
-from config.initial_scope.markets import open_time
-from config.initial_scope.markets import trading_minutes
+from config.params.markets import open_time
+from config.params.markets import trading_minutes
 
 from index.view.update_messages import message_updating
 from index.view.update_messages import message_warning

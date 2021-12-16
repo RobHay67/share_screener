@@ -28,7 +28,7 @@ def view_primary(scope):
 	with col3: render_primary_chart(scope, 'candlestick')
 	with col4: render_primary_chart(scope, 'scatter')
 	with col5: render_primary_chart(scope, 'bar')
-	with col6: render_primary_chart(scope, 'line')					# TODO I tried embedding the data_cols in the line grpah - see if this works
+	with col6: render_primary_chart(scope, 'line')					# TODO I tried embedding the metrics in the line grpah - see if this works
 	with col7: render_primary_chart(scope, 'heiken_ashi')
 	
 	st.markdown("""---""")

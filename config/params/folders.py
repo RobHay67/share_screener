@@ -1,6 +1,8 @@
 import os
 import pathlib
+import streamlit as st
 
+from pages.view.three_cols import three_cols
 
 def scope_folders(scope):
 	scope.folder_project = pathlib.Path(__file__).parent.parent.parent.resolve()
@@ -19,9 +21,7 @@ def scope_folders(scope):
 
 
 
-import streamlit as st
 
-from pages.view.three_cols import three_cols
 
 def view_folders(scope):
 

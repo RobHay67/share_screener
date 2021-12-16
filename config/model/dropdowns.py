@@ -1,7 +1,7 @@
 
 
 
-from config.initial_scope.markets import markets
+from config.params.markets import markets
 
 
 

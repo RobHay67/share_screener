@@ -6,11 +6,14 @@ from tickers.load import load_tickers
 from tickers.download import download_tickers
 from tickers.view.dataframes import view_ticker_data_files
 
-from screener.model.screener_dfs import update_screener_dfs
-from screener.view.dataframes import view_screener_dfs
+from pages.model.screener_dfs import update_screener_dfs
+from pages.model.screener_dfs import update_screener_metrics
 
-from charts.model.chart_df import update_chart_df
-from charts.view.dataframes import view_chart_dfs
+from pages.model.chart_df import update_chart_dfs
+from pages.model.chart_df import update_chart_metrics
+
+from pages.view.dataframes import view_screener_dfs
+from pages.view.dataframes import view_chart_dfs
 
 from picker.helpers.which_tickers import ticker_selectors
 from picker.buttons.download import download_button
@@ -31,10 +34,14 @@ def ticker_picker(scope, page):
 		with scope.col1: download_new_data = download_button(scope)		
 		with scope.col6: clear_messages_button(scope)
 
+		# TODO - why is the ticker list not being stored for each page??? the function would not need to return it then
+
 		load_tickers(scope, ticker_list)													# AUTO load whatever ticker data we have	
 		if download_new_data: download_tickers(scope)
-		update_screener_dfs(scope, ticker_list)												# Code only runs if refresh_ticker_df set to TRUE
-		update_chart_df(scope, ticker_list)													# Code only runs if refresh_ticker_df set to TRUE
+		update_screener_dfs(scope, ticker_list)												# Code only runs if refresh_ticker_data set to TRUE
+		update_screener_metrics(scope, ticker_list)											# Code only runs if refresh_metrics 	set to TRUE		
+		update_chart_dfs(scope, ticker_list)												# Code only runs if refresh_ticker_data set to TRUE
+		update_chart_metrics(scope, ticker_list)											# Code only runs if refresh_metrics 	set to TRUE		
 
 		with scope.col5: show_ticker_files = ticker_file_button(scope, ticker_list)
 

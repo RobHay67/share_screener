@@ -1,14 +1,14 @@
-from config.initial_scope.screener import scope_screener
-from config.initial_scope.app import scope_app
-from config.initial_scope.charts import scope_chart
-from config.initial_scope.download import scope_download
-from config.initial_scope.folders import scope_folders
-from config.initial_scope.index import scope_index
-from config.initial_scope.pages import scope_pages
-from config.initial_scope.results import scope_results
-from config.initial_scope.strategy import scope_strategy
-from config.initial_scope.streamlit import set_streamlit_page_config
-from config.initial_scope.ticker import scope_tickers
+from config.params.screener import scope_screener
+from config.params.app import scope_app
+from config.params.charts import scope_chart
+from config.params.download import scope_download
+from config.params.folders import scope_folders
+from config.params.index import scope_index
+from config.params.pages import scope_pages
+from config.params.results import scope_results
+from config.params.strategy import scope_strategy
+from config.params.streamlit import set_streamlit_page_config
+from config.params.ticker_files import scope_tickers
 
 from config.model.dropdowns import update_dropdowns
 

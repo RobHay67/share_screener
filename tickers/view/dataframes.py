@@ -1,14 +1,10 @@
 import streamlit as st
 
-# from pages.view.three_cols import three_cols
-
 def view_ticker_data_files(scope, page='all'):
 	
 	if page == 'all':
 		st.subheader('All Ticker Data Files')
 		
-		# three_cols( 'Loaded Ticker List', scope.loaded_ticker_list, 'loaded_ticker_list' )
-		# st.markdown("""---""")
 		col1,col2 = st.columns([6,2])
 		with col1: st.write('Loaded and Downloaded ticker data stored in > ')
 		with col2: st.write('< scope.ticker_data_files >')	

@@ -2,9 +2,9 @@ import os
 import pandas as pd
 
 
-from config.initial_scope.index_schema import schema
-from config.initial_scope.index_schema import csv_dates
-from config.initial_scope.index_schema import csv_dtypes
+from config.params.index_schema import schema
+from config.params.index_schema import csv_dates
+from config.params.index_schema import csv_dtypes
 from index.model.save import save_index
 
 

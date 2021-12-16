@@ -11,7 +11,7 @@ def edit_number(scope, schema, key, column ):
 	column_name = column.capitalize()
 	
 	if schema == 'charts':
-		previous_number = int(scope[schema][key]['data_cols'][column])
+		previous_number = int(scope[schema][key]['metrics'][column])
 	else:
 		previous_number = int(scope[schema][key][column])
 
@@ -26,7 +26,7 @@ def edit_number(scope, schema, key, column ):
 
 	if new_number != previous_number : 					# set to refresh pages if something has been changed
 		if schema == 'charts':
-			scope[schema][key]['data_cols'][column] = new_number
+			scope[schema][key]['metrics'][column] = new_number
 			set_refresh_chart_dfs_for_non_screener_pages(scope)
 		elif schema == 'screener_tests':
 			scope[schema][key][column] = new_number
