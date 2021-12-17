@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-from config.model.set_page_df_refresh import set_refresh_df_all_tickers_in_all_pages
+from config.model.set_page_df_status import set_refresh_page_df_all
 
 
 
@@ -11,7 +11,7 @@ def set_page_row_limit():
 							'No of Rows for Analysis & Charts', 
 							min_value=100, 
 							key='89',
-							on_change=set_refresh_df_all_tickers_in_all_pages, 
+							on_change=set_refresh_page_df_all, 
 							)
 	return page_row_limit
 

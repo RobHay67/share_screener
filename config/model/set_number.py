@@ -1,8 +1,8 @@
 import streamlit as st
 
 
-from config.model.set_page_df_refresh import set_refresh_chart_dfs_for_non_screener_pages
-from config.model.set_page_df_refresh import set_refresh_screener_dfs_for_screener_page
+from config.model.set_page_df_status import set_refresh_chart_dfs_for_non_screener_pages
+from config.model.set_page_df_status import set_refresh_screener_dfs_for_screener_page
 
 	
 def edit_number(scope, schema, key, column ):

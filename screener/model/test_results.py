@@ -2,6 +2,7 @@
 import pandas as pd
 
 
+
 def update_test_results_dict(scope, ticker, test, screener_df):
 
 	if ticker not in scope.screener_test_results.keys():
@@ -9,6 +10,9 @@ def update_test_results_dict(scope, ticker, test, screener_df):
 
 	if len(screener_df) > 0:
 		scope.screener_test_results[ticker][test] = screener_df[test].iloc[-1]
+
+
+		
 
 
 
@@ -23,6 +27,7 @@ def screener_all_active_test_results(scope, ticker_list):
 
 	# create an empty dataframe for the active test results
 	test_results_df = pd.DataFrame(columns=['ticker']+active_test_list+['all_test_results'])
+
 
 	# store the active test results for each ticker
 	for ticker in ticker_list:

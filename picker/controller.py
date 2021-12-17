@@ -23,9 +23,36 @@ from picker.buttons.screener_dfs import screener_dfs_button
 from picker.buttons.chart_dfs import chart_dfs_button
 
 
+def page_report(scope, heading ):
+
+	print('='*150)
+	print(heading.upper())
+	print( '-'*100)
+	print( 'add_ohlcv_data'.upper())
+	for page in scope.pages.keys():	
+		print(page.upper())
+		for ticker in scope.pages[page]['add_ohlcv_data'].keys():
+			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['add_ohlcv_data'][ticker] )
+	print('-'*100)
+	print( 'add_metric_data'.upper())
+	for page in scope.pages.keys():	
+		print(page.upper())
+		for ticker in scope.pages[page]['add_metric_data'].keys():
+			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['add_metric_data'][ticker] )
+	print('-'*100)
+	print( 'add_chart_data'.upper())
+	for page in scope.pages.keys():	
+		print(page.upper())
+		for ticker in scope.pages[page]['add_chart_data'].keys():
+			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['add_chart_data'][ticker] )
+	print('='*150)
+
+
+
+
 
 def ticker_picker(scope, page):
-
+	# print ( 'scope.page_metrics_chart = ', scope.page_metrics_chart)
 	set_cols(scope, page)
 
 	selected_tickers_so_lets_load, ticker_list = ticker_selectors(scope, page)
@@ -38,10 +65,15 @@ def ticker_picker(scope, page):
 
 		load_tickers(scope, ticker_list)													# AUTO load whatever ticker data we have	
 		if download_new_data: download_tickers(scope)
-		update_screener_dfs(scope, ticker_list)												# Code only runs if refresh_ticker_data set to TRUE
-		update_screener_metrics(scope, ticker_list)											# Code only runs if refresh_metrics 	set to TRUE		
-		update_chart_dfs(scope, ticker_list)												# Code only runs if refresh_ticker_data set to TRUE
-		update_chart_metrics(scope, ticker_list)											# Code only runs if refresh_metrics 	set to TRUE		
+
+		page_report(scope, 'BEFORE running all the updates ')
+
+		update_screener_dfs(scope, ticker_list)												# Code only runs if add_ohlcv_data set to TRUE
+		update_screener_metrics(scope, ticker_list)											# Code only runs if add_metric_data 	set to TRUE		
+		update_chart_dfs(scope, ticker_list)												# Code only runs if add_ohlcv_data set to TRUE
+		update_chart_metrics(scope, ticker_list)											# Code only runs if add_metric_data 	set to TRUE		
+
+		page_report(scope, 'AFTER running all the updates - < add_ohlcv_data > values' )
 
 		with scope.col5: show_ticker_files = ticker_file_button(scope, ticker_list)
 
@@ -55,4 +87,8 @@ def ticker_picker(scope, page):
 		if show_ticker_files	: view_ticker_data_files(scope, page)
 		if show_screener_dfs	: view_screener_dfs(scope, page)
 		if show_chart_dfs		: view_chart_dfs(scope, page)
+
+
+
+
 
