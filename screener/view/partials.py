@@ -7,11 +7,23 @@ from config.model.set_trend import edit_trend
 from config.model.set_number import edit_number
 
 
+# def render_ohlcv_trend(scope, measure, column_name):
+def render_ohlcv_trend(scope, metric, column_name):
+	# metric = 'macd'
+	config_name = 'screener_tests'
 
-def render_ohlcv_trend(scope, measure, column):
-	edit_active(scope, 'screener_tests', measure)
-	st.write('Column = ', column)
-	edit_trend(scope, 'screener_tests', measure)
-	edit_number(scope, 'screener_tests', measure, 'duration' )
-	edit_number(scope, 'screener_tests', measure, 'timespan' )
+	# edit_active(scope, 'screener_tests', measure)
+	edit_active(scope, config_name, metric)
+	st.write('column_name = ', column_name)
+	edit_trend (scope, config_name, metric)
+	edit_number(scope, config_name, metric, 'duration' )
+	edit_number(scope, config_name, metric, 'timespan' )
 	st.markdown("""---""")
+
+
+	# edit_active(scope, config_name, metric ):
+	# with col1: render_ohlcv_trend(scope, 'trend_open', 'open')	
+	# with col2: render_ohlcv_trend(scope, 'trend_high', 'high')
+	# with col3: render_ohlcv_trend(scope, 'trend_low', 'low')
+	# with col4: render_ohlcv_trend(scope, 'trend_close', 'close')
+	# with col5: render_ohlcv_trend(scope, 'trend_volume', 'volume')

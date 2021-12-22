@@ -8,7 +8,8 @@ from charts.controller import plot_charts
 # Single Ticker Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def view_single_ticker_page(scope):
-	analysis_titles(scope, 'Ticker Analysis', 'single')
+	# analysis_titles(scope, 'Ticker Analysis', 'single')
+	analysis_titles(scope, 'Ticker Analysis')
 	
 	ticker = scope.pages['single']['ticker_list'][0]
 	

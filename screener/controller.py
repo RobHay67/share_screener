@@ -10,7 +10,8 @@ from screener.view.test_results import view_test_results
 # Mult Ticker Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def view_ticker_screener(scope):
-	analysis_titles(scope, 'Ticker Screener', 'screener')
+	# analysis_titles(scope, 'Ticker Screener', 'screener')
+	analysis_titles(scope, 'Ticker Screener')
 
 	# execute_screening = execute_screening_button(scope)
 

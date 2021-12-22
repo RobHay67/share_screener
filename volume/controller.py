@@ -9,13 +9,12 @@ from volume.view.times import view_local_vs_market_time
 from volume.view.input_volume import view_input_volume
 from volume.view.prediction import view_prediction
 
-from picker.controller import ticker_picker
-
 
 def view_volume_page(scope):
 
-	analysis_titles(scope, 'Predict Closing Volume to End of Today', 'volume')
-
+	# analysis_titles(scope, 'Predict Closing Volume to End of Today', 'volume')
+	analysis_titles(scope, 'Predict Closing Volume to End of Today')
+	
 	ticker = scope.pages['volume']['ticker_list'][0]
 
 	if ticker != 'select a ticker':	

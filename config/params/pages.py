@@ -65,7 +65,6 @@ def scope_pages(scope):
 
 
 def scope_page_metrics(scope):
-
 	screener_metrics = {}
 	chart_metrics = {}
 

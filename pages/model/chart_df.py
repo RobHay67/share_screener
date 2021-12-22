@@ -1,8 +1,9 @@
 
-def update_chart_dfs(scope, ticker_list):
+def update_chart_dfs(scope):
 	
-	page 				= scope.page_to_display
+	page 			= scope.page_to_display
 	page_row_limit 	= int(scope.page_row_limit)
+	ticker_list 	= scope.pages[page]['ticker_list']
 	
 	if page != 'screener':																			# works on all pages except the screener page
 		for ticker in ticker_list:																	# iterate through each ticker for the page 
@@ -22,9 +23,10 @@ def update_chart_dfs(scope, ticker_list):
 
 
 
-def update_chart_metrics(scope, ticker_list):
+def update_chart_metrics(scope):
 	
-	page 				= scope.page_to_display
+	page 		= scope.page_to_display
+	ticker_list = scope.pages[page]['ticker_list']
 
 	if page != 'screener':																					# works on all pages except the screen page
 		for ticker in ticker_list:																			# iterate through each ticker for the page

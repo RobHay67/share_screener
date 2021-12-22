@@ -6,9 +6,11 @@ from tickers.model.read_csv import load_ticker
 from pages.view.results import view_results
 from config.model.set_page_df_status import set_refresh_page_df_ticker
 
-def load_tickers(scope, ticker_list):				# I will be provided with a single ticker or a list of tickers (both in a list object)
+# def load_tickers(scope, ticker_list):				# I will be provided with a single ticker or a list of tickers (both in a list object)
+def load_tickers(scope):
 	
 	page = scope.page_to_display
+	ticker_list = scope.pages[page]['ticker_list']
 
 	store_results(	scope, 
 					passed='Loaded Local files > ', 

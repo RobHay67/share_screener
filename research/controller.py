@@ -1,5 +1,4 @@
 
-from picker.controller import ticker_picker
 from tickers.model.metadata import fetch_yfinance_metadata
 
 from pages.view.analysis_title import analysis_titles
@@ -40,7 +39,8 @@ from research.view.news import news
 # Company Research
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def view_research_page(scope):
-	analysis_titles(scope, 'Company Research', 'research')
+	# analysis_titles(scope, 'Company Research', 'research')
+	analysis_titles(scope, 'Company Research')
 
 	
 	ticker = scope.pages['research']['ticker_list'][0]

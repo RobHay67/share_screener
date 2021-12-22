@@ -1,10 +1,12 @@
 import streamlit as st
 
 
-def screener_dfs_button(scope, page, ticker_list):
+def screener_dfs_button(scope):
 
-	screener_df_ticker_count = len(scope.pages[page]['screener_df'])
-	total_screener_df_rows	 = 0
+	page 						= scope.page_to_display
+	ticker_list 				= scope.pages[page]['ticker_list']
+	screener_df_ticker_count 	= len(scope.pages[page]['screener_df'])
+	total_screener_df_rows	 	= 0
 
 	for ticker in ticker_list:
 		# if ticker in scope.ticker_data_files:

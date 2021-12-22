@@ -36,9 +36,10 @@ def ticker_selectors(scope,page):
 		if market or industries or tickers: 
 			selected_tickers_so_lets_load = True
 			update_multi_ticker_list(scope)													# scope.download_industries is establised by this function
-			ticker_list = scope.pages['screener']['ticker_list']
+			# ticker_list = scope.pages['screener']['ticker_list']
 
 	# TODO - we should store the ticker_list in the scope[page][ticker_list] object
 
 
-	return selected_tickers_so_lets_load, ticker_list
+	# return selected_tickers_so_lets_load, ticker_list
+	return selected_tickers_so_lets_load

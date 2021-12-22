@@ -4,10 +4,11 @@ from screener.model.test_results import update_test_results_dict
 from screener.model.test_results import screener_all_active_test_results
 
 
-def update_screener_dfs(scope, ticker_list):
+def update_screener_dfs(scope):
 
 	page 				= scope.page_to_display
 	page_row_limit 	= int(scope.page_row_limit)
+	ticker_list 	= scope.pages[page]['ticker_list']
 
 	if page == 'screener':																								# Function only works on this page
 		for ticker in ticker_list:
@@ -30,9 +31,10 @@ def update_screener_dfs(scope, ticker_list):
 
 
 
-def update_screener_metrics(scope, ticker_list):
+def update_screener_metrics(scope):
 
-	page 				= scope.page_to_display
+	page 			= scope.page_to_display
+	ticker_list 	= scope.pages[page]['ticker_list']
 
 	if page == 'screener':																				# only works on the screener page
 		for ticker in ticker_list:																		# iterate through each ticker for the page
@@ -45,7 +47,7 @@ def update_screener_metrics(scope, ticker_list):
 						scope.screener_tests[test]['metric_function'](scope, screener_df, test )		# Call the column adding function
 						update_test_results_dict(scope, ticker, test, screener_df)						# store the test results for reporting
 						scope.pages[page]['add_metric_data'][ticker][test] = False						# reset Test data STATUS to prevent unnecesary updates
-		screener_all_active_test_results(scope, ticker_list)															# determine overall test result summary
+		screener_all_active_test_results(scope, ticker_list)											# determine overall test result summary
 
 
 

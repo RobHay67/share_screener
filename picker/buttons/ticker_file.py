@@ -1,8 +1,12 @@
 import streamlit as st
 
 
-def ticker_file_button(scope, ticker_list):
-	
+# def ticker_file_button(scope, ticker_list):
+def ticker_file_button(scope):
+
+	page = scope.page_to_display
+	ticker_list 	= scope.pages[page]['ticker_list']
+
 	no_of_loaded_files 		= len(list(scope.ticker_data_files.keys()))
 	total_loaded_rows		= 0	
 	

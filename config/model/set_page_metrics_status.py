@@ -1,20 +1,10 @@
-# scope.pages[screener]['add_metric_data'] 	= { CBA:{ metric_1:True, metric_2:False, metric_3:True}}
-# scope.pages[screener]['add_chart_data'] 	= { CBA:{ metric_1:False,metric_2:False, metric_3:False}}
-# scope.pages[single]  ['add_metric_data'] 	= { NAB:{ metric_1:True, metric_2:False, metric_3:True}}
-# scope.pages[single]  ['add_chart_data'] 	= { NAB:{ metric_1:True, metric_2:False, metric_3:True}}
-
-
-
 import streamlit as st
-
 
 
 
 def set_add_metrics_all():
 	# This executes when the user has changed the number of analysis rows
 	#  - ie from 1000 to say 3000 - for simplicity we just reset everything
-
-	print(st.session_state.page_metrics_chart)
 
 	for page in st.session_state.pages.keys():													# iterate through every page
 		if page == 'screener':																	# Screener Page Only
@@ -44,5 +34,22 @@ def set_add_metrics_ticker(scope, ticker, refresh_status):
 			scope.pages[page]['add_chart_data'][ticker]  = chart_dictionary		# set the current metric active status for this ticker
 				
 
+
+def set_refresh_chart_data(scope, chart):
+	# One of the Chart Metrics has changed i.e. made active or changed a value from say 21 to 34
+	for page in scope.pages.keys():
+		if page != 'screener':													# all chart relevant pages
+			for ticker in scope.pages[page]['add_chart_data'].keys():			# iterate through each ticker
+				scope.pages[page]['add_chart_data'][ticker][chart] = True		# Set Refresh = True
+				
+
+
+
+def set_refresh_metric_data(scope, test):
+	# One of the Screener Metrics has changed i.e. made active or changed a value from say 21 to 34
+	for page in scope.pages.keys():
+		if page == 'screener':													# all chart relevant pages
+			for ticker in scope.pages[page]['add_metric_data'].keys():			# iterate through each ticker
+				scope.pages[page]['add_metric_data'][ticker][test] = True		# Set Refresh = True
 
 

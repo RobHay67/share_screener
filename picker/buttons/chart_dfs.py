@@ -3,9 +3,12 @@ import streamlit as st
 
 
 
-def chart_dfs_button(scope, page, ticker_list):
-	chart_df_ticker_count = len(scope.pages[page]['chart_df'])
-	total_chart_df_rows	  = 0
+def chart_dfs_button(scope):
+	
+	page 					= scope.page_to_display
+	ticker_list 			= scope.pages[page]['ticker_list']
+	chart_df_ticker_count	= len(scope.pages[page]['chart_df'])
+	total_chart_df_rows	  	= 0
 
 	for ticker in ticker_list:
 		if ticker in scope.ticker_data_files:

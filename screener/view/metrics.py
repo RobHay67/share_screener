@@ -13,10 +13,10 @@ def view_metrics(scope):
 
 	col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([1,1,1,1,1,1,1,1])
 	
-	with col1: render_ohlcv_trend(scope, 'trend_open', 'open')
-	with col2: render_ohlcv_trend(scope, 'trend_high', 'high')
-	with col3: render_ohlcv_trend(scope, 'trend_low', 'low')
-	with col4: render_ohlcv_trend(scope, 'trend_close', 'close')
+	with col1: render_ohlcv_trend(scope, 'trend_open',   'open')
+	with col2: render_ohlcv_trend(scope, 'trend_high',   'high')
+	with col3: render_ohlcv_trend(scope, 'trend_low',    'low')
+	with col4: render_ohlcv_trend(scope, 'trend_close',  'close')
 	with col5: render_ohlcv_trend(scope, 'trend_volume', 'volume')
 
 
