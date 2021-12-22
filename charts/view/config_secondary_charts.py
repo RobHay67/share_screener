@@ -1,12 +1,12 @@
 import streamlit as st
 
 
-from charts.view.partials import render_activate_chart
-from charts.view.partials import render_macd
-from charts.view.partials import render_macd_vol
-from charts.view.partials import render_rsi
-from charts.view.partials import render_stochastic
-from charts.view.partials import render_volume_oscillator
+from metrics.view.active import render_activate_metric
+from metrics.view.macd import render_macd
+from metrics.view.macd_vol import render_macd_vol
+from metrics.view.rsi import render_rsi
+from metrics.view.stochastic import render_stochastic
+from metrics.view.volume_oscillator import render_volume_oscillator
 
 
 
@@ -22,9 +22,9 @@ def view_secondary(scope):
 	
 	with col1: 
 		st.markdown('##### Charts without additional Variables')
-		render_activate_chart(scope, 'volume')
-		render_activate_chart(scope, 'vac')
-		render_activate_chart(scope, 'vol_per_minute')
+		render_activate_metric(scope, 'volume')
+		render_activate_metric(scope, 'vac')
+		render_activate_metric(scope, 'vol_per_minute')
 	# with col2: 
 	with col3: render_macd(scope)
 	with col4: render_macd_vol(scope)

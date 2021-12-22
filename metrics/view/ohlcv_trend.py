@@ -1,3 +1,4 @@
+
 import streamlit as st
 
 # from config.model.set_analysis_active import edit_active
@@ -27,3 +28,7 @@ def render_ohlcv_trend(scope, metric, column_name):
 	# with col3: render_ohlcv_trend(scope, 'trend_low', 'low')
 	# with col4: render_ohlcv_trend(scope, 'trend_close', 'close')
 	# with col5: render_ohlcv_trend(scope, 'trend_volume', 'volume')
+
+
+
+	

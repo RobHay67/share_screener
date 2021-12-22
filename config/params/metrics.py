@@ -1,6 +1,6 @@
 
 
-from metrics.trends import trend_cols
+from metrics.model.trend import trend_cols
 
 
 

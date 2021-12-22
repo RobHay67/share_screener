@@ -1,9 +1,9 @@
 
 from pages.view.home_page import view_project_welcome
 from config.view.config_page import view_scope
-from charts.view.primary import view_primary
-from charts.view.secondary import view_secondary
-from screener.view.metrics import view_metrics
+from charts.view.config_primary_charts import view_primary
+from charts.view.config_secondary_charts import view_secondary
+from screener.view.config_screener import view_metrics
 
 from single.controller import view_single_ticker_page
 from research.controller import view_research_page

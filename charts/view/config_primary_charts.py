@@ -1,11 +1,11 @@
 import streamlit as st
 
 
-from charts.view.partials import render_announcements
-from charts.view.partials import render_bollinger_bands
-from charts.view.partials import render_dividends
-from charts.view.partials import render_moving_average
-from charts.view.partials import render_primary_chart
+from metrics.view.active import render_activate_metric
+from metrics.view.announcements import render_announcements
+from metrics.view.bollinger_bands import render_bollinger_bands
+from metrics.view.dividends import render_dividends
+from metrics.view.moving_average import render_moving_average
 
 from config.model.set_chart_height import set_primary_chart_height
 
@@ -53,6 +53,10 @@ def view_primary(scope):
 	with col5: render_dividends(scope)
 	with col5: render_announcements(scope)
 	
+
+def render_primary_chart(scope, metric):
+	st.write('.')
+	render_activate_metric(scope, metric)
 
 
 

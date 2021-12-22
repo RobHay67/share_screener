@@ -3,9 +3,9 @@ import streamlit as st
 
 from pages.view.pages import view_pages
 
-from screener.view.metrics import view_metrics
-from charts.view.primary import view_primary
-from charts.view.secondary import view_secondary
+from screener.view.config_screener import view_metrics
+from charts.view.config_primary_charts import view_primary
+from charts.view.config_secondary_charts import view_secondary
 
 from config.params.strategy import view_strategy
 from config.params.download import view_download

@@ -1,9 +1,9 @@
 import streamlit as st
 
-from charts.helpers.plotly_schema import create_plotly_schema
-from charts.helpers.main_plot import create_main_plot 
-from charts.helpers.sub_plot import add_subplot
-from charts.helpers.main_plot import format_main_plot
+from charts.plotly.plotly_schema import create_plotly_schema
+from charts.plotly.main_plot import create_main_plot 
+from charts.plotly.sub_plot import add_subplot
+from charts.plotly.main_plot import format_main_plot
 
 
 def plot_charts(scope, ticker):

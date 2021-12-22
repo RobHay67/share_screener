@@ -1,7 +1,7 @@
 import streamlit as st
 
 from pages.view.three_cols import three_cols
-from screener.view.partials import render_ohlcv_trend
+from metrics.view.ohlcv_trend import render_ohlcv_trend
 
 
 
@@ -21,9 +21,9 @@ def view_metrics(scope):
 
 
 	# 	st.markdown('##### Charts without additional Variables')
-	# 	render_activate_chart(scope, 'volume')
-	# 	render_activate_chart(scope, 'vac')
-	# 	render_activate_chart(scope, 'vol_per_minute')
+	# 	render_activate_metric(scope, 'volume')
+	# 	render_activate_metric(scope, 'vac')
+	# 	render_activate_metric(scope, 'vol_per_minute')
 	# # with col2: 
 	# with col3: render_macd(scope)
 
