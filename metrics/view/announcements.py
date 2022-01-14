@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-from config.model.set_active import edit_active
+from metrics.model.set_active import edit_active
 
 
 

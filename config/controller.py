@@ -1,25 +1,23 @@
-from config.params.screener import scope_screener
-from config.params.app import scope_app
-# from config.params.charts import scope_chart
-from charts.config import scope_chart
-from config.params.download import scope_download
-# from config.params.folders import scope_folders
+from config.model.streamlit import set_streamlit_page_config
+from config.model.app import scope_app
+from pages.config import scope_pages
 from files.config import scope_folders
-# from config.params.index import scope_index
-from index.config import scope_index
-from config.params.pages import scope_pages
-from config.params.results import scope_results
-from config.params.strategy import scope_strategy
-from config.params.streamlit import set_streamlit_page_config
-# from config.params.ticker_files import scope_tickers
+from tickers.config import scope_download
+from strategies.config import scope_strategy
+from charts.config import scope_chart
+from results.config import scope_results
+from screener.config import scope_screener
 from tickers.config import scope_tickers
+from pages.view.home_page import view_project_welcome
+
+from index.config import scope_index
 
 from config.model.dropdowns import update_dropdowns
 
 # TODO - need to eliminate as many of these as we can - have the code refer directly to the config module 
 # instead of storing it in the scope - ie folders
 
-from pages.view.home_page import view_project_welcome
+
 
 
 def set_scope(scope):

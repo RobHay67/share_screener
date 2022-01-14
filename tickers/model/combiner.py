@@ -1,10 +1,10 @@
 import pandas as pd
 
-from config.model.set_results import store_results
+from results.model.set_results import store_results
 
 from tickers.config import ticker_file_usecols
 
-from config.model.set_page_df_status import set_refresh_page_df_ticker
+from pages.model.set_page_df_status import set_refresh_page_df_all
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Combiner

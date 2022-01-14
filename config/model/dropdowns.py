@@ -1,8 +1,6 @@
 
 
-
-from config.params.markets import markets
-
+from markets.config import markets
 
 
 

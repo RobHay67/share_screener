@@ -2,10 +2,10 @@ import os
 import pathlib
 import pandas as pd
 
-from config.model.set_results import store_results
+from results.model.set_results import store_results
 
 
-from config.model.set_ticker_path import path_for_ticker_file
+from tickers.model.set_ticker_path import path_for_ticker_file
 
 
 def save_tickers(scope):

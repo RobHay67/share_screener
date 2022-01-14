@@ -1,17 +1,16 @@
 import pandas as pd
 
-from config.model.set_results import store_results
+from results.model.set_results import store_results
 
-from config.params.index_schema import default_values
-from config.params.index_schema import data_types
-from config.params.index_schema import schema
+from index.model.schema import default_values
+from index.model.schema import data_types
+from index.model.schema import schema
 
 from index.model.save import save_index
-from config.params.markets import open_time
-from config.params.markets import trading_minutes
+from markets.config import open_time, trading_minutes
 
-from index.view.update_messages import message_updating
-from index.view.update_messages import message_warning
+from index.view.update_messages import message_updating, message_warning
+
 
 def update_index(scope, downloaded_ticker_info ):
 	message_updating()

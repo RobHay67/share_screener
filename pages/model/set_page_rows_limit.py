@@ -1,8 +1,7 @@
 import streamlit as st
 
 
-from config.model.set_page_df_status import set_refresh_page_df_all
-
+from pages.model.set_page_df_status import set_refresh_page_df_all
 
 
 def set_page_row_limit():

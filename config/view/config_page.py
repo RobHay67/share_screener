@@ -7,13 +7,12 @@ from screener.view.config_screener import view_metrics
 from charts.view.config_primary_charts import view_primary
 from charts.view.config_secondary_charts import view_secondary
 
-from config.params.strategy import view_strategy
-from config.params.download import view_download
+from strategies.config import view_strategy
+from tickers.config import view_download
 
-from config.params.results import view_results
+from results.config import view_results
 
-from config.params.app import view_app
-# from config.params.folders import view_folders
+from config.view.app import view_app
 from files.config import view_folders
 
 from index.download import download_ticker_index_data

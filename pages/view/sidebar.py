@@ -1,9 +1,8 @@
 import streamlit as st
 
-from config.model.set_page import set_page
-from config.model.set_page_rows_limit import set_page_row_limit
-from config.model.set_download_days import set_download_days
-
+from pages.model.set_page import set_page
+from pages.model.set_page_rows_limit import set_page_row_limit
+from tickers.model.set_download_days import set_download_days
 
 
 def render_sidebar(scope):

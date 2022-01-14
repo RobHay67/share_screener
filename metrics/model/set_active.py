@@ -1,9 +1,9 @@
 
 import streamlit as st
 
-from config.model.set_page_metrics_status import set_refresh_chart_data
-from config.model.set_page_metrics_status import set_refresh_metric_data
-from config.params.pages import scope_page_metrics
+from pages.model.set_page_metrics_status import set_refresh_chart_data
+from pages.model.set_page_metrics_status import set_refresh_metric_data
+from pages.config import scope_page_metrics
 
 
 

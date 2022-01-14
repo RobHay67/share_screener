@@ -1,11 +1,10 @@
-
-
 import streamlit as st
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Streamlit CONFIG  (TODO not sure this belongs in this spot - but its convenient for the moment)
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 def set_streamlit_page_config():
 	
 	# Set the Browser Tab Name for the App
@@ -26,4 +25,3 @@ def set_streamlit_page_config():
 		}} </style> """, unsafe_allow_html=True)
 
 	
-

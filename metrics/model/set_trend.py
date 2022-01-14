@@ -1,6 +1,6 @@
 import streamlit as st
 
-from config.model.set_page_metrics_status import set_refresh_metric_data
+from pages.model.set_page_metrics_status import set_refresh_metric_data
 
 
 def edit_trend(scope, config_name, metric ):

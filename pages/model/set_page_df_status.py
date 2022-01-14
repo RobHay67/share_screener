@@ -1,9 +1,8 @@
 import streamlit as st
 
 
-from config.model.set_page_metrics_status import set_add_metrics_all
-from config.model.set_page_metrics_status import set_add_metrics_ticker
 
+from pages.model.set_page_metrics_status import set_add_metrics_all, set_add_metrics_ticker
 
 
 def set_refresh_page_df_all():

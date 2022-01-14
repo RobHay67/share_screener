@@ -1,10 +1,10 @@
 import os
 
-from config.model.set_results import store_results
-from config.model.set_ticker_path import path_for_ticker_file
+from results.model.set_results import store_results
+from tickers.model.set_ticker_path import path_for_ticker_file
 from tickers.model.read_csv import load_ticker
 from pages.view.results import view_results
-from config.model.set_page_df_status import set_refresh_page_df_ticker
+from pages.model.set_page_df_status import set_refresh_page_df_ticker
 
 def load_tickers(scope):
 	

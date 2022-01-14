@@ -1,9 +1,8 @@
-from config.model.set_market import select_a_market
-from config.model.set_industries import select_industries
-from config.model.set_tickers import select_tickers
-from config.model.set_ticker import select_a_ticker
-from config.model.multi_ticker_list import update_multi_ticker_list
-
+from markets.model.set_market import select_a_market
+from markets.model.set_industries import select_industries
+from picker.model.set_tickers import select_tickers
+from picker.model.set_ticker import select_a_ticker
+from tickers.model.set_multi_ticker_list import update_multi_ticker_list
 
 
 # TODO ticker_list st

@@ -7,8 +7,7 @@ from metrics.view.bollinger_bands import render_bollinger_bands
 from metrics.view.dividends import render_dividends
 from metrics.view.moving_average import render_moving_average
 
-from config.model.set_chart_height import set_primary_chart_height
-
+from charts.model.set_chart_height import set_primary_chart_height
 
 def view_primary(scope):
 

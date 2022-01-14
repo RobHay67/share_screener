@@ -2,10 +2,10 @@
 import streamlit as st
 
 # from config.model.set_analysis_active import edit_active
-from config.model.set_active import edit_active
+from metrics.model.set_active import edit_active
 # from config.model.set_ohlcv import edit_ohlcv
-from config.model.set_trend import edit_trend
-from config.model.set_number import edit_number
+from metrics.model.set_trend import edit_trend
+from metrics.model.set_number import edit_number
 
 
 # def render_ohlcv_trend(scope, measure, column_name):
