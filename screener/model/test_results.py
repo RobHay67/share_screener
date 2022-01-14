@@ -14,10 +14,10 @@ def update_test_results_dict(scope, ticker, test, screener_df):
 
 		
 
+def screener_all_active_test_results(scope):
 
-
-
-def screener_all_active_test_results(scope, ticker_list):
+	page 		= scope.page_to_display
+	ticker_list = scope.pages[page]['ticker_list']
 
 	# determine a list of currently active tests - we may have turned off previously run tests
 	active_test_list = []

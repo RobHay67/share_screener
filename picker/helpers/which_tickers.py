@@ -6,6 +6,8 @@ from config.model.multi_ticker_list import update_multi_ticker_list
 
 
 
+# TODO ticker_list st
+
 def ticker_selectors(scope,page):
 	
 	selected_tickers_so_lets_load = False
@@ -21,7 +23,7 @@ def ticker_selectors(scope,page):
 		if ticker != 'select a ticker':	
 			selected_tickers_so_lets_load = True
 			scope.download_industries = ['random_tickers']									# used for y_finance downloading
-			ticker_list = [scope.pages[page]['ticker_list'][0]]
+			# ticker_list = [scope.pages[page]['ticker_list'][0]]
 	else:	
 		# Screener Page (Potentially Multiple Tickers)
 		
@@ -41,5 +43,4 @@ def ticker_selectors(scope,page):
 	# TODO - we should store the ticker_list in the scope[page][ticker_list] object
 
 
-	# return selected_tickers_so_lets_load, ticker_list
 	return selected_tickers_so_lets_load

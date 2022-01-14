@@ -1,5 +1,5 @@
-from config.params.charts import chart_config
-from config.params.metrics import metrics_config
+from charts.config import chart_config
+from metrics.config import metrics_config
 
 
 # TODO - whenever we add a ticker to add_ohlcv_data, we need to also add it to refresh metrics!!

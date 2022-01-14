@@ -20,7 +20,8 @@ def load_ticker_index_file( scope ):
 
 	if os.path.exists( scope.path_ticker_index ):
 		message_loading(scope)
-
+		print(scope.path_ticker_index)
+		
 		ticker_index = pd.read_csv(  scope.path_ticker_index, 
 									dtype=csv_dtypes(schema),
 									parse_dates=csv_dates(schema),

@@ -15,7 +15,7 @@ from screener.controller import  view_ticker_screener
 def render_selected_page(scope):
 	
 	page = scope.page_to_display
-	# print( 'Rendering > ', page)
+	print( 'Rendering > ', page)
 	
 	page_map = {
 						'home_page'			:view_project_welcome,

@@ -13,7 +13,8 @@ from config.params.download import view_download
 from config.params.results import view_results
 
 from config.params.app import view_app
-from config.params.folders import view_folders
+# from config.params.folders import view_folders
+from files.config import view_folders
 
 from index.download import download_ticker_index_data
 from index.view.index import view_index

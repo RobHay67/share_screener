@@ -17,38 +17,7 @@ def example_settings(scope):
 	with col8:st.markdown('#### Find Best')
 	with col9:st.markdown('#### Use this Analysis')
 	
-	with col1:st.write('Open')
-	with col2:st.write('Up or Down')
-	with col3:st.write('4')
-	with col4:st.write('10')
-	with col5:st.write('-')
-	with col6:st.write('-')
-	with col8:st.button('Find Best Options')
-	with col9:st.write('tick this')
 
-	with col1:st.write('High')
-	with col2:st.write('Up')
-	with col3:st.write('8')
-	with col4:st.write('12')
-	with col5:st.write('-')
-	with col6:st.write('-')
-	with col9:st.write('tick this')
-
-	with col1:st.write('Low')
-	with col2:st.write('Up')
-	with col3:st.write('7')
-	with col4:st.write('10')
-	with col5:st.write('-')
-	with col6:st.write('-')
-	with col9:st.write('tick this')
-
-	with col1:st.write('Close')
-	with col2:st.write('Down')
-	with col3:st.write('3')
-	with col4:st.write('5')
-	with col5:st.write('-')
-	with col6:st.write('-')
-	with col9:st.write('tick this')
 
 	with col1:st.write('Volume')
 	with col2:st.write('Down')
@@ -104,3 +73,41 @@ def example_settings(scope):
 	st.markdown("""---""")
 
 	st.button('Determine Tickers meeting the above Criteria')
+
+
+
+
+
+
+	# with col1:st.write('Open')
+	# with col2:st.write('Up or Down')
+	# with col3:st.write('4')
+	# with col4:st.write('10')
+	# with col5:st.write('-')
+	# with col6:st.write('-')
+	# with col8:st.button('Find Best Options')
+	# with col9:st.write('tick this')
+
+	# with col1:st.write('High')
+	# with col2:st.write('Up')
+	# with col3:st.write('8')
+	# with col4:st.write('12')
+	# with col5:st.write('-')
+	# with col6:st.write('-')
+	# with col9:st.write('tick this')
+
+	# with col1:st.write('Low')
+	# with col2:st.write('Up')
+	# with col3:st.write('7')
+	# with col4:st.write('10')
+	# with col5:st.write('-')
+	# with col6:st.write('-')
+	# with col9:st.write('tick this')
+
+	# with col1:st.write('Close')
+	# with col2:st.write('Down')
+	# with col3:st.write('3')
+	# with col4:st.write('5')
+	# with col5:st.write('-')
+	# with col6:st.write('-')
+	# with col9:st.write('tick this')

@@ -1,6 +1,4 @@
-
-from config.params.metrics import metrics_config
-from config.params.metrics import trend_direction
+from metrics.config import metrics_config, trend_direction
 
 
 

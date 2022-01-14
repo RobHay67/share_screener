@@ -2,7 +2,7 @@ import pandas as pd
 
 from config.model.set_results import store_results
 
-from config.params.ticker_files import ticker_file_usecols
+from tickers.config import ticker_file_usecols
 
 from config.model.set_page_df_status import set_refresh_page_df_ticker
 
@@ -12,7 +12,7 @@ from config.model.set_page_df_status import set_refresh_page_df_ticker
 # 		resulting in a complete (hopefully) temporal history of existing share data
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def combine_loaded_and_download_ticker_data(scope): # TODO - change to check for loaded ticker
+def combine_loaded_and_download_ticker_data(scope):
 
 	store_results(scope, 
 			passed='Combined > ', 
