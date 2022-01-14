@@ -3,7 +3,6 @@ import streamlit as st
 
 from pages.view.pages import view_pages
 
-from screener.view.config_screener import view_metrics
 from charts.view.config_primary_charts import view_primary
 from charts.view.config_secondary_charts import view_secondary
 
@@ -30,7 +29,6 @@ def render_selected_scope_page(scope):
 	scope_page = {
 			# Column 1
 			'view_pages'			:view_pages,
-			'view_metrics'			:view_metrics,
 			'view_primary'			:view_primary,
 			'view_secondary'		:view_secondary,
 			
@@ -67,7 +65,6 @@ def view_scope(scope):
 	with col1: st.subheader('Session Settings')
 	with col1: st.button('Page(s)', on_click=set_st_button, args=('view_pages', ))
 	with col1: st.button('Download', on_click=set_st_button, args=('view_download', ))
-	with col1: st.button('Screener Metrics', on_click=set_st_button, args=('view_metrics', ))
 	with col1: st.button('Strategy', on_click=set_st_button, args=('view_strategy', ))
 	with col1: st.button('Results', on_click=set_st_button, args=('view_results', ))
 
