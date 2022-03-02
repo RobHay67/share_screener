@@ -21,4 +21,3 @@ def render_bollinger_bands(scope):
 	st.subheader('Moving Average Type - Rob to configure')		# TODO - Simple, Weighted, Exponential, Wilders
 	st.markdown("""---""")
 
-
