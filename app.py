@@ -45,16 +45,48 @@ render_selected_page(scope)				# Render the selected Page
 
 
 
+# print ( '='*100)
 # print( 'List of all keys in the st.session_state')
-# if 'initial_load' in st.session_state:
-# 	print(st.session_state)
-# 	for key in sorted(st.session_state):
-# 		print ( key)
+# excluded_key_list = ['dropdown_ticker']
 # print ( '-'*100)
+# if 'initial_load' in st.session_state:
+# 	# print(st.session_state)
+# 	for key in sorted(st.session_state):
+# 		if key not in excluded_key_list:
+# 			print ( key)
+# print('*'*100)
+# print( st.session_state['charts'])
+# print('*'*100)
+# print( st.session_state['screener_tests'])
+
+# print ( '='*100)
 
 
+# {'candlestick': {'active': True, 'name': 'CandleStick', 'is_overlay': False, 'add_overlays': True, 'plot': {'function': <function candle_plot at 0x7fdac710eaf0>, 'title': 'Price', 'scale': 1.0, 'yaxis': '$,.2f'}, 'metrics': None},
+#  'scatter': {'active': False, 'name': 'Scatter', 'is_overlay': False, 'add_overlays': False, 'plot': {'function': None, 'title': '', 'scale': 0.8, 'yaxis': '$,.2f'}, 'metrics': None}, 'bar': {'active': False, 'name': 'Bar', 'is_overlay': False, 'add_overlays': False, 'plot': {'function': None, 'title': '', 'scale': 0.8, 'yaxis': '$,.2f'}, 'metrics': None}, 
+#  'line': {'active': True, 'name': 'Line charts', 'is_overlay': False, 'add_overlays': True, 'plot': {'function': <function line_plot at 0x7fdac713e8b0>, 'title': 'Line', 'scale': 0.5, 'yaxis': '$,.2f'}, 'metrics': {'function': None, 'column': 'close'}}, 'heiken_ashi': {'active': False, 'name': 'Heikin Ashi', 'is_overlay': False, 'add_overlays': False, 'plot': {'function': None, 'title': '', 'scale': 0.8, 'yaxis': '$,.2f'}, 'metrics': None}, 
+#  'volume': {'active': True, 'name': 'Volume', 'is_overlay': False, 'add_overlays': False, 'plot': {'function': <function volume_plot at 0x7fdac713ec10>, 'title': 'Volume', 'scale': 0.25, 'yaxis': ',.'}, 'metrics': None}, 'vol_per_minute': {'active': False, 'name': 'Volume Per Minute', 'is_overlay': False, 'add_overlays': False, 'plot': {'function': <function vpm_plot at 0x7fdac7191f70>, 'title': '', 'scale': 0.25, 'yaxis': ',.'}, 'metrics': None}, 
+#  'vac': {'active': False, 'name': 'VAC', 'is_overlay': False, 'add_overlays': False, 'plot': {'function': None, 'title': '', 'scale': 0.25, 'yaxis': ',.'}, 'metrics': None}, 
+#  'macd': {'active': True, 'name': 'MACD', 'is_overlay': False, 'add_overlays': False, 'plot': {'function': <function macd_plot at 0x7fdac71a3310>, 'title': 'MACD', 'scale': 0.5, 'yaxis': ',.'},  'metrics': {'function': <function macd_cols at 0x7fdac71a2a60>, 
+#  'column': 'close', 'long': 26, 'short': 12, 'signal': 9}}, 'macd_vol': {'active': True, 'name': 'MACD on Volume', 'is_overlay': False, 'add_overlays': False, 'plot': {'function': <function macd_vol_plot at 0x7fdac71bb0d0>, 'title': 'MACD (Volume)', 'scale': 0.5, 'yaxis': ',.'}, 'metrics': {'function': <function macd_vol_cols at 0x7fdac71a3a60>, 
+#  'column': 'volume', 'long': 26, 'short': 12, 'signal': 9}}, 'rsi': {'active': True, 'name': 'RSI', 'is_overlay': False, 'add_overlays': False, 'plot': {'function': <function rsi_plot at 0x7fdac71bea60>, 'title': 'RSI', 'scale': 0.5, 'yaxis': '.0%'}, 'metrics': {'function': <function rsi_cols at 0x7fdac70ef5e0>, 'column': 'close', 'lookback_days': 10}}, 
+#  'vol_osssy': {'active': False, 'name': 'Volume Oscillator', 'is_overlay': False, 'add_overlays': False, 'plot': {'function': None, 'title': '', 'scale': 0.75, 'yaxis': '$,.2f'}, 'metrics': {'function': None, 'column': 'volume', 'fast': 14, 'slow': 21}}, 'stochastic': {'active': True, 'name': 'Stochastic', 'is_overlay': False, 'add_overlays': False, 'plot': {'function': <function stoch_plot at 0x7fdac71435e0>, 'title': 'Stochastic', 'scale': 0.5, 'yaxis': '.0%'}, 'metrics': {'function': <function stoch_cols at 0x7fdac71beaf0>, 'lookback_days': 14, 'slow': 3, 'signal': 3}}, 
+#  'sma_1': {'active': False, 'name': 'SMA-1', 'is_overlay': True, 'add_overlays': False, 'plot': {'function': <function sma_plot at 0x7fdac7152ca0>, 'colour': 'blue'}, 'metrics': {'function': <function sma_cols at 0x7fdac71524c0>, 'column': 'close', 'periods': 21}}, 
+#  'sma_2': {'active': False, 'name': 'SMA-2', 'is_overlay': True, 'add_overlays': False, 'plot': {'function': <function sma_plot at 0x7fdac7152ca0>, 'colour': 'green'}, 'metrics': {'function': <function sma_cols at 0x7fdac71524c0>, 'column': 'close', 'periods': 50}}, 
+#  'sma_3': {'active': False, 'name': 'SMA-3', 'is_overlay': True, 'add_overlays': False, 'plot': {'function': <function sma_plot at 0x7fdac7152ca0>, 'colour': 'green'}, 'metrics': {'function': <function sma_cols at 0x7fdac71524c0>, 'column': 'close', 'periods': 200}}, 
+#  'ema_1': {'active': False, 'name': 'EMA-1', 'is_overlay': True, 'add_overlays': False, 'plot': {'function': <function ema_plot at 0x7fdac71523a0>, 'colour': 'red'}, 'metrics': {'function': <function ema_cols at 0x7fdac717d9d0>, 'column': 'close', 'periods': 21}}, 
+#  'ema_2': {'active': False, 'name': 'EMA-2', 'is_overlay': True, 'add_overlays': False, 'plot': {'function': <function ema_plot at 0x7fdac71523a0>, 'colour': 'blue'}, 'metrics': {'function': <function ema_cols at 0x7fdac717d9d0>, 'column': 'close', 'periods': 50}}, 
+#  'ema_3': {'active': False, 'name': 'EMA-3', 'is_overlay': True, 'add_overlays': False, 'plot': {'function': <function ema_plot at 0x7fdac71523a0>, 'colour': 'SteelBlue'}, 'metrics': {'function': <function ema_cols at 0x7fdac717d9d0>, 'column': 'close', 'periods': 200}}, 'bollinger_bands': {'active': False, 'name': 'Bollinger Bands', 'is_overlay': True, 'add_overlays': False, 'plot': {'function': <function sma_plot at 0x7fdac7152ca0>, 'colour': 'black'}, 'metrics': {'function': <function ema_cols at 0x7fdac717d9d0>, 'column': 'close', 'length': 20, 'shift_up': 2, 'shift_down': 2, 'm_a_type': 'simple'}},
+#   'dividends': {'active': True, 'name': 'Dividends', 'is_overlay': True, 'add_overlays': False, 'plot': {'function': <function dividend_plot at 0x7fdac724b1f0>, 'colour': 'blue'}, 'metrics': {'function': <function dividend_cols at 0x7fdac71cd940>}}, 'announcements': {'active': False, 'name': 'Announcements', 'is_overlay': True, 'add_overlays': False, 'plot': {'function': <function sma_plot at 0x7fdac7152ca0>, 'colour': 'black'}, 'metrics': None}, 
+#  'ichi_moku': {'active': False, 'name': 'Icki Moku', 'is_overlay': True, 'add_overlays': False, 'plot': {'function': <function sma_plot at 0x7fdac7152ca0>, 'colour': 'black'}, 'metrics': None}, 'ichi_moku_daily': {'active': False, 'name': 'Icki Moku Daily', 'is_overlay': True, 'add_overlays': False, 'plot': {'function': <function sma_plot at 0x7fdac7152ca0>, 'colour': 'black'}, 'metrics': None}}
 
 
+# {
+# 	'trend_open': {'active': False, 'name': 'Open trend', 'column': 'open', 'trend': 'up', 'duration': 4, 'timespan': 10, 'metrics': {'function': <function trend_cols at 0x7fdac7266af0>}}, 
+# 	'trend_high': {'active': True, 'name': 'High trend', 'column': 'high', 'trend': 'up', 'duration': 7, 'timespan': 5, 'metrics': {'function': <function trend_cols at 0x7fdac7266af0>}}, 
+# 	'trend_low': {'active': False, 'name': 'Low trend', 'column': 'low', 'trend': 'up', 'duration': 4, 'timespan': 10, 'metrics': {'function': <function trend_cols at 0x7fdac7266af0>}},
+# 	'trend_close': {'active': False, 'name': 'Close trend', 'column': 'close', 'trend': 'up', 'duration': 4, 'timespan': 10, 'metrics': {'function': <function trend_cols at 0x7fdac7266af0>}}, 
+# 	'trend_volume': {'active': False, 'name': 'Volume trend', 'column': 'volume', 'trend': 'up', 'duration': 4, 'timespan': 10, 'metrics': {'function': <function trend_cols at 0x7fdac7266af0>}}}
 
 
 

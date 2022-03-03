@@ -25,8 +25,8 @@ def update_screener_dfs(scope):
 					scope.pages[page]['add_ohlcv_data'][ticker] = False													# reset Page df STATUS to prevent unnecesary updates
 				else:
 					print ( '\033[91m' + ticker.ljust(10) + '> ticker file missing from scope.ticker_data_files \033[0m')
-			else:
-				print ( '\033[96m' + ticker.ljust(10) + '> add_ohlcv_data not requested \033[0m')
+			# else:
+			# 	print ( '\033[96m' + ticker.ljust(10) + '> add_ohlcv_data not requested \033[0m')
 
 
 
@@ -42,9 +42,11 @@ def update_screener_metrics(scope):
 				screener_df = scope.pages[page]['screener_df'][ticker]									# short reference to the object being edited
 				for test in scope.pages[page]['add_metric_data'][ticker].keys():						# iterate through available tests for this ticker and their run (or not) status
 					test_run_status 	= scope.pages[page]['add_metric_data'][ticker][test]
-					test_has_function	= scope.screener_tests[test]['metric_function']
+					# test_has_function	= scope.screener_tests[test]['metric_function']					# TODO - remove after restructure
+					test_has_function	= scope.screener_tests[test]['metrics']['function']
 					if test_run_status==True and test_has_function != None:								# test needs refreshing and requires additional columns (they all do)
-						scope.screener_tests[test]['metric_function'](scope, screener_df, test )		# Call the column adding function
+						# scope.screener_tests[test]['metric_function'](scope, screener_df, test )		# TODO - delete after restructure Call the column adding function
+						scope.screener_tests[test]['metrics']['function'](scope, screener_df, test )	# Call the column adding function
 						update_test_results_dict(scope, ticker, test, screener_df)						# store the test results for reporting
 						scope.pages[page]['add_metric_data'][ticker][test] = False						# reset Test data STATUS to prevent unnecesary updates
 		screener_all_active_test_results(scope)															# determine overall test result summary

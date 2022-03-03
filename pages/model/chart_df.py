@@ -18,8 +18,8 @@ def update_chart_dfs(scope):
 					scope.pages[page]['add_ohlcv_data'][ticker] = False								# reset page df STATUS to prevent unnecesary updates
 				else:
 					print ( '\033[91m' + ticker.ljust(10) + '> ticker file missing from scope.ticker_data_files \033[0m')
-			else:
-				print ( '\033[96m' + ticker.ljust(10) + '> add_ohlcv_data not requested \033[0m')
+			# else:
+			# 	print ( '\033[96m' + ticker.ljust(10) + '> add_ohlcv_data not requested \033[0m')
 
 
 

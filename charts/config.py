@@ -102,6 +102,7 @@ m_a_type 		= 'm_a_type'			# Bollinger Bands
 
 chart_colours = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
 
+
 chart_config = {
 		# Primary Charts -----------------------------------------------------------------------
 		'candlestick'		: { 

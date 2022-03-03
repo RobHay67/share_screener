@@ -32,8 +32,8 @@ def load_tickers(scope):
 				store_results( scope, ticker, result='failed' )
 				set_refresh_page_df_ticker(scope, ticker, False)
 			
-		else:
-			print ( '\033[92m' + ticker.ljust(10) + '> skipping as ticker already loaded into < scope.ticker_data_files > \033[0m')
+		# else:
+		# 	print ( '\033[92m' + ticker.ljust(10) + '> skipping as ticker already loaded into < scope.ticker_data_files > \033[0m')
 
 		
 

@@ -1,25 +1,48 @@
 
 import streamlit as st
 
-
+from metrics.view.ohlcv_trend import render_ohlcv_trend
 
 
 
 def view_metrics(scope):
+	
 
 	st.markdown("""---""")
 	st.write('**Screener Criteria**')
 
 	with st.expander(label='OHLCV', expanded=True):
-		st.write('This will be the criteria')
+
+		# form = st.form(key='my_form')
+		# form.text_input(label='Criteria for OHLCV ticker values')
+		
+
+
+		# st.write('This will be the criteria')
 		# st.header('This will be the metrics selection page')
-		col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([1,1,1,1,1,1,1,1])
-	
-		with col1: render_ohlcv_trend(scope, 'trend_open',   'open')
-		with col2: render_ohlcv_trend(scope, 'trend_high',   'high')
-		with col3: render_ohlcv_trend(scope, 'trend_low',    'low')
-		with col4: render_ohlcv_trend(scope, 'trend_close',  'close')
-		with col5: render_ohlcv_trend(scope, 'trend_volume', 'volume')
+
+		with st.form(key='my_form'):
+			text_input = st.text_input(label='Criteria for OHLCV ticker values')
+
+			col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([1,1,1,1,1,1,1,1])
+		
+			with col1: render_ohlcv_trend(scope, 'trend_open',   'open')
+			with col2: render_ohlcv_trend(scope, 'trend_high',   'high')
+			with col3: render_ohlcv_trend(scope, 'trend_low',    'low')
+			with col4: render_ohlcv_trend(scope, 'trend_close',  'close')
+			with col5: render_ohlcv_trend(scope, 'trend_volume', 'volume')
+
+			submit_button = st.form_submit_button(label='Apply OHLCV Criteria')
+
+			if submit_button:
+				print ( 'X'*100)
+				print( scope['screener_tests']['trend_high']['metrics']['duration'] )
+
+				for page in scope.pages.keys():
+					print(page)
+					if page == 'screener':													# all chart relevant pages
+						for ticker in scope.pages[page]['add_metric_data'].keys():			# iterate through each ticker
+							print(scope.pages[page]['add_metric_data'][ticker]['trend_high'] )
 
 	
 	with st.expander(label='Annual General Meeting', expanded=False):
@@ -51,7 +74,7 @@ def view_metrics(scope):
 
 
 from pages.view.three_cols import three_cols
-from metrics.view.ohlcv_trend import render_ohlcv_trend
+
 
 
 

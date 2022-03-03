@@ -7,7 +7,7 @@ def edit_trend(scope, config_name, metric ):
 
 	display_name = scope[config_name][metric]['name']
 	
-	previous_trend = scope[config_name][metric]['trend']
+	previous_trend = scope[config_name][metric]['metrics']['trend']
 
 	new_trend = st.selectbox ( 
 									label=('Direction for ' + display_name), 
