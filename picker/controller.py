@@ -54,7 +54,7 @@ def page_report(scope, heading ):
 def ticker_picker(scope):
 
 	page = scope.page_to_display
-	# print ( 'scope.page_metrics_chart = ', scope.page_metrics_chart)
+	# print ( 'scope.pages_template_add_chart_data = ', scope.pages_template_add_chart_data)
 	set_cols(scope, page)
 
 	# selected_tickers_so_lets_load, ticker_list = ticker_selectors(scope, page)

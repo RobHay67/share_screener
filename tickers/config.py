@@ -31,7 +31,7 @@ ticker_file_schema =  {
 
 
 # scope.ticker_file_schema 		= ticker_file_schema
-ticker_file_usecols 		= ['date', 'open', 'high', 'low', 'close', 'volume']
+ticker_file_usecols 	= ['date', 'open', 'high', 'low', 'close', 'volume']
 ticker_file_dtypes 		= {'open': 'float64', 'high': 'float64', 'low': 'float64', 'close': 'float64', 'volume': 'int64'}
 ticker_file_dates 		= ['date']
 
