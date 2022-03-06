@@ -6,15 +6,15 @@ def set_add_metrics_all():
 	# This executes when the user has changed the number of analysis rows
 	#  - ie from 1000 to say 3000 - for simplicity we just reset everything
 
-	for page in st.session_state.pages.keys():													# iterate through every page
-		if page == 'screener':																	# Screener Page Only
-			metrics_dictionary = st.session_state.page_metrics_screener.copy()					# take a copy of our default dictionary
-			for ticker in st.session_state.pages[page]['add_metric_data'].keys():				# iterate through tickers
-				st.session_state.pages[page]['add_metric_data'][ticker] = metrics_dictionary	# set the current metric active status for ticker
-		if page != 'screener':																	# for non screen pages (charts only)
-			chart_dictionary = st.session_state.page_metrics_chart.copy()						# take a copy of our default dictionary
-			for ticker in st.session_state.pages[page]['add_chart_data'].keys():				# iterate through tickers
-				st.session_state.pages[page]['add_chart_data'][ticker]  = chart_dictionary		# set the current metric active status for this ticker
+	for page in st.session_state.pages.keys():														# iterate through every page
+		if page == 'screener':																		# Screener Page Only
+			metrics_template = st.session_state.pages_template_add_metric_data.copy()			# take a copy of our template of metric active status
+			for ticker in st.session_state.pages[page]['add_metric_data'].keys():					# iterate through tickers
+				st.session_state.pages[page]['add_metric_data'][ticker] = metrics_template		# set the current metric active status for ticker
+		if page != 'screener':																		# for non screen pages (charts only)
+			chart_template = st.session_state.pages_template_add_chart_data.copy()							# take a copy of our default dictionary
+			for ticker in st.session_state.pages[page]['add_chart_data'].keys():					# iterate through tickers
+				st.session_state.pages[page]['add_chart_data'][ticker]  = chart_template			# set the current metric active status for this ticker
 				
 
 def set_add_metrics_ticker(scope, ticker, refresh_status):
@@ -25,13 +25,13 @@ def set_add_metrics_ticker(scope, ticker, refresh_status):
 
 	# problem = we dont know if this ticker exists or not yet
 
-	for page in scope.pages.keys():												# iterate through every page
-		if page == 'screener':													# Screener Page Only
-			metrics_dictionary = scope.page_metrics_screener.copy()				# take a copy of our default dictionary
-			scope.pages[page]['add_metric_data'][ticker] = metrics_dictionary	# set the current metric active status for this ticker
-		if page != 'screener':													# for non screen pages (charts only)
-			chart_dictionary = scope.page_metrics_chart.copy()					# take a copy of our default dictionary
-			scope.pages[page]['add_chart_data'][ticker]  = chart_dictionary		# set the current metric active status for this ticker
+	for page in scope.pages.keys():														# iterate through every page
+		if page == 'screener':															# Screener Page Only
+			metrics_template = scope.pages_template_add_metric_data.copy()		# take a copy of our default dictionary
+			scope.pages[page]['add_metric_data'][ticker] = metrics_template			# set the current metric active status for this ticker
+		if page != 'screener':															# for non screen pages (charts only)
+			chart_template = scope.pages_template_add_chart_data.copy()							# take a copy of our default dictionary
+			scope.pages[page]['add_chart_data'][ticker]  = chart_template				# set the current metric active status for this ticker
 				
 
 

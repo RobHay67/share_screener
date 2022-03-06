@@ -10,6 +10,7 @@
 # ------------------------------------------------- 
 
 # Testing Code - TODO - delete later
+from cgitb import handler
 import pandas as pd
 pd.set_option('display.max_rows', 5000)
 pd.set_option('display.max_columns', 500)
@@ -35,6 +36,12 @@ render_selected_page(scope)				# Render the selected Page
 
 
 
+# Happy 60th Big Fella
+# You have aged well
+# It must be all that red wine keeping you well preserved
+# Enjoy the celebrations. 
+# Party hard
+# All the best, Rob and Fliss
 
 
 
@@ -43,23 +50,30 @@ render_selected_page(scope)				# Render the selected Page
 
 
 
-
-
-# print ( '='*100)
-# print( 'List of all keys in the st.session_state')
+print ( '='*100)
+print( 'List of all keys in the st.session_state')
 # excluded_key_list = ['dropdown_ticker']
-# print ( '-'*100)
-# if 'initial_load' in st.session_state:
-# 	# print(st.session_state)
-# 	for key in sorted(st.session_state):
-# 		if key not in excluded_key_list:
-# 			print ( key)
-# print('*'*100)
-# print( st.session_state['charts'])
-# print('*'*100)
-# print( st.session_state['screener_tests'])
+print ( '-'*100)
+if 'initial_load' in st.session_state:
+	# print(st.session_state)
+	for key in sorted(st.session_state):
+		print ( key)
+		# if key not in excluded_key_list:
+		# 	print ( key)
+print('*'*100)
+print( st.session_state['charts'])
+print('*'*100)
+print( st.session_state['screener_tests'])
 
-# print ( '='*100)
+print('*'*50, 'pages_template_add_metric_data')
+
+print( st.session_state['pages_template_add_metric_data'])
+
+
+print( st.session_state['pages']['screener']['add_metric_data'])
+
+print ( '='*100)
+
 
 
 # {'candlestick': {'active': True, 'name': 'CandleStick', 'is_overlay': False, 'add_overlays': True, 'plot': {'function': <function candle_plot at 0x7fdac710eaf0>, 'title': 'Price', 'scale': 1.0, 'yaxis': '$,.2f'}, 'metrics': None},
