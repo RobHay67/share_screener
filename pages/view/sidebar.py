@@ -1,9 +1,7 @@
 import streamlit as st
 
 from pages.model.set_page import set_page
-from pages.model.set_page_rows_limit import set_page_row_limit
-from tickers.model.set_download_days import set_download_days
-
+from pages.model.set_page_df_status import set_refresh_page_df_all
 
 def render_sidebar(scope):
 	
@@ -24,8 +22,19 @@ def render_sidebar(scope):
 	
 
 	st.sidebar.subheader('Download and Analysis Settings')
-	scope.download_days 					= set_download_days()
-	scope.page_row_limit 					= set_page_row_limit()
+
+	scope.download_days = 	st.sidebar.number_input( 
+							'Days to Download (recent)', 
+							min_value=7, 
+							)
+
+	scope.page_row_limit =  st.sidebar.number_input( 
+							'No of Rows for Analysis & Charts', 
+							min_value=100, 
+							on_change=set_refresh_page_df_all, 
+							)
+
+
 	st.sidebar.button('Settings > all'		, on_click=set_page, args=('scope', ))
 
 
