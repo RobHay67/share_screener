@@ -7,7 +7,7 @@ from metrics.view.bollinger_bands import render_bollinger_bands
 from metrics.view.dividends import render_dividends
 from metrics.view.moving_average import render_moving_average
 
-from charts.model.set_chart_height import set_primary_chart_height
+from charts.model.set_chart_height import set_chart_height_primary
 
 def view_primary(scope):
 
@@ -22,7 +22,7 @@ def view_primary(scope):
 	with col1: st.header('Primary Charts')
 	with col2: st.write('.')
 	with col2: st.write('.')
-	with col2: set_primary_chart_height(scope)
+	with col2: set_chart_height_primary(scope)
 
 	with col3: render_primary_chart(scope, 'candlestick')
 	with col4: render_primary_chart(scope, 'scatter')

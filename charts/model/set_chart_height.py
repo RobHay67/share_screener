@@ -4,11 +4,11 @@ import streamlit as st
 
 
 
-def set_primary_chart_height(scope):
+def set_chart_height_primary(scope):
 
 	# st.subheader('Chart Height (pixels)')
 
-	previous_selection = int(scope.primary_chart_height)
+	previous_selection = int(scope.charts_height_primary)
 
 	input_chart_height = st.number_input( 	
 										'Primary Chart Height', 
@@ -16,7 +16,7 @@ def set_primary_chart_height(scope):
 										value=previous_selection,
 										key='95'
 										)  
-	scope.primary_chart_height = input_chart_height
+	scope.charts_height_primary = input_chart_height
 
 
 

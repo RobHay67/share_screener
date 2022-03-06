@@ -82,7 +82,7 @@ plot			= 'plot'				# Dictionary of Plot Parameters for Rendering this chart
 function 		= 'function'			# The function to render this chart
 colour			= 'colour'				# Default Colour for certain lines
 title			= 'title'				# The Title to be rendered for this chart
-scale			= 'scale'				# height for the chart - this is a relative height > % of primary_chart_height
+scale			= 'scale'				# height for the chart - this is a relative height > % of charts_height_primary
 yaxis			= 'yaxis'				# Format for the Y Axis on the charts
 # Dataframe Columns Required for this chart -------------------------------------------------------------------------------------------------------
 metrics			= 'metrics'			# Dictionary of Dataframe Column Params	
@@ -99,9 +99,6 @@ length	 		= 'length'				# Bollinger Bands
 shift_up 		= 'shift_up'			# Bollinger Bands
 shift_down 		= 'shift_down'			# Bollinger Bands
 m_a_type 		= 'm_a_type'			# Bollinger Bands
-
-chart_colours = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
-
 
 chart_config = {
 		# Primary Charts -----------------------------------------------------------------------
@@ -429,8 +426,8 @@ chart_config = {
 
 def scope_chart(scope):
 	scope.charts = chart_config
-	scope.primary_chart_height = 500
-	scope.charts_total_height = scope.primary_chart_height
-	scope.chart_colours = chart_colours
+	scope.charts_height_primary = 500
+	scope.charts_total_height = scope.charts_height_primary
+	scope.chart_colours = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
 	
 
