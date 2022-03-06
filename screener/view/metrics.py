@@ -7,9 +7,37 @@ from metrics.view.ohlcv_trend import render_ohlcv_trend
 
 def view_metrics(scope):
 	
+	st.markdown("""---""")
+	st.write('**Fundamental Analysis**')
+
+	with st.expander(label='Annual General Meeting', expanded=False):
+		st.write('This will be the criteria')
+	
+
+	with st.expander(label='Divdends - Dividend Yield', expanded=False):
+		st.write('This will be the criteria')
+
+	with st.expander(label='Price to Earnings Ratio - P/E', expanded=False):
+		st.write('Dividend per share / Earning per share')
+
+	with st.expander(label='Current Asset Ratio', expanded=False):
+		st.write('This will be the criteria')
+
+	with st.expander(label='Debt to Equity Ratio', expanded=False):
+		st.write('This will be the criteria')
+
+	with st.expander(label='Cash Flow - Operating', expanded=False):
+		st.write('This will be the criteria')
+
+	with st.expander(label='Cash Flow - Capital', expanded=False):
+		st.write('This will be the criteria')
+	
+	with st.expander(label='Cash Flow - Financial', expanded=False):
+		st.write('This will be the criteria')
+
 
 	st.markdown("""---""")
-	st.write('**Screener Criteria**')
+	st.write('**Ticker Technical Performance Criteria**')
 
 	with st.expander(label='OHLCV', expanded=True):
 
@@ -45,12 +73,8 @@ def view_metrics(scope):
 							print(scope.pages[page]['add_metric_data'][ticker]['trend_high'] )
 
 	
-	with st.expander(label='Annual General Meeting', expanded=False):
-		st.write('This will be the criteria')
-	
 
-	with st.expander(label='Divdends', expanded=False):
-		st.write('This will be the criteria')
+
 
 
 	with st.expander(label='Simple Moving Averages (SMA)', expanded=False):
