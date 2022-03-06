@@ -50,9 +50,9 @@ def render_selected_scope_page(scope):
 			
 			}
 
-	scope_page[st.session_state.st_button](scope)
+	scope_page[st.session_state.button_for_scope](scope)
 
-	scope.st_button =  None
+	scope.button_for_scope =  None
 
 
 
@@ -87,6 +87,6 @@ def view_scope(scope):
 	with col5: st.button('Charting Dataframes ( ?? )', on_click=set_st_button, args=('view_chart_dfs', ))
 	
 	st.markdown("""---""")
-	if st.session_state.st_button != None:
+	if st.session_state.button_for_scope != None:
 		render_selected_scope_page(scope)
 

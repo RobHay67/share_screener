@@ -16,7 +16,7 @@ def scope_app(scope):
 													# share index file has resposibility to modify this, but can
 													# only do this after loading the share index file
 	
-	scope.st_button = None
+	scope.button_for_scope = None
 
 
 

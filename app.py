@@ -67,10 +67,11 @@ print( st.session_state['screener_tests'])
 
 print('*'*50, 'pages_template_add_metric_data')
 
-print( st.session_state['pages_template_add_metric_data'])
-
-
 print( st.session_state['pages']['screener']['add_metric_data'])
+print('&'*100)
+# print( st.session_state['pages']['single']['add_metric_data'])
+print( st.session_state['pages']['single']['add_chart_data'])
+
 
 print ( '='*100)
 

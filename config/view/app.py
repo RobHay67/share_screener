@@ -21,7 +21,7 @@ def view_app(scope):
 	three_cols( 'Do the Dropdown Lists Need Refreshing ?', scope.dropdown_lists_need_updating, 'dropdown_lists_need_updating' )
 	
 	st.subheader('Streamlit Reusable Variables')
-	three_cols( 'Streamlit Latest Button Pressed', scope.st_button, 'st_button' )
+	three_cols( 'Streamlit Latest Button Pressed', scope.button_for_scope, 'button_for_scope' )
 
 
 

@@ -6,7 +6,7 @@ from screener.model.test_results import screener_all_active_test_results
 
 def update_screener_dfs(scope):
 
-	page 				= scope.page_to_display
+	page 			= scope.page_to_display
 	page_row_limit 	= int(scope.page_row_limit)
 	ticker_list 	= scope.pages[page]['ticker_list']
 
