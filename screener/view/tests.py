@@ -5,7 +5,7 @@ from metrics.view.ohlcv_trend import render_ohlcv_trend
 
 
 
-def view_metrics(scope):
+def view_tests(scope):
 	
 	st.markdown("""---""")
 	st.write('**Fundamental Analysis**')
@@ -43,8 +43,6 @@ def view_metrics(scope):
 		# form = st.form(key='my_form')
 		# form.text_input(label='Criteria for OHLCV ticker values')
 		
-
-
 		# st.write('This will be the criteria')
 		# st.header('This will be the metrics selection page')
 
@@ -63,7 +61,7 @@ def view_metrics(scope):
 
 			if submit_button:
 				print ( 'X'*100)
-				print( scope['screener_tests']['trend_high']['metrics']['duration'] )
+				print( scope['config']['tests']['trend_high']['metrics']['duration'] )
 
 				for page in scope.pages['page_list']:
 					print(page)
@@ -102,7 +100,7 @@ from pages.view.three_cols import three_cols
 
 
 
-# def view_metrics(scope):
+# def view_tests(scope):
 # 	st.header('Screener Metrics')
 # 	three_cols( 'Limit for the Number of (recent) rows in each Analysis Page', scope.pages['row_limit'], 'page_row_limit' )
 # 	st.markdown("""---""")

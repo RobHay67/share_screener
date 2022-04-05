@@ -21,7 +21,7 @@ def screener_all_active_test_results(scope):
 
 	# determine a list of currently active tests - we may have turned off previously run tests
 	active_test_list = []
-	for test in scope.config['tests'].keys():	
+	for test in scope.config['tests']['test_list']:	
 		if scope.config['tests'][test]['active'] == True:
 			active_test_list.append(test)
 

@@ -2,7 +2,7 @@ from pages.view.analysis_title import analysis_titles
 from screener.view.example import example_settings			#TODO fleshing out some ideas
 # from screener.view.buttons import execute_screening_button
 from screener.view.test_results import view_test_results
-from screener.view.metrics import view_metrics
+from screener.view.tests import view_tests
 
 
 
@@ -18,7 +18,7 @@ def view_ticker_screener(scope):
 	view_test_results(scope)
 
 
-	view_metrics(scope)
+	view_tests(scope)
 
 
 	example_settings(scope)

@@ -11,9 +11,9 @@ from metrics.model.set_number import edit_number
 # def render_ohlcv_trend(scope, measure, column_name):
 def render_ohlcv_trend(scope, metric, column_name):
 	# metric = 'macd'
-	config_name = 'screener_tests'
+	config_name = 'tests'
 
-	# edit_active(scope, 'screener_tests', measure)
+	# edit_active(scope, 'tests', measure)
 	edit_active(scope, config_name, metric)
 	st.write('column_name = ', column_name)
 	edit_trend (scope, config_name, metric)
