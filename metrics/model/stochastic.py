@@ -23,7 +23,6 @@ def stoch_cols(scope, chart_df, chart):
 	chart_df['highest_high'] 	= chart_df['high'].rolling(window=lookback_days).max()
 	chart_df['lowest_low'] 		= chart_df['low'].rolling(window=lookback_days).min()
 	chart_df['stoch_fast_K'] 	= ( ( (chart_df['close'] - chart_df['lowest_low']) / (chart_df['highest_high'] - chart_df['lowest_low']) ) * 100 )
-	# print(chart_df)
 	
 	chart_df['stoch_fast_D'] 	= chart_df['stoch_fast_K'].rolling(window=3).mean()
 	chart_df['stoch_slow_K'] 	= chart_df['stoch_fast_K'].rolling(window=slow_k).mean()							# ANZ - stoch_length = 14    (black)

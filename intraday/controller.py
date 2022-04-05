@@ -14,7 +14,7 @@ def view_intraday_page(scope):
 
 	if ticker in list(scope.data['ticker_files'].keys()):
 
-		print('We are here')
+		print('TODO view_intraday_page')
 
 		
 

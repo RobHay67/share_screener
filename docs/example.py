@@ -308,10 +308,3 @@ else:
 	st.plotly_chart(figBoll, use_container_width=True)
 
 
-
-
-
-print ( 'selected ticker = ', ticker)
-print ( 'radio button    = ', infoType)
-
-print ( 'Finished Run')

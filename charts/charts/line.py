@@ -18,7 +18,6 @@ def line_plot(scope, fig, chart, chart_df, row_no, col_no):
 	columns = scope.config['dropdowns']['price_columns ']
 	
 	for pos, column in enumerate(columns):
-		# print(column)
 
 		fig.add_trace( go.Scatter(
 								x		= chart_df['date'],

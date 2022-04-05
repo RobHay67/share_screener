@@ -2,8 +2,6 @@ import plotly.graph_objects as go
 	
 def macd_plot(scope, fig, chart, chart_df, row_no, col_no):
 
-	# print(chart_df[['date', 'macd_short', 'macd_long', 'macd_col', 'macd_signal', 'macd_histogram' ]].tail(10))
-
 	histogram_colours = ['seagreen' if row['macd_histogram'] >=0 else 'salmon' for index, row in chart_df.iterrows()]
 
 	# MACD (diff) Line

@@ -28,7 +28,7 @@ yf_download = yf.download( ticker, period=period, interval=interval, progress=Tr
 
 yf_download = yf_download.sort_index(ascending=False)        # ensure latest trade is at the top of the list
 
-print ( 'Total Daily Volume =', yf_download.Volume.sum())
+print ( 'TODO Total Daily Volume =', yf_download.Volume.sum())
 # TODO  make this into a report
 
 # ensure the index is a datetime object

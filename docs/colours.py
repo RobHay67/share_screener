@@ -9,7 +9,6 @@
 # cyan        	= '\033[96m'
 # white 		= '\033[0m'
 
-# print('\033[93m Setting all of the chart metrics to be False \033[0m')
 
 
 # Plotly Colours

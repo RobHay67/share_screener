@@ -4,4 +4,4 @@
 
 
 def vpm_plot():
-	print( 'VPM plot')
+	print( 'TODO VPM plot')

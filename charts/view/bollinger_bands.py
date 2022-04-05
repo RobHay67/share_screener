@@ -2,6 +2,6 @@
 
 
 def bollinger_band_cols( scope, chart_df, chart):
-	print('bollinger_band_cols')
+	print('TODO bollinger_band_cols')
 
 

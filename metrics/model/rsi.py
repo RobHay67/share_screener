@@ -21,7 +21,6 @@ def rsi_cols(scope, chart_df, chart):
 	chart_df['rsi_avg_losses'] 	= chart_df['rsi_loss'].rolling(window=lookback_days).mean()
 	chart_df['rsi_rs']          = chart_df['rsi_avg_gains'] / chart_df['rsi_avg_losses']
 	chart_df['rsi']          	= 100 - ( 100 / ( chart_df['rsi_rs'] +1 ))
-	# print ( chart_df)
 
 	chart_df['rsi'] = chart_df['rsi'] / 100
 

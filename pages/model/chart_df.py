@@ -13,7 +13,7 @@ def update_chart_dfs(scope):
 					chart_df = scope.data['ticker_files'][ticker].copy()								# short reference to the object being edited
 					chart_df.sort_values(by=['date'], inplace=True, ascending=True)					# sort the df into the correct order for the charting
 					if page_row_limit != None : 													# limit analysis to user specified row limit
-						chart_df = chart_df.head(page_row_limit) 									
+						chart_df = chart_df.tail(page_row_limit) 									
 					scope.pages[page]['chart_df'][ticker] = chart_df								# store the chart_df for use by the page			
 					scope.pages[page]['add_ohlcv_data'][ticker] = False								# reset page df STATUS to prevent unnecesary updates
 				else:

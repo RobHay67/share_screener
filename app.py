@@ -28,8 +28,20 @@ from pages.controller import render_selected_page
 print ( '\033[94m' + 'Application Re-Rendering Now ' + '>'*50 + '\033[0m')
 
 scope = set_scope(st.session_state)
-render_sidebar(scope)						# Render the Sidebar
-render_selected_page(scope)					# Render the selected Page
+render_sidebar(scope)
+render_selected_page(scope)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -78,8 +90,8 @@ def level_3_details(level_1, level_2, level_3):
 if 'initial_load' in st.session_state:
 	print('')
 	terminal_heading('All keys in st.session_state')
-	# for key in sorted(st.session_state):print(key)
-	for key in st.session_state:print(key)
+	for key in sorted(st.session_state):print(key)
+	# for key in st.session_state:print(key)
 
 
 # level_1 = 'config'
@@ -106,17 +118,17 @@ if 'initial_load' in st.session_state:
 # 	for key in st.session_state[level_1]:print(key)
 # 	level_2_details(level_1, 'download')
 \
-level_1 = 'pages'
-if level_1 in st.session_state:
-	terminal_heading(level_1)
-	for key in st.session_state[level_1]:print(key)
-# 	level_2_details(level_1, 'templates')
-# 	level_2_details(level_1, 'single')
-# 	level_2_details(level_1, 'intraday')
-# 	level_2_details(level_1, 'volume')
-# 	level_2_details(level_1, 'research')
-	level_2_details(level_1, 'screener')
-	level_3_details(level_1, 'screener', 'selectors')
+# level_1 = 'pages'
+# if level_1 in st.session_state:
+# 	terminal_heading(level_1)
+# 	for key in st.session_state[level_1]:print(key)
+# # 	level_2_details(level_1, 'templates')
+# # 	level_2_details(level_1, 'single')
+# # 	level_2_details(level_1, 'intraday')
+# # 	level_2_details(level_1, 'volume')
+# # 	level_2_details(level_1, 'research')
+# 	level_2_details(level_1, 'screener')
+# 	level_3_details(level_1, 'screener', 'selectors')
 	
 
 # level_1 = 'strategy'

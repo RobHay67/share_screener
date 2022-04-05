@@ -33,15 +33,3 @@ def edit_number(scope, config_name, metric, measure ):
 
 
 	
-
-
-
-
-
-	# if metric == 'trend_high':
-	# 	print('EDIt_NUmber Function')
-	# 	print('widget_key  = ', widget_key)
-	# 	print('config_name = ', config_name)
-	# 	print('metric      = ', metric)
-	# 	print('measure     = ', measure.upper())
-	# 	print('before      = ', scope[config_name][metric]['metrics'][measure])

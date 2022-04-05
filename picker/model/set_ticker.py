@@ -12,8 +12,6 @@ import streamlit as st
 def select_a_ticker(scope, page):
 	
 	# Previous Selection
-	for key in scope.pages['single'].keys():print(key)
-
 	previous_ticker_for_page = scope.pages[page]['ticker_list'][0]
 
 	# render the selector defalted to the stored ticker for this page
