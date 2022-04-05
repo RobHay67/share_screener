@@ -10,10 +10,10 @@ def macd_vol_cols(scope, chart_df, chart):
 
 	# MACD = https://www.investopedia.com/terms/m/macd.asp
 	
-	column 	= scope.charts[chart]['metrics']['column']
-	short 	= scope.charts[chart]['metrics']['short']
-	long 	= scope.charts[chart]['metrics']['long']
-	signal 	= scope.charts[chart]['metrics']['signal']
+	column 	= scope.config['charts']['config'][chart]['metrics']['column']
+	short 	= scope.config['charts']['config'][chart]['metrics']['short']
+	long 	= scope.config['charts']['config'][chart]['metrics']['long']
+	signal 	= scope.config['charts']['config'][chart]['metrics']['signal']
 		
 	chart_df['macd_vol_short'] 		= chart_df[column].ewm(span=short, adjust=False).mean()
 	chart_df['macd_vol_long']  		= chart_df[column].ewm(span=long , adjust=False).mean()

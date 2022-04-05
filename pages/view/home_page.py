@@ -6,9 +6,10 @@ import streamlit as st
 def view_project_welcome(scope):
 
 	if scope.initial_load == True:
-		st.title(scope.project_description)
+		st.title(scope.config['project_description'])
 	else:
-		st.success('Configured, loaded share index file and Ready for Analysis')
+		st.success('Configured and Ready for Analysis')
+
 
 
 

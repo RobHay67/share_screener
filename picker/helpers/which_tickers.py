@@ -21,7 +21,7 @@ def ticker_selectors(scope,page):
 
 		if ticker != 'select a ticker':	
 			selected_tickers_so_lets_load = True
-			scope.download_industries = ['random_tickers']									# used for y_finance downloading
+			scope.data['download']['industries'] = ['random_tickers']									# used for y_finance downloading
 			# ticker_list = [scope.pages[page]['ticker_list'][0]]
 	else:	
 		# Screener Page (Potentially Multiple Tickers)
@@ -36,7 +36,7 @@ def ticker_selectors(scope,page):
 
 		if market or industries or tickers: 
 			selected_tickers_so_lets_load = True
-			update_multi_ticker_list(scope)													# scope.download_industries is establised by this function
+			update_multi_ticker_list(scope)													# scope.data['download']['industries'] is establised by this function
 			# ticker_list = scope.pages['screener']['ticker_list']
 
 	# TODO - we should store the ticker_list in the scope[page][ticker_list] object

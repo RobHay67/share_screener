@@ -7,7 +7,7 @@ from tickers.config import ticker_file_dates
 
 def load_ticker(scope, ticker):
 	ticker_data_file = pd.read_csv (  
-									scope.path_ticker_data_file, 
+									scope.files['paths']['ticker_data'], 
 									header      = 0,
 									# nrows       = params.row_limitor, 
 									usecols     = ticker_file_usecols,
@@ -15,7 +15,7 @@ def load_ticker(scope, ticker):
 									dtype       = ticker_file_dtypes,
 									parse_dates = ticker_file_dates,
 									)
-	scope.ticker_data_files[ticker] = ticker_data_file
+	scope.data['ticker_files'][ticker] = ticker_data_file
 
 
 

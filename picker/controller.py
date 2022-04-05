@@ -29,19 +29,19 @@ def page_report(scope, heading ):
 	print(heading.upper())
 	print( '-'*100)
 	print( 'add_ohlcv_data'.upper())
-	for page in scope.pages.keys():	
+	for page in scope.pages['page_list']:
 		print(page.upper())
 		for ticker in scope.pages[page]['add_ohlcv_data'].keys():
 			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['add_ohlcv_data'][ticker] )
 	print('-'*100)
 	print( 'add_metric_data'.upper())
-	for page in scope.pages.keys():	
+	for page in scope.pages['page_list']:
 		print(page.upper())
 		for ticker in scope.pages[page]['add_metric_data'].keys():
 			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['add_metric_data'][ticker] )
 	print('-'*100)
 	print( 'add_chart_data'.upper())
-	for page in scope.pages.keys():	
+	for page in scope.pages['page_list']:
 		print(page.upper())
 		for ticker in scope.pages[page]['add_chart_data'].keys():
 			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['add_chart_data'][ticker] )
@@ -53,8 +53,8 @@ def page_report(scope, heading ):
 
 def ticker_picker(scope):
 
-	page = scope.page_to_display
-	# print ( 'scope.pages_template_add_chart_data = ', scope.pages_template_add_chart_data)
+	page = scope.pages['display_page']
+	# print ( 'scope.pages['templates']['add_chart_data'] = ', scope.pages['templates']['add_chart_data'])
 	set_cols(scope, page)
 
 	# selected_tickers_so_lets_load, ticker_list = ticker_selectors(scope, page)

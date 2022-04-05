@@ -9,7 +9,7 @@ from tickers.model.set_ticker_path import path_for_ticker_file
 
 
 def save_tickers(scope):
-	page 		= scope.page_to_display
+	page 		= scope.pages['display_page']
 	ticker_list = scope.pages[page]['ticker_list']
 
 	print(ticker_list)
@@ -21,9 +21,9 @@ def save_tickers(scope):
 				)
 
 	for ticker in ticker_list:
-		if ticker in scope.ticker_data_files:						# if its not in here, it will not be available to save
+		if ticker in scope.data['ticker_files']:						# if its not in here, it will not be available to save
 			path_for_ticker_file(scope, ticker )
-			save_ticker( scope, scope.ticker_data_files[ticker] )
+			save_ticker( scope, scope.data['ticker_files'][ticker] )
 			store_results( scope, ticker, result='passed' )
 		else:
 			store_results( scope, ticker, result='failed' )
@@ -34,7 +34,7 @@ def save_tickers(scope):
 
 def save_ticker( scope, dataframe ): # DONE
 	saving_df = dataframe.copy()
-	saving_df.to_csv( scope.path_ticker_data_file, index=False )
+	saving_df.to_csv( scope.files['paths']['ticker_data'], index=False )
 
 
 

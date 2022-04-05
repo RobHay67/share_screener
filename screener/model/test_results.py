@@ -5,24 +5,24 @@ import pandas as pd
 
 def update_test_results_dict(scope, ticker, test, screener_df):
 
-	if ticker not in scope.screener_test_results.keys():
-		scope.screener_test_results[ticker] = {}
+	if ticker not in scope.pages['screener']['test_results'].keys():
+		scope.pages['screener']['test_results'][ticker] = {}
 
 	if len(screener_df) > 0:
-		scope.screener_test_results[ticker][test] = screener_df[test].iloc[-1]
+		scope.pages['screener']['test_results'][ticker][test] = screener_df[test].iloc[-1]
 
 
 		
 
 def screener_all_active_test_results(scope):
 
-	page 		= scope.page_to_display
+	page 		= scope.pages['display_page']
 	ticker_list = scope.pages[page]['ticker_list']
 
 	# determine a list of currently active tests - we may have turned off previously run tests
 	active_test_list = []
-	for test in scope.screener_tests.keys():	
-		if scope.screener_tests[test]['active'] == True:
+	for test in scope.config['tests'].keys():	
+		if scope.config['tests'][test]['active'] == True:
 			active_test_list.append(test)
 
 	# create an empty dataframe for the active test results
@@ -36,7 +36,7 @@ def screener_all_active_test_results(scope):
 			ticker_test_result_dict = {}
 			ticker_test_result_dict['ticker'] = ticker
 			for test in active_test_list:
-				test_result = scope.screener_test_results[ticker][test] 
+				test_result = scope.pages['screener']['test_results'][ticker][test] 
 				
 				if test_result != 'passed':
 					all_test_results = 'failed'						# all tests must pass for the entire ticker to meet the criteria
@@ -48,6 +48,6 @@ def screener_all_active_test_results(scope):
 			test_results_df = test_results_df.append(ticker_test_result_dict, ignore_index=True)
 
 
-	scope.screener_test_results_df = test_results_df
+	scope.pages['screener']['test_results_df'] = test_results_df
 
 

@@ -14,7 +14,7 @@ from screener.controller import  view_ticker_screener
 
 def render_selected_page(scope):
 	
-	page = scope.page_to_display
+	page = scope.pages['display_page']
 	print( 'Rendering > ', page)
 	
 	page_map = {

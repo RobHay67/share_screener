@@ -12,7 +12,6 @@ def view_metrics(scope):
 
 	with st.expander(label='Annual General Meeting', expanded=False):
 		st.write('This will be the criteria')
-	
 
 	with st.expander(label='Divdends - Dividend Yield', expanded=False):
 		st.write('This will be the criteria')
@@ -66,7 +65,7 @@ def view_metrics(scope):
 				print ( 'X'*100)
 				print( scope['screener_tests']['trend_high']['metrics']['duration'] )
 
-				for page in scope.pages.keys():
+				for page in scope.pages['page_list']:
 					print(page)
 					if page == 'screener':													# all chart relevant pages
 						for ticker in scope.pages[page]['add_metric_data'].keys():			# iterate through each ticker
@@ -105,7 +104,7 @@ from pages.view.three_cols import three_cols
 
 # def view_metrics(scope):
 # 	st.header('Screener Metrics')
-# 	three_cols( 'Limit for the Number of (recent) rows in each Analysis Page', scope.page_row_limit, 'page_row_limit' )
+# 	three_cols( 'Limit for the Number of (recent) rows in each Analysis Page', scope.pages['row_limit'], 'page_row_limit' )
 # 	st.markdown("""---""")
 
 # 	col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([1,1,1,1,1,1,1,1])

@@ -32,7 +32,7 @@ opening_hours = {
 
 
 def open_time( scope, ticker):
-	market = scope.share_market
+	market = scope.config['share_market']
 	ticker_code_first_letter = ticker[0].upper()
 	for group in opening_hours[market].keys():
 		if group != 'timezone':
@@ -41,7 +41,7 @@ def open_time( scope, ticker):
 	return( opening_time )
 
 def trading_minutes( scope, ticker ):
-	market = scope.share_market
+	market = scope.config['share_market']
 	ticker_code_first_letter = ticker[0].upper()
 	for group in opening_hours[market].keys():
 		if group != 'timezone':

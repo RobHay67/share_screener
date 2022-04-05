@@ -5,7 +5,7 @@ from pages.model.set_page_df_status import set_refresh_page_df_all
 
 def render_sidebar(scope):
 	
-	st.sidebar.title(scope.project_description)
+	st.sidebar.title(scope.config['project_description'])
 
 	st.sidebar.subheader('Analysis')
 	st.sidebar.button('Single'  			, on_click=set_page, args=('single', ))
@@ -23,12 +23,12 @@ def render_sidebar(scope):
 
 	st.sidebar.subheader('Download and Analysis Settings')
 
-	scope.download_days = 	st.sidebar.number_input( 
+	scope.data['download']['days'] = 	st.sidebar.number_input( 
 							'Days to Download (recent)', 
 							min_value=7, 
 							)
 
-	scope.page_row_limit =  st.sidebar.number_input( 
+	scope.pages['row_limit'] =  st.sidebar.number_input( 
 							'No of Rows for Analysis & Charts', 
 							min_value=100, 
 							on_change=set_refresh_page_df_all, 

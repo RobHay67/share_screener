@@ -7,7 +7,7 @@ import pathlib
 
 def path_for_ticker_file( scope, ticker ):
 	file_name = ( ticker.replace( '.', '_' ) ) + '.csv'
-	file_path = pathlib.Path.home().joinpath( scope.folder_tickers, file_name )
-	scope.path_ticker_data_file = file_path
+	file_path = pathlib.Path.home().joinpath( scope.files['folders']['tickers'], file_name )
+	scope.files['paths']['ticker_data'] = file_path
 
 

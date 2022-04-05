@@ -12,7 +12,7 @@ from charts.model.set_chart_height import set_chart_height_primary
 def view_primary(scope):
 
 
-	schema = scope.charts
+	schema = scope.config['charts']['config']
 
 	# ----------------------------------------------------------------------
 	# Primary Charts

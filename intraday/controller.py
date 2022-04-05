@@ -12,7 +12,7 @@ def view_intraday_page(scope):
 
 	ticker = scope.pages['intraday']['ticker_list'][0]
 
-	if ticker in list(scope.ticker_data_files.keys()):
+	if ticker in list(scope.data['ticker_files'].keys()):
 
 		print('We are here')
 

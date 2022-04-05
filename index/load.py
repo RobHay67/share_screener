@@ -17,11 +17,10 @@ from index.view.load_messages import message_new_index_file
 def load_ticker_index_file( scope ):
 	message_title()
 
-	if os.path.exists( scope.path_ticker_index ):
+	if os.path.exists( scope.files['paths']['ticker_index'] ):
 		message_loading(scope)
-		print(scope.path_ticker_index)
 		
-		ticker_index = pd.read_csv(  scope.path_ticker_index, 
+		ticker_index = pd.read_csv(  scope.files['paths']['ticker_index'], 
 									dtype=csv_dtypes(schema),
 									parse_dates=csv_dates(schema),
 									)
@@ -34,8 +33,8 @@ def load_ticker_index_file( scope ):
 		
 		# remove any delisted stocks here
 
-		scope.ticker_index = ticker_index
-		scope.dropdown_lists_need_updating = True
+		scope.data['ticker_index'] = ticker_index
+		scope.config['dropdowns']['update_dropdowns'] = True
 	else: 
 		message_missing_index_file(scope)
 
@@ -50,7 +49,7 @@ def load_ticker_index_file( scope ):
 		
 		# remove any delisted stocks here
 		
-		scope.ticker_index = ticker_index
+		scope.data['ticker_index'] = ticker_index
 		
 		save_index(scope)
 

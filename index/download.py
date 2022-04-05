@@ -10,11 +10,11 @@ from index.model.update import update_index
 
 
 def download_ticker_index_data(scope):
-	st.header('Downloading Ticker Index information for the ' + scope.share_market)
+	st.header('Downloading Ticker Index information for the ' + scope.config['share_market'])
 	st.subheader('Downloading Ticker Master Data from https://asx.api.markitdigital.com and adding to the Ticker Index File')
 	st.markdown("""---""")
 	
-	if scope.share_market == 'ASX':
+	if scope.config['share_market'] == 'ASX':
 		url = 'https://asx.api.markitdigital.com/asx-research/1.0/companies/directory/file?'
 		column_names = ['share_code', 'company_name', 'listing_date', 'industry_group', 'market_cap' ]
 		downloaded_ticker_info = pd.read_csv( 	url, 
@@ -38,11 +38,11 @@ def download_ticker_index_data(scope):
 		downloaded_ticker_info['industry_group'] = downloaded_ticker_info['industry_group'].str.replace('&', 'and' )
 		downloaded_ticker_info['industry_group'] = downloaded_ticker_info['industry_group'].str.lower()
 
-		st.success('number of downloaded ' + scope.share_market + ' ticker codes = ' + str(len(downloaded_ticker_info)))
+		st.success('number of downloaded ' + scope.config['share_market'] + ' ticker codes = ' + str(len(downloaded_ticker_info)))
 		update_index(scope, downloaded_ticker_info )
-		scope.dropdown_lists_need_updating = True
+		scope.config['dropdowns']['update_dropdowns'] = True
 	else:
-		st.error('DOWNLOAD Ticker data NOT YET CONFIGURED FOR ' + scope.share_market)
+		st.error('DOWNLOAD Ticker data NOT YET CONFIGURED FOR ' + scope.config['share_market'])
 		pass
 
 

@@ -8,7 +8,7 @@ from pages.model.set_page_df_status import set_refresh_page_df_ticker
 
 def load_tickers(scope):
 	
-	page = scope.page_to_display
+	page = scope.pages['display_page']
 	ticker_list = scope.pages[page]['ticker_list']
 
 	store_results(	scope, 
@@ -18,22 +18,22 @@ def load_tickers(scope):
 					)
 
 	for ticker in ticker_list:
-		if ticker not in scope.ticker_data_files:					# We only need to load it if its not already loaded
+		if ticker not in scope.data['ticker_files']:					# We only need to load it if its not already loaded
 			path_for_ticker_file(scope, ticker )
 
-			if os.path.exists( scope.path_ticker_data_file ):										# A local file is available to load
+			if os.path.exists( scope.files['paths']['ticker_data'] ):										# A local file is available to load
 				print ( '\033[92m' + ticker.ljust(10) + '> loading local ticker file \033[0m')
 				load_ticker(scope, ticker )
 				store_results( scope, ticker, result='passed' )
 				set_refresh_page_df_ticker(scope, ticker, True)
 			else:																					# The expected Local file is not available
 				print ( '\033[95m' + ticker.ljust(10) + '> missing local ticker file \033[0m')
-				scope.downloaded_missing_list.append(ticker)
+				scope.data['download']['missing_list'].append(ticker)
 				store_results( scope, ticker, result='failed' )
 				set_refresh_page_df_ticker(scope, ticker, False)
 			
 		# else:
-		# 	print ( '\033[92m' + ticker.ljust(10) + '> skipping as ticker already loaded into < scope.ticker_data_files > \033[0m')
+		# 	print ( '\033[92m' + ticker.ljust(10) + '> skipping as ticker already loaded into < scope.data['ticker_files'] > \033[0m')
 
 		
 

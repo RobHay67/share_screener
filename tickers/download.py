@@ -6,7 +6,7 @@ from tickers.model.save import save_tickers
 
 def download_tickers(scope):
 
-	page = scope.page_to_display
+	page = scope.pages['display_page']
 
 	download_from_yahoo_finance(scope)
 	view_results(scope)
@@ -20,7 +20,7 @@ def download_tickers(scope):
 	view_results(scope)
 
 	# reset STATUS to prevent unnecesary updates
-	scope.download_industries = [] 								# Reset for next download
+	scope.data['download']['industries'] = [] 								# Reset for next download
 
 
 

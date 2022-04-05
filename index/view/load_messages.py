@@ -9,7 +9,7 @@ def message_title():
 
 def message_loading(scope):
 	# st.write('loading ticker_index.csv file from....... ')
-	st.info( ('loading ticker_index.csv file from > ' +  str(scope.path_ticker_index) ))
+	st.info( ('loading ticker_index.csv file from > ' +  str(scope.files['paths']['ticker_index']) ))
 
 
 def message_loaded():
@@ -25,7 +25,7 @@ def message_loaded():
 
 
 def message_missing_index_file(scope):
-	st.error( 'Ticker Index File does not exist at path > ' + str(scope.path_ticker_index) )
+	st.error( 'Ticker Index File does not exist at path > ' + str(scope.files['paths']['ticker_index']) )
 
 	st.warning( 'creating an empty ticker_index dataframe' )
 

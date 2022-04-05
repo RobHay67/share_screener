@@ -127,7 +127,7 @@ def view_dropdowns(scope):
 		st.write('selectbox')
 		st.markdown( ('##### < dropdown_markets >') )
 		st.write('previous selection')
-		st.selectbox(label='Add a Market to Ticker List', options=scope.dropdown_markets,	key='91')
+		st.selectbox(label='Add a Market to Ticker List', options=scope.config['dropdowns']['markets'],	key='91')
 
 	with col3: 
 		st.markdown('##### Multi')
@@ -135,7 +135,7 @@ def view_dropdowns(scope):
 		st.write('dropdown_industries')
 		st.markdown( ('##### < dropdown_industries >') )
 		st.write('previous selection')
-		st.multiselect(label='Add an Industry or Industries', options=scope.dropdown_industries,	key='92')
+		st.multiselect(label='Add an Industry or Industries', options=scope.config['dropdowns']['industries'],	key='92')
 
 	with col4: 
 		st.markdown('##### Multi')
@@ -143,7 +143,7 @@ def view_dropdowns(scope):
 		st.write('multiselect')
 		st.markdown( ('##### < dropdown_tickers >') )
 		st.write('previous selection')
-		st.multiselect(label='Add a Ticker or Tickers', options=scope.dropdown_tickers,	key='93')
+		st.multiselect(label='Add a Ticker or Tickers', options=scope.config['dropdowns']['tickers'],	key='93')
 
 	with col5: 
 		st.markdown('##### Single')
@@ -151,7 +151,7 @@ def view_dropdowns(scope):
 		st.write('selectbox')
 		st.markdown( ('##### < dropdown_ticker >') )
 		st.write('previous selection')
-		st.selectbox(label='Select a Ticker', options=scope.dropdown_ticker,	key='94')
+		st.selectbox(label='Select a Ticker', options=scope.config['dropdowns']['ticker'],	key='94')
 
 	with col6: 
 		st.markdown('##### All')
@@ -159,7 +159,7 @@ def view_dropdowns(scope):
 		st.write('selectbox')
 		st.markdown( ('##### < dropdown_ticker_columns >') )
 		st.write('close')
-		st.selectbox(label='Select a Column', options=scope.dropdown_ohlcv_columns,	key='95')
+		st.selectbox(label='Select a Column', options=scope.config['dropdowns']['ohlcv_columns'],	key='95')
 
 	with col7: 
 		st.markdown('##### All')
@@ -167,7 +167,7 @@ def view_dropdowns(scope):
 		st.write('selectbox')
 		st.markdown( ('##### < dropdown_ticker_columns >') )
 		st.write('close')
-		st.selectbox(label='Select a Column', options=scope.dropdown_price_columns,	key='96')
+		st.selectbox(label='Select a Column', options=scope.config['dropdowns']['price_columns '],	key='96')
 
 
 # TODO - rob - this was the original report showing all the ticker selectors

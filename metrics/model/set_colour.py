@@ -10,8 +10,8 @@ def edit_colour(scope, config_name, metric ):
 
 	selected_colour = st.selectbox ( 
 									label=('Colour for ' + display_name), 
-									options=scope.chart_colours,
-									index=scope.chart_colours.index(previous_colour), 
+									options=scope.config['charts']['colours'],
+									index=scope.config['charts']['colours'].index(previous_colour), 
 									key=metric,
 									) 
 	scope[config_name][metric]['plot']['colour'] = selected_colour

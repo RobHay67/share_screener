@@ -22,7 +22,7 @@ from pages.view.dataframes import view_screener_dfs
 from pages.view.dataframes import view_chart_dfs
 
 
-from config.model.set_scope_button import set_st_button
+from pages.model.set_scope_button import set_st_button
 
 def render_selected_scope_page(scope):
 
@@ -52,7 +52,7 @@ def render_selected_scope_page(scope):
 
 	scope_page[st.session_state.button_for_scope](scope)
 
-	scope.button_for_scope =  None
+	scope.pages['button_for_scope'] =  None
 
 
 
@@ -78,11 +78,11 @@ def view_scope(scope):
 	
 	with col4: st.subheader('Ticker Index') # DONE
 	with col4: st.button('Import New Tickers', on_click=set_st_button, args=('import_tickers', ))
-	with col4: st.button('Ticker Index Report ( ' + str((len(scope.ticker_index))) + ' )', on_click=set_st_button, args=('view_ticker_index', ))
+	with col4: st.button('Ticker Index Report ( ' + str((len(scope.data['ticker_index']))) + ' )', on_click=set_st_button, args=('view_ticker_index', ))
 	with col4: st.button('Industry Report', on_click=set_st_button, args=('view_industries', ))
 
 	with col5: st.subheader('Ticker DataFrames') # DONE
-	with col5: st.button('Loaded Ticker Data Files ( ' + str(len(scope.ticker_data_files.keys())) + ' )', on_click=set_st_button, args=('view_ticker_files', ))
+	with col5: st.button('Loaded Ticker Data Files ( ' + str(len(scope.data['ticker_files'].keys())) + ' )', on_click=set_st_button, args=('view_ticker_files', ))
 	with col5: st.button('Analysis Dataframes ( ?? )', on_click=set_st_button, args=('view_analysis_dfs', ))
 	with col5: st.button('Charting Dataframes ( ?? )', on_click=set_st_button, args=('view_chart_dfs', ))
 	

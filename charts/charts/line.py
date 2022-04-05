@@ -12,10 +12,10 @@ import plotly.graph_objects as go
 
 def line_plot(scope, fig, chart, chart_df, row_no, col_no):
 
-	# column 	= scope.charts[chart]['metrics']['column']
+	# column 	= scope.config['charts']['config'][chart]['metrics']['column']
 	colors = ['yellow', 'green', 'red', 'blue']
 	#         open        high    low    close
-	columns = scope.dropdown_price_columns
+	columns = scope.config['dropdowns']['price_columns ']
 	
 	for pos, column in enumerate(columns):
 		# print(column)

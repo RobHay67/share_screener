@@ -13,12 +13,12 @@ def create_plotly_schema(scope):
 	}
 
 	# Based on the User Selections - construct lists and variables (a Schema) of objects that need rendering
-	for chart in scope.charts.keys():
-		if scope.charts[chart]['active'] == True and scope.charts[chart]['is_overlay'] == False: 			# Charts - Selected (active) and IS NOT an overlay
+	for chart in scope.config['charts']['config'].keys():
+		if scope.config['charts']['config'][chart]['active'] == True and scope.config['charts']['config'][chart]['is_overlay'] == False: 			# Charts - Selected (active) and IS NOT an overlay
 			plotly_schema['no_of_charts'] = plotly_schema['no_of_charts'] + 1
-			plotly_schema['chart_heights'].append(scope.charts[chart]['plot']['scale'])
+			plotly_schema['chart_heights'].append(scope.config['charts']['config'][chart]['plot']['scale'])
 			plotly_schema['add_chart'].append(chart)
-		elif  scope.charts[chart]['active'] == True and scope.charts[chart]['is_overlay'] == True:			# Overlays - Selected (active) and IS an overlay
+		elif  scope.config['charts']['config'][chart]['active'] == True and scope.config['charts']['config'][chart]['is_overlay'] == True:			# Overlays - Selected (active) and IS an overlay
 			plotly_schema['add_overlay'].append(chart)	
 
 	plotly_schema = make_chart_heights_proportional(scope, plotly_schema)

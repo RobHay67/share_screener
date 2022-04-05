@@ -3,7 +3,7 @@ import streamlit as st
 
 from pages.model.set_page_metrics_status import set_refresh_chart_data
 from pages.model.set_page_metrics_status import set_refresh_metric_data
-from pages.config import scope_page_metrics
+from pages.config import scope_page_templates
 
 
 
@@ -24,7 +24,7 @@ def edit_active(scope, config_name, metric ):
 	scope[config_name][metric]['active'] = new_active_status
 
 	if new_active_status != previous_active_status : 				# set to refresh metrics if something has been changed
-		scope_page_metrics(scope)									# rebase the active and inactive page metrics
+		scope_page_templates(scope)									# rebase the active and inactive page metrics
 		if config_name == 'charts':
 			set_refresh_chart_data(scope, metric)
 		elif config_name == 'screener_tests':

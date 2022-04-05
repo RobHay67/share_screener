@@ -7,4 +7,4 @@ def view_index(scope):
 	with col1: st.subheader('Ticker Index File')
 	with col2: st.write('< ticker_index >')
 
-	st.dataframe(scope.ticker_index, 2000, 1200)
+	st.dataframe(scope.data['ticker_index'], 2000, 1200)

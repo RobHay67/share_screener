@@ -29,7 +29,7 @@ print ( '\033[94m' + 'Application Re-Rendering Now ' + '>'*50 + '\033[0m')
 
 scope = set_scope(st.session_state)
 render_sidebar(scope)						# Render the Sidebar
-render_selected_page(scope)				# Render the selected Page
+render_selected_page(scope)					# Render the selected Page
 
 
 
@@ -48,32 +48,97 @@ render_selected_page(scope)				# Render the selected Page
 
 
 
+def terminal_heading(heading):
+	print('')
+	print('='*70)
+	print(heading.upper(), '   ( level_1 )')
+	print('='*70)
 
 
-print ( '='*100)
-print( 'List of all keys in the st.session_state')
-# excluded_key_list = ['dropdown_ticker']
-print ( '-'*100)
+def level_2_details(level_1, level_2):
+	# print('')
+	print('-'*40)
+	print(level_1, '/', level_2, ' ( level 2 )', )
+	print('-'*40)
+	if level_2 in st.session_state[level_1]:
+		for key in st.session_state[level_1][level_2]:
+			print(level_2 , ' - ', key)
+
+def level_3_details(level_1, level_2, level_3):
+	print('-'*50)
+	print(level_1, '/', level_2, '/', level_3, ' ( level 3 )')
+	print('-'*50)
+	if level_2 in st.session_state[level_1]:
+		if level_3 in st.session_state[level_1][level_2]:
+			for key in st.session_state[level_1][level_2][level_3]:
+				print(level_3 , ' - ', key)
+
+
+
 if 'initial_load' in st.session_state:
-	# print(st.session_state)
-	for key in sorted(st.session_state):
-		print ( key)
-		# if key not in excluded_key_list:
-		# 	print ( key)
-print('*'*100)
-print( st.session_state['charts'])
-print('*'*100)
-print( st.session_state['screener_tests'])
-
-print('*'*50, 'pages_template_add_metric_data')
-
-print( st.session_state['pages']['screener']['add_metric_data'])
-print('&'*100)
-# print( st.session_state['pages']['single']['add_metric_data'])
-print( st.session_state['pages']['single']['add_chart_data'])
+	print('')
+	terminal_heading('All keys in st.session_state')
+	# for key in sorted(st.session_state):print(key)
+	for key in st.session_state:print(key)
 
 
-print ( '='*100)
+# level_1 = 'config'
+# if level_1 in st.session_state:
+# 	terminal_heading(level_1)
+# 	for key in st.session_state[level_1]:print(key)
+# 	level_2_details(level_1, 'dropdowns')
+	# level_2_details(level_1, 'tests')
+	# level_3_details(level_1, 'tests', 'trend_open')
+# 	level_2_details(level_1, 'charts')
+# 	level_3_details(level_1, 'charts', 'config')
+# 	level_2_details(level_1, 'results')
+
+# level_1 = 'files'
+# if level_1 in st.session_state:
+# 	terminal_heading(level_1)
+# 	for key in st.session_state[level_1]:print(key)
+# 	level_2_details(level_1, 'folders')
+# 	level_2_details(level_1, 'paths')
+
+# level_1 = 'data'
+# if level_1 in st.session_state:
+# 	terminal_heading(level_1)
+# 	for key in st.session_state[level_1]:print(key)
+# 	level_2_details(level_1, 'download')
+\
+level_1 = 'pages'
+if level_1 in st.session_state:
+	terminal_heading(level_1)
+	for key in st.session_state[level_1]:print(key)
+# 	level_2_details(level_1, 'templates')
+# 	level_2_details(level_1, 'single')
+# 	level_2_details(level_1, 'intraday')
+# 	level_2_details(level_1, 'volume')
+# 	level_2_details(level_1, 'research')
+	level_2_details(level_1, 'screener')
+	level_3_details(level_1, 'screener', 'selectors')
+	
+
+# level_1 = 'strategy'
+# if level_1 in st.session_state:
+# 	terminal_heading(level_1)
+# 	for key in st.session_state[level_1]:print(key)
+# 	level_2_details(level_1, 'header')
+# 	level_2_details(level_1, 'print')
+
+print ( '='*70)
+print('screener/test_results')
+print(st.session_state['pages']['screener']['test_results'])
+
+
+print('data/download/yf_anomolies')
+print(st.session_state['data']['download']['yf_anomolies'])
+print ( '='*70)
+
+
+
+
+
 
 
 
@@ -122,7 +187,7 @@ print ( '='*100)
 # set_streamlit_page_config()
 # scope = set_scope(st.session_state, project_description)
 
-# if scope.dropdown_lists_need_updating: 
+# if scope.config['dropdowns']['update_dropdowns']: 
 # 	update_dropdowns(scope)
 
 # print ( '\033[94mApplication Refreshed >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> \033[0m')

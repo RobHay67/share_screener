@@ -21,7 +21,7 @@ def view_volume_page(scope):
 		# ticker = scope.selected['volume']['ticker_list'][0]
 
 		local_time=datetime.now()											# Current local time
-		market_timezone = opening_hours[scope.share_market]['timezone']		# Timezone for the share market
+		market_timezone = opening_hours[scope.config['share_market']]['timezone']		# Timezone for the share market
 		market_time = datetime.now(pytz.timezone(market_timezone))			# Current Market time
 		view_local_vs_market_time(local_time, market_time)
 
@@ -31,8 +31,8 @@ def view_volume_page(scope):
 		###########################################################################################
 
 		# Relevant Times for this Ticker
-		ticker_opening_time 	= scope.ticker_index.loc[ticker]['opening_time']
-		ticker_minutes_per_day 	= scope.ticker_index.loc[ticker]['minutes_per_day']
+		ticker_opening_time 	= scope.data['ticker_index'].loc[ticker]['opening_time']
+		ticker_minutes_per_day 	= scope.data['ticker_index'].loc[ticker]['minutes_per_day']
 						
 		# Build the open time for this ticker
 		open_hour 	= int(ticker_opening_time[:2])

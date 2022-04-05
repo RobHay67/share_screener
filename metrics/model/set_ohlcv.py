@@ -17,8 +17,8 @@ def edit_ohlcv(scope, config_name, metric ):
 	
 	new_ohlcv_col = st.selectbox ( 
 									label=('Column for ' + display_name), 
-									options=scope.dropdown_ohlcv_columns,
-									index=scope.dropdown_ohlcv_columns.index(previous_ohlcv_col), 
+									options=scope.config['dropdowns']['ohlcv_columns'],
+									index=scope.config['dropdowns']['ohlcv_columns'].index(previous_ohlcv_col), 
 									key=metric,
 									) 
 
@@ -45,8 +45,8 @@ def edit_ohlc(scope, config_name, metric ):
 
 	new_ohlc_col = st.selectbox ( 
 									label=('Column for ' + display_name), 
-									options=scope.dropdown_price_columns,
-									index=scope.dropdown_price_columns.index(previous_ohlcv_col), 
+									options=scope.config['dropdowns']['price_columns '],
+									index=scope.config['dropdowns']['price_columns '].index(previous_ohlcv_col), 
 									key=metric,
 									) 
 

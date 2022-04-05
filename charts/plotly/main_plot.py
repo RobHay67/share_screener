@@ -22,7 +22,7 @@ def format_main_plot(scope, fig, ticker):
 	# format the overall chart layout
 	
 	fig.update_layout(	
-						height 		= scope.charts_total_height,
+						height 		= scope.config['charts']['total_height'],
 						# width		= 1200, 									# let streamlit take care of this
 						showlegend	= False, 									# Not Possible to have individual legends per subplot
 						margin		= go.layout.Margin(l=20, r=20, b=20, t=35),

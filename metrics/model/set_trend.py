@@ -11,8 +11,8 @@ def edit_trend(scope, config_name, metric ):
 
 	new_trend = st.selectbox ( 
 									label=('Direction for ' + display_name), 
-									options=scope.screener_trends,
-									index=scope.screener_trends.index(previous_trend), 
+									options=scope.config['tests']['trends'],
+									index=scope.config['tests']['trends'].index(previous_trend), 
 									key=metric,
 									) 
 

@@ -7,7 +7,7 @@ def view_ticker_data_files(scope, page='all'):
 		
 		col1,col2 = st.columns([6,2])
 		with col1: st.write('Loaded and Downloaded ticker data stored in > ')
-		with col2: st.write('< scope.ticker_data_files >')	
+		with col2: st.write('< scope.data[ticker_files] >')	
 		st.markdown("""---""")
 		list_of_pages = list(scope.pages.keys()) 	# all of the pages
 		render_expanded = False
@@ -24,7 +24,7 @@ def view_ticker_data_files(scope, page='all'):
 	for page in list_of_pages:
 		for ticker in scope.pages[page]['ticker_list']:
 			if ticker != 'select a ticker':
-				if ticker in scope.ticker_data_files:
+				if ticker in scope.data['ticker_files']:
 					ticker_to_page_map[ticker] = page
 
 	
@@ -33,7 +33,7 @@ def view_ticker_data_files(scope, page='all'):
 
 	for ticker in ticker_to_page_map:
 		page = ticker_to_page_map[ticker]
-		ticker_data_file = scope.ticker_data_files[ticker]
+		ticker_data_file = scope.data['ticker_files'][ticker]
 
 		no_of_rows = str(len(ticker_data_file))
 		ticker_data_file.sort_values(by=['date'], inplace=True, ascending=False)
