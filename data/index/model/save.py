@@ -1,5 +1,5 @@
 
-from data.index.view.save_message import message_save
+from data.index.view.messages import message_save
 
 
 

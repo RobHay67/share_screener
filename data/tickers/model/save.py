@@ -5,7 +5,7 @@ import pandas as pd
 from results.model.set_results import store_results
 
 
-from data.tickers.model.set_ticker_path import path_for_ticker_file
+from data.tickers.model.ticker_path import path_for_ticker_file
 
 
 def save_tickers(scope):
