@@ -1,8 +1,8 @@
 
 import streamlit as st
 
-from pages.model.data_status import redo_page_data_singles_pages_all_tickers
-from pages.model.data_status import redo_page_data_screener_page_all_tickers
+# from pages.model.data_status import redo_page_data_singles_pages_all_tickers
+from pages.model.data_status import set_page_data_status
 from pages.config import scope_page_templates
 
 
@@ -34,7 +34,7 @@ def edit_active(scope, config_name, metric ):
 		if config_name == 'charts':
 			redo_page_data_singles_pages_all_tickers(scope, metric)
 		elif config_name == 'tests':
-			redo_page_data_screener_page_all_tickers(scope, metric)
+			set_page_data_status(scope, tests=metric)
 		else:
 			print ( '\033[91m' + ' < edit_active > function provided with unknown config_name > ' + config_name + '\033[0m')
 

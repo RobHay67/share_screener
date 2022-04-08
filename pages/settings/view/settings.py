@@ -1,7 +1,8 @@
 # import pandas as pd
 import streamlit as st
 
-from pages.view.pages import view_pages
+# from pages.view.config import view_pages
+from pages.settings.view.page_config import view_pages
 
 from charts.primary_config import render_primary_charts_config
 from charts.secondary_config import render_secondary_charts_config

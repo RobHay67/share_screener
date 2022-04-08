@@ -7,7 +7,7 @@ from pages.volume.controller import render_volume_page
 from pages.screener.controller import render_screener_page
 from charts.primary_config import render_primary_charts_config
 from charts.secondary_config import render_secondary_charts_config
-from pages.settings.view.config_page import render_scope_settings
+from pages.settings.view.settings import render_scope_settings
 
 def render_selected_page(scope):
 	

@@ -123,12 +123,19 @@ if 'initial_load' in st.session_state:
 # 	terminal_heading(level_1)
 # 	for key in st.session_state[level_1]:print(key)
 # # 	level_2_details(level_1, 'templates')
-# # 	level_2_details(level_1, 'single')
+# 	level_2_details(level_1, 'single')
 # # 	level_2_details(level_1, 'intraday')
 # # 	level_2_details(level_1, 'volume')
 # # 	level_2_details(level_1, 'research')
-# 	level_2_details(level_1, 'screener')
-# 	level_3_details(level_1, 'screener', 'selectors')
+# # 	level_2_details(level_1, 'screener')
+# 	level_3_details(level_1, 'single', 'add_ohlcv_data')
+# 	level_3_details(level_1, 'single', 'add_chart_data')
+# 	# level_3_details(level_1, 'screener', 'add_ohlcv_data')
+	# level_3_details(level_1, 'screener', 'add_ohlcv_data')
+	# level_3_details(level_1, 'screener', 'add_ohlcv_data')
+	# level_3_details(level_1, 'screener', 'add_ohlcv_data')
+
+	
 	
 
 # level_1 = 'strategy'
@@ -138,20 +145,40 @@ if 'initial_load' in st.session_state:
 # 	level_2_details(level_1, 'header')
 # 	level_2_details(level_1, 'print')
 
-print ( '='*70)
-print('screener/test_results')
-print(st.session_state['pages']['screener']['test_results'])
+# print ( '='*70)
+# print('screener/test_results')
+# print(st.session_state['pages']['screener']['test_results'])
 
 
-print('data/download/yf_anomolies')
-print(st.session_state['data']['download']['yf_anomolies'])
-print ( '='*70)
-
-
+# print('data/download/yf_anomolies')
+# print(st.session_state['data']['download']['yf_anomolies'])
+# print ( '='*70)
 
 
 
 
+print( '^'*70)
+print('Report on Data Refresh State for each Object')
+print( '^'*70)
+
+for page in st.session_state['pages']['page_list']:
+	print('='*100)	
+	print('Page > ', page)
+	print('='*100)	
+	print( '-'*70)
+	print('OHLCV refresh status')
+	for key, value in st.session_state['pages'][page]['add_ohlcv_data'].items():
+		print (key, ':', value)
+	print( '-'*70)
+	print('Charts refresh status')
+	if page != 'screener':
+		for key, value in st.session_state['pages'][page]['add_chart_data'].items():
+			print (key, ':', value)
+	print( '-'*70)
+	print('Metrics refresh status')
+	if page == 'screener':
+		for key, value in st.session_state['pages'][page]['add_metric_data'].items():
+			print (key, ':', value)
 
 
 # {'candlestick': {'active': True, 'name': 'CandleStick', 'is_overlay': False, 'add_overlays': True, 'plot': {'function': <function candle_plot at 0x7fdac710eaf0>, 'title': 'Price', 'scale': 1.0, 'yaxis': '$,.2f'}, 'metrics': None},
