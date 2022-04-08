@@ -1,4 +1,4 @@
-from pages.view.analysis_title import analysis_titles
+from pages.view.title import render_page_title
 from charts.controller import plot_charts
 
 
@@ -8,8 +8,8 @@ from charts.controller import plot_charts
 # Single Ticker Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def render_single_ticker_page(scope):
-	# analysis_titles(scope, 'Ticker Analysis', 'single')
-	analysis_titles(scope, 'Ticker Analysis')
+	# render_page_title(scope, 'Ticker Analysis', 'single')
+	render_page_title(scope, 'Ticker Analysis')
 	
 	ticker = scope.pages['single']['ticker_list'][0]
 	

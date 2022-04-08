@@ -1,7 +1,7 @@
 import streamlit as st
 
-from pages.model.set_page import set_page
-from pages.model.set_page_df_status import set_refresh_page_df_all
+from pages.model.page import set_page
+from pages.model.data_status import redo_ohlc_data_all_pages_all_tickers
 
 def render_sidebar(scope):
 	
@@ -31,7 +31,7 @@ def render_sidebar(scope):
 	scope.pages['row_limit'] =  st.sidebar.number_input( 
 							'No of Rows for Analysis & Charts', 
 							min_value=100, 
-							on_change=set_refresh_page_df_all, 
+							on_change=redo_ohlc_data_all_pages_all_tickers, 
 							)
 
 

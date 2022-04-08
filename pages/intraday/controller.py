@@ -1,5 +1,5 @@
-from pages.view.analysis_title import analysis_titles
-from pages.view.analysis_title import analysis_titles
+from pages.view.title import render_page_title
+from pages.view.title import render_page_title
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -7,8 +7,8 @@ from pages.view.analysis_title import analysis_titles
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def render_intraday_page(scope):
-	# analysis_titles(scope, 'Intra Day Analysis', 'intraday')
-	analysis_titles(scope, 'Intra Day Analysis')
+	# render_page_title(scope, 'Intra Day Analysis', 'intraday')
+	render_page_title(scope, 'Intra Day Analysis')
 
 	ticker = scope.pages['intraday']['ticker_list'][0]
 

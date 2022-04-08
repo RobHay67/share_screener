@@ -1,8 +1,8 @@
 
 import streamlit as st
 
-from pages.model.set_page_metrics_status import set_refresh_chart_data
-from pages.model.set_page_metrics_status import set_refresh_metric_data
+from pages.model.data_status import redo_page_data_singles_pages_all_tickers
+from pages.model.data_status import redo_page_data_screener_page_all_tickers
 from pages.config import scope_page_templates
 
 
@@ -32,9 +32,9 @@ def edit_active(scope, config_name, metric ):
 	if new_active_status != previous_active_status : 				# set to refresh metrics if something has been changed
 		scope_page_templates(scope)									# rebase the active and inactive page metrics
 		if config_name == 'charts':
-			set_refresh_chart_data(scope, metric)
+			redo_page_data_singles_pages_all_tickers(scope, metric)
 		elif config_name == 'tests':
-			set_refresh_metric_data(scope, metric)
+			redo_page_data_screener_page_all_tickers(scope, metric)
 		else:
 			print ( '\033[91m' + ' < edit_active > function provided with unknown config_name > ' + config_name + '\033[0m')
 

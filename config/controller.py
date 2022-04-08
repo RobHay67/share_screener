@@ -1,6 +1,6 @@
 import time  
 
-from config.view.streamlit import set_streamlit_page_config
+from config.streamlit import set_streamlit_page_config
 
 from charts.config import scope_charts
 from config.results.config import scope_results
@@ -11,7 +11,7 @@ from data.config import scope_data
 from pages.config import scope_pages
 from strategies.config import scope_strategy
 
-from pages.view.home_page import view_project_welcome
+from pages.welcome.home_page import render_project_welcome
 from config.model.dropdowns import update_dropdowns
 
 
@@ -31,7 +31,7 @@ def set_scope(scope):
 		scope_pages(scope)					# This contains all the page Specific settings
 		scope_strategy(scope)
 
-		view_project_welcome(scope)			# Render the home page
+		render_project_welcome(scope)			# Render the home page
 
 	if scope.config['dropdowns']['update_dropdowns']: 
 		update_dropdowns(scope)

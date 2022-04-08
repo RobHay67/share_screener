@@ -4,7 +4,7 @@ from config.results.results import store_result
 
 from data.tickers.config import ticker_file_usecols
 
-from pages.model.set_page_df_status import set_refresh_page_df_ticker
+from pages.model.data_status import redo_ohlc_data_all_pages_one_ticker
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Combiner
@@ -41,7 +41,7 @@ def combine_loaded_and_download_ticker_data(scope):
 					store_result( scope, ticker, result='passed_2' )
 				scope.data['ticker_files'][ticker].sort_values(by=['date'], inplace=True, ascending=False)		# sort the share data into date order ascending
 				refresh_status_for_ticker = True
-		set_refresh_page_df_ticker(scope, ticker, refresh_status_for_ticker)
+		redo_ohlc_data_all_pages_one_ticker(scope, ticker, refresh_status_for_ticker)
 	store_result(scope, 'Finished', final_print=True )
 
 

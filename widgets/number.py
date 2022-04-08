@@ -2,8 +2,8 @@ from curses import keyname
 import streamlit as st
 
 
-from pages.model.set_page_metrics_status import set_refresh_chart_data
-from pages.model.set_page_metrics_status import set_refresh_metric_data
+from pages.model.data_status import redo_page_data_singles_pages_all_tickers
+from pages.model.data_status import redo_page_data_screener_page_all_tickers
 
 
 	
@@ -24,9 +24,9 @@ def edit_number(scope, config_name, metric, measure ):
 
 	if scope.config[config_name][metric]['metrics'][measure] != previous_number : 					# set to refresh pages if something has been changed
 		if config_name == 'charts':
-			set_refresh_chart_data(scope, metric)
+			redo_page_data_singles_pages_all_tickers(scope, metric)
 		elif config_name == 'tests':
-			set_refresh_metric_data(scope, metric)
+			redo_page_data_screener_page_all_tickers(scope, metric)
 		else:
 			print ( '\033[91m' + ' < edit_number > function provided with unknown config_name > ' + config_name + '\033[0m')
 

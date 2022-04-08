@@ -86,7 +86,7 @@ def view_market(scope, col_size_list):
 	with col2: st.write('Selected Share Market')
 	with col3: st.write('selectbox')
 	with col4: st.write('< dropdown_markets >')
-	with col5: st.write(scope.pages['screener']['market'])
+	with col5: st.write(scope.pages['screener']['selectors']['market'])
 	with col6: st.write('< selected_market >')
 
 def view_industry(scope, col_size_list):
@@ -95,7 +95,7 @@ def view_industry(scope, col_size_list):
 	with col2: st.write('Selected Industry(s)')
 	with col3: st.write('multiselect')
 	with col4: st.write('< dropdown_industries >')
-	with col5: st.write(scope.pages['screener']['industries'])
+	with col5: st.write(scope.pages['screener']['selectors']['industries'])
 	with col6: st.write('< selected_industries >')
 
 def view_tickers(scope, col_size_list):
@@ -104,7 +104,7 @@ def view_tickers(scope, col_size_list):
 	with col2: st.write('Ticker(s) from Index')
 	with col3: st.write('multiselect')
 	with col4: st.write('< dropdown_tickers >')
-	with col5: st.write(scope.pages['screener']['tickers'])
+	with col5: st.write(scope.pages['screener']['selectors']['tickers'])
 	with col6: st.write("< selected_tickers >")
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Components - Dropdowns

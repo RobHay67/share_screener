@@ -1,7 +1,7 @@
 
 from data.tickers.model.metadata import fetch_yfinance_metadata
 
-from pages.view.analysis_title import analysis_titles
+from pages.view.title import render_page_title
 
 from pages.research.view.info import company_general
 from pages.research.view.info import business_summary
@@ -39,8 +39,8 @@ from pages.research.view.news import news
 # Company Research
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def render_research_page(scope):
-	# analysis_titles(scope, 'Company Research', 'research')
-	analysis_titles(scope, 'Company Research')
+	# render_page_title(scope, 'Company Research', 'research')
+	render_page_title(scope, 'Company Research')
 
 	
 	ticker = scope.pages['research']['ticker_list'][0]

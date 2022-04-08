@@ -1,4 +1,4 @@
-from pages.view.analysis_title import analysis_titles		
+from pages.view.title import render_page_title		
 from pages.screener.view.example import example_settings			#TODO fleshing out some ideas
 # from screener.view.buttons import execute_screening_button
 from pages.screener.view.test_results import view_test_results
@@ -10,8 +10,8 @@ from pages.screener.view.tests import view_tests
 # Mult Ticker Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def render_screener_page(scope):
-	# analysis_titles(scope, 'Ticker Screener', 'screener')
-	analysis_titles(scope, 'Ticker Screener')
+	# render_page_title(scope, 'Ticker Screener', 'screener')
+	render_page_title(scope, 'Ticker Screener')
 
 	# execute_screening = execute_screening_button(scope)
 	

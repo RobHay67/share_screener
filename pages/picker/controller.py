@@ -9,8 +9,8 @@ from data.tickers.view.dataframes import view_ticker_data_files
 from pages.model.screener_dfs import update_screener_dfs
 from pages.model.screener_dfs import update_screener_metrics
 
-from pages.model.chart_df import update_chart_dfs
-from pages.model.chart_df import update_chart_metrics
+from pages.model.chart_dfs import update_chart_dfs
+from pages.model.chart_dfs import update_chart_metrics
 
 from pages.view.dataframes import view_screener_dfs
 from pages.view.dataframes import view_chart_dfs

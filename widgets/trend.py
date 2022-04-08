@@ -1,6 +1,6 @@
 import streamlit as st
 
-from pages.model.set_page_metrics_status import set_refresh_metric_data
+from pages.model.data_status import redo_page_data_screener_page_all_tickers
 
 
 def edit_trend(scope, config_name, metric ):
@@ -20,7 +20,7 @@ def edit_trend(scope, config_name, metric ):
 
 	if new_trend != previous_trend : 					# set to refresh pages if something has been changed
 		if config_name == 'tests':
-			set_refresh_metric_data(scope, metric)
+			redo_page_data_screener_page_all_tickers(scope, metric)
 		else:
 			print ( '\033[91m' + ' < edit_trend > function provided with unknown config_name > ' + config_name + '\033[0m')
 
