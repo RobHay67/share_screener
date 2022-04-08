@@ -2,8 +2,8 @@
 import streamlit as st
 
 
-from metrics.model.set_active import edit_active
-from metrics.model.set_number import edit_number
+from widgets.active import edit_active
+from widgets.number import edit_number
 
 
 def render_macd_vol(scope):

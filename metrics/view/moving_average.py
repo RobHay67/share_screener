@@ -1,13 +1,10 @@
 import streamlit as st
 
 
-from metrics.model.set_active import edit_active
-from metrics.model.set_number import edit_number
-from metrics.model.set_ohlcv import edit_ohlc
-from metrics.model.set_colour import edit_colour
-
-
-
+from widgets.active import edit_active
+from widgets.number import edit_number
+from widgets.ohlcv import edit_ohlc
+from widgets.colour import edit_colour
 
 
 def render_moving_average(scope, metric):  # SMA or EMA
