@@ -1,8 +1,8 @@
 
 from pages.view.home_page import view_project_welcome
 from config.view.config_page import view_scope
-from charts_primary_config.controller import render_primary_charts_config
-from charts_secondary_config.controller import render_secondary_charts_config
+from charts.primary_config import render_primary_charts_config
+from charts.secondary_config import render_secondary_charts_config
 
 from pages.single.controller import render_single_ticker_page
 from pages.research.controller import render_research_page
