@@ -2,7 +2,7 @@ from datetime import datetime
 from datetime import timedelta
 import pytz
 
-from markets.config import opening_hours
+from config.markets.config import opening_hours
 
 from pages.view.analysis_title import analysis_titles
 from pages.volume.view.times import view_local_vs_market_time

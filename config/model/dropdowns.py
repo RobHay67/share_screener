@@ -1,6 +1,6 @@
 
 
-from markets.config import markets
+from config.markets.config import markets
 
 
 

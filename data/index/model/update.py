@@ -7,7 +7,8 @@ from data.index.model.schema import data_types
 from data.index.model.schema import schema
 
 from data.index.model.save import save_index
-from markets.config import open_time, trading_minutes
+from config.markets.open_time import open_time
+from config.markets.trading_minutes import trading_minutes
 
 from data.index.view.messages import message_updating, message_warning
 

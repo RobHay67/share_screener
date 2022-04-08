@@ -1,5 +1,5 @@
-from markets.model.set_market import select_a_market
-from markets.model.set_industries import select_industries
+from widgets.market import select_a_market
+from widgets.industries import select_industries
 from pages.picker.model.set_tickers import select_tickers
 from pages.picker.model.set_ticker import select_a_ticker
 from data.tickers.model.multi_ticker_list import update_multi_ticker_list
