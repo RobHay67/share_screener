@@ -4,12 +4,6 @@ from charts.config import chart_config
 # TODO - whenever we add a ticker to add_ohlcv_data, we need to also add it to refresh metrics!!
 
 
-
-
-
-
-
-
 def scope_pages(scope):
 
 	scope.pages = {}

@@ -1,13 +1,12 @@
 import time  
 
-from config.model.streamlit import set_streamlit_page_config
+from config.view.streamlit import set_streamlit_page_config
 
 from charts.config import scope_chart
-from results.config import scope_results
-from screener.config import scope_tests
+from config.results.config import scope_results
+from pages.screener.config import scope_tests
 
 from files.config import scope_files
-# from config.model.data import scope_data
 from data.config import scope_data
 from pages.config import scope_pages
 from strategies.config import scope_strategy
@@ -40,13 +39,6 @@ def set_scope(scope):
 	return scope
 
 	
-
-
-
-
-
-
-
 def scope_config(scope):
 	# Application Fixex Variables
 	scope.config = {}

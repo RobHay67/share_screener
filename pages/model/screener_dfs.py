@@ -1,7 +1,7 @@
 
 
-from screener.model.test_results import update_test_results_dict
-from screener.model.test_results import screener_all_active_test_results
+from pages.screener.model.test_results import update_test_results_dict
+from pages.screener.model.test_results import screener_all_active_test_results
 
 
 def update_screener_dfs(scope):

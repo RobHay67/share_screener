@@ -7,7 +7,7 @@ from data.tickers.config import ticker_file_usecols
 from data.tickers.config import y_finance_schemas
 
 from pages.view.results import download_industry_message
-from results.model.set_results import store_results
+from config.results.results import store_result
 
 from data.index.model.save import save_index			# TODO we may need to get this working again
 
@@ -133,7 +133,7 @@ def store_yf_download_in_scope( scope, download_ticker_string, yf_download, down
 	scope.data['download']['yf_files'] = pd.concat([scope.data['download']['yf_files'], yf_download], sort=False)
 	scope.data['download']['yf_anomolies'].update(download_errors)	# store any errors
 	
-	store_results( 	scope, 
+	store_result( 	scope, 
 					passed='Downloaded > ', 
 					passed_2='na', 
 					failed='Falied to Download > ' 
@@ -147,10 +147,10 @@ def store_yf_download_in_scope( scope, download_ticker_string, yf_download, down
 	
 	for ticker in ticker_list:
 		if ticker not in failed_download_list:
-			store_results( scope, ticker, result='passed' )
+			store_result( scope, ticker, result='passed' )
 		else:
-			store_results( scope, ticker, result='failed' )
-	store_results(scope, 'Finished', final_print=True )
+			store_result( scope, ticker, result='failed' )
+	store_result(scope, 'Finished', final_print=True )
 
 
 

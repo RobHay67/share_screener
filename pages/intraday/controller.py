@@ -6,7 +6,7 @@ from pages.view.analysis_title import analysis_titles
 # Intra Day Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def view_intraday_page(scope):
+def render_intraday_page(scope):
 	# analysis_titles(scope, 'Intra Day Analysis', 'intraday')
 	analysis_titles(scope, 'Intra Day Analysis')
 
@@ -14,7 +14,7 @@ def view_intraday_page(scope):
 
 	if ticker in list(scope.data['ticker_files'].keys()):
 
-		print('TODO view_intraday_page')
+		print('TODO render_intraday_page')
 
 		
 

@@ -5,12 +5,12 @@ import pytz
 from markets.config import opening_hours
 
 from pages.view.analysis_title import analysis_titles
-from volume.view.times import view_local_vs_market_time
-from volume.view.input_volume import view_input_volume
-from volume.view.prediction import view_prediction
+from pages.volume.view.times import view_local_vs_market_time
+from pages.volume.view.input_volume import view_input_volume
+from pages.volume.view.prediction import view_prediction
 
 
-def view_volume_page(scope):
+def render_volume_page(scope):
 
 	# analysis_titles(scope, 'Predict Closing Volume to End of Today', 'volume')
 	analysis_titles(scope, 'Predict Closing Volume to End of Today')

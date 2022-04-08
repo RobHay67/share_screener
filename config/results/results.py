@@ -1,6 +1,6 @@
 
 
-def store_results(scope, output=None, result=None, final_print=False, passed='', passed_2='', failed='' ):
+def store_result(scope, output=None, result=None, final_print=False, passed='', passed_2='', failed='' ):
 
 	if output == None:
 		# this is the initial run so set all the counts to zero

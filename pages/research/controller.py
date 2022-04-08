@@ -3,31 +3,31 @@ from data.tickers.model.metadata import fetch_yfinance_metadata
 
 from pages.view.analysis_title import analysis_titles
 
-from research.view.info import company_general
-from research.view.info import business_summary
-from research.view.info import fundamental
-from research.view.info import general
-from research.view.info import market_info
+from pages.research.view.info import company_general
+from pages.research.view.info import business_summary
+from pages.research.view.info import fundamental
+from pages.research.view.info import general
+from pages.research.view.info import market_info
 
-from research.view.dividends import dividends
+from pages.research.view.dividends import dividends
 
-from research.view.investors import institutional
-from research.view.investors import major
+from pages.research.view.investors import institutional
+from pages.research.view.investors import major
 
-from research.view.financials import annual
-from research.view.financials import quarterly
-from research.view.financials import balance_sheet
-from research.view.financials import balance_sheet_qtr
+from pages.research.view.financials import annual
+from pages.research.view.financials import quarterly
+from pages.research.view.financials import balance_sheet
+from pages.research.view.financials import balance_sheet_qtr
 
-from research.view.financials import cashflow
-from research.view.financials import cashflow_qtr
+from pages.research.view.financials import cashflow
+from pages.research.view.financials import cashflow_qtr
 
 
-from research.view.financials import earnings
-from research.view.financials import earnings_qtr
+from pages.research.view.financials import earnings
+from pages.research.view.financials import earnings_qtr
 
-from research.view.calendar import calendar
-from research.view.news import news
+from pages.research.view.calendar import calendar
+from pages.research.view.news import news
 
 
 
@@ -38,7 +38,7 @@ from research.view.news import news
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Company Research
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def view_research_page(scope):
+def render_research_page(scope):
 	# analysis_titles(scope, 'Company Research', 'research')
 	analysis_titles(scope, 'Company Research')
 

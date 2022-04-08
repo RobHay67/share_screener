@@ -1,3 +1,6 @@
+import streamlit as st
+from pages.view.three_cols import three_cols
+
 
 def scope_strategy(scope):
 	# Strategy Params
@@ -17,9 +20,9 @@ def scope_strategy(scope):
 	scope.strategy['print']['count'] = 0
 	scope.strategy['print']['line'] = ''
 
-import streamlit as st
 
-from pages.view.three_cols import three_cols
+
+
 
 
 def view_strategy(scope):

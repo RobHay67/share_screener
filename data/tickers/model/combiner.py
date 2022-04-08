@@ -1,6 +1,6 @@
 import pandas as pd
 
-from results.model.set_results import store_results
+from config.results.results import store_result
 
 from data.tickers.config import ticker_file_usecols
 
@@ -14,7 +14,7 @@ from pages.model.set_page_df_status import set_refresh_page_df_ticker
 
 def combine_loaded_and_download_ticker_data(scope):
 
-	store_results(scope, 
+	store_result(scope, 
 			passed='Combined > ', 
 			passed_2='Created NEW Local files > ', 
 			failed='na' 
@@ -35,13 +35,13 @@ def combine_loaded_and_download_ticker_data(scope):
 			if len(ticker_data)>0:																		# We may have no data after dropping the zero volume rows
 				if ticker in scope.data['ticker_files'].keys():											# we have an exisiting share_data_file so we concatenate the data
 					scope.data['ticker_files'][ticker] = pd.concat([scope.data['ticker_files'][ticker], ticker_data]).drop_duplicates(subset=['date'], keep='last')
-					store_results( scope, ticker, result='passed' )
+					store_result( scope, ticker, result='passed' )
 				else:
 					scope.data['ticker_files'][ticker] = ticker_data											# its brand new - so we can just add it to the dictionary
-					store_results( scope, ticker, result='passed_2' )
+					store_result( scope, ticker, result='passed_2' )
 				scope.data['ticker_files'][ticker].sort_values(by=['date'], inplace=True, ascending=False)		# sort the share data into date order ascending
 				refresh_status_for_ticker = True
 		set_refresh_page_df_ticker(scope, ticker, refresh_status_for_ticker)
-	store_results(scope, 'Finished', final_print=True )
+	store_result(scope, 'Finished', final_print=True )
 
 

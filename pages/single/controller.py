@@ -7,7 +7,7 @@ from charts.controller import plot_charts
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Single Ticker Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def view_single_ticker_page(scope):
+def render_single_ticker_page(scope):
 	# analysis_titles(scope, 'Ticker Analysis', 'single')
 	analysis_titles(scope, 'Ticker Analysis')
 	

@@ -4,11 +4,11 @@ from config.view.config_page import view_scope
 from charts_primary_config.controller import render_primary_charts_config
 from charts_secondary_config.controller import render_secondary_charts_config
 
-from single.controller import view_single_ticker_page
-from research.controller import view_research_page
-from intraday.controller import view_intraday_page
-from volume.controller import view_volume_page
-from screener.controller import  view_ticker_screener
+from pages.single.controller import render_single_ticker_page
+from pages.research.controller import render_research_page
+from pages.intraday.controller import render_intraday_page
+from pages.volume.controller import render_volume_page
+from pages.screener.controller import render_screener_page
 
 
 def render_selected_page(scope):
@@ -18,11 +18,11 @@ def render_selected_page(scope):
 	
 	page_map = {
 						'home_page'			:view_project_welcome,
-						'single'			:view_single_ticker_page,
-						'intraday'			:view_intraday_page,
-						'volume'			:view_volume_page,
-						'research'			:view_research_page,
-						'screener'			:view_ticker_screener,
+						'single'			:render_single_ticker_page,
+						'intraday'			:render_intraday_page,
+						'volume'			:render_volume_page,
+						'research'			:render_research_page,
+						'screener'			:render_screener_page,
 						'charts_primary'	:render_primary_charts_config,
 						'charts_secondary'	:render_secondary_charts_config,
 						'scope'				:view_scope,

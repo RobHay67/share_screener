@@ -9,7 +9,7 @@ from charts_secondary_config.controller import render_secondary_charts_config
 from strategies.config import view_strategy
 from data.download.view import view_download
 
-from results.config import view_results
+from config.results.config import view_results
 
 from config.view.app import view_app
 from files.config import view_folders
