@@ -2,6 +2,17 @@
 # 
 
 
+def scope_charts(scope):
+	scope.config['charts'] = {}
+	scope.config['charts']['primary_height'] = 500
+	scope.config['charts']['total_height'] = scope.config['charts']['primary_height']
+	scope.config['charts']['colours'] = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
+	scope.config['charts']['chart_list']	= list(plot_config.keys())
+
+	for key, metrics in plot_config.items():
+		scope.config['charts'][key] = metrics
+
+
 
 # Charts and Overlays STATUS Working List
 # ---------------------------------------------------------------------------------
@@ -46,26 +57,26 @@ from charts.charts.line 			import line_plot
 # Secondary Charts -----------------------------------
 from charts.charts.volume 			import volume_plot
 # from charts.charts.vac											# TODO
-from metrics.model.vpm				import vpm_cols
+from metrics.vpm					import vpm_cols
 from charts.charts.vpm 				import vpm_plot
-from metrics.model.macd				import macd_cols
+from metrics.macd					import macd_cols
 from charts.charts.macd 			import macd_plot
-from metrics.model.macd_on_volume	import macd_vol_cols
+from metrics.macd_on_volume			import macd_vol_cols
 from charts.charts.macd_vol			import macd_vol_plot
-from metrics.model.rsi 				import rsi_cols
+from metrics.rsi 					import rsi_cols
 from charts.charts.rsi 				import rsi_plot
-from metrics.model.stochastic		import stoch_cols
+from metrics.stochastic				import stoch_cols
 from charts.charts.stoch 			import stoch_plot
 # from analysis.charts.				# Volume Oscillator				# TODO
 # from charts.roc													# TODO - not sure what this one is ROb - investigate and add in - i think it might be a primary chart
 											
 # Overlays -------------------------------------------
-from metrics.model.sma				import sma_cols
-from charts.view.sma 			import sma_plot
-from metrics.model.ema				import ema_cols
-from charts.view.ema 			import ema_plot
-from metrics.model.dividends		import dividend_cols
-from charts.view.dividends 		import dividend_plot
+from metrics.sma					import sma_cols
+from charts.overlays.sma 			import sma_plot
+from metrics.ema					import ema_cols
+from charts.overlays.ema 			import ema_plot
+from metrics.dividends				import dividend_cols
+from charts.overlays.dividends 		import dividend_plot
 
 
 # ==============================================================================================================================================================
@@ -100,7 +111,7 @@ shift_up 		= 'shift_up'			# Bollinger Bands
 shift_down 		= 'shift_down'			# Bollinger Bands
 m_a_type 		= 'm_a_type'			# Bollinger Bands
 
-chart_config = {
+plot_config = {
 		# Primary Charts -----------------------------------------------------------------------
 		'candlestick'		: { 
 								active			: True,
@@ -424,12 +435,3 @@ chart_config = {
 
 
 
-def scope_chart(scope):
-	scope.config['charts'] = {}
-	scope.config['charts']['primary_height'] = 500
-	scope.config['charts']['total_height'] = scope.config['charts']['primary_height']
-	scope.config['charts']['colours'] = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
-	scope.config['charts']['chart_list']	= list(chart_config.keys())
-
-	for key, metrics in chart_config.items():
-		scope.config['charts'][key] = metrics

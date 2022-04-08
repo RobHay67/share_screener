@@ -1,13 +1,13 @@
 import streamlit as st
 
 
-from metrics.view.active import render_activate_metric
-from metrics.view.announcements import render_announcements
-from metrics.view.bollinger_bands import render_bollinger_bands
-from metrics.view.dividends import render_dividends
-from metrics.view.moving_average import render_moving_average
+from widgets.constructors.active import render_activate_metric
+from widgets.constructors.announcements import render_announcements
+from widgets.constructors.bollinger_bands import render_bollinger_bands
+from widgets.constructors.dividends import render_dividends
+from widgets.constructors.moving_average import render_moving_average
 
-from charts.model.set_chart_height import set_chart_height_primary
+from widgets.chart_height import set_chart_height_primary
 
 def render_primary_charts_config(scope):
 

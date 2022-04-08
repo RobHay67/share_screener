@@ -8,7 +8,7 @@ def create_plotly_schema(scope):
 			'no_of_charts'			: 0,
 			'col_no' 				: 1,
 			'chart_heights' 		: [],
-			'add_chart' 		: [],
+			'add_chart' 			: [],
 			'add_overlay'			: [],
 	}
 

@@ -1,12 +1,12 @@
 import streamlit as st
 
 
-from metrics.view.active import render_activate_metric
-from metrics.view.macd import render_macd
-from metrics.view.macd_vol import render_macd_vol
-from metrics.view.rsi import render_rsi
-from metrics.view.stochastic import render_stochastic
-from metrics.view.volume_oscillator import render_volume_oscillator
+from widgets.constructors.active import render_activate_metric
+from widgets.constructors.macd import render_macd
+from widgets.constructors.macd_vol import render_macd_vol
+from widgets.constructors.rsi import render_rsi
+from widgets.constructors.stochastic import render_stochastic
+from widgets.constructors.volume_oscillator import render_volume_oscillator
 
 
 

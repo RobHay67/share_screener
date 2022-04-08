@@ -1,5 +1,5 @@
-from metrics.config import tests_config
-from charts.config import chart_config
+from testing.config import tests_config
+from charts.config import plot_config
 
 # TODO - whenever we add a ticker to add_ohlcv_data, we need to also add it to refresh metrics!!
 
@@ -79,10 +79,10 @@ def scope_page_templates(scope):
 		metric_active_status[metric] = tests_config[metric]['active']
 
 
-	for chart in chart_config.keys():
-		if chart_config[chart]['metrics'] != None:						# Only add charts that require additional columns
+	for chart in plot_config.keys():
+		if plot_config[chart]['metrics'] != None:						# Only add charts that require additional columns
 																		# Many charts only use OHLCV cols so will never require metrics
-			chart_active_status[chart] = chart_config[chart]['active']
+			chart_active_status[chart] = plot_config[chart]['active']
 
 	scope.pages['templates']['add_metric_data'] = metric_active_status
 	scope.pages['templates']['add_chart_data'] = chart_active_status

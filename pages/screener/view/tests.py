@@ -1,8 +1,7 @@
 
 import streamlit as st
 
-from metrics.view.ohlcv_trend import render_ohlcv_trend
-
+from widgets.constructors.ohlcv_trend import render_ohlcv_trend
 
 
 def view_tests(scope):

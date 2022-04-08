@@ -2,9 +2,9 @@ import time
 
 from config.view.streamlit import set_streamlit_page_config
 
-from charts.config import scope_chart
+from charts.config import scope_charts
 from config.results.config import scope_results
-from pages.screener.config import scope_tests
+from testing.config import scope_tests
 
 from files.config import scope_files
 from data.config import scope_data
@@ -68,7 +68,7 @@ def scope_config(scope):
 
 
 	scope.config['charts'] = {}
-	scope_chart(scope)
+	scope_charts(scope)
 
 
 	scope.config['results'] = {}
