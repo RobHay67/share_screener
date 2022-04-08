@@ -1,21 +1,3 @@
-# import pandas as pd
-
-
-def scope_tickers(scope):
-
-	scope.data['ticker_files'] = {}
-
-def scope_download(scope):
-	scope.data['download'] 					= {}
-	scope.data['download']['days'] 			= 7
-	scope.data['download']['industries'] 	= []
-
-	scope.data['download']['yf_files']		= {}
-	scope.data['download']['yf_anomolies'] 	= {}
-	scope.data['download']['missing_list'] 	= []
-
-
-
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Ticker Data file Schema
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -32,7 +14,6 @@ ticker_file_schema =  {
 
 
 
-# scope.ticker_file_schema 		= ticker_file_schema
 ticker_file_usecols 	= ['date', 'open', 'high', 'low', 'close', 'volume']
 ticker_file_dtypes 		= {'open': 'float64', 'high': 'float64', 'low': 'float64', 'close': 'float64', 'volume': 'int64'}
 ticker_file_dates 		= ['date']
@@ -73,46 +54,6 @@ y_finance_schemas =    {
 							}
 
 # downloaded_yf_ticker_data = pd.DataFrame(columns=ticker_file_usecols + ['ticker'] )
-
-import streamlit as st
-
-from pages.view.three_cols import three_cols
-
-def view_download(scope):
-
-	# st.markdown('##### Download Variables')
-	# three_cols( 'Number of Days to Download', scope.data['download']['days'], 'download_days' )
-
-	st.markdown('##### Most Recent Download Variables and Data')
-	three_cols( 'Days to Download (recent)', scope.data['download']['days'], 'download_days' )
-	three_cols( 'Industry Groups for y_finance to iterate over', scope.data['download']['industries'], 'download_industries' )
-	three_cols( 'Missing Ticker List', scope.data['download']['missing_list'], 'downloaded_missing_list' )
-	three_cols( 'Latest Download Batch from y_finance', scope.data['download']['yf_files'], 'download_yf_files' )
-	three_cols( 'Latest Error Messages from y_finance', scope.data['download']['yf_anomolies']  , 'downloaded_yf_anomolies' )
-
-
-
-
-
-
-# TODO - delete this later
-# def set_download_days(scope):
-# 	previous_selection = int(scope.data['download']['days'])
-
-# 	input_download_days = st.number_input( 
-# 											'Days to Download (recent)', 
-# 											min_value=1, 
-# 											value=previous_selection, 						# Default Value to display (would revert on every second try)
-# 											key='97'
-# 											)
-
-# 	input_download_days = int(input_download_days)
-
-# 	if input_download_days != previous_selection:
-# 		scope.data['download']['days'] = input_download_days
-
-
-
 
 
 
