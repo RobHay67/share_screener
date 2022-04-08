@@ -1,8 +1,8 @@
 
 from pages.view.home_page import view_project_welcome
 from config.view.config_page import view_scope
-from charts.view.config_primary_charts import view_primary
-from charts.view.config_secondary_charts import view_secondary
+from charts_primary_config.controller import render_primary_charts_config
+from charts_secondary_config.controller import render_secondary_charts_config
 
 from single.controller import view_single_ticker_page
 from research.controller import view_research_page
@@ -23,8 +23,8 @@ def render_selected_page(scope):
 						'volume'			:view_volume_page,
 						'research'			:view_research_page,
 						'screener'			:view_ticker_screener,
-						'charts_primary'	:view_primary,
-						'charts_secondary'	:view_secondary,
+						'charts_primary'	:render_primary_charts_config,
+						'charts_secondary'	:render_secondary_charts_config,
 						'scope'				:view_scope,
 					}
 

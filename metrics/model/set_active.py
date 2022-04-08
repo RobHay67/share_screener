@@ -12,6 +12,11 @@ from pages.config import scope_page_templates
 def edit_active(scope, config_name, metric ):
 	print('config_name = ', config_name)
 	print('metric      = ', metric)
+
+	print('This is the scope object')
+	print(scope.config[config_name][metric])
+
+	
 	display_name =  '' + scope.config[config_name][metric]['name']
 	
 	previous_active_status = scope.config[config_name][metric]['active']

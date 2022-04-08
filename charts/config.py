@@ -425,9 +425,11 @@ chart_config = {
 
 
 def scope_chart(scope):
-	scope.config['charts']['config'] = chart_config
+	# scope.config['charts']['config'] = chart_config
+	scope.config['charts'] = {}
 	scope.config['charts']['primary_height'] = 500
 	scope.config['charts']['total_height'] = scope.config['charts']['primary_height']
 	scope.config['charts']['colours'] = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
 	
-
+	for key, metrics in chart_config.items():
+		scope.config['charts'][key] = metrics

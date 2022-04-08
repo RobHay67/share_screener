@@ -3,8 +3,8 @@ import streamlit as st
 
 from pages.view.pages import view_pages
 
-from charts.view.config_primary_charts import view_primary
-from charts.view.config_secondary_charts import view_secondary
+from charts_primary_config.controller import render_primary_charts_config
+from charts_secondary_config.controller import render_secondary_charts_config
 
 from strategies.config import view_strategy
 from tickers.config import view_download
@@ -29,8 +29,8 @@ def render_selected_scope_page(scope):
 	scope_page = {
 			# Column 1
 			'view_pages'			:view_pages,
-			'view_primary'			:view_primary,
-			'view_secondary'		:view_secondary,
+			'view_primary'			:render_primary_charts_config,
+			'view_secondary'		:render_secondary_charts_config,
 			
 			'view_strategy'			:view_strategy,
 			# Column 2
