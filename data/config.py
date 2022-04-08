@@ -1,9 +1,9 @@
 
 
 
-from index.config import scope_index
-from tickers.config import scope_tickers
-from tickers.config import scope_download
+from data.index.config import scope_index
+from data.tickers.config import scope_tickers
+from data.tickers.config import scope_download
 
 def scope_data(scope):
 

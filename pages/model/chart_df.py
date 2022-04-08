@@ -34,10 +34,10 @@ def update_chart_metrics(scope):
 				chart_df = scope.pages[page]['chart_df'][ticker]											# short reference to the object being edited
 				for chart in scope.pages[page]['add_chart_data'][ticker].keys():							# iterate through available charts for this ticker and their run (or not) status
 					chart_run_status  	= scope.pages[page]['add_chart_data'][ticker][chart]
-					chart_has_metrics	= scope.config['charts']['config'][chart]['metrics']
-					metric_has_function = scope.config['charts']['config'][chart]['metrics']['function']
+					chart_has_metrics	= scope.config['charts'][chart]['metrics']
+					metric_has_function = scope.config['charts'][chart]['metrics']['function']
 					if chart_run_status==True and chart_has_metrics!=None and metric_has_function != None:	# Chart needs refreshing and has metrics and requires additional columns (function)
-						scope.config['charts']['config'][chart]['metrics']['function'](scope, chart_df, chart)					# Call the column adding function
+						scope.config['charts'][chart]['metrics']['function'](scope, chart_df, chart)		# Call the column adding function
 						scope.pages[page]['add_chart_data'][ticker][chart] = False							# reset Chart Data STATUS to prevent unnecesary updates
 
 

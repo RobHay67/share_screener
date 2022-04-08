@@ -1,8 +1,8 @@
 import os
 
 from results.model.set_results import store_results
-from tickers.model.set_ticker_path import path_for_ticker_file
-from tickers.model.read_csv import load_ticker
+from data.tickers.model.set_ticker_path import path_for_ticker_file
+from data.tickers.model.read_csv import load_ticker
 from pages.view.results import view_results
 from pages.model.set_page_df_status import set_refresh_page_df_ticker
 

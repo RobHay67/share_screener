@@ -1,5 +1,5 @@
 
-from index.load import load_ticker_index_file
+from data.index.load import load_ticker_index_file
 
 
 def scope_index(scope):

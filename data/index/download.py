@@ -5,8 +5,7 @@ import streamlit as st
 
 
 
-# from index.download.update import update_index_with_downloaded_data
-from index.model.update import update_index
+from data.index.model.update import update_index
 
 
 def download_ticker_index_data(scope):

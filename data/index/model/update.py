@@ -2,14 +2,14 @@ import pandas as pd
 
 from results.model.set_results import store_results
 
-from index.model.schema import default_values
-from index.model.schema import data_types
-from index.model.schema import schema
+from data.index.model.schema import default_values
+from data.index.model.schema import data_types
+from data.index.model.schema import schema
 
-from index.model.save import save_index
+from data.index.model.save import save_index
 from markets.config import open_time, trading_minutes
 
-from index.view.update_messages import message_updating, message_warning
+from data.index.view.update_messages import message_updating, message_warning
 
 
 def update_index(scope, downloaded_ticker_info ):

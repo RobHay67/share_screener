@@ -9,7 +9,7 @@ def view_ticker_data_files(scope, page='all'):
 		with col1: st.write('Loaded and Downloaded ticker data stored in > ')
 		with col2: st.write('< scope.data[ticker_files] >')	
 		st.markdown("""---""")
-		list_of_pages = list(scope.pages.keys()) 	# all of the pages
+		list_of_pages = scope.pages['page_list'] 	# all of the pages
 		render_expanded = False
 	elif page == 'screener':
 		list_of_pages = [page]

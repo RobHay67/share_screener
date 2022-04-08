@@ -2,7 +2,7 @@ import pandas as pd
 
 from results.model.set_results import store_results
 
-from tickers.config import ticker_file_usecols
+from data.tickers.config import ticker_file_usecols
 
 from pages.model.set_page_df_status import set_refresh_page_df_ticker
 

@@ -7,17 +7,17 @@ from charts_primary_config.controller import render_primary_charts_config
 from charts_secondary_config.controller import render_secondary_charts_config
 
 from strategies.config import view_strategy
-from tickers.config import view_download
+from data.tickers.config import view_download
 
 from results.config import view_results
 
 from config.view.app import view_app
 from files.config import view_folders
 
-from index.download import download_ticker_index_data
-from index.view.index import view_index
-from index.view.industries import view_industries
-from tickers.view.dataframes import view_ticker_data_files
+from data.index.download import download_ticker_index_data
+from data.index.view.index import view_index
+from data.index.view.industries import view_industries
+from data.tickers.view.dataframes import view_ticker_data_files
 from pages.view.dataframes import view_screener_dfs
 from pages.view.dataframes import view_chart_dfs
 

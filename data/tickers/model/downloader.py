@@ -2,14 +2,14 @@ import yfinance as yf					# https://github.com/ranaroussi/yfinance
 import pandas as pd
 
 
-from tickers.config import ticker_file_schema
-from tickers.config import ticker_file_usecols
-from tickers.config import y_finance_schemas
+from data.tickers.config import ticker_file_schema
+from data.tickers.config import ticker_file_usecols
+from data.tickers.config import y_finance_schemas
 
 from pages.view.results import download_industry_message
 from results.model.set_results import store_results
 
-from index.model.save import save_index			# TODO we may need to get this working again
+from data.index.model.save import save_index			# TODO we may need to get this working again
 
 
 # ==============================================================================================================================================================

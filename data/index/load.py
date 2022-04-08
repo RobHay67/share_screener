@@ -1,17 +1,17 @@
 import os
 import pandas as pd
 
-from index.model.schema import schema
-from index.model.schema import csv_dates
-from index.model.schema import csv_dtypes
-from index.model.save import save_index
+from data.index.model.schema import schema
+from data.index.model.schema import csv_dates
+from data.index.model.schema import csv_dtypes
+from data.index.model.save import save_index
 
 
-from index.view.load_messages import message_title
-from index.view.load_messages import message_loading
-from index.view.load_messages import message_loaded
-from index.view.load_messages import message_missing_index_file
-from index.view.load_messages import message_new_index_file
+from data.index.view.load_messages import message_title
+from data.index.view.load_messages import message_loading
+from data.index.view.load_messages import message_loaded
+from data.index.view.load_messages import message_missing_index_file
+from data.index.view.load_messages import message_new_index_file
 
 
 def load_ticker_index_file( scope ):

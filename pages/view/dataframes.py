@@ -9,7 +9,8 @@ def view_chart_dfs(scope, page='all'):
 		with col1: st.write('Chart_df stored in > ')
 		with col2: st.write("< scope.pages[page]['chart_df'] >")	
 		st.markdown("""---""")
-		list_of_pages = list(scope.pages.keys())
+		# list_of_pages = list(scope.pages.keys())
+		list_of_pages = scope.pages['page_list']
 		render_expanded = False
 	elif page == 'screener':
 		list_of_pages = [page]
@@ -46,7 +47,8 @@ def view_screener_dfs(scope, page='all'):
 		with col1: st.write('Analysis DataFrames stored in > ')
 		with col2: st.write("< scope.pages[page]['screener_df'] >")	
 		st.markdown("""---""")
-		list_of_pages = list(scope.pages.keys())
+		# list_of_pages = list(scope.pages.keys())
+		list_of_pages = scope.pages['page_list']
 		render_expanded = False
 	elif page == 'screener':
 		list_of_pages = [page]

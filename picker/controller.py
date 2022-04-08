@@ -2,9 +2,9 @@
 
 from picker.view.load_screen import set_cols
 
-from tickers.load import load_tickers
-from tickers.download import download_tickers
-from tickers.view.dataframes import view_ticker_data_files
+from data.tickers.load import load_tickers
+from data.tickers.download import download_tickers
+from data.tickers.view.dataframes import view_ticker_data_files
 
 from pages.model.screener_dfs import update_screener_dfs
 from pages.model.screener_dfs import update_screener_metrics

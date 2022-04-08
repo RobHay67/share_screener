@@ -12,8 +12,6 @@ from metrics.view.volume_oscillator import render_volume_oscillator
 
 def render_secondary_charts_config(scope):
 
-	# schema = scope.config['charts']['config']
-
 	st.header('Secondary Charts')
 	st.write('appears on all single ticker analysis pages')
 	st.markdown("""---""")
