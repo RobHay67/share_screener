@@ -65,8 +65,8 @@ def view_tests(scope):
 				for page in scope.pages['page_list']:
 					print(page)
 					if page == 'screener':													# all chart relevant pages
-						for ticker in scope.pages[page]['add_metric_data'].keys():			# iterate through each ticker
-							print(scope.pages[page]['add_metric_data'][ticker]['trend_high'] )
+						for ticker in scope.pages[page]['refresh_df']['test'].keys():			# iterate through each ticker
+							print(scope.pages[page]['refresh_df']['test'][ticker]['trend_high'] )
 
 	
 

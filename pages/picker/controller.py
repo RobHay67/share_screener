@@ -28,23 +28,23 @@ def page_report(scope, heading ):
 	print('='*100)
 	print(heading.upper())
 	print( '-'*100)
-	print( 'add_ohlcv_data'.upper())
+	print( 'ohlcv'.upper())
 	for page in scope.pages['page_list']:
 		print(page.upper())
-		for ticker in scope.pages[page]['add_ohlcv_data'].keys():
-			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['add_ohlcv_data'][ticker] )
+		for ticker in scope.pages[page]['refresh_df']['ohlcv'].keys():
+			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['refresh_df']['ohlcv'][ticker] )
 	print('-'*100)
-	print( 'add_metric_data'.upper())
+	print( 'test'.upper())
 	for page in scope.pages['page_list']:
 		print(page.upper())
-		for ticker in scope.pages[page]['add_metric_data'].keys():
-			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['add_metric_data'][ticker] )
+		for ticker in scope.pages[page]['refresh_df']['test'].keys():
+			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['refresh_df']['test'][ticker] )
 	print('-'*100)
-	print( 'add_chart_data'.upper())
+	print( 'chart'.upper())
 	for page in scope.pages['page_list']:
 		print(page.upper())
-		for ticker in scope.pages[page]['add_chart_data'].keys():
-			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['add_chart_data'][ticker] )
+		for ticker in scope.pages[page]['refresh_df']['chart'].keys():
+			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['refresh_df']['chart'][ticker] )
 	print('='*100)
 
 
@@ -54,30 +54,24 @@ def page_report(scope, heading ):
 def render_ticker_picker(scope):
 
 	page = scope.pages['display_page']
-	# print ( 'scope.pages['templates']['add_chart_data'] = ', scope.pages['templates']['add_chart_data'])
+
 	set_cols(scope, page)
 
-	# selected_tickers_so_lets_load, ticker_list = ticker_selectors(scope, page)
 	selected_tickers_so_lets_load = ticker_selectors(scope, page)
 
 	if selected_tickers_so_lets_load:
 		with scope.col1: download_new_data = download_button(scope)		
 		with scope.col6: clear_messages_button(scope)
 
-		# TODO - why is the ticker list not being stored for each page??? the function would not need to return it then
+		load_tickers(scope)														# AUTO load whatever ticker data we have	
+		
+		if download_new_data: 
+			download_tickers(scope)
 
-		# load_tickers(scope, ticker_list)													# AUTO load whatever ticker data we have	
-		load_tickers(scope)
-		if download_new_data: download_tickers(scope)
-
-		# page_report(scope, 'BEFORE running all the updates ')
-
-		update_screener_dfs(scope)												# Code only runs if add_ohlcv_data set to TRUE
-		update_screener_metrics(scope)											# Code only runs if add_metric_data 	set to TRUE		
-		update_chart_dfs(scope)												# Code only runs if add_ohlcv_data set to TRUE
-		update_chart_metrics(scope)											# Code only runs if add_metric_data 	set to TRUE		
-
-		# page_report(scope, 'AFTER running all the updates - < add_ohlcv_data > values' )
+		update_screener_dfs(scope)												# Code only runs if ohlcv  set to TRUE
+		update_screener_metrics(scope)											# Code only runs if test set to TRUE		
+		update_chart_dfs(scope)													# Code only runs if ohlcv  set to TRUE
+		update_chart_metrics(scope)												# Code only runs if test set to TRUE		
 
 		with scope.col5: show_ticker_files = ticker_file_button(scope)
 

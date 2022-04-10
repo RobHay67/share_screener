@@ -60,6 +60,9 @@ render_selected_page(scope)
 
 
 
+
+
+
 def terminal_heading(heading):
 	print('')
 	print('='*70)
@@ -92,6 +95,14 @@ if 'initial_load' in st.session_state:
 	terminal_heading('All keys in st.session_state')
 	for key in sorted(st.session_state):print(key)
 	# for key in st.session_state:print(key)
+
+print('$'*50)
+for ticker in st.session_state.pages['screener']['ticker_list']:
+	print(ticker)
+	for test in st.session_state.pages['screener']['refresh_df']['test'][ticker].keys():
+		print(test)
+
+
 
 
 # level_1 = 'config'
@@ -128,12 +139,12 @@ if 'initial_load' in st.session_state:
 # # 	level_2_details(level_1, 'volume')
 # # 	level_2_details(level_1, 'research')
 # # 	level_2_details(level_1, 'screener')
-# 	level_3_details(level_1, 'single', 'add_ohlcv_data')
-# 	level_3_details(level_1, 'single', 'add_chart_data')
-# 	# level_3_details(level_1, 'screener', 'add_ohlcv_data')
-	# level_3_details(level_1, 'screener', 'add_ohlcv_data')
-	# level_3_details(level_1, 'screener', 'add_ohlcv_data')
-	# level_3_details(level_1, 'screener', 'add_ohlcv_data')
+# 	level_3_details(level_1, 'single', 'ohlcv')
+# 	level_3_details(level_1, 'single', 'chart')
+# 	# level_3_details(level_1, 'screener', 'ohlcv')
+	# level_3_details(level_1, 'screener', 'ohlcv')
+	# level_3_details(level_1, 'screener', 'ohlcv')
+	# level_3_details(level_1, 'screener', 'ohlcv')
 
 	
 	
@@ -167,17 +178,17 @@ if 'initial_load' in st.session_state:
 # 	print('='*100)	
 # 	print( '-'*70)
 # 	print('OHLCV refresh status')
-# 	for key, value in st.session_state['pages'][page]['add_ohlcv_data'].items():
+# 	for key, value in st.session_state['pages'][page]['refresh_df']['ohlcv'].items():
 # 		print (key, ':', value)
 # 	print( '-'*70)
 # 	print('Charts refresh status')
 # 	if page != 'screener':
-# 		for key, value in st.session_state['pages'][page]['add_chart_data'].items():
+# 		for key, value in st.session_state['pages'][page]['refresh_df']['chart'].items():
 # 			print (key, ':', value)
 # 	print( '-'*70)
 # 	print('Metrics refresh status')
 # 	if page == 'screener':
-# 		for key, value in st.session_state['pages'][page]['add_metric_data'].items():
+# 		for key, value in st.session_state['pages'][page]['refresh_df']['test'].items():
 # 			print (key, ':', value)
 
 

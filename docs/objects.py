@@ -54,5 +54,5 @@
 # TODO
 # tag the metrics when they have been run													DONE - updated function
 # update the scope.page_metrics after changes made 											DONE
-# change the ADD_METRIC_DATA after editing scope.page_metrics								DONE
-# change the ADD_CHART_DATA  after editing scope.page_metrics								DONE
+# change the test after editing scope.page_metrics								DONE
+# change the chart  after editing scope.page_metrics								DONE

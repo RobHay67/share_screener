@@ -1,7 +1,7 @@
 from testing.config import tests_config
 from charts.config import plot_config
 
-# TODO - whenever we add a ticker to add_ohlcv_data, we need to also add it to refresh metrics!!
+# TODO - whenever we add a ticker to ohlcv, we need to also add it to refresh metrics!!
 
 
 def scope_pages(scope):
@@ -27,32 +27,42 @@ pages_config = {
 		'single': {
 					'ticker_list'			: ['select a ticker'],
 					'chart_df'				: {}, 
-					'add_ohlcv_data'		: {},
-					'add_chart_data'		: {},
+					'refresh_df'			: { 
+												'ohlcv':{},
+												'chart':{},
+											  },
 					},
 		'intraday': {
 					'ticker_list'			: ['select a ticker'],
 					'chart_df'				: {}, 
-					'add_ohlcv_data'		: {},
-					'add_chart_data'		: {},
+					'refresh_df'			: { 
+												'ohlcv':{},
+												'chart':{},
+											  },
 					},
 		'volume': {
 					'ticker_list'			: ['select a ticker'],
 					'chart_df'				: {}, 
-					'add_ohlcv_data'		: {},
-					'add_chart_data'		: {},
+					'refresh_df'			: { 
+												'ohlcv':{},
+												'chart':{},
+											  },
 					},
 		'research': {
 					'ticker_list'			: ['select a ticker'],
 					'chart_df'				: {}, 
-					'add_ohlcv_data'		: {},
-					'add_chart_data'		: {},
+					'refresh_df'			: { 
+												'ohlcv':{},
+												'chart':{},
+											  },
 					},
 		'screener': {
 					'ticker_list'			: [], 
 					'screener_df'			: {}, 
-					'add_ohlcv_data'		: {},
-					'add_metric_data'		: {},
+					'refresh_df'			: { 
+												'ohlcv':{},
+												'test':{},
+											  },
 					'test_results'			: {},
 					'test_results_df'		: {},
 					'selectors'				: {
@@ -84,8 +94,8 @@ def scope_page_templates(scope):
 																		# Many charts only use OHLCV cols so will never require metrics
 			chart_active_status[chart] = plot_config[chart]['active']
 
-	scope.pages['templates']['add_metric_data'] = metric_active_status
-	scope.pages['templates']['add_chart_data'] = chart_active_status
+	scope.pages['templates']['test'] = metric_active_status
+	scope.pages['templates']['chart'] = chart_active_status
 
 
 
