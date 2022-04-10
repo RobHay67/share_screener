@@ -41,7 +41,7 @@ def combine_loaded_and_download_ticker_data(scope):
 					store_result( scope, ticker, result='passed_2' )
 				scope.data['ticker_files'][ticker].sort_values(by=['date'], inplace=True, ascending=False)		# sort the share data into date order ascending
 				refresh_status_for_ticker = True
-		set_page_data_status(scope, shares=True, charts='all', tests='all', tickers=ticker, status=refresh_status_for_ticker)
+		set_page_data_status(scope, shares=True, charts='all', tests='all', tickers=ticker, status=refresh_status_for_ticker, caller='store_result')
 	store_result(scope, 'Finished', final_print=True )
 
 

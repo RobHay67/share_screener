@@ -32,9 +32,9 @@ def edit_active(scope, config_name, metric ):
 	if new_active_status != previous_active_status : 				# set to refresh metrics if something has been changed
 		scope_page_templates(scope)									# rebase the active and inactive page metrics
 		if config_name == 'charts':
-			redo_page_data_singles_pages_all_tickers(scope, metric)
+			set_page_data_status(scope, charts=metric, caller='edit_active')
 		elif config_name == 'tests':
-			set_page_data_status(scope, tests=metric)
+			set_page_data_status(scope, tests=metric, caller='edit_active')
 		else:
 			print ( '\033[91m' + ' < edit_active > function provided with unknown config_name > ' + config_name + '\033[0m')
 

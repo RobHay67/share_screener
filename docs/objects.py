@@ -11,11 +11,11 @@
 # scope.selected[page]['plot_df]['ticker]		DataFrame				Copy of selected ticker(s) from share_data_files with all metrics added for plotting
 
 
-#																		-----------------------------
-#																		|							|
-#	dictionary of all loaded and downloaded OHLCV ticker data			|  scope.data['ticker_files']  |	
-#																		|							|
-#																		-----------------------------
+#																		---------------------------------
+#																		|								|
+#	dictionary of all loaded and downloaded OHLCV ticker data			|   scope.data['ticker_files']  |	
+#																		|								|
+#																		---------------------------------
 #																					|
 #																					|
 #							  										copy specific <ticker_data_files> only

@@ -24,11 +24,10 @@ def edit_ohlcv(scope, config_name, metric ):
 	if new_ohlcv_col != previous_ohlcv_col : 					# set to refresh pages if something has been changed
 		if config_name == 'charts':
 			scope.config[config_name][metric]['metrics']['column'] = new_ohlcv_col
-			# redo_page_data_singles_pages_all_tickers(scope, metric)
-			set_page_data_status(scope, charts=metric)
+			set_page_data_status(scope, charts=metric, caller='edit_ohlcv')
 		elif config_name == 'tests':
 			scope.config[config_name][metric]['column'] = new_ohlcv_col
-			set_page_data_status(scope, tests=metric)
+			set_page_data_status(scope, tests=metric, caller='edit_ohlcv')
 		else:
 			print ( '\033[91m' + ' < edit_ohlcv > function provided with unknown config_name > ' + config_name + '\033[0m')
 
@@ -54,10 +53,10 @@ def edit_ohlc(scope, config_name, metric ):
 		if config_name == 'charts':
 			scope.config[config_name][metric]['metrics']['column'] = new_ohlc_col
 			# redo_page_data_singles_pages_all_tickers(scope, metric)
-			set_page_data_status(scope, charts=metric)
+			set_page_data_status(scope, charts=metric, caller='edit_ohlc')
 		elif config_name == 'tests':
 			scope.config[config_name][metric]['column'] = new_ohlc_col
-			set_page_data_status(scope, tests=metric)
+			set_page_data_status(scope, tests=metric, caller='edit_ohlc')
 			
 		else:
 			print ( '\033[91m' + ' < edit_ohlc > function provided with unknown config_name > ' + config_name + '\033[0m')

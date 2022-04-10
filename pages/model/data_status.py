@@ -9,16 +9,36 @@
 # add metric data - only the Screener page					page_data	screener_page
 
 
-def set_page_data_status(scope, shares=False, charts=None, tests=None, tickers='all', status=True ):
+def set_page_data_status(scope, shares=False, charts=None, tests=None, tickers='all', status=True, caller='unknown' ):
 	# status = Usually True, but when downloading we sometime need to turn the refresh off if the download fails
 
+	width=70
+	print('='*width)
+	print('\033[95mRunning < set_page_data_status > function\033[0m')
+	print('\033[96mcaller = ' + caller + '\033[0m')
+	print('-'*width)
+	print('')
+
 	for page in scope.pages['page_list']:
-		
+		print('-'*width)
+		print('page = ', page)
+		print('-'*width)
 		# Establish list of tickers for this page (stremalines the whole function)
 		ohlcv_tickers, tests_tickers, chart_tickers = list_of_ticker_for_page(scope, page, tickers)
 
 		if shares:
-			for ticker in ohlcv_tickers: scope.pages[page]['add_ohlcv_data'][ticker] = status
+			print('-'*width)
+			print('add_ohlcv_data', page)
+			print('-'*width)
+			for ticker in ohlcv_tickers: 
+				if ticker in scope.pages[page]['add_ohlcv_data'].keys():
+					print(ticker, ' before add_ohlcv_data = ', scope.pages[page]['add_ohlcv_data'][ticker])
+				else:
+					print(ticker, ' before add_ohlcv_data = does not exist in ')
+				scope.pages[page]['add_ohlcv_data'][ticker] = status
+				
+				print(ticker, ' after  > add_ohlcv_data =', scope.pages[page]['add_ohlcv_data'][ticker] )
+			print('-'*width)
 
 		if tests != None:
 			if page == 'screener':
@@ -37,6 +57,8 @@ def set_page_data_status(scope, shares=False, charts=None, tests=None, tickers='
 						scope.pages[page]['add_chart_data'][ticker] = chart_template
 					else:																				# Updating a single chart only
 						scope.pages[page]['add_chart_data'][ticker][charts] = True						# Set Refresh = True for this char
+
+	print('='*width)
 
 
 def list_of_ticker_for_page(scope, page, tickers):

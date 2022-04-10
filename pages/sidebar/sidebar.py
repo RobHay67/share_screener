@@ -8,7 +8,7 @@ from pages.model.data_status import set_page_data_status
 
 
 def on_change_row_limit(scope:dict):
-	set_page_data_status(scope, shares=True, charts='all', tests='all' )
+	set_page_data_status(scope, shares=True, charts='all', tests='all', caller='on_change_row_limit' )
 
 
 
