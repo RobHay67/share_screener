@@ -1,5 +1,5 @@
 from testing.config import tests_config
-from charts.config import plot_config
+from charts.config import charts_config
 
 # TODO - whenever we add a ticker to ohlcv, we need to also add it to refresh metrics!!
 
@@ -29,7 +29,7 @@ pages_config = {
 					'chart_df'				: {}, 
 					'refresh_df'			: { 
 												'ohlcv':{},
-												'chart':{},
+												'charts':{},
 											  },
 					},
 		'intraday': {
@@ -37,7 +37,7 @@ pages_config = {
 					'chart_df'				: {}, 
 					'refresh_df'			: { 
 												'ohlcv':{},
-												'chart':{},
+												'charts':{},
 											  },
 					},
 		'volume': {
@@ -45,7 +45,7 @@ pages_config = {
 					'chart_df'				: {}, 
 					'refresh_df'			: { 
 												'ohlcv':{},
-												'chart':{},
+												'charts':{},
 											  },
 					},
 		'research': {
@@ -53,7 +53,7 @@ pages_config = {
 					'chart_df'				: {}, 
 					'refresh_df'			: { 
 												'ohlcv':{},
-												'chart':{},
+												'charts':{},
 											  },
 					},
 		'screener': {
@@ -61,7 +61,7 @@ pages_config = {
 					'screener_df'			: {}, 
 					'refresh_df'			: { 
 												'ohlcv':{},
-												'test':{},
+												'tests':{},
 											  },
 					'test_results'			: {},
 					'test_results_df'		: {},
@@ -89,13 +89,13 @@ def scope_page_templates(scope):
 		metric_active_status[metric] = tests_config[metric]['active']
 
 
-	for chart in plot_config.keys():
-		if plot_config[chart]['metrics'] != None:						# Only add charts that require additional columns
+	for chart in charts_config.keys():
+		if charts_config[chart]['metrics'] != None:						# Only add charts that require additional columns
 																		# Many charts only use OHLCV cols so will never require metrics
-			chart_active_status[chart] = plot_config[chart]['active']
+			chart_active_status[chart] = charts_config[chart]['active']
 
-	scope.pages['templates']['test'] = metric_active_status
-	scope.pages['templates']['chart'] = chart_active_status
+	scope.pages['templates']['tests'] = metric_active_status
+	scope.pages['templates']['charts'] = chart_active_status
 
 
 

@@ -7,10 +7,10 @@ def scope_charts(scope):
 	scope.config['charts']['primary_height'] = 500
 	scope.config['charts']['total_height'] = scope.config['charts']['primary_height']
 	scope.config['charts']['colours'] = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
-	scope.config['charts']['chart_list']	= list(plot_config.keys())
+	scope.config['charts']['chart_list']	= list(charts_config.keys())
 
-	for key, metrics in plot_config.items():
-		scope.config['charts'][key] = metrics
+	for chart, config in charts_config.items():
+		scope.config['charts'][chart] = config
 
 
 
@@ -111,7 +111,7 @@ shift_up 		= 'shift_up'			# Bollinger Bands
 shift_down 		= 'shift_down'			# Bollinger Bands
 m_a_type 		= 'm_a_type'			# Bollinger Bands
 
-plot_config = {
+charts_config = {
 		# Primary Charts -----------------------------------------------------------------------
 		'candlestick'		: { 
 								active			: True,

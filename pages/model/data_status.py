@@ -9,6 +9,14 @@
 # add metric data - only the Screener page					page_data	screener_page
 
 
+# def audit_report(scope, ):
+
+
+
+
+
+
+
 def set_page_data_status(scope, shares=False, charts=None, tests=None, tickers='all', status=True, caller='unknown' ):
 	# status = Usually True, but when downloading we sometime need to turn the refresh off if the download fails
 
@@ -45,25 +53,26 @@ def set_page_data_status(scope, shares=False, charts=None, tests=None, tickers='
 			if page == 'screener':
 				for ticker in tests_tickers: 
 					# take a copy of our default dictionary
-					metrics_template = scope.pages['templates']['test'].copy()				
+					metrics_template = scope.pages['templates']['tests'].copy()				
 					if tests=='all':
 						# Every Test requires a data refresh																		
-						scope.pages[page]['refresh_df']['test'][ticker] = metrics_template
+						scope.pages[page]['refresh_df']['tests'][ticker] = metrics_template
 					else:
 						# A single TEST requires a data refresh									
-						scope.pages[page]['refresh_df']['test'][ticker][tests] = True
+						scope.pages[page]['refresh_df']['tests'][ticker][tests] = True
 
 		if charts != None:
 			if page != 'screener':
 				for ticker in chart_tickers: 
 					# take a copy of our default dictionary
-					chart_template = scope.pages['templates']['chart'].copy()					
+					chart_template = scope.pages['templates']['charts'].copy()
+					print(chart_template)
 					if charts=='all':
 						# Every CHART requires a data refresh												
-						scope.pages[page]['refresh_df']['chart'][ticker] = chart_template
+						scope.pages[page]['refresh_df']['charts'][ticker] = chart_template
 					else:
 						# A single CHART requires a data refresh													
-						scope.pages[page]['refresh_df']['chart'][ticker][charts] = True
+						scope.pages[page]['refresh_df']['charts'][ticker][charts] = True
 
 	print('\033[0m')
 	print('='*width)
@@ -73,10 +82,10 @@ def list_of_ticker_for_page(scope, page, tickers):
 	if tickers == 'all':
 		ohlcv_tickers = list(scope.pages[page]['refresh_df']['ohlcv'].keys())
 		if page == 'screener': 
-			tests_tickers = list(scope.pages[page]['refresh_df']['test'].keys())
+			tests_tickers = list(scope.pages[page]['refresh_df']['tests'].keys())
 			chart_tickers = None
 		else: 
-			chart_tickers = list(scope.pages[page]['refresh_df']['chart'].keys())
+			chart_tickers = list(scope.pages[page]['refresh_df']['charts'].keys())
 			tests_tickers = None
 	else:
 		# A single ticker has been provided so return this single ticker in a list
@@ -102,12 +111,12 @@ def list_of_ticker_for_page(scope, page, tickers):
 
 # 		if page == 'screener':																	# Screener Page Only
 # 			metrics_template = st.session_state.pages_template_add_metric_data.copy()			# take a copy of our template of metric active status
-# 			for ticker in st.session_state.pages[page]['refresh_df']['test'].keys():				# iterate through tickers
-# 				st.session_state.pages[page]['refresh_df']['test'][ticker] = metrics_template		# set the current metric active status for ticker
+# 			for ticker in st.session_state.pages[page]['refresh_df']['tests'].keys():				# iterate through tickers
+# 				st.session_state.pages[page]['refresh_df']['tests'][ticker] = metrics_template		# set the current metric active status for ticker
 # 		if page != 'screener':																	# for non screen pages (charts only)
 # 			chart_template = st.session_state.pages_template_add_chart_data.copy()				# take a copy of our default dictionary
-# 			for ticker in st.session_state.pages[page]['refresh_df']['chart'].keys():				# iterate through tickers
-# 				st.session_state.pages[page]['refresh_df']['chart'][ticker]  = chart_template		# set the current metric active status for this ticker
+# 			for ticker in st.session_state.pages[page]['refresh_df']['charts'].keys():				# iterate through tickers
+# 				st.session_state.pages[page]['refresh_df']['charts'][ticker]  = chart_template		# set the current metric active status for this ticker
 
 
 # set_page_data_status(scope, shares=True, charts=True, tests=True, tickers='CBA', status=TRUE or FALSE )
@@ -124,18 +133,18 @@ def list_of_ticker_for_page(scope, page, tickers):
 
 # 		if page == 'screener':															# Screener Page Only
 # 			metrics_template = scope.pages['templates']['test'].copy()		# take a copy of our default dictionary
-# 			scope.pages[page]['refresh_df']['test'][ticker] = metrics_template				# set the current metric active status for this ticker
+# 			scope.pages[page]['refresh_df']['tests'][ticker] = metrics_template				# set the current metric active status for this ticker
 # 		if page != 'screener':															# for non screener pages (charts only)
-# 			chart_template = scope.pages['templates']['chart'].copy()			# take a copy of our default dictionary
-# 			scope.pages[page]['refresh_df']['chart'][ticker]  = chart_template				# set the current metric active status for this ticker
+# 			chart_template = scope.pages['templates']['charts'].copy()			# take a copy of our default dictionary
+# 			scope.pages[page]['refresh_df']['charts'][ticker]  = chart_template				# set the current metric active status for this ticker
 
 # set_page_data_status(scope, charts='chart name')
 # def redo_page_data_singles_pages_all_tickers(scope, chart):
 # 	# One of the Chart Metrics has changed i.e. made active or changed a value from say 21 to 34
 # 	for page in scope.pages['page_list']:
 # 		if page != 'screener':													# all chart relevant pages
-# 			for ticker in scope.pages[page]['refresh_df']['chart'].keys():			# iterate through each ticker
-# 				scope.pages[page]['refresh_df']['chart'][ticker][chart] = True		# Set Refresh = True
+# 			for ticker in scope.pages[page]['refresh_df']['charts'].keys():			# iterate through each ticker
+# 				scope.pages[page]['refresh_df']['charts'][ticker][chart] = True		# Set Refresh = True
 
 
 
@@ -144,8 +153,8 @@ def list_of_ticker_for_page(scope, page, tickers):
 # 	# One of the Screener Metrics has changed i.e. made active or changed a value from say 21 to 34
 # 	for page in scope.pages['page_list']:
 # 		if page == 'screener':													# Only the Screener Page
-# 			for ticker in scope.pages[page]['refresh_df']['test'].keys():			# iterate through each ticker
-# 				scope.pages[page]['refresh_df']['test'][ticker][test] = True		# Set Refresh = True
+# 			for ticker in scope.pages[page]['refresh_df']['tests'].keys():			# iterate through each ticker
+# 				scope.pages[page]['refresh_df']['tests'][ticker][test] = True		# Set Refresh = True
 
 
 
@@ -171,12 +180,12 @@ def list_of_ticker_for_page(scope, page, tickers):
 # 	# for page in st.session_state.pages['page_list']:														# iterate through every page
 # 		if page == 'screener':																		# Screener Page Only
 # 			metrics_template = st.session_state.pages_template_add_metric_data.copy()			# take a copy of our template of metric active status
-# 			for ticker in st.session_state.pages[page]['refresh_df']['test'].keys():					# iterate through tickers
-# 				st.session_state.pages[page]['refresh_df']['test'][ticker] = metrics_template		# set the current metric active status for ticker
+# 			for ticker in st.session_state.pages[page]['refresh_df']['tests'].keys():					# iterate through tickers
+# 				st.session_state.pages[page]['refresh_df']['tests'][ticker] = metrics_template		# set the current metric active status for ticker
 # 		if page != 'screener':																		# for non screen pages (charts only)
 # 			chart_template = st.session_state.pages_template_add_chart_data.copy()							# take a copy of our default dictionary
-# 			for ticker in st.session_state.pages[page]['refresh_df']['chart'].keys():					# iterate through tickers
-# 				st.session_state.pages[page]['refresh_df']['chart'][ticker]  = chart_template			# set the current metric active status for this ticker
+# 			for ticker in st.session_state.pages[page]['refresh_df']['charts'].keys():					# iterate through tickers
+# 				st.session_state.pages[page]['refresh_df']['charts'][ticker]  = chart_template			# set the current metric active status for this ticker
 				
 
 # only uised by the above function - see if we can combine this then
@@ -190,7 +199,7 @@ def list_of_ticker_for_page(scope, page, tickers):
 # 	for page in scope.pages['page_list']:														# iterate through every page
 # 		if page == 'screener':															# Screener Page Only
 # 			metrics_template = scope.pages['templates']['test'].copy()		# take a copy of our default dictionary
-# 			scope.pages[page]['refresh_df']['test'][ticker] = metrics_template				# set the current metric active status for this ticker
+# 			scope.pages[page]['refresh_df']['tests'][ticker] = metrics_template				# set the current metric active status for this ticker
 # 		if page != 'screener':															# for non screener pages (charts only)
-# 			chart_template = scope.pages['templates']['chart'].copy()			# take a copy of our default dictionary
-# 			scope.pages[page]['refresh_df']['chart'][ticker]  = chart_template				# set the current metric active status for this ticker
+# 			chart_template = scope.pages['templates']['charts'].copy()			# take a copy of our default dictionary
+# 			scope.pages[page]['refresh_df']['charts'][ticker]  = chart_template				# set the current metric active status for this ticker

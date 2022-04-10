@@ -35,7 +35,7 @@ def update_screener_metrics(scope):
 	print('$'*50)
 	for ticker in scope.pages['screener']['ticker_list']:
 		print(ticker)
-		for test in scope.pages['screener']['refresh_df']['test'][ticker].keys():
+		for test in scope.pages['screener']['refresh_df']['tests'][ticker].keys():
 			print(test)
 
 	page 			= scope.pages['display_page']
@@ -45,13 +45,13 @@ def update_screener_metrics(scope):
 		for ticker in ticker_list:																		# iterate through each ticker for the page
 			if ticker in scope.pages[page]['screener_df'].keys():										# if data missing, function will not be able to run
 				screener_df = scope.pages[page]['screener_df'][ticker]									# short reference to the object being edited
-				for test in scope.pages[page]['refresh_df']['test'][ticker].keys():						# iterate through available tests for this ticker and their run (or not) status
+				for test in scope.pages[page]['refresh_df']['tests'][ticker].keys():						# iterate through available tests for this ticker and their run (or not) status
 					print(test)
-					test_run_status   = scope.pages[page]['refresh_df']['test'][ticker][test]
+					test_run_status   = scope.pages[page]['refresh_df']['tests'][ticker][test]
 					test_has_function = scope.config['tests'][test]['metrics']['function']
 					if test_run_status==True and test_has_function != None:								# test needs refreshing and requires additional columns (they all do)
 						scope.config['tests'][test]['metrics']['function'](scope, screener_df, test )	# Call the column adding function
 						update_test_results_dict(scope, ticker, test, screener_df)						# store the test results for reporting
-						scope.pages[page]['refresh_df']['test'][ticker][test] = False					# reset Test data STATUS to prevent unnecesary updates
+						scope.pages[page]['refresh_df']['tests'][ticker][test] = False					# reset Test data STATUS to prevent unnecesary updates
 		screener_all_active_test_results(scope)															# determine overall test result summary
 

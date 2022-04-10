@@ -37,14 +37,14 @@ def page_report(scope, heading ):
 	print( 'test'.upper())
 	for page in scope.pages['page_list']:
 		print(page.upper())
-		for ticker in scope.pages[page]['refresh_df']['test'].keys():
-			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['refresh_df']['test'][ticker] )
+		for ticker in scope.pages[page]['refresh_df']['tests'].keys():
+			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['refresh_df']['tests'][ticker] )
 	print('-'*100)
 	print( 'chart'.upper())
 	for page in scope.pages['page_list']:
 		print(page.upper())
-		for ticker in scope.pages[page]['refresh_df']['chart'].keys():
-			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['refresh_df']['chart'][ticker] )
+		for ticker in scope.pages[page]['refresh_df']['charts'].keys():
+			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['refresh_df']['charts'][ticker] )
 	print('='*100)
 
 

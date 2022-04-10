@@ -96,13 +96,13 @@ if 'initial_load' in st.session_state:
 	for key in sorted(st.session_state):print(key)
 	# for key in st.session_state:print(key)
 
-print('$'*50)
-for ticker in st.session_state.pages['screener']['ticker_list']:
-	print(ticker)
-	for test in st.session_state.pages['screener']['refresh_df']['test'][ticker].keys():
-		print(test)
+# print('$'*50)
+# for ticker in st.session_state.pages['screener']['ticker_list']:
+# 	print(ticker)
+# 	for test in st.session_state.pages['screener']['refresh_df']['tests'][ticker].keys():
+# 		print(test)
 
-
+# print( st.session_state.pages['screener']['refresh_df']['tests'])
 
 
 # level_1 = 'config'
@@ -183,12 +183,12 @@ for ticker in st.session_state.pages['screener']['ticker_list']:
 # 	print( '-'*70)
 # 	print('Charts refresh status')
 # 	if page != 'screener':
-# 		for key, value in st.session_state['pages'][page]['refresh_df']['chart'].items():
+# 		for key, value in st.session_state['pages'][page]['refresh_df']['charts'].items():
 # 			print (key, ':', value)
 # 	print( '-'*70)
 # 	print('Metrics refresh status')
 # 	if page == 'screener':
-# 		for key, value in st.session_state['pages'][page]['refresh_df']['test'].items():
+# 		for key, value in st.session_state['pages'][page]['refresh_df']['tests'].items():
 # 			print (key, ':', value)
 
 
