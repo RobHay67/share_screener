@@ -23,8 +23,6 @@ from pages.view.dataframes import view_screener_dfs
 from pages.view.dataframes import view_chart_dfs
 
 
-from pages.model.scope_button import set_st_button
-
 def render_selected_scope_page(scope):
 
 	scope_page = {
@@ -54,6 +52,11 @@ def render_selected_scope_page(scope):
 	scope_page[scope.pages['button_for_scope']](scope)
 
 	scope.pages['button_for_scope'] =  None
+
+
+def set_st_button(scope:dict, button:str):
+	scope.pages['button_for_scope'] = button
+
 
 def render_scope_settings(scope):
 	st.header('Configuration Setting')
