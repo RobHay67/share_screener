@@ -33,7 +33,7 @@ def set_page_data_status(scope, shares=False, charts=None, tests=None, tickers='
 		print('page = ', page)
 		# print('-'*width)
 		# Establish list of tickers for this page (stremalines the whole function)
-		ohlcv_tickers, tests_tickers, chart_tickers = list_of_ticker_for_page(scope, page, tickers)
+		ohlcv_tickers, tests_tickers, chart_tickers = list_of_tickers_for_page(scope, page, tickers)
 
 		if shares:
 			print('-'*width)
@@ -78,7 +78,7 @@ def set_page_data_status(scope, shares=False, charts=None, tests=None, tickers='
 	print('='*width)
 
 
-def list_of_ticker_for_page(scope, page, tickers):
+def list_of_tickers_for_page(scope, page, tickers):
 	if tickers == 'all':
 		ohlcv_tickers = list(scope.pages[page]['refresh_df']['ohlcv'].keys())
 		if page == 'screener': 
