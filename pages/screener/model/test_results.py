@@ -31,7 +31,7 @@ def screener_all_active_test_results(scope):
 
 	# store the active test results for each ticker
 	for ticker in ticker_list:
-		if ticker in scope.pages['screener']['screener_df']:					# if its not in here, it will not be available - ie no test results
+		if ticker in scope.pages['screener']['df']:					# if its not in here, it will not be available - ie no test results
 			all_test_results = 'passed'
 			ticker_test_result_dict = {}
 			ticker_test_result_dict['ticker'] = ticker

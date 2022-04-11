@@ -7,8 +7,8 @@
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # ticker_index 									DataFrame  				A list of all tickers available to the application
 # ticker_data_files								dict of DataFrames		All Share Data files indexed by Ticker Code
-# scope.selected[page]['screener_df'][ticker]	DataFrame				Copy of selected ticker(s) from share_data_files with all metrics added for screening
-# scope.selected[page]['plot_df]['ticker]		DataFrame				Copy of selected ticker(s) from share_data_files with all metrics added for plotting
+# scope.selected[page]['df'][ticker]			DataFrame				Copy of selected ticker(s) from share_data_files with all metrics added for screening
+# scope.selected[page]['df]['ticker]			DataFrame				Copy of selected ticker(s) from share_data_files with all metrics added for plotting
 
 
 #																		---------------------------------
@@ -28,11 +28,11 @@
 #											---------------------			---------------------		---------------------
 #											| 	 scope.pages	|			| 	 scope.pages	|		| 	 scope.pages	|
 # 											|	 ['screener']	|			|	  ['single']	|		|	['intra_day']	|
-#											|    screener_df   	|			|      chart_df   	|		|      chart_df   	|
+#											|    	[df]   		|			|     	[df]   		|		|      [df]   		|
 #											|					|			|					|		|					|
 #											---------------------			---------------------		---------------------
 #
-# example									cba 	NAB		anz				ifl				NAB			NAB				wbc
+# example (page.ticker_list)				[cba 	NAB		anz ]			[ifl			NAB ]		[NAB			wbc ]
 #
 #
 # Events that change the data
@@ -46,13 +46,13 @@
 # x Update Screener Metric value 			CsM		CsM		CsM				------			------		------			------		= recalculate the specific metrics only	for screener page
 
 # KEY
-# CRa 	= Copy and Replace ALL     ticker_data from < scope.ticker_data_file >				DONE - Function Added
-# CRs 	= Copy and Replace changed ticker_data from < scope.ticker_data_file >				DONE - Function Added
-# CaM 	= re Calculate ALL     active Metrics for every Ticker in the page 					DONE - Function Added
-# CsM	= re Calculate changed active Metrics for every Ticker in the page 					DONE - Function Added
+# CRa 	= Copy and Replace ALL     ticker_data from < scope.data.ticker_files >				DONE - Function Added
+# CRs 	= Copy and Replace changed ticker_data from < scope.data.ticker_files >				DONE - Function Added
+# CaM 	= re Calculate ALL     		active Metrics for every Ticker in the page				DONE - Function Added
+# CsM	= re Calculate changed 		active Metrics for every Ticker in the page 			DONE - Function Added
 
 # TODO
 # tag the metrics when they have been run													DONE - updated function
 # update the scope.page_metrics after changes made 											DONE
-# change the test after editing scope.page_metrics								DONE
-# change the chart  after editing scope.page_metrics								DONE
+# change the test after editing scope.page_metrics											DONE
+# change the chart  after editing scope.page_metrics										DONE

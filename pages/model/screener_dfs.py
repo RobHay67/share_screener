@@ -21,7 +21,7 @@ def update_screener_dfs(scope):
 					if page_row_limit != None : 
 						screener_df = screener_df.tail(page_row_limit) 													# limit analysis to user specified row limit
 
-					scope.pages[page]['screener_df'][ticker] = screener_df												# store the screener_df with additional metric columns			
+					scope.pages[page]['df'][ticker] = screener_df												# store the screener_df with additional metric columns			
 					scope.pages[page]['refresh_df']['ohlcv'][ticker] = False													# reset Page df STATUS to prevent unnecesary updates
 				else:
 					print ( '\033[91m' + ticker.ljust(10) + '> ticker file missing from scope.data[ticker_files] \033[0m')
@@ -43,8 +43,8 @@ def update_screener_metrics(scope):
 
 	if page == 'screener':																				# only works on the screener page
 		for ticker in ticker_list:																		# iterate through each ticker for the page
-			if ticker in scope.pages[page]['screener_df'].keys():										# if data missing, function will not be able to run
-				screener_df = scope.pages[page]['screener_df'][ticker]									# short reference to the object being edited
+			if ticker in scope.pages[page]['df'].keys():										# if data missing, function will not be able to run
+				screener_df = scope.pages[page]['df'][ticker]									# short reference to the object being edited
 				for test in scope.pages[page]['refresh_df']['tests'][ticker].keys():						# iterate through available tests for this ticker and their run (or not) status
 					print(test)
 					test_run_status   = scope.pages[page]['refresh_df']['tests'][ticker][test]

@@ -13,7 +13,7 @@ def render_single_ticker_page(scope):
 	
 	ticker = scope.pages['single']['ticker_list'][0]
 	
-	if ticker in scope.pages['single']['chart_df'].keys():	
+	if ticker in scope.pages['single']['df'].keys():	
 		plot_charts(scope, ticker)
 		
 

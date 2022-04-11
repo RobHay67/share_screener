@@ -26,7 +26,7 @@ def scope_pages(scope):
 pages_config = {
 		'single': {
 					'ticker_list'			: ['select a ticker'],
-					'chart_df'				: {}, 
+					'df'					: {}, 
 					'refresh_df'			: { 
 												'ohlcv':{},
 												'charts':{},
@@ -34,7 +34,7 @@ pages_config = {
 					},
 		'intraday': {
 					'ticker_list'			: ['select a ticker'],
-					'chart_df'				: {}, 
+					'df'					: {}, 
 					'refresh_df'			: { 
 												'ohlcv':{},
 												'charts':{},
@@ -42,7 +42,7 @@ pages_config = {
 					},
 		'volume': {
 					'ticker_list'			: ['select a ticker'],
-					'chart_df'				: {}, 
+					'df'					: {}, 
 					'refresh_df'			: { 
 												'ohlcv':{},
 												'charts':{},
@@ -50,7 +50,7 @@ pages_config = {
 					},
 		'research': {
 					'ticker_list'			: ['select a ticker'],
-					'chart_df'				: {}, 
+					'df'					: {}, 
 					'refresh_df'			: { 
 												'ohlcv':{},
 												'charts':{},
@@ -58,7 +58,7 @@ pages_config = {
 					},
 		'screener': {
 					'ticker_list'			: [], 
-					'screener_df'			: {}, 
+					'df'					: {}, 
 					'refresh_df'			: { 
 												'ohlcv':{},
 												'tests':{},
