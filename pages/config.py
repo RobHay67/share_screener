@@ -11,75 +11,43 @@ def scope_pages(scope):
 	scope.pages['row_limit'] = 100
 	scope.pages['button_for_scope'] = None
 	scope.pages['display_page'] = 'home_page'				# Page to display with a default for the initial first load
-	scope.pages['page_list'] = list(pages_config.keys())
+	scope.pages['page_list'] = pages
 
 	
 	scope_page_templates(scope)								# add this initial default state for the screener and chart metrics
 
+	# ==========================================
+	# Page Specific Configuration
+	for page in pages:
+		print(page)
+		scope.pages[page] = {}
+		scope.pages[page]['ticker_list'] = ['select a ticker'] if page != 'screener' else []
+		scope.pages[page]['df'] = {}
+		scope.pages[page]['renew'] = renew_status_config
+		scope.pages[page]['selectors'] = selector_config
 
-	# TODO - add the page selectors right here - 
-	# Need to check how they work for the single pages and combine methodology with the screener selectors
+	# Store any test results (from the screner page) in these objects
+	scope.pages['tests'] = {}
+	scope.pages['tests']['results'] = {}
+	scope.pages['tests']['df'] = {}
 
 
-	# Scope out the Page Specific Variables
-	for page, config in pages_config.items():
-		scope.pages[page] = config
-
-	# TODO scope out the screener results config - this might even need to be a level higher - not sure just yet
+pages = ['single', 'intraday', 'volume', 'research', 'screener']
 
 
+renew_status_config = { 
+						'ticker_data'	: {},
+						'expanders'		: {},
+						}
+
+selector_config	= {
+					'market'				: 'select entire market', 
+					'industries'			: None, 
+					'tickers'				: None,
+					'ticker'				: None,
+					}
 
 
-
-pages_config = {
-		'single': {
-					'ticker_list'			: ['select a ticker'],
-					'df'					: {}, 
-					'renew'					: { 
-												'ticker_data':{},
-												'expanders':{},
-											  },
-					},
-		'intraday': {
-					'ticker_list'			: ['select a ticker'],
-					'df'					: {}, 
-					'renew'					: { 
-												'ticker_data':{},
-												'expanders':{},
-											  },
-					},
-		'volume': {
-					'ticker_list'			: ['select a ticker'],
-					'df'					: {}, 
-					'renew'					: { 
-												'ticker_data':{},
-												'expanders':{},
-											  },
-					},
-		'research': {
-					'ticker_list'			: ['select a ticker'],
-					'df'					: {}, 
-					'renew'					: { 
-												'ticker_data':{},
-												'expanders':{},
-											  },
-					},
-		'screener': {
-					'ticker_list'			: [], 
-					'df'					: {}, 
-					'renew'					: { 
-												'ticker_data':{},
-												'expanders':{},
-											  },
-					'test_results'			: {},
-					'test_results_df'		: {},
-					'selectors'				: {
-												'market'				: 'select entire market', 
-												'industries'			: None, 
-												'tickers'				: None,  
-												}
-					},
-}
 
 
 

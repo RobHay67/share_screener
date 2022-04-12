@@ -1,6 +1,6 @@
 # A single function that handles all of the data loading
 
-from pages.picker.view.load_screen import set_cols
+from pages.picker.load_screen import set_cols
 
 from data.tickers.load import load_tickers
 from data.tickers.download import download_tickers
@@ -15,7 +15,7 @@ from pages.data.renew import renew_page_data
 from pages.view.dataframes import view_screener_dfs
 from pages.view.dataframes import view_chart_dfs
 
-from pages.picker.helpers.which_tickers import ticker_selectors
+from pages.picker.which_tickers import ticker_selectors
 from pages.picker.buttons.download import download_button
 from pages.picker.buttons.clear_message import clear_messages_button
 from pages.picker.buttons.ticker_file import ticker_file_button

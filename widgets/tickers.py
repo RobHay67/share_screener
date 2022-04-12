@@ -14,4 +14,4 @@ def select_tickers(scope):
 									key='3'
 									)
 
-	scope.pages['screener']['tickers'] = new_selection
+	scope.pages['screener']['selectors']['tickers'] = new_selection

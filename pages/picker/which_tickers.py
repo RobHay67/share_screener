@@ -1,7 +1,7 @@
 from widgets.market import select_a_market
 from widgets.industries import select_industries
-from pages.picker.model.set_tickers import select_tickers
-from pages.picker.model.set_ticker import select_a_ticker
+from widgets.ticker import select_a_ticker
+from widgets.tickers import select_tickers
 from data.tickers.model.multi_ticker_list import update_multi_ticker_list
 
 
@@ -10,15 +10,14 @@ from data.tickers.model.multi_ticker_list import update_multi_ticker_list
 def ticker_selectors(scope):
 
 	page = scope.pages['display_page']
-
-	
 	selected_tickers_so_lets_load = False
 	ticker_list = []
 
 	if page != 'screener':
 		# One of the Single Ticker Pages - Single / Volume / Research
 
-		with scope.col1: select_a_ticker(scope, page)
+		with scope.col1: 
+			select_a_ticker(scope, page)
 
 		ticker = scope.pages[page]['ticker_list'][0]
 
