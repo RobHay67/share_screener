@@ -6,14 +6,7 @@ from data.tickers.load import load_tickers
 from data.tickers.download import download_tickers
 from data.tickers.view.dataframes import view_ticker_data_files
 
-# from pages.model.screener_dfs import update_screener_dfs
-# from pages.model.screener_dfs import update_screener_metrics
-# from pages.model.chart_dfs import update_chart_dfs
-# from pages.model.chart_dfs import update_chart_metrics
 from pages.data.renew import update_page_dfs
-
-from pages.view.dataframes import view_screener_dfs
-from pages.view.dataframes import view_chart_dfs
 
 from pages.picker.which_tickers import ticker_selectors
 from pages.picker.buttons.download import download_button
@@ -22,32 +15,8 @@ from pages.picker.buttons.ticker_file import ticker_file_button
 from pages.picker.buttons.screener_dfs import screener_dfs_button
 from pages.picker.buttons.chart_dfs import chart_dfs_button
 
-
-def page_report(scope, heading ):
-
-	print('='*100)
-	print(heading.upper())
-	print( '-'*100)
-	print( 'ohlcv'.upper())
-	for page in scope.pages['page_list']:
-		print(page.upper())
-		for ticker in scope.pages[page]['renew']['ticker_data'].keys():
-			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['renew']['ticker_data'][ticker] )
-	print('-'*100)
-	print( 'test'.upper())
-	for page in scope.pages['page_list']:
-		print(page.upper())
-		for ticker in scope.pages[page]['renew']['tests'].keys():
-			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['renew']['tests'][ticker] )
-	print('-'*100)
-	print( 'chart'.upper())
-	for page in scope.pages['page_list']:
-		print(page.upper())
-		for ticker in scope.pages[page]['renew']['expanders'].keys():
-			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['renew']['expanders'][ticker] )
-	print('='*100)
-
-
+from pages.view.dataframes import view_screener_dfs
+from pages.view.dataframes import view_chart_dfs
 
 
 
@@ -63,20 +32,13 @@ def render_ticker_picker(scope):
 		with scope.col1: download_new_data = download_button(scope)		
 		with scope.col6: clear_messages_button(scope)
 
-		load_tickers(scope)														# AUTO load whatever ticker data we have	
+		# AUTO load whatever ticker data we have	
+		load_tickers(scope)
 		
 		if download_new_data: 
 			download_tickers(scope)
 
-		# update_screener_dfs(scope)												# Code only runs if ohlcv  set to TRUE
-		# update_screener_metrics(scope)											# Code only runs if test set to TRUE		
-		# update_chart_dfs(scope)													# Code only runs if ohlcv  set to TRUE
-		# update_chart_metrics(scope)												# Code only runs if test set to TRUE
-
-		#TODO - undo this one Rob - comment out for testing
 		update_page_dfs(scope)  
-
-
 
 		with scope.col5: show_ticker_files = ticker_file_button(scope)
 

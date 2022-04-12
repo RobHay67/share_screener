@@ -6,10 +6,12 @@ def add_subplot(scope, fig, chart_df, plotly_schema):
 		row_no = chart_no+1 
 		col_no = plotly_schema['col_no']
 
-		scope.config['charts'][chart]['plot']['function'](scope, fig, chart, chart_df, row_no, col_no)	# add sub_plot
+		# add sub_plot
+		scope.config['charts'][chart]['plot']['function'](scope, fig, chart, chart_df, row_no, col_no)
 		fig = format_sub_plot(scope, fig, chart, row_no, 1 )
 		
-		if scope.config['charts'][chart]['add_overlays'] == True:											# only apply overlays to relevant charts
+		# only apply overlays to relevant charts
+		if scope.config['charts'][chart]['add_overlays'] == True:											
 			for overlay in plotly_schema['add_overlay']:
 				scope.config['charts'][overlay]['plot']['function'](scope, fig, overlay, chart_df, row_no, col_no)
 
@@ -38,10 +40,4 @@ def format_sub_plot(scope, fig, chart, row_no, col_no):
 	return fig
 
 
-# showlegend=True, 
 
-
-
-
-# Format the Y Axis
-# fig.update_yaxes(autorange=True) 					# i dont beleive this does anything at all

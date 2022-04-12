@@ -18,8 +18,10 @@ def create_main_plot(plotly_schema):
 						)
 	return fig
 
-def format_main_plot(scope, fig, ticker):
+def format_main_plot(scope, fig):
 	# format the overall chart layout
+	page 	= scope.pages['display_page']
+	ticker 	= scope.pages[page]['selectors']['ticker']
 	
 	fig.update_layout(	
 						height 		= scope.config['charts']['total_height'],

@@ -19,8 +19,7 @@ def render_single_ticker_page(scope):
 		# before attempting to make any plots
 
 		if ticker in scope.pages['single']['df'].keys():	
-			print('Rob - commented out the plot chart for thwe moment') # TODO - undo this
-			# plot_charts(scope, ticker)
+			plot_charts(scope)
 			
 
 

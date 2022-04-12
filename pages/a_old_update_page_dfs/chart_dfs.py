@@ -115,3 +115,8 @@ def update_chart_metrics(scope):
 						scope.pages[page]['renew']['expanders'][ticker][chart] = False					
 
 
+
+
+
+
+
