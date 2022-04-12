@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from pages.data.status import set_page_data_status
+from pages.data.status import set_page_renew_status
 
 
 def render_row_limit(scope):
@@ -15,4 +15,4 @@ def render_row_limit(scope):
 
 
 def on_change_row_limit(scope:dict):
-	set_page_data_status(scope, shares=True, charts='all', tests='all', caller='on_change_row_limit' )
+	set_page_renew_status(scope, ticker_data=True, expanders='all', caller='on_change_row_limit' )

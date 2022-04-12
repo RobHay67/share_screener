@@ -1,26 +1,48 @@
 import streamlit as st
 
 
+def select_a_ticker(scope):
 
-
-
-
-# -------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Single Ticker Page Helpers
-# -------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-def select_a_ticker(scope, page):
+	page = scope.pages['display_page']
 	
-	# Previous Selection
-	previous_ticker_for_page = scope.pages[page]['ticker_list'][0]
+	widget_key = 'widget_' + page + '_select_ticker'
+	previous_selection = scope.pages[page]['selectors']['ticker']
+	pos_for_previous = scope.config['dropdowns']['ticker'].index(previous_selection)	
 
-	# render the selector defalted to the stored ticker for this page
-	selected_ticker = st.selectbox ( 
-									label='Select a Ticker', 
-									options=scope.config['dropdowns']['ticker'],
-									index=scope.config['dropdowns']['ticker'].index(previous_ticker_for_page), 
-									help='Choose a ticker for analysis. Start typing to jump within list',
-									key=page,
-									) 
-	# Store the selection so we can easily swap pages
-	scope.pages[page]['ticker_list'] = [selected_ticker]
+	st.selectbox ( 
+				label		='Select a Ticker', 
+				options		=scope.config['dropdowns']['ticker'],
+				index		=pos_for_previous, 
+				help		='Choose a ticker. Start typing to jump down the list',
+				on_change	=on_change_ticker_selection,
+				args		=(scope, page, widget_key, ),
+				key			=widget_key,
+				) 
+
+
+def on_change_ticker_selection(scope:dict, page:str, widget_key:str):
+	
+	changed_value = scope[widget_key]
+
+	# store the selection in the selectors.ticker scope value
+	scope.pages[page]['selectors']['ticker'] = changed_value
+
+
+
+	# ticker_list = scope.pages[page]['ticker_list']
+
+	# if changed_value != None:
+	# 	if changed_value
+
+	# ticker_list = [ changed_value ] if changed_value != 'select a ticker' else [None]
+
+	# Update the ticker list for this page
+	# if changed_value not in scope.pages[page]['ticker_list']:
+	# 	scope.pages[page]['ticker_list'].append(changed_value)
+
+
+
+
+	# # Update the ticker list for this page
+	# scope.pages[page]['ticker_list'] = ticker_list
+

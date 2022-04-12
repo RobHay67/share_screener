@@ -9,104 +9,64 @@
 # add metric data - only the Screener page					page_data	screener_page
 
 
-# def audit_report(scope, ):
 
 
-
-
-
-
-
-def set_page_data_status(scope, shares=False, charts=None, tests=None, tickers='all', status=True, caller='unknown' ):
+# def set_page_renew_status(scope, ticker_data=False, charts=None, tests=None, tickers='all', status=True, caller='unknown' ):
+def set_page_renew_status(scope, ticker_data=False, expanders=None, tickers='all', status=True, caller='unknown' ):
 	# status = Usually True, but when downloading we sometime need to turn the refresh off if the download fails
 
 	width=70
 	print('='*width)
-	print('\033[95mRunning < set_page_data_status > function\033[0m')
+	print('\033[95mRunning < set_page_renew_status > function\033[0m')
 	print('\033[96mcaller = ' + caller + '\033[0m')
 	print('-'*width)
 	print('')
+	print ('expanders = ', expanders)
+	
 
 	for page in scope.pages['page_list']:
-		print('\033[92m')
-		print('-'*width)
-		print('page = ', page)
-		# print('-'*width)
 		# Establish list of tickers for this page (stremalines the whole function)
-		ohlcv_tickers, tests_tickers, chart_tickers = list_of_tickers_for_page(scope, page, tickers)
+		ohlcv_tickers, expander_tickers = list_of_tickers_for_page(scope, page, tickers)
+		config_group = 'tests' if page == 'screener' else 'charts'
 
-		if shares:
-			print('-'*width)
-			print('refresh_df_ohlcv', page)
-			print('-'*width)
+		if ticker_data:
 			for ticker in ohlcv_tickers: 
-				if ticker in scope.pages[page]['renew']['ticker_data'].keys():
-					print(ticker, ' before refresh_df_ohlcv = ', scope.pages[page]['renew']['ticker_data'][ticker])
-				else:
-					print(ticker, ' before refresh_df_ohlcv = ticker does not exist')
 				scope.pages[page]['renew']['ticker_data'][ticker] = status
-				
-				print(ticker, ' after  refresh_df_ohlcv =', scope.pages[page]['renew']['ticker_data'][ticker] )
-			print('-'*width)
+
+		if expanders != None:
+			for ticker in expander_tickers: 
+				# take a copy of our default config for this type of expander
+				expander_template = scope.pages['templates'][config_group].copy()				
+				if expanders=='all':
+					# Every EXPANDER requires a data refresh																		
+					scope.pages[page]['renew']['expanders'][ticker] = expander_template
+				else:
+					# A single EXPANDER requires a data refresh									
+					scope.pages[page]['renew']['expanders'][ticker][expanders] = True
 
 
-		print('Rob we are at this point')
-		print('We need to reconfigure how the renews are called below - probaly chaneg the interator')
-
-
-
-		if tests != None:
-			if page == 'screener':
-				for ticker in tests_tickers: 
-					# take a copy of our default dictionary
-					metrics_template = scope.pages['templates']['tests'].copy()				
-					if tests=='all':
-						# Every Test requires a data refresh																		
-						scope.pages[page]['renew']['tests'][ticker] = metrics_template
-					else:
-						# A single TEST requires a data refresh									
-						scope.pages[page]['renew']['tests'][ticker][tests] = True
-
-		if charts != None:
-			if page != 'screener':
-				for ticker in chart_tickers: 
-					# take a copy of our default dictionary
-					chart_template = scope.pages['templates']['charts'].copy()
-					print(chart_template)
-					if charts=='all':
-						# Every CHART requires a data refresh												
-						scope.pages[page]['renew']['expanders'][ticker] = chart_template
-					else:
-						# A single CHART requires a data refresh													
-						scope.pages[page]['renew']['expanders'][ticker][charts] = True
 
 	print('\033[0m')
-	print('='*width)
+	# print('='*width)
 
 
 def list_of_tickers_for_page(scope, page, tickers):
 	if tickers == 'all':
 		ohlcv_tickers = list(scope.pages[page]['renew']['ticker_data'].keys())
-		if page == 'screener': 
-			tests_tickers = list(scope.pages[page]['renew']['tests'].keys())
-			chart_tickers = None
-		else: 
-			chart_tickers = list(scope.pages[page]['renew']['expanders'].keys())
-			tests_tickers = None
+		expander_tickers = list(scope.pages[page]['renew']['expanders'].keys())
 	else:
 		# A single ticker has been provided so return this single ticker in a list
 		ohlcv_tickers = [tickers]
-		tests_tickers = [tickers]
-		chart_tickers = [tickers]
+		expander_tickers = [tickers]
 
-	return ohlcv_tickers, tests_tickers, chart_tickers
-
+	return ohlcv_tickers, expander_tickers
 
 
 
 
 
-# set_page_data_status(scope, shares=True, charts='all', tests='all' )
+
+# set_page_renew_status(scope, ticker_data=True, charts='all', tests='all' )
 # def redo_ohlc_data_all_pages_all_tickers(scope:dict):
 # 	# This executes when the user has changed the number of analysis rows
 # 	#  - ie from 1000 to say 3000 - for simplicity we just reset everything
@@ -125,7 +85,7 @@ def list_of_tickers_for_page(scope, page, tickers):
 # 				st.session_state.pages[page]['renew']['expanders'][ticker]  = chart_template		# set the current metric active status for this ticker
 
 
-# set_page_data_status(scope, shares=True, charts=True, tests=True, tickers='CBA', status=TRUE or FALSE )
+# set_page_renew_status(scope, ticker_data=True, charts=True, tests=True, tickers='CBA', status=TRUE or FALSE )
 # def redo_ohlc_data_all_pages_one_ticker(scope, ticker, refresh_status):							# refresh_status = True or False
 # 	# Execute when either of the following occurs
 # 	# 	a) Load of Ticker Data
@@ -144,7 +104,7 @@ def list_of_tickers_for_page(scope, page, tickers):
 # 			chart_template = scope.pages['templates']['expanders'].copy()			# take a copy of our default dictionary
 # 			scope.pages[page]['renew']['expanders'][ticker]  = chart_template				# set the current metric active status for this ticker
 
-# set_page_data_status(scope, charts='chart name')
+# set_page_renew_status(scope, charts='chart name')
 # def redo_page_data_singles_pages_all_tickers(scope, chart):
 # 	# One of the Chart Metrics has changed i.e. made active or changed a value from say 21 to 34
 # 	for page in scope.pages['page_list']:
@@ -154,7 +114,7 @@ def list_of_tickers_for_page(scope, page, tickers):
 
 
 
-# set_page_data_status(scope, test='test name')
+# set_page_renew_status(scope, test='test name')
 # def redo_page_data_screener_page_all_tickers(scope, test):
 # 	# One of the Screener Metrics has changed i.e. made active or changed a value from say 21 to 34
 # 	for page in scope.pages['page_list']:
@@ -209,3 +169,18 @@ def list_of_tickers_for_page(scope, page, tickers):
 # 		if page != 'screener':															# for non screener pages (charts only)
 # 			chart_template = scope.pages['templates']['expanders'].copy()			# take a copy of our default dictionary
 # 			scope.pages[page]['renew']['expanders'][ticker]  = chart_template				# set the current metric active status for this ticker
+
+
+
+		# if expanders != None:
+		# 	if page != 'screener':
+		# 		for ticker in expander_tickers: 
+		# 			# take a copy of our default dictionary
+		# 			chart_template = scope.pages['templates'][config_group].copy()
+		# 			print(chart_template)
+		# 			if expanders=='all':
+		# 				# Every CHART requires a data refresh												
+		# 				scope.pages[page]['renew']['expanders'][ticker] = chart_template
+		# 			else:
+		# 				# A single CHART requires a data refresh													
+		# 				scope.pages[page]['renew']['expanders'][ticker][expanders] = True

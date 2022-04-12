@@ -1,6 +1,6 @@
 import streamlit as st
 
-from pages.data.status import set_page_data_status
+from pages.data.status import set_page_renew_status
 
 
 def edit_trend(scope, config_name, metric ):
@@ -20,7 +20,7 @@ def edit_trend(scope, config_name, metric ):
 
 	if new_trend != previous_trend : 					# set to refresh pages if something has been changed
 		if config_name == 'tests':
-			set_page_data_status(scope, tests=metric, caller='edit_trend')
+			set_page_renew_status(scope, expanders=metric, caller='edit_trend')
 		else:
 			print ( '\033[91m' + ' < edit_trend > function provided with unknown config_name > ' + config_name + '\033[0m')
 

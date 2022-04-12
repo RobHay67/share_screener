@@ -15,10 +15,10 @@ def render_volume_page(scope):
 	# render_page_title(scope, 'Predict Closing Volume to End of Today', 'volume')
 	render_page_title(scope, 'Predict Closing Volume to End of Today')
 	
-	ticker = scope.pages['volume']['ticker_list'][0]
+	ticker = scope.pages['single']['selectors']['ticker']
 
-	if ticker != 'select a ticker':	
-		# ticker = scope.selected['volume']['ticker_list'][0]
+	if ticker != 'select a ticker' :		
+	# if ticker != 'select a ticker':	
 
 		local_time=datetime.now()											# Current local time
 		market_timezone = opening_hours[scope.config['share_market']]['timezone']		# Timezone for the share market

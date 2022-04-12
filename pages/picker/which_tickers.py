@@ -11,20 +11,24 @@ def ticker_selectors(scope):
 
 	page = scope.pages['display_page']
 	selected_tickers_so_lets_load = False
-	ticker_list = []
 
 	if page != 'screener':
 		# One of the Single Ticker Pages - Single / Volume / Research
 
-		with scope.col1: 
-			select_a_ticker(scope, page)
+		with scope.col1: select_a_ticker(scope)
 
-		ticker = scope.pages[page]['ticker_list'][0]
+		ticker = scope.pages[page]['selectors']['ticker']
 
-		if ticker != 'select a ticker':	
+		if ticker != 'select a ticker' :
 			selected_tickers_so_lets_load = True
-			scope.data['download']['industries'] = ['random_tickers']									# used for y_finance downloading
-			# ticker_list = [scope.pages[page]['ticker_list'][0]]
+			
+			# used for y_finance downloading
+			scope.data['download']['industries'] = ['random_tickers']
+
+			# Store new selection in ticker_list for the page
+			if ticker not in scope.pages[page]['ticker_list']:
+				scope.pages[page]['ticker_list'].append(ticker)						
+	
 	else:	
 		# Screener Page (Potentially Multiple Tickers)
 		
@@ -42,6 +46,5 @@ def ticker_selectors(scope):
 			# ticker_list = scope.pages['screener']['ticker_list']
 
 	# TODO - we should store the ticker_list in the scope[page][ticker_list] object
-
 
 	return selected_tickers_so_lets_load

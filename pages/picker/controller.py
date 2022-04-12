@@ -10,7 +10,7 @@ from data.tickers.view.dataframes import view_ticker_data_files
 # from pages.model.screener_dfs import update_screener_metrics
 # from pages.model.chart_dfs import update_chart_dfs
 # from pages.model.chart_dfs import update_chart_metrics
-from pages.data.renew import renew_page_data
+from pages.data.renew import update_page_dfs
 
 from pages.view.dataframes import view_screener_dfs
 from pages.view.dataframes import view_chart_dfs
@@ -55,7 +55,7 @@ def render_ticker_picker(scope):
 
 	page = scope.pages['display_page']
 
-	set_cols(scope, page)
+	set_cols(scope)
 
 	selected_tickers_so_lets_load = ticker_selectors(scope)
 
@@ -73,8 +73,8 @@ def render_ticker_picker(scope):
 		# update_chart_dfs(scope)													# Code only runs if ohlcv  set to TRUE
 		# update_chart_metrics(scope)												# Code only runs if test set to TRUE
 
-
-		renew_page_data(scope)  #TODO - undo this one Rob - comment out for testing
+		#TODO - undo this one Rob - comment out for testing
+		update_page_dfs(scope)  
 
 
 

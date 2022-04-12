@@ -1,7 +1,7 @@
 from curses import keyname
 import streamlit as st
 
-from pages.data.status import set_page_data_status
+from pages.data.status import set_page_renew_status
 
 	
 def edit_number(scope, config_name, metric, measure ):
@@ -22,9 +22,9 @@ def edit_number(scope, config_name, metric, measure ):
 	if scope.config[config_name][metric]['add_columns'][measure] != previous_number : 					# set to refresh pages if something has been changed
 		if config_name == 'charts':
 			# redo_page_data_singles_pages_all_tickers(scope, metric)
-			set_page_data_status(scope, charts=metric, caller='edit_number')
+			set_page_renew_status(scope, expanders=metric, caller='edit_number')
 		elif config_name == 'tests':
-			set_page_data_status(scope, tests=metric, caller='edit_number')
+			set_page_renew_status(scope, expanders=metric, caller='edit_number')
 		else:
 			print ( '\033[91m' + ' < edit_number > function provided with unknown config_name > ' + config_name + '\033[0m')
 

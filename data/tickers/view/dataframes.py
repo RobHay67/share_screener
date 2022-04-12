@@ -1,6 +1,10 @@
 import streamlit as st
 
+
+
 def view_ticker_data_files(scope, page='all'):
+
+	# page = scope.pages['display_page']
 	
 	if page == 'all':
 		st.subheader('All Ticker Data Files')
@@ -11,25 +15,20 @@ def view_ticker_data_files(scope, page='all'):
 		st.markdown("""---""")
 		list_of_pages = scope.pages['page_list'] 	# all of the pages
 		render_expanded = False
-	elif page == 'screener':
-		list_of_pages = [page]
-		render_expanded = False
 	else:
 		list_of_pages = [page]
-		render_expanded = True
+		render_expanded = False
+
 
 	# Create a dictionary of tickers to iterate over
 	ticker_to_page_map = {}
 
 	for page in list_of_pages:
 		for ticker in scope.pages[page]['ticker_list']:
+			print(ticker)
 			if ticker != 'select a ticker':
 				if ticker in scope.data['ticker_files']:
 					ticker_to_page_map[ticker] = page
-
-	
-	
-
 
 	for ticker in ticker_to_page_map:
 		page = ticker_to_page_map[ticker]

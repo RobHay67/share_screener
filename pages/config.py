@@ -21,10 +21,19 @@ def scope_pages(scope):
 	for page in pages:
 		print(page)
 		scope.pages[page] = {}
-		scope.pages[page]['ticker_list'] = ['select a ticker'] if page != 'screener' else []
+		# scope.pages[page]['ticker_list'] = ['select a ticker'] if page != 'screener' else []
+		scope.pages[page]['ticker_list'] = []
 		scope.pages[page]['df'] = {}
-		scope.pages[page]['renew'] = renew_status_config
-		scope.pages[page]['selectors'] = selector_config
+		scope.pages[page]['renew'] = { 
+										'ticker_data'	: {},
+										'expanders'		: {},
+										}
+		scope.pages[page]['selectors'] = {
+											'market'	: 'select entire market', 
+											'industries': [],
+											'tickers'	: [],
+											'ticker'	: 'select a ticker',
+											}
 
 	# Store any test results (from the screner page) in these objects
 	scope.pages['tests'] = {}
@@ -33,21 +42,6 @@ def scope_pages(scope):
 
 
 pages = ['single', 'intraday', 'volume', 'research', 'screener']
-
-
-renew_status_config = { 
-						'ticker_data'	: {},
-						'expanders'		: {},
-						}
-
-selector_config	= {
-					'market'				: 'select entire market', 
-					'industries'			: None, 
-					'tickers'				: None,
-					'ticker'				: None,
-					}
-
-
 
 
 

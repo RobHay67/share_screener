@@ -43,9 +43,9 @@ def render_research_page(scope):
 	render_page_title(scope, 'Company Research')
 
 	
-	ticker = scope.pages['research']['ticker_list'][0]
+	ticker = scope.pages['single']['selectors']['ticker']
 
-	if ticker != 'select a ticker':	
+	if ticker != 'select a ticker' :
 		metadata = fetch_yfinance_metadata(ticker)
 
 		company_general(metadata)

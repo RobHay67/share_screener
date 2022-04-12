@@ -12,12 +12,9 @@ def view_chart_dfs(scope, page='all'):
 		# list_of_pages = list(scope.pages.keys())
 		list_of_pages = scope.pages['page_list']
 		render_expanded = False
-	elif page == 'screener':
-		list_of_pages = [page]
-		render_expanded = False
 	else:
 		list_of_pages = [page]
-		render_expanded = True
+		render_expanded = False
 
 	# Create a disctionary of tickers to iterate over
 	list_of_tickers = {}

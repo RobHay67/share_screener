@@ -10,13 +10,13 @@
 # ------------------------------------------------- 
 
 # Testing Code - TODO - delete later
-from cgitb import handler
 import pandas as pd
 pd.set_option('display.max_rows', 5000)
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
 
 
+from audit import audit_report
 
 
 import streamlit as st
@@ -27,12 +27,17 @@ from pages.controller import render_selected_page
 
 print ( '\033[94m' + 'Application Re-Rendering Now ' + '>'*50 + '\033[0m')
 
+
 scope = set_scope(st.session_state)
+audit_report(scope)
 render_sidebar(scope)
 render_selected_page(scope)
 
 
 
+# for ticker in scope.pages['single']['df'].keys():
+# 	print(ticker)
+# 	print(scope.pages['single']['df'][ticker].sample(3))
 
 
 
@@ -90,11 +95,11 @@ def level_3_details(level_1, level_2, level_3):
 
 
 
-if 'initial_load' in st.session_state:
-	print('')
-	terminal_heading('All keys in st.session_state')
-	for key in sorted(st.session_state):print(key)
-	# for key in st.session_state:print(key)
+# if 'initial_load' in st.session_state:
+# 	print('')
+# 	terminal_heading('All keys in st.session_state')
+# 	for key in sorted(st.session_state):print(key)
+# 	# for key in st.session_state:print(key)
 
 
 # level_1 = 'config'
@@ -121,18 +126,18 @@ if 'initial_load' in st.session_state:
 # 	for key in st.session_state[level_1]:print(key)
 # 	level_2_details(level_1, 'download')
 \
-level_1 = 'pages'
-if level_1 in st.session_state:
-	terminal_heading(level_1)
-	for key in st.session_state[level_1]:print(key)
-# 	level_2_details(level_1, 'templates')
-	level_2_details(level_1, 'single')
-# 	level_2_details(level_1, 'intraday')
-# 	level_2_details(level_1, 'volume')
-# 	level_2_details(level_1, 'research')
-# 	level_2_details(level_1, 'screener')
-	level_3_details(level_1, 'single', 'renew')
-	# level_3_details(level_1, 'single', 'chart')
+# level_1 = 'pages'
+# if level_1 in st.session_state:
+# 	terminal_heading(level_1)
+# 	for key in st.session_state[level_1]:print(key)
+# # 	level_2_details(level_1, 'templates')
+# 	level_2_details(level_1, 'single')
+# # 	level_2_details(level_1, 'intraday')
+# # 	level_2_details(level_1, 'volume')
+# # 	level_2_details(level_1, 'research')
+# # 	level_2_details(level_1, 'screener')
+# 	level_3_details(level_1, 'single', 'renew')
+# 	# level_3_details(level_1, 'single', 'chart')
 	# level_3_details(level_1, 'screener', 'ticker_data')
 	# level_3_details(level_1, 'screener', 'ticker_data')
 	# level_3_details(level_1, 'screener', 'ticker_data')
@@ -184,29 +189,5 @@ if level_1 in st.session_state:
 # 			print (key, ':', value)
 
 
-
-
-
-
-
-
-
-# # Set Up the Initial Streamlit Environment ======================================================================
-# from config.streamlit import set_streamlit_page_config
-# from scope.scope import set_scope
-# from pages.controller import set_initial_scope
-# from scope.dropdowns.refresh_selectors import update_dropdowns
-
-
-# set_streamlit_page_config()
-# scope = set_scope(st.session_state, project_description)
-
-# if scope.config['dropdowns']['update_dropdowns']: 
-# 	update_dropdowns(scope)
-
-# print ( '\033[94mApplication Refreshed >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> \033[0m')
-
-# render_selected_page(scope)
-# render_sidebar(scope)
 
 

@@ -1,5 +1,5 @@
 
-def renew_page_data(scope):
+def update_page_dfs(scope):
 	
 	page 				= scope.pages['display_page']
 	page_row_limit 		= int(scope.pages['row_limit'])
@@ -10,7 +10,7 @@ def renew_page_data(scope):
 	
 	for ticker in page_ticker_list:
 		
-		renew_ticker_ohlcv_data = scope.pages[page]['renew']['ticker_data'][ticker]
+		renew_ticker_data_status = scope.pages[page]['renew']['ticker_data'][ticker]
 
 		
 		# renew_expansions_for_ticker = list(scope.pages[page]['renew']['expanders']  [ticker].keys())
@@ -19,7 +19,7 @@ def renew_page_data(scope):
 		# ====================================================================
 
 		# Check if we have been requested to renew the ticker data for this ticker
-		if  renew_ticker_ohlcv_data == True:
+		if  renew_ticker_data_status == True:
 
 				# Check that there is share data available for this ticker
 				# before attempting to copy that share date for use by this page
@@ -50,30 +50,30 @@ def renew_page_data(scope):
 		# Replace the columns / metrics required for this ticker / chart 
 		# ====================================================================
 
-		expansions = list(scope.pages[page]['renew']['expanders'][ticker].keys())
-		tickers_already_loaded_for_page = list(scope.pages[page]['df'].keys())
+		# expansions = list(scope.pages[page]['renew']['expanders'][ticker].keys())
+		# tickers_already_loaded_for_page = list(scope.pages[page]['df'].keys())
 
-		for expander in expansions:
+		# for expander in expansions:
 			
-			renew_expander = scope.pages[page]['renew']['expanders'][ticker][expander]
+		# 	renew_expander = scope.pages[page]['renew']['expanders'][ticker][expander]
 
-			# Check if we have been requested to renew the metrics columns for this ticker
-			if renew_expander == True:
+		# 	# Check if we have been requested to renew the metrics columns for this ticker
+		# 	if renew_expander == True:
 				
-				if ticker in tickers_already_loaded_for_page:
+		# 		if ticker in tickers_already_loaded_for_page:
 
-					ticker_df				= scope.pages[page]['df'][ticker]
-					column_adder			= scope.config[config_group][expander]['add_columns']
-					column_adder_function 	= scope.config[config_group][expander]['add_columns']['function']
+		# 			ticker_df				= scope.pages[page]['df'][ticker]
+		# 			column_adder			= scope.config[config_group][expander]['add_columns']
+		# 			column_adder_function 	= scope.config[config_group][expander]['add_columns']['function']
 
-					# Expansion has a column_adder which requires additional columns (ie. has a function)
-					if column_adder != None and column_adder_function != None:	
+		# 			# Expansion has a column_adder which requires additional columns (ie. has a function)
+		# 			if column_adder != None and column_adder_function != None:	
 						
-						# Call the column adding function for this expander
-						scope.config[config_group][expander]['add_columns']['function'](scope, ticker_df, expander)
+		# 				# Call the column adding function for this expander
+		# 				scope.config[config_group][expander]['add_columns']['function'](scope, ticker_df, expander)
 						
-						# reset the refresh.metric_cols STATUS to prevent unnecesary updates
-						scope.pages[page]['renew']['expanders'][ticker][expander] = False	
+		# 				# reset the refresh.metric_cols STATUS to prevent unnecesary updates
+		# 				scope.pages[page]['renew']['expanders'][ticker][expander] = False	
 
 
 
