@@ -2,7 +2,7 @@
 import streamlit as st
 
 # from pages.model.data_status import redo_page_data_singles_pages_all_tickers
-from pages.model.data_status import set_page_data_status
+from pages.data.status import set_page_data_status
 from pages.config import scope_page_templates
 
 

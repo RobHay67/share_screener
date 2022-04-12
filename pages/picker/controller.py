@@ -6,11 +6,11 @@ from data.tickers.load import load_tickers
 from data.tickers.download import download_tickers
 from data.tickers.view.dataframes import view_ticker_data_files
 
-from pages.model.screener_dfs import update_screener_dfs
-from pages.model.screener_dfs import update_screener_metrics
-
-from pages.model.chart_dfs import update_chart_dfs
-from pages.model.chart_dfs import update_chart_metrics
+# from pages.model.screener_dfs import update_screener_dfs
+# from pages.model.screener_dfs import update_screener_metrics
+# from pages.model.chart_dfs import update_chart_dfs
+# from pages.model.chart_dfs import update_chart_metrics
+from pages.data.renew import renew_page_data
 
 from pages.view.dataframes import view_screener_dfs
 from pages.view.dataframes import view_chart_dfs
@@ -31,20 +31,20 @@ def page_report(scope, heading ):
 	print( 'ohlcv'.upper())
 	for page in scope.pages['page_list']:
 		print(page.upper())
-		for ticker in scope.pages[page]['refresh_df']['ohlcv'].keys():
-			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['refresh_df']['ohlcv'][ticker] )
+		for ticker in scope.pages[page]['renew']['ticker_data'].keys():
+			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['renew']['ticker_data'][ticker] )
 	print('-'*100)
 	print( 'test'.upper())
 	for page in scope.pages['page_list']:
 		print(page.upper())
-		for ticker in scope.pages[page]['refresh_df']['tests'].keys():
-			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['refresh_df']['tests'][ticker] )
+		for ticker in scope.pages[page]['renew']['tests'].keys():
+			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['renew']['tests'][ticker] )
 	print('-'*100)
 	print( 'chart'.upper())
 	for page in scope.pages['page_list']:
 		print(page.upper())
-		for ticker in scope.pages[page]['refresh_df']['charts'].keys():
-			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['refresh_df']['charts'][ticker] )
+		for ticker in scope.pages[page]['renew']['expanders'].keys():
+			print( ('  - ' + ticker).ljust(10), ' - ', scope.pages[page]['renew']['expanders'][ticker] )
 	print('='*100)
 
 
@@ -57,7 +57,7 @@ def render_ticker_picker(scope):
 
 	set_cols(scope, page)
 
-	selected_tickers_so_lets_load = ticker_selectors(scope, page)
+	selected_tickers_so_lets_load = ticker_selectors(scope)
 
 	if selected_tickers_so_lets_load:
 		with scope.col1: download_new_data = download_button(scope)		
@@ -68,10 +68,15 @@ def render_ticker_picker(scope):
 		if download_new_data: 
 			download_tickers(scope)
 
-		update_screener_dfs(scope)												# Code only runs if ohlcv  set to TRUE
-		update_screener_metrics(scope)											# Code only runs if test set to TRUE		
-		update_chart_dfs(scope)													# Code only runs if ohlcv  set to TRUE
-		update_chart_metrics(scope)												# Code only runs if test set to TRUE		
+		# update_screener_dfs(scope)												# Code only runs if ohlcv  set to TRUE
+		# update_screener_metrics(scope)											# Code only runs if test set to TRUE		
+		# update_chart_dfs(scope)													# Code only runs if ohlcv  set to TRUE
+		# update_chart_metrics(scope)												# Code only runs if test set to TRUE
+
+
+		renew_page_data(scope)  #TODO - undo this one Rob - comment out for testing
+
+
 
 		with scope.col5: show_ticker_files = ticker_file_button(scope)
 

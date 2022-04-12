@@ -63,13 +63,8 @@ def scope_config(scope):
 	scope.config['dropdowns']['price_columns '] = ['open', 'high', 'low', 'close' 		   ]	
 
 
-	scope.config['tests'] = {}
 	scope_tests(scope)
 
-
-	scope.config['charts'] = {}
 	scope_charts(scope)
 
-
-	scope.config['results'] = {}
 	scope_results(scope)

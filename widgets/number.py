@@ -1,8 +1,7 @@
 from curses import keyname
 import streamlit as st
 
-
-from pages.model.data_status import set_page_data_status
+from pages.data.status import set_page_data_status
 
 	
 def edit_number(scope, config_name, metric, measure ):
@@ -10,9 +9,9 @@ def edit_number(scope, config_name, metric, measure ):
 	widget_key 		= config_name + '_' + metric + '_' + measure
 	display_name 	= measure.capitalize() + ' for ' + scope.config[config_name][metric]['name']
 	
-	previous_number = int(scope.config[config_name][metric]['metrics'][measure])	
+	previous_number = int(scope.config[config_name][metric]['add_columns'][measure])	
 
-	scope.config[config_name][metric]['metrics'][measure] = st.number_input(
+	scope.config[config_name][metric]['add_columns'][measure] = st.number_input(
 																			label=display_name,
 																			min_value=1, 
 																			value=previous_number,
@@ -20,7 +19,7 @@ def edit_number(scope, config_name, metric, measure ):
 																			key=widget_key,
 																			)  
 
-	if scope.config[config_name][metric]['metrics'][measure] != previous_number : 					# set to refresh pages if something has been changed
+	if scope.config[config_name][metric]['add_columns'][measure] != previous_number : 					# set to refresh pages if something has been changed
 		if config_name == 'charts':
 			# redo_page_data_singles_pages_all_tickers(scope, metric)
 			set_page_data_status(scope, charts=metric, caller='edit_number')

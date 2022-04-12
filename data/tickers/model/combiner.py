@@ -4,7 +4,7 @@ from config.results.results import store_result
 
 from data.tickers.config import ticker_file_usecols
 
-from pages.model.data_status import set_page_data_status
+from pages.data.status import set_page_data_status
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Combiner

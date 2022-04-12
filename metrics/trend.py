@@ -4,10 +4,10 @@ import numpy as np
 
 def trend_cols(scope, screener_df, test):
 
-	column 		= scope.config['tests'][test]['metrics']['column']
-	trend 		= scope.config['tests'][test]['metrics']['trend']
-	duration	= int(scope.config['tests'][test]['metrics']['duration'])
-	timespan 	= int(scope.config['tests'][test]['metrics']['timespan'])
+	column 		= scope.config['tests'][test]['add_columns']['column']
+	trend 		= scope.config['tests'][test]['add_columns']['trend']
+	duration	= int(scope.config['tests'][test]['add_columns']['duration'])
+	timespan 	= int(scope.config['tests'][test]['add_columns']['timespan'])
 	
 	screener_df['temp_shifted'] = screener_df[column].shift(1)
 	screener_df['temp_shifted'] = screener_df['temp_shifted'].fillna(0.0).astype(float)

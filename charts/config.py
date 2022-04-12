@@ -96,7 +96,7 @@ title			= 'title'				# The Title to be rendered for this chart
 scale			= 'scale'				# height for the chart - this is a relative height > % of charts_height_primary
 yaxis			= 'yaxis'				# Format for the Y Axis on the charts
 # Dataframe Columns Required for this chart -------------------------------------------------------------------------------------------------------
-metrics			= 'metrics'			# Dictionary of Dataframe Column Params	
+add_columns		= 'add_columns'			# Dictionary of Column Params to be added to the page[df]
 periods 		= 'periods'				# Most Indicators use a base number of days/hours (periods) for their calcs - store it here
 column 			= 'column'				# OHLCV column required for calc
 fast 			= 'fast'
@@ -124,7 +124,7 @@ charts_config = {
 													scale		: 1.00, 
 													yaxis		: '$,.2f',
 												},
-								metrics			: None, 
+								add_columns		: None, 
 								},
 		'scatter'			: { 
 								active			: False, 
@@ -137,7 +137,7 @@ charts_config = {
 													scale		: 0.80, 
 													yaxis		: '$,.2f',	
 												}, 	
-								metrics			: None, 
+								add_columns		: None, 
 							},
 		'bar'				: { 
 								active			: False, 
@@ -150,7 +150,7 @@ charts_config = {
 													scale		: 0.80, 
 													yaxis		: '$,.2f' 
 												}, 
-								metrics			: None, 
+								add_columns		: None, 
 							},
 		'line'				: { 
 								active			: True , 
@@ -163,7 +163,7 @@ charts_config = {
 													scale		: 0.50, 
 													yaxis		: '$,.2f' 
 												}, 	
-								metrics			: {
+								add_columns		: {
 													function	: None, 
 													column		: 'close',
 												},
@@ -179,7 +179,7 @@ charts_config = {
 													scale:0.80, 
 													yaxis:'$,.2f' ,
 												}, 	
-								metrics			: None, 
+								add_columns		: None, 
 								},
 		# Secondary Charts ---------------------------------------------------------------------
 		'volume'			: { 
@@ -193,7 +193,7 @@ charts_config = {
 													scale		: 0.25, 
 													yaxis		: ',.'
 												}, 	
-								metrics			: None, 
+								add_columns		: None, 
 								},
 		'vol_per_minute'	: { 
 								active			: False, 
@@ -206,7 +206,7 @@ charts_config = {
 													scale		: 0.25, 
 													yaxis		: ',.' 	
 												}, 	
-								metrics			: None, 					# TODO is this a chart or on is_overlay - maybe just to the volume chart - I dont know
+								add_columns		: None, 					# TODO is this a chart or on is_overlay - maybe just to the volume chart - I dont know
 								},  
 		'vac'				: { 
 								active			: False, 
@@ -219,7 +219,7 @@ charts_config = {
 													scale		: 0.25, 
 													yaxis		: ',.' 
 													}, 	
-								metrics			: None, 
+								add_columns		: None, 
 								},
 		'macd'				: { 
 								active			: True, 
@@ -232,7 +232,7 @@ charts_config = {
 													scale		: 0.50, 
 													yaxis		: ',.' 
 												}, 	
-								metrics			: { 
+								add_columns		: { 
 													function	: macd_cols, 
 													column		: 'close', 
 													long		: 26, 
@@ -251,7 +251,7 @@ charts_config = {
 													scale		: 0.50, 
 													yaxis		: ',.', 	
 												}, 	
-								metrics			: { 
+								add_columns		: { 
 													function	:macd_vol_cols, 
 													column		:'volume', 
 													long		:26, 
@@ -270,7 +270,7 @@ charts_config = {
 													scale			: 0.50, 
 													yaxis			: '.0%',
 												}, 	
-								metrics			: { 
+								add_columns		: { 
 													function		: rsi_cols		, 
 													column			: 'close'	, 
 													lookback_days	: 10, 
@@ -287,7 +287,7 @@ charts_config = {
 													scale		: 0.75, 
 													yaxis		: '$,.2f',
 												}, 	
-								metrics			: { 
+								add_columns		: { 
 													function	: None, 
 													column		: 'volume', 
 													fast		: 14, 
@@ -305,7 +305,7 @@ charts_config = {
 													scale			: 0.50, 
 													yaxis			: '.0%',
 												}, 	
-								metrics			: { 
+								add_columns		: { 
 													function		: stoch_cols, 
 													lookback_days	: 14, 
 													slow			: 3, 
@@ -320,7 +320,7 @@ charts_config = {
 								is_overlay		: True , 
 								add_overlays	: False, 
 								plot			: { function : sma_plot, colour : 'blue' }, 									
-								metrics			: {	function : sma_cols, column : 'close', periods:21 } 
+								add_columns		: {	function : sma_cols, column : 'close', periods:21 } 
 								},		
 		'sma_2' 			: { 
 								active			: False, 
@@ -328,7 +328,7 @@ charts_config = {
 								is_overlay		: True , 
 								add_overlays		: False, 
 								plot			: { function : sma_plot, colour : 'green' }, 									
-								metrics			: {	function : sma_cols, column : 'close', periods:50 } 
+								add_columns		: {	function : sma_cols, column : 'close', periods:50 } 
 								},		
 		'sma_3' 			: { 
 								active			: False, 
@@ -336,7 +336,7 @@ charts_config = {
 								is_overlay		: True , 
 								add_overlays	: False, 
 								plot			: { function : sma_plot, colour : 'green' }, 									
-								metrics			: {	function : sma_cols, column : 'close', periods:200 } 
+								add_columns		: {	function : sma_cols, column : 'close', periods:200 } 
 								},		
 		'ema_1' 			: { 
 								active			: False, 
@@ -344,7 +344,7 @@ charts_config = {
 								is_overlay		: True , 
 								add_overlays	: False, 
 								plot			: { function : ema_plot, colour : 'red' }, 									
-								metrics			: {	function : ema_cols, column : 'close', periods:21 } 
+								add_columns		: {	function : ema_cols, column : 'close', periods:21 } 
 								},
 		'ema_2' 			: { 
 								active			: False, 
@@ -352,7 +352,7 @@ charts_config = {
 								is_overlay		: True , 
 								add_overlays	: False, 
 								plot			: { function : ema_plot, colour : 'blue' }, 									
-								metrics			: {	function : ema_cols, column : 'close', periods:50 } 
+								add_columns		: {	function : ema_cols, column : 'close', periods:50 } 
 								},
 		'ema_3' 			: { 
 								active			: False, 
@@ -360,7 +360,7 @@ charts_config = {
 								is_overlay		: True , 
 								add_overlays	: False, 
 								plot			: { function : ema_plot, colour : 'SteelBlue' }, 									
-								metrics			: {	function : ema_cols, column : 'close', periods:200 } 
+								add_columns		: {	function : ema_cols, column : 'close', periods:200 } 
 								},
 		'bollinger_bands' 	: { 
 								active			: False, 
@@ -371,7 +371,7 @@ charts_config = {
 													function:sma_plot, 
 													colour:'black' 		
 												}, 									
-								metrics			:{ 
+								add_columns		:{ 
 													function:ema_cols, 
 													column:'close', 
 													length:20, 
@@ -389,7 +389,7 @@ charts_config = {
 													function: dividend_plot, 
 													colour	:'blue' 		
 												}, 									
-								metrics			: { 
+								add_columns		: { 
 													function:dividend_cols			# TODO - we could still plot into the plot_df
 												} 
 								},		
@@ -402,7 +402,7 @@ charts_config = {
 													function:sma_plot, 
 													colour	:'black' 		
 												}, 									
-								metrics			: None,			 # TODO - we are still going to need a chart here
+								add_columns		: None,			 # TODO - we are still going to need a chart here
 								},		
 		'ichi_moku' 		: { 
 								active			: False, 
@@ -413,7 +413,7 @@ charts_config = {
 													function:sma_plot, 
 													colour	:'black' 		
 												}, 									
-								metrics			: None 			# TODO - Rob to work out if this needs speccing
+								add_columns		: None 			# TODO - Rob to work out if this needs speccing
 								},		
 		'ichi_moku_daily'	: { 
 								active			:False, 
@@ -424,7 +424,7 @@ charts_config = {
 													function:sma_plot, 
 													colour	:'black'
 													},
-								metrics			: None 					# TODO - Rob to work out if this needs speccing
+								add_columns		: None 					# TODO - Rob to work out if this needs speccing
 
 								},		
 		}

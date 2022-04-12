@@ -1,4 +1,9 @@
 
+
+
+
+
+
 def update_chart_dfs(scope):
 	
 	page 			= scope.pages['display_page']
@@ -13,7 +18,7 @@ def update_chart_dfs(scope):
 			# Replace all of the share data for the ticker
 
 			# Check if we have been requested to update the share_data for this ticker
-			if scope.pages[page]['refresh_df']['ohlcv'][ticker] == True:
+			if scope.pages[page]['renew']['ticker_data'][ticker] == True:
 
 				# Check that there is share data available for this ticker
 				# before attempting to copy that share date for use by this page
@@ -32,7 +37,7 @@ def update_chart_dfs(scope):
 					scope.pages[page]['df'][ticker] = chart_df
 
 					# reset Share Data Refresh STATUS to prevent unnecesary updates				
-					scope.pages[page]['refresh_df']['ohlcv'][ticker] = False
+					scope.pages[page]['renew']['ticker_data'][ticker] = False
 				else:
 					print ( '\033[91m' + ticker.ljust(10) + '> ticker file missing from scope.data[ticker_files] \033[0m')
 
@@ -41,10 +46,10 @@ def update_chart_dfs(scope):
 			# Replace the columns / metrics required for this ticker / chart 
 
 			# iterate through each chart being utilised by this page
-			# for chart in scope.pages[page]['refresh_df']['charts'][ticker].keys():
+			# for chart in scope.pages[page]['renew']['expanders'][ticker].keys():
 				
 			# 	# and check if we have been requested to update the metrics columns
-			# 	if scope.pages[page]['refresh_df']['charts'][ticker][chart] == True:
+			# 	if scope.pages[page]['renew']['expanders'][ticker][chart] == True:
 
 			# 		# Check that the page share_data is present for this ticker before 
 			# 		# attempting to make changes to its dataframe
@@ -57,18 +62,18 @@ def update_chart_dfs(scope):
 			# 			# iterate through each chart being utilised by this ticker 
 			# 			# and then execute (or not) the column adding function
 						
-			# 				chart_refresh_requested = scope.pages[page]['refresh_df']['charts'][ticker][chart]
-			# 				chart_has_metric		= scope.config['charts'][chart]['metrics']
-			# 				metric_has_function 	= scope.config['charts'][chart]['metrics']['function']
+			# 				chart_refresh_requested = scope.pages[page]['renew']['expanders'][ticker][chart]
+			# 				chart_has_metric		= scope.config['expanders'][chart]['add_columns']
+			# 				metric_has_function 	= scope.config['expanders'][chart]['add_columns']['function']
 							
 			# 				# Chart needs refreshing and has metrics and requires additional columns (function)
 			# 				if chart_refresh_requested==True and chart_has_metric!=None and metric_has_function != None:	
 								
 			# 					# Call the metrics (column) adding function
-			# 					scope.config['charts'][chart]['metrics']['function'](scope, chart_df, chart)		
+			# 					scope.config['expanders'][chart]['add_columns']['function'](scope, chart_df, chart)		
 								
 			# 					# reset Chart Data Refresh STATUS to prevent unnecesary updates
-			# 					scope.pages[page]['refresh_df']['charts'][ticker][chart] = False		
+			# 					scope.pages[page]['renew']['expanders'][ticker][chart] = False		
 
 
 
@@ -95,18 +100,18 @@ def update_chart_metrics(scope):
 
 				# iterate through each chart being utilised by this ticker 
 				# and then execute (or not) the column adding function
-				for chart in scope.pages[page]['refresh_df']['charts'][ticker].keys():
-					chart_refresh_requested = scope.pages[page]['refresh_df']['charts'][ticker][chart]
-					chart_has_metric		= scope.config['charts'][chart]['metrics']
-					metric_has_function 	= scope.config['charts'][chart]['metrics']['function']
+				for chart in scope.pages[page]['renew']['expanders'][ticker].keys():
+					chart_refresh_requested = scope.pages[page]['renew']['expanders'][ticker][chart]
+					chart_has_metric		= scope.config['expanders'][chart]['add_columns']
+					metric_has_function 	= scope.config['expanders'][chart]['add_columns']['function']
 					
 					# Chart needs refreshing and has metrics and requires additional columns (function)
 					if chart_refresh_requested==True and chart_has_metric!=None and metric_has_function != None:	
 						
 						# Call the metrics (column) adding function
-						scope.config['charts'][chart]['metrics']['function'](scope, chart_df, chart)		
+						scope.config['expanders'][chart]['add_columns']['function'](scope, chart_df, chart)		
 						
 						# reset Chart Data Refresh STATUS to prevent unnecesary updates
-						scope.pages[page]['refresh_df']['charts'][ticker][chart] = False					
+						scope.pages[page]['renew']['expanders'][ticker][chart] = False					
 
 

@@ -13,12 +13,20 @@ def scope_pages(scope):
 	scope.pages['display_page'] = 'home_page'				# Page to display with a default for the initial first load
 	scope.pages['page_list'] = list(pages_config.keys())
 
-	scope.pages['templates'] = {}
+	
 	scope_page_templates(scope)								# add this initial default state for the screener and chart metrics
 
-	# Actual View Page Specific Variables
+
+	# TODO - add the page selectors right here - 
+	# Need to check how they work for the single pages and combine methodology with the screener selectors
+
+
+	# Scope out the Page Specific Variables
 	for page, config in pages_config.items():
 		scope.pages[page] = config
+
+	# TODO scope out the screener results config - this might even need to be a level higher - not sure just yet
+
 
 
 
@@ -27,41 +35,41 @@ pages_config = {
 		'single': {
 					'ticker_list'			: ['select a ticker'],
 					'df'					: {}, 
-					'refresh_df'			: { 
-												'ohlcv':{},
-												'charts':{},
+					'renew'					: { 
+												'ticker_data':{},
+												'expanders':{},
 											  },
 					},
 		'intraday': {
 					'ticker_list'			: ['select a ticker'],
 					'df'					: {}, 
-					'refresh_df'			: { 
-												'ohlcv':{},
-												'charts':{},
+					'renew'					: { 
+												'ticker_data':{},
+												'expanders':{},
 											  },
 					},
 		'volume': {
 					'ticker_list'			: ['select a ticker'],
 					'df'					: {}, 
-					'refresh_df'			: { 
-												'ohlcv':{},
-												'charts':{},
+					'renew'					: { 
+												'ticker_data':{},
+												'expanders':{},
 											  },
 					},
 		'research': {
 					'ticker_list'			: ['select a ticker'],
 					'df'					: {}, 
-					'refresh_df'			: { 
-												'ohlcv':{},
-												'charts':{},
+					'renew'					: { 
+												'ticker_data':{},
+												'expanders':{},
 											  },
 					},
 		'screener': {
 					'ticker_list'			: [], 
 					'df'					: {}, 
-					'refresh_df'			: { 
-												'ohlcv':{},
-												'tests':{},
+					'renew'					: { 
+												'ticker_data':{},
+												'expanders':{},
 											  },
 					'test_results'			: {},
 					'test_results_df'		: {},
@@ -76,26 +84,42 @@ pages_config = {
 
 
 def scope_page_templates(scope):
-	# Construct a template (dict) of each metric and chart that require additional columns and 
-	# store as templates to be used later by for other functions.
-	#
-	# this greatly simplifies those later functions - which can quickly refer to a single object.
+
+	# Construct a template (dict) of each test and chart that require additional columns
+	# and store as templates to be used by subsequent functions.
+	# This significantly simplifies later processs which can just refer to these
+	# dictionaries to understand what needs to be update or not
 
 
-	metric_active_status = {}
-	chart_active_status = {}
+	scope.pages['templates'] = {}
 
-	for metric in tests_config.keys():
-		metric_active_status[metric] = tests_config[metric]['active']
 
+	# -------------------------------------------------------------------------
+	# Tests
+	# determine the active status of each test in the tests_config dictionary
+
+	active_status_tests = {}
+
+	for test in tests_config.keys():
+		active_status_tests[test] = tests_config[test]['active']
+	
+	scope.pages['templates']['tests'] = active_status_tests
+
+
+
+	# -------------------------------------------------------------------------
+	# Charts
+	# determine the active status of each chart in the charts_config dictionary
+
+	active_status_charts = {}
 
 	for chart in charts_config.keys():
-		if charts_config[chart]['metrics'] != None:						# Only add charts that require additional columns
-																		# Many charts only use OHLCV cols so will never require metrics
-			chart_active_status[chart] = charts_config[chart]['active']
-
-	scope.pages['templates']['tests'] = metric_active_status
-	scope.pages['templates']['charts'] = chart_active_status
+		# check that the chart requires addional columns 
+		# many charts only use OHLCV cols so will never require metrics	
+		if charts_config[chart]['add_columns'] != None:
+			active_status_charts[chart] = charts_config[chart]['active']
+	
+	scope.pages['templates']['charts'] = active_status_charts
 
 
 

@@ -18,7 +18,7 @@ def scope_tests(scope):
 
 
 # ==============================================================================================================================================================
-# Analysis/Metrics Specification (included the tech indicators where appropriate)
+# Share Screener Test Specifications (included the tech indicators where appropriate)
 # ==============================================================================================================================================================
 
 active 			= 'active'				# True or False - The Analysis is active or inactive (displayed or not displayed)
@@ -27,7 +27,7 @@ column 			= 'column'				# OHLCV column required for the Analysis
 duration		= 'duration'			# the lenght or number of consecutive occurances
 timespan 		= 'timespan'			# The entire analysis Period
 trend			= 'trend'				# the trend or direction of the trend - up or down
-metrics			= 'metrics'				# Dictionary of Dataframe Column Params	
+add_columns		= 'add_columns'				# Dictionary of Dataframe Column Params	
 function		= 'function'			# The function to add the columns for this metric
 
 
@@ -40,7 +40,7 @@ tests_config = {
 	'trend_open'	: {
 						active			: False,
 						name			: 'Open trend',
-						metrics			: {
+						add_columns		: {
 											function : trend_cols,
 											column 	 : 'open',
 											trend	 : 'up',
@@ -51,7 +51,7 @@ tests_config = {
 	'trend_high'	: {
 						active			: True,
 						name			: 'High trend',
-						metrics			: {
+						add_columns		: {
 											function : trend_cols,
 											column 	 : 'high',
 											trend	 : 'up',
@@ -62,7 +62,7 @@ tests_config = {
 	'trend_low'	: {
 						active			: False,
 						name			: 'Low trend',
-						metrics			: {
+						add_columns		: {
 											function : trend_cols,
 											column 	 : 'low',
 											trend	 : 'up',
@@ -73,7 +73,7 @@ tests_config = {
 	'trend_close'	: {
 						active			: False,
 						name			: 'Close trend',
-						metrics			: {
+						add_columns		: {
 											function : trend_cols,
 											column 	 : 'close',
 											trend	 : 'up',
@@ -84,7 +84,7 @@ tests_config = {
 	'trend_volume'	: {
 						active			: False,
 						name			: 'Volume trend',
-						metrics			: {
+						add_columns		: {
 											function : trend_cols,
 											column 	 : 'volume',
 											trend	 : 'up',

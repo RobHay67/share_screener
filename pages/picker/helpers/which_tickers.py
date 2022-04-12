@@ -7,7 +7,10 @@ from data.tickers.model.multi_ticker_list import update_multi_ticker_list
 
 # TODO ticker_list st
 
-def ticker_selectors(scope,page):
+def ticker_selectors(scope):
+
+	page = scope.pages['display_page']
+
 	
 	selected_tickers_so_lets_load = False
 	ticker_list = []

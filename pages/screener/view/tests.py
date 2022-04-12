@@ -60,13 +60,13 @@ def view_tests(scope):
 
 			if submit_button:
 				print ( 'X'*100)
-				print( scope['config']['tests']['trend_high']['metrics']['duration'] )
+				print( scope['config']['tests']['trend_high']['add_columns']['duration'] )
 
 				for page in scope.pages['page_list']:
 					print(page)
 					if page == 'screener':													# all chart relevant pages
-						for ticker in scope.pages[page]['refresh_df']['tests'].keys():			# iterate through each ticker
-							print(scope.pages[page]['refresh_df']['tests'][ticker]['trend_high'] )
+						for ticker in scope.pages[page]['renew']['tests'].keys():			# iterate through each ticker
+							print(scope.pages[page]['renew']['tests'][ticker]['trend_high'] )
 
 	
 

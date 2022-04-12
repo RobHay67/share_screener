@@ -2,14 +2,14 @@ import streamlit as st
 
 
 # from pages.model.data_status import redo_page_data_singles_pages_all_tickers
-from pages.model.data_status import set_page_data_status
+from pages.data.status import set_page_data_status
 
 def edit_ohlcv(scope, config_name, metric ):
 	
 	display_name = scope.config[config_name][metric]['name']
 	
 	if config_name == 'charts':
-		previous_ohlcv_col = scope.config[config_name][metric]['metrics']['column']
+		previous_ohlcv_col = scope.config[config_name][metric]['add_columns']['column']
 	else:
 		previous_ohlcv_col = scope.config[config_name][metric]['column']
 	
@@ -23,7 +23,7 @@ def edit_ohlcv(scope, config_name, metric ):
 
 	if new_ohlcv_col != previous_ohlcv_col : 					# set to refresh pages if something has been changed
 		if config_name == 'charts':
-			scope.config[config_name][metric]['metrics']['column'] = new_ohlcv_col
+			scope.config[config_name][metric]['add_columns']['column'] = new_ohlcv_col
 			set_page_data_status(scope, charts=metric, caller='edit_ohlcv')
 		elif config_name == 'tests':
 			scope.config[config_name][metric]['column'] = new_ohlcv_col
@@ -38,7 +38,7 @@ def edit_ohlc(scope, config_name, metric ):
 	display_name = scope.config[config_name][metric]['name']
 	
 	if config_name == 'charts':
-		previous_ohlcv_col = scope.config[config_name][metric]['metrics']['column']
+		previous_ohlcv_col = scope.config[config_name][metric]['add_columns']['column']
 	else:
 		previous_ohlcv_col = scope.config[config_name][metric]['column']
 
@@ -51,7 +51,7 @@ def edit_ohlc(scope, config_name, metric ):
 
 	if new_ohlc_col != previous_ohlcv_col : 					# set to refresh pages if something has been changed
 		if config_name == 'charts':
-			scope.config[config_name][metric]['metrics']['column'] = new_ohlc_col
+			scope.config[config_name][metric]['add_columns']['column'] = new_ohlc_col
 			# redo_page_data_singles_pages_all_tickers(scope, metric)
 			set_page_data_status(scope, charts=metric, caller='edit_ohlc')
 		elif config_name == 'tests':

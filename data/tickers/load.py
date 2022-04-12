@@ -4,7 +4,9 @@ from config.results.results import store_result
 from data.tickers.model.ticker_path import path_for_ticker_file
 from data.tickers.model.read_csv import load_ticker
 from pages.view.results import view_results
-from pages.model.data_status import set_page_data_status
+from pages.data.status import set_page_data_status
+
+
 def load_tickers(scope):
 	
 	page = scope.pages['display_page']

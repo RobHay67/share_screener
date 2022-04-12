@@ -1,12 +1,13 @@
 import streamlit as st
 
-from pages.model.data_status import set_page_data_status
+from pages.data.status import set_page_data_status
+
 
 def edit_trend(scope, config_name, metric ):
 
 	display_name = scope.config[config_name][metric]['name']
 	
-	previous_trend = scope.config[config_name][metric]['metrics']['trend']
+	previous_trend = scope.config[config_name][metric]['add_columns']['trend']
 
 	new_trend = st.selectbox ( 
 									label=('Direction for ' + display_name), 

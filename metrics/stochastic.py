@@ -16,9 +16,9 @@ def stoch_cols(scope, chart_df, chart):
 	# https://school.stockcharts.com/doku.php?id=technical_indicators:stochastic_oscillator_fast_slow_and_full
 
 
-	lookback_days	= scope.config['charts'][chart]['metrics']['lookback_days']   # lookback days
-	signal 			= scope.config['charts'][chart]['metrics']['signal']
-	slow_k 			= scope.config['charts'][chart]['metrics']['slow']
+	lookback_days	= scope.config['charts'][chart]['add_columns']['lookback_days']   # lookback days
+	signal 			= scope.config['charts'][chart]['add_columns']['signal']
+	slow_k 			= scope.config['charts'][chart]['add_columns']['slow']
 
 	chart_df['highest_high'] 	= chart_df['high'].rolling(window=lookback_days).max()
 	chart_df['lowest_low'] 		= chart_df['low'].rolling(window=lookback_days).min()

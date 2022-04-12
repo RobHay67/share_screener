@@ -7,6 +7,8 @@ from pages.view.three_cols import three_cols
 
 def scope_results(scope):
 	# Results - for batch processing of multiple tickers
+	scope.config['results'] = {}
+
 	scope.config['results'] = { 
 								'passed':'', 
 								'passed_2':'', 
