@@ -24,8 +24,20 @@ def on_change_ticker_selection(scope:dict, page:str, widget_key:str):
 	
 	changed_value = scope[widget_key]
 
-	# store the selection in the selectors.ticker scope value
+	# store the selection
 	scope.pages[page]['selectors']['ticker'] = changed_value
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

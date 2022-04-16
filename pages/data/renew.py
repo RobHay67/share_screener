@@ -47,7 +47,7 @@ def update_page_dfs(scope):
 
 
 		# ====================================================================
-		# Replace the columns / metrics required for this ticker / chart 
+		# Replace the columns required for this ticker / chart 
 		# ====================================================================
 
 		expanders = list(scope.pages[page]['renew']['expanders'][ticker].keys())
@@ -57,7 +57,7 @@ def update_page_dfs(scope):
 			
 			renew_expander = scope.pages[page]['renew']['expanders'][ticker][expander]
 
-			# Check if we have been requested to renew the metrics columns for this ticker
+			# Check if we have been requested to renew the columns for this ticker
 			if renew_expander == True:
 				
 				if ticker in tickers_already_loaded_for_page:
@@ -99,10 +99,10 @@ def update_page_dfs(scope):
 					# chart_has_metric		= scope.config['expanders'][chart]['add_columns']
 					# metric_has_function 	= scope.config['expanders'][chart]['add_columns']['function']
 					
-					# Chart needs refreshing and has metrics and requires additional columns (function)
+					# Chart needs refreshing and has add_cols and requires additional columns (function)
 					# if chart_refresh_requested==True and chart_has_metric!=None and metric_has_function != None:	
 						
-						# # Call the metrics (column) adding function
+						# # Call the add_cols (column) adding function
 						# scope.config['expanders'][chart]['add_columns']['function'](scope, chart_df, chart)		
 						
 						# # reset Chart Data Refresh STATUS to prevent unnecesary updates

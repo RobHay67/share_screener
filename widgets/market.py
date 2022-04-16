@@ -1,16 +1,48 @@
 import streamlit as st
 
 
+
+
+
 def select_a_market(scope):
 
+	page = scope.pages['display_page']
+	
+	widget_key = 'widget_' + page + '_select_market'
 	previous_selection = scope.pages['screener']['selectors']['market']
+	pos_for_previous = scope.config['dropdowns']['markets'].index(previous_selection)	
 
-	selected_market = st.selectbox(
-									label='Add a Market to Ticker List',
-									options=scope.config['dropdowns']['markets'], 
-									index=scope.config['dropdowns']['markets'].index(previous_selection), 
-									help='Select an Entire Share Market for Analysis',
-									key='1'
-									)
+	st.selectbox ( 
+				label		='Add a Market to Ticker List',
+				options		=scope.config['dropdowns']['markets'],
+				index		=pos_for_previous, 
+				help		='Select an Entire Share Market for Analysis',
+				on_change	=on_change_market_selection,
+				args		=(scope, page, widget_key, ),
+				key			=widget_key,
+				) 
 
-	scope.pages['screener']['market'] = selected_market
+
+def on_change_market_selection(scope:dict, page:str, widget_key:str):
+	
+	changed_value = scope[widget_key]
+
+	# store the selection
+	scope.pages[page]['selectors']['market'] = changed_value
+
+
+
+
+# def select_a_market(scope):
+
+# 	previous_selection = scope.pages['screener']['selectors']['market']
+
+# 	selected_market = st.selectbox(
+# 									label='Add a Market to Ticker List',
+# 									options=scope.config['dropdowns']['markets'], 
+# 									index=scope.config['dropdowns']['markets'].index(previous_selection), 
+# 									help='Select an Entire Share Market for Analysis',
+# 									key='1'
+# 									)
+
+# 	scope.pages['screener']['market'] = selected_market

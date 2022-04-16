@@ -1,7 +1,7 @@
-from testing.config import tests_config
+from config.tests import tests_config
 from charts.config import charts_config
 
-# TODO - whenever we add a ticker to ohlcv, we need to also add it to refresh metrics!!
+# TODO - whenever we add a ticker to ohlcv, we need to also add it to refresh add_cols!!
 
 
 def scope_pages(scope):
@@ -14,7 +14,7 @@ def scope_pages(scope):
 	scope.pages['page_list'] = pages
 
 	
-	scope_page_templates(scope)								# add this initial default state for the screener and chart metrics
+	scope_page_templates(scope)								# add this initial default state for the screener and chart pages
 
 	# ==========================================
 	# Page Specific Configuration
@@ -77,7 +77,7 @@ def scope_page_templates(scope):
 
 	for chart in charts_config.keys():
 		# check that the chart requires addional columns 
-		# many charts only use OHLCV cols so will never require metrics	
+		# many charts only use OHLCV cols so will never require additional columns	
 		if charts_config[chart]['add_columns'] != None:
 			active_status_charts[chart] = charts_config[chart]['active']
 	

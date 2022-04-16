@@ -43,7 +43,7 @@ def view_tests(scope):
 		# form.text_input(label='Criteria for OHLCV ticker values')
 		
 		# st.write('This will be the criteria')
-		# st.header('This will be the metrics selection page')
+		# st.header('This will be the add_cols selection page')
 
 		with st.form(key='my_form'):
 			text_input = st.text_input(label='Criteria for OHLCV ticker values')
@@ -62,11 +62,35 @@ def view_tests(scope):
 				print ( 'X'*100)
 				print( scope['config']['tests']['trend_high']['add_columns']['duration'] )
 
-				for page in scope.pages['page_list']:
-					print(page)
-					if page == 'screener':													# all chart relevant pages
-						for ticker in scope.pages[page]['renew']['tests'].keys():			# iterate through each ticker
-							print(scope.pages[page]['renew']['tests'][ticker]['trend_high'] )
+				ticker_list = scope.pages['screener']['ticker_list']
+				print(ticker_list)
+
+				for ticker in scope.pages['screener']['ticker_list']:
+					print(ticker)
+					# print(scope.pages['screener'][])
+
+
+
+				# 	print(scope.pages['screener']['renew']['tests'][ticker]['trend_high'] )
+
+				# for page in scope.pages['page_list']:
+				# 	print(page)
+				# 	if page == 'screener':													# all chart relevant pages
+				# 		for ticker in scope.pages[page]['renew']['tests'].keys():			# iterate through each ticker
+				# 			print(scope.pages[page]['renew']['tests'][ticker]['trend_high'] )
+
+			# This is the original code - i think I hjave mucked up the names
+			# TODO 
+			print('Rob you are trying to get the test results to print, but i suspect they are not being stored in the correct object either')
+			# if submit_button:
+			# 	print ( 'X'*100)
+			# 	print( scope['screener_tests']['trend_high']['metrics']['duration'] )
+
+			# 	for page in scope.pages.keys():
+			# 		print(page)
+			# 		if page == 'screener':													# all chart relevant pages
+			# 			for ticker in scope.pages[page]['add_metric_data'].keys():			# iterate through each ticker
+			# 				print(scope.pages[page]['add_metric_data'][ticker]['trend_high'] )
 
 	
 
@@ -100,7 +124,7 @@ from pages.view.three_cols import three_cols
 
 
 # def view_tests(scope):
-# 	st.header('Screener Metrics')
+# 	st.header('Screener add_cols')
 # 	three_cols( 'Limit for the Number of (recent) rows in each Analysis Page', scope.pages['row_limit'], 'page_row_limit' )
 # 	st.markdown("""---""")
 

@@ -1,6 +1,6 @@
-from pages.view.title import render_page_title
+from pages.view.header import render_page_title
 from charts.controller import plot_charts
-
+from pages.picker.controller import render_ticker_picker
 
 
 
@@ -9,7 +9,10 @@ from charts.controller import plot_charts
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def render_single_ticker_page(scope):
 	
-	render_page_title(scope, 'Ticker Analysis')
+	render_page_title(scope, 'Ticker Analysis (single ticker)')
+
+	render_ticker_picker(scope)
+
 
 	ticker = scope.pages['single']['selectors']['ticker']
 

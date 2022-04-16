@@ -4,7 +4,7 @@ import pytz
 
 from config.markets.config import opening_hours
 
-from pages.view.title import render_page_title
+from pages.view.header import render_page_title
 from pages.volume.view.times import view_local_vs_market_time
 from pages.volume.view.input_volume import view_input_volume
 from pages.volume.view.prediction import view_prediction

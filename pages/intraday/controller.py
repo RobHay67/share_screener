@@ -1,5 +1,5 @@
-from pages.view.title import render_page_title
-from pages.view.title import render_page_title
+from pages.view.header import render_page_title
+from pages.picker.controller import render_ticker_picker
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -9,6 +9,8 @@ from pages.view.title import render_page_title
 def render_intraday_page(scope):
 	# render_page_title(scope, 'Intra Day Analysis', 'intraday')
 	render_page_title(scope, 'Intra Day Analysis')
+
+	render_ticker_picker(scope)
 
 	ticker = scope.pages['single']['selectors']['ticker']
 

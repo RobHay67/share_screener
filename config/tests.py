@@ -1,4 +1,4 @@
-from metrics.trend import trend_cols
+from add_cols.trend import trend_cols
 
 
 

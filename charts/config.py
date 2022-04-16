@@ -57,25 +57,25 @@ from charts.charts.line 			import line_plot
 # Secondary Charts -----------------------------------
 from charts.charts.volume 			import volume_plot
 # from charts.charts.vac											# TODO
-from metrics.vpm					import vpm_cols
+from add_cols.vpm					import vpm_cols
 from charts.charts.vpm 				import vpm_plot
-from metrics.macd					import macd_cols
+from add_cols.macd					import macd_cols
 from charts.charts.macd 			import macd_plot
-from metrics.macd_on_volume			import macd_vol_cols
+from add_cols.macd_on_volume			import macd_vol_cols
 from charts.charts.macd_vol			import macd_vol_plot
-from metrics.rsi 					import rsi_cols
+from add_cols.rsi 					import rsi_cols
 from charts.charts.rsi 				import rsi_plot
-from metrics.stochastic				import stoch_cols
+from add_cols.stochastic				import stoch_cols
 from charts.charts.stoch 			import stoch_plot
 # from analysis.charts.				# Volume Oscillator				# TODO
 # from charts.roc													# TODO - not sure what this one is ROb - investigate and add in - i think it might be a primary chart
 											
 # Overlays -------------------------------------------
-from metrics.sma					import sma_cols
+from add_cols.sma					import sma_cols
 from charts.overlays.sma 			import sma_plot
-from metrics.ema					import ema_cols
+from add_cols.ema					import ema_cols
 from charts.overlays.ema 			import ema_plot
-from metrics.dividends				import dividend_cols
+from add_cols.dividends				import dividend_cols
 from charts.overlays.dividends 		import dividend_plot
 
 

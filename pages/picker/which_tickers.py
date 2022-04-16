@@ -29,16 +29,21 @@ def ticker_selectors(scope):
 			if ticker not in scope.pages[page]['ticker_list']:
 				scope.pages[page]['ticker_list'].append(ticker)						
 	
-	else:	
+	if page == 'screener':	
+		print('right here')
 		# Screener Page (Potentially Multiple Tickers)
 		
 		with scope.col1: select_tickers(scope)
 		with scope.col2: select_industries(scope)
 		with scope.col2: select_a_market(scope)
 
-		market 		= scope.pages['screener']['market'] != 'select entire market'
-		industries 	= len(scope.pages['screener']['industries']) != 0
-		tickers 	= len(scope.pages['screener']['tickers']) != 0
+		market 		= scope.pages['screener']['selectors']['market'] != 'select entire market'
+		industries 	= len(scope.pages['screener']['selectors']['industries']) != 0
+		tickers 	= len(scope.pages['screener']['selectors']['tickers']) != 0
+		
+
+		print(industries)
+
 
 		if market or industries or tickers: 
 			selected_tickers_so_lets_load = True

@@ -6,12 +6,18 @@ import streamlit as st
 
 def view_test_results(scope):
 
-	st.write('**Screener Results**')
+	st.write('**Test Results**')
 
-	all_test_results_df = scope.pages['screener']['test_results_df']
+	# page = scope.pages['display_page']
+
+	all_test_results_df = scope.pages['tests']['df']
+
+	print(all_test_results_df)
+
 	if len(all_test_results_df) > 0:
 		passed_test_results_df = all_test_results_df[all_test_results_df['all_test_results'] == 'passed']
 		failed_test_results_df = all_test_results_df[all_test_results_df['all_test_results'] == 'failed']
+		
 	else:
 		passed_test_results_df = {}
 		failed_test_results_df = {}

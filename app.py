@@ -5,9 +5,15 @@
 # git branch -d <branch>   will delete local branch
 # ------------------------------------------------- Package Management
 # pip3 install --user --upgrade django
-# pipenv install flask==0.12.1
-# pipenv install mplfinance===0.12.7a5
-# ------------------------------------------------- 
+# ------------------------------------------------- Pipenv
+# cd into project folder 
+# activate Pipenv 	- pipenv shell
+# deactivate env	- exit
+# add a package 	- pipenv install django
+# upgrade package	- 
+# specify ver   	- pipenv install mplfinance===0.12.7a5
+# latest ver		- pipenv update pandas
+# delete pkg		- pipenv uninstall django
 
 # Testing Code - TODO - delete later
 import pandas as pd

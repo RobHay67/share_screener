@@ -4,7 +4,7 @@ from config.streamlit import set_streamlit_page_config
 
 from charts.config import scope_charts
 from config.results.config import scope_results
-from testing.config import scope_tests
+from config.tests import scope_tests
 
 from files.config import scope_files
 from data.config import scope_data
@@ -12,7 +12,7 @@ from pages.config import scope_pages
 from strategies.config import scope_strategy
 
 from pages.welcome.home_page import render_project_welcome
-from config.model.dropdowns import update_dropdowns
+from config.dropdowns import update_dropdowns
 
 
 

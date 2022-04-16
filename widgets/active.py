@@ -10,11 +10,11 @@ from pages.config import scope_page_templates
 
 
 def edit_active(scope, config_name, metric ):
-	print('config_name = ', config_name)
-	print('metric      = ', metric)
+	# print('config_name = ', config_name)
+	# print('metric      = ', metric)
 
-	print('This is the scope object')
-	print(scope.config[config_name][metric])
+	# print('This is the scope object')
+	# print(scope.config[config_name][metric])
 
 	
 	display_name =  '' + scope.config[config_name][metric]['name']
@@ -29,8 +29,8 @@ def edit_active(scope, config_name, metric ):
 
 	scope.config[config_name][metric]['active'] = new_active_status
 
-	if new_active_status != previous_active_status : 				# set to refresh metrics if something has been changed
-		scope_page_templates(scope)									# rebase the active and inactive page metrics
+	if new_active_status != previous_active_status : 				# set to refresh add_cols if something has been changed
+		scope_page_templates(scope)									# rebase the active and inactive page add_cols
 		if config_name == 'charts':
 			set_page_renew_status(scope, expanders=metric, caller='edit_active')
 		elif config_name == 'tests':

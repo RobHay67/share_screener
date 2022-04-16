@@ -106,7 +106,7 @@ def list_of_tickers_for_page(scope, page, tickers):
 
 # set_page_renew_status(scope, charts='chart name')
 # def redo_page_data_singles_pages_all_tickers(scope, chart):
-# 	# One of the Chart Metrics has changed i.e. made active or changed a value from say 21 to 34
+# 	# One of the Chart add_cols has changed i.e. made active or changed a value from say 21 to 34
 # 	for page in scope.pages['page_list']:
 # 		if page != 'screener':													# all chart relevant pages
 # 			for ticker in scope.pages[page]['renew']['expanders'].keys():			# iterate through each ticker
@@ -116,7 +116,7 @@ def list_of_tickers_for_page(scope, page, tickers):
 
 # set_page_renew_status(scope, test='test name')
 # def redo_page_data_screener_page_all_tickers(scope, test):
-# 	# One of the Screener Metrics has changed i.e. made active or changed a value from say 21 to 34
+# 	# One of the Screener add_cols has changed i.e. made active or changed a value from say 21 to 34
 # 	for page in scope.pages['page_list']:
 # 		if page == 'screener':													# Only the Screener Page
 # 			for ticker in scope.pages[page]['renew']['tests'].keys():			# iterate through each ticker
