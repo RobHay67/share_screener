@@ -2,14 +2,25 @@
 
 
 
+def create_ticker_list(scope, ticker):
+
+	# Store the selected ticker in the ticker_list for the page
+	
+	page = scope.pages['display_page']
+	
+	
+	if ticker not in scope.pages[page]['ticker_list']:
+		scope.pages[page]['ticker_list'].append(ticker)		
+
+	# used for y_finance downloading
+	# TODO - Rob to flesh this bit out - seems like a quick fix for the downloader
+	scope.data['download']['industries'] = ['random_tickers']
+
+				
 
 
 
-# -------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Multi Page - Ticker List Constructor
-# -------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-def update_multi_ticker_list(scope):
+def create_screener_ticker_list(scope):
 
 	ticker_list = []
 	relevant_industries = []
@@ -44,7 +55,5 @@ def update_multi_ticker_list(scope):
 	
 	scope.pages['screener']['ticker_list'] = ticker_list
 	scope.data['download']['industries'] = relevant_industries
-
-
 
 

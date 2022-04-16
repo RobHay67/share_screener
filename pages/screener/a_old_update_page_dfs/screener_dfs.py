@@ -1,7 +1,11 @@
 
+# This is old code - TODO - just keeping until I can get the new code working
+
+
 
 from pages.screener.model.tests import update_test_results_dict
 from pages.screener.model.tests import screener_all_active_test_results
+
 
 
 def update_screener_dfs(scope):
@@ -55,3 +59,4 @@ def update_screener_metrics(scope):
 						scope.pages[page]['renew']['tests'][ticker][test] = False					# reset Test data STATUS to prevent unnecesary updates
 		screener_all_active_test_results(scope)															# determine overall test result summary
 
+		

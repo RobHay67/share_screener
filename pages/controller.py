@@ -1,5 +1,5 @@
 
-from pages.welcome.home_page import render_project_welcome
+from pages.home_page import render_project_welcome
 from pages.single.controller import render_single_ticker_page
 from pages.research.controller import render_research_page
 from pages.intraday.controller import render_intraday_page

@@ -1,7 +1,7 @@
 
 
 
-def sma_cols(scope, chart_df, chart):
+def sma_cols( scope, chart, ticker, chart_df):
 	# Add a Simple Moving Average (SMA)
 	# https://www.investopedia.com/terms/s/sma.asp
 	

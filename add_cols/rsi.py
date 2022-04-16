@@ -4,7 +4,7 @@ import numpy as np
 
 
 
-def rsi_cols(scope, chart_df, chart):
+def rsi_cols( scope, chart, ticker, chart_df):
 	# Relative Strength Index (RSI)
 	
 	# RSI = https://www.investopedia.com/terms/r/rsi.asp

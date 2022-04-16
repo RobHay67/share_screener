@@ -2,20 +2,6 @@ from add_cols.trend import trend_cols
 
 
 
-def scope_tests(scope):
-
-	scope.config['tests'] = {}
-
-	scope.config['tests']['trends']	= trend_direction
-	scope.config['tests']['test_list']	= list(tests_config.keys())
-
-	for test, config in tests_config.items():
-		scope.config['tests'][test] = config
-
-
-
-
-
 
 # ==============================================================================================================================================================
 # Share Screener Test Specifications (included the tech indicators where appropriate)
@@ -93,4 +79,3 @@ tests_config = {
 										},
 					},
 }
-

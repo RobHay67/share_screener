@@ -1,7 +1,7 @@
 
 
 
-def ema_cols( scope, chart_df, chart):
+def ema_cols(  scope, chart, ticker, chart_df):
 	# add an Exponential Moving Average (EMA)
 	
 	# EMA  = https://www.investopedia.com/terms/e/ema.asp

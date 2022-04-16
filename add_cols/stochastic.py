@@ -4,7 +4,7 @@ import numpy as np
 
 
 
-def stoch_cols(scope, chart_df, chart):
+def stoch_cols( scope, chart, ticker, chart_df):
 	# Stochastic Oscillator
 	
 	# 1) identify overbrought and oversold regions and look for reversals

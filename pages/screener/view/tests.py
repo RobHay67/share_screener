@@ -4,7 +4,7 @@ import streamlit as st
 from widgets.constructors.ohlcv_trend import render_ohlcv_trend
 
 
-def view_tests(scope):
+def render_screener_tests(scope):
 	
 	st.markdown("""---""")
 	st.write('**Fundamental Analysis**')
@@ -63,10 +63,9 @@ def view_tests(scope):
 				print( scope['config']['tests']['trend_high']['add_columns']['duration'] )
 
 				ticker_list = scope.pages['screener']['ticker_list']
-				print(ticker_list)
 
-				for ticker in scope.pages['screener']['ticker_list']:
-					print(ticker)
+				# for ticker in scope.pages['screener']['ticker_list']:
+				# 	print(ticker)
 					# print(scope.pages['screener'][])
 
 
@@ -123,7 +122,7 @@ from pages.view.three_cols import three_cols
 
 
 
-# def view_tests(scope):
+# def render_screener_tests(scope):
 # 	st.header('Screener add_cols')
 # 	three_cols( 'Limit for the Number of (recent) rows in each Analysis Page', scope.pages['row_limit'], 'page_row_limit' )
 # 	st.markdown("""---""")

@@ -4,10 +4,10 @@ import pandas as pd
 from data.tickers.model.metadata import fetch_yfinance_metadata
 
 
-def dividend_cols( scope, chart_df, chart):
+def dividend_cols( scope, chart, ticker, chart_df):
 
 	page 	= scope.pages['display_page']
-	ticker 	= scope.pages[page]['ticker_list'][0]
+	# ticker 	= scope.pages[page]['ticker_list'][0]
 
 	# Fetch the Dividend Information for this ticker
 	metadata = fetch_yfinance_metadata(ticker)

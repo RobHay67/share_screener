@@ -4,7 +4,7 @@ import streamlit as st
 
 
 
-def view_test_results(scope):
+def render_test_results(scope):
 
 	st.write('**Test Results**')
 
