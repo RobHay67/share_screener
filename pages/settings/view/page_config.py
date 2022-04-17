@@ -170,6 +170,10 @@ def view_dropdowns(scope):
 		st.selectbox(label='Select a Column', options=scope.config['dropdowns']['price_columns '],	key='96')
 
 
+
+
+
+
 # TODO - rob - this was the original report showing all the ticker selectors
 
 # def selected_tickers_for_each_page(scope): # 

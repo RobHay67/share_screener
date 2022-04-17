@@ -15,7 +15,7 @@
 # latest ver		- pipenv update pandas
 # delete pkg		- pipenv uninstall django
 
-# Testing Code - TODO - delete later
+# Testing Code - TODO - delete on Final Release
 import pandas as pd
 pd.set_option('display.max_rows', 5000)
 pd.set_option('display.max_columns', 500)

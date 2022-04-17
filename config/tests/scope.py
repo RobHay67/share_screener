@@ -17,5 +17,3 @@ def scope_tests(scope):
 
 
 
-
-

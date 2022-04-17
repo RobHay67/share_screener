@@ -2,9 +2,6 @@
 import numpy as np
 
 
-from config.tests.results import store_test_results
-
-
 def trend_cols(scope, test, ticker, screener_df):
 
 	column 		= scope.config['tests'][test]['add_columns']['column']
@@ -26,8 +23,7 @@ def trend_cols(scope, test, ticker, screener_df):
 	screener_df.drop(['temp_shifted', 'temp_trend', 'temp_trend_total'], axis=1, inplace=True)
 
 
-	#TODO - store the test result right here
-	store_test_results(scope, test, ticker, screener_df)
+
 
 
 

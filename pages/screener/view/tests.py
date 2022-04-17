@@ -58,11 +58,11 @@ def render_screener_tests(scope):
 
 			submit_button = st.form_submit_button(label='Apply OHLCV Criteria')
 
-			if submit_button:
-				print ( 'X'*100)
-				print( scope['config']['tests']['trend_high']['add_columns']['duration'] )
+			# if submit_button:
+			# 	print ( 'X'*100)
+			# 	print( scope['config']['tests']['trend_high']['add_columns']['duration'] )
 
-				ticker_list = scope.pages['screener']['ticker_list']
+			# 	ticker_list = scope.pages['screener']['ticker_list']
 
 				# for ticker in scope.pages['screener']['ticker_list']:
 				# 	print(ticker)
@@ -80,7 +80,6 @@ def render_screener_tests(scope):
 
 			# This is the original code - i think I hjave mucked up the names
 			# TODO 
-			print('Rob you are trying to get the test results to print, but i suspect they are not being stored in the correct object either')
 			# if submit_button:
 			# 	print ( 'X'*100)
 			# 	print( scope['screener_tests']['trend_high']['metrics']['duration'] )
@@ -119,26 +118,3 @@ def render_screener_tests(scope):
 from pages.view.three_cols import three_cols
 
 
-
-
-
-# def render_screener_tests(scope):
-# 	st.header('Screener add_cols')
-# 	three_cols( 'Limit for the Number of (recent) rows in each Analysis Page', scope.pages['row_limit'], 'page_row_limit' )
-# 	st.markdown("""---""")
-
-# 	col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([1,1,1,1,1,1,1,1])
-	
-# 	with col1: render_ohlcv_trend(scope, 'trend_open',   'open')
-# 	with col2: render_ohlcv_trend(scope, 'trend_high',   'high')
-# 	with col3: render_ohlcv_trend(scope, 'trend_low',    'low')
-# 	with col4: render_ohlcv_trend(scope, 'trend_close',  'close')
-# 	with col5: render_ohlcv_trend(scope, 'trend_volume', 'volume')
-
-
-# 	# 	st.markdown('##### Charts without additional Variables')
-# 	# 	render_activate_metric(scope, 'volume')
-# 	# 	render_activate_metric(scope, 'vac')
-# 	# 	render_activate_metric(scope, 'vol_per_minute')
-# 	# # with col2: 
-# 	# with col3: render_macd(scope)

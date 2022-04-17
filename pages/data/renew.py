@@ -1,10 +1,4 @@
 
-# TODO - confirm we need these libraries
-
-
-# from pages.screener.model.tests import store_test_results
-from pages.screener.model.tests import screener_all_active_test_results
-from config.tests.results import create_test_result_summary
 
 
 def renew_pages_dfs(scope):
@@ -20,9 +14,7 @@ def renew_pages_dfs(scope):
 		
 		renew_ticker_data_status = scope.pages[page]['renew']['ticker_data'][ticker]
 
-		
-		# renew_expansions_for_ticker = list(scope.pages[page]['renew']['expanders']  [ticker].keys())
-		# ====================================================================
+				# ====================================================================
 		# Replace all of the ticker data for the ticker
 		# ====================================================================
 
@@ -80,19 +72,21 @@ def renew_pages_dfs(scope):
 						# Call the column adding function for this expander
 						scope.config[config_group][expander]['add_columns']['function'](scope, expander, ticker, ticker_df)
 					
-						# if page == 'screener':
-						# 	# Store any test results (only for screener page)
-						# 	store_test_results(scope, ticker, expander, ticker_df)						# store the test results for reporting
-
 						# reset the refresh.metric_cols STATUS to prevent further updates
 						scope.pages[page]['renew']['expanders'][ticker][expander] = False	
 
-		# ====================================================================
-		# Summary Result for any tests
-		# ====================================================================
 
-		create_test_result_summary(scope)
 
+
+
+
+
+
+
+
+
+
+# TODO - delete after getting the screener testing code working
 # Below is the original code which seemed to work ok
 
 def update_screener_dfs(scope):
@@ -143,7 +137,8 @@ def update_screener_metrics(scope):
 						
 						update_test_results_dict(scope, ticker, test, screener_df)						# store the test results for reporting
 						scope.pages[page]['renew']['tests'][ticker][test] = False						# reset Test data STATUS to prevent unnecesary updates
-		screener_all_active_test_results(scope)															# determine overall test result summary
+		
+		# screener_all_active_test_results(scope)															# determine overall test result summary
 
 
 

@@ -51,7 +51,6 @@
 # CaM 	= re Calculate ALL     		active add_cols for every Ticker in the page				DONE - Function Added
 # CsM	= re Calculate changed 		active add_cols for every Ticker in the page 			DONE - Function Added
 
-# TODO
 # tag the add_cols when they have been run													DONE - updated function
 # update the scope.page_metrics after changes made 											DONE
 # change the test after editing scope.page_metrics											DONE

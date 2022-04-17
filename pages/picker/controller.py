@@ -44,15 +44,7 @@ def render_ticker_picker(scope):
 		if download_new_ticker_data: 
 			download_tickers(scope)
 
-
-
 		renew_pages_dfs(scope)  
-
-		#TODO this is where we used to update the columns (as per the renew_pages_dfs)
-		print('Rob - we need to have an update columns function - copy from the a_old_update_page_dfs module')
-
-
-
 
 		with scope.col5: 
 			show_ticker_files = ticker_file_button(scope)

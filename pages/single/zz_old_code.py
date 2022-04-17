@@ -17,7 +17,7 @@ import streamlit as st
 
 # def share_index_params(params):
 	# trading halt params
-	# TODO - come back to this one if needed
+	# - come back to this one if needed
 	# params.ticker_index['specified_trading_halt_codes'] = args.record_trading_halt_dates
 	# if params.ticker_index['specified_trading_halt_codes'] == None:
 	# 	params.ticker_index['edit_index'] = False
@@ -39,7 +39,7 @@ def analysis_params(params):
 	# at the moment, these are the same as the expected dates
 	
 	# will usually be yesterday unless we are running after 5PM today in which case it can be today
-	# TODO - need to workout how to calculate this 
+	# - need to workout how to calculate this 
 	# params.analysis['end_adjust'] =  1 if datetime.today().hour < 17 else 0  	
 	# params.analysis['start'] = ( datetime.today() - timedelta(days=params.analysis['no_of_days']) )
 	# params.analysis['end']   = ( datetime.today() - timedelta(days=params.analysis['end_adjust']) )

@@ -13,18 +13,13 @@ def render_screener_page(scope):
 	render_page_title(scope, 'Ticker Screener')
 
 	render_ticker_picker(scope)
-
-	# create_test_result_summary(scope)
 	
 	render_test_results(scope)
 
 	render_screener_tests(scope)
 
-	# TODO we want to be able to jumpt to single stock analysis from any list - that migth be cool!!!
 
+	# TODO we want to be able to jumpt to single stock analysis from any list - that migth be cool!!!
 
 	example_settings(scope)
 	
-
-	print('ROb - need to wire the function <screener_all_active_test_results > into the screener page after all the tests have run')
-
