@@ -8,28 +8,35 @@ def render_test_results(scope):
 
 	st.write('**Test Results**')
 
+	print('X'*66)
+
 	# page = scope.pages['display_page']
 
-	all_test_results_df = scope.pages['tests']['df']
+	test_results_df = scope.pages['tests']['df']
+	                  #   scope.pages['tests']['df'] = test_results_df
 
-	print(all_test_results_df)
+	# print('.'*77)
+	print('test_results_df')
+	print(test_results_df)
 
-	if len(all_test_results_df) > 0:
-		passed_test_results_df = all_test_results_df[all_test_results_df['all_test_results'] == 'passed']
-		failed_test_results_df = all_test_results_df[all_test_results_df['all_test_results'] == 'failed']
+	
+
+	if len(test_results_df) > 0:
+		passed_test_results_df = test_results_df[test_results_df['summary_result'] == 'pass']
+		failed_test_results_df = test_results_df[test_results_df['summary_result'] == 'fail']
 		
 	else:
 		passed_test_results_df = {}
 		failed_test_results_df = {}
 
-	my_expander = st.expander(label='Passed All Tests', expanded=True )
+	my_expander = st.expander(label='Passed Every Test', expanded=True )
 	my_expander.dataframe(passed_test_results_df, 2000, 2000)	
 
-	my_expander = st.expander(label='Failed All Tests', expanded=False )
+	my_expander = st.expander(label='Failed Every Test', expanded=False )
 	my_expander.dataframe(failed_test_results_df, 2000, 2000)	
 
-	my_expander = st.expander(label='All Test Results', expanded=False )
-	my_expander.dataframe(all_test_results_df, 2000, 2000)	
+	my_expander = st.expander(label='Every Test Result', expanded=False )
+	my_expander.dataframe(test_results_df, 2000, 2000)	
 
 
 	# my_expander = st.expander(label=(ticker+' ( ' + no_of_rows + ' )'), expanded=render_expanded )

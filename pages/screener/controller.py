@@ -3,6 +3,8 @@ from pages.picker.controller import render_ticker_picker
 from pages.screener.view.results import render_test_results
 from pages.screener.view.tests import render_screener_tests
 
+
+
 from pages.view.screener_example import example_settings			#TODO fleshing out some ideas - delete when happy
 
 
@@ -11,6 +13,8 @@ def render_screener_page(scope):
 	render_page_title(scope, 'Ticker Screener')
 
 	render_ticker_picker(scope)
+
+	# create_test_result_summary(scope)
 	
 	render_test_results(scope)
 

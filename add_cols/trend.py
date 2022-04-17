@@ -21,7 +21,7 @@ def trend_cols(scope, test, ticker, screener_df):
 
 	screener_df['temp_trend_total'] = screener_df['temp_trend'].rolling(timespan, min_periods=1).sum().astype(int)
 
-	screener_df[test] = np.where( screener_df['temp_trend_total'] >= duration, 'passed', 'failed')
+	screener_df[test] = np.where( screener_df['temp_trend_total'] >= duration, 'pass', 'fail')
 
 	screener_df.drop(['temp_shifted', 'temp_trend', 'temp_trend_total'], axis=1, inplace=True)
 

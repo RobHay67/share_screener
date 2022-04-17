@@ -2,9 +2,9 @@
 # TODO - confirm we need these libraries
 
 
-from pages.screener.model.tests import store_test_results
+# from pages.screener.model.tests import store_test_results
 from pages.screener.model.tests import screener_all_active_test_results
-
+from config.tests.results import create_test_result_summary
 
 
 def renew_pages_dfs(scope):
@@ -80,13 +80,18 @@ def renew_pages_dfs(scope):
 						# Call the column adding function for this expander
 						scope.config[config_group][expander]['add_columns']['function'](scope, expander, ticker, ticker_df)
 					
-						if page == 'screener':
-							# Store any test results (only for screener page)
-							store_test_results(scope, ticker, expander, ticker_df)						# store the test results for reporting
+						# if page == 'screener':
+						# 	# Store any test results (only for screener page)
+						# 	store_test_results(scope, ticker, expander, ticker_df)						# store the test results for reporting
 
 						# reset the refresh.metric_cols STATUS to prevent further updates
 						scope.pages[page]['renew']['expanders'][ticker][expander] = False	
 
+		# ====================================================================
+		# Summary Result for any tests
+		# ====================================================================
+
+		create_test_result_summary(scope)
 
 # Below is the original code which seemed to work ok
 
