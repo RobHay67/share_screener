@@ -1,8 +1,9 @@
 import os
-import pathlib
-import streamlit as st
 
+import streamlit as st
 from pages.view.three_cols import three_cols
+
+
 
 def scope_files(scope):
 
@@ -10,23 +11,23 @@ def scope_files(scope):
 
 	# Folders
 	scope.files['folders'] = {}
-	scope.files['folders']['project'] = pathlib.Path(__file__).parent.parent.resolve()
-	scope.files['folders']['files'] = pathlib.Path.home().joinpath( scope.files['folders']['project'], 'files' )
-	scope.files['folders']['tickers'] = pathlib.Path.home().joinpath( scope.files['folders']['files'], 'tickers' )
-	scope.files['folders']['results_analysis'] = pathlib.Path.home().joinpath( scope.files['folders']['project'], scope.files['folders']['tickers'], 'results_analysis' )
-	scope.files['folders']['website'] = pathlib.Path.home().joinpath( scope.files['folders']['project'], scope.files['folders']['tickers'], 'website' )
+	scope.files['folders']['project'] 			= os.path.abspath(os.curdir)
+	scope.files['folders']['files'] 			= os.path.join(scope.files['folders']['project'], 'files')
+	scope.files['folders']['tickers']			= os.path.join(scope.files['folders']['files']  , 'tickers')
+	scope.files['folders']['results_analysis'] 	= os.path.join(scope.files['folders']['files'], 'results_analysis')
+	scope.files['folders']['website'] 			= os.path.join(scope.files['folders']['files'], 'website')
+
 	# Ensure that the folders exist
-	if not os.path.isdir( scope.files['folders']['project'] ) : os.makedirs( scope.files['folders']['project'] )
-	if not os.path.isdir( scope.files['folders']['tickers'] ) : os.makedirs( scope.files['folders']['tickers'] )
-	if not os.path.isdir( scope.files['folders']['results_analysis'] ) : os.makedirs( scope.files['folders']['results_analysis'] )
-	if not os.path.isdir( scope.files['folders']['website'] ) : os.makedirs( scope.files['folders']['website'] )
+	if not os.path.isdir( scope.files['folders']['project'] ) 			: os.makedirs( scope.files['folders']['project'] )
+	if not os.path.isdir( scope.files['folders']['tickers'] ) 			: os.makedirs( scope.files['folders']['tickers'] )
+	if not os.path.isdir( scope.files['folders']['results_analysis'] ) 	: os.makedirs( scope.files['folders']['results_analysis'] )
+	if not os.path.isdir( scope.files['folders']['website'] ) 			: os.makedirs( scope.files['folders']['website'] )
 	
 	# File Paths
 	scope.files['paths'] = {}
-	scope.files['paths']['ticker_index'] = pathlib.Path.home().joinpath( scope.files['folders']['files'], 'ticker_index.csv' )
+	scope.files['paths']['ticker_index'] = os.path.join(scope.files['folders']['files'], 'ticker_index.csv')
 	scope.files['paths']['ticker_data'] = 'not yet set'
-	scope.files['paths']['website'] = pathlib.Path.home().joinpath( scope.files['folders']['website'], 'strategy_results.json' )
-
+	scope.files['paths']['website'] = os.path.join(scope.files['folders']['website'], 'strategy_results.json')
 
 
 
@@ -46,3 +47,14 @@ def view_folders(scope):
 	three_cols( 'Path for Share Index File', scope.files['paths']['ticker_index'], 'path_ticker_index', diff_col_size )
 	three_cols( 'Path for Website Output File', scope.files['paths']['website'], 'path_website_file', diff_col_size )
 	three_cols( 'Path for Share Data File', scope.files['paths']['ticker_data'], 'path_ticker_data_file', diff_col_size )
+
+
+
+
+# TODO - delete - old folder using pathlib
+# scope.files['folders']['project'] = pathlib.Path(__file__).parent.parent.resolve()
+# scope.files['folders']['files'] = pathlib.Path.home().joinpath( scope.files['folders']['project'], 'files' )
+# scope.files['folders']['tickers'] = pathlib.Path.home().joinpath( scope.files['folders']['files'], 'tickers' )
+# scope.files['folders']['results_analysis'] = pathlib.Path.home().joinpath( scope.files['folders']['project'], scope.files['folders']['tickers'], 'results_analysis' )
+# scope.files['folders']['website'] = pathlib.Path.home().joinpath( scope.files['folders']['project'], scope.files['folders']['tickers'], 'website' )
+	
