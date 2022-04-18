@@ -60,7 +60,7 @@ def scope_config(scope):
 	scope.config['dropdowns']['tickers'] = []
 	scope.config['dropdowns']['ticker'] = []
 	scope.config['dropdowns']['ohlcv_columns'] 	= ['open', 'high', 'low', 'close', 'volume']
-	scope.config['dropdowns']['price_columns '] = ['open', 'high', 'low', 'close' 		   ]	
+	scope.config['dropdowns']['price_columns'] = ['open', 'high', 'low', 'close' 		   ]	
 
 
 	scope_tests(scope)

@@ -2,8 +2,8 @@ import streamlit as st
 
 
 
-from widgets.row_limit import render_row_limit
-from widgets.download_days import render_download_days
+from widgets.row_limit import edit_row_limit
+from widgets.download_days import edit_download_days
 
 def render_sidebar(scope):
 	
@@ -24,8 +24,8 @@ def render_sidebar(scope):
 	
 
 	st.sidebar.subheader('Download and Analysis Settings')
-	render_download_days(scope)
-	render_row_limit(scope)
+	edit_download_days(scope)
+	edit_row_limit(scope)
 
 
 	st.sidebar.button('Settings > all'		, on_click=set_page, args=(scope, 'scope', ))

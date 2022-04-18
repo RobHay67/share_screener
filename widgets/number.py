@@ -1,33 +1,33 @@
-from curses import keyname
+
 import streamlit as st
 
 from pages.data.status import set_page_renew_status
-
 	
-def edit_number(scope, config_name, metric, measure ):
-	
-	widget_key 		= config_name + '_' + metric + '_' + measure
-	display_name 	= measure.capitalize() + ' for ' + scope.config[config_name][metric]['name']
-	
-	previous_number = int(scope.config[config_name][metric]['add_columns'][measure])	
-
-	scope.config[config_name][metric]['add_columns'][measure] = st.number_input(
-																			label=display_name,
-																			min_value=1, 
-																			value=previous_number,
-																			step=1,
-																			key=widget_key,
-																			)  
-
-	if scope.config[config_name][metric]['add_columns'][measure] != previous_number : 					# set to refresh pages if something has been changed
-		if config_name == 'charts':
-			# redo_page_data_singles_pages_all_tickers(scope, metric)
-			set_page_renew_status(scope, expanders=metric, caller='edit_number')
-		elif config_name == 'tests':
-			set_page_renew_status(scope, expanders=metric, caller='edit_number')
-		else:
-			print ( '\033[91m' + ' < edit_number > function provided with unknown config_name > ' + config_name + '\033[0m')
 
 
+def edit_number(scope, config_name, expander, measure ):
 
-	
+	widget_key = 'widget_' + config_name + '_' + expander + '_' + measure
+	display_name 	= measure.capitalize() + ' for ' + scope.config[config_name][expander]['name']
+	previous_selection = int(scope.config[config_name][expander]['add_columns'][measure])	
+
+	st.number_input( 	
+					label		=display_name, 
+					min_value	=1,
+					step		=1, 
+					value		=previous_selection,
+					on_change	=on_change_number,
+					args		=(scope, config_name, expander, measure, widget_key, ),
+					key			=widget_key,
+					)  
+
+
+def on_change_number(scope:dict, config_name:str, expander:str, measure:str, widget_key:str):
+
+	changed_value = scope[widget_key]
+
+	# store the selection
+	scope.config[config_name][expander]['add_columns'][measure] != changed_value
+
+	# update the page data renew status
+	set_page_renew_status(scope, expanders=expander, caller='on_change_number')

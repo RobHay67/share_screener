@@ -10,12 +10,12 @@ from widgets.ohlcv import edit_ohlcv
 
 def render_rsi(scope):
 	st.markdown('##### Relative Strength Index (RSI)')
-	metric = 'rsi'
+	expander = 'rsi'
 	config_name = 'charts'
 
-	edit_active(scope, config_name, metric)
-	edit_ohlcv(scope, config_name, metric )
-	edit_number(scope, config_name, metric, 'lookback_days' )
+	edit_active(scope, config_name, expander)
+	edit_ohlcv(scope, config_name, expander )
+	edit_number(scope, config_name, expander, 'lookback_days' )
 	st.markdown("""---""")
 
 

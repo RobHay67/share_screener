@@ -53,9 +53,9 @@ def render_primary_charts_config(scope):
 	with col5: render_announcements(scope)
 	
 
-def render_primary_chart(scope, metric):
+def render_primary_chart(scope, expander):
 	st.write('.')
-	render_activate_metric(scope, metric)
+	render_activate_metric(scope, expander)
 
 
 

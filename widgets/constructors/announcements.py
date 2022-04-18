@@ -7,10 +7,10 @@ from widgets.active import edit_active
 
 def render_announcements(scope):
 	# st.markdown('##### Announcements')
-	metric = 'announcements'
+	expander = 'announcements'
 	config_name = 'charts'
 
-	edit_active(scope, config_name, metric)
+	edit_active(scope, config_name, expander)
 	st.markdown("""---""")
 
 

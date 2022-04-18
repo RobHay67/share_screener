@@ -106,7 +106,7 @@ def update_screener_dfs(scope):
 					if page_row_limit != None : 
 						screener_df = screener_df.tail(page_row_limit) 													# limit analysis to user specified row limit
 
-					scope.pages[page]['screener_df'][ticker] = screener_df												# store the screener_df with additional metric columns			
+					scope.pages[page]['screener_df'][ticker] = screener_df												# store the screener_df with additional expander columns			
 					scope.pages[page]['add_ohlcv_data'][ticker] = False													# reset Page df STATUS to prevent unnecesary updates
 				else:
 					print ( '\033[91m' + ticker.ljust(10) + '> ticker file missing from scope.ticker_data_files \033[0m')

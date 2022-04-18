@@ -42,8 +42,8 @@
 # x Download new ticker for cba or NAB		CRs+CsM	CRs+CsM	------			------			CRs+CsM		CRs+CsM			------		= refresh the tickers that have changed
 # x Activate overlay or 2nd chart			------	------	------			CsM				CsM			CsM				CsM			= recalculate the specific add_cols only	for NON screener pages							
 # x Update value in overlay or 2nd chart	------	------	------			CsM				CsM			CsM				CsM			= recalculate the specific add_cols only	for NON screener pages	
-# x Activate Screener Metric				CsM		CsM		CsM				------			------		------			------		= recalculate the specific add_cols only	for screener page
-# x Update Screener Metric value 			CsM		CsM		CsM				------			------		------			------		= recalculate the specific add_cols only	for screener page
+# x Activate Screener expander				CsM		CsM		CsM				------			------		------			------		= recalculate the specific add_cols only	for screener page
+# x Update Screener expander value 			CsM		CsM		CsM				------			------		------			------		= recalculate the specific add_cols only	for screener page
 
 # KEY
 # CRa 	= Copy and Replace ALL     ticker_data from < scope.data.ticker_files >				DONE - Function Added

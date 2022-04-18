@@ -6,7 +6,7 @@
 
 # add ohlcv data - all pages								ohlc_data
 # add chart data - all pages except the screener page		page_data	singles_pages
-# add metric data - only the Screener page					page_data	screener_page
+# add expander data - only the Screener page					page_data	screener_page
 
 
 
@@ -76,13 +76,13 @@ def list_of_tickers_for_page(scope, page, tickers):
 # 			st.session_state.pages[page]['renew']['ticker_data'][ticker] = True
 
 # 		if page == 'screener':																	# Screener Page Only
-# 			metrics_template = st.session_state.pages_template_add_metric_data.copy()			# take a copy of our template of metric active status
+# 			metrics_template = st.session_state.pages_template_add_metric_data.copy()			# take a copy of our template of expander active status
 # 			for ticker in st.session_state.pages[page]['renew']['tests'].keys():				# iterate through tickers
-# 				st.session_state.pages[page]['renew']['tests'][ticker] = metrics_template		# set the current metric active status for ticker
+# 				st.session_state.pages[page]['renew']['tests'][ticker] = metrics_template		# set the current expander active status for ticker
 # 		if page != 'screener':																	# for non screen pages (charts only)
 # 			chart_template = st.session_state.pages_template_add_chart_data.copy()				# take a copy of our default dictionary
 # 			for ticker in st.session_state.pages[page]['renew']['expanders'].keys():				# iterate through tickers
-# 				st.session_state.pages[page]['renew']['expanders'][ticker]  = chart_template		# set the current metric active status for this ticker
+# 				st.session_state.pages[page]['renew']['expanders'][ticker]  = chart_template		# set the current expander active status for this ticker
 
 
 # set_page_renew_status(scope, ticker_data=True, charts=True, tests=True, tickers='CBA', status=TRUE or FALSE )
@@ -99,10 +99,10 @@ def list_of_tickers_for_page(scope, page, tickers):
 
 # 		if page == 'screener':															# Screener Page Only
 # 			metrics_template = scope.pages['templates']['test'].copy()		# take a copy of our default dictionary
-# 			scope.pages[page]['renew']['tests'][ticker] = metrics_template				# set the current metric active status for this ticker
+# 			scope.pages[page]['renew']['tests'][ticker] = metrics_template				# set the current expander active status for this ticker
 # 		if page != 'screener':															# for non screener pages (charts only)
 # 			chart_template = scope.pages['templates']['expanders'].copy()			# take a copy of our default dictionary
-# 			scope.pages[page]['renew']['expanders'][ticker]  = chart_template				# set the current metric active status for this ticker
+# 			scope.pages[page]['renew']['expanders'][ticker]  = chart_template				# set the current expander active status for this ticker
 
 # set_page_renew_status(scope, charts='chart name')
 # def redo_page_data_singles_pages_all_tickers(scope, chart):
@@ -145,13 +145,13 @@ def list_of_tickers_for_page(scope, page, tickers):
 
 # 	# for page in st.session_state.pages['page_list']:														# iterate through every page
 # 		if page == 'screener':																		# Screener Page Only
-# 			metrics_template = st.session_state.pages_template_add_metric_data.copy()			# take a copy of our template of metric active status
+# 			metrics_template = st.session_state.pages_template_add_metric_data.copy()			# take a copy of our template of expander active status
 # 			for ticker in st.session_state.pages[page]['renew']['tests'].keys():					# iterate through tickers
-# 				st.session_state.pages[page]['renew']['tests'][ticker] = metrics_template		# set the current metric active status for ticker
+# 				st.session_state.pages[page]['renew']['tests'][ticker] = metrics_template		# set the current expander active status for ticker
 # 		if page != 'screener':																		# for non screen pages (charts only)
 # 			chart_template = st.session_state.pages_template_add_chart_data.copy()							# take a copy of our default dictionary
 # 			for ticker in st.session_state.pages[page]['renew']['expanders'].keys():					# iterate through tickers
-# 				st.session_state.pages[page]['renew']['expanders'][ticker]  = chart_template			# set the current metric active status for this ticker
+# 				st.session_state.pages[page]['renew']['expanders'][ticker]  = chart_template			# set the current expander active status for this ticker
 				
 
 # only uised by the above function - see if we can combine this then
@@ -165,10 +165,10 @@ def list_of_tickers_for_page(scope, page, tickers):
 # 	for page in scope.pages['page_list']:														# iterate through every page
 # 		if page == 'screener':															# Screener Page Only
 # 			metrics_template = scope.pages['templates']['test'].copy()		# take a copy of our default dictionary
-# 			scope.pages[page]['renew']['tests'][ticker] = metrics_template				# set the current metric active status for this ticker
+# 			scope.pages[page]['renew']['tests'][ticker] = metrics_template				# set the current expander active status for this ticker
 # 		if page != 'screener':															# for non screener pages (charts only)
 # 			chart_template = scope.pages['templates']['expanders'].copy()			# take a copy of our default dictionary
-# 			scope.pages[page]['renew']['expanders'][ticker]  = chart_template				# set the current metric active status for this ticker
+# 			scope.pages[page]['renew']['expanders'][ticker]  = chart_template				# set the current expander active status for this ticker
 
 
 

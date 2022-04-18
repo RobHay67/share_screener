@@ -9,10 +9,10 @@ from widgets.number import edit_number
 
 def render_volume_oscillator(scope):
 	st.markdown('##### Volume Oscillator')
-	metric = 'vol_osssy'
+	expander = 'vol_osssy'
 	config_name = 'charts'
 
-	edit_active(scope, config_name, metric)
-	edit_number(scope, config_name, metric, 'fast' )
-	edit_number(scope, config_name, metric, 'slow' )
+	edit_active(scope, config_name, expander)
+	edit_number(scope, config_name, expander, 'fast' )
+	edit_number(scope, config_name, expander, 'slow' )
 	st.markdown("""---""")

@@ -1,40 +1,34 @@
 
 import streamlit as st
 
-# from pages.model.data_status import redo_page_data_singles_pages_all_tickers
 from pages.data.status import set_page_renew_status
-from pages.config import scope_page_templates
 
 
 
 
+def edit_active(scope, config_name, expander ):
 
-def edit_active(scope, config_name, metric ):
-	# print('config_name = ', config_name)
-	# print('metric      = ', metric)
-
-	# print('This is the scope object')
-	# print(scope.config[config_name][metric])
-
+	widget_key = 'widget_' + config_name + '_' + expander
+	display_name =  '' + scope.config[config_name][expander]['name']
+	previous_selection = scope.config[config_name][expander]['active']
 	
-	display_name =  '' + scope.config[config_name][metric]['name']
-	
-	previous_active_status = scope.config[config_name][metric]['active']
 
-	new_active_status = st.checkbox( 
-								display_name, 
-								value=previous_active_status,
-								key=metric
-								)
+	st.checkbox( 
+				label		=display_name, 
+				value		=previous_selection,
+				on_change	=on_change_active_status,
+				args		=(scope, config_name, expander, widget_key, ),
+				key			=widget_key,
+				)
 
-	scope.config[config_name][metric]['active'] = new_active_status
 
-	if new_active_status != previous_active_status : 				# set to refresh add_cols if something has been changed
-		scope_page_templates(scope)									# rebase the active and inactive page add_cols
-		if config_name == 'charts':
-			set_page_renew_status(scope, expanders=metric, caller='edit_active')
-		elif config_name == 'tests':
-			set_page_renew_status(scope, expanders=metric, caller='edit_active')
-		else:
-			print ( '\033[91m' + ' < edit_active > function provided with unknown config_name > ' + config_name + '\033[0m')
 
+def on_change_active_status(scope:dict, config_name:str, expander:str, widget_key:str):
+
+	changed_value = scope[widget_key]
+
+	# store the selection
+	scope.config[config_name][expander]['active'] = changed_value
+
+	# update the page data renew status
+	set_page_renew_status(scope, expanders=expander, caller='on_change_active_status')
