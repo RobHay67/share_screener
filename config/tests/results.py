@@ -17,10 +17,9 @@ def create_summary_of_test_results(scope):
 
 	# Iterate through the tickers and extract the test results
 	for ticker in scope.pages[page]['ticker_list']:
-		print(ticker)
 
-		ticker_test_results = {}
-		ticker_test_results['ticker'] = ticker
+		ticker_test_results = []
+		ticker_test_results.append(ticker)
 
 		# Set default result to pass as a single test 'fail'
 		# will over-write the summary_result
@@ -40,13 +39,13 @@ def create_summary_of_test_results(scope):
 					summary_result = 'fail'		
 
 				# Store the result for this test in the temp dictionary
-				ticker_test_results[test] = test_result
+				ticker_test_results.append(test_result)
 
 			# Store the overall summary result
-			ticker_test_results['summary_result'] = summary_result
+			ticker_test_results.append(summary_result)
 
 			# Store tickers every test result and the overall result in a dataframe 
-			test_results_df = test_results_df.append(ticker_test_results, ignore_index=True)
+			test_results_df.loc[len(test_results_df.index)] = ticker_test_results
 
 
 	return test_results_df

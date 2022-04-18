@@ -16,7 +16,7 @@ def scope_data(scope):
 
 	scope.data['download'] 					= {}
 	scope.data['download']['days'] 			= 7
-	scope.data['download']['industries'] 	= []
+	scope.data['download']['industries'] 	= ['random_tickers']
 
 	scope.data['download']['yf_files']		= {}
 	scope.data['download']['yf_anomolies'] 	= {}

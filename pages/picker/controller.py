@@ -32,42 +32,38 @@ def render_ticker_picker(scope):
 
 		page = scope.pages['display_page']
 
-		with scope.col1: 
-			download_new_ticker_data = download_button(scope)		
-		
-		with scope.col6: 
-			clear_messages_button(scope)
+		with scope.col1: download_new_ticker_data = download_button(scope)		
+		with scope.col6: clear_messages_button(scope)
 
 		# AUTO load whatever ticker data we have	
 		load_tickers(scope)
 		
-		if download_new_ticker_data: 
-			download_tickers(scope)
+		if download_new_ticker_data: download_tickers(scope)
 
 		renew_pages_dfs(scope)  
 
-		with scope.col5: 
-			show_ticker_files = ticker_file_button(scope)
+		with scope.col5: show_ticker_files = ticker_file_button(scope)
 
 		if page == 'screener':
-			with scope.col5: 
-				show_screener_dfs = screener_dfs_button(scope)
 			show_chart_dfs = False
+			with scope.col5: show_screener_dfs = screener_dfs_button(scope)
 		else:
-			with scope.col5: 
-				show_chart_dfs = chart_dfs_button(scope)
 			show_screener_dfs = False
+			with scope.col5: show_chart_dfs = chart_dfs_button(scope)
 		
-		if show_ticker_files: 
-			view_ticker_data_files(scope, page)
-		
-		if show_screener_dfs: 
-			view_screener_dfs(scope, page)
-		
-		if show_chart_dfs:
-			view_chart_dfs(scope, page)
+		if show_ticker_files: view_ticker_data_files(scope, page)
+		if show_screener_dfs: view_screener_dfs(scope, page)
+		if show_chart_dfs: view_chart_dfs(scope, page)
 
 
+
+	# import streamlit as st
+	# page = scope.pages['display_page']
+	
+	# ticker_list = scope.pages[page]['ticker_list']
+
+	# st.write(ticker_list)
+	# st.write(scope.data['download']['industries'])
 
 
 

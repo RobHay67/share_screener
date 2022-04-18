@@ -35,6 +35,9 @@ def download_from_yahoo_finance(scope): 													# TODO What Output to Rende
 
 	# reset_download_status(scope)
 
+	# TODO scope.data['download']['industries'] - this variable needs to be better defined and explained
+	# industry_groups_to_download = scope.data['download']['industries'] - something like this anyway TODO
+
 	for count, industry in enumerate(scope.data['download']['industries']):
 		render_download_message(scope, count, industry)
 

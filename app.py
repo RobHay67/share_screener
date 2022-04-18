@@ -41,10 +41,6 @@ render_selected_page(scope)
 
 
 
-# for ticker in scope.pages['single']['df'].keys():
-# 	print(ticker)
-# 	print(scope.pages['single']['df'][ticker].sample(3))
-
 
 
 
