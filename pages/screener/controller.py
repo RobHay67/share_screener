@@ -1,7 +1,7 @@
 from pages.view.header import render_page_title		
 from pages.picker.controller import render_ticker_picker
-from pages.screener.view.results import render_test_results
-from pages.screener.view.tests import render_screener_tests
+from pages.screener.results import render_test_results
+from pages.screener.tests import render_screener_tests
 
 
 
