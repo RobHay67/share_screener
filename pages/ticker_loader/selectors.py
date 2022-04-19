@@ -5,10 +5,10 @@ from widgets.industries import select_industries
 from widgets.tickers import select_tickers
 
 
-from pages.picker.ticker_list import update_ticker_list
+from pages.ticker_loader.ticker_list import update_ticker_list
 
 
-def render_selectors(scope):
+def render_ticker_selectors(scope):
 
 	page = scope.pages['display_page']
 

@@ -5,6 +5,7 @@ import pytz
 from config.markets.config import opening_hours
 
 from pages.view.header import render_page_title
+from pages.ticker_loader.controller import render_ticker_loader
 from pages.volume.view.times import view_local_vs_market_time
 from pages.volume.view.input_volume import view_input_volume
 from pages.volume.view.prediction import view_prediction
@@ -14,11 +15,12 @@ def render_volume_page(scope):
 
 	# render_page_title(scope, 'Predict Closing Volume to End of Today', 'volume')
 	render_page_title(scope, 'Predict Closing Volume to End of Today')
+
+	render_ticker_loader(scope)
 	
 	ticker = scope.pages['single']['selectors']['ticker']
 
 	if ticker != 'select a ticker' :		
-	# if ticker != 'select a ticker':	
 
 		local_time=datetime.now()											# Current local time
 		market_timezone = opening_hours[scope.config['share_market']]['timezone']		# Timezone for the share market

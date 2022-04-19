@@ -1,6 +1,6 @@
 from pages.view.header import render_page_title
 from charts.controller import plot_charts
-from pages.picker.controller import render_ticker_picker
+from pages.ticker_loader.controller import render_ticker_loader
 
 
 
@@ -11,7 +11,7 @@ def render_single_ticker_page(scope):
 	
 	render_page_title(scope, 'Ticker Analysis (single ticker)')
 
-	render_ticker_picker(scope)
+	render_ticker_loader(scope)
 
 
 	ticker = scope.pages['single']['selectors']['ticker']
@@ -21,7 +21,7 @@ def render_single_ticker_page(scope):
 		# Check that we have data available for this ticker
 		# before attempting to make any plots
 
-		if ticker in scope.pages['single']['df'].keys():	
+		if ticker in scope.pages['single']['dfs'].keys():	
 			plot_charts(scope)
 			
 

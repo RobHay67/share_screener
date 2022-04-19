@@ -1,186 +1,207 @@
+#TODO - delete later
 
-# import streamlit as st
+from audit import audit_replace_df_status
 
-
-# Set the Refresh Status for objects within the pages - helps to control whats needs to be updated, and what does not
-
-# add ohlcv data - all pages								ohlc_data
-# add chart data - all pages except the screener page		page_data	singles_pages
-# add expander data - only the Screener page					page_data	screener_page
-
-
+# 	scope.pages[page][dfs]	contains the appropriate dataframes for the page
+#
+# Set the Refresh Status for 
+# - scope.pages[page][replace_df][ticker]  True = replace the entire dataframe
+# - scope.pages[page][column_adders][ticker][col_adder] True = re-run this col adder function 
 
 
-# def set_page_renew_status(scope, ticker_data=False, charts=None, tests=None, tickers='all', status=True, caller='unknown' ):
-def set_page_renew_status(scope, ticker_data=False, expanders=None, tickers='all', status=True, caller='unknown' ):
-	# status = Usually True, but when downloading we sometime need to turn the refresh off if the download fails
-
-	width=70
-	print('='*width)
-	print('\033[95mRunning < set_page_renew_status > function\033[0m')
-	print('\033[96mcaller = ' + caller + '\033[0m')
-	print('-'*width)
-	print('')
-	print ('expanders = ', expanders)
-	
+def set_replace_df_status(scope, tickers='all', df_replace_status=True, caller='unknown'):
 
 	for page in scope.pages['page_list']:
-		# Establish list of tickers for this page (stremalines the whole function)
-		ohlcv_tickers, expander_tickers = list_of_tickers_for_page(scope, page, tickers)
-		config_group = 'tests' if page == 'screener' else 'charts'
+		replace_df_keys = list(scope.pages[page]['replace_df'].keys())
+		ticker_list = replace_df_keys if tickers == 'all' else [tickers]
 
-		if ticker_data:
-			for ticker in ohlcv_tickers: 
-				scope.pages[page]['renew']['ticker_data'][ticker] = status
+		for ticker in ticker_list:
+			current_status = None
+			if ticker in replace_df_keys:
+				current_status = scope.pages[page]['replace_df'][ticker]
 
-		if expanders != None:
-			for ticker in expander_tickers: 
-				# take a copy of our default config for this type of expander
-				expander_template = scope.pages['templates'][config_group].copy()				
-				if expanders=='all':
-					# Every EXPANDER requires a data refresh																		
-					scope.pages[page]['renew']['expanders'][ticker] = expander_template
-				else:
-					# A single EXPANDER requires a data refresh									
-					scope.pages[page]['renew']['expanders'][ticker][expanders] = True
-
-
-
-	print('\033[0m')
-	# print('='*width)
-
-
-def list_of_tickers_for_page(scope, page, tickers):
-	if tickers == 'all':
-		ohlcv_tickers = list(scope.pages[page]['renew']['ticker_data'].keys())
-		expander_tickers = list(scope.pages[page]['renew']['expanders'].keys())
-	else:
-		# A single ticker has been provided so return this single ticker in a list
-		ohlcv_tickers = [tickers]
-		expander_tickers = [tickers]
-
-	return ohlcv_tickers, expander_tickers
-
-
-
-
-
-
-# set_page_renew_status(scope, ticker_data=True, charts='all', tests='all' )
-# def redo_ohlc_data_all_pages_all_tickers(scope:dict):
-# 	# This executes when the user has changed the number of analysis rows
-# 	#  - ie from 1000 to say 3000 - for simplicity we just reset everything
-
-# 	for page in st.session_state.pages['page_list']:
-# 		for ticker in st.session_state.pages[page]['renew']['ticker_data'].keys():
-# 			st.session_state.pages[page]['renew']['ticker_data'][ticker] = True
-
-# 		if page == 'screener':																	# Screener Page Only
-# 			metrics_template = st.session_state.pages_template_add_metric_data.copy()			# take a copy of our template of expander active status
-# 			for ticker in st.session_state.pages[page]['renew']['tests'].keys():				# iterate through tickers
-# 				st.session_state.pages[page]['renew']['tests'][ticker] = metrics_template		# set the current expander active status for ticker
-# 		if page != 'screener':																	# for non screen pages (charts only)
-# 			chart_template = st.session_state.pages_template_add_chart_data.copy()				# take a copy of our default dictionary
-# 			for ticker in st.session_state.pages[page]['renew']['expanders'].keys():				# iterate through tickers
-# 				st.session_state.pages[page]['renew']['expanders'][ticker]  = chart_template		# set the current expander active status for this ticker
-
-
-# set_page_renew_status(scope, ticker_data=True, charts=True, tests=True, tickers='CBA', status=TRUE or FALSE )
-# def redo_ohlc_data_all_pages_one_ticker(scope, ticker, refresh_status):							# refresh_status = True or False
-# 	# Execute when either of the following occurs
-# 	# 	a) Load of Ticker Data
-# 	# 	b) Download of New Ticker Data
-# 		# note: refresh_status allows for True or False. This is handy when say the load or download fails
-# 		# problem = we dont know if this ticker exists or not yet
-
-
-# 	for page in scope.pages['page_list']:										# for every page
-# 		scope.pages[page]['renew']['ticker_data'][ticker] = refresh_status			# set the appropriate status for this ticker
-
-# 		if page == 'screener':															# Screener Page Only
-# 			metrics_template = scope.pages['templates']['test'].copy()		# take a copy of our default dictionary
-# 			scope.pages[page]['renew']['tests'][ticker] = metrics_template				# set the current expander active status for this ticker
-# 		if page != 'screener':															# for non screener pages (charts only)
-# 			chart_template = scope.pages['templates']['expanders'].copy()			# take a copy of our default dictionary
-# 			scope.pages[page]['renew']['expanders'][ticker]  = chart_template				# set the current expander active status for this ticker
-
-# set_page_renew_status(scope, charts='chart name')
-# def redo_page_data_singles_pages_all_tickers(scope, chart):
-# 	# One of the Chart add_cols has changed i.e. made active or changed a value from say 21 to 34
-# 	for page in scope.pages['page_list']:
-# 		if page != 'screener':													# all chart relevant pages
-# 			for ticker in scope.pages[page]['renew']['expanders'].keys():			# iterate through each ticker
-# 				scope.pages[page]['renew']['expanders'][ticker][chart] = True		# Set Refresh = True
-
-
-
-# set_page_renew_status(scope, test='test name')
-# def redo_page_data_screener_page_all_tickers(scope, test):
-# 	# One of the Screener add_cols has changed i.e. made active or changed a value from say 21 to 34
-# 	for page in scope.pages['page_list']:
-# 		if page == 'screener':													# Only the Screener Page
-# 			for ticker in scope.pages[page]['renew']['tests'].keys():			# iterate through each ticker
-# 				scope.pages[page]['renew']['tests'][ticker][test] = True		# Set Refresh = True
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# only uised by the above function - see if we can combine this then
-# def redo_page_data_all_pages_all_tickers():
-# 	# This executes when the user has changed the number of analysis rows
-# 	#  - ie from 1000 to say 3000 - for simplicity we just reset everything
-
-# 	# for page in st.session_state.pages['page_list']:														# iterate through every page
-# 		if page == 'screener':																		# Screener Page Only
-# 			metrics_template = st.session_state.pages_template_add_metric_data.copy()			# take a copy of our template of expander active status
-# 			for ticker in st.session_state.pages[page]['renew']['tests'].keys():					# iterate through tickers
-# 				st.session_state.pages[page]['renew']['tests'][ticker] = metrics_template		# set the current expander active status for ticker
-# 		if page != 'screener':																		# for non screen pages (charts only)
-# 			chart_template = st.session_state.pages_template_add_chart_data.copy()							# take a copy of our default dictionary
-# 			for ticker in st.session_state.pages[page]['renew']['expanders'].keys():					# iterate through tickers
-# 				st.session_state.pages[page]['renew']['expanders'][ticker]  = chart_template			# set the current expander active status for this ticker
+			# only change the status if its different to whats already recorded
+			# This will prevent unnecesary updates and changes
+			if current_status != df_replace_status:
 				
+				scope.pages[page]['replace_df'][ticker] = df_replace_status
 
-# only uised by the above function - see if we can combine this then
-# def redo_page_data_all_pages_one_ticker(scope, ticker, refresh_status):
-# 	# Execute when either of the following occurs
-# 	# 	a) Load of Ticker Data
-# 	# 	b) Download of New Ticker Data
-# 	# note: refresh_status allows for True or False. This is handy when say the load or download fails
-# 	# problem = we dont know if this ticker exists or not yet
+				print_status = '\033[91m' + str(df_replace_status) + '\033[0m' if df_replace_status == True else  '\033[92m' + str(df_replace_status) + '\033[0m'
+				print((caller + " - scope.pages[" + page + "]['replace_df'][" + ticker + "] = ").ljust(90) + str(print_status) )
 
-# 	for page in scope.pages['page_list']:														# iterate through every page
-# 		if page == 'screener':															# Screener Page Only
-# 			metrics_template = scope.pages['templates']['test'].copy()		# take a copy of our default dictionary
-# 			scope.pages[page]['renew']['tests'][ticker] = metrics_template				# set the current expander active status for this ticker
-# 		if page != 'screener':															# for non screener pages (charts only)
-# 			chart_template = scope.pages['templates']['expanders'].copy()			# take a copy of our default dictionary
-# 			scope.pages[page]['renew']['expanders'][ticker]  = chart_template				# set the current expander active status for this ticker
+				# set_rerun_col_adder_status(scope, tickers=ticker, column_adders='all', re_run_status=df_replace_status, caller='set_replace_df_status' )
+				set_add_cols_for_ticker(scope, ticker, caller='set_replace_df_status')
+				# problem here is that
 
 
 
-		# if expanders != None:
-		# 	if page != 'screener':
-		# 		for ticker in expander_tickers: 
-		# 			# take a copy of our default dictionary
-		# 			chart_template = scope.pages['templates'][config_group].copy()
-		# 			print(chart_template)
-		# 			if expanders=='all':
-		# 				# Every CHART requires a data refresh												
-		# 				scope.pages[page]['renew']['expanders'][ticker] = chart_template
-		# 			else:
-		# 				# A single CHART requires a data refresh													
-		# 				scope.pages[page]['renew']['expanders'][ticker][expanders] = True
+def set_add_cols_for_ticker(scope, ticker, caller='unkown'):
+	# For a specific ticker, set all add_cols to the default template active values
+
+	for page in scope.pages['page_list']:
+		ticker_list = list(scope.pages[page]['column_adders'].keys())
+		config_group = 'tests' if page == 'screener' else 'charts'
+		col_adder_template = scope.pages['templates'][config_group].copy()
+		col_adder_list = list(col_adder_template.keys())
+		existing_col_adders = []
+
+		# Ensure we have a dictionary
+		if ticker not in ticker_list:
+			scope.pages[page]['column_adders'][ticker] = {}	
+		else:
+			existing_col_adders = list(scope.pages[page]['column_adders'][ticker].keys())
+
+		for col_adder in col_adder_list:
+			current_status = None
+			revised_status = col_adder_template[col_adder]
+		
+			if col_adder in existing_col_adders:
+				current_status = scope.pages[page]['column_adders'][ticker][col_adder]
+
+			if current_status != revised_status:
+
+				scope.pages[page]['column_adders'][ticker][col_adder] = revised_status
+
+				print_status = '\033[91m' + str(revised_status) + '\033[0m' if revised_status == True else  '\033[92m' + str(revised_status) + '\033[0m'
+				print((caller + " - scope.pages[" + page + "]['column_adders'][" + ticker + "][" + col_adder + "] = ").ljust(90) + str(print_status) )
+
+
+
+def set_add_cols_status(scope, column_adder, run_status=True, caller='unknown'):
+	# A single column adder has changed and needs its status changed for every instance
+
+	for page in scope.pages['page_list']:
+		# dfs_loaded_for_page = list(scope.pages[page]['dfs'].keys())
+		ticker_list = list(scope.pages[page]['column_adders'].keys())
+
+		for ticker in ticker_list:
+			# CBA
+			column_adders_for_ticker = scope.pages[page]['column_adders'][ticker].keys()
+			# trend_open
+
+			current_status = None
+			if column_adder in column_adders_for_ticker:
+				# its already - so whats its stauts
+				current_status = scope.pages[page]['column_adders'][ticker][column_adder]
+
+			# only change the status if its different to whats already recorded
+			# This will prevent unnecesary updates and changes
+			if current_status != run_status:
+				scope.pages[page]['column_adders'][ticker][column_adder] = run_status
+
+				print_status = '\033[91m' + str(run_status) + '\033[0m' if run_status == True else  '\033[92m' + str(run_status) + '\033[0m'
+				print((caller + " - scope.pages[" + page + "]['column_adders'][" + ticker + "][" + column_adder + "] = ").ljust(90) + str(print_status) )
+
+
+
+
+
+
+
+# def set_rerun_col_adder_status(scope, tickers='all', column_adders='all', re_run_status=True, caller='unknown' ):
+# 	# width=70
+# 	# print('='*width)
+# 	# print('\033[95mset_rerun_col_adder_status\033[0m', '\033[96mcaller = ' + caller + '\033[0m')
+# 	print('tickers = ', tickers, 'column_adders = ', column_adders, 're_run_status = ', re_run_status)
+# 	# print('-'*width)
+
+# 	# Always update for Every Page
+# 	for page in scope.pages['page_list']:
+
+# 		ticker_list = list(scope.pages[page]['column_adders'].keys()) if tickers == 'all' else [tickers]
+
+# 		config_group = 'tests' if page == 'screener' else 'charts'
+		
+# 		for ticker in ticker_list: 
+# 			print(ticker)
+
+# 			# Use the active status template for the config_group (it has the active status)
+# 			col_adder_template = scope.pages['templates'][config_group].copy()	
+		
+# 			if column_adders=='all':
+# 				# Every col_adder requires a data refresh																		
+# 				scope.pages[page]['column_adders'][ticker] = col_adder_template
+
+# 				for col_adder, status in col_adder_template.items():
+# 					print_status = '\033[91m' + str(status) + '\033[0m' if status == True else  '\033[92m' + str(status) + '\033[0m'
+# 					print((caller + " - scope.pages[" + page + "]['column_adders'][" + ticker + "][" + col_adder + "] = ").ljust(90) + str(print_status) )
+# 			else:
+# 				# A single col_adder requires a data refresh
+# 				scope.pages[page]['column_adders'][ticker][column_adders] = re_run_status
+
+# 				print_status = '\033[91m' + str(re_run_status) + '\033[0m' if re_run_status == True else  '\033[92m' + str(re_run_status) + '\033[0m'	
+# 				print((caller + " - scope.pages[" + page + "]['column_adders'][" + ticker + "][" + column_adders + "] = ").ljust(90) + str(print_status) )
+
+
+
+
+
+
+
+
+
+
+# def set_page_status(scope, tickers='all', replace_df=False, column_adders=None, renew_status=True, caller='unknown' ):
+
+# 	# renew_status = Usually True, but when downloading we sometime 
+# 	# need to turn the replace off, if the download fails
+# 	width=70
+# 	print('='*width)
+# 	print('\033[95mSetting Page status\033[0m', '\033[96mcaller = ' + caller + '\033[0m')
+# 	print('tickers = ', tickers, 'replace_df = ', replace_df, 'renew_status = ', renew_status, 'column_adders = ', column_adders,)
+# 	print('-'*width)
+
+# 	audit_replace_df_status(scope, 'Before set_page_status')	
+# 	for page in scope.pages['page_list']:
+
+# 		# Establish list of tickers for this page (streamline the whole function)
+# 		df_ticker_list, col_add_ticker_list = list_of_tickers_for_page(scope, page, tickers)
+
+		
+# 		if replace_df:
+# 			for ticker in df_ticker_list:
+# 				# print(ticker)
+# 				scope.pages[page]['replace_df'][ticker] = renew_status
+
+# 				print_status = '\033[91m' + str(renew_status) + '\033[0m' if renew_status == False else  '\033[92m' + str(renew_status) + '\033[0m'
+# 				print(("scope.pages[" + page + "]['replace_df'][" + ticker + "] = ").ljust(90) + str(print_status) )
+		
+	
+
+
+# 		if column_adders != None:
+# 			config_group = 'tests' if page == 'screener' else 'charts'
+			
+# 			for ticker in col_add_ticker_list: 
+
+# 				# Use the active status template for the config_group (it has the active status)
+# 				col_adder_template = scope.pages['templates'][config_group].copy()	
+			
+# 				if column_adders=='all':
+# 					# Every col_adder requires a data refresh																		
+# 					scope.pages[page]['column_adders'][ticker] = col_adder_template
+
+# 					for col_adder, status in col_adder_template.items():
+# 						print_status = '\033[91m' + str(status) + '\033[0m' if status == False else  '\033[92m' + str(status) + '\033[0m'
+# 					# 	print(("scope.pages[" + page + "]['column_adders'][" + ticker + "][" + col_adder + "] = ").ljust(90) + str(print_status) )
+# 				else:
+# 					# A single col_adder requires a data refresh
+# 					print_status = '\033[91m' + str(renew_status) + '\033[0m' if renew_status == False else  '\033[92m' + str(renew_status) + '\033[0m'						
+# 					scope.pages[page]['column_adders'][ticker][column_adders] = renew_status
+# 					# print(("scope.pages[" + page + "]['column_adders'][" + ticker + "][" + column_adders + "] = ").ljust(90) + str(print_status) )
+
+# 	audit_replace_df_status(scope, 'After set_page_status')
+
+# def list_of_tickers_for_page(scope, page, tickers):
+# 	if tickers == 'all':
+# 		df_ticker_list = list(scope.pages[page]['replace_df'].keys())
+# 		col_add_ticker_list = list(scope.pages[page]['column_adders'].keys())
+# 	else:
+# 		# A single ticker has been provided so return this single ticker in a list
+# 		df_ticker_list = [tickers]
+# 		col_add_ticker_list = [tickers]
+
+# 	return df_ticker_list, col_add_ticker_list
+
+
+

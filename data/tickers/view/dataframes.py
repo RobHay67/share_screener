@@ -3,7 +3,7 @@ import streamlit as st
 
 
 def view_ticker_data_files(scope, page='all'):
-
+	print('here')
 	# page = scope.pages['display_page']
 	
 	if page == 'all':

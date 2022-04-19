@@ -2,11 +2,11 @@ import streamlit as st
 
 
 
-def edit_colour(scope, config_name, expander ):
+def edit_colour(scope, config_name, col_adder ):
 	
-	widget_key = 'widget_' + config_name + '_' + expander
-	display_name =  ('Colour for ' + scope.config[config_name][expander]['name'])
-	previous_selection = scope.config[config_name][expander]['plot']['colour']
+	widget_key = 'widget_' + config_name + '_' + col_adder
+	display_name =  ('Colour for ' + scope.config[config_name][col_adder]['name'])
+	previous_selection = scope.config[config_name][col_adder]['plot']['colour']
 	pos_for_previous = scope.config['charts']['colours'].index(previous_selection)	
 	
 
@@ -16,17 +16,17 @@ def edit_colour(scope, config_name, expander ):
 					options		=scope.config['charts']['colours'],
 					index		=pos_for_previous, 
 					on_change	=on_change_colour_selection,
-					args		=(scope, config_name, expander, widget_key, ),
+					args		=(scope, config_name, col_adder, widget_key, ),
 					key			=widget_key,
 					) 
 
 
-def on_change_colour_selection(scope:dict, config_name:str, expander:str, widget_key:str):
+def on_change_colour_selection(scope:dict, config_name:str, col_adder:str, widget_key:str):
 
 	changed_value = scope[widget_key]
 
 	# store the selection
-	scope.config[config_name][expander]['plot']['colour'] = changed_value	
+	scope.config[config_name][col_adder]['plot']['colour'] = changed_value	
 
 	# update the page data renew status
 	# does not require a set_refresh_ticker_df to be set to TRUE

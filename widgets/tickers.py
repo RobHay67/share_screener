@@ -8,7 +8,7 @@ def select_tickers(scope):
 	
 	widget_key = 'widget_' + page + '_select_tickers'
 	previous_selection = scope.pages['screener']['selectors']['tickers']
-	display_name = 'Add a Ticker or Tickers',
+	display_name = 'Add a Ticker or Tickers'
 
 	st.multiselect ( 
 				label		=display_name,

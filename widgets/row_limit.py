@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from pages.data.status import set_page_renew_status
+from pages.data.status import set_replace_df_status
 
 
 
@@ -29,7 +29,5 @@ def on_change_row_limit(scope:dict, widget_key:str):
 	scope.pages['row_limit'] = changed_value
 
 	# update the page data renew status
-	set_page_renew_status(scope, expanders='all', caller='on_change_row_limit')
-
-
-
+	set_replace_df_status(scope, tickers='all', df_replace_status=True, caller='on_change_row_limit')
+	

@@ -14,7 +14,7 @@ duration		= 'duration'			# the lenght or number of consecutive occurances
 timespan 		= 'timespan'			# The entire analysis Period
 trend			= 'trend'				# the trend or direction of the trend - up or down
 add_columns		= 'add_columns'				# Dictionary of Dataframe Column Params	
-function		= 'function'			# The function to add the columns for this expander
+function		= 'function'			# The function to add the columns for this col_adder
 
 
 # 

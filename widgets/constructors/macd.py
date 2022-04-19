@@ -12,14 +12,14 @@ from widgets.ohlc import edit_ohlc
 
 def render_macd(scope):
 	st.markdown('##### Moving Average, Convergence, Divergence (MACD)')
-	expander = 'macd'
+	col_adder = 'macd'
 	config_name = 'charts'
 
-	edit_active(scope, config_name, expander)
-	edit_ohlc  (scope, config_name, expander)
-	edit_number(scope, config_name, expander, 'long' )
-	edit_number(scope, config_name, expander, 'short' )
-	edit_number(scope, config_name, expander, 'signal' )
+	edit_active(scope, config_name, col_adder)
+	edit_ohlc  (scope, config_name, col_adder)
+	edit_number(scope, config_name, col_adder, 'long' )
+	edit_number(scope, config_name, col_adder, 'short' )
+	edit_number(scope, config_name, col_adder, 'signal' )
 	st.markdown("""---""")
 
 

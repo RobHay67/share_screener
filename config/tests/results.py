@@ -15,7 +15,7 @@ def create_summary_of_test_results(scope):
 	# Create an overall df to store the results for every ticker and test
 	test_results_df = pd.DataFrame(columns=column_list)
 
-	# Iterate through the tickers and extract the test results
+	# Iterate through the ticker_list and extract the test results
 	for ticker in scope.pages[page]['ticker_list']:
 
 		ticker_test_results = []
@@ -26,9 +26,9 @@ def create_summary_of_test_results(scope):
 		summary_result = 'pass'
 
 		# Check that we have some data for this ticker
-		if ticker in scope.pages[page]['df'].keys():
+		if ticker in scope.pages[page]['dfs'].keys():
 			
-			ticker_df = scope.pages[page]['df'][ticker]
+			ticker_df = scope.pages[page]['dfs'][ticker]
 
 			for test in active_test_list:
 

@@ -9,7 +9,7 @@ from charts.plotly.main_plot import format_main_plot
 def plot_charts(scope):
 	page 			= scope.pages['display_page']
 	ticker 			= scope.pages[page]['selectors']['ticker']
-	chart_df		= scope.pages[page]['df'][ticker]
+	chart_df		= scope.pages[page]['dfs'][ticker]
 	plotly_schema 	= create_plotly_schema(scope)
 	
 	if plotly_schema['no_of_charts'] > 0:

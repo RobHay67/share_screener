@@ -37,21 +37,30 @@
 #
 # Events that change the data
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# x Change the < page_row_limit >			CRa+CaM	CRa+CaM	CRa+CaM			CRa+CaM			CRa+CaM		CRa+CaM			CRa+CaM		= refresh all tickers and rerun all active add_cols
-# x Load  ticker for cba					CRs+CsM	------	------			------			------		------			------		= refresh the tickers that have changed
-# x Download new ticker for cba or NAB		CRs+CsM	CRs+CsM	------			------			CRs+CsM		CRs+CsM			------		= refresh the tickers that have changed
-# x Activate overlay or 2nd chart			------	------	------			CsM				CsM			CsM				CsM			= recalculate the specific add_cols only	for NON screener pages							
-# x Update value in overlay or 2nd chart	------	------	------			CsM				CsM			CsM				CsM			= recalculate the specific add_cols only	for NON screener pages	
-# x Activate Screener expander				CsM		CsM		CsM				------			------		------			------		= recalculate the specific add_cols only	for screener page
-# x Update Screener expander value 			CsM		CsM		CsM				------			------		------			------		= recalculate the specific add_cols only	for screener page
+# ? Load ticker for cba						DF+Cols	------	------			------			------		------			------		= refresh the tickers that have changed
+# ? Download new ticker for cba + NAB		DF+Cols	DF+Cols	------			------			DF+Cols		DF+Cols			------		= refresh the tickers that have changed
+# ? Change the < page_row_limit >			Both---	Both---	Both---			Both---			Both---		Both---			Both---		= refresh all tickers and rerun all active add_cols
+# ? Activate overlay or 2nd chart			------	------	------			Cols			Cols		Cols			Cols		= recalculate the specific add_cols only	for NON screener pages							
+# ? Update value in overlay or 2nd chart	------	------	------			Cols			Cols		Cols			Cols		= recalculate the specific add_cols only	for NON screener pages	
+# ? Activate a col_adder					Cols		Cols		Cols	------			------		------			------		= recalculate the specific add_cols only	for screener page
+# ? Change col_adder value 					Cols		Cols		Cols	------			------		------			------		= recalculate the specific add_cols only	for screener page
 
-# KEY
-# CRa 	= Copy and Replace ALL     ticker_data from < scope.data.ticker_files >				DONE - Function Added
-# CRs 	= Copy and Replace changed ticker_data from < scope.data.ticker_files >				DONE - Function Added
-# CaM 	= re Calculate ALL     		active add_cols for every Ticker in the page				DONE - Function Added
-# CsM	= re Calculate changed 		active add_cols for every Ticker in the page 			DONE - Function Added
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+# KEY	Description				Tickers		add_cols	Page(s)	DF Status Function 		add_cols status Func		Update DFS Func	add_cols Func			Copy From					Changes / Updates				
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+# DF 	replace df & add_cols	Specific	Every		Every	set_replace_df_status	set_rerun_col_adder_status 	replace_dfs		various					scope.data['ticker_files']	scope.pages[page]['dfs'][ticker]	
+# Cols	add_cols				Every		Specific	Every	set_replace_df_status	set_rerun_col_adder_status 	replace_dfs		various					-------------------------	scope.pages[page]['dfs'][ticker]
+# Both 	replace df & add_cols	Every		Every		Every	set_replace_df_status	set_rerun_col_adder_status 	replace_dfs		various					scope.data['ticker_files']	scope.pages[page]['dfs'][ticker]	
+# -----  Not Required ------	Specific	Specific	This combination only happens when we have a single ticker and will be covered by the other options anyway
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 
-# tag the add_cols when they have been run													DONE - updated function
-# update the scope.page_metrics after changes made 											DONE
-# change the test after editing scope.page_metrics											DONE
-# change the chart  after editing scope.page_metrics										DONE
+# Rs 	= Copy and Replace changed 	ticker DF  from < scope.data.ticker_files >				???? - Function Added
+# CaM 	= re Calculate ALL     		active add_cols for every Ticker in the page			???? - Function Added
+# Cols	= re Calculate changed 		active add_cols for every Ticker in the page 			???? - Function Added
+
+# tag the add_cols when they have been run													???? - updated function
+# update the scope.page_metrics after changes made 											????
+# change the test after editing scope.page_metrics											????
+# change the chart  after editing scope.page_metrics										????
+
+

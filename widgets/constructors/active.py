@@ -5,7 +5,7 @@ from widgets.active import edit_active
 from widgets.active import edit_active
 
 
-def render_activate_metric(scope, expander):
-	edit_active(scope, 'charts', expander)
+def render_activate_metric(scope, col_adder):
+	edit_active(scope, 'charts', col_adder)
 
 

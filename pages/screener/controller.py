@@ -1,5 +1,5 @@
 from pages.view.header import render_page_title		
-from pages.picker.controller import render_ticker_picker
+from pages.ticker_loader.controller import render_ticker_loader
 from pages.screener.results import render_test_results
 from pages.screener.tests import render_screener_tests
 
@@ -12,7 +12,7 @@ def render_screener_page(scope):
 
 	render_page_title(scope, 'Ticker Screener')
 
-	render_ticker_picker(scope)
+	render_ticker_loader(scope)
 	
 	render_test_results(scope)
 

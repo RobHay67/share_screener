@@ -9,10 +9,10 @@ from widgets.active import edit_active
 
 def render_dividends(scope):
 	# st.markdown('##### Dividends')
-	expander = 'dividends'
+	col_adder = 'dividends'
 	config_name = 'charts'
 
-	edit_active(scope, config_name, expander)
+	edit_active(scope, config_name, col_adder)
 	st.markdown("""---""")
 
 

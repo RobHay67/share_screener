@@ -1,34 +1,35 @@
 
 import streamlit as st
 
-from pages.data.status import set_page_renew_status
+from pages.data.status import set_add_cols_status
 
 
 
 
-def edit_active(scope, config_name, expander ):
+def edit_active(scope, config_name, col_adder ):
 
-	widget_key = 'widget_' + config_name + '_' + expander
-	display_name =  '' + scope.config[config_name][expander]['name']
-	previous_selection = scope.config[config_name][expander]['active']
+	widget_key = 'widget_' + config_name + '_' + col_adder
+	display_name =  '' + scope.config[config_name][col_adder]['name']
+	previous_selection = scope.config[config_name][col_adder]['active']
 	
 
 	st.checkbox( 
 				label		=display_name, 
 				value		=previous_selection,
 				on_change	=on_change_active_status,
-				args		=(scope, config_name, expander, widget_key, ),
+				args		=(scope, config_name, col_adder, widget_key, ),
 				key			=widget_key,
 				)
 
 
 
-def on_change_active_status(scope:dict, config_name:str, expander:str, widget_key:str):
+def on_change_active_status(scope:dict, config_name:str, col_adder:str, widget_key:str):
 
 	changed_value = scope[widget_key]
 
 	# store the selection
-	scope.config[config_name][expander]['active'] = changed_value
+	scope.config[config_name][col_adder]['active'] = changed_value
 
 	# update the page data renew status
-	set_page_renew_status(scope, expanders=expander, caller='on_change_active_status')
+	set_add_cols_status(scope, col_adder, run_status=True, caller='on_change_active_status')
+	#TODO - need to redo the page templates at this point - or maybe just before we need to use the page templates

@@ -16,13 +16,14 @@
 # delete pkg		- pipenv uninstall django
 
 # Testing Code - TODO - delete on Final Release
+from tokenize import Single
 import pandas as pd
 pd.set_option('display.max_rows', 5000)
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
 
 
-from audit import audit_report
+from audit import audit_report, audit_replace_df_status
 
 
 import streamlit as st
@@ -38,6 +39,25 @@ scope = set_scope(st.session_state)
 audit_report(scope)
 render_sidebar(scope)
 render_selected_page(scope)
+
+
+
+print('Rob - this is where i am at')
+print('workign through the refresh data option - refer to white board')
+print('I have commented out a few of the actual refrreshes')
+print('I need a report of the column_adders - we migth need to do this by ticker')
+
+# CBA
+# 			Single	intraday	volumne
+# trend_open	True	False		True
+# trend_close	False	True		False
+
+
+
+
+
+audit_replace_df_status(scope, 'running from the app page')
+
 
 
 
