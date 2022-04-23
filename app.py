@@ -42,16 +42,27 @@ render_selected_page(scope)
 
 
 
-print('Rob - this is where i am at')
-print('workign through the refresh data option - refer to white board')
-print('I have commented out a few of the actual refrreshes')
-print('I need a report of the column_adders - we migth need to do this by ticker')
+# print('Rob - this is where i am at')
+# print('workign through the refresh data option - refer to white board')
+# print('I have commented out a few of the actual refrreshes')
+# print('I need a report of the replace_cols - we migth need to do this by ticker')
 
-# CBA
+
+
 # 			Single	intraday	volumne
 # trend_open	True	False		True
 # trend_close	False	True		False
 
+
+# print('before = ', scope.pages['single']['replace_cols'])
+# ticker = 'CBA'
+# print(ticker)
+
+
+# scope.pages['single']['replace_cols'][ticker] = {}
+
+
+# print('after  = ', scope.pages['single']['replace_cols'])
 
 
 

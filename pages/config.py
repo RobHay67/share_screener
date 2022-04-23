@@ -25,7 +25,7 @@ def scope_pages(scope):
 		# scope.pages[page]['ticker_list'] = ['select a ticker'] if page != 'screener' else []
 		scope.pages[page]['ticker_list'] = []
 		scope.pages[page]['replace_df'] = {}
-		scope.pages[page]['column_adders'] = {}
+		scope.pages[page]['replace_cols'] = {}
 		scope.pages[page]['dfs'] = {}
 		# scope.pages[page]['data'] = {
 		# 									'df'		: {},

@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from pages.data.status import set_add_cols_status
+from pages.data.status import set_replace_col_status_for_col_adder
 	
 
 
@@ -30,4 +30,4 @@ def on_change_number(scope:dict, config_name:str, col_adder:str, measure:str, wi
 	scope.config[config_name][col_adder]['add_columns'][measure] != changed_value
 
 	# update the page data renew status
-	set_add_cols_status(scope, col_adder, run_status=True, caller='on_change_number')
+	set_replace_col_status_for_col_adder(scope, col_adder, new_status=True, caller='on_change_number')

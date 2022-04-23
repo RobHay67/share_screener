@@ -44,8 +44,8 @@ def render_ticker_loader(scope):
 		
 		if download_new_ticker_data: download_tickers(scope)
 
-		# replace_dfs(scope)
-		# replace_added_columns(scope)
+		replace_dfs(scope)
+		replace_added_columns(scope)
 
 		with scope.col5: show_ticker_files = ticker_file_button(scope)
 
@@ -73,7 +73,7 @@ def render_ticker_loader(scope):
 # 	build_replace_df_status(scope, page, "scope.pages[page]['replace_df']    > ")
 
 # 	# replace_col_adders_list
-# 	build_column_adders_status(scope, page, "scope.pages[page]['column_adders']    > ")
+# 	build_column_adders_status(scope, page, "scope.pages[page]['replace_cols']    > ")
 
 # 	# loaded_dfs
 # 	ticker_list = scope.pages[page]['dfs'].keys()
@@ -100,9 +100,9 @@ def render_ticker_loader(scope):
 
 # def build_column_adders_status(scope, page, str_ticker_list ):
 # 	st.write(str_ticker_list)
-# 	for ticker in scope.pages[page]['column_adders'].keys():
+# 	for ticker in scope.pages[page]['replace_cols'].keys():
 # 		ticker_string = '  > ' + ticker + ' - '
-# 		for col_adder, status in scope.pages[page]['column_adders'][ticker].items():
+# 		for col_adder, status in scope.pages[page]['replace_cols'][ticker].items():
 # 			if status == False: status = '..'
 # 			col_adder = col_adder + ':' + str(status) + ', '
 # 			ticker_string += col_adder

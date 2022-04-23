@@ -1,8 +1,11 @@
 
 
+from pages.data.status import set_replace_df_status_for_ticker_and_page, set_replace_col_adder_status_for_ticker_and_page
+
+
 # Replace the ticker_data for this page (where status = True)
 
-# from pages.data.status import set_replace_df_status, set_rerun_col_adder_status
+
 
 def replace_dfs(scope):
 	
@@ -37,13 +40,10 @@ def replace_dfs(scope):
 					
 					# Store the ticker dataframe for use by the page
 					scope.pages[page]['dfs'][ticker] = ticker_df
-					print( )
 
-					# reset Share Data Refresh STATUS to prevent unnecesary updates		
-					# #TODO 
-					print('Rob you need to fix replace_dfs tonight')		
-					# set_replace_df_status(scope, tickers=ticker, df_replace_status=False, caller='replace_dfs')
-
+					# reset replace_df status to prevent unnecesary updates		
+					# set_replace_df_status_for_ticker(scope, ticker, new_status=False, caller='replace_dfs')
+					set_replace_df_status_for_ticker_and_page(scope, page, ticker, new_status=False, caller='replace_dfs')
 
 				else:
 					print ( '\033[91m' + ticker.ljust(10) + '> ticker file missing from scope.data[ticker_files] \033[0m')
@@ -62,15 +62,15 @@ def replace_added_columns(scope):
 
 		for ticker in page_ticker_list:
 
-			column_adders = list(scope.pages[page]['column_adders'][ticker].keys())
+			column_adders = list(scope.pages[page]['replace_cols'][ticker].keys())
 			tickers_already_loaded_for_page = list(scope.pages[page]['dfs'].keys())
 
 			for col_adder in column_adders:
 				
-				re_run_col_adder = scope.pages[page]['column_adders'][ticker][col_adder]
+				call_col_adder = scope.pages[page]['replace_cols'][ticker][col_adder]
 
 				# Check if we have been requested to renew the columns for this ticker
-				if re_run_col_adder == True:
+				if call_col_adder == True:
 
 					if ticker in tickers_already_loaded_for_page:
 
@@ -85,10 +85,11 @@ def replace_added_columns(scope):
 							scope.config[config_group][col_adder]['add_columns']['function'](scope, col_adder, ticker, ticker_df)
 						
 					# reset the refresh.metric_cols STATUS to prevent further updates
-					# scope.pages[page]['column_adders'][ticker][col_adder] = False
+					# scope.pages[page]['replace_cols'][ticker][col_adder] = False
 					# #TODO 
-					print('Rob you need to fix replace_added_columns tonight')	
+					# reset replace_cols status to prevent unnecesary updates		
 					# set_rerun_col_adder_status(scope, tickers=ticker, column_adders=col_adder, re_run_status=False, caller='replace_added_columns' )
+					set_replace_col_adder_status_for_ticker_and_page(scope, page, ticker, col_adder, False, caller='replace_added_columns')
 
 
 

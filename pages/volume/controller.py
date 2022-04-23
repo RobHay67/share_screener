@@ -18,7 +18,9 @@ def render_volume_page(scope):
 
 	render_ticker_loader(scope)
 	
-	ticker = scope.pages['single']['selectors']['ticker']
+	ticker = scope.pages['volume']['selectors']['ticker']
+
+	print(ticker)
 
 	if ticker != 'select a ticker' :		
 

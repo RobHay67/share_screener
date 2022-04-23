@@ -46,7 +46,7 @@ def render_research_page(scope):
 
 	render_ticker_loader(scope)
 	
-	ticker = scope.pages['single']['selectors']['ticker']
+	ticker = scope.pages['research']['selectors']['ticker']
 
 	if ticker != 'select a ticker' :
 		metadata = fetch_yfinance_metadata(ticker)

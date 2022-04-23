@@ -12,7 +12,7 @@ def render_intraday_page(scope):
 
 	render_ticker_loader(scope)
 
-	ticker = scope.pages['single']['selectors']['ticker']
+	ticker = scope.pages['intraday']['selectors']['ticker']
 
 	if ticker != 'select a ticker' :		
 		
