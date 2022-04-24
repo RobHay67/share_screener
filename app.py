@@ -1,4 +1,5 @@
 # ------------------------------------------------- Execute Application
+# pipenv shell
 # streamlit run app.py
 # ------------------------------------------------- GitHub
 # git push -u origin <branch>
@@ -9,9 +10,10 @@
 # cd into project folder 
 # activate Pipenv 	- pipenv shell
 # deactivate env	- exit
+# install packages  - pipenv install
 # add a package 	- pipenv install django
 # upgrade package	- 
-# specify ver   	- pipenv install mplfinance===0.12.7a5
+# specify ver   	- pipenv install mplfinance==0.12.7a5
 # latest ver		- pipenv update pandas
 # delete pkg		- pipenv uninstall django
 
@@ -42,32 +44,20 @@ render_selected_page(scope)
 
 
 
-# print('Rob - this is where i am at')
-# print('workign through the refresh data option - refer to white board')
-# print('I have commented out a few of the actual refrreshes')
-# print('I need a report of the replace_cols - we migth need to do this by ticker')
+print('Rob - this is where i am at')
+print('Audt report with an add-Cols per pages - looks like some of the overlays are being added unnecsarily or are being tagged incorrectly')
 
 
-
-# 			Single	intraday	volumne
-# trend_open	True	False		True
-# trend_close	False	True		False
-
-
-# print('before = ', scope.pages['single']['replace_cols'])
-# ticker = 'CBA'
-# print(ticker)
-
-
-# scope.pages['single']['replace_cols'][ticker] = {}
-
-
-# print('after  = ', scope.pages['single']['replace_cols'])
-
+# print(scope.config['charts'][chart]['add_columns']['periods'])
 
 
 
 audit_replace_df_status(scope, 'running from the app page')
+
+
+
+
+
 
 
 

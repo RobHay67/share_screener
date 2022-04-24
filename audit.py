@@ -61,21 +61,25 @@ def audit_report(scope):
 def audit_replace_df_status(scope, message=None):
 
 	tab1=10
+	page=scope.pages['display_page']
+
+
 	# All loaded Ticker Files
 	ticker_list = scope.data['ticker_files'].keys()
 
 	print('')
 	print('')
 	print('='*100)
-	print('replace_df status ', message, 'do the dfs need replacing')
+	print('replace_df status - page = ', page.upper(), ' do the dfs need replacing')
+	print(message)
 	print('-'*100)
 	print( 'ticker'.ljust(tab1), 'single'.ljust(tab1), 'intraday'.ljust(tab1), 'volume'.ljust(tab1), 'research'.ljust(tab1), 'screener'.ljust(tab1) )
 	for ticker in sorted(ticker_list):
-		single 		= str(scope.pages['single']['replace_df'][ticker])
-		intraday 	= str(scope.pages['intraday']['replace_df'][ticker])
-		volume 		= str(scope.pages['volume']['replace_df'][ticker])
-		research 	= str(scope.pages['research']['replace_df'][ticker])
-		screener 	= str(scope.pages['screener']['replace_df'][ticker])
+		single 		= str(scope.pages['single']['replace_dfs'][ticker])
+		intraday 	= str(scope.pages['intraday']['replace_dfs'][ticker])
+		volume 		= str(scope.pages['volume']['replace_dfs'][ticker])
+		research 	= str(scope.pages['research']['replace_dfs'][ticker])
+		screener 	= str(scope.pages['screener']['replace_dfs'][ticker])
 
 		single_pad = '     ' if single 		== 'True' else '    '
 		intraa_pad = '     ' if intraday 	== 'True' else '    '
@@ -96,49 +100,44 @@ def audit_replace_df_status(scope, message=None):
 	print('='*100)
 
 
+	if page in scope.pages['page_list']:
+		ticker_list = list(scope.pages[page]['replace_cols'].keys())
 
+		tab1=20
+		tab2=10
 
-
-	# replace_cols dictionary
-	
-
-	page=scope.pages['display_page']
-	ticker_list = list(scope.pages[page]['replace_cols'].keys())
-
-	tab1=20
-	tab2=10
-
-	# Construct the header line
-	line = 'Column Adder'.ljust(tab1)
-	for ticker in ticker_list:line += str(ticker).ljust(tab2)
-	line_width = len(line)
-	
-	print('')
-	print('='*line_width)
-	print('replace_cols status - page = ', page, ' do the columns need replacing')
-	print('-'*line_width)
-
-
-	config_group = 'tests' if page == 'screener' else 'charts'
-	col_adder_template = scope.pages['templates'][config_group].copy()
-
-	list_of_col_adders = list(col_adder_template.keys())
-
-	print(line)
-	print('-'*line_width)
-	for col_adder in list_of_col_adders:
-		new_line = str(col_adder).ljust(tab1)
+		# Construct the header line
+		line = 'Column Adder'.ljust(tab1)
+		for ticker in ticker_list:line += str(ticker).ljust(tab2)
+		line_width = len(line)
 		
-		for ticker in ticker_list:
-			status = scope.pages[page]['replace_cols'][ticker][col_adder]
-			# print(status)
-			padding = '      ' if status == True else '     '
+		print('')
+		print('='*line_width)
+		print('replace_cols status - page = ', page.upper(), ' do the columns need replacing')
+		print(message)
+		print('-'*line_width)
 
-			status	= '\033[91m' + str(status) + '\033[0m' if status == True else  '\033[92m' + str(status) + '\033[0m'
+
+		config_group = 'tests' if page == 'screener' else 'charts'
+		col_adder_template = scope.pages['templates'][config_group].copy()
+
+		list_of_col_adders = list(col_adder_template.keys())
+
+		print(line)
+		print('-'*line_width)
+		for col_adder in list_of_col_adders:
+			new_line = str(col_adder).ljust(tab1)
 			
-			new_line += (status+padding).ljust(tab2)
-		
-		print(new_line)
+			for ticker in ticker_list:
+				status = scope.pages[page]['replace_cols'][ticker][col_adder]
+				# print(status)
+				padding = '      ' if status == True else '     '
+
+				status	= '\033[91m' + str(status) + '\033[0m' if status == True else  '\033[92m' + str(status) + '\033[0m'
+				
+				new_line += (status+padding).ljust(tab2)
+			
+			print(new_line)
 
 
 

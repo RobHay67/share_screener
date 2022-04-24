@@ -4,7 +4,7 @@ from pages.ticker_loader.layout import column_structure_for_page
 from pages.ticker_loader.selectors import render_ticker_selectors
 
 from pages.data.replace import replace_dfs
-from pages.data.replace import replace_added_columns
+from pages.data.replace import replace_cols
 
 from data.tickers.load import load_tickers
 from data.tickers.download import download_tickers
@@ -45,7 +45,7 @@ def render_ticker_loader(scope):
 		if download_new_ticker_data: download_tickers(scope)
 
 		replace_dfs(scope)
-		replace_added_columns(scope)
+		replace_cols(scope)
 
 		with scope.col5: show_ticker_files = ticker_file_button(scope)
 
@@ -62,49 +62,4 @@ def render_ticker_loader(scope):
 
 
 
-	
-# 	page = scope.pages['display_page']
-	
-# 	# Ticker List
-# 	ticker_list = scope.pages[page]['ticker_list']
-# 	build_ticker_string(ticker_list, "scope.pages[page]['ticker_list']    > ")
-
-# 	# replace_df List
-# 	build_replace_df_status(scope, page, "scope.pages[page]['replace_df']    > ")
-
-# 	# replace_col_adders_list
-# 	build_column_adders_status(scope, page, "scope.pages[page]['replace_cols']    > ")
-
-# 	# loaded_dfs
-# 	ticker_list = scope.pages[page]['dfs'].keys()
-# 	build_ticker_string(ticker_list, "scope.pages[page]['dfs']    > ")
-
-
-
-
-# import streamlit as st
-
-# def build_ticker_string(ticker_list, str_ticker_list ):
-# 	for ticker in ticker_list:
-# 		ticker = ticker + ', '
-# 		str_ticker_list += ticker
-
-# 	st.write(str_ticker_list)
-
-# def build_replace_df_status(scope, page, str_ticker_list ):
-# 	for ticker, status in scope.pages[page]['replace_df'].items():
-# 		if status == False: status = '..'
-# 		ticker = ticker + ':' + str(status) + ', '
-# 		str_ticker_list += ticker
-# 	st.write(str_ticker_list)
-
-# def build_column_adders_status(scope, page, str_ticker_list ):
-# 	st.write(str_ticker_list)
-# 	for ticker in scope.pages[page]['replace_cols'].keys():
-# 		ticker_string = '  > ' + ticker + ' - '
-# 		for col_adder, status in scope.pages[page]['replace_cols'][ticker].items():
-# 			if status == False: status = '..'
-# 			col_adder = col_adder + ':' + str(status) + ', '
-# 			ticker_string += col_adder
-# 		st.write( ticker_string)
 

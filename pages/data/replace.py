@@ -17,7 +17,7 @@ def replace_dfs(scope):
 
 	for ticker in page_ticker_list:
 		
-		replace_ticker_df_status = scope.pages[page]['replace_df'][ticker]
+		replace_ticker_df_status = scope.pages[page]['replace_dfs'][ticker]
 
 		# Check if we have been requested to renew the ticker data for this ticker
 		if  replace_ticker_df_status == True:
@@ -49,7 +49,7 @@ def replace_dfs(scope):
 					print ( '\033[91m' + ticker.ljust(10) + '> ticker file missing from scope.data[ticker_files] \033[0m')
 
 
-def replace_added_columns(scope):
+def replace_cols(scope):
 
 		# Replace the columns required for this ticker / chart 
 
@@ -67,30 +67,30 @@ def replace_added_columns(scope):
 
 			for col_adder in column_adders:
 				
-				call_col_adder = scope.pages[page]['replace_cols'][ticker][col_adder]
 
-				# Check if we have been requested to renew the columns for this ticker
-				if call_col_adder == True:
+				replace_cols_status = scope.pages[page]['replace_cols'][ticker][col_adder]
+				
+				if replace_cols_status:
 
-					if ticker in tickers_already_loaded_for_page:
+					call_col_adder = scope.pages[page]['replace_cols'][ticker][col_adder]
 
-						ticker_df				= scope.pages[page]['dfs'][ticker]
-						column_adder			= scope.config[config_group][col_adder]['add_columns']
-						column_adder_function 	= scope.config[config_group][col_adder]['add_columns']['function']
+					# Check if we have been requested to renew the columns for this ticker
+					if call_col_adder == True:
 
-						# Column_Adder has a column_adder function
-						if column_adder != None and column_adder_function != None:	
+						if ticker in tickers_already_loaded_for_page:
+
+							ticker_df				= scope.pages[page]['dfs'][ticker]
+							column_adder			= scope.config[config_group][col_adder]['add_columns']
+							column_adder_function 	= scope.config[config_group][col_adder]['add_columns']['function']
+
+							# Column_Adder has a column_adder function
+							if column_adder != None and column_adder_function != None:	
+								
+								# Call the column adding function for this col_adder
+								scope.config[config_group][col_adder]['add_columns']['function'](scope, col_adder, ticker, ticker_df)
 							
-							# Call the column adding function for this col_adder
-							scope.config[config_group][col_adder]['add_columns']['function'](scope, col_adder, ticker, ticker_df)
-						
-					# reset the refresh.metric_cols STATUS to prevent further updates
-					# scope.pages[page]['replace_cols'][ticker][col_adder] = False
-					# #TODO 
-					# reset replace_cols status to prevent unnecesary updates		
-					# set_rerun_col_adder_status(scope, tickers=ticker, column_adders=col_adder, re_run_status=False, caller='replace_added_columns' )
-					set_replace_col_adder_status_for_ticker_and_page(scope, page, ticker, col_adder, False, caller='replace_added_columns')
-
+						# reset replace_cols status to prevent unnecesary updates		
+						set_replace_col_adder_status_for_ticker_and_page(scope, page, ticker, col_adder, False, caller='replace_cols')
 
 
 
