@@ -3,7 +3,6 @@ import pandas as pd
 import yfinance as yf					# https://github.com/ranaroussi/yfinance
 # import datetime
 import os
-import pathlib
 
 
 # TODO - this is older code that we may need to reimplement - keep for now rob 16/11/21

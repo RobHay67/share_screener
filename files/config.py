@@ -50,11 +50,3 @@ def view_folders(scope):
 
 
 
-
-# TODO - delete - old folder using pathlib
-# scope.files['folders']['project'] = pathlib.Path(__file__).parent.parent.resolve()
-# scope.files['folders']['files'] = pathlib.Path.home().joinpath( scope.files['folders']['project'], 'files' )
-# scope.files['folders']['tickers'] = pathlib.Path.home().joinpath( scope.files['folders']['files'], 'tickers' )
-# scope.files['folders']['results_analysis'] = pathlib.Path.home().joinpath( scope.files['folders']['project'], scope.files['folders']['tickers'], 'results_analysis' )
-# scope.files['folders']['website'] = pathlib.Path.home().joinpath( scope.files['folders']['project'], scope.files['folders']['tickers'], 'website' )
-	

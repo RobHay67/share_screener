@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 pandas = "*"
 streamlit = "*"
-pathlib = "*"
 datetime = "*"
 yfinance = "==0.1.68"
 mplfinance = "===0.12.7a5"
