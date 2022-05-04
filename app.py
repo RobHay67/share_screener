@@ -213,4 +213,26 @@ def level_3_details(level_1, level_2, level_3):
 
 
 
+# [pipenv.exceptions.InstallError]: hint: See above for details.
+# ERROR: Couldn't install package: pathlib
+#  Package installation failed...
+# /app/share_screener
+# [manager] installer returned a non-zero exit code
+# [manager] Error during processing dependencies! Please fix the error and push an update, or try restarting the app.
+# [manager] Streamlit server consistently failed status checks
+# [manager] Please fix the errors, push an update to the git repo, or reboot the app.
+# [manager] Pulling code changes from Github...
+# [manager] Processing dependencies...
+# /app/share_screener /app/share_screener
+# Installing dependencies from Pipfile.lock (c2396e)...
+# Ignoring appnope: markers 'sys_platform == "darwin" and platform_system == "Darwin"' don't match your environment
+# To activate this project's virtualenv, run pipenv shell.
+# Alternatively, run a command inside the virtualenv with pipenv run.
+# /app/share_screener
+# [manager] Python dependencies were installed from /app/share_screener/Pipfile using pipenv.
+# [manager] Processed dependencies!
+# 2022-04-25 23:19:16.981 INFO    matplotlib.font_manager: generated new fontManager
+# [manager] Updated app!
+
+
 
