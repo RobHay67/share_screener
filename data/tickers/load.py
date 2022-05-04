@@ -26,14 +26,14 @@ def load_tickers(scope):
 				print ( '\033[92m' + ticker.ljust(10) + '> loading local ticker file \033[0m')
 				load_ticker(scope, ticker )
 				store_result( scope, ticker, result='passed' )
-				set_replace_df_status_for_ticker(scope, ticker, new_status=True, caller='load_tickers')
-				set_replace_col_status_for_ticker(scope, ticker, new_status=False, caller='load_tickers')
+				set_replace_df_status_for_ticker(scope, ticker, new_status=True)
+				set_replace_col_status_for_ticker(scope, ticker, new_status=False)
 			else:																					# The expected Local file is not available
 				print ( '\033[95m' + ticker.ljust(10) + '> missing local ticker file \033[0m')
 				scope.data['download']['missing_list'].append(ticker)
 				store_result( scope, ticker, result='failed' )
-				set_replace_df_status_for_ticker(scope, ticker, new_status=False, caller='load_tickers')
-				set_replace_col_status_for_ticker(scope, ticker, new_status=False, caller='load_tickers')
+				set_replace_df_status_for_ticker(scope, ticker, new_status=False)
+				set_replace_col_status_for_ticker(scope, ticker, new_status=False)
 
 			
 		# else:

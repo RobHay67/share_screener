@@ -57,8 +57,8 @@ def combine_loaded_and_download_ticker_data(scope):
 				scope.data['ticker_files'][ticker].sort_values(by=['date'], inplace=True, ascending=False)		
 				replace_df_status = True
 		
-		set_replace_df_status_for_ticker(scope, ticker, new_status=replace_df_status, caller='combine_loaded_and_download_ticker_data')
-		set_replace_col_status_for_ticker(scope, ticker, new_status=replace_df_status, caller='combine_loaded_and_download_ticker_data')
+		set_replace_df_status_for_ticker(scope, ticker, new_status=replace_df_status)
+		set_replace_col_status_for_ticker(scope, ticker, new_status=replace_df_status)
 		
 	store_result(scope, 'Finished', final_print=True )
 

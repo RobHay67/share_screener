@@ -35,10 +35,8 @@ def view_ticker_data_files(scope, page='all'):
 		ticker_data_file = scope.data['ticker_files'][ticker]
 
 		no_of_rows = str(len(ticker_data_file))
-		ticker_data_file.sort_values(by=['date'], inplace=True, ascending=False)
 		my_expander = st.expander(label=(ticker+' ( ' + no_of_rows + ' )'), expanded=render_expanded )
 		my_expander.dataframe(ticker_data_file, 2000, 2000)	
-		ticker_data_file.sort_values(by=['date'], inplace=True, ascending=True)
 
 
 

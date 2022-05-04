@@ -29,10 +29,8 @@ def view_chart_dfs(scope, page='all'):
 		page = list_of_tickers[ticker]
 		chart_df = scope.pages[page]['dfs'][ticker]
 		no_of_rows = str(len(chart_df))
-		chart_df.sort_values(by=['date'], inplace=True, ascending=False)
 		my_expander = st.expander(label=(ticker+' ( ' + no_of_rows + ' )'), expanded=render_expanded)
 		my_expander.dataframe(chart_df, 2000, 2000)	
-		chart_df.sort_values(by=['date'], inplace=True, ascending=True)
 
 
 
@@ -67,8 +65,6 @@ def view_screener_dfs(scope, page='all'):
 		page = list_of_tickers[ticker]
 		screener_df = scope.pages[page]['dfs'][ticker]
 		no_of_rows = str(len(screener_df))
-		screener_df.sort_values(by=['date'], inplace=True, ascending=False)
 		my_expander = st.expander(label=(ticker+' ( ' + no_of_rows + ' )'), expanded=render_expanded)
 		my_expander.dataframe(screener_df, 2000, 2000)	
-		screener_df.sort_values(by=['date'], inplace=True, ascending=True)
 

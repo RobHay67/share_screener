@@ -32,7 +32,8 @@ def create_summary_of_test_results(scope):
 
 			for test in active_test_list:
 
-				test_result = ticker_df[test].iloc[-1]
+				# test_result = ticker_df[test].iloc[-1]
+				test_result = ticker_df[test].iloc[0]
 
 				if test_result != 'pass':
 					# not all tests have passed so we fail overall

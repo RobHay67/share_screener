@@ -13,22 +13,22 @@ from audit import audit_replace_df_status
 # Set replace_df and col_adder status for a SINGLE TICKER and a SINGLE PAGE
 # -------------------------------------------------------------
 
-def set_replace_df_status_for_ticker_and_page(scope, page, ticker, new_status=False, caller='unknown'):
+def set_replace_df_status_for_ticker_and_page(scope, page, ticker, new_status=False):
 
 	scope.pages[page]['replace_dfs'][ticker] = new_status
 	
 	# TODO - delete this later - just for making sure we are not doing unnecesary updates
 	print_status = '\033[91m' + str(new_status) + '\033[0m' if new_status == True else  '\033[92m' + str(new_status) + '\033[0m'
-	print((caller + " - scope.pages[" + page + "]['replace_dfs'][" + ticker + "] = ").ljust(120) + str(print_status) )
+	print((" - scope.pages[" + page + "]['replace_dfs'][" + ticker + "] = ").ljust(120) + str(print_status) )
 
 
-def set_replace_col_adder_status_for_ticker_and_page(scope, page, ticker, col_adder, new_status, caller='unknown'):
+def set_replace_col_adder_status_for_ticker_and_page(scope, page, ticker, col_adder, new_status):
 
 	scope.pages[page]['replace_cols'][ticker][col_adder] = new_status
 
 	# TODO - delete this later - just for making sure we are not doing unnecesary updates
 	print_status = '\033[91m' + str(new_status) + '\033[0m' if new_status == True else  '\033[92m' + str(new_status) + '\033[0m'
-	print((caller + " - scope.pages[" + page + "]['replace_cols'][" + ticker + "][" + col_adder + "] = ").ljust(120) + str(print_status) )
+	print((" - scope.pages[" + page + "]['replace_cols'][" + ticker + "][" + col_adder + "] = ").ljust(120) + str(print_status) )
 
 
 
@@ -37,7 +37,7 @@ def set_replace_col_adder_status_for_ticker_and_page(scope, page, ticker, col_ad
 # Set replace_df and col_adder status for a SINGLE ticker
 # -------------------------------------------------------------
 
-def set_replace_df_status_for_ticker(scope, ticker, new_status=True, caller='unknown'):
+def set_replace_df_status_for_ticker(scope, ticker, new_status=True):
 	
 	# For every page, set the update_df status for this ticker
 	
@@ -63,10 +63,10 @@ def set_replace_df_status_for_ticker(scope, ticker, new_status=True, caller='unk
 
 			# TODO - delete this later - just for making sure we are not doing unnecesary updates
 			print_status = '\033[91m' + str(new_status) + '\033[0m' if new_status == True else  '\033[92m' + str(new_status) + '\033[0m'
-			print((caller + " - scope.pages[" + page + "]['replace_dfs'][" + ticker + "] = ").ljust(120) + str(print_status) )
+			print((" - scope.pages[" + page + "]['replace_dfs'][" + ticker + "] = ").ljust(120) + str(print_status) )
 
 
-def set_replace_col_status_for_ticker(scope, ticker, new_status, caller='unknown'):
+def set_replace_col_status_for_ticker(scope, ticker, new_status):
 
 	# We know which ticker needs to have its status set
 	# we need a list of col_adders for this ticker on this page
@@ -92,13 +92,13 @@ def set_replace_col_status_for_ticker(scope, ticker, new_status, caller='unknown
 					scope.pages[page]['replace_cols'][ticker][col_adder] = False
 
 			print_status = '\033[91m' + str(new_status) + '\033[0m' if new_status == True else  '\033[92m' + str(new_status) + '\033[0m'
-			print((caller + " - scope.pages[" + page + "]['replace_cols'][" + ticker + "][" + col_adder + "] = ").ljust(120) + str(print_status) )
+			print((" - scope.pages[" + page + "]['replace_cols'][" + ticker + "][" + col_adder + "] = ").ljust(120) + str(print_status) )
 		else:
 			# add the ticker with the template dictionary of col_adders
 			scope.pages[page]['replace_cols'][ticker] = col_adder_template
 			
 			# TODO - delete this later - just for making sure we are not doing unnecesary updates
-			print((caller + " - scope.pages[" + page + "]['replace_cols'][" + ticker + "] = ").ljust(120) + str(col_adder_template) )
+			print((" - scope.pages[" + page + "]['replace_cols'][" + ticker + "] = ").ljust(120) + str(col_adder_template) )
 
 
 
@@ -108,7 +108,7 @@ def set_replace_col_status_for_ticker(scope, ticker, new_status, caller='unknown
 # Set replace_df and col_adder status for ALL tickers
 # -------------------------------------------------------------
 
-def set_replace_df_status_for_all_tickers(scope, new_status, caller='unknown'):
+def set_replace_df_status_for_all_tickers(scope, new_status):
 	for page in scope.pages['page_list']:
 		
 		# create new empty dictionary for status
@@ -122,10 +122,10 @@ def set_replace_df_status_for_all_tickers(scope, new_status, caller='unknown'):
 
 			# TODO - delete this later - just for making sure we are not doing unnecesary updates
 			print_status = '\033[91m' + str(new_status) + '\033[0m' if new_status == True else  '\033[92m' + str(new_status) + '\033[0m'
-			print((caller + " - scope.pages[" + page + "]['replace_dfs'][" + ticker + "] = ").ljust(120) + str(print_status) )
+			print((" - scope.pages[" + page + "]['replace_dfs'][" + ticker + "] = ").ljust(120) + str(print_status) )
 
 
-def set_replace_cols_status_for_all_tickers(scope, new_status, caller='unknown'):
+def set_replace_cols_status_for_all_tickers(scope, new_status):
 	for page in scope.pages['page_list']:
 		
 		# create new empty dictionary for status
@@ -145,14 +145,14 @@ def set_replace_cols_status_for_all_tickers(scope, new_status, caller='unknown')
 
 			# TODO - delete this later - just for making sure we are not doing unnecesary updates
 			print_status = '\033[91m' + str(new_status) + '\033[0m' if new_status == True else  '\033[92m' + str(new_status) + '\033[0m'
-			print((caller + " - scope.pages[" + page + "]['replace_dfs'][" + ticker + "] = ").ljust(120) + str(col_adder_template) )
+			print((" - scope.pages[" + page + "]['replace_dfs'][" + ticker + "] = ").ljust(120) + str(col_adder_template) )
 
 				
 # -------------------------------------------------------------
 # set col_adder status for a SINGLE col_adder function
 # -------------------------------------------------------------
 
-def set_replace_col_status_for_col_adder(scope, col_adder, new_status=True, caller='unknown'):
+def set_replace_col_status_for_col_adder(scope, col_adder, new_status=True):
 
 	# Called when one of the widgets has been changed
 	# so this will be the chart or the test col_adder variables
@@ -178,7 +178,7 @@ def set_replace_col_status_for_col_adder(scope, col_adder, new_status=True, call
 
 					# TODO - delete this later - just for making sure we are not doing unnecesary updates
 					print_status = '\033[91m' + str(new_status) + '\033[0m' if new_status == True else  '\033[92m' + str(new_status) + '\033[0m'
-					print((caller + " - scope.pages[" + page + "]['replace_cols'][" + ticker + "][" + col_adder + "] = ").ljust(120) + str(print_status) )
+					print((" - scope.pages[" + page + "]['replace_cols'][" + ticker + "][" + col_adder + "] = ").ljust(120) + str(print_status) )
 
 
 # -------------------------------------------
@@ -235,7 +235,7 @@ def all_tickers_potentially_being_used_by_page(scope, page):
 			ticker_list.append(ticker)
 
 	# tickers in the loaded dfs for the page
-	for ticker in list(scope.pages[page]['dfs'].keys):
+	for ticker in list(scope.pages[page]['dfs'].keys()):
 		if ticker not in ticker_list:
 			ticker_list.append(ticker)
 

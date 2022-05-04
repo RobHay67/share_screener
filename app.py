@@ -25,7 +25,7 @@ pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
 
 
-from audit import audit_report, audit_replace_df_status
+from audit import audit_replace_df_status
 
 
 import streamlit as st
@@ -38,26 +38,18 @@ print ( '\033[94m' + 'Application Re-Rendering Now ' + '>'*50 + '\033[0m')
 
 
 scope = set_scope(st.session_state)
-audit_report(scope)
 render_sidebar(scope)
 render_selected_page(scope)
 
 
 
-print('Rob - this is where i am at')
-print('Audt report with an add-Cols per pages - looks like some of the overlays are being added unnecsarily or are being tagged incorrectly')
 
-
-# print(scope.config['charts'][chart]['add_columns']['periods'])
-
-
-
-audit_replace_df_status(scope, 'running from the app page')
+audit_replace_df_status(scope)
 
 
 
 
-
+# ticker_data_file.sort_values(by=['date'], inplace=True, ascending=False)
 
 
 
@@ -125,13 +117,13 @@ def level_3_details(level_1, level_2, level_3):
 # 	# for key in st.session_state:print(key)
 
 
-# level_1 = 'config'
-# if level_1 in st.session_state:
-# 	terminal_heading(level_1)
-	# for key in st.session_state[level_1]:print(key)
+level_1 = 'config'
+if level_1 in st.session_state:
+	terminal_heading(level_1)
+	for key in st.session_state[level_1]:print(key)
 # 	level_2_details(level_1, 'dropdowns')
 	# level_2_details(level_1, 'tests')
-	# level_3_details(level_1, 'tests', 'trend_open')
+	level_3_details(level_1, 'tests', 'trend_high')
 # 	level_2_details(level_1, 'charts')
 # 	level_3_details(level_1, 'charts', 'config')
 # 	level_2_details(level_1, 'results')

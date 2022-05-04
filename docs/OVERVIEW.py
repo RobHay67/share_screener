@@ -42,3 +42,5 @@
 #	Chart Data is stored in 			< scope.pages[page].chart_df > 			ie scope.pages['single'].chart_df
 
 
+# Ticker files to be in descending order so that we keep the latest data at the top of the page
+

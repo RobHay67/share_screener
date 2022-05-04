@@ -14,55 +14,14 @@ def audit_footer():
 
 
 
-def audit_report(scope):
-
-	# audit_titles('TICKER_LIST list of tickers being utilised by page ', 'scope / pages / [page] / ticker_list ')
-	# for page in scope.pages['page_list']:
-	# 	print (page, 'ticker_list = ', scope.pages[page]['ticker_list'])
-	# audit_footer()
-
-	# audit_titles('selected ticker from ticker dropdown list','scope / pages / [page] / selectors' )
-	# for page in scope.pages['page_list']:
-	# 	print (page, 'selectors.ticker = ', scope.pages[page]['selectors']['ticker'])
-	# audit_footer()
-
-	# audit_titles('RENEW TICKER_DATA - Ticker data that needs to be renewed for this page', 'scope / pages / [page] / renew / ticker_data / [ticker] / status')
-	# for page in scope.pages['page_list']:
-	# 	print(page.upper(), 'Page')
-	# 	for ticker, status in scope.pages[page]['tickers']['renew_df'].items():
-	# 		print ( ticker, ' : ', status)
-	# audit_footer()
-
-	# audit_titles('col_adder (Col adding functions) data that needs to be re-run for this page', 'scope / pages / [page] / renew / replace_cols / [ticker] / [col_adder] / status')
-	# for page in scope.pages['page_list']:
-	# 	print(page.upper(), 'Page')
-	# 	ticker_list = list(scope.pages[page]['renew']['replace_cols'].keys())	
-	# 	for ticker in ticker_list:
-	# 		print(ticker)
-	# 		for col_adder, status in scope.pages[page]['renew']['replace_cols'][ticker].items():
-	# 			print ( ''.ljust(10) + col_adder.ljust(20) + ' : ' + str(status) )
-
-
-	# audit_titles('Ticker data that needs to be renewed for this page', 'scope / pages / [page] / renew / replace_cols / [ticker] / [col_adder] / status')
-	# for page in scope.pages['page_list']:
-	# 	print(page.upper(), 'Page')
-	# 	ticker_list = list(scope.pages[page]['renew']['replace_cols'].keys())	
-	# 			for ticker in ticker_list:
-
-
-	audit_footer()
 
 
 
 
-
-
-
-def audit_replace_df_status(scope, message=None):
+def audit_replace_df_status(scope):
 
 	tab1=10
 	page=scope.pages['display_page']
-
 
 	# All loaded Ticker Files
 	ticker_list = scope.data['ticker_files'].keys()
@@ -70,8 +29,9 @@ def audit_replace_df_status(scope, message=None):
 	print('')
 	print('')
 	print('='*100)
-	print('replace_df status - page = ', page.upper(), ' do the dfs need replacing')
-	print(message)
+	print('replace_dfs > status')
+	print('page        >', page.upper())
+	print('do the dfs need replacing ?')
 	print('-'*100)
 	print( 'ticker'.ljust(tab1), 'single'.ljust(tab1), 'intraday'.ljust(tab1), 'volume'.ljust(tab1), 'research'.ljust(tab1), 'screener'.ljust(tab1) )
 	for ticker in sorted(ticker_list):
@@ -113,8 +73,9 @@ def audit_replace_df_status(scope, message=None):
 		
 		print('')
 		print('='*line_width)
-		print('replace_cols status - page = ', page.upper(), ' do the columns need replacing')
-		print(message)
+		print('replace_cols > status')
+		print('page         >', page.upper())
+		print('do the columns need replacing ?')
 		print('-'*line_width)
 
 
@@ -139,7 +100,7 @@ def audit_replace_df_status(scope, message=None):
 			
 			print(new_line)
 
-
+	print('='*100)
 
 
 

@@ -15,6 +15,10 @@ def load_ticker(scope, ticker):
 									dtype       = ticker_file_dtypes,
 									parse_dates = ticker_file_dates,
 									)
+	
+	# Sort ticker file into ascending order
+	ticker_data_file.sort_values(by=['date'], inplace=True, ascending=False)	
+	
 	scope.data['ticker_files'][ticker] = ticker_data_file
 
 

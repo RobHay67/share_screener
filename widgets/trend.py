@@ -29,5 +29,5 @@ def on_change_trend_selection(scope:dict, config_name:str, col_adder:str, widget
 	scope.config[config_name][col_adder]['add_columns']['trend'] = changed_value	
 
 	# update the page data renew status
-	set_replace_col_status_for_col_adder(scope, col_adder, new_status=True, caller='on_change_trend_selection')
+	set_replace_col_status_for_col_adder(scope, col_adder, new_status=True)
 	

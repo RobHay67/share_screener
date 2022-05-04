@@ -29,5 +29,5 @@ def on_change_row_limit(scope:dict, widget_key:str):
 	scope.pages['row_limit'] = changed_value
 
 	# update the page data renew status
-	set_replace_df_status_for_all_tickers(scope, new_status=True, caller='on_change_row_limit')
+	set_replace_df_status_for_all_tickers(scope, new_status=True)
 	

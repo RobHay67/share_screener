@@ -8,9 +8,18 @@ def trend_cols(scope, test, ticker, screener_df):
 	trend 		= scope.config['tests'][test]['add_columns']['trend']
 	duration	= int(scope.config['tests'][test]['add_columns']['duration'])
 	timespan 	= int(scope.config['tests'][test]['add_columns']['timespan'])
+
+	print('column   = ', column)
+	print('trend    = ', trend)
+	print('duration = ', duration)
+	print('timespan = ', timespan)
 	
+	# Change screener_df to be ascending to simplify the shifting
+	screener_df.sort_values(by=['date'], inplace=True, ascending=True)
+
 	screener_df['temp_shifted'] = screener_df[column].shift(1)
 	screener_df['temp_shifted'] = screener_df['temp_shifted'].fillna(0.0).astype(float)
+
 	if trend == 'up':
 		screener_df['temp_trend'] = np.where( screener_df[column] > screener_df['temp_shifted'], 1, 0 )
 	else:
@@ -19,8 +28,15 @@ def trend_cols(scope, test, ticker, screener_df):
 	screener_df['temp_trend_total'] = screener_df['temp_trend'].rolling(timespan, min_periods=1).sum().astype(int)
 
 	screener_df[test] = np.where( screener_df['temp_trend_total'] >= duration, 'pass', 'fail')
+	print(screener_df.tail(5))
+
 
 	screener_df.drop(['temp_shifted', 'temp_trend', 'temp_trend_total'], axis=1, inplace=True)
+
+	# ensure Screener_df is back in its descending order (latest first)
+	screener_df.sort_values(by=['date'], inplace=True, ascending=False)
+
+	
 
 
 

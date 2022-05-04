@@ -30,20 +30,16 @@ def replace_dfs(scope):
 					# print ( '\033[92m' + ticker.ljust(10) + '> adding ticker to page df where page = ' + page + '\033[0m')
 					
 					ticker_df = scope.data['ticker_files'][ticker].copy()
-					
-					# sort the df into the correct order for the charting
-					ticker_df.sort_values(by=['date'], inplace=True, ascending=True)
-					
+									
 					# limit no of rows for the page_df (speeds up page rendering)
 					if page_row_limit != None : 
-						ticker_df = ticker_df.tail(page_row_limit) 									
+						ticker_df = ticker_df.head(page_row_limit) 									
 					
 					# Store the ticker dataframe for use by the page
 					scope.pages[page]['dfs'][ticker] = ticker_df
 
 					# reset replace_df status to prevent unnecesary updates		
-					# set_replace_df_status_for_ticker(scope, ticker, new_status=False, caller='replace_dfs')
-					set_replace_df_status_for_ticker_and_page(scope, page, ticker, new_status=False, caller='replace_dfs')
+					set_replace_df_status_for_ticker_and_page(scope, page, ticker, new_status=False)
 
 				else:
 					print ( '\033[91m' + ticker.ljust(10) + '> ticker file missing from scope.data[ticker_files] \033[0m')
@@ -90,7 +86,7 @@ def replace_cols(scope):
 								scope.config[config_group][col_adder]['add_columns']['function'](scope, col_adder, ticker, ticker_df)
 							
 						# reset replace_cols status to prevent unnecesary updates		
-						set_replace_col_adder_status_for_ticker_and_page(scope, page, ticker, col_adder, False, caller='replace_cols')
+						set_replace_col_adder_status_for_ticker_and_page(scope, page, ticker, col_adder, False)
 
 
 
