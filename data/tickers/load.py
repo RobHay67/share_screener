@@ -1,9 +1,9 @@
 import os
 
-from config.results.results import store_result
+from config.results.store import store_result
 from data.tickers.model.ticker_path import path_for_ticker_file
 from data.tickers.model.read_csv import load_ticker
-from pages.view.results import view_results
+from pages.ticker_loader.messages import view_result
 from pages.data.status import set_replace_df_status_for_ticker, set_replace_col_status_for_ticker
 
 
@@ -44,7 +44,7 @@ def load_tickers(scope):
 
 	store_result(scope, 'Finished', final_print=True )
 	
-	view_results(scope)
+	view_result(scope)
 
 	
 

@@ -1,8 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-from pages.view.two_cols import view_2_columns
-
+from config.results.two_cols import view_2_columns
 
 
 def company_general(metadata):

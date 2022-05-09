@@ -82,6 +82,5 @@ def render_screener_tests(scope):
 
 
 
-from pages.view.three_cols import three_cols
 
 

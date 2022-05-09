@@ -1,8 +1,7 @@
 import os
 
 import streamlit as st
-from pages.view.three_cols import three_cols
-
+from config.results.three_cols import three_cols
 
 
 def scope_files(scope):

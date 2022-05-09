@@ -10,7 +10,7 @@ from config.charts.secondary_config import render_secondary_charts_config
 from strategies.config import view_strategy
 from data.download.view import view_download
 
-from config.results.config import view_results
+from config.results.config import view_all_results
 
 from pages.settings.view.app import view_app
 from files.config import view_folders
@@ -19,8 +19,8 @@ from data.index.download import download_ticker_index_data
 from data.index.view.index import view_index
 from data.index.view.industries import view_industries
 from data.tickers.view.dataframes import view_ticker_data_files
-from pages.view.dataframes import view_screener_dfs
-from pages.view.dataframes import view_chart_dfs
+from pages.ticker_loader.dataframes import view_screener_dfs
+from pages.ticker_loader.dataframes import view_chart_dfs
 
 
 def render_selected_scope_page(scope):
@@ -34,7 +34,7 @@ def render_selected_scope_page(scope):
 			'view_strategy'			:view_strategy,
 			# Column 2
 			'view_download'			:view_download,
-			'view_results'			:view_results,
+			'view_all_results'		:view_all_results,
 			# Column 3
 			'view_app'				:view_app,
 			'view_folders'			:view_folders,
@@ -67,7 +67,7 @@ def render_scope_settings(scope):
 	with col1: st.button('Page(s)', on_click=set_st_button, args=(scope, 'view_pages', ))
 	with col1: st.button('Download', on_click=set_st_button, args=(scope, 'view_download', ))
 	with col1: st.button('Strategy', on_click=set_st_button, args=(scope, 'view_strategy', ))
-	with col1: st.button('Results', on_click=set_st_button, args=(scope, 'view_results', ))
+	with col1: st.button('Results', on_click=set_st_button, args=(scope, 'view_all_results', ))
 
 	with col2: st.subheader('Chart Settings')
 	with col2: st.button('User Primary Charts', on_click=set_st_button, args=(scope, 'view_primary', ))

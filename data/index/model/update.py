@@ -1,6 +1,6 @@
 import pandas as pd
 
-from config.results.results import store_result
+from config.results.store import store_result
 
 from data.index.model.schema import default_values
 from data.index.model.schema import data_types

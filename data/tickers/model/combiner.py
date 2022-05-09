@@ -1,6 +1,6 @@
 import pandas as pd
 
-from config.results.results import store_result
+from config.results.store import store_result
 
 from data.tickers.config import ticker_file_usecols
 

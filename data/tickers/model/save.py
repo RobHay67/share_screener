@@ -1,5 +1,5 @@
 
-from config.results.results import store_result
+from config.results.store import store_result
 from data.tickers.model.ticker_path import path_for_ticker_file
 
 

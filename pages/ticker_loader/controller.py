@@ -18,8 +18,8 @@ from pages.ticker_loader.buttons.screener_dfs import screener_dfs_button
 from pages.ticker_loader.buttons.chart_dfs import chart_dfs_button
 
 # TODO - do these need to be seperate??? maybe a single function should handle both
-from pages.view.dataframes import view_screener_dfs
-from pages.view.dataframes import view_chart_dfs
+from pages.ticker_loader.dataframes import view_screener_dfs
+from pages.ticker_loader.dataframes import view_chart_dfs
 
 
 from audit import audit_replace_df_status

@@ -1,4 +1,4 @@
-from pages.view.header import render_page_title
+from pages.ticker_loader.header import render_page_title
 from pages.ticker_loader.controller import render_ticker_loader
 
 

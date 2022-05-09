@@ -6,8 +6,9 @@ from data.tickers.config import ticker_file_schema
 from data.tickers.config import ticker_file_usecols
 from data.tickers.config import y_finance_schemas
 
-from pages.view.results import download_industry_message
-from config.results.results import store_result
+from pages.ticker_loader.messages import download_industry_message
+
+from config.results.store import store_result
 
 from data.index.model.save import save_index			# TODO we may need to get this working again
 

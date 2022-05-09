@@ -1,11 +1,11 @@
-from pages.view.header import render_page_title		
+from pages.ticker_loader.header import render_page_title		
 from pages.ticker_loader.controller import render_ticker_loader
 from pages.screener.results import render_test_results
 from pages.screener.tests import render_screener_tests
 
 
 
-from pages.view.screener_example import example_settings			#TODO fleshing out some ideas - delete when happy
+from pages.screener.screener_example import example_settings			#TODO fleshing out some ideas - delete when happy
 
 
 def render_screener_page(scope):
