@@ -1,8 +1,9 @@
-# from config.tests import tests_config
 from config.tests.config import tests_config
 from config.charts.config import charts_config
 
-# TODO - whenever we add a ticker to ohlcv, we need to also add it to refresh add_cols!!
+
+pages = ['single', 'intraday', 'volume', 'research', 'screener']
+
 
 
 def scope_pages(scope):
@@ -40,7 +41,7 @@ def scope_pages(scope):
 	scope.pages['tests']['df'] = {}
 
 
-pages = ['single', 'intraday', 'volume', 'research', 'screener']
+
 
 
 

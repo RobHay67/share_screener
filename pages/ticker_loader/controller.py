@@ -56,9 +56,9 @@ def render_ticker_loader(scope):
 			show_screener_dfs = False
 			with scope.col5: show_chart_dfs = chart_dfs_button(scope)
 		
-		if show_ticker_files: view_ticker_data_files(scope, page)
-		if show_screener_dfs: view_screener_dfs(scope, page)
-		if show_chart_dfs: view_chart_dfs(scope, page)
+		if show_ticker_files: view_ticker_data_files(scope)
+		if show_screener_dfs: view_screener_dfs(scope)
+		if show_chart_dfs: view_chart_dfs(scope)
 
 
 

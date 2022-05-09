@@ -5,7 +5,7 @@ from pages.data.status import set_replace_col_status_for_col_adder
 
 def edit_trend_direction(scope, config_name, col_adder ):
 
-	widget_key = 'widget_' + config_name + '_' + col_adder
+	widget_key = 'widget_direction_' + config_name + '_' + col_adder
 	display_name =  '' + ('Direction for ' + scope.config[config_name][col_adder]['name'] )
 	previous_selection = scope.config[config_name][col_adder]['add_columns']['trend']
 	pos_for_previous = scope.config['tests']['trends'].index(previous_selection)	

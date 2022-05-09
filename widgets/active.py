@@ -8,7 +8,7 @@ from pages.data.status import set_replace_col_status_for_col_adder
 
 def edit_active(scope, config_name, col_adder ):
 
-	widget_key = 'widget_' + config_name + '_' + col_adder
+	widget_key = 'widget_active_' + config_name + '_' + col_adder
 	display_name =  '' + scope.config[config_name][col_adder]['name']
 	previous_selection = scope.config[config_name][col_adder]['active']
 	
@@ -24,7 +24,6 @@ def edit_active(scope, config_name, col_adder ):
 
 
 def on_change_active_status(scope:dict, config_name:str, col_adder:str, widget_key:str):
-
 	changed_value = scope[widget_key]
 
 	# store the selection
@@ -33,4 +32,6 @@ def on_change_active_status(scope:dict, config_name:str, col_adder:str, widget_k
 	# update the page data renew status
 	set_replace_col_status_for_col_adder(scope, col_adder, new_status=True)
 
-	#TODO - need to redo the page templates at this point - or maybe just before we need to use the page templates
+	# Because this widget can turn on or off charts and tests, we need to
+	# also update the templates with the latest status
+	scope.pages['templates'][config_name][col_adder] = changed_value

@@ -44,7 +44,7 @@ def render_selected_scope_page(scope):
 			'view_industries'		:view_industries,
 			# Column 5			
 			'view_ticker_files'		:view_ticker_data_files,
-			'view_analysis_dfs'		:view_screener_dfs,
+			'view_screener_dfs'		:view_screener_dfs,
 			'view_chart_dfs'		:view_chart_dfs,
 			
 			}
@@ -83,9 +83,12 @@ def render_scope_settings(scope):
 	with col4: st.button('Industry Report', on_click=set_st_button, args=(scope, 'view_industries', ))
 
 	with col5: st.subheader('Ticker DataFrames') # DONE
-	with col5: st.button('Loaded Ticker Data Files ( ' + str(len(scope.data['ticker_files'].keys())) + ' )', on_click=set_st_button, args=(scope, 'view_ticker_files', ))
-	with col5: st.button('Analysis Dataframes ( ?? )', on_click=set_st_button, args=(scope, 'view_analysis_dfs', ))
-	with col5: st.button('Charting Dataframes ( ?? )', on_click=set_st_button, args=(scope, 'view_chart_dfs', ))
+	no_of_loaded_dfs = str(len(scope.data['ticker_files'].keys()))
+	no_of_screener_dfs = str(len(scope.pages['screener']['dfs'].keys()))
+	no_of_chart_dfs = str(len(scope.pages['single']['dfs'].keys()))
+	with col5: st.button('Loaded Ticker Data Files ( ' + no_of_loaded_dfs + ' )', on_click=set_st_button, args=(scope, 'view_ticker_files', ))
+	with col5: st.button('Screener Dataframes ( ' + no_of_screener_dfs + ' )', on_click=set_st_button, args=(scope, 'view_screener_dfs', ))
+	with col5: st.button('Charting Dataframes ( ' + no_of_chart_dfs + ' )', on_click=set_st_button, args=(scope, 'view_chart_dfs', ))
 	
 	st.markdown("""---""")
 

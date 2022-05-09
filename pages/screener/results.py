@@ -1,13 +1,7 @@
 
 import streamlit as st
-# import pandas as pd
-
-
-
 
 from config.tests.results import create_summary_of_test_results
-
-
 
 
 
@@ -25,18 +19,20 @@ def render_test_results(scope):
 		passed_test_results_df = {}
 		failed_test_results_df = {}
 
-	my_expander = st.expander(label='Passed Every Test', expanded=True )
-	my_expander.dataframe(passed_test_results_df, 2000, 2000)	
+	col1,col2,col3 = st.columns([4,4,4])
 
-	my_expander = st.expander(label='Failed Every Test', expanded=False )
-	my_expander.dataframe(failed_test_results_df, 2000, 2000)	
-
-	my_expander = st.expander(label='Every Test Result', expanded=False )
-	my_expander.dataframe(test_results_df, 2000, 2000)	
-
-
-	# my_expander = st.expander(label=(ticker+' ( ' + no_of_rows + ' )'), expanded=render_expanded )
-	# my_expander.dataframe(ticker_data_file, 2000, 2000)	
+	with col1:
+		no_passed = str(len(passed_test_results_df))
+		my_expander = st.expander(label='Passed Every Test (' + no_passed + ' )', expanded=False )
+		my_expander.dataframe(passed_test_results_df, 2000, 2000)	
+	with col2:
+		no_failed = str(len(failed_test_results_df))
+		my_expander = st.expander(label='Failed Every Test (' + no_failed + ' )', expanded=False )
+		my_expander.dataframe(failed_test_results_df, 2000, 2000)	
+	with col3:
+		no_tested = str(len(test_results_df))
+		my_expander = st.expander(label='Every Test Result (' + no_tested + ' )', expanded=False )
+		my_expander.dataframe(test_results_df, 2000, 2000)	
 
 
 

@@ -28,14 +28,17 @@ def create_summary_of_test_results(scope):
 		# Check that we have some data for this ticker
 		if ticker in scope.pages[page]['dfs'].keys():
 			
+			
 			ticker_df = scope.pages[page]['dfs'][ticker]
 
 			for test in active_test_list:
+				print(test)
 
 				# test_result = ticker_df[test].iloc[-1]
 				test_result = ticker_df[test].iloc[0]
 
 				if test_result != 'pass':
+					print('we have a failure')
 					# not all tests have passed so we fail overall
 					summary_result = 'fail'		
 
@@ -43,6 +46,7 @@ def create_summary_of_test_results(scope):
 				ticker_test_results.append(test_result)
 
 			# Store the overall summary result
+			print(ticker, ' > ', summary_result)
 			ticker_test_results.append(summary_result)
 
 			# Store tickers every test result and the overall result in a dataframe 
