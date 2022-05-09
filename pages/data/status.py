@@ -98,7 +98,7 @@ def set_replace_col_status_for_ticker(scope, ticker, new_status):
 			scope.pages[page]['replace_cols'][ticker] = col_adder_template
 			
 			# TODO - delete this later - just for making sure we are not doing unnecesary updates
-			print((" - scope.pages[" + page + "]['replace_cols'][" + ticker + "] = ").ljust(120) + str(col_adder_template) )
+			print((" - scope.pages[" + page + "]['replace_cols'][" + ticker + "] = ").ljust(120) )
 
 
 

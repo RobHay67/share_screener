@@ -4,8 +4,8 @@ import streamlit as st
 # from pages.view.config import view_pages
 from pages.settings.view.page_config import view_pages
 
-from charts.primary_config import render_primary_charts_config
-from charts.secondary_config import render_secondary_charts_config
+from config.charts.primary_config import render_primary_charts_config
+from config.charts.secondary_config import render_secondary_charts_config
 
 from strategies.config import view_strategy
 from data.download.view import view_download

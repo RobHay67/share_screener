@@ -2,7 +2,7 @@ import time
 
 from config.streamlit import set_streamlit_page_config
 
-from charts.config import scope_charts
+from config.charts.config import scope_charts
 from config.results.config import scope_results
 from config.tests.scope import scope_tests
 

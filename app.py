@@ -117,13 +117,13 @@ def level_3_details(level_1, level_2, level_3):
 # 	# for key in st.session_state:print(key)
 
 
-level_1 = 'config'
-if level_1 in st.session_state:
-	terminal_heading(level_1)
-	for key in st.session_state[level_1]:print(key)
+# level_1 = 'config'
+# if level_1 in st.session_state:
+# 	terminal_heading(level_1)
+# 	for key in st.session_state[level_1]:print(key)
 # 	level_2_details(level_1, 'dropdowns')
 	# level_2_details(level_1, 'tests')
-	level_3_details(level_1, 'tests', 'trend_high')
+	# level_3_details(level_1, 'tests', 'trend_high')
 # 	level_2_details(level_1, 'charts')
 # 	level_3_details(level_1, 'charts', 'config')
 # 	level_2_details(level_1, 'results')
