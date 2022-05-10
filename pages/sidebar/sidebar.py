@@ -28,7 +28,7 @@ def render_sidebar(scope):
 	edit_row_limit(scope)
 
 
-	st.sidebar.button('Settings > all'		, on_click=set_page, args=(scope, 'scope', ))
+	st.sidebar.button('Config (scope)'		, on_click=set_page, args=(scope, 'scope', ))
 
 
 

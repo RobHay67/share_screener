@@ -19,4 +19,20 @@ def set_streamlit_page_config():
 			padding-bottom: {padding}rem;
 		}} </style> """, unsafe_allow_html=True)
 
-	
+	# Remove whitespace from the top of the page and sidebar
+	st.markdown("""
+        <style>
+               .css-18e3th9 {
+                    padding-top: 0rem;
+                    padding-bottom: 10rem;
+                    padding-left: 5rem;
+                    padding-right: 5rem;
+                }
+               .css-1d391kg {
+                    padding-top: 3.5rem;
+                    padding-right: 1rem;
+                    padding-bottom: 3.5rem;
+                    padding-left: 1rem;
+                }
+        </style>
+        """, unsafe_allow_html=True)

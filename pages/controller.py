@@ -7,7 +7,7 @@ from pages.volume.controller import render_volume_page
 from pages.screener.controller import render_screener_page
 from config.charts.primary_config import render_primary_charts_config
 from config.charts.secondary_config import render_secondary_charts_config
-from pages.settings.view.settings import render_scope_settings
+from pages.scope.controller import render_scope_categories
 
 def render_selected_page(scope):
 	
@@ -23,7 +23,7 @@ def render_selected_page(scope):
 						'screener'			:render_screener_page,
 						'charts_primary'	:render_primary_charts_config,
 						'charts_secondary'	:render_secondary_charts_config,
-						'scope'				:render_scope_settings,
+						'scope'				:render_scope_categories,
 					}
 
 	if page in list(page_map.keys()):

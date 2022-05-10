@@ -16,4 +16,3 @@ def scope_tests(scope):
 		scope.config['tests'][test] = config
 
 
-

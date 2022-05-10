@@ -31,21 +31,3 @@ def scope_files(scope):
 
 
 
-def view_folders(scope):
-
-	diff_col_size = [2,6,2]
-
-	st.subheader('Folders')
-	three_cols( 'Project', scope.files['folders']['project'], 'folder_project', diff_col_size )
-	three_cols( 'Files', scope.files['folders']['files'], 'folder_files', diff_col_size )
-	three_cols( 'Share Data', scope.files['folders']['tickers'], 'folder_tickers', diff_col_size )
-	three_cols( 'Results Analysis', scope.files['folders']['results_analysis'], 'folder_results_analysis', diff_col_size )
-	three_cols( 'Website Output', scope.files['folders']['website'], 'folder_website', diff_col_size )
-
-	st.subheader('Paths to Specific Objects')
-	three_cols( 'Path for Share Index File', scope.files['paths']['ticker_index'], 'path_ticker_index', diff_col_size )
-	three_cols( 'Path for Website Output File', scope.files['paths']['website'], 'path_website_file', diff_col_size )
-	three_cols( 'Path for Share Data File', scope.files['paths']['ticker_data'], 'path_ticker_data_file', diff_col_size )
-
-
-

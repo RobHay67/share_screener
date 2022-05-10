@@ -18,7 +18,7 @@ def render_df(scope, ticker_list, i):
 
 
 
-def view_ticker_data_files(scope):
+def view_ticker_files(scope):
 	page = scope.pages['display_page']
 	print('display_page = ', page)
 	render_expanded = False
@@ -28,7 +28,7 @@ def view_ticker_data_files(scope):
 		
 		col1,col2 = st.columns([6,2])
 		with col1: st.write('Loaded and Downloaded ticker data stored in > ')
-		with col2: st.write('< scope.data[ticker_files] >')	
+		with col2: st.write('< scope.data.ticker_files >')	
 		st.markdown("""---""")
 
 	ticker_list = sorted(list(scope.data['ticker_files'].keys()))

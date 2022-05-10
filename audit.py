@@ -34,23 +34,25 @@ def audit_replace_df_status(scope):
 	print('do the dfs need replacing ?')
 	print('-'*100)
 	print( 'ticker'.ljust(tab1), 'single'.ljust(tab1), 'intraday'.ljust(tab1), 'volume'.ljust(tab1), 'research'.ljust(tab1), 'screener'.ljust(tab1) )
+	
+	
 	for ticker in sorted(ticker_list):
-		single 		= str(scope.pages['single']['replace_dfs'][ticker])
-		intraday 	= str(scope.pages['intraday']['replace_dfs'][ticker])
-		volume 		= str(scope.pages['volume']['replace_dfs'][ticker])
-		research 	= str(scope.pages['research']['replace_dfs'][ticker])
-		screener 	= str(scope.pages['screener']['replace_dfs'][ticker])
+		single 		= scope.pages['single']['replace_dfs'][ticker]
+		intraday 	= scope.pages['intraday']['replace_dfs'][ticker]
+		volume 		= scope.pages['volume']['replace_dfs'][ticker]
+		research 	= scope.pages['research']['replace_dfs'][ticker]
+		screener 	= scope.pages['screener']['replace_dfs'][ticker]
 
-		single_pad = '     ' if single 		== 'True' else '    '
-		intraa_pad = '     ' if intraday 	== 'True' else '    '
-		volumn_pad = '     ' if volume 		== 'True' else '    '
-		resear_pad = '     ' if research 	== 'True' else '    '
+		single_pad = '     ' if single 		== True else '    '
+		intraa_pad = '     ' if intraday 	== True else '    '
+		volumn_pad = '     ' if volume 		== True else '    '
+		resear_pad = '     ' if research 	== True else '    '
 
-		single   	= '\033[91m' + str(single) 		+ '\033[0m' if single == 'True' 	else  '\033[92m' + str(single) + '\033[0m'
-		intraday 	= '\033[91m' + str(intraday) 	+ '\033[0m' if intraday == 'True' 	else  '\033[92m' + str(intraday) + '\033[0m'
-		volume 		= '\033[91m' + str(volume) 		+ '\033[0m' if volume == 'True' 	else  '\033[92m' + str(volume) + '\033[0m'
-		research 	= '\033[91m' + str(research) 	+ '\033[0m' if research == 'True' 	else  '\033[92m' + str(research) + '\033[0m'
-		screener 	= '\033[91m' + str(screener) 	+ '\033[0m' if screener == 'True' 	else  '\033[92m' + str(screener) + '\033[0m'
+		single   	= '\033[91m' + str(single) 		+ '\033[0m' if single == True 	else  '\033[92m' + str(single)   + '\033[0m'
+		intraday 	= '\033[91m' + str(intraday) 	+ '\033[0m' if intraday == True	else  '\033[92m' + str(intraday) + '\033[0m'
+		volume 		= '\033[91m' + str(volume) 		+ '\033[0m' if volume == True 	else  '\033[92m' + str(volume)   + '\033[0m'
+		research 	= '\033[91m' + str(research) 	+ '\033[0m' if research == True	else  '\033[92m' + str(research) + '\033[0m'
+		screener 	= '\033[91m' + str(screener) 	+ '\033[0m' if screener == True	else  '\033[92m' + str(screener) + '\033[0m'
 
 			# print( len(single))
 

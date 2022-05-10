@@ -8,7 +8,7 @@ from pages.data.replace import replace_cols
 
 from data.tickers.load import load_tickers
 from data.tickers.download import download_tickers
-from data.tickers.view.dataframes import view_ticker_data_files
+from data.tickers.view.dataframes import view_ticker_files
 
 
 from pages.ticker_loader.buttons.download import download_button
@@ -56,7 +56,7 @@ def render_ticker_loader(scope):
 			show_screener_dfs = False
 			with scope.col5: show_chart_dfs = chart_dfs_button(scope)
 		
-		if show_ticker_files: view_ticker_data_files(scope)
+		if show_ticker_files: view_ticker_files(scope)
 		if show_screener_dfs: view_screener_dfs(scope)
 		if show_chart_dfs: view_chart_dfs(scope)
 

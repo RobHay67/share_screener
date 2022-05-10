@@ -29,7 +29,7 @@ def view_chart_dfs(scope):
 	
 	if page == 'scope':
 		page = 'single'
-		st.subheader('All Charting Dataframes')
+		st.subheader('Charting Page Dataframes')
 		col1,col2 = st.columns([6,2])
 		with col1: st.write('Chart_df stored in > ')
 		with col2: st.write("< scope.pages[page]['dfs'] >")	
@@ -53,7 +53,7 @@ def view_screener_dfs(scope):
 
 	if page == 'scope':
 		page='screener'
-		st.subheader('Page Dataframes')
+		st.subheader('Screener Page Dataframes')
 		col1,col2 = st.columns([6,2])
 		with col1: st.write('Analysis DataFrames stored in > ')
 		with col2: st.write("< scope.pages[page]['dfs'] >")	
