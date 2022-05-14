@@ -48,35 +48,35 @@ def scope_charts(scope):
 # ==============================================================================================================================================================
 
 # Primary Charts -------------------------------------
-from charts.charts.candlestick 		import candle_plot
-# from charts.charts.scatter										# TODO
-# from charts.charts.bar											# TODO
-from charts.charts.line 			import line_plot
-# from charts.charts.heikin_ashi
+from charts.candlestick 		import candle_plot
+# from charts.scatter										# TODO
+# from charts.bar											# TODO
+from charts.line 			import line_plot
+# from charts.heikin_ashi
 
 # Secondary Charts -----------------------------------
-from charts.charts.volume 			import volume_plot
-# from charts.charts.vac											# TODO
+from charts.volume 			import volume_plot
+# from charts.vac											# TODO
 from add_cols.vpm					import vpm_cols
-from charts.charts.vpm 				import vpm_plot
+from charts.vpm 				import vpm_plot
 from add_cols.macd					import macd_cols
-from charts.charts.macd 			import macd_plot
+from charts.macd 			import macd_plot
 from add_cols.macd_on_volume			import macd_vol_cols
-from charts.charts.macd_vol			import macd_vol_plot
+from charts.macd_vol			import macd_vol_plot
 from add_cols.rsi 					import rsi_cols
-from charts.charts.rsi 				import rsi_plot
+from charts.rsi 				import rsi_plot
 from add_cols.stochastic				import stoch_cols
-from charts.charts.stoch 			import stoch_plot
+from charts.stoch 			import stoch_plot
 # from analysis.charts.				# Volume Oscillator				# TODO
 # from charts.roc													# TODO - not sure what this one is ROb - investigate and add in - i think it might be a primary chart
 											
 # Overlays -------------------------------------------
 from add_cols.sma					import sma_cols
-from charts.overlays.sma 			import sma_plot
+from charts_overlays.sma 			import sma_plot
 from add_cols.ema					import ema_cols
-from charts.overlays.ema 			import ema_plot
+from charts_overlays.ema 			import ema_plot
 from add_cols.dividends				import dividend_cols
-from charts.overlays.dividends 		import dividend_plot
+from charts_overlays.dividends 		import dividend_plot
 
 
 # ==============================================================================================================================================================

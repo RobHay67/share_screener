@@ -28,11 +28,11 @@ def audit_replace_df_status(scope):
 
 	print('')
 	print('')
-	print('='*100)
+	print('='*95)
 	print('replace_dfs > status')
 	print('page        >', page.upper())
 	print('do the dfs need replacing ?')
-	print('-'*100)
+	print('-'*95)
 	print( 'ticker'.ljust(tab1), 'single'.ljust(tab1), 'intraday'.ljust(tab1), 'volume'.ljust(tab1), 'research'.ljust(tab1), 'screener'.ljust(tab1) )
 	
 	
@@ -59,7 +59,7 @@ def audit_replace_df_status(scope):
 
 		print( ticker.ljust(tab1), single, single_pad, intraday, intraa_pad, volume, volumn_pad, research, resear_pad, screener )
 
-	print('='*100)
+	print('='*95)
 
 
 	if page in scope.pages['page_list']:
@@ -102,7 +102,7 @@ def audit_replace_df_status(scope):
 			
 			print(new_line)
 
-	print('='*100)
+	print('='*95)
 
 
 
