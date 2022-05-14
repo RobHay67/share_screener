@@ -49,33 +49,44 @@ audit_replace_df_status(scope)
 
 
 
-# ticker_data_file.sort_values(by=['date'], inplace=True, ascending=False)
+# we want to add a user login screen
+
+# we need to ensure that the user has a setting for each of the charts and tests
+
+# we want to be able to upodate the user settings
+
+# we want to save the settings
+
+# so the initial config is the default,
+# we want need all the variables - just the column adders - right
+
+
+# for chart, config in scope.config['charts'].items():
+# 	print(chart)
+# 	print(config['add_columns'])
+# 		# scope.config['charts'][chart] = config
+
+
+print('Configurable chart variables')
+for chart in scope.config['charts']['chart_list']:
+	print(chart.upper())
+	
+	add_columns = scope.config['charts'][chart]['add_columns']
+	if add_columns != None:
+		# print(add_columns)
+		for attribute in add_columns.keys():
+			if attribute not in ['function']:
+				print(attribute)
+
+
+	# print(scope.config['charts'][chart]['active'])
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Happy 60th Big Fella
-# You have aged well
-# It must be all that red wine keeping you well preserved
-# Enjoy the celebrations. 
-# Party hard
-# All the best, Rob and Fliss
-
-
+# ichi_moku_daily
+# {'active': False, 'name': 'Icki Moku Daily', 'is_overlay': True, 'add_overlays': False, 'plot': {'function': <function sma_plot at 0x7fdb896dc280>, 'colour': 'black'}, 'add_columns': None}
 
 
 
@@ -225,6 +236,37 @@ def level_3_details(level_1, level_2, level_3):
 # [manager] Processed dependencies!
 # 2022-04-25 23:19:16.981 INFO    matplotlib.font_manager: generated new fontManager
 # [manager] Updated app!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Happy 60th Big Fella
+# You have aged well
+# It must be all that red wine keeping you well preserved
+# Enjoy the celebrations. 
+# Party hard
+# All the best, Rob and Fliss
 
 
 
