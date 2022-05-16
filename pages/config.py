@@ -12,7 +12,7 @@ def scope_pages(scope):
 
 	scope.pages['row_limit'] = 100
 	scope.pages['button_for_scope'] = None
-	scope.pages['display_page'] = 'home_page'				# Page to display with a default for the initial first load
+	scope.pages['display_page'] = 'login'					# Page to display with a default for the initial first load
 	scope.pages['page_list'] = pages
 
 	

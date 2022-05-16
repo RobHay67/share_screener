@@ -15,10 +15,10 @@ from data.index.view.messages import message_new_index_file
 
 
 def load_ticker_index_file( scope ):
-	message_title()
+	# message_title()
 
 	if os.path.exists( scope.files['paths']['ticker_index'] ):
-		message_loading(scope)
+		# message_loading(scope)
 		
 		ticker_index = pd.read_csv(  scope.files['paths']['ticker_index'], 
 									dtype=csv_dtypes(schema),
@@ -29,7 +29,7 @@ def load_ticker_index_file( scope ):
 		ticker_index.set_index('share_code', inplace=True)
 
 
-		message_loaded()
+		# message_loaded()
 		
 		# remove any delisted stocks here
 

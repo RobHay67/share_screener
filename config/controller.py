@@ -1,5 +1,6 @@
 import time  
 
+
 from config.streamlit import set_streamlit_page_config
 
 from config.charts.config import scope_charts
@@ -7,13 +8,16 @@ from config.results.config import scope_results
 from config.tests.config import scope_tests
 
 from files.config import scope_files
-from data.config import scope_data
 from pages.config import scope_pages
 from strategies.config import scope_strategy
+from users.model.config import scope_user
+from data.config import scope_data
 
-from pages.home_page import render_project_welcome
+from users.model.load import load_user_table
 from config.dropdowns import update_dropdowns
 
+
+from pages.home_page import render_project_welcome
 
 
 def set_scope(scope):
@@ -24,17 +28,26 @@ def set_scope(scope):
 		scope.initial_load = True			# set the initial load state (this will not run a second time)
 											# prevents this section from runnning again and
 											# allows the ticker index to load next
-
-		scope_config(scope)					# This contains all the application settings
+		scope_config(scope)					# This contains all the application settings (see below)
 		scope_files(scope)					# Required before we can attempt to load the data
-		scope_data(scope)					# load the share index
 		scope_pages(scope)					# This contains all the page Specific settings
 		scope_strategy(scope)
+		
+		
+		scope_user(scope)					# Load the users table
+		scope_data(scope)					# load the share index
 
-		render_project_welcome(scope)			# Render the home page
 
+		load_user_table(scope)				# Load the users table
+
+		# render_project_welcome(scope)		# Render the home page
+	
+		scope.initial_load = False			# Prevent session_state from re-running during its use
+
+	# The dropdown menus occasionaly need repopulating
 	if scope.config['dropdowns']['update_dropdowns']: 
 		update_dropdowns(scope)
+
 
 	return scope
 
@@ -68,3 +81,5 @@ def scope_config(scope):
 	scope_charts(scope)
 
 	scope_results(scope)
+
+	

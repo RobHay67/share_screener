@@ -44,39 +44,65 @@ render_selected_page(scope)
 
 
 
-audit_replace_df_status(scope)
+# audit_replace_df_status(scope)
 
 
-
-
-# we want to add a user login screen
 
 # we need to ensure that the user has a setting for each of the charts and tests
-
 # we want to be able to upodate the user settings
-
 # we want to save the settings
 
-# so the initial config is the default,
-# we want need all the variables - just the column adders - right
+
+# x load default config
+# wip load user config
+# replace default with user config
+# we can then add new config and it will automatically get added when we save user config
+# Save User config
+
+#
 
 
-# for chart, config in scope.config['charts'].items():
-# 	print(chart)
-# 	print(config['add_columns'])
-# 		# scope.config['charts'][chart] = config
 
 
-print('Configurable chart variables')
-for chart in scope.config['charts']['chart_list']:
-	print(chart.upper())
-	
-	add_columns = scope.config['charts'][chart]['add_columns']
-	if add_columns != None:
-		# print(add_columns)
-		for attribute in add_columns.keys():
-			if attribute not in ['function']:
-				print(attribute)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# print('-'*75)
+# print('Configurable chart variables')
+# for chart in scope.config['charts']['chart_list']:
+# 	active_status = scope.config['charts'][chart]['active']
+# 	print(chart.upper(), '   -   active = ', active_status)
+# 	add_columns = scope.config['charts'][chart]['add_columns']
+# 	if add_columns != None:
+# 		# print(add_columns)
+# 		for attribute in add_columns.keys():
+# 			if attribute not in ['function' ]:
+# 				print(attribute)
+
+# print('-'*75)
+# print('Configurable test variables')
+# for test in scope.config['tests']['test_list']:
+# 	active_status = scope.config['tests'][test]['active']
+# 	print(test.upper(), '   -   active = ', active_status)
+# 	add_columns = scope.config['tests'][test]['add_columns']
+# 	if add_columns != None:
+# 		# print(add_columns)
+# 		for attribute in add_columns.keys():
+# 			if attribute not in ['function']:
+# 				print(attribute)
+
+
 
 
 	# print(scope.config['charts'][chart]['active'])

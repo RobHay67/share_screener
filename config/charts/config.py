@@ -163,10 +163,7 @@ charts_config = {
 													scale		: 0.50, 
 													yaxis		: '$,.2f' 
 												}, 	
-								add_columns		: {
-													function	: None, 
-													column		: 'close',
-												},
+								add_columns		: None, 
 							},
 		'heiken_ashi'		: { 
 								active			: False, 

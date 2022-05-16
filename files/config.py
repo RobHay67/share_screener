@@ -24,6 +24,7 @@ def scope_files(scope):
 	
 	# File Paths
 	scope.files['paths'] = {}
+	scope.files['paths']['users'] = os.path.join(scope.files['folders']['files'], 'users.json')
 	scope.files['paths']['ticker_index'] = os.path.join(scope.files['folders']['files'], 'ticker_index.csv')
 	scope.files['paths']['ticker_data'] = 'not yet set'
 	scope.files['paths']['website'] = os.path.join(scope.files['folders']['website'], 'strategy_results.json')
