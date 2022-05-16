@@ -26,6 +26,12 @@ def set_user_access(scope:dict, login_name:str):
 	user_tests = scope.users['json'][login_name]['tests']
 	user_charts = scope.users['json'][login_name]['charts']
 
+	# Over-write key user settings
+	scope.config['charts']['primary_height'] = scope.users['json'][login_name]['chart_height']
+	scope.data['download']['days'] = scope.users['json'][login_name]['download_days']
+	scope.pages['row_limit'] = scope.users['json'][login_name]['row_limit']
+
+
 	# Over-write the config tests with the user values
 	for test in user_tests.keys():
 		active_status = user_tests[test]['active']
