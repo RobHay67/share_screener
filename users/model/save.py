@@ -3,32 +3,13 @@ import json
 
 def save_users_table(scope):
 	
-	# Save the User Table
-
-	# print('-'*80)
-	# print('saving Users Json')
-	# print('Users Dataframe')
-	# print('-'*80)
-
-
-
-	# we really should be just saving users as a dictionary
-	# TODO - remove this after forst successfule save
-	# users={}
-	# users['Rob'] = {'password': 'password', 'tests': {}, 'charts': {}}
-	# users['Fliss'] = {'password': 'password', 'tests': {}, 'charts': {}}
-	# scope.users['json'] = users
-
-	# we know what we loaded
-	# for the particular user, we just need to replace the charts and tests component
-
 	user = scope.users['login_name']
 	
 	if user != 'Login to Use the Application':
 		print('Saving the Users Table')
 
-		user_tests = build_tests_config_for_user(scope)
-		user_charts = build_charts_config_for_user(scope)
+		user_tests = summarise_test_config_for_user(scope)
+		user_charts = summarise_chart_config_for_user(scope)
 
 		scope.users['json'][user]['tests'] = user_tests
 		scope.users['json'][user]['charts'] = user_charts
@@ -39,7 +20,7 @@ def save_users_table(scope):
 
 
 
-def build_tests_config_for_user(scope):
+def summarise_test_config_for_user(scope):
 
 	test_dict = {}
 
@@ -57,7 +38,8 @@ def build_tests_config_for_user(scope):
 
 	return test_dict
 
-def build_charts_config_for_user(scope):
+
+def summarise_chart_config_for_user(scope):
 
 	chart_dict = {}
 
@@ -75,10 +57,5 @@ def build_charts_config_for_user(scope):
 			chart_dict[chart]['add_columns'] = None	
 
 	return chart_dict
-
-
-# def create_base_user_file():
-
-
 
 	

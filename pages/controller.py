@@ -1,5 +1,5 @@
 
-from pages.home_page import render_project_welcome
+from pages.home_page import render_home_page
 from pages.single.controller import render_single_ticker_page
 from pages.research.controller import render_research_page
 from pages.intraday.controller import render_intraday_page
@@ -19,7 +19,7 @@ def render_selected_page(scope):
 	print( 'Rendering > ', page)
 	
 	page_map = {
-						'home_page'			:render_project_welcome,
+						'home_page'			:render_home_page,
 						'single'			:render_single_ticker_page,
 						'intraday'			:render_intraday_page,
 						'volume'			:render_volume_page,

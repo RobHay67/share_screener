@@ -48,18 +48,6 @@ render_selected_page(scope)
 
 
 
-# we need to ensure that the user has a setting for each of the charts and tests
-# we want to be able to upodate the user settings
-# we want to save the settings
-
-
-# x load default config
-# wip load user config
-# replace default with user config
-# we can then add new config and it will automatically get added when we save user config
-# Save User config
-
-#
 
 
 

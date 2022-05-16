@@ -17,9 +17,6 @@ from users.model.load import load_user_table
 from config.dropdowns import update_dropdowns
 
 
-from pages.home_page import render_project_welcome
-
-
 def set_scope(scope):
 	
 	set_streamlit_page_config()								# should only run onetime
@@ -32,15 +29,10 @@ def set_scope(scope):
 		scope_files(scope)					# Required before we can attempt to load the data
 		scope_pages(scope)					# This contains all the page Specific settings
 		scope_strategy(scope)
-		
-		
+				
 		scope_user(scope)					# Load the users table
 		scope_data(scope)					# load the share index
-
-
 		load_user_table(scope)				# Load the users table
-
-		# render_project_welcome(scope)		# Render the home page
 	
 		scope.initial_load = False			# Prevent session_state from re-running during its use
 
@@ -55,7 +47,7 @@ def set_scope(scope):
 def scope_config(scope):
 	# Application Fixex Variables
 	scope.config = {}
-	scope.config['project_description'] = 'DDT - Data Driven Trading'
+	scope.config['project_description'] = 'Share Screener Application'
 	scope.config['project_start_time'] = time.time()
 
 

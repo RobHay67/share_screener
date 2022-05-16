@@ -10,7 +10,6 @@ def scope_user(scope:dict):
 	scope.users = {}
 
 	set_user_defaults(scope)
-	# scope.user_pword = None
 
 
 
@@ -19,14 +18,15 @@ def set_user_access(scope:dict, login_name:str):
 
 	print('setting user access')
 
-	scope.pages['display_page'] = 'welcome'
-
+	# Store User params
+	scope.pages['display_page'] = 'home_page'
 	scope.users['login_name'] = login_name
-	# scope.user_pword = None
 
+	# Determine the Users Settings
 	user_tests = scope.users['json'][login_name]['tests']
 	user_charts = scope.users['json'][login_name]['charts']
 
+	# Over-write the config tests with the user values
 	for test in user_tests.keys():
 		active_status = user_tests[test]['active']
 		add_columns = user_tests[test]['add_columns']
@@ -37,6 +37,7 @@ def set_user_access(scope:dict, login_name:str):
 			for attribute in add_columns.keys():
 				scope.config['tests'][test]['add_columns'][attribute] = add_columns[attribute]
 
+	# Over-write the config charts with the user values
 	for chart in user_charts.keys():
 		active_status = user_charts[chart]['active']
 		add_columns = user_charts[chart]['add_columns']
