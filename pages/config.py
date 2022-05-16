@@ -14,7 +14,7 @@ def scope_pages(scope):
 	scope.pages['button_for_scope'] = None
 	scope.pages['display_page'] = 'login'					# Page to display with a default for the initial first load
 	scope.pages['page_list'] = pages
-
+	
 	
 	scope_page_templates(scope)								# add this initial default state for the screener and chart pages
 
@@ -22,7 +22,7 @@ def scope_pages(scope):
 	# Page Specific Configuration
 	for page in pages:
 		scope.pages[page] = {}
-		# scope.pages[page]['ticker_list'] = ['select a ticker'] if page != 'screener' else []
+		scope.pages[page]['search_results'] = {}
 		scope.pages[page]['ticker_list'] = []
 		scope.pages[page]['replace_dfs'] = {}
 		scope.pages[page]['replace_cols'] = {}

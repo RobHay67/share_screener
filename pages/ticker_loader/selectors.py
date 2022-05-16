@@ -1,4 +1,5 @@
 from widgets.ticker import select_a_ticker
+from widgets.search import search_ticker_by_name
 
 from widgets.market import select_a_market
 from widgets.industries import select_industries
@@ -15,7 +16,9 @@ def render_ticker_selectors(scope):
 	if page != 'screener':
 		# One of the Single Ticker Pages - Single / Volume / Research or Intra-Day
 
-		with scope.col1: select_a_ticker(scope)
+		with scope.col1: 
+			select_a_ticker(scope)
+			search_ticker_by_name(scope)
 	
 	if page == 'screener':	
 		# Screener Page (Potentially Multiple Tickers depending on the dropdown selections)

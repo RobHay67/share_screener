@@ -12,7 +12,6 @@ def chart_dfs_button(scope):
 
 	for ticker in ticker_list:
 		if ticker in scope.pages[page]['dfs']: 
-		# if ticker in scope.data['ticker_files']:
 			chart_df_row_count 	 = len(scope.pages[page]['dfs'][ticker])
 			total_chart_df_rows += chart_df_row_count
 

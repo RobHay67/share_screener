@@ -28,6 +28,27 @@ def render_test_results(scope):
 	with col2:
 		no_failed = str(len(failed_test_results_df))
 		my_expander = st.expander(label='Failed Every Test (' + no_failed + ' )', expanded=False )
+
+		# index_list = list(failed_test_results_df.index)
+		# ticker_list = list(failed_test_results_df['ticker'])
+		# columns = list(failed_test_results_df.columns)
+
+		# for ticker in ticker_list:
+		# 	my_expander.write(ticker)
+		# print(columns)
+		# print(list(failed_test_results_df.index))
+
+		# scope.user_df.loc[login_name].at['can_edit_targets']
+
+		# for idx in index_list:
+		# 	for column in columns:
+		# 		my_expander.write(ticker)
+
+
+
+
+
+
 		my_expander.dataframe(failed_test_results_df, 2000, 2000)	
 	with col3:
 		no_tested = str(len(test_results_df))

@@ -25,7 +25,6 @@ def render_sidebar(scope):
 			st.subheader('Chart Settings')
 			st.button('Primary Charts'  	, on_click=set_page, args=(scope, 'charts_primary', ))
 			st.button('Secondary Charts'	, on_click=set_page, args=(scope, 'charts_secondary', ))
-			# st.button('Defaults'			, on_click=set_page, args=(scope, 'user', ))
 
 			st.subheader('Download and Analysis Settings')
 		
@@ -33,7 +32,8 @@ def render_sidebar(scope):
 			edit_row_limit(scope)
 
 			st.button('Config (scope)'		, on_click=set_page, args=(scope, 'scope', ))
-
+			
+			st.sidebar.write('---------')
 			logout_button(scope)
 
 

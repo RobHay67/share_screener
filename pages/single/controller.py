@@ -9,6 +9,8 @@ from pages.single.plotly_schema import create_plotly_schema
 from pages.single.main_plot import create_main_plot 
 from pages.single.sub_plot import add_subplot
 from pages.single.main_plot import format_main_plot
+
+from pages.ticker_loader.search_results import render_search_results
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Single Ticker Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -27,11 +29,6 @@ def render_single_ticker_page(scope):
 		# before attempting to make any plots
 
 		if ticker in scope.pages['single']['dfs'].keys():	
-			# plot_charts(scope)
-			
-
-
-# def plot_charts(scope):
 			page 			= scope.pages['display_page']
 			ticker 			= scope.pages[page]['selectors']['ticker']
 			chart_df		= scope.pages[page]['dfs'][ticker]
@@ -47,5 +44,8 @@ def render_single_ticker_page(scope):
 				
 				st.plotly_chart(fig, use_container_width=True)
 
+	else:
+		render_search_results(scope)
 
+		
 

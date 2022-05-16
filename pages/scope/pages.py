@@ -51,3 +51,4 @@ def view_page_specific_variables(scope, page):
 	three_cols( 'Status > Replace DataFrames'  , scope.pages[page]['replace_dfs'], 'scope.pages.'+ page +'.replace_dfs'    , widget_type='string' )
 	three_cols( 'Status > Replace Columns'  , scope.pages[page]['replace_cols'], 'scope.pages.'+ page +'.replace_cols'    , widget_type='string' )
 
+	three_cols( 'Search Results'  , scope.pages[page]['search_results'], 'scope.pages.'+ page +'.search_results'    , widget_type='string' )

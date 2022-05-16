@@ -25,7 +25,6 @@ pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
 
 
-from audit import audit_replace_df_status
 
 
 import streamlit as st
@@ -44,18 +43,14 @@ render_selected_page(scope)
 
 
 
+from audit import audit_replace_df_status
 # audit_replace_df_status(scope)
 
 
 
-from users.model.save import save_users_table
 
 
-# save_users_table(scope)
-
-
-
-
+# print('widget_single_search = ', scope.widget_single_search)
 
 
 
@@ -138,11 +133,11 @@ def level_3_details(level_1, level_2, level_3):
 
 
 
-# if 'initial_load' in st.session_state:
-# 	print('')
-# 	terminal_heading('All keys in st.session_state')
-# 	for key in sorted(st.session_state):print(key)
-# 	# for key in st.session_state:print(key)
+if 'initial_load' in st.session_state:
+	print('')
+	terminal_heading('All keys in st.session_state')
+	for key in sorted(st.session_state):print(key)
+	# for key in st.session_state:print(key)
 
 
 # level_1 = 'config'

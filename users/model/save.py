@@ -22,20 +22,6 @@ def save_users_table(scope):
 			json.dump(scope.users['json'], file)
 
 
-
-def other_settings(scope):
-
-
-	primary_height = scope.config['charts']['primary_height']
-	download_days = scope.data['download']['days']
-	analysis_rows = scope.pages['row_limit'] = 100
-
-
-
-
-
-
-
 def summarise_test_config_for_user(scope):
 
 	test_dict = {}

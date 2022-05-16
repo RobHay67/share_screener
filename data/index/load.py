@@ -34,6 +34,9 @@ def load_ticker_index_file( scope ):
 		# remove any delisted stocks here
 
 		scope.data['ticker_index'] = ticker_index
+
+		scope.data['ticker_search'] = (scope.data['ticker_index']['company_name']).to_dict()
+
 		scope.config['dropdowns']['update_dropdowns'] = True
 	else: 
 		message_missing_index_file(scope)
@@ -50,6 +53,7 @@ def load_ticker_index_file( scope ):
 		# remove any delisted stocks here
 		
 		scope.data['ticker_index'] = ticker_index
+		scope.data['ticker_search'] = {}
 		
 		save_index(scope)
 

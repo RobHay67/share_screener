@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-def select_a_ticker(scope):
+def select_a_ticker(scope, ticker=None):
 
 	page = scope.pages['display_page']
 	
