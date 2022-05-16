@@ -37,7 +37,7 @@ def render_screener_tests(scope):
 	st.markdown("""---""")
 	st.write('**Ticker Technical Performance Criteria**')
 
-	with st.expander(label='OHLCV', expanded=True):
+	with st.expander(label='Trend Analysis on Open, High, Low, Close and Volume', expanded=True):
 		
 		col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([1,1,1,1,1,1,1,1])
 

@@ -22,8 +22,6 @@ def view_app(scope):
 
 
 
-
-
 def view_tests_config(scope):
 	st.subheader('Tests Configuration')
 	

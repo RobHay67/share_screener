@@ -10,6 +10,7 @@ from pages.volume.view.times import view_local_vs_market_time
 from pages.volume.view.input_volume import view_input_volume
 from pages.volume.view.prediction import view_prediction
 
+from pages.ticker_loader.search_results import render_search_results
 
 def render_volume_page(scope):
 
@@ -65,5 +66,7 @@ def render_volume_page(scope):
 		view_prediction( ticker_open_time, minutes_elapsed, ticker_remaining_minutes, ticker_closing_time, 
 							volume_to_date, ticker_average_vol_per_minute, extrapolated_daily_volume, ticker_minutes_per_day)
 
+	else:
+		render_search_results(scope)
 
 

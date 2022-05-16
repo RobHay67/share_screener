@@ -31,7 +31,7 @@ from pages.research.view.financials import earnings_qtr
 from pages.research.view.calendar import calendar
 from pages.research.view.news import news
 
-
+from pages.ticker_loader.search_results import render_search_results
 
 # TODO - I like this example from the ASX for CBA - https://www2.asx.com.au/markets/company/cba
 
@@ -75,6 +75,8 @@ def render_research_page(scope):
 		# plot_basic_chart(scope)		
 		# view_ticker_file(scope, ticker)
 
+	else:
+		render_search_results(scope)
 
 
 

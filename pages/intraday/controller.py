@@ -1,7 +1,7 @@
 from pages.ticker_loader.header import render_page_title
 from pages.ticker_loader.controller import render_ticker_loader
 
-
+from pages.ticker_loader.search_results import render_search_results
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Intra Day Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -21,5 +21,7 @@ def render_intraday_page(scope):
 			print('TODO render_intraday_page')
 
 		
+	else:
+		render_search_results(scope)
 
 

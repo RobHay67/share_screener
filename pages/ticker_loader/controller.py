@@ -36,18 +36,19 @@ def render_ticker_loader(scope):
 
 		# audit_replace_df_status(scope, page)
 
-		with scope.col1: download_new_ticker_data = download_button(scope)		
+		# with scope.col1: download_new_ticker_data = download_button(scope)		
 		with scope.col6: clear_messages_button(scope)
 
 		# AUTO load whatever ticker data we have	
 		load_tickers(scope)
 		
+		with scope.col5: download_new_ticker_data = download_button(scope)		
+		with scope.col5: show_ticker_files = ticker_file_button(scope)
+
 		if download_new_ticker_data: download_tickers(scope)
 
 		replace_dfs(scope)
 		replace_cols(scope)
-
-		with scope.col5: show_ticker_files = ticker_file_button(scope)
 
 		if page == 'screener':
 			show_chart_dfs = False
