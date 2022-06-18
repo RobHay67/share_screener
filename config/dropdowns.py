@@ -5,7 +5,7 @@ from config.markets.config import markets
 
 
 def update_dropdowns(scope):
-	print ( '\033[91m' + 'Dropdown Lists have been repopulated' + '\033[0m' )
+	# print ( '\033[91m' + 'Dropdown Lists have been repopulated' + '\033[0m' )
 
 
 	list_of_markets = list(markets.keys())
