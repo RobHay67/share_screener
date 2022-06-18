@@ -16,8 +16,6 @@ def scope_user(scope:dict):
 
 def set_user_access(scope:dict, login_name:str):
 
-	print('setting user access')
-
 	# Store User params
 	scope.pages['display_page'] = 'home_page'
 	scope.users['login_name'] = login_name
@@ -37,25 +35,31 @@ def set_user_access(scope:dict, login_name:str):
 		active_status = user_tests[test]['active']
 		add_columns = user_tests[test]['add_columns']
 
-		scope.config['tests'][test]['active'] = active_status
+		# Update the page.template
+		scope.pages['templates']['tests'][test] = active_status
 
+		# Update the user config into the scope.config
+		scope.config['tests'][test]['active'] = active_status
 		if add_columns != None:
 			for attribute in add_columns.keys():
 				scope.config['tests'][test]['add_columns'][attribute] = add_columns[attribute]
 
 	# Over-write the config charts with the user values
 	for chart in user_charts.keys():
+
 		active_status = user_charts[chart]['active']
 		add_columns = user_charts[chart]['add_columns']
+		
+		# Update the page.template
+		scope.pages['templates']['charts'][chart] = active_status
 
+		# Update the user config into the scope.config
 		scope.config['charts'][chart]['active'] = active_status
-
 		if add_columns != None:
 			for attribute in add_columns.keys():
 				scope.config['charts'][chart]['add_columns'][attribute] = add_columns[attribute]
 
 		
-
 
 
 

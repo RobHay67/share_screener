@@ -54,16 +54,12 @@ def replace_cols(scope):
 		config_group		= 'tests' if page == 'screener' else 'charts'
 		loaded_tickers		= list(scope.data['ticker_files'].keys())
 
-
-
 		for ticker in page_ticker_list:
 
 			column_adders = list(scope.pages[page]['replace_cols'][ticker].keys())
 			tickers_already_loaded_for_page = list(scope.pages[page]['dfs'].keys())
 
-			for col_adder in column_adders:
-				
-
+			for col_adder in column_adders:			
 				replace_cols_status = scope.pages[page]['replace_cols'][ticker][col_adder]
 				
 				if replace_cols_status:
@@ -74,19 +70,17 @@ def replace_cols(scope):
 					if call_col_adder == True:
 
 						if ticker in tickers_already_loaded_for_page:
-
 							ticker_df				= scope.pages[page]['dfs'][ticker]
 							column_adder			= scope.config[config_group][col_adder]['add_columns']
-							column_adder_function 	= scope.config[config_group][col_adder]['add_columns']['function']
 
-							# Column_Adder has a column_adder function
-							if column_adder != None and column_adder_function != None:	
+							# Column_Adder has a column_adder function (some are set to None as nothing is required)
+							if column_adder != None:
+								column_adder_function = scope.config[config_group][col_adder]['add_columns']['function']
 								
 								# Call the column adding function for this col_adder
 								scope.config[config_group][col_adder]['add_columns']['function'](scope, col_adder, ticker, ticker_df)
 							
 						# reset replace_cols status to prevent unnecesary updates		
 						set_replace_col_adder_status_for_ticker_and_page(scope, page, ticker, col_adder, False)
-
 
 

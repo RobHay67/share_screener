@@ -46,14 +46,14 @@ render_selected_page(scope)
 from audit import audit_replace_df_status
 # audit_replace_df_status(scope)
 
-
-
-
+# if 'initial_load' in scope:
+# 	print(scope.config['charts'].keys())
+# 	print('-'*50)
+# 	print('Scope.Pages Templates - Charts')
+# 	print(scope.pages['templates']['charts'])
+# 	print('-'*50)
 
 # print('widget_single_search = ', scope.widget_single_search)
-
-
-
 
 
 
@@ -133,10 +133,10 @@ def level_3_details(level_1, level_2, level_3):
 
 
 
-if 'initial_load' in st.session_state:
-	print('')
-	terminal_heading('All keys in st.session_state')
-	for key in sorted(st.session_state):print(key)
+# if 'initial_load' in st.session_state:
+# 	print('')
+# 	terminal_heading('All keys in st.session_state')
+# 	for key in sorted(st.session_state):print(key)
 	# for key in st.session_state:print(key)
 
 

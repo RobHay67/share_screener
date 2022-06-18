@@ -2,8 +2,6 @@ from config.tests.config import tests_config
 from config.charts.config import charts_config
 
 
-pages = ['single', 'intraday', 'volume', 'research', 'screener']
-
 
 
 def scope_pages(scope):
@@ -13,14 +11,14 @@ def scope_pages(scope):
 	scope.pages['row_limit'] = 100
 	scope.pages['button_for_scope'] = None
 	scope.pages['display_page'] = 'login'					# Page to display with a default for the initial first load
-	scope.pages['page_list'] = pages
+	scope.pages['page_list'] = ['single', 'intraday', 'volume', 'research', 'screener']
 	
 	
 	scope_page_templates(scope)								# add this initial default state for the screener and chart pages
 
 	# ==========================================
 	# Page Specific Configuration
-	for page in pages:
+	for page in scope.pages['page_list']:
 		scope.pages[page] = {}
 		scope.pages[page]['search_results'] = {}
 		scope.pages[page]['ticker_list'] = []
@@ -62,9 +60,12 @@ def scope_page_templates(scope):
 
 	active_status_tests = {}
 
+	# iterate through each test in the scope
+
 	for test in tests_config.keys():
 		active_status_tests[test] = tests_config[test]['active']
 	
+	# Update Templates for each page with the default status - this will be over-ridden by the user settings
 	scope.pages['templates']['tests'] = active_status_tests
 
 
@@ -77,11 +78,14 @@ def scope_page_templates(scope):
 
 	for chart in charts_config.keys():
 		# check that the chart requires addional columns 
-		# many charts only use OHLCV cols so will never require additional columns	
+		# ( many charts only use OHLCV cols so will never require additional columns )
 		if charts_config[chart]['add_columns'] != None:
 			active_status_charts[chart] = charts_config[chart]['active']
 	
+	# Update Templates for each page with the default status - this will be over-ridden by the user settings
 	scope.pages['templates']['charts'] = active_status_charts
+
+
 
 
 

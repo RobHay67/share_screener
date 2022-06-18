@@ -3,6 +3,7 @@ import plotly.graph_objects as go
 
 
 def add_subplot(scope, fig, chart_df, plotly_schema):
+
 	for chart_no, chart in enumerate(plotly_schema['add_chart']):
 		row_no = chart_no+1 
 		col_no = plotly_schema['col_no']
@@ -39,6 +40,4 @@ def format_sub_plot(scope, fig, chart, row_no, col_no):
 					)
 
 	return fig
-
-
 

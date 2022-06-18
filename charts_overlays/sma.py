@@ -24,6 +24,3 @@ def sma_plot(scope, fig, overlay, chart_df, row_no, col_no):
 					col		= col_no
 				)
 
-
-
-

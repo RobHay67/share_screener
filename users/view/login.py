@@ -16,7 +16,6 @@ def render_login_form(scope):
 		
 		if login_name in scope.users['user_list']:
 			user_pword = scope.users['json'][login_name]['password']
-			print(user_pword)
 
 			if login_pword == user_pword:
 				st.button(	
