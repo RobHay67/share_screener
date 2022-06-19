@@ -14,6 +14,9 @@ def rsi_cols( scope, chart, ticker, chart_df):
 	column 			= scope.config['charts'][chart]['add_columns']['column']
 	lookback_days	= scope.config['charts'][chart]['add_columns']['lookback_days']
 
+	# Change chart_df to be ascending to simplify the shifting
+	chart_df.sort_values(by=['date'], inplace=True, ascending=True)
+
 	chart_df['rsi_delta'] 		= chart_df[column].diff()
 	chart_df['rsi_gain']		= np.where(chart_df['rsi_delta'] >= 0, chart_df['rsi_delta']     , 0)
 	chart_df['rsi_loss']  		= np.where(chart_df['rsi_delta'] <  0, chart_df['rsi_delta'] * -1, 0)
@@ -30,3 +33,6 @@ def rsi_cols( scope, chart, ticker, chart_df):
 	chart_df['rsi_trend'] = 100 - ( 100 / ( chart_df['rsi_rs'] + 1 ))
 	chart_df['rsi_trend'] = chart_df['rsi_trend'].replace(np.nan, 0)
 	chart_df['rsi_trend'] = ( chart_df['rsi_trend'] / 10 ).astype(int)
+
+	# ensure Screener_df is back in its descending order (latest first)
+	chart_df.sort_values(by=['date'], inplace=True, ascending=False)

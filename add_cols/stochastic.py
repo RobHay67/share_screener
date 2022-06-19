@@ -20,6 +20,9 @@ def stoch_cols( scope, chart, ticker, chart_df):
 	signal 			= scope.config['charts'][chart]['add_columns']['signal']
 	slow_k 			= scope.config['charts'][chart]['add_columns']['slow']
 
+	# Change chart_df to be ascending to simplify the shifting
+	chart_df.sort_values(by=['date'], inplace=True, ascending=True)
+
 	chart_df['highest_high'] 	= chart_df['high'].rolling(window=lookback_days).max()
 	chart_df['lowest_low'] 		= chart_df['low'].rolling(window=lookback_days).min()
 	chart_df['stoch_fast_K'] 	= ( ( (chart_df['close'] - chart_df['lowest_low']) / (chart_df['highest_high'] - chart_df['lowest_low']) ) * 100 )
@@ -46,3 +49,6 @@ def stoch_cols( scope, chart, ticker, chart_df):
 	# 									np.where( (chart_df['stoch_zone'] == 'sell_zone') & (chart_df['stoch_x'] == 'x_dn'), 'prepare_sell', '------------' ) )
 
 	chart_df.drop(['highest_high', 'lowest_low', 'above_or_below'], axis=1, inplace=True)
+
+	# ensure Screener_df is back in its descending order (latest first)
+	chart_df.sort_values(by=['date'], inplace=True, ascending=False)
