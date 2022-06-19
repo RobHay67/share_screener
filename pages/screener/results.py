@@ -21,39 +21,24 @@ def render_test_results(scope):
 
 	col1,col2,col3 = st.columns([4,4,4])
 
+
+	no_columns = len(test_results_df.columns)
+
+	pixel_width = 70 * no_columns
+	pixel_row_height = 40
+
 	with col1:
 		no_passed = str(len(passed_test_results_df))
 		my_expander = st.expander(label='Passed Every Test (' + no_passed + ' )', expanded=False )
-		my_expander.dataframe(passed_test_results_df, 2000, 2000)	
+		my_expander.dataframe(passed_test_results_df, pixel_width, len(passed_test_results_df)*pixel_row_height)	
 	with col2:
 		no_failed = str(len(failed_test_results_df))
 		my_expander = st.expander(label='Failed Every Test (' + no_failed + ' )', expanded=False )
-
-		# index_list = list(failed_test_results_df.index)
-		# ticker_list = list(failed_test_results_df['ticker'])
-		# columns = list(failed_test_results_df.columns)
-
-		# for ticker in ticker_list:
-		# 	my_expander.write(ticker)
-		# print(columns)
-		# print(list(failed_test_results_df.index))
-
-		# scope.user_df.loc[login_name].at['can_edit_targets']
-
-		# for idx in index_list:
-		# 	for column in columns:
-		# 		my_expander.write(ticker)
-
-
-
-
-
-
-		my_expander.dataframe(failed_test_results_df, 2000, 2000)	
+		my_expander.dataframe(failed_test_results_df, pixel_width, len(failed_test_results_df)*pixel_row_height)	
 	with col3:
 		no_tested = str(len(test_results_df))
 		my_expander = st.expander(label='Every Test Result (' + no_tested + ' )', expanded=False )
-		my_expander.dataframe(test_results_df, 2000, 2000)	
+		my_expander.dataframe(test_results_df, pixel_width, len(test_results_df)*pixel_row_height)	
 
 
 

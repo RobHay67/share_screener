@@ -4,7 +4,6 @@ import json
 
 
 def load_user_table(scope):
-	print(scope.files['paths']['users'])
 
 	if os.path.exists( scope.files['paths']['users'] ):
 		file = open(scope.files['paths']['users'])
