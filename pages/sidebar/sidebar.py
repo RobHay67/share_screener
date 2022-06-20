@@ -4,6 +4,9 @@ from widgets.row_limit import edit_row_limit
 from widgets.download_days import edit_download_days
 from widgets.logout import logout_button
 
+from data.tickers.download import download_tickers
+from pages.ticker_loader.buttons.download import download_button
+
 
 def render_sidebar(scope):
 	
@@ -13,6 +16,13 @@ def render_sidebar(scope):
 	if scope.users['login_name'] != 'Login to Use the Application':
 		with st.sidebar:
 			st.write('Welcome : ' +  scope.users['login_name'])
+
+			# st.subheader('Download Ticker Data')
+			edit_download_days(scope)
+			download_new_ticker_data = download_button(scope)	
+			if download_new_ticker_data: download_tickers(scope)
+
+			
 
 
 			st.subheader('Analysis')
@@ -28,7 +38,7 @@ def render_sidebar(scope):
 
 			st.subheader('Download and Analysis Settings')
 		
-			edit_download_days(scope)
+			# edit_download_days(scope)
 			edit_row_limit(scope)
 
 			st.button('Config (scope)'		, on_click=set_page, args=(scope, 'scope', ))
