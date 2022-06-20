@@ -9,7 +9,7 @@ def search_ticker_by_name(scope):
 	widget_key = 'widget_' + page + '_search'
 
 	st.text_input(
-					label		='Search for Ticker by Company Name',
+					label		='Search by Company Name',
 					value		='',
 					on_change	=search_for_ticker,
 					args		=(scope, page, widget_key, ),
