@@ -6,7 +6,7 @@ from pages.ticker_loader.controller import render_ticker_loader
 from data.tickers.model.metadata import fetch_yfinance_metadata
 
 from pages.research.view.info import company_general
-from pages.research.view.info import business_summary
+# from pages.research.view.info import business_summary
 from pages.research.view.info import fundamental
 from pages.research.view.info import general
 from pages.research.view.info import market_info
@@ -16,6 +16,8 @@ from pages.research.view.dividends import dividends
 from pages.research.view.investors import institutional
 from pages.research.view.investors import major
 
+
+from pages.research.view.financials import financial_statements
 from pages.research.view.financials import annual
 from pages.research.view.financials import quarterly
 from pages.research.view.financials import balance_sheet
@@ -51,13 +53,27 @@ def render_research_page(scope):
 	if ticker != 'select a ticker' :
 		metadata = fetch_yfinance_metadata(ticker)
 
+
 		company_general(metadata)
-		business_summary(metadata)
+
+		import yfinance as yf
+		metadata = yf.Ticker('CBA.AX')
+		print(metadata.info)
+
+
+
+		
+		# business_summary(metadata)
 		fundamental(metadata)
 		general(metadata)
 		market_info(metadata)
 
 		dividends(metadata)
+
+
+		financial_statements(metadata)
+
+
 		major(metadata)
 		institutional(metadata)
 		annual(metadata)

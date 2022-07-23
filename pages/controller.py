@@ -5,6 +5,7 @@ from pages.research.controller import render_research_page
 from pages.intraday.controller import render_intraday_page
 from pages.volume.controller import render_volume_page
 from pages.screener.controller import render_screener_page
+from pages.websites.controller import render_websites
 from config.charts.primary_config import render_primary_charts_config
 from config.charts.secondary_config import render_secondary_charts_config
 from pages.scope.controller import render_scope_categories
@@ -25,6 +26,7 @@ def render_selected_page(scope):
 						'volume'			:render_volume_page,
 						'research'			:render_research_page,
 						'screener'			:render_screener_page,
+						'websites'			:render_websites,
 						'charts_primary'	:render_primary_charts_config,
 						'charts_secondary'	:render_secondary_charts_config,
 						'scope'				:render_scope_categories,

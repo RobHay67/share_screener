@@ -22,15 +22,14 @@ def render_sidebar(scope):
 			download_new_ticker_data = download_button(scope)	
 			if download_new_ticker_data: download_tickers(scope)
 
-			
-
-
 			st.subheader('Analysis')
 			st.button('Single'  			, on_click=set_page, args=(scope, 'single', ))
 			st.button('Intra-Day'			, on_click=set_page, args=(scope, 'intraday', ))
 			st.button('Volume'				, on_click=set_page, args=(scope, 'volume', ))
 			st.button('Research'			, on_click=set_page, args=(scope, 'research', ))
 			st.button('Screener'			, on_click=set_page, args=(scope, 'screener', ))
+
+			st.button('Websites'			, on_click=set_page, args=(scope, 'websites', ))
 
 			st.subheader('Chart Settings')
 			st.button('Primary Charts'  	, on_click=set_page, args=(scope, 'charts_primary', ))

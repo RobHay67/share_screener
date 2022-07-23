@@ -2,6 +2,38 @@
 import streamlit as st
 import pandas as pd
 
+
+# pixel_width = 70 * no_columns
+# pixel_row_height = 40
+
+
+
+def financial_statements(metadata):
+
+	col1,col2,col3 = st.columns([4,1,4])
+
+	profit_loss = pd.DataFrame(metadata.financials)
+	profit_loss_qtr = pd.DataFrame(metadata.quarterly_financials)
+
+
+	print(profit_loss)
+
+
+	with col1:
+		my_expander = st.expander(label='Financials - Annual')
+		my_expander.dataframe(profit_loss, len(profit_loss.columns) * 100, len(profit_loss)*40)
+
+	with col3:
+		my_expander = st.expander(label='Financials - Quarterly')
+		my_expander.dataframe(profit_loss_qtr, 2000, 2000)
+
+
+
+
+
+
+
+
 def annual(metadata):
 	ticker_info = pd.DataFrame(metadata.financials)
 	my_expander = st.expander(label='Financials - Annual')

@@ -5,26 +5,60 @@ from config.results.two_cols import view_2_columns
 
 
 def company_general(metadata):
-	col1,col2 = st.columns([5,7])
-	with col1: 
-		st.markdown('** Sector **: ' + metadata.info['sector'])
-		st.markdown('** Industry **: ' + metadata.info['industry'])
-		st.markdown('** Phone **: ' + metadata.info['phone'])
-		st.markdown('** Address **: ' 
-					+        metadata.info['address1'] 
-					+ ', ' + metadata.info['city'] 
-					+ ', ' + metadata.info['zip'] 
-					+ ', ' + metadata.info['country']
-					)
-		st.markdown('** Website **: ' + metadata.info['website'])
+	st.subheader(metadata.info['longName'])
 
+	col1,col2,col3,col4 = st.columns([1,1,2,4])
+
+	with col1:
 		st.image(metadata.info['logo_url'])
 
-def business_summary(metadata):
-	sentences = metadata.info['longBusinessSummary'].split('. ')
-	my_expander = st.expander(label='Business Summary', expanded=False)
-	for sentence in sentences:
-		with my_expander: st.write(sentence)
+	with col2:
+		st.caption('Sector')
+		st.caption('Industry')
+		st.caption('Phone')
+		st.caption('Address')
+		st.caption('Website')
+
+	with col3:
+		st.write(metadata.info['sector'])
+		st.write(metadata.info['industry'])
+		st.write(metadata.info['phone'])
+		st.write(metadata.info['website'])
+		st.write(metadata.info['address1'] 
+		+ ', ' + metadata.info['address2'] 
+		+ ', ' + metadata.info['city'] 
+		+ ', ' + metadata.info['zip'] 
+		+ ', ' + metadata.info['country'])
+
+	with col4:
+		sentences = metadata.info['longBusinessSummary'].split('. ')
+		my_expander = st.expander(label='Business Summary', expanded=False)
+		for sentence in sentences:
+			with my_expander: st.write(sentence)
+
+
+
+		# st.markdown('** Sector **: ' + metadata.info['sector'])
+		# st.markdown('** Industry **: ' + metadata.info['industry'])
+		# st.markdown('** Phone **: ' + metadata.info['phone'])
+		# st.markdown('** Address **: ' 
+		# 			+        metadata.info['address1'] 
+		# 			+ ', ' + metadata.info['city'] 
+		# 			+ ', ' + metadata.info['zip'] 
+		# 			+ ', ' + metadata.info['country']
+		# 			)
+		# st.markdown('** Website **: ' + metadata.info['website'])
+
+		
+
+# def business_summary(metadata):
+# 	sentences = metadata.info['longBusinessSummary'].split('. ')
+# 	my_expander = st.expander(label='Business Summary', expanded=False)
+# 	for sentence in sentences:
+# 		with my_expander: st.write(sentence)
+
+
+
 
 
 def fundamental(metadata):
@@ -253,3 +287,36 @@ def market_info(metadata):
 #  'regularMarketPrice': 94.81,
  'preMarketPrice': None,
  'logo_url': 'https://logo.clearbit.com/commbank.com.au'}
+
+
+
+
+
+# Latest CBA Call
+{
+	'zip': '2000', 
+	'sector': 'Financial Services',
+	 'fullTimeEmployees': 47532, 
+	 'longBusinessSummary': 'Commonwealth Bank of Australia provides integrated financial services in Australia, New Zealand, and internationally. It operates through Retail Banking Services, Business Banking, Institutional Banking and Markets, and New Zealand segments. The company offers retail, premium, business, offshore, and institutional banking services; and funds management, superannuation, and share broking products and services, as well as car, health, life, income protection, and travel insurance. It offers transaction, savings, foreign currency accounts; term deposits; personal and business loans; overdrafts; equipment finance; credit cards; international payment and trade; and private banking services, as well as home and car loans, and importer finance products. The company also provides advisory services for high net worth individuals; equities trading and margin lending services; debt capital, transaction banking, working capital, and risk management services; and international and foreign exchange services. As of June 30, 2021, it operated 875 branches and 2,492 ATMs. The company was founded in 1911 and is based in Sydney, Australia.', 
+	 'city': 'Sydney',
+	  'phone': '61 2 9378 2000',
+	   'state': 'NSW',
+	    'country': 'Australia', 
+		'companyOfficers': [],
+		 'website': 'https://www.commbank.com.au',
+		  'maxAge': 1,
+		   'address1': 'Tower 1', 
+		  'fax': '61 2 9118 7192', 
+		  'industry': 'Banks—Diversified', 
+		  'address2': 'Ground Floor 201 Sussex Street', 
+		  'ebitdaMargins': 0,
+		   'profitMargins': 0.44432998, 
+		   'grossMargins': 0,
+		    'operatingCashflow': -18645000192,
+			 'revenueGrowth': 0.107, 
+			 'operatingMargins': 0.56715, 
+			 'ebitda': None, 
+			 'targetLowPrice': 77, 
+			 'recommendationKey': 'underperform',
+			  'grossProfits': 23972000000, 
+			  'freeCashflow': None, 'targetMedianPrice': 91, 'currentPrice': 89.67, 'earningsGrowth': 0.226, 'currentRatio': None, 'returnOnAssets': 0.0089, 'numberOfAnalystOpinions': 15, 'targetMeanPrice': 95.09, 'debtToEquity': None, 'returnOnEquity': 0.13129, 'targetHighPrice': 114, 'totalCash': 147941998592, 'totalDebt': 262988005376, 'totalRevenue': 25166000128, 'totalCashPerShare': 86.776, 'financialCurrency': 'AUD', 'revenuePerShare': 14.331, 'quickRatio': None, 'recommendationMean': 3.6, 'exchange': 'ASX', 'shortName': 'CWLTH BANK FPO', 'longName': 'Commonwealth Bank of Australia', 'exchangeTimezoneName': 'Australia/Sydney', 'exchangeTimezoneShortName': 'AEST', 'isEsgPopulated': False, 'gmtOffSetMilliseconds': '36000000', 'quoteType': 'EQUITY', 'symbol': 'CBA.AX', 'messageBoardId': 'finmb_874262', 'market': 'au_market', 'annualHoldingsTurnover': None, 'enterpriseToRevenue': 10.483, 'beta3Year': None, 'enterpriseToEbitda': None, '52WeekChange': -0.12650901, 'morningStarRiskRating': None, 'forwardEps': 5.48, 'revenueQuarterlyGrowth': None, 'sharesOutstanding': 1704880000, 'fundInceptionDate': None, 'annualReportExpenseRatio': None, 'totalAssets': None, 'bookValue': 43.791, 'sharesShort': None, 'sharesPercentSharesOut': None, 'fundFamily': None, 'lastFiscalYearEnd': 1625011200, 'heldPercentInstitutions': 0.21244, 'netIncomeToCommon': 9825000448, 'trailingEps': 6.046, 'lastDividendValue': 1.75, 'SandP52WeekChange': -0.1346069, 'priceToBook': 2.0476809, 'heldPercentInsiders': 0.00411, 'nextFiscalYearEnd': 1688083200, 'yield': None, 'mostRecentQuarter': 1640908800, 'shortRatio': None, 'sharesShortPreviousMonthDate': None, 'floatShares': 1699868932, 'beta': 0.744834, 'enterpriseValue': 263818936320, 'priceHint': 2, 'threeYearAverageReturn': None, 'lastSplitDate': 939168000, 'lastSplitFactor': '1:1', 'legalType': None, 'lastDividendDate': 1644883200, 'morningStarOverallRating': None, 'earningsQuarterlyGrowth': 0.206, 'priceToSalesTrailing12Months': 6.074727, 'dateShortInterest': None, 'pegRatio': 1.57, 'ytdReturn': None, 'forwardPE': 16.363138, 'lastCapGain': None, 'shortPercentOfFloat': None, 'sharesShortPriorMonth': None, 'impliedSharesOutstanding': 0, 'category': None, 'fiveYearAverageReturn': None, 'previousClose': 87.55, 'regularMarketOpen': 88.38, 'twoHundredDayAverage': 101.31155, 'trailingAnnualDividendYield': 0.042832665, 'payoutRatio': 0.65790004, 'volume24Hr': None, 'regularMarketDayHigh': 89.69, 'navPrice': None, 'averageDailyVolume10Day': 5336101, 'regularMarketPreviousClose': 87.55, 'fiftyDayAverage': 102.3408, 'trailingAnnualDividendRate': 3.75, 'open': 88.38, 'toCurrency': None, 'averageVolume10days': 5336101, 'expireDate': None, 'algorithm': None, 'dividendRate': 3.5, 'exDividendDate': 1644969600, 'circulatingSupply': None, 'startDate': None, 'regularMarketDayLow': 87.98, 'currency': 'AUD', 'trailingPE': 14.831293, 'regularMarketVolume': 2447641, 'lastMarket': None, 'maxSupply': None, 'openInterest': None, 'marketCap': 152876580864, 'volumeAllCurrencies': None, 'strikePrice': None, 'averageVolume': 2453089, 'dayLow': 87.98, 'ask': 89.67, 'askSize': 7100, 'volume': 2447641, 'fiftyTwoWeekHigh': 110.19, 'fromCurrency': None, 'fiveYearAvgDividendYield': 4.92, 'fiftyTwoWeekLow': 86.98, 'bid': 89.6, 'tradeable': False, 'dividendYield': 0.04, 'bidSize': 36400, 'dayHigh': 89.69, 'regularMarketPrice': 89.67, 'preMarketPrice': None, 'logo_url': 'https://logo.clearbit.com/commbank.com.au'}
