@@ -1,16 +1,16 @@
 import streamlit as st
 
-from pages.ticker_loader.header import render_page_title
+from apps.ticker_loader.header import render_page_title
 # from charts.controller import plot_charts
-from pages.ticker_loader.controller import render_ticker_loader
+from apps.ticker_loader.controller import render_ticker_loader
 
 
-from pages.single.plotly_schema import create_plotly_schema
-from pages.single.main_plot import create_main_plot 
-from pages.single.sub_plot import add_subplot
-from pages.single.main_plot import format_main_plot
+from apps.single.plotly_schema import create_plotly_schema
+from apps.single.main_plot import create_main_plot 
+from apps.single.sub_plot import add_subplot
+from apps.single.main_plot import format_main_plot
 
-from pages.ticker_loader.search_results import render_search_results
+from apps.ticker_loader.search_results import render_search_results
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Single Ticker Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -19,7 +19,6 @@ def render_single_ticker_page(scope):
 	render_page_title(scope, 'Ticker Analysis (single ticker)')
 
 	render_ticker_loader(scope)
-
 
 	ticker = scope.pages['single']['selectors']['ticker']
 

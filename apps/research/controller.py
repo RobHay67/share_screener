@@ -1,39 +1,39 @@
 
-from pages.ticker_loader.header import render_page_title
-from pages.ticker_loader.controller import render_ticker_loader
+from apps.ticker_loader.header import render_page_title
+from apps.ticker_loader.controller import render_ticker_loader
 
 
 from data.tickers.model.metadata import fetch_yfinance_metadata
 
-from pages.research.view.info import company_general
-# from pages.research.view.info import business_summary
-from pages.research.view.info import fundamental
-from pages.research.view.info import general
-from pages.research.view.info import market_info
+from apps.research.view.info import company_general
+# from apps.research.view.info import business_summary
+from apps.research.view.info import fundamental
+from apps.research.view.info import general
+from apps.research.view.info import market_info
 
-from pages.research.view.dividends import dividends
+from apps.research.view.dividends import dividends
 
-from pages.research.view.investors import institutional
-from pages.research.view.investors import major
-
-
-from pages.research.view.financials import financial_statements
-from pages.research.view.financials import annual
-from pages.research.view.financials import quarterly
-from pages.research.view.financials import balance_sheet
-from pages.research.view.financials import balance_sheet_qtr
-
-from pages.research.view.financials import cashflow
-from pages.research.view.financials import cashflow_qtr
+from apps.research.view.investors import institutional
+from apps.research.view.investors import major
 
 
-from pages.research.view.financials import earnings
-from pages.research.view.financials import earnings_qtr
+from apps.research.view.financials import financial_statements
+from apps.research.view.financials import annual
+from apps.research.view.financials import quarterly
+from apps.research.view.financials import balance_sheet
+from apps.research.view.financials import balance_sheet_qtr
 
-from pages.research.view.calendar import calendar
-from pages.research.view.news import news
+from apps.research.view.financials import cashflow
+from apps.research.view.financials import cashflow_qtr
 
-from pages.ticker_loader.search_results import render_search_results
+
+from apps.research.view.financials import earnings
+from apps.research.view.financials import earnings_qtr
+
+from apps.research.view.calendar import calendar
+from apps.research.view.news import news
+
+from apps.ticker_loader.search_results import render_search_results
 
 # TODO - I like this example from the ASX for CBA - https://www2.asx.com.au/markets/company/cba
 

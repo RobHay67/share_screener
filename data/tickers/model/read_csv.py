@@ -4,6 +4,7 @@ import pandas as pd
 from data.tickers.config import ticker_file_usecols
 from data.tickers.config import ticker_file_dtypes
 from data.tickers.config import ticker_file_dates
+from data.tickers.model.store_file import store_ticker_file
 
 def load_ticker(scope, ticker):
 	ticker_data_file = pd.read_csv (  
@@ -16,10 +17,11 @@ def load_ticker(scope, ticker):
 									parse_dates = ticker_file_dates,
 									)
 	
-	# Sort ticker file into ascending order
-	ticker_data_file.sort_values(by=['date'], inplace=True, ascending=False)	
+	store_ticker_file(scope,ticker, ticker_data_file)
+
+
+
 	
-	scope.data['ticker_files'][ticker] = ticker_data_file
 
 
 

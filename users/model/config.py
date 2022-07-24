@@ -12,8 +12,6 @@ def scope_user(scope:dict):
 	set_user_defaults(scope)
 
 
-
-
 def set_user_access(scope:dict, login_name:str):
 
 	# Store User params

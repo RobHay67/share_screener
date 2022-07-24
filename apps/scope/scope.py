@@ -25,8 +25,8 @@ def view_app(scope):
 def view_tests_config(scope):
 	st.subheader('Tests Configuration')
 	
-	three_cols( 'Trends', scope.config['tests']['trends'], 'scope.pages.tests.trends' )
-	three_cols( 'Test List', scope.config['tests']['test_list'], 'scope.pages.tests.test_list' )
+	three_cols( 'Trends', scope.config['tests']['trends'], 'scope.apps.tests.trends' )
+	three_cols( 'Test List', scope.config['tests']['test_list'], 'scope.apps.tests.test_list' )
 
 	st.markdown("""---""")
 	
@@ -39,10 +39,10 @@ def view_tests_config(scope):
 def view_charts_config(scope):
 	st.subheader('Charts Configuration')
 	
-	three_cols( 'Colours', scope.config['charts']['colours'], 'scope.pages.charts.colours' )
-	three_cols( 'Total Chart Height', scope.config['charts']['total_height'], 'scope.pages.charts.total_height' )
-	three_cols( 'Height of Primary Charts', scope.config['charts']['primary_height'], 'scope.pages.charts.primary_height' )
-	three_cols( 'Chart List', scope.config['charts']['chart_list'], 'scope.pages.charts.chart_list' )
+	three_cols( 'Colours', scope.config['charts']['colours'], 'scope.apps.charts.colours' )
+	three_cols( 'Total Chart Height', scope.config['charts']['total_height'], 'scope.apps.charts.total_height' )
+	three_cols( 'Height of Primary Charts', scope.config['charts']['primary_height'], 'scope.apps.charts.primary_height' )
+	three_cols( 'Chart List', scope.config['charts']['chart_list'], 'scope.apps.charts.chart_list' )
 
 	st.markdown("""---""")
 	

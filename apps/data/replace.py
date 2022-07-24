@@ -1,6 +1,6 @@
 
 
-from pages.data.status import set_replace_df_status_for_ticker_and_page, set_replace_col_adder_status_for_ticker_and_page
+from apps.data.status import set_replace_df_status_for_ticker_and_page, set_replace_col_adder_status_for_ticker_and_page
 
 
 # Replace the ticker_data for this page (where status = True)

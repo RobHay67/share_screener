@@ -6,7 +6,7 @@ from data.tickers.config import ticker_file_schema
 from data.tickers.config import ticker_file_usecols
 from data.tickers.config import y_finance_schemas
 
-from pages.ticker_loader.messages import download_industry_message
+from apps.ticker_loader.messages import download_industry_message
 
 from config.results.store import store_result
 

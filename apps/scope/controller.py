@@ -1,26 +1,26 @@
 import streamlit as st
 
 # Config (scope)
-from pages.scope.scope import view_app
-from pages.scope.dropdowns import view_dropdowns
-from pages.scope.scope import view_tests_config
-from pages.scope.scope import view_charts_config
-from pages.scope.results import view_all_results
+from apps.scope.scope import view_app
+from apps.scope.dropdowns import view_dropdowns
+from apps.scope.scope import view_tests_config
+from apps.scope.scope import view_charts_config
+from apps.scope.results import view_all_results
 # Files
-from pages.scope.files import view_folders
+from apps.scope.files import view_folders
 # Data
 from data.index.view.index import view_index
 from data.tickers.view.dataframes import view_ticker_files
 from data.download.view import view_download
 # Pages
-from pages.scope.pages import view_pages
-from pages.scope.pages import view_single_page
-from pages.scope.pages import view_intra_day_page
-from pages.scope.pages import view_volume_page
-from pages.scope.pages import view_research_page
-from pages.scope.pages import view_screener_page
-from pages.ticker_loader.dataframes import view_screener_dfs
-from pages.ticker_loader.dataframes import view_chart_dfs
+from apps.scope.pages import view_pages
+from apps.scope.pages import view_single_page
+from apps.scope.pages import view_intra_day_page
+from apps.scope.pages import view_volume_page
+from apps.scope.pages import view_research_page
+from apps.scope.pages import view_screener_page
+from apps.ticker_loader.dataframes import view_screener_dfs
+from apps.ticker_loader.dataframes import view_chart_dfs
 
 # Strategies
 from strategies.config import view_strategy

@@ -1,6 +1,6 @@
 
 
-from pages.single.chart_height import make_chart_heights_proportional
+from apps.single.chart_height import make_chart_heights_proportional
 
 
 def create_plotly_schema(scope):

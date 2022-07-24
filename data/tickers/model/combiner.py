@@ -4,7 +4,7 @@ from config.results.store import store_result
 
 from data.tickers.config import ticker_file_usecols
 
-from pages.data.status import set_replace_df_status_for_ticker, set_replace_col_status_for_ticker
+from apps.data.status import set_replace_df_status_for_ticker, set_replace_col_status_for_ticker
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Combiner

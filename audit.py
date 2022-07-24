@@ -1,5 +1,5 @@
 
-# from share_screener.pages.ticker_loader.buttons.ticker_file import ticker_file_button
+# from share_screener.apps.ticker_loader.buttons.ticker_file import ticker_file_button
 
 
 def audit_titles(line_1, line_2):

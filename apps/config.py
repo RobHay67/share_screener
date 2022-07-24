@@ -20,7 +20,7 @@ def scope_pages(scope):
 	# Page Specific Configuration
 	for page in scope.pages['page_list']:
 		scope.pages[page] = {}
-		scope.pages[page]['search_results'] = {}
+		scope.pages[page]['search_results'] = {}  # TODO - should this be here - isnt it in config or somewhere else
 		scope.pages[page]['ticker_list'] = []
 		scope.pages[page]['replace_dfs'] = {}
 		scope.pages[page]['replace_cols'] = {}

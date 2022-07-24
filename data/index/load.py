@@ -27,15 +27,10 @@ def load_ticker_index_file( scope ):
 
 		ticker_index['listing_date'] = pd.to_datetime( ticker_index['listing_date'].dt.date  )
 		ticker_index.set_index('share_code', inplace=True)
-
-
-		# message_loaded()
 		
 		# remove any delisted stocks here
 
-		scope.data['ticker_index'] = ticker_index
-
-		scope.data['ticker_search'] = (scope.data['ticker_index']['company_name']).to_dict()
+		scope.data['ticker_index'] = ticker_index		
 
 		scope.config['dropdowns']['update_dropdowns'] = True
 	else: 
@@ -53,7 +48,7 @@ def load_ticker_index_file( scope ):
 		# remove any delisted stocks here
 		
 		scope.data['ticker_index'] = ticker_index
-		scope.data['ticker_search'] = {}
+		
 		
 		save_index(scope)
 

@@ -13,6 +13,12 @@ def render_login_form(scope):
 
 		login_name = st.text_input('User Name')
 		login_pword = st.text_input('Password', type='password')
+
+		if scope.autologin:
+			st.write('Auto Login for Rob Enabeled - just press the login button')
+			login_name = 'Rob'
+			login_pword = 'password'
+
 		
 		if login_name in scope.users['user_list']:
 			user_pword = scope.users['json'][login_name]['password']
@@ -24,6 +30,8 @@ def render_login_form(scope):
 							args=(scope, login_name, ), 
 							key='widget_login_button',
 							)
+				if scope.autologin:
+					set_user_access(scope, login_name)
 			else:
 				if login_pword != '':
 					login_message(login_name, 'invalid_password')

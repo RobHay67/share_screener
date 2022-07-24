@@ -1,6 +1,6 @@
 import streamlit as st
 
-from pages.ticker_loader.header import render_page_title
+from apps.ticker_loader.header import render_page_title
 
 
 

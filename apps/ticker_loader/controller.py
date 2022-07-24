@@ -1,24 +1,24 @@
 # A single function that handles all of the data loading
 
-from pages.ticker_loader.layout import column_structure_for_page
-from pages.ticker_loader.selectors import render_ticker_selectors
+from apps.ticker_loader.layout import column_structure_for_page
+from apps.ticker_loader.selectors import render_ticker_selectors
 
-from pages.data.replace import replace_dfs
-from pages.data.replace import replace_cols
+from apps.data.replace import replace_dfs
+from apps.data.replace import replace_cols
 
 from data.tickers.load import load_tickers
 from data.tickers.view.dataframes import view_ticker_files
 
 
-# from pages.ticker_loader.buttons.download import download_button
-from pages.ticker_loader.buttons.clear_message import clear_messages_button
-from pages.ticker_loader.buttons.ticker_file import ticker_file_button
-from pages.ticker_loader.buttons.screener_dfs import screener_dfs_button
-from pages.ticker_loader.buttons.chart_dfs import chart_dfs_button
+# from apps.ticker_loader.buttons.download import download_button
+from apps.ticker_loader.buttons.clear_message import clear_messages_button
+from apps.ticker_loader.buttons.ticker_file import ticker_file_button
+from apps.ticker_loader.buttons.screener_dfs import screener_dfs_button
+from apps.ticker_loader.buttons.chart_dfs import chart_dfs_button
 
 # TODO - do these need to be seperate??? maybe a single function should handle both
-from pages.ticker_loader.dataframes import view_screener_dfs
-from pages.ticker_loader.dataframes import view_chart_dfs
+from apps.ticker_loader.dataframes import view_screener_dfs
+from apps.ticker_loader.dataframes import view_chart_dfs
 
 
 def render_ticker_loader(scope):

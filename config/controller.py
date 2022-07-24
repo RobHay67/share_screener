@@ -8,7 +8,7 @@ from config.results.config import scope_results
 from config.tests.config import scope_tests
 
 from files.config import scope_files
-from pages.config import scope_pages
+from apps.config import scope_pages
 from strategies.config import scope_strategy
 from users.model.config import scope_user
 from data.config import scope_data
@@ -20,7 +20,10 @@ from config.dropdowns import update_dropdowns
 def set_scope(scope):
 	
 	set_streamlit_page_config()								# should only run onetime
-
+	
+	# Todo for releases
+	scope.autologin = True
+	
 	if 'initial_load' not in scope:		
 		scope.initial_load = True			# set the initial load state (this will not run a second time)
 											# prevents this section from runnning again and

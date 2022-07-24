@@ -7,7 +7,7 @@
 # 		a) Establishment of Scope object
 # 		b) Rendering the initial web page structure (based on the scope)
 # 		c) Loading the exisiting (or creating an empty if none exists) Ticker Index
-#		d) Load the User Configurable Settings  TODO
+#		d) Load the User Configurable Settings
 
 # 	This results in the application rendering the basic application structure in a web browser
 
@@ -34,7 +34,7 @@
 #	
 # 	Downloding Data	
 # 		The user can supplement any loaded data by choosing to dowload additional data which is AUTOMATICALLY
-#		appened to any existing data and saved for future analysis
+#		appeneded to any existing data and saved for future analysis
 #
 #
 #	Ticker Data is stored in 			< scope.data['ticker_files'] >
