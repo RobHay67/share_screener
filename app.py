@@ -49,6 +49,8 @@ Data_frame = 'DataFrame'
 # Status
 replace_columns = True
 
+print('Rob we are working on the new structure for the scope.data.tickers')
+
 scope_data = {
 	'tickers':	{
 					'CBA':	{
