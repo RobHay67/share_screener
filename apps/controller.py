@@ -14,7 +14,7 @@ from users.view.login import render_login_form
 
 
 
-def render_selected_page(scope):
+def render_selected_app(scope):
 	
 	page = scope.pages['display_page']
 	print( 'Rendering > ', page)

@@ -30,7 +30,7 @@ pd.set_option('display.width', 1000)
 
 from config.controller import set_scope
 from apps.sidebar.sidebar import render_sidebar
-from apps.controller import render_selected_page
+from apps.controller import render_selected_app
 
 print ( '\033[94m' + 'Application Re-Rendering Now ' + '>'*50 + '\033[0m')
 
@@ -39,7 +39,7 @@ scope = set_scope(st.session_state)
 
 
 render_sidebar(scope)
-render_selected_page(scope)
+render_selected_app(scope)
 
 
 
@@ -50,6 +50,9 @@ Data_frame = 'DataFrame'
 replace_columns = True
 
 print('Rob we are working on the new structure for the scope.data.tickers')
+
+
+# so we have a page ticker list 
 
 scope_data = {
 	'tickers':	{
@@ -111,13 +114,17 @@ print(scope.pages['templates']['charts'])
 
 
 # Events that require the dataframe or the page columns to be replaced or recalculated
-#		Transaction							which ticker(s)				app dataframe		app dataframe columns
+#		Transaction							which ticker(s)				app dataframe		app dataframe columns				function to set status
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # a)	Load ticker data file				Single Ticker				xReplace All Dfs 	Replace ALL Columns
 # b)	Change the < page_row_limit >		EVERY Ticker				xReplace All Dfs 	Replace ALL Columns
 # c)	Activate an chart/overlay/test		Every Ticker Using object	ignore				Replace cols for this object
 # d)	Deactive a chart/overlay/test		ignore						ignore				ignore
 # g)	Change Value in chart/overlay/test	Every Ticker Using object	ignore				Replace cols for this object
+
+
+# x) 	ticker added to app ticker list		we need to add the column adders for this page
+
 
 
 # Current Page and usage of column adders
@@ -131,9 +138,19 @@ print(scope.pages['templates']['charts'])
 
 
 
+# so a change to the tests or charts requires all tests to be updated
+# but we only update the columns when we are rendering for that stock
 
 
 
+
+# The Current Functions
+# set_replace_df_status_for_ticker						load.py combiner.py
+# set_replace_df_status_for_all_tickers					row_limit.py
+# set_replace_col_status_for_ticker						load.py combiner.py
+# set_replace_col_status_for_col_adder					active > on_change_active_status (charts and tests), number, ohlc, ohlcv, trend  (tests??)
+# set_replace_cols_status_for_all_tickers				no calls
+# set_replace_col_adder_status_for_ticker_and_page		replace.py > replace_cols
 
 
 
@@ -152,12 +169,7 @@ print(scope.pages['templates']['charts'])
 # Replace the page_df on single page		R-r_df	-------	-------			-------			-------		-------			-------
 # Rerun the column adder single page		R-r_col	-------	-------			-------			-------		-------			-------		
 
-# set_replace_df_status_for_ticker
-# set_replace_df_status_for_all_tickers
-# set_replace_col_status_for_ticker
-# set_replace_col_status_for_col_adder
-# set_replace_cols_status_for_all_tickers
-# set_replace_col_adder_status_for_ticker_and_page
+
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 # KEY		Description				Pages		Tickers		Dataframe									add_columns	replace_cols							Replace DF Func		Replace Cols Func		
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
@@ -291,17 +303,17 @@ def terminal_heading(heading):
 # 	level_2_details(level_1, 'folders')
 # 	level_2_details(level_1, 'paths')
 
-level_1 = 'data'
-if level_1 in st.session_state:
-	terminal_heading(level_1)
-	for key in st.session_state[level_1]:print(key)
-	level_2_details(level_1, 'ticker_files')
-	level_2_details(level_1, 'tickers')
-	# level_3_details(level_1, 'tickers', 'file')
-	level_2_details(level_1, 'download')
+# level_1 = 'data'
+# if level_1 in st.session_state:
+# 	terminal_heading(level_1)
+# 	for key in st.session_state[level_1]:print(key)
+# 	level_2_details(level_1, 'ticker_files')
+# 	level_2_details(level_1, 'tickers')
+# 	# level_3_details(level_1, 'tickers', 'file')
+# 	level_2_details(level_1, 'download')
 
 
-print(scope.data['tickers'])
+# print(scope.data['tickers'])
 
 
 
