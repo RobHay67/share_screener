@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from users.model.logout import logout_user
+from users.logout import logout_user
 
 
 def logout_button(scope):

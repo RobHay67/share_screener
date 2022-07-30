@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from users.model.config import set_user_access
+from users.access import set_user_access
 
 def render_login_form(scope):
 

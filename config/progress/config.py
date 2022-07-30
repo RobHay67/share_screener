@@ -5,7 +5,7 @@ from config.progress.three_cols import three_cols
 
 
 
-def scope_results(scope):
+def scope_progress(scope):
 	# Results - for batch processing of multiple tickers
 	scope.progress = {}
 

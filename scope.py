@@ -4,15 +4,16 @@ import time
 from config.streamlit import set_streamlit_page_config
 
 from config.charts.config import scope_charts
-from config.progress.config import scope_results
+from config.progress.config import scope_progress
 from config.tests.config import scope_tests
 
 from files.config import scope_files
 from apps.config import scope_pages
 from strategies.config import scope_strategy
-from users.model.config import scope_user
+from users.load import load_user_table
+from users.config import scope_user
 
-from users.model.load import load_user_table
+
 
 from data.index.config import scope_index_file, scope_ticker_search
 from data.tickers.config import scope_ticker_files, scope_download_variables
@@ -30,7 +31,7 @@ def set_scope(scope):
 		scope_application_variables(scope)	# This contains all the application settings (see below)
 		scope_dropdown_menus(scope)			# The data for the various selectors
 
-		scope_results(scope)				# Used to report on Function Progress
+		scope_progress(scope)				# Used to report on Function Progress
 
 		scope_files(scope)					# Required before we can attempt to load the data
 
@@ -38,8 +39,13 @@ def set_scope(scope):
 		scope_charts(scope)
 
 		scope_pages(scope)					# This contains all the page Specific settings
-		scope_strategy(scope)
-		scope_user(scope)					# Load the users table
+		
+		scope.strategy = {}
+		scope_strategy(scope)				# TODO - this may not even be required - keeping just in case
+
+		scope.users = {}
+		load_user_table(scope)				# Load the users table
+		scope_user(scope)					# Set Default Values ready for a user to login
 		
 		scope.data = {}
 		scope_index_file(scope)				# load the share index
@@ -47,7 +53,6 @@ def set_scope(scope):
 		scope_ticker_files(scope)			# variables for storing the ticker files
 		scope_download_variables(scope)		# variable used during download of ticker data
 		
-		load_user_table(scope)				# Load the users table
 	
 		scope.initial_load = False			# Prevent session_state/scope from reloading with the default values
 
