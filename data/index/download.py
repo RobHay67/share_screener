@@ -3,7 +3,7 @@ import streamlit as st
 
 
 
-
+from config.dropdowns import refresh_dropdown_lists
 
 from data.index.update import update_index
 
@@ -38,8 +38,11 @@ def download_ticker_index_data(scope):
 		downloaded_ticker_info['industry_group'] = downloaded_ticker_info['industry_group'].str.lower()
 
 		st.success('number of downloaded ' + scope.config['share_market'] + ' ticker codes = ' + str(len(downloaded_ticker_info)))
+
 		update_index(scope, downloaded_ticker_info )
-		scope.config['dropdowns']['update_dropdowns'] = True
+
+		refresh_dropdown_lists(scope)
+
 	else:
 		st.error('DOWNLOAD Ticker data NOT YET CONFIGURED FOR ' + scope.config['share_market'])
 		pass

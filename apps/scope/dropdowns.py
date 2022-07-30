@@ -3,9 +3,6 @@ from config.progress.three_cols import three_cols
 
 
 def view_dropdowns(scope):
-
-	three_cols( 'Do the Dropdown Lists Need Refreshing ?', scope.config['dropdowns']['update_dropdowns'], 'update_dropdowns' )
-	st.write('---')
 	
 	three_cols( 'Market', scope.config['dropdowns']['markets'], 'markets', widget_type='selectbox' )
 	three_cols( 'Industry', scope.config['dropdowns']['industries'], 'industries', widget_type='multiselect' )

@@ -1,6 +1,8 @@
 import os
 import pandas as pd
 
+from config.dropdowns import refresh_dropdown_lists
+
 from data.index.schema import schema
 from data.index.schema import csv_dates
 from data.index.schema import csv_dtypes
@@ -32,7 +34,8 @@ def load_ticker_index_file( scope ):
 
 		scope.data['ticker_index'] = ticker_index		
 
-		scope.config['dropdowns']['update_dropdowns'] = True
+		refresh_dropdown_lists(scope)
+
 	else: 
 		message_missing_index_file(scope)
 
@@ -48,7 +51,6 @@ def load_ticker_index_file( scope ):
 		# remove any delisted stocks here
 		
 		scope.data['ticker_index'] = ticker_index
-		
 		
 		save_index(scope)
 

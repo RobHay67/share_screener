@@ -8,7 +8,6 @@ def scope_index_file(scope):
 	scope.data['ticker_index'] = {}	
 
 	load_ticker_index_file(scope)
-	# scope.initial_load = False			# Prevent session_state from re-running during its use
 
 
 

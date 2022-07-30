@@ -4,9 +4,11 @@ from config.markets.config import markets
 
 
 
-def update_dropdowns(scope):
+def refresh_dropdown_lists(scope):
 	# print ( '\033[91m' + 'Dropdown Lists have been repopulated' + '\033[0m' )
 
+	# Repopulate the scope with the latest information for the dropdown lists
+	# THis function should only be run after the ticker index has been loaded
 
 	list_of_markets = list(markets.keys())
 	list_of_markets.insert(0, 'select entire market')
@@ -23,8 +25,5 @@ def update_dropdowns(scope):
 	alt_ticker_list.insert(0, 'select a ticker')
 	scope.config['dropdowns']['ticker'] = alt_ticker_list
 	
-	# ---------------------------------------------------------------------------------------
-	# Prevent executing this function again (until changes have been made to the share index)
-	scope.config['dropdowns']['update_dropdowns'] = False
 	
 
