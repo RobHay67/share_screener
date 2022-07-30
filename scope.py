@@ -4,7 +4,7 @@ import time
 from config.streamlit import set_streamlit_page_config
 
 from charts.config import scope_charts
-from config.progress.config import scope_progress
+from progress.config import scope_progress
 from config.tests.config import scope_tests
 
 from files.config import scope_files

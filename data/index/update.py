@@ -1,6 +1,6 @@
 import pandas as pd
 
-from config.progress.store import cache_progress
+from progress.store import cache_progress
 
 from data.index.schema import default_values
 from data.index.schema import data_types

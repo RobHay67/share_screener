@@ -8,7 +8,7 @@ from data.tickers.schema import y_finance_schemas
 
 from apps.ticker_loader.messages import download_industry_message
 
-from config.progress.store import cache_progress
+from progress.store import cache_progress
 
 from data.index.save import save_index			# TODO we may need to get this working again
 

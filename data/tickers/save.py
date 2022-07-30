@@ -1,5 +1,5 @@
 
-from config.progress.store import cache_progress
+from progress.store import cache_progress
 from data.tickers.path import path_for_ticker_file
 
 

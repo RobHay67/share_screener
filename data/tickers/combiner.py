@@ -1,6 +1,6 @@
 import pandas as pd
 
-from config.progress.store import cache_progress
+from progress.store import cache_progress
 
 from data.tickers.schema import ticker_file_usecols
 
