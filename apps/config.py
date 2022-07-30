@@ -1,5 +1,5 @@
 from config.tests.config import tests_config
-from config.charts.config import charts_config
+from charts.config import charts_config
 
 
 
@@ -24,6 +24,8 @@ def scope_apps(scope):
 		scope.apps[app]['ticker_list'] = []
 		scope.apps[app]['replace_dfs'] = {}
 		scope.apps[app]['replace_cols'] = {}
+
+		# TODO - move this back to the data modile
 		scope.apps[app]['dfs'] = {}
 		scope.apps[app]['data'] = {}
 		scope.apps[app]['selectors'] = {
@@ -37,8 +39,6 @@ def scope_apps(scope):
 	scope.apps['tests'] = {}
 	scope.apps['tests']['results'] = {}
 	scope.apps['tests']['df'] = {}
-
-
 
 
 

@@ -6,8 +6,8 @@ from apps.intraday.controller import render_intraday_page
 from apps.volume.controller import render_volume_page
 from apps.screener.controller import render_screener_page
 from apps.websites.controller import render_websites
-from config.charts.primary_config import render_primary_charts_config
-from config.charts.secondary_config import render_secondary_charts_config
+from charts.config_primary import render_primary_charts_config
+from charts.config_secondary import render_secondary_charts_config
 from apps.scope.controller import render_scope_categories
 
 from users.view.login import render_login_form

@@ -12,7 +12,6 @@ def render_sidebar(scope):
 	
 	st.sidebar.title(scope.config['project_description'])
 
-
 	if scope.users['login_name'] != 'Login to Use the Application':
 		with st.sidebar:
 			st.write('Welcome : ' +  scope.users['login_name'])

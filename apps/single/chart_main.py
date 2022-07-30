@@ -7,18 +7,19 @@ from plotly.subplots import make_subplots
 
 
 
-def create_main_plot(plotly_schema):
+def add_main_chart(schema):
 	fig = go.Figure()
 	fig = make_subplots(
-						rows				= plotly_schema['no_of_charts'], 
+						rows				= schema['no_of_charts'], 
 						cols				= 1, 
 						shared_xaxes		= True,
 						vertical_spacing	= 0.01, 
-						row_heights			= plotly_schema['chart_heights']		
+						row_heights			= schema['chart_heights']		
 						)
 	return fig
 
-def format_main_plot(scope, fig):
+
+def format_main_chart(scope, fig):
 	# format the overall chart layout
 	app 	= scope.apps['display_app']
 	ticker 	= scope.apps[app]['selectors']['ticker']

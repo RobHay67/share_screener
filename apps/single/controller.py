@@ -5,10 +5,10 @@ from apps.ticker_loader.header import render_page_title
 from apps.ticker_loader.controller import render_ticker_loader
 
 
-from apps.single.plotly_schema import create_plotly_schema
-from apps.single.main_plot import create_main_plot 
-from apps.single.sub_plot import add_subplot
-from apps.single.main_plot import format_main_plot
+from apps.single.schema import create_schema_for_plotly
+from apps.single.chart_main import add_main_chart 
+from apps.single.chart_child import add_child_charts
+from apps.single.chart_main import format_main_chart
 
 from apps.ticker_loader.search_results import render_search_results
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -31,15 +31,15 @@ def render_single_ticker_page(scope):
 			app 			= scope.apps['display_app']
 			ticker 			= scope.apps[app]['selectors']['ticker']
 			chart_df		= scope.apps[app]['dfs'][ticker]
-			plotly_schema 	= create_plotly_schema(scope)
+			schema 			= create_schema_for_plotly(scope)
 			
-			if plotly_schema['no_of_charts'] > 0:
+			if schema['no_of_charts'] > 0:
 				
-				fig = create_main_plot(plotly_schema)
+				fig = add_main_chart(schema)
 				
-				fig = add_subplot(scope, fig, chart_df, plotly_schema )
+				fig = add_child_charts(scope, fig, chart_df, schema )
 				
-				fig = format_main_plot(scope, fig)
+				fig = format_main_chart(scope, fig)
 				
 				st.plotly_chart(fig, use_container_width=True)
 

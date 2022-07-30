@@ -1,4 +1,4 @@
-from config.markets.config import opening_hours
+from config.markets.schema import opening_hours
 
 
 

@@ -1,7 +1,7 @@
 
 
 from config.tests.config import scope_tests
-from config.charts.config import scope_charts
+from charts.config import scope_charts
 
 
 def set_user_defaults(scope):
