@@ -4,10 +4,10 @@ import streamlit as st
 
 def select_tickers(scope):
 
-	page = scope.pages['display_page']
+	app = scope.apps['display_app']
 	
-	widget_key = 'widget_' + page + '_select_tickers'
-	previous_selection = scope.pages['screener']['selectors']['tickers']
+	widget_key = 'widget_' + app + '_select_tickers'
+	previous_selection = scope.apps['screener']['selectors']['tickers']
 	display_name = 'Add a Ticker or Tickers'
 
 	st.multiselect ( 
@@ -16,17 +16,17 @@ def select_tickers(scope):
 				default		=previous_selection, 
 				help		='Select a ticker, or multiple tickers from the dropdown. Start typing to jump within list',
 				on_change	=on_change_tickers_selection,
-				args		=(scope, page, widget_key, ),
+				args		=(scope, app, widget_key, ),
 				key			=widget_key,
 				) 
 
 
-def on_change_tickers_selection(scope:dict, page:str, widget_key:str):
+def on_change_tickers_selection(scope:dict, app:str, widget_key:str):
 	
 	changed_value = scope[widget_key]
 
 	# store the selection
-	scope.pages[page]['selectors']['tickers'] = changed_value
+	scope.apps[app]['selectors']['tickers'] = changed_value
 
 
 

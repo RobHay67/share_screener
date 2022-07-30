@@ -20,9 +20,9 @@ def combine_loaded_and_download_ticker_data(scope):
 			failed='na' 
 			)
 
-	page = scope.pages['display_page']
+	app = scope.apps['display_app']
 
-	ticker_list = scope.pages[page]['ticker_list']
+	ticker_list = scope.apps[app]['ticker_list']
 
 	for ticker in ticker_list:
 		# iterate through the target tickers

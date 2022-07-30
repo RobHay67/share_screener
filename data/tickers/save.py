@@ -4,8 +4,8 @@ from data.tickers.path import path_for_ticker_file
 
 
 def save_tickers(scope):
-	page 		= scope.pages['display_page']
-	ticker_list = scope.pages[page]['ticker_list']
+	app 		= scope.apps['display_app']
+	ticker_list = scope.apps[app]['ticker_list']
 	
 	cache_progress( scope, 
 					passed='Saved > ', 

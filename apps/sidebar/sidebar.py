@@ -47,8 +47,8 @@ def render_sidebar(scope):
 
 
 
-def set_page(scope:dict, page:str):
-	scope.pages['display_page'] = page
+def set_page(scope:dict, app:str):
+	scope.apps['display_app'] = app
 
 
 

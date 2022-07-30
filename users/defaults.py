@@ -9,7 +9,7 @@ def set_user_defaults(scope):
 
 	# Reset the login status
 	scope.users['login_name'] = 'Login to Use the Application'
-	scope.pages['display_page'] = 'login'
+	scope.apps['display_app'] = 'login'
 	
 	# Reset the test and chart config back to be the defaults
 	scope_tests(scope)

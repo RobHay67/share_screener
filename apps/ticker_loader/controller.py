@@ -29,7 +29,7 @@ def render_ticker_loader(scope):
 
 	if selected_tickers_status:
 
-		page = scope.pages['display_page']
+		app = scope.apps['display_app']
 
 		with scope.col6: clear_messages_button(scope)
 
@@ -41,7 +41,7 @@ def render_ticker_loader(scope):
 		replace_dfs(scope)
 		replace_cols(scope)
 
-		if page == 'screener':
+		if app == 'screener':
 			show_chart_dfs = False
 			with scope.col5: show_screener_dfs = screener_dfs_button(scope)
 		else:

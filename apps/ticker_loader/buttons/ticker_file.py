@@ -4,8 +4,8 @@ import streamlit as st
 # def ticker_file_button(scope, ticker_list):
 def ticker_file_button(scope):
 
-	page = scope.pages['display_page']
-	ticker_list 	= scope.pages[page]['ticker_list']
+	app = scope.apps['display_app']
+	ticker_list 	= scope.apps[app]['ticker_list']
 
 	no_of_loaded_files 		= len(list(scope.data['ticker_files'].keys()))
 	total_loaded_rows		= 0	

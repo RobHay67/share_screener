@@ -28,5 +28,5 @@ def on_change_colour_selection(scope:dict, config_name:str, col_adder:str, widge
 	# store the selection
 	scope.config[config_name][col_adder]['plot']['colour'] = changed_value	
 
-	# update the page data renew status
+	# update the app data renew status
 	# does not require a set_refresh_ticker_df to be set to TRUE

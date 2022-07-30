@@ -29,9 +29,9 @@ def on_change_active_status(scope:dict, config_name:str, col_adder:str, widget_k
 	# store the selection
 	scope.config[config_name][col_adder]['active'] = changed_value
 
-	# update the page data renew status
+	# update the app data renew status
 	set_replace_col_status_for_col_adder(scope, col_adder, new_status=True)
 
 	# Because this widget can turn on or off charts and tests, we need to
 	# also update the templates with the latest status
-	scope.pages['templates'][config_name][col_adder] = changed_value
+	scope.apps['templates'][config_name][col_adder] = changed_value

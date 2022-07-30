@@ -17,7 +17,7 @@ def render_volume_page(scope):
 
 	render_ticker_loader(scope)
 	
-	ticker = scope.pages['volume']['selectors']['ticker']
+	ticker = scope.apps['volume']['selectors']['ticker']
 
 	print(ticker)
 

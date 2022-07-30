@@ -84,7 +84,7 @@ from charts_overlays.dividends 		import dividend_plot
 # ==============================================================================================================================================================
 
 active 			= 'active'				# True or False - The chart is active or inactive (displayed or not displayed)
-name 			= 'name'				# The display name for the chart (used in the settings page)
+name 			= 'name'				# The display name for the chart (used in the settings app)
 is_overlay 		= 'is_overlay'			# Indicates that this chart is over layed on top of the other charts which accept overlays
 add_overlays	= 'add_overlays'		# Apply the overlay to this chart - some charts are % in which case $ based averages distort the overall chart
 active 			= 'active'				# True or False - is this technical Indicator is being applied to our Primary Chart?
@@ -96,7 +96,7 @@ title			= 'title'				# The Title to be rendered for this chart
 scale			= 'scale'				# height for the chart - this is a relative height > % of charts_height_primary
 yaxis			= 'yaxis'				# Format for the Y Axis on the charts
 # Dataframe Columns Required for this chart -------------------------------------------------------------------------------------------------------
-add_columns		= 'add_columns'			# Dictionary of Column Params to be added to the page[df]
+add_columns		= 'add_columns'			# Dictionary of Column Params to be added to the app[df]
 periods 		= 'periods'				# Most Indicators use a base number of days/hours (periods) for their calcs - store it here
 column 			= 'column'				# OHLCV column required for calc
 fast 			= 'fast'

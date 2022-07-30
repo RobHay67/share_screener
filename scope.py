@@ -8,7 +8,7 @@ from config.progress.config import scope_progress
 from config.tests.config import scope_tests
 
 from files.config import scope_files
-from apps.config import scope_pages
+from apps.config import scope_apps
 from strategies.config import scope_strategy
 from users.load import load_user_table
 from users.config import scope_user
@@ -38,7 +38,7 @@ def set_scope(scope):
 		scope_tests(scope)
 		scope_charts(scope)
 
-		scope_pages(scope)					# This contains all the page Specific settings
+		scope_apps(scope)					# This contains all the app Specific settings
 		
 		scope.strategy = {}
 		scope_strategy(scope)				# TODO - this may not even be required - keeping just in case

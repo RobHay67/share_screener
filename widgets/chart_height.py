@@ -27,5 +27,5 @@ def on_change_chart_height(scope:dict, widget_key:str):
 	# store the selection
 	scope.config['charts']['primary_height'] = changed_value
 
-	# update the page data renew status
-	# Does not require renewal of page data
+	# update the app data renew status
+	# Does not require renewal of app data

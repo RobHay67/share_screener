@@ -23,7 +23,7 @@ from add_cols.trend import trend_cols
 # ==============================================================================================================================================================
 
 active 			= 'active'				# True or False - The Analysis is active or inactive (displayed or not displayed)
-name 			= 'name'				# The display name for the Analysis (used in the settings page)
+name 			= 'name'				# The display name for the Analysis (used in the settings app)
 column 			= 'column'				# OHLCV column required for the Analysis
 duration		= 'duration'			# the lenght or number of consecutive occurances
 timespan 		= 'timespan'			# The entire analysis Period

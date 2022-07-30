@@ -65,10 +65,10 @@ def render_test_results(scope):
 
 	# 	print('X'*66)
 
-	# 	# page = scope.pages['display_page']
+	# 	# App = scope.apps['display_app']
 
-	# 	test_results_df = scope.pages['tests']['df']
-	# 					#   scope.pages['tests']['df'] = test_results_df
+	# 	test_results_df = scope.apps['tests']['df']
+	# 					#   scope.apps['tests']['df'] = test_results_df
 
 	# 	# print('.'*77)
 	# 	print('test_results_df')

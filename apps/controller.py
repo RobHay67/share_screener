@@ -16,8 +16,8 @@ from users.view.login import render_login_form
 
 def render_selected_app(scope):
 	
-	page = scope.pages['display_page']
-	print( 'Rendering > ', page)
+	app = scope.apps['display_app']
+	print( 'Rendering > ', app)
 	
 	page_map = {
 						'login'				:render_login_form,
@@ -35,8 +35,8 @@ def render_selected_app(scope):
 						
 					}
 
-	if page in list(page_map.keys()):
-		page_map[page](scope)
+	if app in list(page_map.keys()):
+		page_map[app](scope)
 
 
 

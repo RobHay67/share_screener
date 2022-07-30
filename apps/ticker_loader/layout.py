@@ -26,10 +26,10 @@ def column_structure_for_page(scope):
 
 
 
-	page = scope.pages['display_page']
+	app = scope.apps['display_app']
 
 
-	if page == 'screener':
+	if app == 'screener':
 		col1,col2,col3,col4,col5,col6 = st.columns([2.0, 3.4, 0.1, 1.5, 2.0, 3.0])
 	else:
 		col1,col2,col3,col4,col5,col6 = st.columns([2.0, 2.0, 1.5, 1.5, 2.0, 3.0])

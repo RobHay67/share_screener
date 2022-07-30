@@ -11,17 +11,17 @@ from apps.ticker_loader.ticker_list import update_ticker_list
 
 def render_ticker_selectors(scope):
 
-	page = scope.pages['display_page']
+	app = scope.apps['display_app']
 
-	if page != 'screener':
+	if app != 'screener':
 		# One of the Single Ticker Pages - Single / Volume / Research or Intra-Day
 
 		with scope.col1: 
 			select_a_ticker(scope)
 			search_ticker_by_name(scope)
 	
-	if page == 'screener':	
-		# Screener Page (Potentially Multiple Tickers depending on the dropdown selections)
+	if app == 'screener':	
+		# Screener app (Potentially Multiple Tickers depending on the dropdown selections)
 		
 		with scope.col1: select_tickers(scope)
 		with scope.col1: search_ticker_by_name(scope)

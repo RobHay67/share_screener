@@ -4,39 +4,39 @@ from config.charts.config import charts_config
 
 
 
-def scope_pages(scope):
+def scope_apps(scope):
 
-	scope.pages = {}
+	scope.apps = {}
 
-	scope.pages['row_limit'] = 100
-	scope.pages['button_for_scope'] = None
-	scope.pages['display_page'] = 'login'					# Page to display with a default for the initial first load
-	scope.pages['page_list'] = ['single', 'intraday', 'volume', 'research', 'screener']
+	scope.apps['row_limit'] = 100
+	scope.apps['button_for_scope'] = None
+	scope.apps['display_app'] = 'login'					# app to display with a default for the initial first load
+	scope.apps['page_list'] = ['single', 'intraday', 'volume', 'research', 'screener']
 	
 	
 	scope_page_templates(scope)								# add this initial default state for the screener and chart pages
 
 	# ==========================================
-	# Page Specific Configuration
-	for page in scope.pages['page_list']:
-		scope.pages[page] = {}
-		scope.pages[page]['search_results'] = {}  # TODO - should this be here - isnt it in config or somewhere else
-		scope.pages[page]['ticker_list'] = []
-		scope.pages[page]['replace_dfs'] = {}
-		scope.pages[page]['replace_cols'] = {}
-		scope.pages[page]['dfs'] = {}
-		scope.pages[page]['data'] = {}
-		scope.pages[page]['selectors'] = {
+	# app Specific Configuration
+	for app in scope.apps['page_list']:
+		scope.apps[app] = {}
+		scope.apps[app]['search_results'] = {}  # TODO - should this be here - isnt it in config or somewhere else
+		scope.apps[app]['ticker_list'] = []
+		scope.apps[app]['replace_dfs'] = {}
+		scope.apps[app]['replace_cols'] = {}
+		scope.apps[app]['dfs'] = {}
+		scope.apps[app]['data'] = {}
+		scope.apps[app]['selectors'] = {
 											'market'	: 'select entire market', 
 											'industries': [],
 											'tickers'	: [],
 											'ticker'	: 'select a ticker',
 											}
 
-	# Store any test results (from the screner page) in these objects
-	scope.pages['tests'] = {}
-	scope.pages['tests']['results'] = {}
-	scope.pages['tests']['df'] = {}
+	# Store any test results (from the screner app) in these objects
+	scope.apps['tests'] = {}
+	scope.apps['tests']['results'] = {}
+	scope.apps['tests']['df'] = {}
 
 
 
@@ -51,7 +51,7 @@ def scope_page_templates(scope):
 	# dictionaries to understand what needs to be update or not
 
 
-	scope.pages['templates'] = {}
+	scope.apps['templates'] = {}
 
 
 	# -------------------------------------------------------------------------
@@ -65,8 +65,8 @@ def scope_page_templates(scope):
 	for test in tests_config.keys():
 		active_status_tests[test] = tests_config[test]['active']
 	
-	# Update Templates for each page with the default status - this will be over-ridden by the user settings
-	scope.pages['templates']['tests'] = active_status_tests
+	# Update Templates for each app with the default status - this will be over-ridden by the user settings
+	scope.apps['templates']['tests'] = active_status_tests
 
 
 
@@ -82,8 +82,8 @@ def scope_page_templates(scope):
 		if charts_config[chart]['add_columns'] != None:
 			active_status_charts[chart] = charts_config[chart]['active']
 	
-	# Update Templates for each page with the default status - this will be over-ridden by the user settings
-	scope.pages['templates']['charts'] = active_status_charts
+	# Update Templates for each app with the default status - this will be over-ridden by the user settings
+	scope.apps['templates']['charts'] = active_status_charts
 
 
 

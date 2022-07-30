@@ -7,7 +7,7 @@ from data.tickers.save import save_tickers
 
 def download_tickers(scope):
 
-	page = scope.pages['display_page']
+	app = scope.apps['display_app']
 
 	download_from_yahoo_finance(scope)
 	view_result(scope)

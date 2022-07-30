@@ -8,7 +8,7 @@ from config.tests.active_tests import scope_active_test_list
 
 def create_summary_of_test_results(scope):
 
-	page = scope.pages['display_page']
+	app = scope.apps['display_app']
 	active_test_list = scope_active_test_list(scope)
 	column_list = ['ticker'] + active_test_list + ['summary_result']
 
@@ -16,7 +16,7 @@ def create_summary_of_test_results(scope):
 	test_results_df = pd.DataFrame(columns=column_list)
 
 	# Iterate through the ticker_list and extract the test results
-	for ticker in scope.pages[page]['ticker_list']:
+	for ticker in scope.apps[app]['ticker_list']:
 
 		ticker_test_results = []
 		ticker_test_results.append(ticker)
@@ -26,9 +26,9 @@ def create_summary_of_test_results(scope):
 		summary_result = 'pass'
 
 		# Check that we have some data for this ticker
-		if ticker in scope.pages[page]['dfs'].keys():
+		if ticker in scope.apps[app]['dfs'].keys():
 			
-			ticker_df = scope.pages[page]['dfs'][ticker]
+			ticker_df = scope.apps[app]['dfs'][ticker]
 
 			for test in active_test_list:
 

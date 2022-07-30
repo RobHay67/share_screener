@@ -52,14 +52,14 @@ replace_columns = True
 print('Rob we are working on the new structure for the scope.data.tickers')
 
 
-# so we have a page ticker list 
+# so we have a app ticker list 
 
 scope_data = {
 	'tickers':	{
 					'CBA':	{
 								'df':Data_frame,
 								'replace_app_dfs':True, 		# True or False
-								'replace_columns':True,			# this could serve as a shortcut to save iterating through all the page config
+								'replace_columns':True,			# this could serve as a shortcut to save iterating through all the app config
 								# pages/apps
 								'apps': {
 											'single':	{
@@ -106,14 +106,14 @@ scope_data = {
 	}
 
 
-print(scope.pages['templates']['charts'])
-# so when we load a file - we just add the appropriate page config from the defaults. The true will signifiy that the 
+print(scope.apps['templates']['charts'])
+# so when we load a file - we just add the appropriate app config from the defaults. The true will signifiy that the 
 # columns need replacing. After replacing, set the status to false to prevent further updates
 
 
 
 
-# Events that require the dataframe or the page columns to be replaced or recalculated
+# Events that require the dataframe or the app columns to be replaced or recalculated
 #		Transaction							which ticker(s)				app dataframe		app dataframe columns				function to set status
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # a)	Load ticker data file				Single Ticker				xReplace All Dfs 	Replace ALL Columns
@@ -123,11 +123,11 @@ print(scope.pages['templates']['charts'])
 # g)	Change Value in chart/overlay/test	Every Ticker Using object	ignore				Replace cols for this object
 
 
-# x) 	ticker added to app ticker list		we need to add the column adders for this page
+# x) 	ticker added to app ticker list		we need to add the column adders for this app
 
 
 
-# Current Page and usage of column adders
+# Current app and usage of column adders
 # APP		Objects
 # --------------------------------------------
 # single	charts and overlays
@@ -164,10 +164,10 @@ print(scope.pages['templates']['charts'])
 # Change the < page_row_limit >				T-r_all T-r_all T-r_all			T-r_all			T-r_all		T-r_all			T-r_all		= refresh all tickers and rerun all active add_cols
 # Activate overlay or 2nd chart				------	------	------			T-r_col			T-r_col		T-r_col			T-r_col		= recalculate the specific add_cols only	for NON screener pages							
 # Update value in overlay or 2nd chart		------	------	------			T-r_col			T-r_col		T-r_col			T-r_col		= recalculate the specific add_cols only	for NON screener pages	
-# Activate a col_adder						T-r_col	T-r_col	T-r_col			-------			-------		-------			-------		= recalculate the specific add_cols only	for screener page
-# Change col_adder value 					T-r_col	T-r_col	T-r_col			-------			-------		-------			-------		= recalculate the specific add_cols only	for screener page
-# Replace the page_df on single page		R-r_df	-------	-------			-------			-------		-------			-------
-# Rerun the column adder single page		R-r_col	-------	-------			-------			-------		-------			-------		
+# Activate a col_adder						T-r_col	T-r_col	T-r_col			-------			-------		-------			-------		= recalculate the specific add_cols only	for screener app
+# Change col_adder value 					T-r_col	T-r_col	T-r_col			-------			-------		-------			-------		= recalculate the specific add_cols only	for screener app
+# Replace the page_df on single app		R-r_df	-------	-------			-------			-------		-------			-------
+# Rerun the column adder single app		R-r_col	-------	-------			-------			-------		-------			-------		
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
@@ -194,8 +194,8 @@ from audit import audit_replace_df_status
 # if 'initial_load' in scope:
 # 	print(scope.config['charts'].keys())
 # 	print('-'*50)
-# 	print('Scope.Pages Templates - Charts')
-# 	print(scope.pages['templates']['charts'])
+# 	print('scope.apps Templates - Charts')
+# 	print(scope.apps['templates']['charts'])
 # 	print('-'*50)
 
 # print('widget_single_search = ', scope.widget_single_search)
@@ -362,23 +362,23 @@ def terminal_heading(heading):
 # print('Report on Data Refresh State for each Object')
 # print( '^'*70)
 
-# for page in st.session_state['pages']['page_list']:
+# for app in st.session_state['pages']['page_list']:
 # 	print('='*100)	
-# 	print('Page > ', page)
+# 	print('app > ', app)
 # 	print('='*100)	
 # 	print( '-'*70)
 # 	print('OHLCV refresh status')
-# 	for key, value in st.session_state['pages'][page]['renew']['ticker_data'].items():
+# 	for key, value in st.session_state['pages'][app]['renew']['ticker_data'].items():
 # 		print (key, ':', value)
 # 	print( '-'*70)
 # 	print('Charts refresh status')
-# 	if page != 'screener':
-# 		for key, value in st.session_state['pages'][page]['renew']['charts'].items():
+# 	if app != 'screener':
+# 		for key, value in st.session_state['pages'][app]['renew']['charts'].items():
 # 			print (key, ':', value)
 # 	print( '-'*70)
 # 	print('Metrics refresh status')
-# 	if page == 'screener':
-# 		for key, value in st.session_state['pages'][page]['renew']['tests'].items():
+# 	if app == 'screener':
+# 		for key, value in st.session_state['pages'][app]['renew']['tests'].items():
 # 			print (key, ':', value)
 
 

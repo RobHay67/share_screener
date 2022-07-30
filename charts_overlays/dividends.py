@@ -3,8 +3,8 @@ import plotly.graph_objects as go
 
 def dividend_plot(scope, fig, overlay, chart_df, row_no, col_no):
 
-	page 		= scope.pages['display_page']
-	# ticker 		= scope.pages[page]['selectors']['ticker']
+	app 		= scope.apps['display_app']
+	# ticker 		= scope.apps[app]['selectors']['ticker']
 	font_colour = scope.config['charts'][overlay]['plot']['colour']
 
 	chart_df.set_index('date', inplace=True)

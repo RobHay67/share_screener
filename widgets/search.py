@@ -5,21 +5,21 @@ import streamlit as st
 
 def search_ticker_by_name(scope):
 
-	page = scope.pages['display_page']
-	widget_key = 'widget_' + page + '_search'
+	app = scope.apps['display_app']
+	widget_key = 'widget_' + app + '_search'
 
 	st.text_input(
 					label		='Search by Company Name',
 					value		='',
 					on_change	=search_for_ticker,
-					args		=(scope, page, widget_key, ),
+					args		=(scope, app, widget_key, ),
 					key			=widget_key,
 	)
 
 
-def search_for_ticker(scope, page, widget_key):
+def search_for_ticker(scope, app, widget_key):
 
-	scope.pages[page]['selectors']['ticker'] = 'select a ticker'
+	scope.apps[app]['selectors']['ticker'] = 'select a ticker'
 
 
 	search_value = scope[widget_key].upper()
@@ -34,12 +34,12 @@ def search_for_ticker(scope, page, widget_key):
 			if counter > 9: break
 
 	if len(search_results) > 0:
-		scope.pages[page]['search_results'] = search_results
+		scope.apps[app]['search_results'] = search_results
 	else:
-		scope.pages[page]['search_results'] = {}
+		scope.apps[app]['search_results'] = {}
 
 
-def ticker_button(scope, page, ticker):
+def ticker_button(scope, app, ticker):
 
 	widget_key = ticker + '_button'
 
@@ -47,20 +47,20 @@ def ticker_button(scope, page, ticker):
 									label='Choose', 
 									key=widget_key,
 									on_click=choose_ticker,
-									args=(scope, page, ticker, widget_key)
+									args=(scope, app, ticker, widget_key)
 									)
 
 
-def choose_ticker(scope, page, ticker, widget_key):
+def choose_ticker(scope, app, ticker, widget_key):
 
-	if page == 'screener':
-		scope.pages[page]['selectors']['tickers'] = [ticker]
+	if app == 'screener':
+		scope.apps[app]['selectors']['tickers'] = [ticker]
 	else:
-		scope.pages[page]['selectors']['ticker'] = ticker
+		scope.apps[app]['selectors']['ticker'] = ticker
 	
-	scope.pages[page]['search_results'] = {}
+	scope.apps[app]['search_results'] = {}
 
-	# search_box = 'widget_' + page + '_search'
+	# search_box = 'widget_' + app + '_search'
 	# scope.search_box = None
 	# print(scope.widget_single_search)
 

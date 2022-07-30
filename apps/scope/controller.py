@@ -13,12 +13,12 @@ from data.index.view.index import view_index
 from data.tickers.view.dataframes import view_ticker_files
 from data.tickers.view.download import view_download
 # Pages
-from apps.scope.pages import view_pages
-from apps.scope.pages import view_single_page
-from apps.scope.pages import view_intra_day_page
-from apps.scope.pages import view_volume_page
-from apps.scope.pages import view_research_page
-from apps.scope.pages import view_screener_page
+from apps.scope.apps import view_apps
+from apps.scope.apps import view_single_page
+from apps.scope.apps import view_intra_day_page
+from apps.scope.apps import view_volume_page
+from apps.scope.apps import view_research_page
+from apps.scope.apps import view_screener_page
 from apps.ticker_loader.dataframes import view_screener_dfs
 from apps.ticker_loader.dataframes import view_chart_dfs
 
@@ -45,7 +45,7 @@ def render_selected_scope_page(scope):
 			'view_ticker_files'		:view_ticker_files,
 			'view_download'			:view_download,
 			# Column 4 - Pages
-			'view_pages'			:view_pages,
+			'view_apps'				:view_apps,
 			'view_single_page'		:view_single_page,
 			'view_intra_day_page'	:view_intra_day_page,
 			'view_volume_page'		:view_volume_page,
@@ -60,13 +60,13 @@ def render_selected_scope_page(scope):
 			'view_industries'		:view_industries,
 			}
 
-	scope_page[scope.pages['button_for_scope']](scope)
+	scope_page[scope.apps['button_for_scope']](scope)
 
-	scope.pages['button_for_scope'] =  None
+	scope.apps['button_for_scope'] =  None
 
 
 def set_st_button(scope:dict, button:str):
-	scope.pages['button_for_scope'] = button
+	scope.apps['button_for_scope'] = button
 
 
 def render_scope_categories(scope):
@@ -96,15 +96,15 @@ def render_scope_categories(scope):
 
 	with col4: 
 		st.subheader('Pages') # DONE
-		st.button('Pages', on_click=set_st_button, args=(scope, 'view_pages', ))
-		st.button('Page > Single', on_click=set_st_button, args=(scope, 'view_single_page', ))
-		st.button('Page > Intra-Day', on_click=set_st_button, args=(scope, 'view_intra_day_page', ))
-		st.button('Page > Volume', on_click=set_st_button, args=(scope, 'view_volume_page', ))
-		st.button('Page > Research', on_click=set_st_button, args=(scope, 'view_research_page', ))
-		st.button('Page > Screener', on_click=set_st_button, args=(scope, 'view_screener_page', ))
+		st.button('Pages', on_click=set_st_button, args=(scope, 'view_apps', ))
+		st.button('App > Single', on_click=set_st_button, args=(scope, 'view_single_page', ))
+		st.button('App > Intra-Day', on_click=set_st_button, args=(scope, 'view_intra_day_page', ))
+		st.button('App > Volume', on_click=set_st_button, args=(scope, 'view_volume_page', ))
+		st.button('App > Research', on_click=set_st_button, args=(scope, 'view_research_page', ))
+		st.button('App > Screener', on_click=set_st_button, args=(scope, 'view_screener_page', ))
 		
-		no_of_screener_dfs = str(len(scope.pages['screener']['dfs'].keys()))
-		no_of_chart_dfs = str(len(scope.pages['single']['dfs'].keys()))
+		no_of_screener_dfs = str(len(scope.apps['screener']['dfs'].keys()))
+		no_of_chart_dfs = str(len(scope.apps['single']['dfs'].keys()))
 		st.button('Screener Dataframes ( ' + no_of_screener_dfs + ' )', on_click=set_st_button, args=(scope, 'view_screener_dfs', ))
 		st.button('Charting Dataframes ( ' + no_of_chart_dfs + ' )', on_click=set_st_button, args=(scope, 'view_chart_dfs', ))
 
@@ -119,7 +119,7 @@ def render_scope_categories(scope):
 
 	st.markdown("""---""")
 
-	if scope.pages['button_for_scope'] != None:
+	if scope.apps['button_for_scope'] != None:
 		
 		render_selected_scope_page(scope)
 

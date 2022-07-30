@@ -63,9 +63,9 @@ def download_from_yahoo_finance(scope): 													# TODO What Output to Rende
 # Update Share Index with download status information
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # def reset_download_status(scope): # TODO - ERROR - which tickers are being updated????
-	# page = scope.pages['display_page']
+	# app = scope.apps['display_app']
 
-	# ticker_list = list(scope.selected[page]['ticker_list'])
+	# ticker_list = list(scope.selected[app]['ticker_list'])
 	# for ticker in ticker_list:
 	# 	scope.data['ticker_index'].at[ticker, 'yahoo_status'] = 'set_for_download'
 
@@ -85,10 +85,10 @@ def download_from_yahoo_finance(scope): 													# TODO What Output to Rende
 # Yahoo Finance - helpers
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def render_download_message(scope, count, industry):
-	page = scope.pages['display_page']
+	app = scope.apps['display_app']
 
 	if industry == 'random_tickers':
-		download_message = ('Yahoo Finance downloading > ' + scope.pages[page]['ticker_list'][0] )
+		download_message = ('Yahoo Finance downloading > ' + scope.apps[app]['ticker_list'][0] )
 	else:
 		download_message = ('Yahoo Finance downloading > ' + industry + ' ( ' + str(count+1) + ' of ' + str(len(scope.data['download']['industries'])) + ' )' )
 	
@@ -97,10 +97,10 @@ def render_download_message(scope, count, industry):
 
 def generate_ticker_string_by_industry(scope, industry): # OK
 
-	page = scope.pages['display_page']
+	app = scope.apps['display_app']
 
 	if industry == 'random_tickers': 							# we have selected specific tickers 
-		batch_of_tickers = scope.pages[page]['ticker_list']
+		batch_of_tickers = scope.apps[app]['ticker_list']
 	else: 														# user has selected a share market, industry or multiple industries
 		industry_tickers = scope.data['ticker_index'][scope.data['ticker_index']['industry_group'] == industry ]
 		batch_of_tickers = industry_tickers.index.tolist()

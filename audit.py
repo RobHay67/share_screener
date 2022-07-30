@@ -21,7 +21,7 @@ def audit_footer():
 def audit_replace_df_status(scope):
 
 	tab1=10
-	page=scope.pages['display_page']
+	app=scope.apps['display_app']
 
 	# All loaded Ticker Files
 	ticker_list = scope.data['ticker_files'].keys()
@@ -30,18 +30,18 @@ def audit_replace_df_status(scope):
 	print('')
 	print('='*95)
 	print('replace_dfs > status')
-	print('page        >', page.upper())
+	print('app        >', app.upper())
 	print('do the dfs need replacing ?')
 	print('-'*95)
 	print( 'ticker'.ljust(tab1), 'single'.ljust(tab1), 'intraday'.ljust(tab1), 'volume'.ljust(tab1), 'research'.ljust(tab1), 'screener'.ljust(tab1) )
 	
 	
 	for ticker in sorted(ticker_list):
-		single 		= scope.pages['single']['replace_dfs'][ticker]
-		intraday 	= scope.pages['intraday']['replace_dfs'][ticker]
-		volume 		= scope.pages['volume']['replace_dfs'][ticker]
-		research 	= scope.pages['research']['replace_dfs'][ticker]
-		screener 	= scope.pages['screener']['replace_dfs'][ticker]
+		single 		= scope.apps['single']['replace_dfs'][ticker]
+		intraday 	= scope.apps['intraday']['replace_dfs'][ticker]
+		volume 		= scope.apps['volume']['replace_dfs'][ticker]
+		research 	= scope.apps['research']['replace_dfs'][ticker]
+		screener 	= scope.apps['screener']['replace_dfs'][ticker]
 
 		single_pad = '     ' if single 		== True else '    '
 		intraa_pad = '     ' if intraday 	== True else '    '
@@ -62,8 +62,8 @@ def audit_replace_df_status(scope):
 	print('='*95)
 
 
-	if page in scope.pages['page_list']:
-		ticker_list = list(scope.pages[page]['replace_cols'].keys())
+	if app in scope.apps['page_list']:
+		ticker_list = list(scope.apps[app]['replace_cols'].keys())
 
 		tab1=20
 		tab2=10
@@ -76,13 +76,13 @@ def audit_replace_df_status(scope):
 		print('')
 		print('='*line_width)
 		print('replace_cols > status')
-		print('page         >', page.upper())
+		print('app         >', app.upper())
 		print('do the columns need replacing ?')
 		print('-'*line_width)
 
 
-		config_group = 'tests' if page == 'screener' else 'charts'
-		col_adder_template = scope.pages['templates'][config_group].copy()
+		config_group = 'tests' if app == 'screener' else 'charts'
+		col_adder_template = scope.apps['templates'][config_group].copy()
 
 		list_of_col_adders = list(col_adder_template.keys())
 
@@ -92,7 +92,7 @@ def audit_replace_df_status(scope):
 			new_line = str(col_adder).ljust(tab1)
 			
 			for ticker in ticker_list:
-				status = scope.pages[page]['replace_cols'][ticker][col_adder]
+				status = scope.apps[app]['replace_cols'][ticker][col_adder]
 				# print(status)
 				padding = '      ' if status == True else '     '
 

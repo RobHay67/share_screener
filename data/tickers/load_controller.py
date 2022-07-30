@@ -10,8 +10,8 @@ from apps.data.status import set_replace_df_status_for_ticker, set_replace_col_s
 
 def load_tickers(scope):
 	
-	page = scope.pages['display_page']
-	ticker_list = scope.pages[page]['ticker_list']
+	app = scope.apps['display_app']
+	ticker_list = scope.apps[app]['ticker_list']
 
 	cache_progress(	scope, 
 					passed='Loaded Local files > ', 

@@ -5,7 +5,7 @@
 # 	Initial Application load of the app performs the following processes :
 
 # 		a) Establishment of Scope object
-# 		b) Rendering the initial web page structure (based on the scope)
+# 		b) Rendering the initial web app structure (based on the scope)
 # 		c) Loading the exisiting (or creating an empty if none exists) Ticker Index
 #		d) Load the User Configurable Settings
 
@@ -38,9 +38,9 @@
 #
 #
 #	Ticker Data is stored in 			< scope.data['ticker_files'] >
-# 	Ticker Screener Data is stored in 	< scope.pages[page].screener_df >		ie scope.pages['single'].screener_df
-#	Chart Data is stored in 			< scope.pages[page].chart_df > 			ie scope.pages['single'].chart_df
+# 	Ticker Screener Data is stored in 	< scope.apps[app].screener_df >		ie scope.apps['single'].screener_df
+#	Chart Data is stored in 			< scope.apps[app].chart_df > 			ie scope.apps['single'].chart_df
 
 
-# Ticker files to be in descending order so that we keep the latest data at the top of the page
+# Ticker files to be in descending order so that we keep the latest data at the top of the app
 

@@ -19,7 +19,7 @@ def set_streamlit_page_config():
 			padding-bottom: {padding}rem;
 		}} </style> """, unsafe_allow_html=True)
 
-	# Remove whitespace from the top of the page and sidebar
+	# Remove whitespace from the top of the app and sidebar
 	st.markdown("""
         <style>
                .css-18e3th9 {

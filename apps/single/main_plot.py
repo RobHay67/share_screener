@@ -20,8 +20,8 @@ def create_main_plot(plotly_schema):
 
 def format_main_plot(scope, fig):
 	# format the overall chart layout
-	page 	= scope.pages['display_page']
-	ticker 	= scope.pages[page]['selectors']['ticker']
+	app 	= scope.apps['display_app']
+	ticker 	= scope.apps[app]['selectors']['ticker']
 	
 	fig.update_layout(	
 						height 		= scope.config['charts']['total_height'],

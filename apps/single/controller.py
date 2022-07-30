@@ -20,17 +20,17 @@ def render_single_ticker_page(scope):
 
 	render_ticker_loader(scope)
 
-	ticker = scope.pages['single']['selectors']['ticker']
+	ticker = scope.apps['single']['selectors']['ticker']
 
 	if ticker != 'select a ticker' :
 		
 		# Check that we have data available for this ticker
 		# before attempting to make any plots
 
-		if ticker in scope.pages['single']['dfs'].keys():	
-			page 			= scope.pages['display_page']
-			ticker 			= scope.pages[page]['selectors']['ticker']
-			chart_df		= scope.pages[page]['dfs'][ticker]
+		if ticker in scope.apps['single']['dfs'].keys():	
+			app 			= scope.apps['display_app']
+			ticker 			= scope.apps[app]['selectors']['ticker']
+			chart_df		= scope.apps[app]['dfs'][ticker]
 			plotly_schema 	= create_plotly_schema(scope)
 			
 			if plotly_schema['no_of_charts'] > 0:

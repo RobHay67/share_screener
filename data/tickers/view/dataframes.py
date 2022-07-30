@@ -19,11 +19,11 @@ def render_df(scope, ticker_list, i):
 
 
 def view_ticker_files(scope):
-	page = scope.pages['display_page']
-	print('display_page = ', page)
+	app = scope.apps['display_app']
+	print('display_app = ', app)
 	render_expanded = False
 
-	if page == 'scope':
+	if app == 'scope':
 		st.subheader('All Ticker Data Files')
 		
 		col1,col2 = st.columns([6,2])

@@ -16,7 +16,7 @@ def render_screener_page(scope):
 	render_ticker_loader(scope)
 	
 
-	if len(scope.pages['screener']['search_results']) == 0:
+	if len(scope.apps['screener']['search_results']) == 0:
 
 		render_test_results(scope)
 
