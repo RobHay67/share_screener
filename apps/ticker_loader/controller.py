@@ -6,7 +6,7 @@ from apps.ticker_loader.selectors import render_ticker_selectors
 from apps.data.replace import replace_dfs
 from apps.data.replace import replace_cols
 
-from data.tickers.load import load_tickers
+from data.tickers.load_controller import load_tickers
 from data.tickers.view.dataframes import view_ticker_files
 
 

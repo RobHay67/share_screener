@@ -1,6 +1,6 @@
 
 from config.progress.store import cache_progress
-from data.tickers.model.ticker_path import path_for_ticker_file
+from data.tickers.path import path_for_ticker_file
 
 
 def save_tickers(scope):

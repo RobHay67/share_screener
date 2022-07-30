@@ -11,10 +11,12 @@ from files.config import scope_files
 from apps.config import scope_pages
 from strategies.config import scope_strategy
 from users.model.config import scope_user
-from data.config import scope_data
 
 from users.model.load import load_user_table
 from config.dropdowns import update_dropdowns
+
+from data.index.config import scope_index_file, scope_ticker_search
+from data.tickers.config import scope_ticker_files, scope_download_variables
 
 
 def set_scope(scope):
@@ -34,7 +36,15 @@ def set_scope(scope):
 		scope_strategy(scope)
 				
 		scope_user(scope)					# Load the users table
-		scope_data(scope)					# load the share index
+		# scope_data(scope)					# load the share index
+		scope.data = {}
+
+		scope_index_file(scope)				# load the share index
+		scope_ticker_search(scope)			# variable to facilite searching for ticker by name
+		scope_ticker_files(scope)			# variables for storing the ticker files
+		scope_download_variables(scope)		# variable used during download of ticker data
+		
+		
 		load_user_table(scope)				# Load the users table
 	
 		scope.initial_load = False			# Prevent session_state from re-running during its use

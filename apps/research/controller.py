@@ -3,7 +3,7 @@ from apps.ticker_loader.header import render_page_title
 from apps.ticker_loader.controller import render_ticker_loader
 
 
-from data.tickers.model.metadata import fetch_yfinance_metadata
+from data.tickers.metadata import fetch_yfinance_metadata
 
 from apps.research.view.info import company_general
 # from apps.research.view.info import business_summary

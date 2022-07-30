@@ -28,7 +28,7 @@ pd.set_option('display.width', 1000)
 
 
 
-from config.controller import set_scope
+from scope import set_scope
 from apps.sidebar.sidebar import render_sidebar
 from apps.controller import render_selected_app
 
