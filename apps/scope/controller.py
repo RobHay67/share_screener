@@ -11,7 +11,7 @@ from apps.scope.files import view_folders
 # Data
 from data.index.view.index import view_index
 from data.tickers.view.dataframes import view_ticker_files
-from data.download.view import view_download
+from data.tickers.view.download import view_download
 # Pages
 from apps.scope.pages import view_pages
 from apps.scope.pages import view_single_page
