@@ -1,5 +1,5 @@
 import streamlit as st
-from config.results.three_cols import three_cols
+from config.progress.three_cols import three_cols
 
 
 def view_dropdowns(scope):

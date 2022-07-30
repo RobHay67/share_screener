@@ -1,8 +1,8 @@
 import pandas as pd
 
-from config.results.store import store_result
+from config.progress.store import cache_progress
 
-from data.tickers.config import ticker_file_usecols
+from data.tickers.schema import ticker_file_usecols
 
 from apps.data.status import set_replace_df_status_for_ticker, set_replace_col_status_for_ticker
 
@@ -14,7 +14,7 @@ from apps.data.status import set_replace_df_status_for_ticker, set_replace_col_s
 
 def combine_loaded_and_download_ticker_data(scope):
 
-	store_result(scope, 
+	cache_progress(scope, 
 			passed='Combined > ', 
 			passed_2='Created NEW Local files > ', 
 			failed='na' 
@@ -47,11 +47,11 @@ def combine_loaded_and_download_ticker_data(scope):
 					
 					# we have an exisiting share_data_file so we concatenate the data
 					scope.data['ticker_files'][ticker] = pd.concat([scope.data['ticker_files'][ticker], ticker_data]).drop_duplicates(subset=['date'], keep='last')
-					store_result( scope, ticker, result='passed' )
+					cache_progress( scope, ticker, result='passed' )
 				else:
 					# its brand new - so we can just add it to the dictionary
 					scope.data['ticker_files'][ticker] = ticker_data											
-					store_result( scope, ticker, result='passed_2' )
+					cache_progress( scope, ticker, result='passed_2' )
 				
 				# sort the share data into date order ascending
 				scope.data['ticker_files'][ticker].sort_values(by=['date'], inplace=True, ascending=False)		
@@ -60,6 +60,6 @@ def combine_loaded_and_download_ticker_data(scope):
 		set_replace_df_status_for_ticker(scope, ticker, new_status=replace_df_status)
 		set_replace_col_status_for_ticker(scope, ticker, new_status=replace_df_status)
 		
-	store_result(scope, 'Finished', final_print=True )
+	cache_progress(scope, 'Finished', final_print=True )
 
 

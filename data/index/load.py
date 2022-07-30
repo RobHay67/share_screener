@@ -1,10 +1,10 @@
 import os
 import pandas as pd
 
-from data.index.model.schema import schema
-from data.index.model.schema import csv_dates
-from data.index.model.schema import csv_dtypes
-from data.index.model.save import save_index
+from data.index.schema import schema
+from data.index.schema import csv_dates
+from data.index.schema import csv_dtypes
+from data.index.save import save_index
 
 
 from data.index.view.messages import message_title

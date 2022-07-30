@@ -2,7 +2,7 @@
 import streamlit as st
 from datetime import datetime 
 
-from config.results.three_cols import three_cols
+from config.progress.three_cols import three_cols
 
 
 def view_app(scope):

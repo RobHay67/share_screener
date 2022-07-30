@@ -1,12 +1,12 @@
 import pandas as pd
 
-from config.results.store import store_result
+from config.progress.store import cache_progress
 
-from data.index.model.schema import default_values
-from data.index.model.schema import data_types
-from data.index.model.schema import schema
+from data.index.schema import default_values
+from data.index.schema import data_types
+from data.index.schema import schema
 
-from data.index.model.save import save_index
+from data.index.save import save_index
 from config.markets.open_time import open_time
 from config.markets.trading_minutes import trading_minutes
 
@@ -21,7 +21,7 @@ def update_index(scope, downloaded_ticker_info ):
 	downloaded_ticker_info = apply_defaults_to_missing_values(scope, downloaded_ticker_info)
 	downloaded_ticker_info.set_index('share_code', inplace=True)
 	
-	store_result( 	scope, 
+	cache_progress( scope, 
 					passed='Updating these Tickers > ', 
 					passed_2='Adding these Tickers > ', 
 					failed='not applicable > ' 
@@ -35,14 +35,14 @@ def update_index(scope, downloaded_ticker_info ):
 			row['minutes_per_day'] = trading_minutes( scope, ticker )
 			row['blue_chip'] = schema['blue_chip']['default']
 			scope.data['ticker_index'] = scope.data['ticker_index'].append(row)
-			store_result( scope, ticker, result='passed_2' )
+			cache_progress( scope, ticker, result='passed_2' )
 		else:
 			scope.data['ticker_index'].at[ticker, 'company_name'] = row['company_name']
 			scope.data['ticker_index'].at[ticker, 'listing_date'] = row['listing_date']
 			scope.data['ticker_index'].at[ticker, 'industry_group'] = row['industry_group']
 			scope.data['ticker_index'].at[ticker, 'market_cap'] = row['market_cap']
-			store_result( scope, ticker, result='passed' )
-	store_result(scope, 'Finished', final_print=True )
+			cache_progress( scope, ticker, result='passed' )
+	cache_progress(scope, 'Finished', final_print=True )
 	
 	scope.data['ticker_index'] = apply_defaults_to_missing_values(scope, scope.data['ticker_index'])
 	scope.data['ticker_index']['listing_date'] = pd.to_datetime( scope.data['ticker_index']['listing_date'].dt.date  )

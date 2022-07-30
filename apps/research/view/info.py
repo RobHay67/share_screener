@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-from config.results.two_cols import view_2_columns
+from config.progress.two_cols import view_2_columns
 
 
 def company_general(metadata):
