@@ -30,11 +30,12 @@ def set_scope(scope):
 		scope_application_variables(scope)	# This contains all the application settings (see below)
 		scope_dropdown_menus(scope)			# The data for the various selectors
 
+		scope_results(scope)				# Used to report on Function Progress
+
 		scope_files(scope)					# Required before we can attempt to load the data
 
 		scope_tests(scope)
 		scope_charts(scope)
-		scope_results(scope)
 
 		scope_pages(scope)					# This contains all the page Specific settings
 		scope_strategy(scope)

@@ -7,16 +7,16 @@ from config.progress.three_cols import three_cols
 
 def scope_results(scope):
 	# Results - for batch processing of multiple tickers
-	scope.config['results'] = {}
+	scope.progress = {}
 
-	scope.config['results'] = { 
-								'passed':'', 
-								'passed_2':'', 
-								'failed':'', 
-								'passed_count':0, 
-								'passed_2_count':0, 
-								'failed_count':0 
-							}
+	scope.progress = { 
+						'passed':'', 
+						'passed_2':'', 
+						'failed':'', 
+						'passed_count':0, 
+						'passed_2_count':0, 
+						'failed_count':0 
+					}
 
 
 
