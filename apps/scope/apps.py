@@ -16,7 +16,7 @@ def view_apps(scope):
 	three_cols( 'Test Template', scope.apps['templates']['tests'], 'scope.apps.templates.tests' )
 	
 	st.subheader('Available Pages')
-	three_cols( 'App List', scope.apps['page_list'], 'scope.apps.page_list' )
+	three_cols( 'App List', scope.apps['app_list'], 'scope.apps.app_list' )
 
 	# st.markdown("""---""")
 
@@ -39,7 +39,7 @@ def view_screener_page(scope):
 
 def view_page_specific_variables(scope, app):
 
-	# for App in scope.apps['page_list']:
+	# for App in scope.apps['app_list']:
 	st.subheader(app.upper() + ' App')
 	three_cols( 'Selected - Market'  , scope.apps[app]['selectors']['market']    , 'scope.apps.'+ app +'.selectors.market'    , widget_type='string' )
 	three_cols( 'Selected - Industry', scope.apps[app]['selectors']['industries'], 'scope.apps.'+ app +'.selectors.industries', widget_type='string' )

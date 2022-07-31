@@ -62,7 +62,7 @@ def audit_replace_df_status(scope):
 	print('='*95)
 
 
-	if app in scope.apps['page_list']:
+	if app in scope.apps['app_list']:
 		ticker_list = list(scope.apps[app]['replace_cols'].keys())
 
 		tab1=20

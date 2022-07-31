@@ -25,15 +25,15 @@ def view_app(scope):
 def view_tests_config(scope):
 	st.subheader('Tests Configuration')
 	
-	three_cols( 'Trends', scope.config['tests']['trends'], 'scope.apps.tests.trends' )
-	three_cols( 'Test List', scope.config['tests']['test_list'], 'scope.apps.tests.test_list' )
+	three_cols( 'Trends', scope.tests['trends'], 'scope.apps.tests.trends' )
+	three_cols( 'Test List', scope.tests['test_list'], 'scope.apps.tests.test_list' )
 
 	st.markdown("""---""")
 	
-	for test in  scope.config['tests']['test_list']:
+	for test in  scope.tests['test_list']:
 		st.subheader(test)
-		st.write('scope.config.tests['+test+']')
-		st.write(scope.config['tests'][test])
+		st.write('scope.tests['+test+']')
+		st.write(scope.tests[test])
 
 
 def view_charts_config(scope):

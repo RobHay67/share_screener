@@ -1,6 +1,6 @@
 
 
-from config.tests.config import scope_tests
+from tests.config import scope_tests
 from charts.config import scope_charts
 
 

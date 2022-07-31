@@ -71,14 +71,14 @@ def replace_cols(scope):
 
 						if ticker in tickers_already_loaded_for_page:
 							ticker_df				= scope.apps[app]['dfs'][ticker]
-							column_adder			= scope.config[config_group][col_adder]['add_columns']
+							column_adder			= scope[config_group][col_adder]['add_columns']
 
 							# Column_Adder has a column_adder function (some are set to None as nothing is required)
 							if column_adder != None:
-								column_adder_function = scope.config[config_group][col_adder]['add_columns']['function']
+								column_adder_function = scope[config_group][col_adder]['add_columns']['function']
 								
 								# Call the column adding function for this col_adder
-								scope.config[config_group][col_adder]['add_columns']['function'](scope, col_adder, ticker, ticker_df)
+								scope[config_group][col_adder]['add_columns']['function'](scope, col_adder, ticker, ticker_df)
 							
 						# reset replace_cols status to prevent unnecesary updates		
 						set_replace_col_adder_status_for_ticker_and_page(scope, app, ticker, col_adder, False)

@@ -3,15 +3,15 @@ def summarise_test_config_for_user(scope):
 
 	test_dict = {}
 
-	for test in scope.config['tests']['test_list']:
+	for test in scope.tests['test_list']:
 		test_dict[test] = {}
-		test_dict[test]['active'] = scope.config['tests'][test]['active']
-		add_columns = scope.config['tests'][test]['add_columns']
+		test_dict[test]['active'] = scope.tests[test]['active']
+		add_columns = scope.tests[test]['add_columns']
 		if add_columns != None:
 			test_dict[test]['add_columns'] = {}
 			for attribute in add_columns.keys():
 				if attribute not in ['function']:
-					test_dict[test]['add_columns'][attribute] = scope.config['tests'][test]['add_columns'][attribute]
+					test_dict[test]['add_columns'][attribute] = scope.tests[test]['add_columns'][attribute]
 		else:
 			test_dict[test]['add_columns'] = None
 

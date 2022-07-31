@@ -18,6 +18,7 @@
 # delete pkg		- pipenv uninstall django
 # -------------------------------------------------
 
+import jupyter_client
 import streamlit as st
 
 # Testing Code - TODO - delete on Final Release
@@ -107,6 +108,8 @@ scope_data = {
 
 
 print(scope.apps['templates']['charts'])
+
+print(scope.apps)
 # so when we load a file - we just add the appropriate app config from the defaults. The true will signifiy that the 
 # columns need replacing. After replacing, set the status to false to prevent further updates
 
@@ -188,7 +191,7 @@ print(scope.apps['templates']['charts'])
 
 
 
-from audit import audit_replace_df_status
+# from audit import audit_replace_df_status
 # audit_replace_df_status(scope)
 
 # if 'initial_load' in scope:
@@ -223,10 +226,10 @@ from audit import audit_replace_df_status
 
 # print('-'*75)
 # print('Configurable test variables')
-# for test in scope.config['tests']['test_list']:
-# 	active_status = scope.config['tests'][test]['active']
+# for test in scope.tests['test_list']:
+# 	active_status = scope.tests[test]['active']
 # 	print(test.upper(), '   -   active = ', active_status)
-# 	add_columns = scope.config['tests'][test]['add_columns']
+# 	add_columns = scope.tests[test]['add_columns']
 # 	if add_columns != None:
 # 		# print(add_columns)
 # 		for attribute in add_columns.keys():
@@ -362,7 +365,7 @@ def terminal_heading(heading):
 # print('Report on Data Refresh State for each Object')
 # print( '^'*70)
 
-# for app in st.session_state['pages']['page_list']:
+# for app in st.session_state['pages']['app_list']:
 # 	print('='*100)	
 # 	print('app > ', app)
 # 	print('='*100)	
@@ -387,13 +390,62 @@ def terminal_heading(heading):
 
 
 
-
-
-
-
-
-
-
+# Apps Object 10:17 on 31 July
+# {
+# 	'row_limit': 100.0, 
+# 	'button_for_scope': None, 
+# 	'display_app': 'home_page', 
+# 	'page_list': ['single', 'intraday', 'volume', 'research', 'screener'], 
+# 	'templates': {
+# 		'tests': {'trend_open': False, 'trend_high': True, 'trend_low': False, 'trend_close': True, 'trend_volume': False}, 
+# 		'charts': {'macd': True, 'macd_vol': True, 'rsi': True, 'vol_osssy': False, 'stochastic': True, 'sma_1': True, 'sma_2': False, 'sma_3': False, 'ema_1': False, 'ema_2': False, 'ema_3': False, 'bollinger_bands': False, 'dividends': True, 'candlestick': True, 'scatter': False, 'bar': False, 'line': True, 'heiken_ashi': False, 'volume': True, 'vol_per_minute': False, 'vac': False, 'announcements': False, 'ichi_moku': False, 'ichi_moku_daily': False}}, 
+# 	'single': {
+# 		'search_results': {}, 
+# 		'ticker_list': [], 
+# 		'replace_dfs': {}, 
+# 		'replace_cols': {}, 
+# 		'dfs': {}, 
+# 		'data': {}, 
+# 		'selectors': {'market': 'select entire market', 'industries': [], 'tickers': [], 'ticker': 'select a ticker'}
+# 			}, 
+# 	'intraday': {
+# 		'search_results': {}, 
+# 		'ticker_list': [], 
+# 		'replace_dfs': {}, 
+# 		'replace_cols': {}, 
+# 		'dfs': {}, 
+# 		'data': {}, 
+# 		'selectors': {'market': 'select entire market', 'industries': [], 'tickers': [], 'ticker': 'select a ticker'}
+# 		}, 
+# 	'volume': {
+# 		'search_results': {}, 
+# 		'ticker_list': [], 
+# 		'replace_dfs': {}, 
+# 		'replace_cols': {}, 
+# 		'dfs': {}, 
+# 		'data': {}, 
+# 		'selectors': {'market': 'select entire market', 'industries': [], 'tickers': [], 'ticker': 'select a ticker'}
+# 		}, 
+# 	'research': {
+# 		'search_results': {}, 
+# 		'ticker_list': [], 
+# 		'replace_dfs': {}, 
+# 		'replace_cols': {}, 
+# 		'dfs': {}, 
+# 		'data': {}, 
+# 		'selectors': {'market': 'select entire market', 'industries': [], 'tickers': [], 'ticker': 'select a ticker'}
+# 		}, 
+# 	'screener': {
+# 		'search_results': {}, 
+# 		'ticker_list': [], 
+# 		'replace_dfs': {}, 
+# 		'replace_cols': {}, 
+# 		'dfs': {}, 
+# 		'data': {}, 
+# 		'selectors': {'market': 'select entire market', 'industries': [], 'tickers': [], 'ticker': 'select a ticker'}
+# 		}, 
+# 	'tests': {'results': {}, 'df': {}}
+# }
 
 
 

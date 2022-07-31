@@ -1,4 +1,4 @@
-from config.tests.config import tests_config
+from tests.config import tests_config
 from charts.config import charts_config
 
 
@@ -11,14 +11,14 @@ def scope_apps(scope):
 	scope.apps['row_limit'] = 100
 	scope.apps['button_for_scope'] = None
 	scope.apps['display_app'] = 'login'					# app to display with a default for the initial first load
-	scope.apps['page_list'] = ['single', 'intraday', 'volume', 'research', 'screener']
+	scope.apps['app_list'] = ['single', 'intraday', 'volume', 'research', 'screener']
 	
 	
 	scope_page_templates(scope)								# add this initial default state for the screener and chart pages
 
 	# ==========================================
 	# app Specific Configuration
-	for app in scope.apps['page_list']:
+	for app in scope.apps['app_list']:
 		scope.apps[app] = {}
 		scope.apps[app]['search_results'] = {}  # TODO - should this be here - isnt it in config or somewhere else
 		scope.apps[app]['ticker_list'] = []

@@ -45,7 +45,7 @@ def set_replace_df_status_for_ticker(scope, ticker, new_status=True):
 	# after the ticker has actually been replaced in the app dfs object and we
 	# want to prevent further updates)
 
-	for app in scope.apps['page_list']:
+	for app in scope.apps['app_list']:
 		
 		ticker_list = list(scope.apps[app]['replace_dfs'].keys())
 
@@ -68,7 +68,7 @@ def set_replace_col_status_for_ticker(scope, ticker, new_status):
 	# We dont know if the ticker is in the replace_cols yet so
 	# we should check for that and add a default record
 
-	for app in scope.apps['page_list']:
+	for app in scope.apps['app_list']:
 		
 		ticker_list = list(scope.apps[app]['replace_cols'].keys())
 		config_group = 'tests' if app == 'screener' else 'charts'
@@ -101,7 +101,7 @@ def set_replace_col_status_for_ticker(scope, ticker, new_status):
 # -------------------------------------------------------------
 
 def set_replace_df_status_for_all_tickers(scope, new_status):
-	for app in scope.apps['page_list']:
+	for app in scope.apps['app_list']:
 		
 		# create new empty dictionary for status
 		scope.apps[app]['replace_dfs'] = {}
@@ -118,7 +118,7 @@ def set_replace_df_status_for_all_tickers(scope, new_status):
 
 
 def set_replace_cols_status_for_all_tickers(scope, new_status):
-	for app in scope.apps['page_list']:
+	for app in scope.apps['app_list']:
 		
 		# create new empty dictionary for status
 		scope.apps[app]['replace_cols'] = {}
@@ -149,7 +149,7 @@ def set_replace_col_status_for_col_adder(scope, col_adder, new_status=True):
 	# so this will be the chart or the test col_adder variables
 	# we only want to make changes where the test or chart exists
 
-	for app in scope.apps['page_list']:
+	for app in scope.apps['app_list']:
 
 		ticker_list = list(scope.apps[app]['replace_cols'].keys())
 

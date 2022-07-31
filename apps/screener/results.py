@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from config.tests.results import create_summary_of_test_results
+from tests.results import create_summary_of_test_results
 
 
 

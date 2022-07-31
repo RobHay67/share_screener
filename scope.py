@@ -5,7 +5,7 @@ from config.streamlit import set_streamlit_page_config
 
 from charts.config import scope_charts
 from progress.config import scope_progress
-from config.tests.config import scope_tests
+from tests.config import scope_tests
 
 from files.config import scope_files
 from apps.config import scope_apps

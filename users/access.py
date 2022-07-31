@@ -26,10 +26,10 @@ def set_user_access(scope:dict, login_name:str):
 		scope.apps['templates']['tests'][test] = active_status
 
 		# Update the user config into the scope.config
-		scope.config['tests'][test]['active'] = active_status
+		scope.tests[test]['active'] = active_status
 		if add_columns != None:
 			for attribute in add_columns.keys():
-				scope.config['tests'][test]['add_columns'][attribute] = add_columns[attribute]
+				scope.tests[test]['add_columns'][attribute] = add_columns[attribute]
 
 	# Over-write the config charts with the user values
 	for chart in user_charts.keys():

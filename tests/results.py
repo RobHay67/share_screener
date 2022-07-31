@@ -2,7 +2,7 @@
 import pandas as pd
 
 
-from config.tests.active_tests import scope_active_test_list
+from tests.active_tests import scope_active_test_list
 
 
 

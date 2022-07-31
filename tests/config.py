@@ -1,16 +1,16 @@
 
-# from config.tests.config import trend_direction, tests_config
+# from tests.config import trend_direction, tests_config
 
 
 def scope_tests(scope):
 
-	scope.config['tests'] = {}
+	scope.tests = {}
 
-	scope.config['tests']['trends']	= trend_direction
-	scope.config['tests']['test_list']	= list(tests_config.keys())
+	scope.tests['trends']	= trend_direction
+	scope.tests['test_list']	= list(tests_config.keys())
 
 	for test, config in tests_config.items():
-		scope.config['tests'][test] = config
+		scope.tests[test] = config
 
 
 
