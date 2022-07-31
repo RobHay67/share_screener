@@ -4,7 +4,7 @@ import streamlit as st
 from widgets.constructors.ohlcv_trend import render_ohlcv_trend
 
 
-def render_screener_tests(scope):
+def render_available_tests(scope):
 	
 	st.markdown("""---""")
 	st.write('**Fundamental Analysis**')

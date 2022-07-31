@@ -1,7 +1,7 @@
 from apps.ticker_loader.header import render_page_title		
 from apps.ticker_loader.controller import render_ticker_loader
 from apps.screener.results import render_test_results
-from apps.screener.tests import render_screener_tests
+from apps.screener.tests import render_available_tests
 
 from apps.ticker_loader.search_results import render_search_results
 
@@ -20,7 +20,7 @@ def render_screener_page(scope):
 
 		render_test_results(scope)
 
-		render_screener_tests(scope)
+		render_available_tests(scope)
 
 		example_settings(scope)
 	
