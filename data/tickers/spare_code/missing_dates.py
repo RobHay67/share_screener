@@ -17,8 +17,7 @@ import os
 
 # from data.ticker_index import save_ticker_index_file
 # from data.tickers.index.file import save_index
-# # from scope import path_for_ticker_file
-
+# from files.path import path_for_ticker_file
 
 
 # ==============================================================================================================================================================

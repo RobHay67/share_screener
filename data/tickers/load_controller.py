@@ -1,7 +1,7 @@
 import os
 
 from progress.store import cache_progress
-from data.tickers.path import path_for_ticker_file
+from files.path import path_for_ticker_file
 from data.tickers.load import load_ticker
 from data.tickers.store import store_ticker_file
 from apps.ticker_loader.messages import view_result

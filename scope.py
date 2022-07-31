@@ -7,7 +7,7 @@ from charts.config import scope_charts
 from progress.config import scope_progress
 from tests.config import scope_tests
 
-from files.config import scope_files
+from files.config import scope_folders_and_paths
 from apps.config import scope_apps
 from strategies.config import scope_strategy
 from users.load import load_user_table
@@ -30,18 +30,16 @@ def set_scope(scope):
 		
 		scope_application_variables(scope)	# This contains all the application settings (see below)
 		scope_dropdown_menus(scope)			# The data for the various selectors
-
+		
+		scope_folders_and_paths(scope)					# Required before we can attempt to load the data
+		
 		scope_progress(scope)				# Used to report on Function Progress
 
-		scope_files(scope)					# Required before we can attempt to load the data
+		scope_apps(scope)					# This contains all the app Specific settings
 
 		scope_tests(scope)
-		scope_charts(scope)
-
-		scope_apps(scope)					# This contains all the app Specific settings
 		
-		scope.strategy = {}
-		scope_strategy(scope)				# TODO - this may not even be required - keeping just in case
+		scope_charts(scope)
 
 		scope.users = {}
 		load_user_table(scope)				# Load the users table
@@ -52,7 +50,9 @@ def set_scope(scope):
 		scope_ticker_search(scope)			# variable to facilite searching for ticker by name
 		scope_ticker_files(scope)			# variables for storing the ticker files
 		scope_download_variables(scope)		# variable used during download of ticker data
+
 		
+		scope_strategy(scope)				# TODO - this may not even be required - keeping just in case
 	
 		scope.initial_load = False			# Prevent session_state/scope from reloading with the default values
 

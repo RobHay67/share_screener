@@ -3,7 +3,7 @@ import os
 from progress.three_cols import three_cols
 
 
-def scope_files(scope):
+def scope_folders_and_paths(scope):
 
 	scope.files = {}
 

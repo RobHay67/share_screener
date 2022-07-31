@@ -109,7 +109,7 @@ scope_data = {
 
 print(scope.apps['templates']['charts'])
 
-print(scope.apps)
+# print(scope.data)
 # so when we load a file - we just add the appropriate app config from the defaults. The true will signifiy that the 
 # columns need replacing. After replacing, set the status to false to prevent further updates
 
@@ -288,16 +288,16 @@ def terminal_heading(heading):
 	# for key in st.session_state:print(key)
 
 
-# level_1 = 'config'
-# if level_1 in st.session_state:
-# 	terminal_heading(level_1)
-# 	for key in st.session_state[level_1]:print(key)
-# 	level_2_details(level_1, 'dropdowns')
+level_1 = 'data'
+if level_1 in st.session_state:
+	terminal_heading(level_1)
+	for key in st.session_state[level_1]:print(key)
+	# level_2_details(level_1, 'dropdowns')
 	# level_2_details(level_1, 'tests')
 	# level_3_details(level_1, 'tests', 'trend_high')
-# 	level_2_details(level_1, 'charts')
-# 	level_3_details(level_1, 'charts', 'config')
-# 	level_2_details(level_1, 'results')
+	# level_2_details(level_1, 'charts')
+	# level_3_details(level_1, 'charts', 'config')
+	# level_2_details(level_1, 'results')
 
 # level_1 = 'files'
 # if level_1 in st.session_state:

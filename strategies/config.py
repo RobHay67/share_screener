@@ -3,7 +3,8 @@ from progress.three_cols import three_cols
 
 def scope_strategy(scope):
 	# Strategy Params
-	
+
+	scope.strategy = {}
 
 	scope.strategy['name'] = 'None yet Selected', 
 	scope.strategy['price_columns'] = ['open', 'high', 'low', 'close' ]

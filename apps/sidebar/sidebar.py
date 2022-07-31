@@ -19,7 +19,8 @@ def render_sidebar(scope):
 			# st.subheader('Download Ticker Data')
 			edit_download_days(scope)
 			download_new_ticker_data = download_button(scope)	
-			if download_new_ticker_data: download_tickers(scope)
+			if download_new_ticker_data: 
+				download_tickers(scope)
 
 			st.subheader('Analysis')
 			st.button('Single'  			, on_click=set_page, args=(scope, 'single', ))

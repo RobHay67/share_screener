@@ -1,7 +1,7 @@
 # A single function that handles all of the data loading
 
-from apps.ticker_loader.schema import layout_schema
-from apps.ticker_loader.selectors import render_ticker_selectors
+from apps_parts.ticker_loader.schema import layout_schema
+from apps_parts.ticker_selectors.selectors import render_ticker_selectors
 
 from apps.data.replace import replace_dfs
 from apps.data.replace import replace_cols
@@ -11,14 +11,14 @@ from data.tickers.view.dataframes import view_ticker_files
 
 
 # from apps.ticker_loader.buttons.download import download_button
-from apps.ticker_loader.buttons.clear_message import clear_messages_button
-from apps.ticker_loader.buttons.ticker_file import ticker_files_button
-from apps.ticker_loader.buttons.screener_dfs import screener_dfs_button
-from apps.ticker_loader.buttons.chart_dfs import chart_dfs_button
+from apps_parts.ticker_loader.buttons.clear_message import clear_messages_button
+from apps_parts.ticker_loader.buttons.ticker_file import ticker_files_button
+from apps_parts.ticker_loader.buttons.screener_dfs import screener_dfs_button
+from apps_parts.ticker_loader.buttons.chart_dfs import chart_dfs_button
 
 # TODO - do these need to be seperate??? maybe a single function should handle both
-from apps.ticker_loader.dataframes import view_screener_dfs
-from apps.ticker_loader.dataframes import view_chart_dfs
+from apps_parts.dataframes.tests import view_tests_dfs
+from apps_parts.dataframes.charts import view_chart_dfs
 
 
 def render_ticker_loader(scope):
@@ -55,7 +55,7 @@ def render_ticker_loader(scope):
 		if show_ticker_files: 
 			view_ticker_files(scope)
 		if show_screener_dfs: 
-			view_screener_dfs(scope)
+			view_tests_dfs(scope)
 		if show_chart_dfs: 
 			view_chart_dfs(scope)
 

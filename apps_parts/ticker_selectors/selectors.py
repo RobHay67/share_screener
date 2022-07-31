@@ -6,7 +6,7 @@ from widgets.industries import select_industries
 from widgets.tickers import select_tickers
 
 
-from apps.ticker_loader.ticker_list import update_ticker_list
+from apps_parts.ticker_selectors.ticker_list import update_ticker_list
 
 
 def render_ticker_selectors(scope):

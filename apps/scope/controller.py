@@ -19,8 +19,8 @@ from apps.scope.apps import view_intra_day_page
 from apps.scope.apps import view_volume_page
 from apps.scope.apps import view_research_page
 from apps.scope.apps import view_screener_page
-from apps.ticker_loader.dataframes import view_screener_dfs
-from apps.ticker_loader.dataframes import view_chart_dfs
+from apps_parts.dataframes.tests import view_tests_dfs
+from apps_parts.dataframes.charts import view_chart_dfs
 
 # Strategies
 from strategies.config import view_strategy
@@ -51,7 +51,7 @@ def render_selected_scope_page(scope):
 			'view_volume_page'		:view_volume_page,
 			'view_research_page'	:view_research_page,
 			'view_screener_page'	:view_screener_page,
-			'view_screener_dfs'		:view_screener_dfs,
+			'view_tests_dfs'		:view_tests_dfs,
 			'view_chart_dfs'		:view_chart_dfs,
 			# Column 5 - Strategy
 			'view_strategy'			:view_strategy,
@@ -105,7 +105,7 @@ def render_scope_categories(scope):
 		
 		no_of_screener_dfs = str(len(scope.apps['screener']['dfs'].keys()))
 		no_of_chart_dfs = str(len(scope.apps['single']['dfs'].keys()))
-		st.button('Screener Dataframes ( ' + no_of_screener_dfs + ' )', on_click=set_st_button, args=(scope, 'view_screener_dfs', ))
+		st.button('Screener Dataframes ( ' + no_of_screener_dfs + ' )', on_click=set_st_button, args=(scope, 'view_tests_dfs', ))
 		st.button('Charting Dataframes ( ' + no_of_chart_dfs + ' )', on_click=set_st_button, args=(scope, 'view_chart_dfs', ))
 
 	with col5: 
