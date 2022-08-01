@@ -23,7 +23,6 @@ def view_chart_dfs(scope):
 		with col3: render_chart_df(scope, app, ticker_list, i+2)
 
 
-# TODO - dont think this one is called anymore
 def render_chart_df(scope, app, ticker_list, i):
 	if i < len(ticker_list):
 		ticker = ticker_list[i]

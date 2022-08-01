@@ -25,7 +25,6 @@ def view_tests_dfs(scope):
 
 
 
-# TODO - dont think this one is called anymore
 def render_screener_df(scope, app, ticker_list, i):
 	if i < len(ticker_list):
 		ticker = ticker_list[i]
