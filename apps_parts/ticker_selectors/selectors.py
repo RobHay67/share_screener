@@ -23,10 +23,14 @@ def render_ticker_selectors(scope):
 	if app == 'screener':	
 		# Screener app (Potentially Multiple Tickers depending on the dropdown selections)
 		
-		with scope.col1: select_tickers(scope)
-		with scope.col1: search_ticker_by_name(scope)
-		with scope.col2: select_industries(scope)
-		with scope.col2: select_a_market(scope)
+		with scope.col1: 
+			select_tickers(scope)
+		with scope.col1: 
+			search_ticker_by_name(scope)
+		with scope.col2: 
+			select_industries(scope)
+		with scope.col2: 
+			select_a_market(scope)
 
 	selected_tickers_status = update_ticker_list(scope)
 

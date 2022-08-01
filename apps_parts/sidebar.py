@@ -5,7 +5,7 @@ from widgets.download_days import edit_download_days
 from widgets.logout import logout_button
 
 from data.tickers.download_controller import download_tickers
-from apps.ticker_loader.buttons.download import download_button
+from apps_parts.ticker_loader.buttons.download import download_button
 
 
 def render_sidebar(scope):

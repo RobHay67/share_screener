@@ -3,8 +3,8 @@ import os
 from progress.store import cache_progress
 from files.path import path_for_ticker_file
 from data.tickers.load import load_ticker
-from data.tickers.store import store_ticker_file
-from apps.ticker_loader.messages import view_result
+from data.tickers.cache import cache_ticker_file
+from apps_parts.ticker_loader.messages import render_messages
 from apps.data.status import set_replace_df_status_for_ticker, set_replace_col_status_for_ticker
 
 
@@ -29,7 +29,7 @@ def load_tickers(scope):
 				print ( '\033[92m' + ticker.ljust(10) + '> loading local ticker file \033[0m')
 				ticker_data_file = load_ticker(scope, ticker )
 
-				store_ticker_file(scope,ticker, ticker_data_file)
+				cache_ticker_file(scope,ticker, ticker_data_file)
 				cache_progress( scope, ticker, result='passed' )
 				set_replace_df_status_for_ticker(scope, ticker, new_status=True)
 				set_replace_col_status_for_ticker(scope, ticker, new_status=False)
@@ -44,7 +44,7 @@ def load_tickers(scope):
 
 	cache_progress(scope, 'Finished', final_print=True )
 	
-	view_result(scope)
+	render_messages(scope)
 
 	
 
