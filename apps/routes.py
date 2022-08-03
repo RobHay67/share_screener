@@ -1,14 +1,14 @@
-from apps.login import render_login_form
-from apps.home_page import render_home_page
+from apps.login.login import render_login_form
+from apps.home.home_page import render_home_page
 from apps.single.controller import render_single_ticker_page
 from apps.research.controller import render_research_page
 from apps.intraday.controller import render_intraday_page
 from apps.volume.controller import render_volume_page
 from apps.screener.controller import render_screener_page
 from apps.websites.controller import render_websites
-from charts.config_primary import render_primary_charts_config
-from charts.config_secondary import render_secondary_charts_config
-from apps.scope.controller import render_scope_categories
+from apps.config_charts.primary import render_primary_charts_config
+from apps.config_charts.secondary import render_secondary_charts_config
+from apps.config_app.controller import render_scope_categories
 
 
 

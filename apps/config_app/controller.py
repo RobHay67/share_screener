@@ -1,24 +1,24 @@
 import streamlit as st
 
 # Config (scope)
-from apps.scope.scope import view_app
-from apps.scope.dropdowns import view_dropdowns
-from apps.scope.scope import view_trials_config
-from apps.scope.scope import view_charts_config
-from apps.scope.results import view_all_results
+from apps.config_app.scope import view_app
+from apps.config_app.dropdowns import view_dropdowns
+from apps.config_app.scope import view_trials_config
+from apps.config_app.scope import view_charts_config
+from apps.config_app.results import view_all_results
 # Files
-from apps.scope.files import view_folders
+from apps.config_app.files import view_folders
 # Data
 from data.index.view.index import view_index
 from data.tickers.view.dataframes import view_ticker_files
 from data.tickers.view.download import view_download
 # Pages
-from apps.scope.apps import view_apps
-from apps.scope.apps import view_single_page
-from apps.scope.apps import view_intra_day_page
-from apps.scope.apps import view_volume_page
-from apps.scope.apps import view_research_page
-from apps.scope.apps import view_screener_page
+from apps.config_app.apps import view_apps
+from apps.config_app.apps import view_single_page
+from apps.config_app.apps import view_intra_day_page
+from apps.config_app.apps import view_volume_page
+from apps.config_app.apps import view_research_page
+from apps.config_app.apps import view_screener_page
 from apps_parts.dataframes.trials import view_trials_dfs
 from apps_parts.dataframes.charts import view_chart_dfs
 
@@ -35,7 +35,7 @@ def render_selected_scope_page(scope):
 			# Column 1 - Config (scope)
 			'application'			:view_app,
 			'dropdowns'				:view_dropdowns,
-			'trials'					:view_trials_config,
+			'trials'				:view_trials_config,
 			'charts'				:view_charts_config,
 			'results'				:view_all_results,
 			# Column 2 - Files
@@ -105,7 +105,7 @@ def render_scope_categories(scope):
 		
 		no_of_screener_dfs = str(len(scope.apps['screener']['dfs'].keys()))
 		no_of_chart_dfs = str(len(scope.apps['single']['dfs'].keys()))
-		st.button('Screener Dataframes ( ' + no_of_screener_dfs + ' )', on_click=set_st_button, args=(scope, 'view_trials_dfs', ))
+		st.button('Screener Dataframes ( ' + no_of_screener_dfs + ' )', on_click=set_st_button, args=(scope, 'view_tests_dfs', ))
 		st.button('Charting Dataframes ( ' + no_of_chart_dfs + ' )', on_click=set_st_button, args=(scope, 'view_chart_dfs', ))
 
 	with col5: 
