@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-from apps_parts.dropdowns import refresh_dropdown_lists
+from apps_parts.dropdowns.dropdowns import refresh_dropdown_lists
 
 from data.index.schema import schema
 from data.index.schema import csv_dates

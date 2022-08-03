@@ -3,6 +3,8 @@ import time
 
 from config.streamlit import set_streamlit_page_config
 
+from apps_parts.dropdowns.config import scope_dropdown_menus
+
 from charts.config import scope_charts
 from progress.config import scope_progress
 from trials.config import scope_trials
@@ -29,6 +31,7 @@ def set_scope(scope):
 	if 'initial_load' not in scope:		
 		
 		scope_application_variables(scope)	# This contains all the application settings (see below)
+		
 		scope_dropdown_menus(scope)			# The data for the various selectors
 		
 		scope_folders_and_paths(scope)					# Required before we can attempt to load the data
@@ -67,18 +70,6 @@ def scope_application_variables(scope):
 
 	# System Wide Variables
 	scope.config['share_market'] = 'ASX'						# Set Initial Default Share Market - we gotta start somewhere
-
-
-def scope_dropdown_menus(scope):
-	# Dropdowns
-	scope.config['dropdowns'] = {}
-	scope.config['dropdowns']['markets'] = []
-	scope.config['dropdowns']['industries'] = []
-	scope.config['dropdowns']['tickers'] = []
-	scope.config['dropdowns']['ticker'] = []
-	scope.config['dropdowns']['ohlcv_columns'] 	= ['open', 'high', 'low', 'close', 'volume']
-	scope.config['dropdowns']['price_columns'] = ['open', 'high', 'low', 'close' 		   ]	
-
 
 
 
