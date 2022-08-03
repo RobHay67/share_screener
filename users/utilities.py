@@ -1,3 +1,7 @@
+# Not sure what these are for anymore
+# TODO - might be able to delete these later
+
+
 
 def summarise_trial_config_for_user(scope):
 
