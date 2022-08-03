@@ -20,7 +20,7 @@ def load_tickers(scope):
 					)
 
 	for ticker in ticker_list:
-		# We only need to load it has NOT previously been loading into data
+		# We only need to load if it has NOT previously been loaded into memory
 		if ticker not in scope.data['ticker_files']:					
 			path_for_ticker_file(scope, ticker )
 
