@@ -8,39 +8,39 @@ def save_users_table(scope):
 	if user != 'Login to Use the Application':
 		print('Saving the Users Table')
 
-		user_tests = tests_config(scope)
+		user_trials = trials_config(scope)
 		user_charts = charts_config(scope)
 
 		scope.users['json'][user]['chart_height'] = scope.config['charts']['primary_height']
 		scope.users['json'][user]['download_days'] = scope.data['download']['days']
 		scope.users['json'][user]['row_limit'] = scope.apps['row_limit']
 
-		scope.users['json'][user]['tests'] = user_tests
+		scope.users['json'][user]['trials'] = user_trials
 		scope.users['json'][user]['charts'] = user_charts
 
 		with open(scope.files['paths']['users'], 'w') as file:
 			json.dump(scope.users['json'], file)
 
 
-def tests_config(scope):
+def trials_config(scope):
 
-	# Summarise the current TESTS config for this user 
+	# Summarise the current TRIALS config for this user 
 
-	test_dict = {}
+	trial_dict = {}
 
-	for test in scope.tests['test_list']:
-		test_dict[test] = {}
-		test_dict[test]['active'] = scope.tests[test]['active']
-		add_columns = scope.tests[test]['add_columns']
+	for trial in scope.trials['trial_list']:
+		trial_dict[trial] = {}
+		trial_dict[trial]['active'] = scope.trials[trial]['active']
+		add_columns = scope.trials[trial]['add_columns']
 		if add_columns != None:
-			test_dict[test]['add_columns'] = {}
+			trial_dict[trial]['add_columns'] = {}
 			for attribute in add_columns.keys():
 				if attribute not in ['function']:
-					test_dict[test]['add_columns'][attribute] = scope.tests[test]['add_columns'][attribute]
+					trial_dict[trial]['add_columns'][attribute] = scope.trials[trial]['add_columns'][attribute]
 		else:
-			test_dict[test]['add_columns'] = None
+			trial_dict[trial]['add_columns'] = None
 
-	return test_dict
+	return trial_dict
 
 
 def charts_config(scope):

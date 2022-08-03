@@ -1,21 +1,21 @@
 
-def summarise_test_config_for_user(scope):
+def summarise_trial_config_for_user(scope):
 
-	test_dict = {}
+	trial_dict = {}
 
-	for test in scope.tests['test_list']:
-		test_dict[test] = {}
-		test_dict[test]['active'] = scope.tests[test]['active']
-		add_columns = scope.tests[test]['add_columns']
+	for trial in scope.trials['trial_list']:
+		trial_dict[trial] = {}
+		trial_dict[trial]['active'] = scope.trials[trial]['active']
+		add_columns = scope.trials[trial]['add_columns']
 		if add_columns != None:
-			test_dict[test]['add_columns'] = {}
+			trial_dict[trial]['add_columns'] = {}
 			for attribute in add_columns.keys():
 				if attribute not in ['function']:
-					test_dict[test]['add_columns'][attribute] = scope.tests[test]['add_columns'][attribute]
+					trial_dict[trial]['add_columns'][attribute] = scope.trials[trial]['add_columns'][attribute]
 		else:
-			test_dict[test]['add_columns'] = None
+			trial_dict[trial]['add_columns'] = None
 
-	return test_dict
+	return trial_dict
 
 
 def summarise_chart_config_for_user(scope):

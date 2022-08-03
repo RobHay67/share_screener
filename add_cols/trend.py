@@ -2,12 +2,12 @@
 import numpy as np
 
 
-def trend_cols(scope, test, ticker, screener_df):
+def trend_cols(scope, trial, ticker, screener_df):
 
-	column 		= scope.tests[test]['add_columns']['column']
-	trend 		= scope.tests[test]['add_columns']['trend']
-	duration	= int(scope.tests[test]['add_columns']['duration'])
-	timespan 	= int(scope.tests[test]['add_columns']['timespan'])
+	column 		= scope.trials[trial]['add_columns']['column']
+	trend 		= scope.trials[trial]['add_columns']['trend']
+	duration	= int(scope.trials[trial]['add_columns']['duration'])
+	timespan 	= int(scope.trials[trial]['add_columns']['timespan'])
 
 	# Change screener_df to be ascending to simplify the shifting
 	screener_df.sort_values(by=['date'], inplace=True, ascending=True)
@@ -22,7 +22,7 @@ def trend_cols(scope, test, ticker, screener_df):
 
 	screener_df['temp_trend_total'] = screener_df['temp_trend'].rolling(timespan, min_periods=1).sum().astype(int)
 
-	screener_df[test] = np.where( screener_df['temp_trend_total'] >= duration, 'pass', 'fail')
+	screener_df[trial] = np.where( screener_df['temp_trend_total'] >= duration, 'pass', 'fail')
 
 
 	screener_df.drop(['temp_shifted', 'temp_trend', 'temp_trend_total'], axis=1, inplace=True)

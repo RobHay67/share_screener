@@ -12,7 +12,7 @@ def replace_dfs(scope):
 	app 				= scope.apps['display_app']
 	page_row_limit 		= int(scope.apps['row_limit'])
 	page_ticker_list 	= scope.apps[app]['ticker_list']
-	# config_group		= 'tests' if app == 'screener' else 'charts'
+	# config_group		= 'trials' if app == 'screener' else 'charts'
 	loaded_tickers		= list(scope.data['ticker_files'].keys())
 
 	for ticker in page_ticker_list:
@@ -51,7 +51,7 @@ def replace_cols(scope):
 
 		app 				= scope.apps['display_app']
 		page_ticker_list 	= scope.apps[app]['ticker_list']
-		config_group		= 'tests' if app == 'screener' else 'charts'
+		config_group		= 'trials' if app == 'screener' else 'charts'
 		loaded_tickers		= list(scope.data['ticker_files'].keys())
 
 		for ticker in page_ticker_list:

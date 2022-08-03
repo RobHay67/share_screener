@@ -1,10 +1,9 @@
-from apps.ticker_loader.header import render_page_title		
-from apps.ticker_loader.controller import render_ticker_loader
-from apps.screener.results import render_test_results
-from apps.screener.tests import render_available_tests
+from apps_parts.ticker_loader.header import render_page_title		
+from apps_parts.ticker_loader.controller import render_ticker_loader
+from apps.screener.results import render_trial_results
+from apps.screener.trials import render_available_trials
 
-from apps.ticker_loader.search_results import render_search_results
-
+from apps_parts.ticker_search.search_results import render_search_results
 
 from apps.screener.screener_example import example_settings			#TODO fleshing out some ideas - delete when happy
 
@@ -18,9 +17,9 @@ def render_screener_page(scope):
 
 	if len(scope.apps['screener']['search_results']) == 0:
 
-		render_test_results(scope)
+		render_trial_results(scope)
 
-		render_available_tests(scope)
+		render_available_trials(scope)
 
 		example_settings(scope)
 	

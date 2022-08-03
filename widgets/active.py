@@ -32,6 +32,6 @@ def on_change_active_status(scope:dict, config_name:str, col_adder:str, widget_k
 	# update the app data renew status
 	set_replace_col_status_for_col_adder(scope, col_adder, new_status=True)
 
-	# Because this widget can turn on or off charts and tests, we need to
+	# Because this widget can turn on or off charts and trials, we need to
 	# also update the templates with the latest status
 	scope.apps['templates'][config_name][col_adder] = changed_value

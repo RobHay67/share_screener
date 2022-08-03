@@ -57,7 +57,7 @@ print ( yf_download.date_only.value_counts() )
 yf_download.sample(3)
 
 
-# short cut for testing
+# short cut for trialing
 yf_download = yf_download.sample(20)
 yf_download.date_only.value_counts()
 

@@ -1,6 +1,6 @@
 
-from apps.ticker_loader.header import render_page_title
-from apps.ticker_loader.controller import render_ticker_loader
+from apps_parts.ticker_loader.header import render_page_title
+from apps_parts.ticker_loader.controller import render_ticker_loader
 
 
 from apps.research.metadata import fetch_yfinance_metadata
@@ -33,7 +33,7 @@ from apps.research.view.financials import earnings_qtr
 from apps.research.view.calendar import calendar
 from apps.research.view.news import news
 
-from apps.ticker_loader.search_results import render_search_results
+from apps_parts.ticker_search.search_results import render_search_results
 
 # TODO - I like this example from the ASX for CBA - https://www2.asx.com.au/markets/company/cba
 

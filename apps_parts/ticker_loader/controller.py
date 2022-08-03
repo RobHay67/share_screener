@@ -17,7 +17,7 @@ from apps_parts.ticker_loader.buttons.screener_dfs import screener_dfs_button
 from apps_parts.ticker_loader.buttons.chart_dfs import chart_dfs_button
 
 # TODO - do these need to be seperate??? maybe a single function should handle both
-from apps_parts.dataframes.tests import view_tests_dfs
+from apps_parts.dataframes.trials import view_trials_dfs
 from apps_parts.dataframes.charts import view_chart_dfs
 
 
@@ -55,7 +55,7 @@ def render_ticker_loader(scope):
 		if show_ticker_files: 
 			view_ticker_files(scope)
 		if show_screener_dfs: 
-			view_tests_dfs(scope)
+			view_trials_dfs(scope)
 		if show_chart_dfs: 
 			view_chart_dfs(scope)
 

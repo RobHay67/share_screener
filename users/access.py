@@ -8,7 +8,7 @@ def set_user_access(scope:dict, login_name:str):
 	scope.users['login_name'] = login_name
 
 	# Determine the Users Settings
-	user_tests = scope.users['json'][login_name]['tests']
+	user_trials = scope.users['json'][login_name]['trials']
 	user_charts = scope.users['json'][login_name]['charts']
 
 	# Over-write key user settings
@@ -17,19 +17,19 @@ def set_user_access(scope:dict, login_name:str):
 	scope.apps['row_limit'] = scope.users['json'][login_name]['row_limit']
 
 
-	# Over-write the config tests with the user values
-	for test in user_tests.keys():
-		active_status = user_tests[test]['active']
-		add_columns = user_tests[test]['add_columns']
+	# Over-write the config trials with the user values
+	for trial in user_trials.keys():
+		active_status = user_trials[trial]['active']
+		add_columns = user_trials[trial]['add_columns']
 
 		# Update the app.template
-		scope.apps['templates']['tests'][test] = active_status
+		scope.apps['templates']['trials'][trial] = active_status
 
 		# Update the user config into the scope.config
-		scope.tests[test]['active'] = active_status
+		scope.trials[trial]['active'] = active_status
 		if add_columns != None:
 			for attribute in add_columns.keys():
-				scope.tests[test]['add_columns'][attribute] = add_columns[attribute]
+				scope.trials[trial]['add_columns'][attribute] = add_columns[attribute]
 
 	# Over-write the config charts with the user values
 	for chart in user_charts.keys():

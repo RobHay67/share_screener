@@ -11,9 +11,9 @@ from widgets.number import edit_number
 # def render_ohlcv_trend(scope, measure, column_name):
 def render_ohlcv_trend(scope, col_adder, column_name):
 	# col_adder = 'macd'
-	config_name = 'tests'
+	config_name = 'trials'
 
-	# edit_active(scope, 'tests', measure)
+	# edit_active(scope, 'trials', measure)
 	edit_active(scope, config_name, col_adder)
 	st.write('column_name = ', column_name)
 	edit_trend_direction (scope, config_name, col_adder)

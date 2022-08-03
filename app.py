@@ -121,9 +121,9 @@ print(scope.apps['templates']['charts'])
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # a)	Load ticker data file				Single Ticker				xReplace All Dfs 	Replace ALL Columns
 # b)	Change the < page_row_limit >		EVERY Ticker				xReplace All Dfs 	Replace ALL Columns
-# c)	Activate an chart/overlay/test		Every Ticker Using object	ignore				Replace cols for this object
-# d)	Deactive a chart/overlay/test		ignore						ignore				ignore
-# g)	Change Value in chart/overlay/test	Every Ticker Using object	ignore				Replace cols for this object
+# c)	Activate an chart/overlay/trial		Every Ticker Using object	ignore				Replace cols for this object
+# d)	Deactive a chart/overlay/trial		ignore						ignore				ignore
+# g)	Change Value in chart/overlay/trial	Every Ticker Using object	ignore				Replace cols for this object
 
 
 # x) 	ticker added to app ticker list		we need to add the column adders for this app
@@ -137,11 +137,11 @@ print(scope.apps['templates']['charts'])
 # intraday	none
 # volume	none
 # research	none
-# screener	tests
+# screener	trials
 
 
 
-# so a change to the tests or charts requires all tests to be updated
+# so a change to the trials or charts requires all trials to be updated
 # but we only update the columns when we are rendering for that stock
 
 
@@ -151,7 +151,7 @@ print(scope.apps['templates']['charts'])
 # set_replace_df_status_for_ticker						load.py combiner.py
 # set_replace_df_status_for_all_tickers					row_limit.py
 # set_replace_col_status_for_ticker						load.py combiner.py
-# set_replace_col_status_for_col_adder					active > on_change_active_status (charts and tests), number, ohlc, ohlcv, trend  (tests??)
+# set_replace_col_status_for_col_adder					active > on_change_active_status (charts and trials), number, ohlc, ohlcv, trend  (trials??)
 # set_replace_cols_status_for_all_tickers				no calls
 # set_replace_col_adder_status_for_ticker_and_page		replace.py > replace_cols
 
@@ -225,11 +225,11 @@ print(scope.apps['templates']['charts'])
 # 				print(attribute)
 
 # print('-'*75)
-# print('Configurable test variables')
-# for test in scope.tests['test_list']:
-# 	active_status = scope.tests[test]['active']
-# 	print(test.upper(), '   -   active = ', active_status)
-# 	add_columns = scope.tests[test]['add_columns']
+# print('Configurable trial variables')
+# for trial in scope.trials['test_list']:
+# 	active_status = scope.trials[trial]['active']
+# 	print(trial.upper(), '   -   active = ', active_status)
+# 	add_columns = scope.trials[trial]['add_columns']
 # 	if add_columns != None:
 # 		# print(add_columns)
 # 		for attribute in add_columns.keys():
@@ -293,8 +293,8 @@ if level_1 in st.session_state:
 	terminal_heading(level_1)
 	for key in st.session_state[level_1]:print(key)
 	# level_2_details(level_1, 'dropdowns')
-	# level_2_details(level_1, 'tests')
-	# level_3_details(level_1, 'tests', 'trend_high')
+	# level_2_details(level_1, 'trials')
+	# level_3_details(level_1, 'trials', 'trend_high')
 	# level_2_details(level_1, 'charts')
 	# level_3_details(level_1, 'charts', 'config')
 	# level_2_details(level_1, 'results')
@@ -350,8 +350,8 @@ if level_1 in st.session_state:
 # 	level_2_details(level_1, 'print')
 
 # print ( '='*70)
-# print('screener/test_results')
-# print(st.session_state['pages']['screener']['test_results'])
+# print('screener/trial_results')
+# print(st.session_state['pages']['screener']['trial_results'])
 
 
 # print('data/download/yf_anomolies')
@@ -381,7 +381,7 @@ if level_1 in st.session_state:
 # 	print( '-'*70)
 # 	print('Metrics refresh status')
 # 	if app == 'screener':
-# 		for key, value in st.session_state['pages'][app]['renew']['tests'].items():
+# 		for key, value in st.session_state['pages'][app]['renew']['trials'].items():
 # 			print (key, ':', value)
 
 
@@ -397,7 +397,7 @@ if level_1 in st.session_state:
 # 	'display_app': 'home_page', 
 # 	'page_list': ['single', 'intraday', 'volume', 'research', 'screener'], 
 # 	'templates': {
-# 		'tests': {'trend_open': False, 'trend_high': True, 'trend_low': False, 'trend_close': True, 'trend_volume': False}, 
+# 		'trials': {'trend_open': False, 'trend_high': True, 'trend_low': False, 'trend_close': True, 'trend_volume': False}, 
 # 		'charts': {'macd': True, 'macd_vol': True, 'rsi': True, 'vol_osssy': False, 'stochastic': True, 'sma_1': True, 'sma_2': False, 'sma_3': False, 'ema_1': False, 'ema_2': False, 'ema_3': False, 'bollinger_bands': False, 'dividends': True, 'candlestick': True, 'scatter': False, 'bar': False, 'line': True, 'heiken_ashi': False, 'volume': True, 'vol_per_minute': False, 'vac': False, 'announcements': False, 'ichi_moku': False, 'ichi_moku_daily': False}}, 
 # 	'single': {
 # 		'search_results': {}, 
@@ -444,7 +444,7 @@ if level_1 in st.session_state:
 # 		'data': {}, 
 # 		'selectors': {'market': 'select entire market', 'industries': [], 'tickers': [], 'ticker': 'select a ticker'}
 # 		}, 
-# 	'tests': {'results': {}, 'df': {}}
+# 	'trials': {'results': {}, 'df': {}}
 # }
 
 

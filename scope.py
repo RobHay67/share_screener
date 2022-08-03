@@ -5,7 +5,7 @@ from config.streamlit import set_streamlit_page_config
 
 from charts.config import scope_charts
 from progress.config import scope_progress
-from tests.config import scope_tests
+from trials.config import scope_trials
 
 from files.config import scope_folders_and_paths
 from apps.config import scope_apps
@@ -37,7 +37,7 @@ def set_scope(scope):
 
 		scope_apps(scope)					# This contains all the app Specific settings
 
-		scope_tests(scope)
+		scope_trials(scope)
 		
 		scope_charts(scope)
 

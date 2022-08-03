@@ -22,18 +22,18 @@ def view_app(scope):
 
 
 
-def view_tests_config(scope):
-	st.subheader('Tests Configuration')
+def view_trials_config(scope):
+	st.subheader('Trials Configuration')
 	
-	three_cols( 'Trends', scope.tests['trends'], 'scope.apps.tests.trends' )
-	three_cols( 'Test List', scope.tests['test_list'], 'scope.apps.tests.test_list' )
+	three_cols( 'Trends', scope.trials['trends'], 'scope.apps.trials.trends' )
+	three_cols( 'Test List', scope.trials['trial_list'], 'scope.apps.trials.trial_list' )
 
 	st.markdown("""---""")
 	
-	for test in  scope.tests['test_list']:
-		st.subheader(test)
-		st.write('scope.tests['+test+']')
-		st.write(scope.tests[test])
+	for trial in  scope.trials['trial_list']:
+		st.subheader(trial)
+		st.write('scope.trials['+trial+']')
+		st.write(scope.trials[trial])
 
 
 def view_charts_config(scope):

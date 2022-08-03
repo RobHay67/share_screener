@@ -1,7 +1,7 @@
-from apps.ticker_loader.header import render_page_title
-from apps.ticker_loader.controller import render_ticker_loader
+from apps_parts.ticker_loader.header import render_page_title
+from apps_parts.ticker_loader.controller import render_ticker_loader
 
-from apps.ticker_loader.search_results import render_search_results
+from apps_parts.ticker_search.search_results import render_search_results
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Intra Day Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------

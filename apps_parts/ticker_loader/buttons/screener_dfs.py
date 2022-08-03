@@ -14,6 +14,6 @@ def screener_dfs_button(scope):
 			screener_df_row_count 	= len(scope.apps[app]['dfs'][ticker])
 			total_screener_df_rows 	+= screener_df_row_count
 
-	analysis_dfs_button_message 	= (str(screener_df_ticker_count) + ' test (' + str(total_screener_df_rows) + ' rows)')
+	analysis_dfs_button_message 	= (str(screener_df_ticker_count) + ' trial (' + str(total_screener_df_rows) + ' rows)')
 
 	return st.button(analysis_dfs_button_message)

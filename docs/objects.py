@@ -68,7 +68,7 @@
 
 # tag the add_cols when they have been run													???? - updated function
 # update the scope.page_metrics after changes made 											????
-# change the test after editing scope.page_metrics											????
+# change the trial after editing scope.page_metrics											????
 # change the chart  after editing scope.page_metrics										????
 
 

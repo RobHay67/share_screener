@@ -13,7 +13,7 @@ def view_apps(scope):
 
 	st.subheader('Templates')
 	three_cols( 'Chart Template', scope.apps['templates']['charts'], 'scope.apps.templates.charts' )
-	three_cols( 'Test Template', scope.apps['templates']['tests'], 'scope.apps.templates.tests' )
+	three_cols( 'Trial Template', scope.apps['templates']['trials'], 'scope.apps.templates.trials' )
 	
 	st.subheader('Available Pages')
 	three_cols( 'App List', scope.apps['app_list'], 'scope.apps.app_list' )

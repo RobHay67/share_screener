@@ -71,7 +71,7 @@ def set_replace_col_status_for_ticker(scope, ticker, new_status):
 	for app in scope.apps['app_list']:
 		
 		ticker_list = list(scope.apps[app]['replace_cols'].keys())
-		config_group = 'tests' if app == 'screener' else 'charts'
+		config_group = 'trials' if app == 'screener' else 'charts'
 		col_adder_template = scope.apps['templates'][config_group].copy()
 		col_adder_list = col_adder_template.keys()
 
@@ -124,7 +124,7 @@ def set_replace_cols_status_for_all_tickers(scope, new_status):
 		scope.apps[app]['replace_cols'] = {}
 
 		# retrieve the appropriate list of col_adders
-		config_group = 'tests' if app == 'screener' else 'charts'
+		config_group = 'trials' if app == 'screener' else 'charts'
 		col_adder_template = scope.apps['templates'][config_group].copy()
 
 		# Create a list of all possible tickers
@@ -146,8 +146,8 @@ def set_replace_cols_status_for_all_tickers(scope, new_status):
 
 def set_replace_col_status_for_col_adder(scope, col_adder, new_status=True):
 	# Called when one of the widgets has been changed
-	# so this will be the chart or the test col_adder variables
-	# we only want to make changes where the test or chart exists
+	# so this will be the chart or the trial col_adder variables
+	# we only want to make changes where the trial or chart exists
 
 	for app in scope.apps['app_list']:
 

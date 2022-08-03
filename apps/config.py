@@ -1,4 +1,4 @@
-from tests.config import tests_config
+from trials.config import trials_config
 from charts.config import charts_config
 
 
@@ -35,17 +35,17 @@ def scope_apps(scope):
 											'ticker'	: 'select a ticker',
 											}
 
-	# Store any test results (from the screner app) in these objects
-	scope.apps['tests'] = {}
-	scope.apps['tests']['results'] = {}
-	scope.apps['tests']['df'] = {}
+	# Store any trial results (from the screner app) in these objects
+	scope.apps['trials'] = {}
+	scope.apps['trials']['results'] = {}
+	scope.apps['trials']['df'] = {}
 
 
 
 
 def scope_page_templates(scope):
 
-	# Construct a template (dict) of each test and chart that require additional columns
+	# Construct a template (dict) of each trial and chart that require additional columns
 	# and store as templates to be used by subsequent functions.
 	# This significantly simplifies later processs which can just refer to these
 	# dictionaries to understand what needs to be update or not
@@ -55,18 +55,18 @@ def scope_page_templates(scope):
 
 
 	# -------------------------------------------------------------------------
-	# Tests
-	# determine the active status of each test in the tests_config dictionary
+	# trials
+	# determine the active status of each trial in the trials_config dictionary
 
-	active_status_tests = {}
+	active_status_trials = {}
 
-	# iterate through each test in the scope
+	# iterate through each trial in the scope
 
-	for test in tests_config.keys():
-		active_status_tests[test] = tests_config[test]['active']
+	for trial in trials_config.keys():
+		active_status_trials[trial] = trials_config[trial]['active']
 	
 	# Update Templates for each app with the default status - this will be over-ridden by the user settings
-	scope.apps['templates']['tests'] = active_status_tests
+	scope.apps['templates']['trials'] = active_status_trials
 
 
 

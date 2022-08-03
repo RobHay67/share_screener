@@ -8,12 +8,12 @@ def edit_trend_direction(scope, config_name, col_adder ):
 	widget_key = 'widget_direction_' + config_name + '_' + col_adder
 	display_name =  '' + ('Direction for ' + scope.config[config_name][col_adder]['name'] )
 	previous_selection = scope.config[config_name][col_adder]['add_columns']['trend']
-	pos_for_previous = scope.tests['trends'].index(previous_selection)	
+	pos_for_previous = scope.trials['trends'].index(previous_selection)	
 	
 
 	st.selectbox ( 
 					label		=display_name, 
-					options		=scope.tests['trends'],
+					options		=scope.trials['trends'],
 					index		=pos_for_previous, 
 					on_change	=on_change_trend_selection,
 					args		=(scope, config_name, col_adder, widget_key, ),

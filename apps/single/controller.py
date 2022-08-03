@@ -1,8 +1,8 @@
 import streamlit as st
 
-from apps.ticker_loader.header import render_page_title
+from apps_parts.ticker_loader.header import render_page_title
 # from charts.controller import plot_charts
-from apps.ticker_loader.controller import render_ticker_loader
+from apps_parts.ticker_loader.controller import render_ticker_loader
 
 
 from apps.single.schema import create_schema_for_plotly
@@ -10,7 +10,7 @@ from apps.single.chart_main import add_main_chart
 from apps.single.chart_child import add_child_charts
 from apps.single.chart_main import format_main_chart
 
-from apps.ticker_loader.search_results import render_search_results
+from apps_parts.ticker_search.search_results import render_search_results
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Single Ticker Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -9,7 +9,7 @@ from apps_parts.ticker_loader.controller import render_ticker_loader
 from apps.volume.view.input_volume import view_input_volume
 from apps.volume.view.prediction import view_prediction
 
-from apps.ticker_loader.search_results import render_search_results
+from apps_parts.ticker_search.search_results import render_search_results
 
 def render_volume_page(scope):
 

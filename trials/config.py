@@ -1,16 +1,16 @@
 
-# from tests.config import trend_direction, tests_config
+# from trials.config import trend_direction, trials_config
 
 
-def scope_tests(scope):
+def scope_trials(scope):
 
-	scope.tests = {}
+	scope.trials = {}
 
-	scope.tests['trends']	= trend_direction
-	scope.tests['test_list']	= list(tests_config.keys())
+	scope.trials['trends']	= trend_direction
+	scope.trials['trial_list']	= list(trials_config.keys())
 
-	for test, config in tests_config.items():
-		scope.tests[test] = config
+	for trial, config in trials_config.items():
+		scope.trials[trial] = config
 
 
 
@@ -19,7 +19,7 @@ from add_cols.trend import trend_cols
 
 
 # ==============================================================================================================================================================
-# Share Screener Test Specifications (included the tech indicators where appropriate)
+# Share Screener Trial Specifications (included the tech indicators where appropriate)
 # ==============================================================================================================================================================
 
 active 			= 'active'				# True or False - The Analysis is active or inactive (displayed or not displayed)
@@ -37,7 +37,7 @@ trend_direction = [ 'up', 'down' ]
 
 
 
-tests_config = {
+trials_config = {
 	'trend_open'	: {
 						active			: False,
 						name			: 'Open trend',

@@ -81,7 +81,7 @@ def audit_replace_df_status(scope):
 		print('-'*line_width)
 
 
-		config_group = 'tests' if app == 'screener' else 'charts'
+		config_group = 'trials' if app == 'screener' else 'charts'
 		col_adder_template = scope.apps['templates'][config_group].copy()
 
 		list_of_col_adders = list(col_adder_template.keys())

@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-def view_tests_dfs(scope):
+def view_trials_dfs(scope):
 
 	app = scope.apps['display_app']
 	render_expanded = False
