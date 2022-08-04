@@ -12,8 +12,8 @@ def render_trial_results(scope):
 	trial_results_df = trial_results(scope)	
 
 	if len(trial_results_df) > 0:
-		passed_trial_results_df = trial_results_df[trial_results_df['summary_result'] == 'pass']
-		failed_trial_results_df = trial_results_df[trial_results_df['summary_result'] == 'fail']
+		passed_trial_results_df = trial_results_df[trial_results_df['overall_result'] == 'pass']
+		failed_trial_results_df = trial_results_df[trial_results_df['overall_result'] == 'fail']
 		
 	else:
 		passed_trial_results_df = {}

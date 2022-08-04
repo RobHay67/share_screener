@@ -270,42 +270,46 @@ def level_2_details(level_1, level_2):
 		for key in st.session_state[level_1][level_2]:
 			print(level_2 , ' - ', key)
 
-# def level_3_details(level_1, level_2, level_3):
-# 	print('-'*50)
-# 	print(level_1, '/', level_2, '/', level_3, ' ( level 3 )')
-# 	print('-'*50)
-# 	if level_2 in st.session_state[level_1]:
-# 		if level_3 in st.session_state[level_1][level_2]:
-# 			for key in st.session_state[level_1][level_2][level_3]:
-# 				print(level_3 , ' - ', key)
+def level_3_details(level_1, level_2, level_3):
+	print('-'*50)
+	print(level_1, '/', level_2, '/', level_3, ' ( level 3 )')
+	print('-'*50)
+	if level_2 in st.session_state[level_1]:
+		if level_3 in st.session_state[level_1][level_2]:
+			# print(st.session_state[level_1][level_2])
+			for key in st.session_state[level_1][level_2][level_3]:
+				print(level_3 , ' - ', key)
+				# print(type(st.session_state[level_1][level_2][level_3]))
 
 
 
-if 'initial_load' in st.session_state:
-	print('')
-	terminal_heading('All keys in st.session_state')
-	for key in sorted(st.session_state):print(key)
-	for key in st.session_state:print(key)
+# if 'initial_load' in st.session_state:
+# 	print('')
+# 	terminal_heading('All keys in st.session_state')
+# 	for key in sorted(st.session_state):print(key)
+# 	for key in st.session_state:print(key)
 
 
-level_1 = 'data'
-if level_1 in st.session_state:
-	terminal_heading(level_1)
-	for key in st.session_state[level_1]:print(key)
-	# level_2_details(level_1, 'dropdowns')
-	# level_2_details(level_1, 'trials')
-	# level_3_details(level_1, 'trials', 'trend_high')
-	# level_2_details(level_1, 'charts')
-	# level_3_details(level_1, 'charts', 'config')
+
+# level_1 = 'apps'
+# if level_1 in st.session_state:
+# 	terminal_heading(level_1)
+# 	for key in st.session_state[level_1]:print(key)
+# 	level_2_details(level_1, 'screener')
+# 	level_2_details(level_1, 'single')
+# 	# level_3_details(level_1, 'trials', 'trend_high')
+# 	# level_2_details(level_1, 'charts')
+# 	level_3_details(level_1, 'single', 'search_results')
+	# level_3_details(level_1, 'screener', 'ticker_list')
 	# level_2_details(level_1, 'results')
 
-level_1 = 'trials'
-if level_1 in st.session_state:
-	terminal_heading(level_1)
-	for key in st.session_state[level_1]:print(key)
-	level_2_details(level_1, 'trends')
-	level_2_details(level_1, 'trial_list')
-	level_2_details(level_1, 'trend_open')
+# level_1 = 'trials'
+# if level_1 in st.session_state:
+# 	terminal_heading(level_1)
+# 	for key in st.session_state[level_1]:print(key)
+# 	level_2_details(level_1, 'trends')
+# 	level_2_details(level_1, 'trial_list')
+# 	level_2_details(level_1, 'trend_open')
 
 # level_1 = 'data'
 # if level_1 in st.session_state:

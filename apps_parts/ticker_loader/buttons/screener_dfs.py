@@ -3,7 +3,7 @@ import streamlit as st
 
 def screener_dfs_button(scope):
 
-	app 						= ['display_app']
+	app 						= scope.apps['display_app']
 	ticker_list 				= scope.apps[app]['ticker_list']
 	screener_df_ticker_count 	= len(scope.apps[app]['dfs'])
 	total_screener_df_rows	 	= 0

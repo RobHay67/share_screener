@@ -7,7 +7,7 @@ from apps.data.replace import replace_dfs
 from apps.data.replace import replace_cols
 
 from data.tickers.load_controller import load_tickers
-from data.tickers.view.dataframes import view_ticker_files
+from apps_parts.dataframes.tickers import view_ticker_files
 
 
 # from apps.ticker_loader.buttons.download import download_button

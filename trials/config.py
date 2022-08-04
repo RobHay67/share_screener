@@ -16,9 +16,9 @@ def scope_trials(scope):
 	# Store any trial results (from the screner app) in these objects
 	# Rob 4/8 I dont beleive these object are currently being used. I note
 	# that the current trial obbjects are passed and not stored in scope.
-	scope.apps['trials'] = {}
-	scope.apps['trials']['results'] = {}
-	scope.apps['trials']['df'] = {}
+	# scope.apps['trials'] = {}
+	# scope.apps['trials']['results'] = {}
+	# scope.apps['trials']['df'] = {}
 
 
 

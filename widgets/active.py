@@ -8,9 +8,6 @@ from apps.data.status import set_replace_col_status_for_col_adder
 
 def edit_active(scope, config_name, col_adder ):
 
-	print(config_name)
-	print(col_adder)
-
 	widget_key = 'widget_active_' + config_name + '_' + col_adder
 	display_name =  '' + scope[config_name][col_adder]['name']
 	previous_selection = scope[config_name][col_adder]['active']

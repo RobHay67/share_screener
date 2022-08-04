@@ -10,7 +10,7 @@ from apps.config_app.results import view_all_results
 from apps.config_app.files import view_folders
 # Data
 from data.index.view.index import view_index
-from data.tickers.view.dataframes import view_ticker_files
+from apps_parts.dataframes.tickers import view_ticker_files
 from data.tickers.view.download import view_download
 # Pages
 from apps.config_app.apps import view_apps
