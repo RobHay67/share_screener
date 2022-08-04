@@ -8,9 +8,12 @@ from apps.data.status import set_replace_col_status_for_col_adder
 
 def edit_active(scope, config_name, col_adder ):
 
+	print(config_name)
+	print(col_adder)
+
 	widget_key = 'widget_active_' + config_name + '_' + col_adder
-	display_name =  '' + scope.config[config_name][col_adder]['name']
-	previous_selection = scope.config[config_name][col_adder]['active']
+	display_name =  '' + scope[config_name][col_adder]['name']
+	previous_selection = scope[config_name][col_adder]['active']
 	
 
 	st.checkbox( 
@@ -27,7 +30,7 @@ def on_change_active_status(scope:dict, config_name:str, col_adder:str, widget_k
 	changed_value = scope[widget_key]
 
 	# store the selection
-	scope.config[config_name][col_adder]['active'] = changed_value
+	scope[config_name][col_adder]['active'] = changed_value
 
 	# update the app data renew status
 	set_replace_col_status_for_col_adder(scope, col_adder, new_status=True)

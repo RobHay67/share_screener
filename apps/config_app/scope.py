@@ -39,14 +39,14 @@ def view_trials_config(scope):
 def view_charts_config(scope):
 	st.subheader('Charts Configuration')
 	
-	three_cols( 'Colours', scope.config['charts']['colours'], 'scope.apps.charts.colours' )
-	three_cols( 'Total Chart Height', scope.config['charts']['total_height'], 'scope.apps.charts.total_height' )
-	three_cols( 'Height of Primary Charts', scope.config['charts']['primary_height'], 'scope.apps.charts.primary_height' )
-	three_cols( 'Chart List', scope.config['charts']['chart_list'], 'scope.apps.charts.chart_list' )
+	three_cols( 'Colours', scope.charts['colours'], 'scope.apps.charts.colours' )
+	three_cols( 'Total Chart Height', scope.charts['total_height'], 'scope.apps.charts.total_height' )
+	three_cols( 'Height of Primary Charts', scope.charts['primary_height'], 'scope.apps.charts.primary_height' )
+	three_cols( 'Chart List', scope.charts['chart_list'], 'scope.apps.charts.chart_list' )
 
 	st.markdown("""---""")
 	
-	for chart in  scope.config['charts']['chart_list']:
+	for chart in  scope.charts['chart_list']:
 		st.subheader(chart)
 		st.write('scope.config.charts['+chart+']')
-		st.write(scope.config['charts'][chart])
+		st.write(scope.charts[chart])

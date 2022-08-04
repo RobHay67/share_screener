@@ -7,8 +7,8 @@ from apps.data.status import set_replace_col_status_for_col_adder
 def edit_ohlc(scope, config_name, col_adder ):
 	
 	widget_key = 'widget_' + config_name + '_' + col_adder
-	display_name =  ('Column for ' +  scope.config[config_name][col_adder]['name'])
-	previous_selection = scope.config[config_name][col_adder]['add_columns']['column']
+	display_name =  ('Column for ' +  scope[config_name][col_adder]['name'])
+	previous_selection = scope[config_name][col_adder]['add_columns']['column']
 	pos_for_previous = scope.config['dropdowns']['price_columns'].index(previous_selection)	
 
 	st.selectbox ( 
@@ -26,7 +26,7 @@ def on_change_ohlc(scope:dict, config_name:str, col_adder:str, widget_key:str):
 	changed_value = scope[widget_key]
 
 	# store the selection
-	scope.config[config_name][col_adder]['add_columns']['column'] = changed_value	
+	scope[config_name][col_adder]['add_columns']['column'] = changed_value	
 
 	# update the app data renew status
 	set_replace_col_status_for_col_adder(scope, col_adder, new_status=True)

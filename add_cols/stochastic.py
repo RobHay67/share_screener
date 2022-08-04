@@ -16,9 +16,9 @@ def stoch_cols( scope, chart, ticker, chart_df):
 	# https://school.stockcharts.com/doku.php?id=technical_indicators:stochastic_oscillator_fast_slow_and_full
 
 
-	lookback_days	= scope.config['charts'][chart]['add_columns']['lookback_days']   # lookback days
-	signal 			= scope.config['charts'][chart]['add_columns']['signal']
-	slow_k 			= scope.config['charts'][chart]['add_columns']['slow']
+	lookback_days	= scope.charts[chart]['add_columns']['lookback_days']   # lookback days
+	signal 			= scope.charts[chart]['add_columns']['signal']
+	slow_k 			= scope.charts[chart]['add_columns']['slow']
 
 	# Change chart_df to be ascending to simplify the shifting
 	chart_df.sort_values(by=['date'], inplace=True, ascending=True)

@@ -26,15 +26,15 @@ def summarise_chart_config_for_user(scope):
 
 	chart_dict = {}
 
-	for chart in scope.config['charts']['chart_list']:
+	for chart in scope.charts['chart_list']:
 		chart_dict[chart] = {}
-		chart_dict[chart]['active'] = scope.config['charts'][chart]['active']
-		add_columns = scope.config['charts'][chart]['add_columns']
+		chart_dict[chart]['active'] = scope.charts[chart]['active']
+		add_columns = scope.charts[chart]['add_columns']
 		if add_columns != None:
 			chart_dict[chart]['add_columns'] = {}
 			for attribute in add_columns.keys():
 				if attribute not in ['function']:
-					chart_dict[chart]['add_columns'][attribute] = scope.config['charts'][chart]['add_columns'][attribute]
+					chart_dict[chart]['add_columns'][attribute] = scope.charts[chart]['add_columns'][attribute]
 
 		else:
 			chart_dict[chart]['add_columns'] = None	

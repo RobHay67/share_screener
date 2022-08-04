@@ -107,7 +107,7 @@ scope_data = {
 	}
 
 
-print(scope.apps['templates']['charts'])
+# print(scope.apps['templates']['charts'])
 
 # print(scope.data)
 # so when we load a file - we just add the appropriate app config from the defaults. The true will signifiy that the 
@@ -195,7 +195,7 @@ print(scope.apps['templates']['charts'])
 # audit_replace_df_status(scope)
 
 # if 'initial_load' in scope:
-# 	print(scope.config['charts'].keys())
+# 	print(scope.charts.keys())
 # 	print('-'*50)
 # 	print('scope.apps Templates - Charts')
 # 	print(scope.apps['templates']['charts'])
@@ -214,10 +214,10 @@ print(scope.apps['templates']['charts'])
 
 # print('-'*75)
 # print('Configurable chart variables')
-# for chart in scope.config['charts']['chart_list']:
-# 	active_status = scope.config['charts'][chart]['active']
+# for chart in scope.charts['chart_list']:
+# 	active_status = scope.charts[chart]['active']
 # 	print(chart.upper(), '   -   active = ', active_status)
-# 	add_columns = scope.config['charts'][chart]['add_columns']
+# 	add_columns = scope.charts[chart]['add_columns']
 # 	if add_columns != None:
 # 		# print(add_columns)
 # 		for attribute in add_columns.keys():
@@ -239,7 +239,7 @@ print(scope.apps['templates']['charts'])
 
 
 
-	# print(scope.config['charts'][chart]['active'])
+	# print(scope.charts[chart]['active'])
 
 
 
@@ -261,14 +261,14 @@ def terminal_heading(heading):
 	print('='*70)
 
 
-# def level_2_details(level_1, level_2):
-# 	# print('')
-# 	print('-'*40)
-# 	print(level_1, '/', level_2, ' ( level 2 )', )
-# 	print('-'*40)
-# 	if level_2 in st.session_state[level_1]:
-# 		for key in st.session_state[level_1][level_2]:
-# 			print(level_2 , ' - ', key)
+def level_2_details(level_1, level_2):
+	# print('')
+	print('-'*40)
+	print(level_1, '/', level_2, ' ( level 2 )', )
+	print('-'*40)
+	if level_2 in st.session_state[level_1]:
+		for key in st.session_state[level_1][level_2]:
+			print(level_2 , ' - ', key)
 
 # def level_3_details(level_1, level_2, level_3):
 # 	print('-'*50)
@@ -281,11 +281,11 @@ def terminal_heading(heading):
 
 
 
-# if 'initial_load' in st.session_state:
-# 	print('')
-# 	terminal_heading('All keys in st.session_state')
-# 	for key in sorted(st.session_state):print(key)
-	# for key in st.session_state:print(key)
+if 'initial_load' in st.session_state:
+	print('')
+	terminal_heading('All keys in st.session_state')
+	for key in sorted(st.session_state):print(key)
+	for key in st.session_state:print(key)
 
 
 level_1 = 'data'
@@ -299,12 +299,13 @@ if level_1 in st.session_state:
 	# level_3_details(level_1, 'charts', 'config')
 	# level_2_details(level_1, 'results')
 
-# level_1 = 'files'
-# if level_1 in st.session_state:
-# 	terminal_heading(level_1)
-# 	for key in st.session_state[level_1]:print(key)
-# 	level_2_details(level_1, 'folders')
-# 	level_2_details(level_1, 'paths')
+level_1 = 'trials'
+if level_1 in st.session_state:
+	terminal_heading(level_1)
+	for key in st.session_state[level_1]:print(key)
+	level_2_details(level_1, 'trends')
+	level_2_details(level_1, 'trial_list')
+	level_2_details(level_1, 'trend_open')
 
 # level_1 = 'data'
 # if level_1 in st.session_state:

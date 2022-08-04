@@ -3,14 +3,14 @@
 
 
 def scope_charts(scope):
-	scope.config['charts'] = {}
-	scope.config['charts']['primary_height'] = 500
-	scope.config['charts']['total_height'] = scope.config['charts']['primary_height']
-	scope.config['charts']['colours'] = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
-	scope.config['charts']['chart_list']	= list(charts_config.keys())
+	scope.charts = {}
+	scope.charts['primary_height'] = 500
+	scope.charts['total_height'] = scope.charts['primary_height']
+	scope.charts['colours'] = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
+	scope.charts['chart_list']	= list(charts_config.keys())
 
 	for chart, config in charts_config.items():
-		scope.config['charts'][chart] = config
+		scope.charts[chart] = config
 
 
 

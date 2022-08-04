@@ -12,7 +12,7 @@ def set_user_access(scope:dict, login_name:str):
 	user_charts = scope.users['json'][login_name]['charts']
 
 	# Over-write key user settings
-	scope.config['charts']['primary_height'] = scope.users['json'][login_name]['chart_height']
+	scope.charts['primary_height'] = scope.users['json'][login_name]['chart_height']
 	scope.data['download']['days'] = scope.users['json'][login_name]['download_days']
 	scope.apps['row_limit'] = scope.users['json'][login_name]['row_limit']
 
@@ -41,10 +41,10 @@ def set_user_access(scope:dict, login_name:str):
 		scope.apps['templates']['charts'][chart] = active_status
 
 		# Update the user config into the scope.config
-		scope.config['charts'][chart]['active'] = active_status
+		scope.charts[chart]['active'] = active_status
 		if add_columns != None:
 			for attribute in add_columns.keys():
-				scope.config['charts'][chart]['add_columns'][attribute] = add_columns[attribute]
+				scope.charts[chart]['add_columns'][attribute] = add_columns[attribute]
 
 		
 
