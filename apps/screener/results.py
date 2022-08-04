@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from trials.results import create_summary_of_trial_results
+from trials.results import trial_results
 
 
 
@@ -9,7 +9,7 @@ def render_trial_results(scope):
 
 	st.write('**Trial Results**')
 
-	trial_results_df = create_summary_of_trial_results(scope)	
+	trial_results_df = trial_results(scope)	
 
 	if len(trial_results_df) > 0:
 		passed_trial_results_df = trial_results_df[trial_results_df['summary_result'] == 'pass']

@@ -4,6 +4,7 @@ from charts.config import charts_config
 
 
 
+
 def scope_apps(scope):
 
 	scope.apps = {}
@@ -35,10 +36,6 @@ def scope_apps(scope):
 											'ticker'	: 'select a ticker',
 											}
 
-	# Store any trial results (from the screner app) in these objects
-	scope.apps['trials'] = {}
-	scope.apps['trials']['results'] = {}
-	scope.apps['trials']['df'] = {}
 
 
 

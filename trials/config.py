@@ -2,15 +2,24 @@
 # from trials.config import trend_direction, trials_config
 
 
+
 def scope_trials(scope):
 
 	scope.trials = {}
 
-	scope.trials['trends']	= trend_direction
+	scope.trials['trends']	= trend_directions
 	scope.trials['trial_list']	= list(trials_config.keys())
 
 	for trial, config in trials_config.items():
 		scope.trials[trial] = config
+
+	# Store any trial results (from the screner app) in these objects
+	# Rob 4/8 I dont beleive these object are currently being used. I note
+	# that the current trial obbjects are passed and not stored in scope.
+	scope.apps['trials'] = {}
+	scope.apps['trials']['results'] = {}
+	scope.apps['trials']['df'] = {}
+
 
 
 
@@ -33,7 +42,7 @@ function		= 'function'			# The function to add the columns for this col_adder
 
 
 # 
-trend_direction = [ 'up', 'down' ]
+trend_directions = [ 'up', 'down' ]
 
 
 
