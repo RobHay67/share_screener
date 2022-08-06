@@ -10,7 +10,7 @@ from apps.config_app.results import view_all_results
 from apps.config_app.files import view_folders
 # Data
 from data.index.view.index import view_index
-from apps_parts.dataframes.tickers import view_ticker_files
+from partials.dataframes.tickers import view_ticker_files
 from data.tickers.view.download import view_download
 # Pages
 from apps.config_app.apps import view_apps
@@ -19,8 +19,8 @@ from apps.config_app.apps import view_intra_day_page
 from apps.config_app.apps import view_volume_page
 from apps.config_app.apps import view_research_page
 from apps.config_app.apps import view_screener_page
-from apps_parts.dataframes.trials import view_trials_dfs
-from apps_parts.dataframes.charts import view_chart_dfs
+from partials.dataframes.trials import view_trials_dfs
+from partials.dataframes.charts import view_chart_dfs
 
 # Strategies
 from strategies.config import view_strategy

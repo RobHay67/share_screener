@@ -1,6 +1,6 @@
 from data.tickers.download import download_from_yahoo_finance
 from data.tickers.combiner import combine_loaded_and_download_ticker_data
-from apps_parts.ticker_loader.messages import render_messages
+from partials.ticker_loader.messages import render_messages
 from data.tickers.save import save_tickers
 
 

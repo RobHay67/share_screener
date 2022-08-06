@@ -6,7 +6,7 @@ from data.tickers.schema import ticker_file_schema
 from data.tickers.schema import ticker_file_usecols
 from data.tickers.schema import y_finance_schemas
 
-from apps_parts.ticker_loader.messages import download_industry_message
+from partials.ticker_loader.messages import download_industry_message
 
 from progress.store import cache_progress
 

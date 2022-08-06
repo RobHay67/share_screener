@@ -3,7 +3,7 @@ import time
 
 from config.streamlit import set_streamlit_page_config
 
-from apps_parts.dropdowns.config import scope_dropdown_menus
+from partials.dropdowns.config import scope_dropdown_menus
 
 from charts.config import scope_charts
 from progress.config import scope_progress

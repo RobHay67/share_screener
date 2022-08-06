@@ -1,9 +1,9 @@
-from apps_parts.ticker_loader.header import render_page_title		
-from apps_parts.ticker_loader.controller import render_ticker_loader
+from partials.ticker_loader.header import render_page_title		
+from partials.ticker_loader.controller import render_ticker_loader
 from apps.screener.results import render_trial_results
 from apps.screener.trials import render_available_trials
 
-from apps_parts.ticker_search.search_results import render_search_results
+from partials.ticker_search.search_results import render_search_results
 
 from apps.screener.screener_example import example_settings			#TODO fleshing out some ideas - delete when happy
 

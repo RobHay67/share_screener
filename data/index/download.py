@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 
-from apps_parts.dropdowns.dropdowns import refresh_dropdown_lists
+from partials.dropdowns.dropdowns import refresh_dropdown_lists
 
 from data.index.update import update_index
 

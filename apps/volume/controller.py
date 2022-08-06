@@ -4,12 +4,12 @@ import pytz
 
 from config.markets.schema import opening_hours
 
-from apps_parts.ticker_loader.header import render_page_title
-from apps_parts.ticker_loader.controller import render_ticker_loader
+from partials.ticker_loader.header import render_page_title
+from partials.ticker_loader.controller import render_ticker_loader
 from apps.volume.view.input_volume import view_input_volume
 from apps.volume.view.prediction import view_prediction
 
-from apps_parts.ticker_search.search_results import render_search_results
+from partials.ticker_search.search_results import render_search_results
 
 def render_volume_page(scope):
 

@@ -4,7 +4,7 @@ from progress.store import cache_progress
 from files.path import path_for_ticker_file
 from data.tickers.load import load_ticker
 from data.tickers.cache import cache_ticker_file
-from apps_parts.ticker_loader.messages import render_messages
+from partials.ticker_loader.messages import render_messages
 from apps.data.status import set_replace_df_status_for_ticker, set_replace_col_status_for_ticker
 
 
