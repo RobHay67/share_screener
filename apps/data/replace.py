@@ -13,7 +13,7 @@ def replace_dfs(scope):
 	page_row_limit 		= int(scope.apps['row_limit'])
 	page_ticker_list 	= scope.apps[app]['ticker_list']
 	# config_group		= 'trials' if app == 'screener' else 'charts'
-	loaded_tickers		= list(scope.data['ticker_files'].keys())
+	loaded_tickers		= list(scope.ticker_files.keys())
 
 	for ticker in page_ticker_list:
 		
@@ -29,7 +29,7 @@ def replace_dfs(scope):
 				if ticker in loaded_tickers: 
 					# print ( '\033[92m' + ticker.ljust(10) + '> adding ticker to app df where app = ' + app + '\033[0m')
 					
-					ticker_df = scope.data['ticker_files'][ticker].copy()
+					ticker_df = scope.ticker_files[ticker].copy()
 									
 					# limit no of rows for the page_df (speeds up app rendering)
 					if page_row_limit != None : 
@@ -42,7 +42,7 @@ def replace_dfs(scope):
 					set_replace_df_status_for_ticker_and_page(scope, app, ticker, new_status=False)
 
 				else:
-					print ( '\033[91m' + ticker.ljust(10) + '> ticker file missing from scope.data[ticker_files] \033[0m')
+					print ( '\033[91m' + ticker.ljust(10) + '> ticker file missing from scope[ticker_files] \033[0m')
 
 
 def replace_cols(scope):
@@ -52,7 +52,7 @@ def replace_cols(scope):
 		app 				= scope.apps['display_app']
 		page_ticker_list 	= scope.apps[app]['ticker_list']
 		config_group		= 'trials' if app == 'screener' else 'charts'
-		loaded_tickers		= list(scope.data['ticker_files'].keys())
+		loaded_tickers		= list(scope.ticker_files.keys())
 
 		for ticker in page_ticker_list:
 

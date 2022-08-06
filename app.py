@@ -50,7 +50,7 @@ Data_frame = 'DataFrame'
 # Status
 replace_columns = True
 
-print('Rob we are working on the new structure for the scope.data.tickers')
+print('Rob we are working on the new structure for the scope.tickers')
 
 
 # so we have a app ticker list 
@@ -109,7 +109,7 @@ scope_data = {
 
 # print(scope.apps['templates']['charts'])
 
-# print(scope.data)
+
 # so when we load a file - we just add the appropriate app config from the defaults. The true will signifiy that the 
 # columns need replacing. After replacing, set the status to false to prevent further updates
 
@@ -319,9 +319,6 @@ def level_3_details(level_1, level_2, level_3):
 # 	level_2_details(level_1, 'tickers')
 # 	# level_3_details(level_1, 'tickers', 'file')
 # 	level_2_details(level_1, 'download')
-
-
-# print(scope.data['tickers'])
 
 
 

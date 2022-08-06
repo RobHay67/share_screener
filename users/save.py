@@ -12,7 +12,7 @@ def save_users_table(scope):
 		user_charts = charts_config(scope)
 
 		scope.users['json'][user]['chart_height'] = scope.charts['primary_height']
-		scope.users['json'][user]['download_days'] = scope.data['download']['days']
+		scope.users['json'][user]['download_days'] = scope.download['days']
 		scope.users['json'][user]['row_limit'] = scope.apps['row_limit']
 
 		scope.users['json'][user]['trials'] = user_trials

@@ -13,7 +13,7 @@ def set_user_access(scope:dict, login_name:str):
 
 	# Over-write key user settings
 	scope.charts['primary_height'] = scope.users['json'][login_name]['chart_height']
-	scope.data['download']['days'] = scope.users['json'][login_name]['download_days']
+	scope.download['days'] = scope.users['json'][login_name]['download_days']
 	scope.apps['row_limit'] = scope.users['json'][login_name]['row_limit']
 
 

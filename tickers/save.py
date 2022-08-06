@@ -13,9 +13,9 @@ def save_tickers(scope):
 					)
 
 	for ticker in ticker_list:
-		if ticker in scope.data['ticker_files']:						# if its not in here, it will not be available to save
+		if ticker in scope.ticker_files:						# if its not in here, it will not be available to save
 			path_for_ticker_file(scope, ticker )
-			save_ticker( scope, scope.data['ticker_files'][ticker] )
+			save_ticker( scope, scope.ticker_files[ticker] )
 			cache_progress( scope, ticker, result='passed' )
 		else:
 			cache_progress( scope, ticker, result='failed' )

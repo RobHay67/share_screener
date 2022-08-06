@@ -2,15 +2,15 @@ import yfinance as yf					# https://github.com/ranaroussi/yfinance
 import pandas as pd
 
 
-from data.tickers.schema import ticker_file_schema
-from data.tickers.schema import ticker_file_usecols
-from data.tickers.schema import y_finance_schemas
+from tickers.schema import ticker_file_schema
+from tickers.schema import ticker_file_usecols
+from tickers.schema import y_finance_schemas
 
 from partials.ticker_loader.messages import download_industry_message
 
 from progress.store import cache_progress
 
-from data.index.save import save_index			# TODO we may need to get this working again
+from index.save import save_index			# TODO we may need to get this working again
 
 
 # ==============================================================================================================================================================
@@ -32,14 +32,14 @@ def download_from_yahoo_finance(scope): 													# TODO What Output to Rende
 	# group_by: group by column or ticker (‘column’/’ticker’, default is ‘column’)
 	# threads : use threads for mass downloading? (True/False/Integer)
 
-	period = str(scope.data['download']['days']) + 'd' # 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo
+	period = str(scope.download['days']) + 'd' # 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo
 
 	# reset_download_status(scope)
 
-	# TODO scope.data['download']['industries'] - this variable needs to be better defined and explained
-	# industry_groups_to_download = scope.data['download']['industries'] - something like this anyway TODO
+	# TODO scope.download['industries'] - this variable needs to be better defined and explained
+	# industry_groups_to_download = scope.download['industries'] - something like this anyway TODO
 
-	for count, industry in enumerate(scope.data['download']['industries']):
+	for count, industry in enumerate(scope.download['industries']):
 		render_download_message(scope, count, industry)
 
 		download_ticker_string = generate_ticker_string_by_industry(scope, industry)
@@ -67,14 +67,14 @@ def download_from_yahoo_finance(scope): 													# TODO What Output to Rende
 
 	# ticker_list = list(scope.selected[app]['ticker_list'])
 	# for ticker in ticker_list:
-	# 	scope.data['ticker_index'].at[ticker, 'yahoo_status'] = 'set_for_download'
+	# 	scope.ticker_index.at[ticker, 'yahoo_status'] = 'set_for_download'
 
 # def update_download_status(scope): # TODO DONE - but needs robust testing on a large group - also > # TODO What Output to Render
-	# for ticker in scope.data['download']['yf_files']['ticker'].unique():
-	# 	scope.data['ticker_index'].at[ticker, 'yahoo_status'] = 'downloaded'
-	# for ticker, error_message in scope.data['download']['yf_anomolies'].items():
+	# for ticker in scope.download['yf_files']['ticker'].unique():
+	# 	scope.ticker_index.at[ticker, 'yahoo_status'] = 'downloaded'
+	# for ticker, error_message in scope.download['yf_anomolies'].items():
 	# 	if error_message == 'No data found, symbol may be delisted':
-	# 		scope.data['ticker_index'].at[ticker, 'yahoo_status'] = 'delisted'
+	# 		scope.ticker_index.at[ticker, 'yahoo_status'] = 'delisted'
 	# 	else:
 	# 		st.write( ticker + ' - download error = ' + str(error_message))
 	# save_index(scope)
@@ -90,7 +90,7 @@ def render_download_message(scope, count, industry):
 	if industry == 'random_tickers':
 		download_message = ('Yahoo Finance downloading > ' + scope.apps[app]['ticker_list'][0] )
 	else:
-		download_message = ('Yahoo Finance downloading > ' + industry + ' ( ' + str(count+1) + ' of ' + str(len(scope.data['download']['industries'])) + ' )' )
+		download_message = ('Yahoo Finance downloading > ' + industry + ' ( ' + str(count+1) + ' of ' + str(len(scope.download['industries'])) + ' )' )
 	
 	download_industry_message(scope, download_message)
 
@@ -102,7 +102,7 @@ def generate_ticker_string_by_industry(scope, industry): # OK
 	if industry == 'random_tickers': 							# we have selected specific tickers 
 		batch_of_tickers = scope.apps[app]['ticker_list']
 	else: 														# user has selected a share market, industry or multiple industries
-		industry_tickers = scope.data['ticker_index'][scope.data['ticker_index']['industry_group'] == industry ]
+		industry_tickers = scope.ticker_index[scope.ticker_index['industry_group'] == industry ]
 		batch_of_tickers = industry_tickers.index.tolist()
 
 	# Create a readable list of the tickers for Y_Finance
@@ -131,11 +131,11 @@ def format_columns_in_downloaded_share_data( scope, yf_download, download_schema
 
 def store_yf_download_in_scope( scope, download_ticker_string, yf_download, download_errors ): # TODO What Output to Render
 	# store the downloaded data in a single dictionary
-	scope.data['download']['yf_files'] = pd.DataFrame(columns=ticker_file_usecols + ['ticker'] )		# Reset for each download
-	scope.data['download']['yf_anomolies'] 	=  {}																# Reset for each download
+	scope.download['yf_files'] = pd.DataFrame(columns=ticker_file_usecols + ['ticker'] )		# Reset for each download
+	scope.download['yf_anomolies'] 	=  {}																# Reset for each download
 
-	scope.data['download']['yf_files'] = pd.concat([scope.data['download']['yf_files'], yf_download], sort=False)
-	scope.data['download']['yf_anomolies'].update(download_errors)	# store any errors
+	scope.download['yf_files'] = pd.concat([scope.download['yf_files'], yf_download], sort=False)
+	scope.download['yf_anomolies'].update(download_errors)	# store any errors
 	
 	cache_progress( 	scope, 
 					passed='Downloaded > ', 

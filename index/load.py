@@ -3,17 +3,17 @@ import pandas as pd
 
 from partials.dropdowns.dropdowns import refresh_dropdown_lists
 
-from data.index.schema import schema
-from data.index.schema import csv_dates
-from data.index.schema import csv_dtypes
-from data.index.save import save_index
+from index.schema import schema
+from index.schema import csv_dates
+from index.schema import csv_dtypes
+from index.save import save_index
 
 
-from data.index.view.messages import message_title
-from data.index.view.messages import message_loading
-from data.index.view.messages import message_loaded
-from data.index.view.messages import message_missing_index_file
-from data.index.view.messages import message_new_index_file
+from index.view.messages import message_title
+from index.view.messages import message_loading
+from index.view.messages import message_loaded
+from index.view.messages import message_missing_index_file
+from index.view.messages import message_new_index_file
 
 
 def load_ticker_index_file( scope ):
@@ -32,7 +32,7 @@ def load_ticker_index_file( scope ):
 		
 		# remove any delisted stocks here
 
-		scope.data['ticker_index'] = ticker_index		
+		scope.ticker_index = ticker_index		
 
 		refresh_dropdown_lists(scope)
 
@@ -50,7 +50,7 @@ def load_ticker_index_file( scope ):
 		
 		# remove any delisted stocks here
 		
-		scope.data['ticker_index'] = ticker_index
+		scope.ticker_index = ticker_index
 		
 		save_index(scope)
 

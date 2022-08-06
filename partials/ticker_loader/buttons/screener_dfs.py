@@ -9,7 +9,7 @@ def screener_dfs_button(scope):
 	total_screener_df_rows	 	= 0
 
 	for ticker in ticker_list:
-		# if ticker in scope.data['ticker_files']:
+		# if ticker in scope.ticker_files:
 		if ticker in scope.apps[app]['dfs']:
 			screener_df_row_count 	= len(scope.apps[app]['dfs'][ticker])
 			total_screener_df_rows 	+= screener_df_row_count

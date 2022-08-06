@@ -15,10 +15,8 @@ from strategies.config import scope_strategy
 from users.load import load_user_table
 from users.config import scope_user
 
-
-
-from data.index.config import scope_index_file, scope_ticker_search
-from data.tickers.config import scope_ticker_files, scope_download_variables
+from index.config import scope_index_file, scope_ticker_search
+from tickers.config import scope_ticker_files, scope_download_variables
 
 
 def set_scope(scope):
@@ -49,9 +47,15 @@ def set_scope(scope):
 		scope_user(scope)					# Set Default Values ready for a user to login
 		
 		scope.data = {}
+
 		scope_index_file(scope)				# load the share index
+		
+		# TODO - is this the correct spot
 		scope_ticker_search(scope)			# variable to facilite searching for ticker by name
+		
+		
 		scope_ticker_files(scope)			# variables for storing the ticker files
+		
 		scope_download_variables(scope)		# variable used during download of ticker data
 
 		

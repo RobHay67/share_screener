@@ -4,7 +4,7 @@ import streamlit as st
 
 def edit_download_days(scope):
 
-	previous_selection = int(scope.data['download']['days'])
+	previous_selection = int(scope.download['days'])
 	display_name = 'Days to Download (recent)'
 	widget_key = 'widget_download_days'
 
@@ -23,4 +23,4 @@ def on_change_download_days(scope:dict, widget_key:str):
 	changed_value = scope[widget_key]
 
 	# store the selection
-	scope.data['download']['days'] = changed_value
+	scope.download['days'] = changed_value

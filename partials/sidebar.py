@@ -4,7 +4,7 @@ from widgets.row_limit import edit_row_limit
 from widgets.download_days import edit_download_days
 from widgets.logout import logout_button
 
-from data.tickers.download_controller import download_tickers
+from tickers.download_controller import download_tickers
 from partials.ticker_loader.buttons.download import download_button
 
 

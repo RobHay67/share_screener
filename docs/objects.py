@@ -13,7 +13,7 @@
 
 #																		---------------------------------
 #																		|								|
-#	dictionary of all loaded and downloaded OHLCV ticker data			|   scope.data['ticker_files']  |	
+#	dictionary of all loaded and downloaded OHLCV ticker data			|   scope.ticker_files  |	
 #																		|								|
 #																		---------------------------------
 #																					|

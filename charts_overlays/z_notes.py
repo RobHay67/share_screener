@@ -1,5 +1,5 @@
 
-
+def looks_like_i_deleted_thje_function_name(scope)
 	with col1: st.subheader('Simple Moving Average (SMA)')
 	with col1: sma_days = st.number_input('no of days', min_value=1, max_value=1000, value=10, key='10')
 	with col1: sma_cols = st.multiselect('column(s)', scope.config['dropdowns']['ticker']_columns, default='close', help='choose a column', key='11')
@@ -64,8 +64,8 @@ def indicator_selectors(scope):
 	st.write('Add Indicators to the Chart for ' + '') 
 
 	# Ensure we have some share data before attempting to do any of the following
-	# if ticker in list(scope.data['ticker_files'].keys()):
-		# share_data = scope.data['ticker_files'][ticker]
+	# if ticker in list(scope.ticker_files.keys()):
+		# share_data = scope.ticker_files[ticker]
 
 	# Add Buttons
 	col1,col2,col3,col4,col5,col6,col7 = st.columns([1,1,1,1,1,1,1])

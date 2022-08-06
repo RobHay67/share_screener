@@ -12,10 +12,10 @@ def view_ticker_files(scope):
 		
 		col1,col2 = st.columns([6,2])
 		with col1: st.write('Loaded and Downloaded ticker data stored in > ')
-		with col2: st.write('< scope.data.ticker_files >')	
+		with col2: st.write('< scope.ticker_files >')	
 		st.markdown("""---""")
 
-	ticker_list = sorted(list(scope.data['ticker_files'].keys()))
+	ticker_list = sorted(list(scope.ticker_files.keys()))
 	no_of_tickers = len(ticker_list)
 
 	for i in range(0, no_of_tickers, 3):
@@ -31,7 +31,7 @@ def render_df(scope, ticker_list, i):
 
 	if i < len(ticker_list):
 		ticker = ticker_list[i]
-		ticker_data_file = scope.data['ticker_files'][ticker]
+		ticker_data_file = scope.ticker_files[ticker]
 
 		no_of_rows = str(len(ticker_data_file))
 		my_expander = st.expander(label=(ticker+' ( ' + no_of_rows + ' )'), expanded=False )

@@ -9,9 +9,9 @@ from apps.config_app.results import view_all_results
 # Files
 from apps.config_app.files import view_folders
 # Data
-from data.index.view.index import view_index
+from index.view.index import view_index
 from partials.dataframes.tickers import view_ticker_files
-from data.tickers.view.download import view_download
+from tickers.view.download import view_download
 # Pages
 from apps.config_app.apps import view_apps
 from apps.config_app.apps import view_single_page
@@ -25,8 +25,8 @@ from partials.dataframes.charts import view_chart_dfs
 # Strategies
 from strategies.config import view_strategy
 # Reports
-from data.index.download import download_ticker_index_data
-from data.index.view.industries import view_industries
+from index.download import download_ticker_index_data
+from index.view.industries import view_industries
 
 
 def render_selected_scope_page(scope):
@@ -75,7 +75,7 @@ def render_scope_categories(scope):
 	col1,col2,col3,col4,col5,col6 = st.columns([2,2,2,2,2,2])
 	
 	with col1: 
-		st.subheader('Config (scope)') # TODO
+		st.subheader('Config (scope)')
 		st.button('Application', on_click=set_st_button, args=(scope, 'application', ))
 		st.button('Dropdowns', on_click=set_st_button, args=(scope, 'dropdowns', ))
 		st.button('Trials  (column adders)', on_click=set_st_button, args=(scope, 'trials', ))
@@ -83,20 +83,20 @@ def render_scope_categories(scope):
 		st.button('Results', on_click=set_st_button, args=(scope, 'results', ))
 
 	with col2: 
-		st.subheader('Files') # DONE
+		st.subheader('Files')
 		st.button('Folders and Paths', on_click=set_st_button, args=(scope, 'view_folders', ))
 
 	with col3: 
-		st.subheader('Data') # TODO
-		no_of_tickers_in_index = str((len(scope.data['ticker_index'])))
-		no_of_loaded_dfs = str(len(scope.data['ticker_files'].keys()))
+		st.subheader('Data')
+		no_of_tickers_in_index = str((len(scope.ticker_index)))
+		no_of_loaded_dfs = str(len(scope.ticker_files.keys()))
 		st.button('Ticker Index Report ( ' + no_of_tickers_in_index + ' )', on_click=set_st_button, args=(scope, 'view_ticker_index', ))
 		st.button('Loaded Ticker Data Files ( ' + no_of_loaded_dfs + ' )', on_click=set_st_button, args=(scope, 'view_ticker_files', ))
 		st.button('Download', on_click=set_st_button, args=(scope, 'view_download', ))
 
 	with col4: 
-		st.subheader('Pages') # DONE
-		st.button('Pages', on_click=set_st_button, args=(scope, 'view_apps', ))
+		st.subheader('Apps')
+		st.button('App', on_click=set_st_button, args=(scope, 'view_apps', ))
 		st.button('App > Single', on_click=set_st_button, args=(scope, 'view_single_page', ))
 		st.button('App > Intra-Day', on_click=set_st_button, args=(scope, 'view_intra_day_page', ))
 		st.button('App > Volume', on_click=set_st_button, args=(scope, 'view_volume_page', ))
@@ -109,11 +109,11 @@ def render_scope_categories(scope):
 		st.button('Charting Dataframes ( ' + no_of_chart_dfs + ' )', on_click=set_st_button, args=(scope, 'view_chart_dfs', ))
 
 	with col5: 
-		st.subheader('Strategies') # TODO
+		st.subheader('Strategies')
 		st.button('Strategy', on_click=set_st_button, args=(scope, 'view_strategy', ))
 
 	with col6:
-		st.subheader('Actions and Reports') # TODO
+		st.subheader('Actions and Reports')
 		st.button('Import New Tickers', on_click=set_st_button, args=(scope, 'import_tickers', ))
 		st.button('Industry Report', on_click=set_st_button, args=(scope, 'view_industries', ))
 

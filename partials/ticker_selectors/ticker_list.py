@@ -35,7 +35,7 @@ def update_ticker_list(scope):
 			selected_tickers_status = True
 			list_of_industries = []
 			for industry in scope.apps['screener']['selectors']['industries']:
-				tickers_in_industry_df = scope.data['ticker_index'][scope.data['ticker_index']['industry_group'] == industry ]
+				tickers_in_industry_df = scope.ticker_index[scope.ticker_index['industry_group'] == industry ]
 				tickers_in_industry = tickers_in_industry_df.index.tolist()
 				ticker_list += tickers_in_industry 
 				list_of_industries.append(industry)
@@ -44,12 +44,12 @@ def update_ticker_list(scope):
 		# Selected an entire share market
 		elif scope.apps['screener']['selectors']['market'] != 'select entire market':
 			selected_tickers_status = True
-			tickers_in_market = scope.data['ticker_index'].index.values.tolist()
+			tickers_in_market = scope.ticker_index.index.values.tolist()
 			ticker_list = tickers_in_market
-			list_of_industries = ( list(scope.data['ticker_index']['industry_group'].unique() ))
+			list_of_industries = ( list(scope.ticker_index['industry_group'].unique() ))
 		
 	# Store the ticker_list and list_of_industries variables
 	scope.apps[app]['ticker_list'] = ticker_list
-	scope.data['download']['industries'] = list_of_industries
+	scope.download['industries'] = list_of_industries
 
 	return selected_tickers_status

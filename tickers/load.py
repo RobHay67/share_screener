@@ -1,9 +1,9 @@
 import pandas as pd
 
 
-from data.tickers.schema import ticker_file_usecols
-from data.tickers.schema import ticker_file_dtypes
-from data.tickers.schema import ticker_file_dates
+from tickers.schema import ticker_file_usecols
+from tickers.schema import ticker_file_dtypes
+from tickers.schema import ticker_file_dates
 
 
 def load_ticker(scope, ticker):
