@@ -15,7 +15,8 @@ from strategies.config import scope_strategy
 from users.load import load_user_table
 from users.config import scope_user
 
-from index.config import scope_index_file, scope_ticker_search
+from index.config import scope_index_file
+from partials.ticker_search.config import scope_ticker_search
 from tickers.config import scope_ticker_files, scope_download_variables
 
 
