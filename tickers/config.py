@@ -7,9 +7,6 @@ def scope_ticker_files(scope):
 
 	# TODO - replace this with just the tickers
 	scope.ticker_files = {}
-
-
-
 	scope.tickers = {}
 
 
