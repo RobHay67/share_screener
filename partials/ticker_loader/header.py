@@ -4,7 +4,7 @@ from datetime import datetime
 from datetime import timedelta
 import pytz
 
-from config.markets.schema import opening_hours
+from markets.schema import opening_hours
 
 def render_page_title(scope, title):
 

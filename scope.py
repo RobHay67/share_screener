@@ -3,9 +3,6 @@ import streamlit as st
 
 import time  
 
-
-# from config.streamlit import set_streamlit_page_config
-
 from partials.dropdowns.config import scope_dropdown_menus
 
 from charts.config import scope_charts

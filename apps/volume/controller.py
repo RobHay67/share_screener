@@ -2,7 +2,7 @@ from datetime import datetime
 from datetime import timedelta
 import pytz
 
-from config.markets.schema import opening_hours
+from markets.schema import opening_hours
 
 from partials.ticker_loader.header import render_page_title
 from partials.ticker_loader.controller import render_ticker_loader

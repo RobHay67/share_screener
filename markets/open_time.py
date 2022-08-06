@@ -1,5 +1,5 @@
 
-from config.markets.schema import opening_hours
+from markets.schema import opening_hours
 
 
 

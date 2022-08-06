@@ -1,9 +1,7 @@
 
 import streamlit as st
 
-# from config.model.set_analysis_active import edit_active
 from widgets.active import edit_active
-# from config.model.set_ohlcv import edit_ohlcv
 from widgets.trend import edit_trend_direction
 from widgets.number import edit_number
 

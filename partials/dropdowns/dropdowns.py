@@ -1,6 +1,6 @@
 
 
-from config.markets.schema import markets
+from markets.schema import markets
 
 
 
