@@ -37,7 +37,7 @@
 #		appeneded to any existing data and saved for future analysis
 #
 #
-#	Ticker Data is stored in 			< scope.data['ticker_files'] >
+#	Ticker Data is stored in 			< scope.ticker_files >
 # 	Ticker Screener Data is stored in 	< scope.apps[app].screener_df >		ie scope.apps['single'].screener_df
 #	Chart Data is stored in 			< scope.apps[app].chart_df > 			ie scope.apps['single'].chart_df
 

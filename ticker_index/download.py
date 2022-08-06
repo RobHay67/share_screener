@@ -3,7 +3,7 @@ import streamlit as st
 
 from partials.dropdowns.dropdowns import refresh_dropdown_lists
 
-from index.update import update_index
+from ticker_index.update import update_index
 
 
 def download_ticker_index_data(scope):

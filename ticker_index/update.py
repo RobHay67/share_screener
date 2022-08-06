@@ -2,15 +2,15 @@ import pandas as pd
 
 from progress.store import cache_progress
 
-from index.schema import default_values
-from index.schema import data_types
-from index.schema import schema
+from ticker_index.schema import default_values
+from ticker_index.schema import data_types
+from ticker_index.schema import schema
 
-from index.save import save_index
+from ticker_index.save import save_index
 from markets.open_time import open_time
 from markets.trading_minutes import trading_minutes
 
-from index.view.messages import message_updating, message_warning
+from ticker_index.view.messages import message_updating, message_warning
 
 
 def update_index(scope, downloaded_ticker_info ):
