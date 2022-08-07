@@ -13,7 +13,10 @@ def replace_dfs(scope):
 
 	for ticker in page_ticker_list:
 		
-		replace_ticker_df_status = scope.apps[app]['replace_dfs'][ticker]
+		# replace_ticker_df_status = scope.apps[app]['replace_dfs'][ticker]
+		replace_ticker_df_status = scope.tickers[ticker]['replace_app_dfs']
+
+		print(replace_ticker_df_status)
 
 		# Check if we have been requested to renew the ticker data for this ticker
 		if  replace_ticker_df_status == True:

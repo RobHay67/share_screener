@@ -46,8 +46,8 @@ scope_data = {
 	'tickers':	{
 					'CBA':	{
 								'df':Data_frame,
-								'replace_app_dfs':True, 		# True or False
-								'replace_columns':True,			# this could serve as a shortcut to save iterating through all the app config
+								'replace_app_dfs':True, 		# True or False - if True, we replace all of the columns anyway
+								# 'replace_columns':True,			# this could serve as a shortcut to save iterating through all the app config
 								# pages/apps
 								'apps': {
 											'single':	{
@@ -104,9 +104,9 @@ scope_data = {
 
 
 # Events that require the dataframe or the app columns to be replaced or recalculated
-#		Transaction							which ticker(s)				app dataframe		app dataframe columns				function to set status
+#		Transaction							which ticker(s)				app dataframes		app dataframe columns				function to set status
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# a)	Load ticker data file				Single Ticker				xReplace All Dfs 	Replace ALL Columns
+# a)	Load A ticker data file				1 Ticker					xReplace All Dfs 	Replace ALL Columns
 # b)	Change the < page_row_limit >		EVERY Ticker				xReplace All Dfs 	Replace ALL Columns
 # c)	Activate an chart/overlay/trial		Every Ticker Using object	ignore				Replace cols for this object
 # d)	Deactive a chart/overlay/trial		ignore						ignore				ignore

@@ -41,7 +41,7 @@ def render_ticker_loader(scope):
 			show_ticker_files = ticker_files_button(scope)
 
 		replace_dfs(scope)
-		replace_cols(scope)
+		# replace_cols(scope)
 
 		if app == 'screener':
 			show_chart_dfs = False

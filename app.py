@@ -43,6 +43,10 @@ render_sidebar(scope)
 render_selected_app(scope)
 
 
+
+
+
+
 print('Rob we are working on the new structure for the scope.tickers')
 print('See notes in tickers.status.notes.py')
 
@@ -174,14 +178,42 @@ def level_3_details(level_1, level_2, level_3):
 # 	level_2_details(level_1, 'trial_list')
 # 	level_2_details(level_1, 'trend_open')
 
-# level_1 = 'data'
-# if level_1 in st.session_state:
-# 	terminal_heading(level_1)
-# 	for key in st.session_state[level_1]:print(key)
-# 	level_2_details(level_1, 'ticker_files')
-# 	level_2_details(level_1, 'tickers')
-# 	# level_3_details(level_1, 'tickers', 'file')
-# 	level_2_details(level_1, 'download')
+
+# ==============================================================================================
+# Structure for the tickers scope object
+# ==============================================================================================
+
+level_1 = 'tickers'
+if level_1 in st.session_state:
+	terminal_heading(level_1)
+
+	temp_scope = st.session_state[level_1]
+
+	for ticker in temp_scope:
+		print('='*99)
+		print(ticker)
+		print('-'*99)
+		print('replace_app_dfs'.ljust(20), ' = ', temp_scope[ticker]['replace_app_dfs'])
+		print('-'*99)
+		# print(temp_scope[ticker]['apps'])
+		for app in temp_scope[ticker]['apps']:
+			print ('\033[96m', app.upper(), '\033[0m')
+			print('-'*99)
+			for object in temp_scope[ticker]['apps'][app].keys():
+				if object == 'df':
+					print('Dataframe size'.ljust(20), ' = ', len(temp_scope[ticker]['apps'][app]['df']))
+					print('-'*99)
+				else:
+					print(str(object).ljust(20),  ' : ', temp_scope[ticker]['apps'][app][object])
+			print('-'*99)
+
+
+
+
+	# level_2_details(level_1, 'ticker_files')
+	# level_2_details(level_1, 'tickers')
+	# # level_3_details(level_1, 'tickers', 'file')
+	# level_2_details(level_1, 'download')
 
 
 
