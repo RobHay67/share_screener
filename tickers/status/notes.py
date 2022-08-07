@@ -46,47 +46,55 @@ scope_data = {
 	'tickers':	{
 					'CBA':	{
 								'df':Data_frame,
-								'replace_app_dfs':True, 		# True or False - if True, we replace all of the columns anyway
+								# 'replace_app_dfs':True, 		# True or False - if True, we replace all of the columns anyway
 								# 'replace_columns':True,			# this could serve as a shortcut to save iterating through all the app config
 								# pages/apps
 								'apps': {
 											'single':	{
 															'df':Data_frame,
+															'replace_df': True or False,
+															'type_column_adder': None, 'charts' or 'trials'
 															# 'replace_app_dfs':True, 		# Not needed - do at header only
-															'candlestick':replace_columns,
-															'macd': replace_columns, 
-															'macd_vol': replace_columns, 
-															'rsi': replace_columns, 
-															'vol_osssy': False, 
-															'stochastic': replace_columns, 
-															'sma_1': replace_columns, 
-															'sma_2': False, 
-															'sma_3': False, 
-															'ema_1': False, 
-															'ema_2': False, 
-															'ema_3': False, 
-															'bollinger_bands': False, 
-															'dividends': replace_columns, 
-															'candlestick': replace_columns, 
-															'scatter': False, 
-															'bar': False, 
-															'line': replace_columns, 
-															'heiken_ashi': False, 
-															'volume': replace_columns, 
-															'vol_per_minute': False, 
-															'vac': False,
-															'announcements': False, 
-															'ichi_moku': False, 
-															'ichi_moku_daily': False
+															'column_adders': {
+																				'candlestick':replace_columns,
+																				'macd': replace_columns, 
+																				'macd_vol': replace_columns, 
+																				'rsi': replace_columns, 
+																				'vol_osssy': False, 
+																				'stochastic': replace_columns, 
+																				'sma_1': replace_columns, 
+																				'sma_2': False, 
+																				'sma_3': False, 
+																				'ema_1': False, 
+																				'ema_2': False, 
+																				'ema_3': False, 
+																				'bollinger_bands': False, 
+																				'dividends': replace_columns, 
+																				'candlestick': replace_columns, 
+																				'scatter': False, 
+																				'bar': False, 
+																				'line': replace_columns, 
+																				'heiken_ashi': False, 
+																				'volume': replace_columns, 
+																				'vol_per_minute': False, 
+																				'vac': False,
+																				'announcements': False, 
+																				'ichi_moku': False, 
+																				'ichi_moku_daily': False
+																				},
 														},
 											'screener':	{
 															'df':Data_frame,
+															'replace_df': True or False,
+															'type_column_adder': None, 'charts' or 'trials'
 															# 'replace_app_dfs':True, 		# Not needed - do at header only
-															'trend_open': False, 
-															'trend_high': replace_columns, 
-															'trend_low': False, 
-															'trend_close': replace_columns, 
-															'trend_volume': False,
+															'column_adders': {
+																				'trend_open': False, 
+																				'trend_high': replace_columns, 
+																				'trend_low': False, 
+																				'trend_close': replace_columns, 
+																				'trend_volume': False,
+																			},
 														},
 										},
 							},
@@ -107,7 +115,7 @@ scope_data = {
 #		Transaction							which ticker(s)				app dataframes		app dataframe columns				function to set status
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # a)	Load A ticker data file				1 Ticker					xReplace All Dfs 	Replace ALL Columns
-# b)	Change the < page_row_limit >		EVERY Ticker				xReplace All Dfs 	Replace ALL Columns
+# b)	Change the < app_row_limit >		EVERY Ticker				xReplace All Dfs 	Replace ALL Columns
 # c)	Activate an chart/overlay/trial		Every Ticker Using object	ignore				Replace cols for this object
 # d)	Deactive a chart/overlay/trial		ignore						ignore				ignore
 # g)	Change Value in chart/overlay/trial	Every Ticker Using object	ignore				Replace cols for this object
@@ -155,7 +163,7 @@ scope_data = {
 #											T-r_col	T-r_col ------			------			-------		-------			-------
 # Download new ticker for cba + NAB			T-r_df	T-r_dfl ------			-------			T-r_df		T-r_df			-------		= refresh the tickers that have changed
 #											T-r_col	T-r_col ------			------			-------		-------			-------
-# Change the < page_row_limit >				T-r_all T-r_all T-r_all			T-r_all			T-r_all		T-r_all			T-r_all		= refresh all tickers and rerun all active add_cols
+# Change the < app_row_limit >				T-r_all T-r_all T-r_all			T-r_all			T-r_all		T-r_all			T-r_all		= refresh all tickers and rerun all active add_cols
 # Activate overlay or 2nd chart				------	------	------			T-r_col			T-r_col		T-r_col			T-r_col		= recalculate the specific add_cols only	for NON screener pages							
 # Update value in overlay or 2nd chart		------	------	------			T-r_col			T-r_col		T-r_col			T-r_col		= recalculate the specific add_cols only	for NON screener pages	
 # Activate a col_adder						T-r_col	T-r_col	T-r_col			-------			-------		-------			-------		= recalculate the specific add_cols only	for screener app

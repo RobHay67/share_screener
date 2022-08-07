@@ -7,6 +7,9 @@ from tickers.schema import ticker_file_usecols
 from tickers.status.load_ticker import set_replace_df_status_for_ticker
 from tickers.status.load_ticker import set_replace_col_status_for_ticker
 
+
+from tickers.status.combine import set_app_data_status
+
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Combiner
 #   	concatenates any downloaded data with any loaded data 
@@ -25,10 +28,10 @@ def combine_loaded_and_download_ticker_data(scope):
 
 	ticker_list = scope.apps[app]['ticker_list']
 
+	# iterate through the target tickers for the App
 	for ticker in ticker_list:
-		# iterate through the target tickers
 		
-		replace_df_status = False
+		combine_new_data_status = False
 		downloaded_ticker_list = scope.download['yf_files']['ticker'].unique()
 		
 		# Check if we have downloaded data (we may have nothing)
@@ -44,22 +47,23 @@ def combine_loaded_and_download_ticker_data(scope):
 			# We may have no data after dropping the zero volume rows
 			if len(ticker_data)>0:
 				
-				if ticker in scope.ticker_files.keys():	
+				if ticker in scope.tickers.keys():	
 					
 					# we have an exisiting share_data_file so we concatenate the data
-					scope.ticker_files[ticker] = pd.concat([scope.ticker_files[ticker], ticker_data]).drop_duplicates(subset=['date'], keep='last')
+					scope.tickers[ticker]['df'] = pd.concat([scope.tickers[ticker]['df'], ticker_data]).drop_duplicates(subset=['date'], keep='last')
 					cache_progress( scope, ticker, result='passed' )
 				else:
 					# its brand new - so we can just add it to the dictionary
-					scope.ticker_files[ticker] = ticker_data											
+					scope.tickers[ticker]['df'] = ticker_data											
 					cache_progress( scope, ticker, result='passed_2' )
 				
 				# sort the share data into date order ascending
-				scope.ticker_files[ticker].sort_values(by=['date'], inplace=True, ascending=False)		
-				replace_df_status = True
+				scope.tickers[ticker]['df'].sort_values(by=['date'], inplace=True, ascending=False)		
+				combine_new_data_status = True
 		
-		set_replace_df_status_for_ticker(scope, ticker, new_status=replace_df_status)
-		set_replace_col_status_for_ticker(scope, ticker, new_status=replace_df_status)
+		# set_replace_df_status_for_ticker(scope, ticker, new_status=replace_df_status)
+		# set_replace_col_status_for_ticker(scope, ticker, new_status=replace_df_status)
+		set_app_data_status(scope, ticker, combine_new_data_status)
 		
 	cache_progress(scope, 'Finished', final_print=True )
 

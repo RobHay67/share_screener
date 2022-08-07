@@ -24,7 +24,7 @@ def audit_replace_df_status(scope):
 	app=scope.apps['display_app']
 
 	# All loaded Ticker Files
-	ticker_list = scope.ticker_files.keys()
+	ticker_list = scope.tickers.keys()
 
 	print('')
 	print('')

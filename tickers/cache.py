@@ -9,4 +9,3 @@ def cache_ticker_file(scope,ticker, ticker_data_file):
 	# New Method for storing the ticker information
 	scope.tickers[ticker] = {}
 	scope.tickers[ticker]['df'] = ticker_data_file
-	scope.tickers[ticker]['replace_app_dfs'] = True

@@ -16,7 +16,7 @@ def render_intraday_page(scope):
 
 	if ticker != 'select a ticker' :		
 		
-		if ticker in list(scope.ticker_files.keys()):
+		if ticker in list(scope.tickers.keys()):
 
 			print('TODO render_intraday_page')
 

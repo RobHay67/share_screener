@@ -64,8 +64,8 @@ def indicator_selectors(scope):
 	st.write('Add Indicators to the Chart for ' + '') 
 
 	# Ensure we have some share data before attempting to do any of the following
-	# if ticker in list(scope.ticker_files.keys()):
-		# share_data = scope.ticker_files[ticker]
+	# if ticker in list(scope.tickers.keys()):
+		# share_data = scope.tickers[ticker]['df']
 
 	# Add Buttons
 	col1,col2,col3,col4,col5,col6,col7 = st.columns([1,1,1,1,1,1,1])

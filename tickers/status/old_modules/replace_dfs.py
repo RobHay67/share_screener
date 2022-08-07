@@ -3,17 +3,20 @@
 
 
 
+
+
+# TODO - delete these redundant functions
+
 def replace_dfs(scope):
 	
 	app 				= scope.apps['display_app']
-	page_row_limit 		= int(scope.apps['row_limit'])
-	page_ticker_list 	= scope.apps[app]['ticker_list']
+	app_row_limit 		= int(scope.apps['row_limit'])
+	app_ticker_list 	= scope.apps[app]['ticker_list']
 	# config_group		= 'trials' if app == 'screener' else 'charts'
-	loaded_tickers		= list(scope.ticker_files.keys())
+	loaded_tickers		= list(scope.tickers.keys())
 
-	for ticker in page_ticker_list:
+	for ticker in app_ticker_list:
 		
-		# replace_ticker_df_status = scope.apps[app]['replace_dfs'][ticker]
 		replace_ticker_df_status = scope.tickers[ticker]['replace_app_dfs']
 
 		print(replace_ticker_df_status)
@@ -28,11 +31,11 @@ def replace_dfs(scope):
 				if ticker in loaded_tickers: 
 					# print ( '\033[92m' + ticker.ljust(10) + '> adding ticker to app df where app = ' + app + '\033[0m')
 					
-					ticker_df = scope.ticker_files[ticker].copy()
+					ticker_df = scope.tickers[ticker]['df'].copy()
 									
 					# limit no of rows for the page_df (speeds up app rendering)
-					if page_row_limit != None : 
-						ticker_df = ticker_df.head(page_row_limit) 									
+					if app_row_limit != None : 
+						ticker_df = ticker_df.head(app_row_limit) 									
 					
 					# Store the ticker dataframe for use by the app
 					scope.apps[app]['dfs'][ticker] = ticker_df

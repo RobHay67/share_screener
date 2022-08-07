@@ -1,7 +1,7 @@
 
 
 
-
+# TODO delete this module as replaced by replace_app_df_and_columns
 
 
 def replace_cols(scope):
@@ -9,11 +9,11 @@ def replace_cols(scope):
 		# Replace the columns required for this ticker / chart 
 
 		app 				= scope.apps['display_app']
-		page_ticker_list 	= scope.apps[app]['ticker_list']
+		app_ticker_list 	= scope.apps[app]['ticker_list']
 		config_group		= 'trials' if app == 'screener' else 'charts'
-		loaded_tickers		= list(scope.ticker_files.keys())
+		loaded_tickers		= list(scope.tickers.keys())
 
-		for ticker in page_ticker_list:
+		for ticker in app_ticker_list:
 
 			column_adders = list(scope.apps[app]['replace_cols'][ticker].keys())
 			tickers_already_loaded_for_page = list(scope.apps[app]['dfs'].keys())

@@ -89,7 +89,7 @@ def render_scope_categories(scope):
 	with col3: 
 		st.subheader('Data')
 		no_of_tickers_in_index = str((len(scope.ticker_index)))
-		no_of_loaded_dfs = str(len(scope.ticker_files.keys()))
+		no_of_loaded_dfs = str(len(scope.tickers.keys()))
 		st.button('Ticker Index Report ( ' + no_of_tickers_in_index + ' )', on_click=set_st_button, args=(scope, 'view_ticker_index', ))
 		st.button('Loaded Ticker Data Files ( ' + no_of_loaded_dfs + ' )', on_click=set_st_button, args=(scope, 'view_ticker_files', ))
 		st.button('Download', on_click=set_st_button, args=(scope, 'view_download', ))

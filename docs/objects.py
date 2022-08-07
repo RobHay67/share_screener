@@ -13,14 +13,14 @@
 
 #																		---------------------------------
 #																		|								|
-#	dictionary of all loaded and downloaded OHLCV ticker data			|   scope.ticker_files  |	
+#	dictionary of all loaded and downloaded OHLCV ticker data			|   	scope.tickers  			|	
 #																		|								|
 #																		---------------------------------
 #																					|
 #																					|
 #							  										copy specific <ticker_data_files> only
 # 														specific tickers stored in < scope.apps[app]['ticker_list] >
-# 																Limit rows to < page_row_limit > default = 100	
+# 																Limit rows to < app_row_limit > default = 100	
 #																   /				|				 \
 #															  	  /					|			 	  \
 #																 /					|			  	   \
@@ -42,7 +42,7 @@
 #											T-r_col	T-r_col ------			------			-------		-------			-------
 # Download new ticker for cba + NAB			T-r_df	T-r_dfl ------			-------			T-r_df		T-r_df			-------		= refresh the tickers that have changed
 #											T-r_col	T-r_col ------			------			-------		-------			-------
-# Change the < page_row_limit >				T-r_all T-r_all T-r_all			T-r_all			T-r_all		T-r_all			T-r_all		= refresh all tickers and rerun all active add_cols
+# Change the < app_row_limit >				T-r_all T-r_all T-r_all			T-r_all			T-r_all		T-r_all			T-r_all		= refresh all tickers and rerun all active add_cols
 # Activate overlay or 2nd chart				------	------	------			T-r_col			T-r_col		T-r_col			T-r_col		= recalculate the specific add_cols only	for NON screener pages							
 # Update value in overlay or 2nd chart		------	------	------			T-r_col			T-r_col		T-r_col			T-r_col		= recalculate the specific add_cols only	for NON screener pages	
 # Activate a col_adder						T-r_col	T-r_col	T-r_col			-------			-------		-------			-------		= recalculate the specific add_cols only	for screener app

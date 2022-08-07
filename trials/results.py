@@ -26,9 +26,12 @@ def trial_results(scope):
 		# Check that we have some data for this ticker
 		if ticker in scope.apps[app]['dfs'].keys():
 			
-			ticker_df = scope.apps[app]['dfs'][ticker]
+			ticker_df = scope.tickers[ticker]['apps'][app]['df']
+
+			# print(ticker_df)
 
 			for trial in active_trial_list:
+				print(trial)
 
 				# trial_result = ticker_df[trial].iloc[-1]
 				trial_result = ticker_df[trial].iloc[0]

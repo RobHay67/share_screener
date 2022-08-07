@@ -2,33 +2,33 @@
 import numpy as np
 
 
-def trend_cols(scope, trial, ticker, screener_df):
+def trend_cols(scope, trial, ticker, df):
 
 	column 		= scope.trials[trial]['add_columns']['column']
 	trend 		= scope.trials[trial]['add_columns']['trend']
 	duration	= int(scope.trials[trial]['add_columns']['duration'])
 	timespan 	= int(scope.trials[trial]['add_columns']['timespan'])
 
-	# Change screener_df to be ascending to simplify the shifting
-	screener_df.sort_values(by=['date'], inplace=True, ascending=True)
+	# Change df to be ascending to simplify the shifting
+	df.sort_values(by=['date'], inplace=True, ascending=True)
 
-	screener_df['temp_shifted'] = screener_df[column].shift(1)
-	screener_df['temp_shifted'] = screener_df['temp_shifted'].fillna(0.0).astype(float)
+	df['temp_shifted'] = df[column].shift(1)
+	df['temp_shifted'] = df['temp_shifted'].fillna(0.0).astype(float)
 
 	if trend == 'up':
-		screener_df['temp_trend'] = np.where( screener_df[column] > screener_df['temp_shifted'], 1, 0 )
+		df['temp_trend'] = np.where( df[column] > df['temp_shifted'], 1, 0 )
 	else:
-		screener_df['temp_trend'] = np.where( screener_df[column] < screener_df['temp_shifted'], 1, 0 )
+		df['temp_trend'] = np.where( df[column] < df['temp_shifted'], 1, 0 )
 
-	screener_df['temp_trend_total'] = screener_df['temp_trend'].rolling(timespan, min_periods=1).sum().astype(int)
+	df['temp_trend_total'] = df['temp_trend'].rolling(timespan, min_periods=1).sum().astype(int)
 
-	screener_df[trial] = np.where( screener_df['temp_trend_total'] >= duration, 'pass', 'fail')
+	df[trial] = np.where( df['temp_trend_total'] >= duration, 'pass', 'fail')
 
 
-	screener_df.drop(['temp_shifted', 'temp_trend', 'temp_trend_total'], axis=1, inplace=True)
+	df.drop(['temp_shifted', 'temp_trend', 'temp_trend_total'], axis=1, inplace=True)
 
 	# ensure Screener_df is back in its descending order (latest first)
-	screener_df.sort_values(by=['date'], inplace=True, ascending=False)
+	df.sort_values(by=['date'], inplace=True, ascending=False)
 
 	
 
