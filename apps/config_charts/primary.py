@@ -1,11 +1,11 @@
 import streamlit as st
 
 
-from widgets.constructors.active import render_activate_metric
-from widgets.constructors.announcements import render_announcements
-from widgets.constructors.bollinger_bands import render_bollinger_bands
-from widgets.constructors.dividends import render_dividends
-from widgets.constructors.moving_average import render_moving_average
+from apps.config_charts.active import render_activate_metric
+from apps.config_charts.announcements import render_announcements
+from apps.config_charts.bollinger_bands import render_bollinger_bands
+from apps.config_charts.dividends import render_dividends
+from apps.config_charts.moving_average import render_moving_average
 
 from widgets.chart_height import set_chart_height_primary
 

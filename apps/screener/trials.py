@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from widgets.constructors.ohlcv_trend import render_ohlcv_trend
+from apps.config_trials.ohlcv_trend import render_ohlcv_trend
 
 
 def render_available_trials(scope):

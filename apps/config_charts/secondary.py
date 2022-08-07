@@ -1,12 +1,12 @@
 import streamlit as st
 
 
-from widgets.constructors.active import render_activate_metric
-from widgets.constructors.macd import render_macd
-from widgets.constructors.macd_vol import render_macd_vol
-from widgets.constructors.rsi import render_rsi
-from widgets.constructors.stochastic import render_stochastic
-from widgets.constructors.volume_oscillator import render_volume_oscillator
+from apps.config_charts.active import render_activate_metric
+from apps.config_charts.macd import render_macd
+from apps.config_charts.macd_vol import render_macd_vol
+from apps.config_charts.rsi import render_rsi
+from apps.config_charts.stochastic import render_stochastic
+from apps.config_charts.volume_oscillator import render_volume_oscillator
 
 
 

@@ -8,12 +8,16 @@ def save_users_table(scope):
 	if user != 'Login to Use the Application':
 		print('Saving the Users Table')
 
-		user_trials = trials_config(scope)
-		user_charts = charts_config(scope)
-
+		
+		# Set User Variables to the values currently stored in the application
 		scope.users['json'][user]['chart_height'] = scope.charts['primary_height']
 		scope.users['json'][user]['download_days'] = scope.download['days']
 		scope.users['json'][user]['row_limit'] = scope.apps['row_limit']
+
+
+		# Set User Trial and Chart Variables to the values currently stored in the application
+		user_trials = trials_config(scope)
+		user_charts = charts_config(scope)
 
 		scope.users['json'][user]['trials'] = user_trials
 		scope.users['json'][user]['charts'] = user_charts
