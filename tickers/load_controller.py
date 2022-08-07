@@ -5,7 +5,8 @@ from files.path import path_for_ticker_file
 from tickers.load import load_ticker
 from tickers.cache import cache_ticker_file
 from partials.ticker_loader.messages import render_messages
-from apps.data.status import set_replace_df_status_for_ticker, set_replace_col_status_for_ticker
+from tickers.status.load_ticker import set_replace_df_status_for_ticker
+from tickers.status.load_ticker import set_replace_col_status_for_ticker
 
 
 def load_tickers(scope):

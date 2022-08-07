@@ -1,7 +1,6 @@
 import streamlit as st
 
-
-from apps.data.status import set_replace_col_status_for_col_adder
+from tickers.status.edit_config import set_replace_col_status_for_col_adder
 
 
 def edit_ohlcv(scope, config_name, col_adder ):

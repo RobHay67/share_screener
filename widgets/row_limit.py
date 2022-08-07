@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from apps.data.status import set_replace_df_status_for_all_tickers
+from tickers.status.edit_row_limit import set_replace_df_status_for_all_tickers
 
 
 

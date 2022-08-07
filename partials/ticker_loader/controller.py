@@ -3,8 +3,8 @@
 from partials.ticker_loader.schema import layout_schema
 from partials.ticker_selectors.selectors import render_ticker_selectors
 
-from apps.data.replace import replace_dfs
-from apps.data.replace import replace_cols
+from tickers.status.replace_dfs import replace_dfs
+from tickers.status.replace_cols import replace_cols
 
 from tickers.load_controller import load_tickers
 from partials.dataframes.tickers import view_ticker_files

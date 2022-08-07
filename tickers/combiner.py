@@ -4,7 +4,8 @@ from progress.store import cache_progress
 
 from tickers.schema import ticker_file_usecols
 
-from apps.data.status import set_replace_df_status_for_ticker, set_replace_col_status_for_ticker
+from tickers.status.load_ticker import set_replace_df_status_for_ticker
+from tickers.status.load_ticker import set_replace_col_status_for_ticker
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Combiner
