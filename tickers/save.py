@@ -1,5 +1,5 @@
 
-from progress.store import cache_progress
+from progress.cache import cache_progress
 from files.path import path_for_ticker_file
 
 def save_tickers(scope):

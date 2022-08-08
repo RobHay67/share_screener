@@ -16,7 +16,7 @@ def replace_app_df_and_columns(scope):
 	print('&'*99)
 
 	for ticker in app_ticker_list:
-
+		print(ticker)
 		# Double Check if share data available for this ticker
 		# (function will fail if ticker data is not available) 
 
@@ -42,9 +42,11 @@ def replace_app_df_and_columns(scope):
 			type_of_column_adder = scope.tickers[ticker]['apps'][app]['type_col_adder']
 
 			if type_of_column_adder != None:
+
 				for column_adder, status in scope.tickers[ticker]['apps'][app]['column_adders'].items():
+					print('col_adder = ', column_adder, status)
 					if status == True:
-						print('col_adder = ', column_adder, status)
+						
 
 						# shortcut to the column adding function
 						column_add_function = scope[type_of_column_adder][column_adder]['add_columns']['function']

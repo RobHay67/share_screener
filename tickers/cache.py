@@ -1,7 +1,6 @@
 
 
 def cache_ticker_file(scope,ticker, ticker_data_file):
-	print('cache_ticker_file')
 
 	# Sort ticker file into ascending order
 	ticker_data_file.sort_values(by=['date'], inplace=True, ascending=False)	

@@ -4,6 +4,8 @@ def scope_ticker_files(scope):
 
 	scope.tickers = {}
 
+	
+
 
 def scope_download_variables(scope):
 

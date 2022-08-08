@@ -1,8 +1,7 @@
 
 import streamlit as st
 
-from tickers.status.edit_row_limit import set_replace_df_status_for_all_tickers
-
+from tickers.status.edit_row_limit import set_data_status
 
 
 def edit_row_limit(scope):
@@ -28,6 +27,6 @@ def on_change_row_limit(scope:dict, widget_key:str):
 	# store the selection
 	scope.apps['row_limit'] = changed_value
 
-	# update the app data renew status
-	set_replace_df_status_for_all_tickers(scope, new_status=True)
+	# update the app data refresh status
+	set_data_status(scope)
 	

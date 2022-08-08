@@ -1,6 +1,6 @@
 import pandas as pd
 
-from progress.store import cache_progress
+from progress.cache import cache_progress
 
 from ticker_index.schema import default_values
 from ticker_index.schema import data_types

@@ -13,6 +13,18 @@ def scope_charts(scope):
 		scope.charts[chart] = config
 
 
+	scope.charts['column_adders'] = {}
+	chart_column_adders(scope)
+
+
+def chart_column_adders(scope):
+
+	for chart in scope.charts['chart_list']:
+		# Add charts that require additional columns
+		if scope.charts[chart]['add_columns'] != None:
+			scope.charts['column_adders'][chart] = scope.charts[chart]['active']
+
+
 
 # Charts and Overlays STATUS Working List
 # ---------------------------------------------------------------------------------

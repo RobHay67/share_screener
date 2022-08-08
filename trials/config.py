@@ -13,16 +13,16 @@ def scope_trials(scope):
 	for trial, config in trials_config.items():
 		scope.trials[trial] = config
 
-
-	# print(scope.trials)
-	# Store any trial results (from the screner app) in these objects
-	# Rob 4/8 I dont beleive these object are currently being used. I note
-	# that the current trial obbjects are passed and not stored in scope.
-	# scope.apps['trials'] = {}
-	# scope.apps['trials']['results'] = {}
-	# scope.apps['trials']['df'] = {}
+	scope.trials['column_adders'] = {}
+	trial_column_adders(scope)
 
 
+def trial_column_adders(scope):
+
+	for trial in scope.trials['trial_list']:
+		# Add charts that require additional columns
+		if scope.trials[trial]['add_columns'] != None:
+			scope.trials['column_adders'][trial] = scope.trials[trial]['active']
 
 
 

@@ -2,16 +2,23 @@
 
 
 
-# New Ticker Data has been downloaded and combined for XYZ Ticker
 
+def set_data_status(scope, ticker):
 
+	# This event is triggered when new ticker data has been successfully downloaded
+	# and combined with the existing loaded date
+	# App dataframes will require refreshing
+	# Column  adders will require refreshing as well
 
+	for app in scope.apps['app_list']:
 
-def set_app_data_status(scope, ticker, combine_new_data_status):
+		scope.tickers[ticker]['apps'][app]['replace_df'] = True
 
-	# so for download, we need to refresh everything
+		if app == 'single':
+			scope.tickers[ticker]['apps'][app]['column_adders'] = scope.charts['column_adders'].copy()
 
-	
+		if app == 'screener':
+			scope.tickers[ticker]['apps'][app]['column_adders'] = scope.trials['column_adders'].copy()
 
 
 

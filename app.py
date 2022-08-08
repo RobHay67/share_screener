@@ -38,6 +38,8 @@ print ( '\033[94m' + 'Application Re-Rendering Now ' + '>'*50 + '\033[0m')
 
 scope = set_scope(st.session_state)
 
+# print(scope.charts['column_adders'])
+# print(scope.trials['column_adders'])
 
 render_sidebar(scope)
 render_selected_app(scope)

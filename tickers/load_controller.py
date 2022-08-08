@@ -1,6 +1,6 @@
 import os
 
-from progress.store import cache_progress
+from progress.cache import cache_progress
 from files.path import path_for_ticker_file
 from tickers.load import load_ticker
 from tickers.cache import cache_ticker_file
