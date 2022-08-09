@@ -1,6 +1,6 @@
 import streamlit as st
 
-from tickers.status.edit_config import set_replace_col_status_for_col_adder
+from tickers.status.edit_column_adder import set_data_status
 
 
 def edit_trend_direction(scope, config_name, col_adder ):
@@ -29,5 +29,5 @@ def on_change_trend_selection(scope:dict, config_name:str, col_adder:str, widget
 	scope[config_name][col_adder]['add_columns']['trend'] = changed_value	
 
 	# update the app data renew status
-	set_replace_col_status_for_col_adder(scope, col_adder, new_status=True)
+	set_data_status(scope, col_adder)
 	

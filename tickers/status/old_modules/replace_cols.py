@@ -1,7 +1,7 @@
 
 
 
-# TODO delete this module as replaced by replace_app_df_and_columns
+# TODO delete this module as replaced by refresh_app_df_and_columns
 
 
 def replace_cols(scope):

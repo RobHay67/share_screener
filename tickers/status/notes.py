@@ -46,15 +46,11 @@ scope_data = {
 	'tickers':	{
 					'CBA':	{
 								'df':Data_frame,
-								# 'replace_app_dfs':True, 		# True or False - if True, we replace all of the columns anyway
-								# 'replace_columns':True,			# this could serve as a shortcut to save iterating through all the app config
-								# pages/apps
 								'apps': {
 											'single':	{
 															'df':Data_frame,
 															'replace_df': True or False,
 															'type_column_adder': None, 'charts' or 'trials'
-															# 'replace_app_dfs':True, 		# Not needed - do at header only
 															'column_adders': {
 																				'candlestick':replace_columns,
 																				'macd': replace_columns, 

@@ -5,7 +5,7 @@ from partials.ticker_selectors.selectors import render_ticker_selectors
 
 # from tickers.status.replace_dfs import replace_dfs
 # from tickers.status.replace_cols import replace_cols
-from tickers.status.replace_data import replace_app_df_and_columns
+from tickers.refresh_app_data import refresh_app_df_and_columns
 
 from tickers.load_controller import load_tickers
 from partials.dataframes.tickers import view_ticker_files
@@ -42,7 +42,8 @@ def render_ticker_loader(scope):
 			show_ticker_files = ticker_files_button(scope)
 
 		# TODO - this might be the new name for combined app and columns
-		replace_app_df_and_columns(scope)
+
+		refresh_app_df_and_columns(scope)
 
 		# replace_dfs(scope)
 		# replace_cols(scope)

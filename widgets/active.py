@@ -1,8 +1,7 @@
 
 import streamlit as st
 
-from tickers.status.edit_config import set_replace_col_status_for_col_adder
-
+from tickers.status.edit_active import set_data_status
 
 
 
@@ -30,8 +29,4 @@ def on_change_active_status(scope:dict, config_name:str, col_adder:str, widget_k
 	scope[config_name][col_adder]['active'] = changed_value
 
 	# update the app data renew status
-	set_replace_col_status_for_col_adder(scope, col_adder, new_status=True)
-
-	# Because this widget can turn on or off charts and trials, we need to
-	# also update the templates with the latest status
-	scope.apps['templates'][config_name][col_adder] = changed_value
+	set_data_status(scope, config_name, col_adder, changed_value)

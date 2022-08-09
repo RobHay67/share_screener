@@ -57,40 +57,6 @@ print('See notes in tickers.status.notes.py')
 
 
 
-
-
-
-# from audit import audit_replace_df_status
-# audit_replace_df_status(scope)
-
-# if 'initial_load' in scope:
-# 	print(scope.charts.keys())
-# 	print('-'*50)
-# 	print('scope.apps Templates - Charts')
-# 	print(scope.apps['templates']['charts'])
-# 	print('-'*50)
-
-# print('widget_single_search = ', scope.widget_single_search)
-
-
-
-
-
-
-
-
-
-
-
-# ichi_moku_daily
-# {'active': False, 'name': 'Icki Moku Daily', 'is_overlay': True, 'add_overlays': False, 'plot': {'function': <function sma_plot at 0x7fdb896dc280>, 'colour': 'black'}, 'add_columns': None}
-
-
-
-
-
-
-
 def terminal_heading(heading):
 	print('')
 	print('='*70)
@@ -132,6 +98,7 @@ if level_1 in st.session_state:
 	for ticker in temp_scope:
 		print('='*99)
 		print('\033[93m', ticker, '\033[0m')
+		print('Loaded df = ', len(temp_scope[ticker]['df']))
 		print('-'*99)
 		for app in temp_scope[ticker]['apps']:
 			print ('\033[96m', app.upper(), '\033[0m')

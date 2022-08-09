@@ -3,6 +3,7 @@ import pandas as pd
 from progress.cache import cache_progress
 from tickers.schema import ticker_file_usecols
 from tickers.status.combine import set_data_status
+from tickers.cache import cache_ticker_file
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Combiner
@@ -43,14 +44,15 @@ def combine_loaded_and_download_ticker_data(scope):
 				if ticker in scope.tickers.keys():	
 					# we have an exisiting share_data_file so we concatenate the data
 					scope.tickers[ticker]['df'] = pd.concat([scope.tickers[ticker]['df'], ticker_data]).drop_duplicates(subset=['date'], keep='last')
+					# sort the share data into date order ascending
+					scope.tickers[ticker]['df'].sort_values(by=['date'], inplace=True, ascending=False)		
 					cache_progress( scope, ticker, result='passed' )
 				else:
 					# its brand new - so we can just add it to the dictionary
-					scope.tickers[ticker]['df'] = ticker_data											
+					cache_ticker_file(scope, ticker, ticker_data)
 					cache_progress( scope, ticker, result='passed_2' )
 				
-				# sort the share data into date order ascending
-				scope.tickers[ticker]['df'].sort_values(by=['date'], inplace=True, ascending=False)		
+				
 				set_data_status(scope, ticker)
 		
 		

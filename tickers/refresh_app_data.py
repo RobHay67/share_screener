@@ -4,25 +4,24 @@
 
 
 
-def replace_app_df_and_columns(scope):
+def refresh_app_df_and_columns(scope):
 
 	app 				= scope.apps['display_app']
 	app_row_limit 		= int(scope.apps['row_limit'])
 	app_ticker_list 	= scope.apps[app]['ticker_list']
-	loaded_tickers		= list(scope.tickers.keys())
+	# loaded_tickers		= list(scope.tickers.keys())
 
-	print(loaded_tickers)
 
-	print('&'*99)
+	# Iterate through each ticker for the page
 
 	for ticker in app_ticker_list:
-		print(ticker)
+		
 		# Double Check if share data available for this ticker
 		# (function will fail if ticker data is not available) 
-
-		if ticker in loaded_tickers: 
-
-			# Check if the app df require replacing
+		if ticker in list(scope.tickers.keys()): 
+			
+			# -------------------------------------------------------------------
+			# Replace the App df if requested
 			if scope.tickers[ticker]['apps'][app]['replace_df'] == True:
 			
 				ticker_df = scope.tickers[ticker]['df'].copy()
@@ -41,18 +40,16 @@ def replace_app_df_and_columns(scope):
 
 			type_of_column_adder = scope.tickers[ticker]['apps'][app]['type_col_adder']
 
+			# Some apps do not have any column adder
 			if type_of_column_adder != None:
 
 				for column_adder, status in scope.tickers[ticker]['apps'][app]['column_adders'].items():
-					print('col_adder = ', column_adder, status)
+					
+					# Only replace the columns if requested to do so for this column adder
 					if status == True:
-						
-
-						# shortcut to the column adding function
-						column_add_function = scope[type_of_column_adder][column_adder]['add_columns']['function']
-						
+										
 						# Call the column adding function for this col_adder
-						column_add_function(scope, column_adder, ticker, ticker_df)
+						scope[type_of_column_adder][column_adder]['add_columns']['function'](scope, column_adder, ticker, ticker_df)
 
 						# Set the status to false to prevent refreshing unnecesarily
 						scope.tickers[ticker]['apps'][app]['column_adders'][column_adder] = False
@@ -67,3 +64,4 @@ def replace_app_df_and_columns(scope):
 
 
 
+# scope.tickers[CBA.AX][apps][screener][replace_df]
