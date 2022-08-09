@@ -144,22 +144,28 @@ if 'initial_load' in st.session_state:
 	
 	
 
-# level_1 = 'strategy'
-# if level_1 in st.session_state:
-# 	terminal_heading(level_1)
-# 	for key in st.session_state[level_1]:print(key)
-# 	level_2_details(level_1, 'header')
-# 	level_2_details(level_1, 'print')
-
-# print ( '='*70)
-# print('screener/trial_results')
-# print(st.session_state['pages']['screener']['trial_results'])
+level_1 = 'apps'
+if level_1 in st.session_state:
+	terminal_heading(level_1)
+	for key in st.session_state[level_1]:print(key)
 
 
-# print('data/download/yf_anomolies')
-# print(st.session_state['data']['download']['yf_anomolies'])
-# print ( '='*70)
 
+
+level_1 = 'trials'
+if level_1 in st.session_state:
+	terminal_heading(level_1)
+	for key in st.session_state[level_1]:print(key)
+	level_2_details(level_1, 'column_adders')
+	level_2_details(level_1, 'trend_open')
+
+
+level_1 = 'charts'
+if level_1 in st.session_state:
+	terminal_heading(level_1)
+	for key in st.session_state[level_1]:print(key)
+	level_2_details(level_1, 'column_adders')
+	level_2_details(level_1, 'trend_open')
 
 
 
@@ -171,9 +177,9 @@ if 'initial_load' in st.session_state:
 # print('-'*75)
 # print('Configurable chart variables')
 # for chart in scope.charts['chart_list']:
-# 	active_status = scope.charts[chart]['active']
+# 	active_status = scope.charts['config'][chart]['active']
 # 	print(chart.upper(), '   -   active = ', active_status)
-# 	add_columns = scope.charts[chart]['add_columns']
+# 	add_columns = scope.charts['config'][chart]['add_columns']
 # 	if add_columns != None:
 # 		# print(add_columns)
 # 		for attribute in add_columns.keys():
@@ -183,9 +189,9 @@ if 'initial_load' in st.session_state:
 # print('-'*75)
 # print('Configurable trial variables')
 # for trial in scope.trials['test_list']:
-# 	active_status = scope.trials[trial]['active']
+# 	active_status = scope.trials['config'][trial]['active']
 # 	print(trial.upper(), '   -   active = ', active_status)
-# 	add_columns = scope.trials[trial]['add_columns']
+# 	add_columns = scope.trials['config'][trial]['add_columns']
 # 	if add_columns != None:
 # 		# print(add_columns)
 # 		for attribute in add_columns.keys():

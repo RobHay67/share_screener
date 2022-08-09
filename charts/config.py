@@ -8,12 +8,14 @@ def scope_charts(scope):
 	scope.charts['total_height'] = scope.charts['primary_height']
 	scope.charts['colours'] = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
 	scope.charts['chart_list']	= list(charts_config.keys())
+	scope.charts['config'] = {}
+	scope.charts['column_adders'] = {}
 
 	for chart, config in charts_config.items():
-		scope.charts[chart] = config
+		scope.charts['config'][chart] = config
 
 
-	scope.charts['column_adders'] = {}
+	
 	chart_column_adders(scope)
 
 
@@ -21,8 +23,8 @@ def chart_column_adders(scope):
 
 	for chart in scope.charts['chart_list']:
 		# Only add charts that require additional columns
-		if scope.charts[chart]['add_columns'] != None:
-			scope.charts['column_adders'][chart] = scope.charts[chart]['active']
+		if scope.charts['config'][chart]['add_columns'] != None:
+			scope.charts['column_adders'][chart] = scope.charts['config'][chart]['active']
 
 
 

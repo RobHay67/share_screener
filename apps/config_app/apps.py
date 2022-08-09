@@ -11,10 +11,6 @@ def view_apps(scope):
 	st.subheader('Streamlit Re-usable Variables')
 	three_cols( 'Streamlit Latest Button Pressed', scope.apps['button_for_scope'], 'scope.apps.button_for_scope' )
 
-	st.subheader('Templates')
-	three_cols( 'Chart Template', scope.apps['templates']['charts'], 'scope.apps.templates.charts' )
-	three_cols( 'Trial Template', scope.apps['templates']['trials'], 'scope.apps.templates.trials' )
-	
 	st.subheader('Available Pages')
 	three_cols( 'App List', scope.apps['app_list'], 'scope.apps.app_list' )
 

@@ -98,8 +98,6 @@ scope_data = {
 	}
 
 
-# print(scope.apps['templates']['charts'])
-
 
 # so when we load a file - we just add the appropriate app config from the defaults. The true will signifiy that the 
 # columns need replacing. After replacing, set the status to false to prevent further updates

@@ -4,10 +4,10 @@ import numpy as np
 
 def trend_cols(scope, trial, ticker, df):
 
-	column 		= scope.trials[trial]['add_columns']['column']
-	trend 		= scope.trials[trial]['add_columns']['trend']
-	duration	= int(scope.trials[trial]['add_columns']['duration'])
-	timespan 	= int(scope.trials[trial]['add_columns']['timespan'])
+	column 		= scope.trials['config'][trial]['add_columns']['column']
+	trend 		= scope.trials['config'][trial]['add_columns']['trend']
+	duration	= int(scope.trials['config'][trial]['add_columns']['duration'])
+	timespan 	= int(scope.trials['config'][trial]['add_columns']['timespan'])
 
 	# Change df to be ascending to simplify the shifting
 	df.sort_values(by=['date'], inplace=True, ascending=True)

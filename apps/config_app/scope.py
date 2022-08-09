@@ -33,7 +33,7 @@ def view_trials_config(scope):
 	for trial in  scope.trials['trial_list']:
 		st.subheader(trial)
 		st.write('scope.trials['+trial+']')
-		st.write(scope.trials[trial])
+		st.write(scope.trials['config'][trial])
 
 
 def view_charts_config(scope):
@@ -49,4 +49,4 @@ def view_charts_config(scope):
 	for chart in  scope.charts['chart_list']:
 		st.subheader(chart)
 		st.write('scope.config.charts['+chart+']')
-		st.write(scope.charts[chart])
+		st.write(scope.charts['config'][chart])
