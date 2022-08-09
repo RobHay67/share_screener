@@ -37,11 +37,11 @@ def cache_ticker_file(scope, ticker, ticker_data_file):
 
 		if app == 'single':
 			scope.tickers[ticker]['apps'][app]['type_col_adder'] = 'charts'
-			scope.tickers[ticker]['apps'][app]['column_adders'] = scope.charts['column_adders'].copy()
+			scope.tickers[ticker]['apps'][app]['column_adders'] = scope.chart_config['column_adders'].copy()
 
 		if app == 'screener':
 			scope.tickers[ticker]['apps'][app]['type_col_adder'] = 'trials'
-			scope.tickers[ticker]['apps'][app]['column_adders'] = scope.trials['column_adders'].copy()
+			scope.tickers[ticker]['apps'][app]['column_adders'] = scope.trial_config['column_adders'].copy()
 
 
 

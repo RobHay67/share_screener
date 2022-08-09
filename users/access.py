@@ -12,7 +12,7 @@ def set_user_access(scope:dict, login_name:str):
 	user_charts = scope.users['json'][login_name]['charts']
 
 	# Over-write key user settings
-	scope.charts['primary_height'] = scope.users['json'][login_name]['chart_height']
+	scope.chart_config['primary_height'] = scope.users['json'][login_name]['chart_height']
 	scope.download['days'] = scope.users['json'][login_name]['download_days']
 	scope.apps['row_limit'] = scope.users['json'][login_name]['row_limit']
 
@@ -23,10 +23,10 @@ def set_user_access(scope:dict, login_name:str):
 		add_columns = user_trials[trial]['add_columns']
 
 		# Update the user config into the scope.config
-		scope.trials['config'][trial]['active'] = active_status
+		scope.trials[trial]['active'] = active_status
 		if add_columns != None:
 			for attribute in add_columns.keys():
-				scope.trials['config'][trial]['add_columns'][attribute] = add_columns[attribute]
+				scope.trials[trial]['add_columns'][attribute] = add_columns[attribute]
 	
 	# refresh the list of active column adders for trials
 	trial_column_adders(scope)
@@ -38,10 +38,10 @@ def set_user_access(scope:dict, login_name:str):
 		add_columns = user_charts[chart]['add_columns']
 		
 		# Update the user config into the scope.config
-		scope.charts['config'][chart]['active'] = active_status
+		scope.charts[chart]['active'] = active_status
 		if add_columns != None:
 			for attribute in add_columns.keys():
-				scope.charts['config'][chart]['add_columns'][attribute] = add_columns[attribute]
+				scope.charts[chart]['add_columns'][attribute] = add_columns[attribute]
 
 		
 	# refresh the list of active column adders for charts

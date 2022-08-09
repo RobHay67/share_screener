@@ -15,10 +15,10 @@ def set_data_status(scope, ticker):
 		scope.tickers[ticker]['apps'][app]['replace_df'] = True
 
 		if app == 'single':
-			scope.tickers[ticker]['apps'][app]['column_adders'] = scope.charts['column_adders'].copy()
+			scope.tickers[ticker]['apps'][app]['column_adders'] = scope.chart_config['column_adders'].copy()
 
 		if app == 'screener':
-			scope.tickers[ticker]['apps'][app]['column_adders'] = scope.trials['column_adders'].copy()
+			scope.tickers[ticker]['apps'][app]['column_adders'] = scope.trial_config['column_adders'].copy()
 
 
 

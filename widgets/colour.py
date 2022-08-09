@@ -7,13 +7,13 @@ def edit_colour(scope, config_name, col_adder ):
 	widget_key = 'widget_colour_' + config_name + '_' + col_adder
 	display_name =  ('Colour for ' + scope[config_name][col_adder]['name'])
 	previous_selection = scope[config_name][col_adder]['plot']['colour']
-	pos_for_previous = scope.charts['colours'].index(previous_selection)	
+	pos_for_previous = scope.chart_config['colours'].index(previous_selection)	
 	
 
 
 	st.selectbox ( 
 					label		=display_name, 
-					options		=scope.charts['colours'],
+					options		=scope.chart_config['colours'],
 					index		=pos_for_previous, 
 					on_change	=on_change_colour_selection,
 					args		=(scope, config_name, col_adder, widget_key, ),
