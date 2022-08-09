@@ -5,7 +5,7 @@ def view_trials_dfs(scope):
 
 	app = scope.apps['display_app']
 	render_expanded = False
-
+	print(app)
 	if app == 'scope':
 		app='screener'
 		st.subheader('Screener app Dataframes')

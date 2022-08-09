@@ -5,7 +5,6 @@ from files.path import path_for_ticker_file
 from tickers.load import load_ticker
 from tickers.cache import cache_ticker_file
 from partials.ticker_loader.messages import render_messages
-from tickers.status.config import set_app_config_for_ticker
 
 
 def load_tickers(scope):
@@ -29,7 +28,6 @@ def load_tickers(scope):
 				print ( '\033[92m' + ticker.ljust(10) + '> loading local ticker file \033[0m')
 				ticker_data_file = load_ticker(scope, ticker )
 				cache_ticker_file(scope, ticker, ticker_data_file)
-				# set_app_config_for_ticker(scope, ticker)
 				cache_progress( scope, ticker, result='passed' )
 			else:
 				# The expected Local file is not available - so report this																

@@ -9,8 +9,6 @@ def refresh_app_df_and_columns(scope):
 	app 				= scope.apps['display_app']
 	app_row_limit 		= int(scope.apps['row_limit'])
 	app_ticker_list 	= scope.apps[app]['ticker_list']
-	# loaded_tickers		= list(scope.tickers.keys())
-
 
 	# Iterate through each ticker for the page
 
@@ -57,11 +55,3 @@ def refresh_app_df_and_columns(scope):
 		else:
 			print ( '\033[91m' + ticker.ljust(10) + '> ticker file missing from scope[ticker_files] \033[0m')
 
-
-
-
-	print('&'*99)
-
-
-
-# scope.tickers[CBA.AX][apps][screener][replace_df]

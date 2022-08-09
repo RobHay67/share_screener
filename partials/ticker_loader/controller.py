@@ -3,8 +3,6 @@
 from partials.ticker_loader.schema import layout_schema
 from partials.ticker_selectors.selectors import render_ticker_selectors
 
-# from tickers.status.replace_dfs import replace_dfs
-# from tickers.status.replace_cols import replace_cols
 from tickers.refresh_app_data import refresh_app_df_and_columns
 
 from tickers.load_controller import load_tickers
@@ -38,15 +36,10 @@ def render_ticker_loader(scope):
 		# AUTO load whatever ticker data we have	
 		load_tickers(scope)
 		
-		with scope.col5: 
-			show_ticker_files = ticker_files_button(scope)
-
-		# TODO - this might be the new name for combined app and columns
-
 		refresh_app_df_and_columns(scope)
 
-		# replace_dfs(scope)
-		# replace_cols(scope)
+		with scope.col5: 
+			show_ticker_files = ticker_files_button(scope)
 
 		if app == 'screener':
 			show_chart_dfs = False

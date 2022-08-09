@@ -44,3 +44,37 @@ def cache_ticker_file(scope, ticker, ticker_data_file):
 			scope.tickers[ticker]['apps'][app]['column_adders'] = scope.trials['column_adders'].copy()
 
 
+
+# Sample scope.
+# TICKER 		= 'CBA.AX'
+# dataframe 	= 'DataFrame'
+# app1 		= 'volume'
+# app2 		= 'screener'
+
+
+# sample_scope = 'tickers':{
+# 					TICKER:{
+# 							'df': dataframe,
+# 							'apps': {
+# 									app1:{
+# 											'df'				:dataframe,
+# 											'replace_df'		:True,			# True or False,
+# 											'type_column_adder'	:None, 			# None, 'charts' or 'trials'
+# 											'column_adders'		:{},
+# 										},
+# 									app2:{
+# 											'df'				:dataframe,
+# 											'replace_df'		:True,			# True or False,
+# 											'type_column_adder'	:None, 			# None, 'charts' or 'trials'
+# 											'column_adders': {
+# 																'trend_open': False, 
+# 																'trend_high': True, 
+# 																'trend_low': False, 
+# 																'trend_close': True, 
+# 																'trend_volume': False,
+# 															},
+# 										},
+# 									},
+# 							},
+# 						}
+

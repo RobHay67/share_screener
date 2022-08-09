@@ -85,35 +85,43 @@ def level_3_details(level_1, level_2, level_3):
 				# print(type(st.session_state[level_1][level_2][level_3]))
 
 
+if 'initial_load' in st.session_state:
+	print('')
+	terminal_heading('All keys in st.session_state')
+	for key in sorted(st.session_state):print(key)
+	# for key in st.session_state:print(key)
+
+
+
 # ==============================================================================================
 # Structure for the tickers scope object
 # ==============================================================================================
 
-level_1 = 'tickers'
-if level_1 in st.session_state:
-	terminal_heading(level_1)
+# level_1 = 'tickers'
+# if level_1 in st.session_state:
+# 	terminal_heading(level_1)
 
-	temp_scope = st.session_state[level_1]
+# 	temp_scope = st.session_state[level_1]
 
-	for ticker in temp_scope:
-		print('='*99)
-		print('\033[93m', ticker, '\033[0m')
-		print('Loaded df = ', len(temp_scope[ticker]['df']))
-		print('-'*99)
-		for app in temp_scope[ticker]['apps']:
-			print ('\033[96m', app.upper(), '\033[0m')
-			print('-'*99)
-			print('Dataframe size'.ljust(20), ' = ', len(temp_scope[ticker]['apps'][app]['df']))
-			print('-'*99)
-			print('Replace App DF'.ljust(20), ' = ', temp_scope[ticker]['apps'][app]['replace_df'])
-			print('-'*99)
-			type_col_adder = temp_scope[ticker]['apps'][app]['type_col_adder']
-			print('Type of Column Adder'.ljust(20), ' = ', type_col_adder)
-			if type_col_adder != None:
-				print('-'*99)
-				for col_adder, status in temp_scope[ticker]['apps'][app]['column_adders'].items():
-					print(str(col_adder).ljust(20),  ' : ', status)
-			print('-'*99)
+# 	for ticker in temp_scope:
+# 		print('='*99)
+# 		print('\033[93m', ticker, '\033[0m')
+# 		print('Loaded df = ', len(temp_scope[ticker]['df']))
+# 		print('-'*99)
+# 		for app in temp_scope[ticker]['apps']:
+# 			print ('\033[96m', app.upper(), '\033[0m')
+# 			print('-'*99)
+# 			print('Dataframe size'.ljust(20), ' = ', len(temp_scope[ticker]['apps'][app]['df']))
+# 			print('-'*99)
+# 			print('Replace App DF'.ljust(20), ' = ', temp_scope[ticker]['apps'][app]['replace_df'])
+# 			print('-'*99)
+# 			type_col_adder = temp_scope[ticker]['apps'][app]['type_col_adder']
+# 			print('Type of Column Adder'.ljust(20), ' = ', type_col_adder)
+# 			if type_col_adder != None:
+# 				print('-'*99)
+# 				for col_adder, status in temp_scope[ticker]['apps'][app]['column_adders'].items():
+# 					print(str(col_adder).ljust(20),  ' : ', status)
+# 			print('-'*99)
 
 
 # level_1 = 'pages'
@@ -185,9 +193,6 @@ if level_1 in st.session_state:
 # 				print(attribute)
 
 
-
-
-	# print(scope.charts[chart]['active'])
 
 
 

@@ -33,21 +33,19 @@ def set_scope(scope):
 		
 		scope_dropdown_menus(scope)			# The data for the various selectors
 		
-		scope_folders_and_paths(scope)					# Required before we can attempt to load the data
+		scope_folders_and_paths(scope)		# Required before we can attempt to load the data
 		
 		scope_progress(scope)				# Used to report on Function Progress
 
 		scope_apps(scope)					# This contains all the app Specific settings
 
-		scope_trials(scope)
+		scope_trials(scope)					# add the trials configuration
 		
-		scope_charts(scope)
+		scope_charts(scope)					# add the chart configuration
 
 		scope.users = {}
 		load_user_table(scope)				# Load the users table
 		scope_user(scope)					# Set Default Values ready for a user to login
-		
-		scope.data = {}
 
 		scope_index_file(scope)				# load the share index
 		
