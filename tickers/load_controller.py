@@ -10,7 +10,7 @@ from partials.ticker_loader.messages import render_messages
 def load_tickers(scope):
 	
 	app = scope.apps['display_app']
-	ticker_list = scope.apps[app]['ticker_list']
+	ticker_list = scope.apps[app]['selected_tickers']
 
 	cache_progress(	scope, 
 					passed='Loaded Local files > ', 

@@ -148,39 +148,42 @@ level_1 = 'apps'
 if level_1 in st.session_state:
 	terminal_heading(level_1)
 	for key in st.session_state[level_1]:print(key)
+	level_2_details(level_1, 'single')
 
 
+print('mined_ticker for screener = ', scope.apps['screener']['mined_tickers'])
+print('mined_ticker for single   = ', scope.apps['single']['mined_tickers'])
 
 
-level_1 = 'trials'
-if level_1 in st.session_state:
-	terminal_heading(level_1)
-	for key in st.session_state[level_1]:print(key)
-	level_2_details(level_1, 'column_adders')
-	level_2_details(level_1, 'trend_open')
+# level_1 = 'trials'
+# if level_1 in st.session_state:
+# 	terminal_heading(level_1)
+# 	for key in st.session_state[level_1]:print(key)
+# 	level_2_details(level_1, 'column_adders')
+# 	level_2_details(level_1, 'trend_open')
 
 
-level_1 = 'charts'
-if level_1 in st.session_state:
-	terminal_heading(level_1)
-	for key in st.session_state[level_1]:print(key)
-	level_2_details(level_1, 'column_adders')
-	level_2_details(level_1, 'trend_open')
+# level_1 = 'charts'
+# if level_1 in st.session_state:
+# 	terminal_heading(level_1)
+# 	for key in st.session_state[level_1]:print(key)
+# 	level_2_details(level_1, 'column_adders')
+# 	level_2_details(level_1, 'trend_open')
 
-level_1 = 'chart_config'
-if level_1 in st.session_state:
-	terminal_heading(level_1)
-	for key in st.session_state[level_1]:print(key)
-	level_2_details(level_1, 'column_adders')
-	level_2_details(level_1, 'trend_open')
+# level_1 = 'chart_config'
+# if level_1 in st.session_state:
+# 	terminal_heading(level_1)
+# 	for key in st.session_state[level_1]:print(key)
+# 	level_2_details(level_1, 'column_adders')
+# 	level_2_details(level_1, 'trend_open')
 
 
-level_1 = 'trial_config'
-if level_1 in st.session_state:
-	terminal_heading(level_1)
-	for key in st.session_state[level_1]:print(key)
-	level_2_details(level_1, 'column_adders')
-	level_2_details(level_1, 'trend_open')
+# level_1 = 'trial_config'
+# if level_1 in st.session_state:
+# 	terminal_heading(level_1)
+# 	for key in st.session_state[level_1]:print(key)
+# 	level_2_details(level_1, 'column_adders')
+# 	level_2_details(level_1, 'trend_open')
 
 
 

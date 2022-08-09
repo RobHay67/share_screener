@@ -6,7 +6,7 @@ import streamlit as st
 def chart_dfs_button(scope):
 	
 	app 					= scope.apps['display_app']
-	ticker_list 			= scope.apps[app]['ticker_list']
+	ticker_list 			= scope.apps[app]['selected_tickers']
 	chart_df_ticker_count	= len(scope.apps[app]['dfs'])
 	total_chart_df_rows	  	= 0
 

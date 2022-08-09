@@ -30,3 +30,5 @@ def on_change_active_status(scope:dict, config_name:str, col_adder:str, widget_k
 
 	# update the app data renew status
 	set_data_status(scope, config_name, col_adder, changed_value)
+
+

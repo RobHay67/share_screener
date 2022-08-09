@@ -7,7 +7,6 @@ from apps.research.metadata import fetch_yfinance_metadata
 def dividend_cols( scope, chart, ticker, chart_df):
 
 	app 	= scope.apps['display_app']
-	# ticker 	= scope.apps[app]['ticker_list'][0]
 
 	# Fetch the Dividend Information for this ticker
 	metadata = fetch_yfinance_metadata(ticker)

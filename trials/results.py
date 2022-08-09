@@ -9,12 +9,13 @@ from trials.active_trials import scope_active_trial_list
 def trial_results(scope):
 
 	app = scope.apps['display_app']
+	# TODO - this should be stored in scope???
 	active_trial_list = scope_active_trial_list(scope)
 	column_list = ['ticker'] + active_trial_list + ['overall_result']
 
 	trial_results_df = pd.DataFrame(columns=column_list)
 
-	for ticker in scope.apps[app]['ticker_list']:
+	for ticker in scope.apps[app]['selected_tickers']:
 
 		trial_results_for_ticker = []
 		trial_results_for_ticker.append(ticker)
@@ -24,7 +25,8 @@ def trial_results(scope):
 		overall_result = 'pass'
 
 		# Check that we have some data for this ticker
-		if ticker in scope.apps[app]['dfs'].keys():
+		# if ticker in scope.apps[app]['dfs'].keys():
+		if ticker in scope.apps[app]['mined_tickers']:
 			
 			ticker_df = scope.tickers[ticker]['apps'][app]['df']
 

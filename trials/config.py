@@ -1,8 +1,4 @@
 
-# from trials.config import trend_direction, trials_config
-
-
-
 def scope_trials(scope):
 
 	scope.trial_config = {}
@@ -10,6 +6,7 @@ def scope_trials(scope):
 	scope.trial_config['trends']	= trend_directions
 	scope.trial_config['trial_list']	= list(trials_config.keys())
 	scope.trial_config['column_adders'] = {}
+	scope.trial_config['active_list'] = []
 
 	scope.trials = {}
 	for trial, config in trials_config.items():
@@ -17,14 +14,27 @@ def scope_trials(scope):
 	
 	trial_column_adders(scope)
 
+	active_trials_list(scope)
+
 
 def trial_column_adders(scope):
-	# Seperate function so it can be called after the initial load
+	# Seperate function so it can be called after the initial load - i.e. change user
 
 	for trial in scope.trial_config['trial_list']:
 		# Add charts that require additional columns
 		if scope.trials[trial]['add_columns'] != None:
 			scope.trial_config['column_adders'][trial] = scope.trials[trial]['active']
+
+
+def active_trials_list(scope):
+	# Seperate function so it can be called after the initial load - i.e. change user
+
+	for trial in scope.trial_config['trial_list']:	
+		if scope.trials[trial]['active'] == True:
+			scope.trial_config['active_list'].append(trial)
+
+
+
 
 
 

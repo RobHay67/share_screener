@@ -4,7 +4,7 @@ import streamlit as st
 def ticker_files_button(scope):
 
 	app = scope.apps['display_app']
-	ticker_list = scope.apps[app]['ticker_list']
+	ticker_list = scope.apps[app]['selected_tickers']
 
 	no_of_loaded_files 	= len(list(scope.tickers.keys()))
 	total_loaded_rows	= 0	

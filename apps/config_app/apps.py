@@ -42,7 +42,7 @@ def view_page_specific_variables(scope, app):
 	three_cols( 'Selected - Tickers' , scope.apps[app]['selectors']['tickers']   , 'scope.apps.'+ app +'.selectors.tickers'   , widget_type='string' )
 	three_cols( 'Selected - Ticker'  , scope.apps[app]['selectors']['ticker']    , 'scope.apps.'+ app +'.selectors.ticker'    , widget_type='string' )
 	
-	three_cols( 'Ticker List'  , scope.apps[app]['ticker_list'], 'scope.apps.'+ app +'.ticker_list'    , widget_type='string' )
+	three_cols( 'Ticker List'  , scope.apps[app]['selected_tickers'], 'scope.apps.'+ app +'.ticker_list'    , widget_type='string' )
 
 	three_cols( 'Status > Replace DataFrames'  , scope.apps[app]['replace_dfs'], 'scope.apps.'+ app +'.replace_dfs'    , widget_type='string' )
 	three_cols( 'Status > Replace Columns'  , scope.apps[app]['replace_cols'], 'scope.apps.'+ app +'.replace_cols'    , widget_type='string' )

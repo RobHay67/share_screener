@@ -9,14 +9,15 @@ def scope_charts(scope):
 	scope.chart_config['colours'] = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
 	scope.chart_config['chart_list']	= list(charts_config.keys())
 	scope.chart_config['column_adders'] = {}
+	scope.chart_config['active_list'] = []
 
 	scope.charts = {}
 	for chart, config in charts_config.items():
 		scope.charts[chart] = config
 
-
-	
 	chart_column_adders(scope)
+	
+	active_charts_list(scope)
 
 
 def chart_column_adders(scope):
@@ -26,7 +27,12 @@ def chart_column_adders(scope):
 		if scope.charts[chart]['add_columns'] != None:
 			scope.chart_config['column_adders'][chart] = scope.charts[chart]['active']
 
+def active_charts_list(scope):
+	# Seperate function so it can be called after the initial load - i.e. change user
 
+	for chart in scope.chart_config['chart_list']:	
+		if scope.charts[chart]['active'] == True:
+			scope.chart_config['active_list'].append(chart)
 
 # Charts and Overlays STATUS Working List
 # ---------------------------------------------------------------------------------

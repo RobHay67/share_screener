@@ -21,7 +21,7 @@ def combine_loaded_and_download_ticker_data(scope):
 
 	app = scope.apps['display_app']
 
-	ticker_list = scope.apps[app]['ticker_list']
+	ticker_list = scope.apps[app]['selected_tickers']
 
 	# iterate through the target tickers for the App
 	for ticker in ticker_list:

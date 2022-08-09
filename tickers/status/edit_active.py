@@ -1,6 +1,8 @@
 
 def set_data_status(scope, type_col_adder, column_adder, status):
 
+	print(type_col_adder, column_adder, status)
+
 	
 	# This event is triggered when a column adder is set
 	# to either Active (True) or Inactive (False)
@@ -16,7 +18,21 @@ def set_data_status(scope, type_col_adder, column_adder, status):
 				scope.tickers[ticker]['apps'][app]['column_adders'][column_adder] = status
 
 				
-	# Take this opportunity to update the default column adder lists (used when adding new Tickers)
-	if column_adder in scope[type_col_adder].keys():
-		scope[type_col_adder]['column_adders'][column_adder] = status
+	# Take this opportunity to update the shortcut lists
+	#  - column_adders - list of trials that add columns to a dataframe
+	#  - active_trials - list of trials that are currently active
 
+	if type_col_adder == 'trials':
+		type_config = 'trial_config'
+		active_list = 'active_trials'
+
+	if type_col_adder == 'charts':
+		type_config = 'chart_config'
+	
+	if column_adder in scope[type_col_adder].keys():
+		# restict to functions that add columns
+		if scope[type_col_adder][column_adder]['add_columns'] != None:
+			scope[type_config]['column_adders'][column_adder] = status
+
+	if status == True:
+		scope[type_config]['column_adders']

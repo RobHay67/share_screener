@@ -4,7 +4,7 @@ import pandas as pd
 def screener_dfs_button(scope):
 
 	app 						= scope.apps['display_app']
-	ticker_list 				= scope.apps[app]['ticker_list']
+	ticker_list 				= scope.apps[app]['selected_tickers']
 	screener_df_ticker_count 	= count_loaded_screener_dfs(scope)
 	total_screener_df_rows	 	= 0
 

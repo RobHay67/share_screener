@@ -8,7 +8,7 @@ def refresh_app_df_and_columns(scope):
 
 	app 				= scope.apps['display_app']
 	app_row_limit 		= int(scope.apps['row_limit'])
-	app_ticker_list 	= scope.apps[app]['ticker_list']
+	app_ticker_list 	= scope.apps[app]['selected_tickers']
 
 	# Iterate through each ticker for the page
 
@@ -27,8 +27,12 @@ def refresh_app_df_and_columns(scope):
 				# limit no of rows for the APP df (speeds up app rendering)
 				ticker_df = ticker_df.head(app_row_limit) 									
 				
-				# Store the ticker dataframe for use by the app
+				# Cache the ticker dataframe to be mined by this app
 				scope.tickers[ticker]['apps'][app]['df'] = ticker_df
+
+				# add ticker to the mined_ticker list
+				if ticker not in scope.apps[app]['mined_tickers']:
+					scope.apps[app]['mined_tickers'].append(ticker)
 				
 				# reset replace_app_dfs status to prevent unnecesary updates		
 				scope.tickers[ticker]['apps'][app]['replace_df'] = False
