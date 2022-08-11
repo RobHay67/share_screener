@@ -28,5 +28,5 @@ def render_ohlcv_trend(scope, column_adder, column_name):
 	# with col5: render_ohlcv_trend(scope, 'trend_volume', 'volume')
 
 
-
+	print('test')
 	
