@@ -32,7 +32,8 @@ def download_from_yahoo_finance(scope): 													# TODO What Output to Rende
 	# group_by: group by column or ticker (‘column’/’ticker’, default is ‘column’)
 	# threads : use threads for mass downloading? (True/False/Integer)
 
-	period = str(scope.download['days']) + 'd' # 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo
+	# valid periods = 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo
+	period = str(int(scope.download['days'])) + 'd' 
 
 	# reset_download_status(scope)
 

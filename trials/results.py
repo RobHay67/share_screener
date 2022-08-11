@@ -30,8 +30,6 @@ def trial_results(scope):
 			
 			ticker_df = scope.tickers[ticker]['apps'][app]['df']
 
-			# print(ticker_df)
-
 			for trial in active_trial_list:
 				print(trial)
 

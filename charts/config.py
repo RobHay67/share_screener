@@ -1,39 +1,53 @@
-# TODO - metics should be moved into that library
-# 
-
 
 def scope_charts(scope):
 	scope.chart_config = {}
-	scope.chart_config['primary_height'] = 500
-	scope.chart_config['total_height'] = scope.chart_config['primary_height']
+	base_config_charts(scope)
 	scope.chart_config['colours'] = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
-	scope.chart_config['chart_list']	= list(charts_config.keys())
-	scope.chart_config['column_adders'] = {}
-	scope.chart_config['active_list'] = []
+	scope.chart_config['chart_list'] = list(charts_config.keys())
 
 	scope.charts = {}
 	for chart, config in charts_config.items():
 		scope.charts[chart] = config
+	
+	chart_active_list(scope)
 
 	chart_column_adders(scope)
-	
-	active_charts_list(scope)
+
+
+def base_config_charts(scope):
+	# Setting can be changed for each user
+	# so we need to be able to call when changing user
+
+	scope.chart_config['primary_height'] = 500
+	scope.chart_config['total_height'] = scope.chart_config['primary_height']
+
+
+def chart_active_list(scope):
+	# Seperate function so it can be called after the initial load - i.e. change user
+
+	# Reset the list as this function will rebuild it
+	scope.chart_config['active_list'] = []
+
+	for chart in scope.chart_config['chart_list']:	
+		if scope.charts[chart]['active'] == True:
+			scope.chart_config['active_list'].append(chart)
 
 
 def chart_column_adders(scope):
+
+	# Reset the list as this function will rebuild it
+	scope.chart_config['column_adders'] = {}
 
 	for chart in scope.chart_config['chart_list']:
 		# Only add charts that require additional columns
 		if scope.charts[chart]['add_columns'] != None:
 			scope.chart_config['column_adders'][chart] = scope.charts[chart]['active']
 
-def active_charts_list(scope):
-	# Seperate function so it can be called after the initial load - i.e. change user
 
-	for chart in scope.chart_config['chart_list']:	
-		if scope.charts[chart]['active'] == True:
-			scope.chart_config['active_list'].append(chart)
 
+
+
+# ---------------------------------------------------------------------------------
 # Charts and Overlays STATUS Working List
 # ---------------------------------------------------------------------------------
 # candlestick		DONE

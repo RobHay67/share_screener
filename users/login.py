@@ -1,7 +1,9 @@
+from trials.config import trial_active_list
 from trials.config import trial_column_adders
+from charts.config import chart_active_list
 from charts.config import chart_column_adders
 
-def set_user_access(scope:dict, login_name:str):
+def login_user(scope:dict, login_name:str):
 
 	# Store User params
 	scope.apps['display_app'] = 'home_page'
@@ -28,7 +30,8 @@ def set_user_access(scope:dict, login_name:str):
 			for attribute in add_columns.keys():
 				scope.trials[trial]['add_columns'][attribute] = add_columns[attribute]
 	
-	# refresh the list of active column adders for trials
+	# refresh the trial_config lists
+	trial_active_list(scope)
 	trial_column_adders(scope)
 
 	# Over-write the config charts with the user values
@@ -44,8 +47,10 @@ def set_user_access(scope:dict, login_name:str):
 				scope.charts[chart]['add_columns'][attribute] = add_columns[attribute]
 
 		
-	# refresh the list of active column adders for charts
+	# refresh the chart_config lists
+	chart_active_list(scope)
 	chart_column_adders(scope)
+
 
 
 

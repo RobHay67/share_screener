@@ -6,10 +6,8 @@ from charts.config import charts_config
 def scope_apps(scope):
 
 	scope.apps = {}
-
-	scope.apps['row_limit'] = 100
+	base_config_apps(scope)
 	scope.apps['button_for_scope'] = None
-	scope.apps['display_app'] = 'login'
 	scope.apps['app_list'] = ['single', 'intraday', 'volume', 'research', 'screener']
 	
 	# ==========================================
@@ -27,5 +25,12 @@ def scope_apps(scope):
 											'ticker'	: 'select a ticker',
 											}
 
+
+def base_config_apps(scope):
+	# Setting can be changed for each user
+	# so we need to be able to call when changing user
+
+	scope.apps['row_limit'] = 100
+	scope.apps['display_app'] = 'login'
 
 

@@ -2,23 +2,34 @@
 def scope_trials(scope):
 
 	scope.trial_config = {}
-
 	scope.trial_config['trends']	= trend_directions
 	scope.trial_config['trial_list']	= list(trials_config.keys())
-	scope.trial_config['column_adders'] = {}
-	scope.trial_config['active_list'] = []
 
 	scope.trials = {}
 	for trial, config in trials_config.items():
 		scope.trials[trial] = config
 	
+	trial_active_list(scope)
+
 	trial_column_adders(scope)
 
-	active_trials_list(scope)
+
+def trial_active_list(scope):
+	# Seperate function so it can be called after the initial load - i.e. change user
+
+	# Reset the list as this function will rebuild it
+	scope.trial_config['active_list'] = []
+
+	for trial in scope.trial_config['trial_list']:	
+		if scope.trials[trial]['active'] == True:
+			scope.trial_config['active_list'].append(trial)
 
 
 def trial_column_adders(scope):
 	# Seperate function so it can be called after the initial load - i.e. change user
+
+	# Reset the dictionary as this function will rebuild it
+	scope.trial_config['column_adders'] = {}
 
 	for trial in scope.trial_config['trial_list']:
 		# Add charts that require additional columns
@@ -26,12 +37,6 @@ def trial_column_adders(scope):
 			scope.trial_config['column_adders'][trial] = scope.trials[trial]['active']
 
 
-def active_trials_list(scope):
-	# Seperate function so it can be called after the initial load - i.e. change user
-
-	for trial in scope.trial_config['trial_list']:	
-		if scope.trials[trial]['active'] == True:
-			scope.trial_config['active_list'].append(trial)
 
 
 

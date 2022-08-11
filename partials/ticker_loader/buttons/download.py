@@ -5,7 +5,7 @@ def download_button(scope):
 
 	download_button_msg = 'Download most recent ' + str(int(scope.download['days'])) + ' day'
 	download_button_msg = 'Download ' + str(int(scope.download['days'])) + ' most recent day'
-	
+
 	if scope.download['days'] > 1: 
 		download_button_msg += 's'
 

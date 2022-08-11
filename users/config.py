@@ -1,15 +1,19 @@
 
-
-
-
-from users.defaults import set_user_defaults
+from users.load import load_user_table
 
 
 def scope_user(scope:dict):
 
-	# just set the user defaults - this is also utilised by the logout function
-	
-	set_user_defaults(scope)
+	scope.users = {}
+	scope.users['json'] = {}
+	scope.users['user_list'] = []
+	base_config_users(scope)
+
+	load_user_table(scope)
 
 
+def base_config_users(scope):
+	# Setting can be changed for each user
+	# so we need to be able to call when changing user
 
+	scope.users['login_name'] = 'Login to Use the Application'

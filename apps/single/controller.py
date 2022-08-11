@@ -24,24 +24,26 @@ def render_single_ticker_page(scope):
 
 	if ticker != 'select a ticker' :
 		
-		# Check that we have data available for this ticker
-		# before attempting to make any plots
+		# # Check that we have data available for this ticker
+		# # before attempting to make any plots
 
-		if ticker in scope.apps['single']['dfs'].keys():	
-			app 			= scope.apps['display_app']
-			ticker 			= scope.apps[app]['selectors']['ticker']
-			chart_df		= scope.apps[app]['dfs'][ticker]
-			schema 			= create_schema_for_plotly(scope)
+		# if ticker in scope.apps['single']['dfs'].keys():
+		# if ticker in scope.tickers[ticker]['apps'][app]['df']
+		app 			= scope.apps['display_app']
+		ticker 			= scope.apps[app]['selectors']['ticker']
+		# chart_df		= scope.apps[app]['dfs'][ticker]
+		chart_df		= scope.tickers[ticker]['apps'][app]['df']
+		schema 			= create_schema_for_plotly(scope)
+		
+		if schema['no_of_charts'] > 0:
 			
-			if schema['no_of_charts'] > 0:
-				
-				fig = add_main_chart(schema)
-				
-				fig = add_child_charts(scope, fig, chart_df, schema )
-				
-				fig = format_main_chart(scope, fig)
-				
-				st.plotly_chart(fig, use_container_width=True)
+			fig = add_main_chart(schema)
+			
+			fig = add_child_charts(scope, fig, chart_df, schema )
+			
+			fig = format_main_chart(scope, fig)
+			
+			st.plotly_chart(fig, use_container_width=True)
 
 	else:
 		render_search_results(scope)

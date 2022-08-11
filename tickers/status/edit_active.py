@@ -1,15 +1,12 @@
 
 def set_data_status(scope, type_col_adder, column_adder, status):
-
-	print(type_col_adder, column_adder, status)
-
 	
 	# This event is triggered when a column adder is set
 	# to either Active (True) or Inactive (False)
 	# Column Adder requires a refresh for every ticker
 
 
-	# Only column adders that have been activated require refreshing
+	# Only column adders that have been activated will require refreshing
 	for ticker in scope.tickers.keys():
 		for app in scope.apps['app_list']: 
 			
@@ -24,7 +21,6 @@ def set_data_status(scope, type_col_adder, column_adder, status):
 
 	if type_col_adder == 'trials':
 		type_config = 'trial_config'
-		active_list = 'active_trials'
 
 	if type_col_adder == 'charts':
 		type_config = 'chart_config'
@@ -35,4 +31,6 @@ def set_data_status(scope, type_col_adder, column_adder, status):
 			scope[type_config]['column_adders'][column_adder] = status
 
 	if status == True:
-		scope[type_config]['column_adders']
+		scope[type_config]['active_list'].append(column_adder)
+	else:
+		scope[type_config]['active_list'].remove(column_adder)

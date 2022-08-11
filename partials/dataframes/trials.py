@@ -14,7 +14,8 @@ def view_trials_dfs(scope):
 		with col2: st.write("< scope.apps[app]['dfs'] >")	
 		st.markdown("""---""")
 
-	ticker_list = sorted(list(scope.apps[app]['dfs'].keys()))
+	# ticker_list = sorted(list(scope.apps[app]['dfs'].keys()))
+	ticker_list = sorted(scope.apps['screener']['mined_tickers'])
 	no_of_tickers = len(ticker_list)
 	
 	for i in range(0, no_of_tickers, 3):
@@ -28,7 +29,7 @@ def view_trials_dfs(scope):
 def render_screener_df(scope, app, ticker_list, i):
 	if i < len(ticker_list):
 		ticker = ticker_list[i]
-		screener_df = scope.apps[app]['dfs'][ticker]
+		screener_df = scope.tickers[ticker]['apps'][app]['df']
 		no_of_rows = str(len(screener_df))
 		my_expander = st.expander(label=(ticker+' ( ' + no_of_rows + ' )'), expanded=False)
 		my_expander.dataframe(screener_df, 2000, 2000)	

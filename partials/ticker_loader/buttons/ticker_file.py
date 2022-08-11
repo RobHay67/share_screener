@@ -2,17 +2,16 @@ import streamlit as st
 
 
 def ticker_files_button(scope):
-
-	app = scope.apps['display_app']
-	ticker_list = scope.apps[app]['selected_tickers']
-
-	no_of_loaded_files 	= len(list(scope.tickers.keys()))
+	
+	# How many tickers are available for the apps
+	# this will be a count of the loaded (and download) files
+	
+	no_of_loaded_files 	= len(scope.tickers.keys())
 	total_loaded_rows	= 0	
 	
-	for ticker in ticker_list:
-		if ticker in scope.tickers:
-			loaded_df_row_count = int(len(scope.tickers[ticker]['df']))
-			total_loaded_rows 	+= loaded_df_row_count
+	for ticker in scope.tickers.keys():
+		loaded_df_row_count = int(len(scope.tickers[ticker]['df']))
+		total_loaded_rows += loaded_df_row_count
 
 	file_desc = ' file (' if no_of_loaded_files == 1 else ' files ('
 

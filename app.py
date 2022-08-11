@@ -85,11 +85,10 @@ def level_3_details(level_1, level_2, level_3):
 				# print(type(st.session_state[level_1][level_2][level_3]))
 
 
-if 'initial_load' in st.session_state:
-	print('')
-	terminal_heading('All keys in st.session_state')
-	for key in sorted(st.session_state):print(key)
-	# for key in st.session_state:print(key)
+# if 'initial_load' in st.session_state:
+# 	print('')
+# 	terminal_heading('All keys in st.session_state')
+# 	for key in sorted(st.session_state):print(key)
 
 
 
@@ -144,15 +143,36 @@ if 'initial_load' in st.session_state:
 	
 	
 
-level_1 = 'apps'
-if level_1 in st.session_state:
-	terminal_heading(level_1)
-	for key in st.session_state[level_1]:print(key)
-	level_2_details(level_1, 'single')
+# level_1 = 'apps'
+# if level_1 in st.session_state:
+# 	terminal_heading(level_1)
+# 	for key in st.session_state[level_1]:print(key)
+# 	level_2_details(level_1, 'single')
+
+# print('='*88)
+# print('Screener App')
+# print('-'*88)
+# # print('trial list       (trials)   = ', scope.trial_config['trial_list'])
+# # print('column adders    (trials)   = ', scope.trial_config['column_adders'])
+# # print('active list      (trials)   = ', scope.trial_config['active_list'])
+# print('-'*88)
+# print('search results   (screener) = ', scope.apps['screener']['search_results'])
+# print('selected tickers (screener) = ', scope.apps['screener']['selected_tickers'])
+# print('mined_ticker     (screener) = ', scope.apps['screener']['mined_tickers'])
+# print('='*88)
 
 
-print('mined_ticker for screener = ', scope.apps['screener']['mined_tickers'])
-print('mined_ticker for single   = ', scope.apps['single']['mined_tickers'])
+# print('='*88)
+# print('Single App')
+# print('-'*88)
+# # print('trial list       (charts) = ', scope.chart_config['chart_list'])
+# # print('column adders    (charts) = ', scope.chart_config['column_adders'])
+# # print('active list      (charts) = ', scope.chart_config['active_list'])
+# print('-'*88)
+# print('search results   (single) = ', scope.apps['single']['search_results'])
+# print('selected tickers (single) = ', scope.apps['single']['selected_tickers'])
+# print('mined_ticker     (single) = ', scope.apps['single']['mined_tickers'])
+# print('='*88)
 
 
 # level_1 = 'trials'
