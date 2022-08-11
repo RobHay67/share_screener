@@ -7,14 +7,14 @@ from widgets.ohlc import edit_ohlc
 from widgets.colour import edit_colour
 
 
-def render_moving_average(scope, col_adder):  # SMA or EMA
+def render_moving_average(scope, column_adder):  # SMA or EMA
 
-	config_name = 'charts'
+	type_config = 'charts'
 
-	edit_active(scope, config_name, col_adder)
-	edit_number(scope, config_name, col_adder, 'periods' )
-	edit_ohlc(scope, config_name, col_adder )
-	edit_colour(scope, config_name, col_adder )
+	edit_active(scope, type_config, column_adder)
+	edit_number(scope, type_config, column_adder, 'periods' )
+	edit_ohlc(scope, type_config, column_adder )
+	edit_colour(scope, type_config, column_adder )
 	st.markdown("""---""")
 
 

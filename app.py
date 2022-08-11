@@ -118,8 +118,8 @@ def level_3_details(level_1, level_2, level_3):
 # 			print('Type of Column Adder'.ljust(20), ' = ', type_col_adder)
 # 			if type_col_adder != None:
 # 				print('-'*99)
-# 				for col_adder, status in temp_scope[ticker]['apps'][app]['column_adders'].items():
-# 					print(str(col_adder).ljust(20),  ' : ', status)
+# 				for column_adder, status in temp_scope[ticker]['apps'][app]['column_adders'].items():
+# 					print(str(column_adder).ljust(20),  ' : ', status)
 # 			print('-'*99)
 
 

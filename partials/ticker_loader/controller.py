@@ -1,21 +1,16 @@
-# A single function that handles all of the data loading
+# A function that handles all of the data loading
 
 from partials.ticker_loader.schema import layout_schema
 from partials.ticker_selectors.selectors import render_ticker_selectors
 
 from tickers.refresh_app_data import refresh_app_df_and_columns
-
 from tickers.load_controller import load_tickers
 
-
-
-# from apps.ticker_loader.buttons.download import download_button
 from partials.ticker_loader.buttons.clear_message import clear_messages_button
 from partials.ticker_loader.buttons.ticker_file import ticker_files_button
 from partials.ticker_loader.buttons.screener_dfs import screener_dfs_button
 from partials.ticker_loader.buttons.chart_dfs import chart_dfs_button
 
-# TODO - do these need to be seperate??? maybe a single function should handle both
 from partials.dataframes.tickers import view_ticker_files
 from partials.dataframes.trials import view_trials_dfs
 from partials.dataframes.charts import view_chart_dfs

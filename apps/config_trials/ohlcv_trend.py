@@ -7,20 +7,20 @@ from widgets.number import edit_number
 
 
 # def render_ohlcv_trend(scope, measure, column_name):
-def render_ohlcv_trend(scope, col_adder, column_name):
-	# col_adder = 'macd'
-	config_name = 'trials'
+def render_ohlcv_trend(scope, column_adder, column_name):
+	# column_adder = 'macd'
+	type_config = 'trials'
 
 	# edit_active(scope, 'trials', measure)
-	edit_active(scope, config_name, col_adder)
+	edit_active(scope, type_config, column_adder)
 	st.write('column_name = ', column_name)
-	edit_trend_direction (scope, config_name, col_adder)
-	edit_number(scope, config_name, col_adder, 'duration' )
-	edit_number(scope, config_name, col_adder, 'timespan' )
+	edit_trend_direction (scope, type_config, column_adder)
+	edit_number(scope, type_config, column_adder, 'duration' )
+	edit_number(scope, type_config, column_adder, 'timespan' )
 	st.markdown("""---""")
 
 
-	# edit_active(scope, config_name, col_adder ):
+	# edit_active(scope, type_config, column_adder ):
 	# with col1: render_ohlcv_trend(scope, 'trend_open', 'open')	
 	# with col2: render_ohlcv_trend(scope, 'trend_high', 'high')
 	# with col3: render_ohlcv_trend(scope, 'trend_low', 'low')

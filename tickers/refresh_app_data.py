@@ -50,7 +50,7 @@ def refresh_app_df_and_columns(scope):
 					# Only replace the columns if requested to do so for this column adder
 					if status == True:
 										
-						# Call the column adding function for this col_adder
+						# Call the column adding function for this column_adder
 						scope[type_of_column_adder][column_adder]['add_columns']['function'](scope, column_adder, ticker, ticker_df)
 
 						# Set the status to false to prevent refreshing unnecesarily

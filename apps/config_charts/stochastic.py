@@ -7,13 +7,13 @@ from widgets.number import edit_number
 
 def render_stochastic(scope):
 	st.markdown('##### Stochastic Oscillator')
-	col_adder = 'stochastic'
-	config_name = 'charts'
+	column_adder = 'stochastic'
+	type_config = 'charts'
 
-	edit_active(scope, config_name, col_adder)
-	edit_number(scope, config_name, col_adder, 'lookback_days' )
-	edit_number(scope, config_name, col_adder, 'slow' )
-	edit_number(scope, config_name, col_adder, 'signal' )
+	edit_active(scope, type_config, column_adder)
+	edit_number(scope, type_config, column_adder, 'lookback_days' )
+	edit_number(scope, type_config, column_adder, 'slow' )
+	edit_number(scope, type_config, column_adder, 'signal' )
 	st.markdown("""---""")
 
 

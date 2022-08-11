@@ -5,25 +5,25 @@
 # Helpers
 # -------------------------------------------
 
-# def replace_cols_status(scope, app, ticker, col_adder_list, col_adder):
+# def replace_cols_status(scope, app, ticker, col_adder_list, column_adder):
 	
 # 	status = None
 # 	# we know the ticker is in the replace_cols ticker_list, 
-# 	# we dont know if the col_adder is in the 
+# 	# we dont know if the column_adder is in the 
 # 	# ticker dictionary or whats its status currently is
-# 	print( app, ticker, col_adder)
+# 	print( app, ticker, column_adder)
 # 	print(col_adder_list)
 
 # 	print(scope.apps[app]['replace_cols'])
 
-# 	if col_adder in col_adder_list: 
-# 		# return the status for this col_adder
-# 		status = scope.apps[app]['replace_cols'][ticker][col_adder]
+# 	if column_adder in col_adder_list: 
+# 		# return the status for this column_adder
+# 		status = scope.apps[app]['replace_cols'][ticker][column_adder]
 # 	else:
 # 		# add a column adder for this ticker
-# 		scope.apps[app]['replace_cols'][ticker] = [col_adder]
+# 		scope.apps[app]['replace_cols'][ticker] = [column_adder]
 # 		# add set the default status
-# 		scope.apps[app]['replace_cols'][ticker][col_adder] = True
+# 		scope.apps[app]['replace_cols'][ticker][column_adder] = True
 
 # 	return status
 
@@ -160,8 +160,8 @@ scope_data = {
 # Change the < app_row_limit >				T-r_all T-r_all T-r_all			T-r_all			T-r_all		T-r_all			T-r_all		= refresh all tickers and rerun all active add_cols
 # Activate overlay or 2nd chart				------	------	------			T-r_col			T-r_col		T-r_col			T-r_col		= recalculate the specific add_cols only	for NON screener pages							
 # Update value in overlay or 2nd chart		------	------	------			T-r_col			T-r_col		T-r_col			T-r_col		= recalculate the specific add_cols only	for NON screener pages	
-# Activate a col_adder						T-r_col	T-r_col	T-r_col			-------			-------		-------			-------		= recalculate the specific add_cols only	for screener app
-# Change col_adder value 					T-r_col	T-r_col	T-r_col			-------			-------		-------			-------		= recalculate the specific add_cols only	for screener app
+# Activate a column_adder						T-r_col	T-r_col	T-r_col			-------			-------		-------			-------		= recalculate the specific add_cols only	for screener app
+# Change column_adder value 					T-r_col	T-r_col	T-r_col			-------			-------		-------			-------		= recalculate the specific add_cols only	for screener app
 # Replace the page_df on single app		R-r_df	-------	-------			-------			-------		-------			-------
 # Rerun the column adder single app		R-r_col	-------	-------			-------			-------		-------			-------		
 
@@ -171,7 +171,7 @@ scope_data = {
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 # T-r_df 	tag to replace df		All			Specific	set_replace_df_status_for_ticker			------------------------------------------------	replace_dfs			---------------------	
 # T-r_col	tag to add_cols			All			Specific	-----------------------------------------	set_replace_col_status_for_ticker					--------------- 	replace_cols
-# t-col		change col_adder		All			All			-----------------------------------------	set_replace_col_status_for_col_adder					---------------		replace_cols
+# t-col		change column_adder		All			All			-----------------------------------------	set_replace_col_status_for_col_adder					---------------		replace_cols
 # t-ALL 	replace all dfs	& cols	All			All			set_replace_df_status_for_all_tickers 		set_replace_cols_status_for_all_tickers 				replace_dfs			replace_cols
 # Rdf		replace the DF			Specific	Specific	set_replace_df_status_for_ticker_and_page	------------------------------------------------	
 # Rcol		replace the cols		Specific	Specific	-----------------------------------------	set_replace_col_adder_status_for_ticker_and_page
