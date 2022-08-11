@@ -1,6 +1,9 @@
 
-# The primary code to refresh the App df
-# and the app df columns 
+
+
+# The primary code to 
+# - refresh the App df
+# - Refresh specific df columns 
 
 
 
@@ -9,8 +12,6 @@ def refresh_app_df_and_columns(scope):
 	app 				= scope.apps['display_app']
 	app_row_limit 		= int(scope.apps['row_limit'])
 	app_ticker_list 	= scope.apps[app]['selected_tickers']
-
-	# Iterate through each ticker for the page
 
 	for ticker in app_ticker_list:
 		
@@ -37,9 +38,8 @@ def refresh_app_df_and_columns(scope):
 				# reset replace_app_dfs status to prevent unnecesary updates		
 				scope.tickers[ticker]['apps'][app]['replace_df'] = False
 
-
-			# Check if the app df columns require replacing
-
+			# -------------------------------------------------------------------
+			# Replace specific columns in the app df if requested
 			type_of_column_adder = scope.tickers[ticker]['apps'][app]['type_col_adder']
 
 			# Some apps do not have any column adder

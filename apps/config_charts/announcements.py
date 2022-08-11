@@ -6,7 +6,6 @@ from widgets.active import edit_active
 
 
 def render_announcements(scope):
-	# st.markdown('##### Announcements')
 	column_adder = 'announcements'
 	type_config = 'charts'
 

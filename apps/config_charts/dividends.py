@@ -5,10 +5,8 @@ from widgets.active import edit_active
 
 
 
-
-
 def render_dividends(scope):
-	# st.markdown('##### Dividends')
+
 	column_adder = 'dividends'
 	type_config = 'charts'
 

@@ -6,6 +6,7 @@ from widgets.number import edit_number
 
 
 def render_stochastic(scope):
+	
 	st.markdown('##### Stochastic Oscillator')
 	column_adder = 'stochastic'
 	type_config = 'charts'

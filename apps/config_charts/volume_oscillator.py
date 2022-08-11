@@ -1,13 +1,12 @@
-import streamlit as st
 
+import streamlit as st
 
 from widgets.active import edit_active
 from widgets.number import edit_number
 
 
-
-
 def render_volume_oscillator(scope):
+	
 	st.markdown('##### Volume Oscillator')
 	column_adder = 'vol_osssy'
 	type_config = 'charts'

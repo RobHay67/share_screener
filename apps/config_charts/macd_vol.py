@@ -7,6 +7,7 @@ from widgets.number import edit_number
 
 
 def render_macd_vol(scope):
+	
 	st.markdown('##### Moving Average, Convergence, Divergence (MACD) - Volume Only')
 	column_adder = 'macd_vol'
 	type_config = 'charts'

@@ -9,7 +9,6 @@ from widgets.ohlc import edit_ohlc
 
 
 def render_bollinger_bands(scope):
-	# st.markdown('##### Bollinger Bands')
 	column_adder = 'bollinger_bands'
 	type_config = 'charts'
 

@@ -38,9 +38,6 @@ print ( '\033[94m' + 'Application Re-Rendering Now ' + '>'*50 + '\033[0m')
 
 scope = set_scope(st.session_state)
 
-# print(scope.chart_config['column_adders'])
-# print(scope.trial_config['column_adders'])
-
 render_sidebar(scope)
 render_selected_app(scope)
 
@@ -49,13 +46,8 @@ render_selected_app(scope)
 
 
 
-print('Rob we are working on the new structure for the scope.tickers')
-print('See notes in tickers.status.notes.py')
-
-
-
-
-
+# =======================================
+# Testing code - show whats in scope
 
 def terminal_heading(heading):
 	print('')
