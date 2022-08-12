@@ -3,12 +3,9 @@ import streamlit as st
 
 
 def view_ticker_files(scope):
-	print('$'*333)
 	
-	app = scope.apps['display_app']
-	print('display_app = ', app)
-	
-	render_expanded = False
+	app = scope.apps['display_app']	
+	# render_expanded = False
 
 	if app == 'scope':
 		st.subheader('All Ticker Data Files')
@@ -20,8 +17,6 @@ def view_ticker_files(scope):
 
 	ticker_list = sorted(list(scope.tickers.keys()))
 	no_of_tickers = len(ticker_list)
-
-	print(ticker_list)
 
 	for i in range(0, no_of_tickers, 3):
 		col1,col2,col3=st.columns([2,2,2])
@@ -42,6 +37,6 @@ def render_df(scope, ticker_list, i):
 		my_expander = st.expander(label=(ticker+' ( ' + no_of_rows + ' )'), expanded=False )
 		my_expander.dataframe(ticker_data_file, 2000, 2000)	
 
-		print(i, ' - ', ticker_list[i])
+		# print(i, ' - ', ticker_list[i])
 
 

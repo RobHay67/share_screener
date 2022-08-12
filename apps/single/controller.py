@@ -1,9 +1,7 @@
 import streamlit as st
 
 from partials.ticker_loader.header import render_page_title
-# from charts.controller import plot_charts
 from partials.ticker_loader.controller import render_ticker_loader
-
 
 from apps.single.schema import create_schema_for_plotly
 from apps.single.chart_main import add_main_chart 
@@ -14,6 +12,7 @@ from partials.ticker_search.search_results import render_search_results
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Single Ticker Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 def render_single_ticker_page(scope):
 	
 	render_page_title(scope, 'Ticker Analysis (single ticker)')
@@ -24,14 +23,8 @@ def render_single_ticker_page(scope):
 
 	if ticker != 'select a ticker' :
 		
-		# # Check that we have data available for this ticker
-		# # before attempting to make any plots
-
-		# if ticker in scope.apps['single']['dfs'].keys():
-		# if ticker in scope.tickers[ticker]['apps'][app]['df']
 		app 			= scope.apps['display_app']
 		ticker 			= scope.apps[app]['selectors']['ticker']
-		# chart_df		= scope.apps[app]['dfs'][ticker]
 		chart_df		= scope.tickers[ticker]['apps'][app]['df']
 		schema 			= create_schema_for_plotly(scope)
 		

@@ -4,8 +4,8 @@ import streamlit as st
 def view_trials_dfs(scope):
 
 	app = scope.apps['display_app']
-	render_expanded = False
-	print(app)
+	# render_expanded = False
+
 	if app == 'scope':
 		app='screener'
 		st.subheader('Screener app Dataframes')

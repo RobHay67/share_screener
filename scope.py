@@ -47,7 +47,6 @@ def set_scope(scope):
 
 		scope_index_file(scope)				# load the share index
 		
-		# TODO - is this the correct spot
 		scope_ticker_search(scope)			# variable to facilite searching for ticker by name
 		
 		scope_ticker_files(scope)			# variables for storing the ticker files
