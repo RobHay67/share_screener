@@ -7,10 +7,12 @@ from widgets.search import ticker_button
 
 
 def render_search_results(scope):
-	print('search results')
+	
 	app = scope.apps['display_app']
 
 	search_results = scope.apps[app]['search_results']
+
+	print('search results = ', search_results)
 
 	if len(search_results) > 0:
 		st.write('First 10 Search Results')

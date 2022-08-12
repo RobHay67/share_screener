@@ -1,23 +1,17 @@
-	
 import streamlit as st
-
 import time  
 
 from partials.dropdowns.config import scope_dropdown_menus
-
-from charts.config import scope_charts
-from progress.config import scope_progress
-from trials.config import scope_trials
-
 from files.config import scope_folders_and_paths
-from apps.config import scope_apps
-from strategies.config import scope_strategy
-from users.load import load_user_table
 from users.config import scope_user
-
+from progress.config import scope_progress
+from apps.config import scope_apps
+from trials.config import scope_trials
+from charts.config import scope_charts
 from ticker_index.config import scope_index_file
 from partials.ticker_search.config import scope_ticker_search
 from tickers.config import scope_ticker_files, scope_download_variables
+from strategies.config import scope_strategy
 
 
 def set_scope(scope):
@@ -93,17 +87,18 @@ def set_streamlit_page_config():
 	# Remove whitespace from the top of the app and sidebar
 	st.markdown("""
         <style>
-               .css-18e3th9 {
-                    padding-top: 0rem;
-                    padding-bottom: 10rem;
-                    padding-left: 5rem;
-                    padding-right: 5rem;
-                }
-               .css-1d391kg {
-                    padding-top: 3.5rem;
-                    padding-right: 1rem;
-                    padding-bottom: 3.5rem;
-                    padding-left: 1rem;
-                }
+            #    .css-18e3th9 {
+            #         padding-top: 0rem;
+            #         padding-bottom: 10rem;
+            #         padding-left: 5rem;
+            #         padding-right: 5rem;
+            #     }
+            #    .css-1d391kg {
+            #         padding-top: 1rem;
+            #         padding-right: 1rem;
+            #         padding-bottom: 3.5rem;
+            #         padding-left: 1rem;
+            #     }
         </style>
         """, unsafe_allow_html=True)
+

@@ -43,7 +43,7 @@ from partials.ticker_search.search_results import render_search_results
 # Company Research
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def render_research_page(scope):
-	# render_page_title(scope, 'Company Research', 'research')
+
 	render_page_title(scope, 'Company Research')
 
 	render_ticker_loader(scope)
@@ -59,8 +59,6 @@ def render_research_page(scope):
 		import yfinance as yf
 		metadata = yf.Ticker('CBA.AX')
 		print(metadata.info)
-
-
 
 		
 		# business_summary(metadata)

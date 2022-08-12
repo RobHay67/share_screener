@@ -10,7 +10,6 @@ from apps.config_app.results import view_all_results
 from apps.config_app.files import view_folders
 # Data
 from ticker_index.view.index import view_index
-from partials.dataframes.tickers import view_ticker_files
 from tickers.view.download import view_download
 # Pages
 from apps.config_app.apps import view_apps
@@ -19,8 +18,10 @@ from apps.config_app.apps import view_intra_day_page
 from apps.config_app.apps import view_volume_page
 from apps.config_app.apps import view_research_page
 from apps.config_app.apps import view_screener_page
-from partials.dataframes.trials import view_trials_dfs
-from partials.dataframes.charts import view_chart_dfs
+
+from partials.ticker_loader.buttons.ticker_dfs import view_ticker_files
+from partials.ticker_loader.buttons.chart_dfs import view_chart_dfs
+from partials.ticker_loader.buttons.trial_dfs import view_trials_dfs
 
 # Strategies
 from strategies.config import view_strategy
@@ -51,6 +52,7 @@ def render_selected_scope_page(scope):
 			'view_volume_page'		:view_volume_page,
 			'view_research_page'	:view_research_page,
 			'view_screener_page'	:view_screener_page,
+			'view_ticker_dfs'		:view_ticker_files,
 			'view_trials_dfs'		:view_trials_dfs,
 			'view_chart_dfs'		:view_chart_dfs,
 			# Column 5 - Strategy
@@ -98,15 +100,17 @@ def render_scope_categories(scope):
 		st.subheader('Apps')
 		st.button('App', on_click=set_st_button, args=(scope, 'view_apps', ))
 		st.button('App > Single', on_click=set_st_button, args=(scope, 'view_single_page', ))
-		st.button('App > Intra-Day', on_click=set_st_button, args=(scope, 'view_intra_day_page', ))
+		st.button('App > IntraDay', on_click=set_st_button, args=(scope, 'view_intra_day_page', ))
 		st.button('App > Volume', on_click=set_st_button, args=(scope, 'view_volume_page', ))
 		st.button('App > Research', on_click=set_st_button, args=(scope, 'view_research_page', ))
 		st.button('App > Screener', on_click=set_st_button, args=(scope, 'view_screener_page', ))
 		
-		no_of_screener_dfs = str(len(scope.apps['screener']['dfs'].keys()))
-		no_of_chart_dfs = str(len(scope.apps['single']['dfs'].keys()))
-		st.button('Screener Dataframes ( ' + no_of_screener_dfs + ' )', on_click=set_st_button, args=(scope, 'view_tests_dfs', ))
+		no_of_loaded_ticker = str(len(scope.tickers.keys()))
+		no_of_chart_dfs = str(len(scope.apps['single']['mined_tickers']))
+		no_of_screener_dfs = str(len(scope.apps['screener']['mined_tickers']))
+		st.button('Loaded Ticker DFs   ( ' + no_of_loaded_ticker + ' )', on_click=set_st_button, args=(scope, 'view_ticker_files', ))
 		st.button('Charting Dataframes ( ' + no_of_chart_dfs + ' )', on_click=set_st_button, args=(scope, 'view_chart_dfs', ))
+		st.button('Screener Dataframes ( ' + no_of_screener_dfs + ' )', on_click=set_st_button, args=(scope, 'view_trials_dfs', ))
 
 	with col5: 
 		st.subheader('Strategies')

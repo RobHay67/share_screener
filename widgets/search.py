@@ -33,10 +33,16 @@ def search_for_ticker(scope, app, widget_key):
 			search_results[ticker] = company_name
 			if counter > 9: break
 
+	
+
 	if len(search_results) > 0:
+		print('adding search results')
 		scope.apps[app]['search_results'] = search_results
 	else:
 		scope.apps[app]['search_results'] = {}
+
+
+	print('Search Results = ', scope.apps[app]['search_results'])
 
 
 def ticker_button(scope, app, ticker):
