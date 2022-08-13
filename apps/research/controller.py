@@ -44,52 +44,58 @@ from partials.ticker_search.search_results import render_search_results
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def render_research_page(scope):
 
+	app = scope.apps['display_app']
+
 	render_page_title(scope, 'Company Research')
 
 	render_ticker_loader(scope)
-	
-	ticker = scope.apps['research']['selectors']['ticker']
 
-	if ticker != 'select a ticker' :
-		metadata = fetch_yfinance_metadata(ticker)
+	if len(scope.apps[app]['search_results']) == 0:
 
+		ticker = scope.apps[app]['selectors']['ticker']
 
-		company_general(metadata)
-
-		import yfinance as yf
-		metadata = yf.Ticker('CBA.AX')
-		print(metadata.info)
-
-		
-		# business_summary(metadata)
-		fundamental(metadata)
-		general(metadata)
-		market_info(metadata)
-
-		dividends(metadata)
+		if ticker != 'select a ticker' :
+			metadata = fetch_yfinance_metadata(ticker)
 
 
-		financial_statements(metadata)
+			company_general(metadata)
+
+			import yfinance as yf
+			metadata = yf.Ticker('CBA.AX')
+			print(metadata.info)
+
+			
+			# business_summary(metadata)
+			fundamental(metadata)
+			general(metadata)
+			market_info(metadata)
+
+			dividends(metadata)
 
 
-		major(metadata)
-		institutional(metadata)
-		annual(metadata)
-		quarterly(metadata)
-		balance_sheet(metadata)
-		balance_sheet_qtr(metadata)
-		cashflow(metadata)
-		cashflow_qtr(metadata)
-		earnings(metadata)
-		earnings_qtr(metadata)
+			financial_statements(metadata)
 
-		calendar(metadata)
-		news(metadata)
 
-		# plot_basic_chart(scope)		
-		# view_ticker_file(scope, ticker)
+			major(metadata)
+			institutional(metadata)
+			annual(metadata)
+			quarterly(metadata)
+			balance_sheet(metadata)
+			balance_sheet_qtr(metadata)
+			cashflow(metadata)
+			cashflow_qtr(metadata)
+			earnings(metadata)
+			earnings_qtr(metadata)
+
+			calendar(metadata)
+			news(metadata)
+
+			# plot_basic_chart(scope)		
+			# view_ticker_file(scope, ticker)
 
 	else:
+
+		print('here')
 		render_search_results(scope)
 
 

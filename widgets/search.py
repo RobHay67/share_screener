@@ -17,11 +17,7 @@ def search_ticker_by_name(scope):
 					key			=widget_key,
 	)
 
-	print(scope[widget_key])
-
 def search_for_ticker(scope, app, widget_key):
-
-	print('Triggeres search_for_ticker')
 
 	changed_value = scope[widget_key].upper()
 
@@ -42,7 +38,6 @@ def search_for_ticker(scope, app, widget_key):
 
 	# Cache search_results
 	if len(search_results) > 0:
-		print('search_results = ', search_results)
 		scope.apps[app]['search_results'] = search_results
 		# Reset the search_ticker_by_name to blank for next search
 		scope[widget_key] = ''

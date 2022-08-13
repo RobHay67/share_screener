@@ -8,17 +8,23 @@ from partials.ticker_search.search_results import render_search_results
 
 def render_intraday_page(scope):
 
+	app = scope.apps['display_app']
+
+	print(app)
+
 	render_page_title(scope, 'Intra Day Analysis')
 
 	render_ticker_loader(scope)
 
-	ticker = scope.apps['intraday']['selectors']['ticker']
+	if len(scope.apps[app]['search_results']) == 0:
 
-	if ticker != 'select a ticker' :		
-		
-		if ticker in list(scope.tickers.keys()):
+		ticker = scope.apps[app]['selectors']['ticker']
 
-			print('TODO render_intraday_page')
+		if ticker != 'select a ticker' :		
+			
+			if ticker in list(scope.tickers.keys()):
+
+				print('TODO render_intraday_page')
 
 		
 	else:

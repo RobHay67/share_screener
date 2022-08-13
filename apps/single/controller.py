@@ -14,19 +14,20 @@ from partials.ticker_search.search_results import render_search_results
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def render_single_ticker_page(scope):
+
+	app = scope.apps['display_app']
 	
 	render_page_title(scope, 'Ticker Analysis (single ticker)')
 
 	render_ticker_loader(scope)
 
 
-	if len(scope.apps['single']['search_results']) == 0:
+	if len(scope.apps[app]['search_results']) == 0:
 
-		ticker = scope.apps['single']['selectors']['ticker']
+		ticker = scope.apps[app]['selectors']['ticker']
 
 		if ticker != 'select a ticker' :
-			
-			app 			= scope.apps['display_app']
+
 			ticker 			= scope.apps[app]['selectors']['ticker']
 			chart_df		= scope.tickers[ticker]['apps'][app]['df']
 			schema 			= create_schema_for_plotly(scope)
