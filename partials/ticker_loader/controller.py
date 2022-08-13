@@ -20,14 +20,12 @@ def render_ticker_loader(scope):
 
 	column_layout_schema(scope)
 
-	# render_ticker_name(scope)
-
 	we_have_selected_tickers = render_ticker_selectors(scope)
 
-	with scope.col5: show_ticker_files = ticker_dfs_button(scope)
+	with scope.col4: show_ticker_files = ticker_dfs_button(scope)
 
 	if show_ticker_files: view_ticker_files(scope)
-	print(we_have_selected_tickers)
+
 	if we_have_selected_tickers:
 		
 		clear_messages_button(scope)
@@ -35,15 +33,13 @@ def render_ticker_loader(scope):
 		load_tickers(scope)
 
 		render_ticker_name(scope)
-
-		# render_search_for_ticker(scope)
 		
 		refresh_app_df_and_columns(scope)
 
 		if scope.apps['display_app'] == 'screener':
-			with scope.col5: show_trial_dfs = trial_dfs_button(scope)
+			with scope.col4: show_trial_dfs = trial_dfs_button(scope)
 		else:
-			with scope.col5: show_chart_dfs = chart_dfs_button(scope)
+			with scope.col4: show_chart_dfs = chart_dfs_button(scope)
 		
 		if show_trial_dfs: view_trials_dfs(scope)
 		

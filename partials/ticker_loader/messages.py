@@ -6,7 +6,7 @@ import streamlit as st
 # -----------------------------------------------------------------------------------------------------------------------------------
 
 def render_messages(scope):
-	with scope.col6:
+	with scope.col5:
 		if scope.progress['passed_count'] > 0: 
 			st.info(scope.progress['passed'])
 		if scope.progress['passed_2_count'] > 0: 
@@ -16,7 +16,7 @@ def render_messages(scope):
 
 
 def download_industry_message(scope, message):
-	with scope.col6:
+	with scope.col5:
 		st.write(  message )
 
 

@@ -16,20 +16,15 @@ def render_ticker_selectors(scope):
 	with scope.col1: 
 		search_ticker_by_name(scope)
 
-
 	if app != 'screener':
 		# One of the Single Ticker Pages - Single / Volume / Research or IntraDay
 
-		# with scope.col1: 
-		# 	search_ticker_by_name(scope)
 		with scope.col2:
 			select_a_ticker(scope)
 	
 	if app == 'screener':	
 		# Screener app (Potentially Multiple Tickers depending on the dropdown selections)
 		
-		# with scope.col1: 
-		# 	search_ticker_by_name(scope)
 		with scope.col2: 
 			select_tickers(scope)
 		with scope.col2: 
@@ -40,12 +35,4 @@ def render_ticker_selectors(scope):
 	we_have_selected_tickers = update_ticker_list(scope)
 
 	return we_have_selected_tickers
-
-
-# def render_search_for_ticker(scope):
-
-# 	with scope.col1: 
-# 		search_ticker_by_name(scope)
-
-
 

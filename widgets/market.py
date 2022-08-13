@@ -28,8 +28,8 @@ def on_change_market_selection(scope:dict, app:str, widget_key:str):
 	changed_value = scope[widget_key]
 
 	# store the selection
+	scope.apps[app]['selectors']['tickers'] = []
+	scope.apps[app]['selectors']['industries'] = []
 	scope.apps[app]['selectors']['market'] = changed_value
-
-
-
-
+	scope.apps[app]['search_string'] = ''
+	scope.apps[app]['search_results'] = {}

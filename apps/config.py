@@ -14,16 +14,17 @@ def scope_apps(scope):
 	# variables for each app from the app list above
 	for app in scope.apps['app_list']:
 		scope.apps[app] = {}
+		scope.apps[app]['search_string'] = ''
 		scope.apps[app]['search_results'] = {}
 		scope.apps[app]['selected_tickers'] = []  # formally known as scope.apps[app]['ticker_list']
 		scope.apps[app]['mined_tickers'] = []
 		
 		scope.apps[app]['selectors'] = {
-											'market'	: 'select entire market', 
-											'industries': [],
-											'tickers'	: [],
-											'ticker'	: 'select a ticker',
-											}
+										'ticker'	: 'select a ticker',
+										'tickers'	: [],
+										'industries': [],
+										'market'	: 'select entire market', 
+										}
 
 
 def base_config_apps(scope):
@@ -32,5 +33,3 @@ def base_config_apps(scope):
 
 	scope.apps['row_limit'] = 100
 	scope.apps['display_app'] = 'login'
-
-
