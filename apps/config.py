@@ -14,7 +14,6 @@ def scope_apps(scope):
 	# variables for each app from the app list above
 	for app in scope.apps['app_list']:
 		scope.apps[app] = {}
-		scope.apps[app]['search_string'] = ''
 		scope.apps[app]['search_results'] = {}
 		scope.apps[app]['selected_tickers'] = []  # formally known as scope.apps[app]['ticker_list']
 		scope.apps[app]['mined_tickers'] = []

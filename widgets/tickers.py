@@ -29,5 +29,4 @@ def on_change_tickers_selection(scope:dict, app:str, widget_key:str):
 	scope.apps[app]['selectors']['tickers'] = changed_value
 	scope.apps[app]['selectors']['industries'] = []
 	scope.apps[app]['selectors']['market'] = 'select entire market'
-	scope.apps[app]['search_string'] = ''
 	scope.apps[app]['search_results'] = {}

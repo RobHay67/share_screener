@@ -42,7 +42,8 @@ render_sidebar(scope)
 render_selected_app(scope)
 
 
-
+print('Single search results   = ', scope.apps['single']['search_results'])
+print('Screener search results = ', scope.apps['screener']['search_results'])
 
 
 

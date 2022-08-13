@@ -28,5 +28,4 @@ def on_change_industry_selection(scope:dict, app:str, widget_key:str):
 	scope.apps[app]['selectors']['tickers'] = []
 	scope.apps[app]['selectors']['industries'] = changed_value
 	scope.apps[app]['selectors']['market'] = 'select entire market'
-	scope.apps[app]['search_string'] = ''
 	scope.apps[app]['search_results'] = {}

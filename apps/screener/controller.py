@@ -14,10 +14,6 @@ def render_screener_page(scope):
 
 	render_ticker_loader(scope)
 	
-
-	print('Ticker Loader > Length of search_results = ',len(scope.apps['screener']['search_results'])  )
-	print('Ticker Loader > search_results = ', scope.apps['screener']['search_results'] )
-
 	if len(scope.apps['screener']['search_results']) == 0:
 
 		render_trial_results(scope)

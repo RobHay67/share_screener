@@ -27,7 +27,7 @@ def on_change_ticker_selection(scope:dict, app:str, widget_key:str):
 
 	# store the selection
 	scope.apps[app]['selectors']['ticker'] = changed_value
-
+	scope.apps[app]['search_results'] = {}
 
 
 
