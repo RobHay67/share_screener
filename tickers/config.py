@@ -8,7 +8,6 @@ def scope_ticker_files(scope):
 def scope_download_variables(scope):
 
 	scope.download 					= {}
-	print(scope.download)
 	base_config_download(scope)
 	scope.download['industries'] 	= ['random_tickers']
 	scope.download['yf_files']		= {}

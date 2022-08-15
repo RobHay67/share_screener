@@ -10,8 +10,6 @@ def render_intraday_page(scope):
 
 	app = scope.apps['display_app']
 
-	print(app)
-
 	render_page_title(scope, 'Intra Day Analysis')
 
 	render_ticker_loader(scope)
@@ -25,7 +23,6 @@ def render_intraday_page(scope):
 			if ticker in list(scope.tickers.keys()):
 
 				print('TODO render_intraday_page')
-
 		
 	else:
 		render_search_results(scope)

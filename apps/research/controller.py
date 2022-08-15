@@ -94,8 +94,6 @@ def render_research_page(scope):
 			# view_ticker_file(scope, ticker)
 
 	else:
-
-		print('here')
 		render_search_results(scope)
 
 
