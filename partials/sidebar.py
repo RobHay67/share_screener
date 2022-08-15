@@ -5,15 +5,13 @@ from widgets.download_days import edit_download_days
 from widgets.logout import logout_button
 
 from tickers.download_controller import download_tickers
-from partials.ticker_loader.buttons.download import download_button
+from partials.ticker_loader.download import download_button
 
 import pytz
 from datetime import datetime
 from markets.schema import opening_hours
 
 		
-
-	
 
 
 def render_sidebar(scope):

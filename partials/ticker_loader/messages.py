@@ -20,5 +20,9 @@ def download_industry_message(scope, message):
 		st.write(  message )
 
 
+def clear_messages_button(scope):
+
+	with scope.col5: 
+		st.button('Clear Messages')
 
 

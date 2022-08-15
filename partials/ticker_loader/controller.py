@@ -7,10 +7,17 @@ from partials.ticker_loader.ticker_name import render_ticker_name
 from tickers.refresh_app_data import refresh_app_df_and_columns
 from tickers.load_controller import load_tickers
 
-from partials.ticker_loader.buttons.clear_message import clear_messages_button
-from partials.ticker_loader.buttons.ticker_dfs import ticker_dfs_button, view_ticker_files
-from partials.ticker_loader.buttons.chart_dfs import chart_dfs_button, view_chart_dfs
-from partials.ticker_loader.buttons.trial_dfs import trial_dfs_button, view_trials_dfs
+from partials.ticker_loader.messages import clear_messages_button
+# from partials.ticker_loader.buttons.ticker_dfs import ticker_dfs_button, render_ticker_dfs
+# from partials.ticker_loader.buttons.chart_dfs import chart_dfs_button, render_chart_dfs
+# from partials.ticker_loader.buttons.trial_dfs import trial_dfs_button, render_trial_dfs
+# from partials.ticker_loader.ticker_dfs import render_ticker_dfs
+from partials.ticker_loader.dfs import render_ticker_dfs
+from partials.ticker_loader.dfs import render_chart_dfs
+from partials.ticker_loader.dfs import render_trial_dfs
+
+from partials.ticker_loader.dfs import dfs_button
+
 
 
 def render_ticker_loader(scope):
@@ -22,28 +29,31 @@ def render_ticker_loader(scope):
 
 	we_have_selected_tickers = render_ticker_selectors(scope)
 
-	with scope.col4: show_ticker_files = ticker_dfs_button(scope)
-
-	if show_ticker_files: view_ticker_files(scope)
-
 	if we_have_selected_tickers:
 		
-		clear_messages_button(scope)
-
 		load_tickers(scope)
 
 		render_ticker_name(scope)
 		
 		refresh_app_df_and_columns(scope)
 
+		# Render buttons that allow the use to display or remove further informaiton
+		clear_messages_button(scope)
+
+		with scope.col4: 
+			show_ticker_files = dfs_button(scope, 'tickers')
+
 		if scope.apps['display_app'] == 'screener':
-			with scope.col4: show_trial_dfs = trial_dfs_button(scope)
+			with scope.col4: show_trial_dfs = dfs_button(scope, 'trials')
 		else:
-			with scope.col4: show_chart_dfs = chart_dfs_button(scope)
+			with scope.col4: show_chart_dfs = dfs_button(scope, 'charts')
 		
-		if show_trial_dfs: view_trials_dfs(scope)
+		# Render selected information
+		if show_ticker_files: render_ticker_dfs(scope)
+
+		if show_trial_dfs: render_trial_dfs(scope)
 		
-		if show_chart_dfs: view_chart_dfs(scope)
+		if show_chart_dfs: render_chart_dfs(scope)
 		
 
 
