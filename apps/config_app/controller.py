@@ -19,9 +19,9 @@ from apps.config_app.apps import view_volume_page
 from apps.config_app.apps import view_research_page
 from apps.config_app.apps import view_screener_page
 
-from partials.ticker_loader.dfs import render_ticker_dfs
-from partials.ticker_loader.dfs import render_chart_dfs
-from partials.ticker_loader.dfs import render_trial_dfs
+from partials.dfs import render_ticker_dfs
+from partials.dfs import render_chart_dfs
+from partials.dfs import render_trial_dfs
 
 # Strategies
 from strategies.config import view_strategy

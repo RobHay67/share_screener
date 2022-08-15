@@ -71,29 +71,16 @@ def render_dfs(scope, type_df, df_location, ticker_list):
 	# if called by the scope app, add some header information first
 	if scope.apps['display_app'] == 'scope':
 		st.subheader(type_df.capitalize() + ' DataFrames')
-
 		# render a 2 column matrix for the df cache location
 		col1,col2 = st.columns([6,2])
-		
 		line_1 = (type_df + ' dfs cached in > ')
-		
 		if type_df == 'tickers':
 			line_2 = "< scope.tickers >"
 		else:
 			line_2 = "< scope.apps['" + df_location + "']['dfs'] >"
-		
 		with col1: st.write(line_1)
 		with col2: st.write(line_2)
-		
 		st.markdown("""---""")
-
-	# # to cope with scope also calling these functions
-	# if type_df == 'tickers':
-	# 	ticker_list = sorted(list(scope.tickers.keys()))
-	# if type_df == 'charts':
-	# 	ticker_list = sorted(scope.apps['single']['mined_tickers'])
-	# if type_df == 'trials':
-	# 	ticker_list = sorted(scope.apps['screener']['mined_tickers'])
 
 	# No of dfs required
 	dfs_total = len(ticker_list)

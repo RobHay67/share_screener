@@ -5,7 +5,7 @@ from widgets.download_days import edit_download_days
 from widgets.logout import logout_button
 
 from tickers.download_controller import download_tickers
-from partials.ticker_loader.download import download_button
+from widgets.download_days import download_button
 
 import pytz
 from datetime import datetime
