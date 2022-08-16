@@ -1,5 +1,5 @@
 
-from ticker_index.view.messages import message_save
+from partials.messages.ticker_index import message_save
 
 
 

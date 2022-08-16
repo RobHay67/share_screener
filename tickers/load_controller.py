@@ -4,7 +4,7 @@ from progress.cache import cache_progress
 from files.path import path_for_ticker_file
 from tickers.load import load_ticker
 from tickers.cache import cache_ticker_file
-from partials.messages import render_messages
+from partials.messages.progress import render_progress_messages
 
 
 def load_tickers(scope):
@@ -37,7 +37,7 @@ def load_tickers(scope):
 
 	cache_progress(scope, 'Finished', final_print=True )
 	
-	render_messages(scope)
+	render_progress_messages(scope)
 
 	
 

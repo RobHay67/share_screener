@@ -9,7 +9,7 @@ from apps.config_app.results import view_all_results
 # Files
 from apps.config_app.files import view_folders
 # Data
-from ticker_index.view.index import render_ticker_index
+from partials.reports.index import render_ticker_index
 from tickers.view.download import view_download
 # Pages
 from apps.config_app.apps import view_apps
@@ -19,15 +19,15 @@ from apps.config_app.apps import view_volume_page
 from apps.config_app.apps import view_research_page
 from apps.config_app.apps import view_screener_page
 
-from partials.dfs import render_ticker_dfs
-from partials.dfs import render_chart_dfs
-from partials.dfs import render_trial_dfs
+from partials.reports.dfs import render_ticker_dfs
+from partials.reports.dfs import render_chart_dfs
+from partials.reports.dfs import render_trial_dfs
 
 # Strategies
 from strategies.config import view_strategy
 # Reports
 from ticker_index.download import download_ticker_index_data
-from ticker_index.view.industries import view_industries
+from partials.reports.industries import view_industries
 
 
 def render_selected_scope_page(scope):

@@ -9,11 +9,11 @@ from ticker_index.schema import csv_dtypes
 from ticker_index.save import save_index
 
 
-from ticker_index.view.messages import message_title
-from ticker_index.view.messages import message_loading
-from ticker_index.view.messages import message_loaded
-from ticker_index.view.messages import message_missing_index_file
-from ticker_index.view.messages import message_new_index_file
+from partials.messages.ticker_index import message_title
+from partials.messages.ticker_index import message_loading
+from partials.messages.ticker_index import message_loaded
+from partials.messages.ticker_index import message_missing_index_file
+from partials.messages.ticker_index import message_new_index_file
 
 
 def load_ticker_index_file( scope ):

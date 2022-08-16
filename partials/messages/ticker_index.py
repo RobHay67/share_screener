@@ -58,3 +58,21 @@ def message_warning(add_records_counter, message):
 
 
 	# st.warning( message) if add_records_counter > 0 else st.info( message)
+
+
+
+
+
+
+# Ticker Index Download Messages
+
+def message_download_ticker_index_asx(scope):
+	st.header('Downloading Ticker Index information for the ' + scope.config['share_market'])
+	st.subheader('Downloading Ticker Master Data from https://asx.api.markitdigital.com and adding to the Ticker Index File')
+	st.markdown("""---""")
+
+def message_index_download_success(scope, downloaded_ticker_info):
+	st.success('number of downloaded ' + scope.config['share_market'] + ' ticker codes = ' + str(len(downloaded_ticker_info)))
+
+def message_index_not_asx(scope):
+	st.error('DOWNLOAD Ticker data NOT YET CONFIGURED FOR ' + scope.config['share_market'])

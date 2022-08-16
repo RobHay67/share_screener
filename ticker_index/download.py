@@ -1,16 +1,16 @@
 import pandas as pd
-import streamlit as st
-
-from partials.dropdowns.dropdowns import refresh_dropdown_lists
 
 from ticker_index.update import update_index
+from partials.dropdowns.dropdowns import refresh_dropdown_lists
+from partials.messages.ticker_index import message_download_ticker_index_asx
+from partials.messages.ticker_index import message_index_download_success
+from partials.messages.ticker_index import message_index_not_asx
+
 
 
 def download_ticker_index_data(scope):
-	st.header('Downloading Ticker Index information for the ' + scope.config['share_market'])
-	st.subheader('Downloading Ticker Master Data from https://asx.api.markitdigital.com and adding to the Ticker Index File')
-	st.markdown("""---""")
-	
+	message_download_ticker_index_asx(scope)
+
 	if scope.config['share_market'] == 'ASX':
 		url = 'https://asx.api.markitdigital.com/asx-research/1.0/companies/directory/file?'
 		column_names = ['share_code', 'company_name', 'listing_date', 'industry_group', 'market_cap' ]
@@ -35,14 +35,14 @@ def download_ticker_index_data(scope):
 		downloaded_ticker_info['industry_group'] = downloaded_ticker_info['industry_group'].str.replace('&', 'and' )
 		downloaded_ticker_info['industry_group'] = downloaded_ticker_info['industry_group'].str.lower()
 
-		st.success('number of downloaded ' + scope.config['share_market'] + ' ticker codes = ' + str(len(downloaded_ticker_info)))
+		message_index_download_success(scope, downloaded_ticker_info)
 
 		update_index(scope, downloaded_ticker_info )
 
 		refresh_dropdown_lists(scope)
 
 	else:
-		st.error('DOWNLOAD Ticker data NOT YET CONFIGURED FOR ' + scope.config['share_market'])
+		message_index_not_asx(scope)
 		pass
 
 

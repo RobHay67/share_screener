@@ -7,11 +7,12 @@ from partials.ticker_loader.ticker_name import render_ticker_name
 from tickers.refresh_app_data import refresh_app_df_and_columns
 from tickers.load_controller import load_tickers
 
-from partials.messages import clear_messages_button
-from partials.dfs import dfs_button
-from partials.dfs import render_ticker_dfs
-from partials.dfs import render_chart_dfs
-from partials.dfs import render_trial_dfs
+from widgets.clear import clear_messages_button
+from widgets.dataframe import dataframe_button
+
+from partials.reports.dfs import render_ticker_dfs
+from partials.reports.dfs import render_chart_dfs
+from partials.reports.dfs import render_trial_dfs
 
 
 
@@ -38,12 +39,12 @@ def render_ticker_loader(scope):
 		clear_messages_button(scope)
 
 		with scope.col4: 
-			show_ticker_files = dfs_button(scope, 'tickers')
+			show_ticker_files = dataframe_button(scope, 'tickers')
 
 		if scope.apps['display_app'] == 'screener':
-			with scope.col4: show_trial_dfs = dfs_button(scope, 'trials')
+			with scope.col4: show_trial_dfs = dataframe_button(scope, 'trials')
 		else:
-			with scope.col4: show_chart_dfs = dfs_button(scope, 'charts')
+			with scope.col4: show_chart_dfs = dataframe_button(scope, 'charts')
 		
 		# Render selected information
 		if show_ticker_files: render_ticker_dfs(scope)
