@@ -18,3 +18,6 @@ def restore_base_config(scope):
 
 	# row_limit
 	base_config_apps(scope)
+
+
+	# TODO - what about the trials config - should this also not revert to the base values

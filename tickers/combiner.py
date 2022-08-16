@@ -11,7 +11,7 @@ from tickers.cache import cache_ticker_file
 # 		resulting in a complete (hopefully) temporal history of existing share data
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def combine_loaded_and_download_ticker_data(scope):
+def combine_loaded_and_downloaded_ticker_data(scope):
 
 	cache_progress(scope, 
 			passed='Combined > ', 

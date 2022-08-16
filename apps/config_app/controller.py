@@ -9,7 +9,7 @@ from apps.config_app.results import view_all_results
 # Files
 from apps.config_app.files import view_folders
 # Data
-from ticker_index.view.index import view_index
+from ticker_index.view.index import render_ticker_index
 from tickers.view.download import view_download
 # Pages
 from apps.config_app.apps import view_apps
@@ -42,7 +42,7 @@ def render_selected_scope_page(scope):
 			# Column 2 - Files
 			'view_folders'			:view_folders,
 			# Column 3 - Data
-			'view_ticker_index'		:view_index,
+			'view_ticker_index'		:render_ticker_index,
 			'render_ticker_dfs'		:render_ticker_dfs,
 			'view_download'			:view_download,
 			# Column 4 - Pages

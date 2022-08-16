@@ -2,7 +2,7 @@
 from users.load import load_user_table
 
 
-def scope_user(scope:dict):
+def scope_users(scope:dict):
 
 	scope.users = {}
 	scope.users['json'] = {}

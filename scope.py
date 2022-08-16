@@ -3,7 +3,7 @@ import time
 
 from partials.dropdowns.config import scope_dropdown_menus
 from files.config import scope_folders_and_paths
-from users.config import scope_user
+from users.config import scope_users
 from progress.config import scope_progress
 from apps.config import scope_apps
 from trials.config import scope_trials
@@ -29,7 +29,7 @@ def set_scope(scope):
 		
 		scope_folders_and_paths(scope)		# Required before we can attempt to load the data
 		
-		scope_user(scope)					# Set Default Values ready for a user to login
+		scope_users(scope)					# Set Default Values ready for a user to login
 		
 		scope_progress(scope)				# Used to report on Function Progress
 

@@ -50,7 +50,7 @@ def download_from_yahoo_finance(scope): 													# TODO What Output to Rende
 			yf_download = yf.download( download_ticker_string, period=period , interval='1d', progress=True, show_errors=False )
 			yf_download['Ticker'] = download_ticker_string   			# manually add the ticker column as its missing
 		else:
-			download_schema = 'y_finance_multi'
+			download_schema = 'y_finance_multi'			# TODO - is this being decalared twice, once in scope and once outside - why?
 			scope.download_schema = 'y_finance_multi'	# we are downloading multiple tickers
 			yf_download = yf.download( download_ticker_string, group_by = 'ticker', period=period , interval='1d', progress=True, threads=True, show_errors=False )
 			yf_download = yf_download.stack(level=0).rename_axis(['Date', 'Ticker']).reset_index(level=1)

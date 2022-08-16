@@ -18,7 +18,7 @@ def update_index(scope, downloaded_ticker_info ):
 
 	add_records_counter = 0
 
-	downloaded_ticker_info = apply_defaults_to_missing_values(scope, downloaded_ticker_info)
+	downloaded_ticker_info = apply_defaults_to_missing_values(downloaded_ticker_info)
 	downloaded_ticker_info.set_index('share_code', inplace=True)
 	
 	cache_progress( scope, 
@@ -44,7 +44,7 @@ def update_index(scope, downloaded_ticker_info ):
 			cache_progress( scope, ticker, result='passed' )
 	cache_progress(scope, 'Finished', final_print=True )
 	
-	scope.ticker_index = apply_defaults_to_missing_values(scope, scope.ticker_index)
+	scope.ticker_index = apply_defaults_to_missing_values(scope.ticker_index)
 	scope.ticker_index['listing_date'] = pd.to_datetime( scope.ticker_index['listing_date'].dt.date  )
 	scope.ticker_index = scope.ticker_index.sort_index()
 	
@@ -57,7 +57,7 @@ def update_index(scope, downloaded_ticker_info ):
 	scope.ticker_list_needs_updating = True
 
 
-def apply_defaults_to_missing_values(scope, dataframe):
+def apply_defaults_to_missing_values(dataframe):
 	defaults = default_values(schema)
 	dtypes = data_types(schema)
 
