@@ -9,18 +9,13 @@ from ticker_index.schema import csv_dtypes
 from ticker_index.save import save_index
 
 
-from partials.messages.ticker_index import message_title
-from partials.messages.ticker_index import message_loading
-from partials.messages.ticker_index import message_loaded
 from partials.messages.ticker_index import message_missing_index_file
 from partials.messages.ticker_index import message_new_index_file
 
 
 def load_ticker_index_file( scope ):
-	# message_title()
 
 	if os.path.exists( scope.files['paths']['ticker_index'] ):
-		# message_loading(scope)
 		
 		ticker_index = pd.read_csv(  scope.files['paths']['ticker_index'], 
 									dtype=csv_dtypes(schema),

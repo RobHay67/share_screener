@@ -2,27 +2,7 @@ import streamlit as st
 
 
 
-
-def message_title():
-	st.subheader('Loading Ticker Index File')
-
-
-def message_loading(scope):
-	# st.write('loading ticker_index.csv file from....... ')
-	st.info( ('loading ticker_index.csv file from > ' +  str(scope.files['paths']['ticker_index']) ))
-
-
-def message_loaded():
-	st.info('Finished loaded the ticker index file')
-
-
-
-
-
-
 # If things go wrong!!!
-
-
 
 def message_missing_index_file(scope):
 	st.error( 'Ticker Index File does not exist at path > ' + str(scope.files['paths']['ticker_index']) )
