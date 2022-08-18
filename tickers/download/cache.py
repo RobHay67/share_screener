@@ -42,7 +42,6 @@ def combine_cached_and_yf_data(scope):
 
 				if ticker in scope.tickers.keys():	
 					# we have exisiting ticker date to concatenate the downloaded data
-					
 					scope.tickers[ticker]['df'] = pd.concat([scope.tickers[ticker]['df'], ticker_data]).drop_duplicates(subset=['date'], keep='last')
 					
 					# sort the share data into date order ascending

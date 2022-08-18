@@ -14,13 +14,10 @@ def download_tickers(scope):
 
 	save_tickers(scope)
 
-
+	print('Rob - we are playing with various process end output - i think we only need to report the erros')
 	failed_download_list = []
 	for ticker, error in scope.download['yf_errors'].items():
 		failed_download_list.append(ticker)
-
-
-
 
 	for ticker in scope.download['yf_ticker_list']:
 		with scope.col5:
