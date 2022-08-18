@@ -33,4 +33,5 @@ def set_data_status(scope, type_col_adder, column_adder, status):
 	if status == True:
 		scope[type_config]['active_list'].append(column_adder)
 	else:
-		scope[type_config]['active_list'].remove(column_adder)
+		if column_adder in scope[type_config]['active_list']:
+			scope[type_config]['active_list'].remove(column_adder)

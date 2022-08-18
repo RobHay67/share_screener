@@ -1,26 +1,61 @@
 from tickers.download.y_finance import download_from_yahoo_finance
-from tickers.combiner import combine_loaded_and_downloaded_ticker_data
-from partials.messages.progress import render_progress_messages
-from tickers.save import save_tickers
-from tickers.status.download import reset_industry_groups
+from tickers.download.cache import combine_cached_and_yf_data
 
+from tickers.save import save_tickers
+from tickers.config import reset_yf_download_config
+
+import streamlit as st
 
 def download_tickers(scope):
 
 	download_from_yahoo_finance(scope)
-	render_progress_messages(scope)
 
-	combine_loaded_and_downloaded_ticker_data(scope)
-	render_progress_messages(scope)
-
-	# check_share_data_for_missing_dates( scope )				# TODO Not Sure this is Required anymore
+	combine_cached_and_yf_data(scope)
 
 	save_tickers(scope)
-	render_progress_messages(scope)
-
-	# reset STATUS to prevent unnecesary updates
-	reset_industry_groups(scope)
 
 
+	failed_download_list = []
+	for ticker, error in scope.download['yf_errors'].items():
+		failed_download_list.append(ticker)
 
 
+
+
+	for ticker in scope.download['yf_ticker_list']:
+		with scope.col5:
+			if ticker not in failed_download_list:
+				st.success(ticker)
+			else:
+				st.error(ticker)
+
+	reset_yf_download_config(scope)
+
+
+
+
+
+
+def report_on_download_errors(scope):
+
+	# TODO - not sure this belongs at this point
+
+	# The following seems to report on the download errors
+
+	cache_progress( scope, 
+					passed='Downloaded > ', 
+					passed_2='na', 
+					failed='Falied to Download > ' 
+					)
+	
+	failed_download_list = []
+	for ticker, error in scope.download['yf_errors'].items():
+		failed_download_list.append(ticker)
+
+	for ticker in scope.download['yf_ticker_list']:
+		if ticker not in failed_download_list:
+			cache_progress( scope, ticker, result='passed' )
+		else:
+			cache_progress( scope, ticker, result='failed' )
+	
+	cache_progress(scope, 'Finished', final_print=True )

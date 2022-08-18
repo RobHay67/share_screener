@@ -1,6 +1,6 @@
 
 
-def cache_ticker_data(scope, ticker, ticker_data):
+def cache_in_tickers(scope, ticker, ticker_data):
 
 	# This event is triggered after new ticker data is
 	# either loaded or downloaded. 

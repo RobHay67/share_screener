@@ -41,18 +41,39 @@ render_sidebar(scope)
 render_selected_app(scope)
 
 
+#TODO
+print('Rob - we are trying to report on the download state')
+print('we have manually added a error where we delete all the rows')
+print('perhaps we cache all the erros for the app page so we can see whats been happening over time')
+
+
+
+
+
+
 
 print('Missing Tickers - local = ', scope.missing_tickers['local'])
 print('Missing Tickers - cloud = ', scope.missing_tickers['cloud'])
 print('Missing Tickers - list  = ', scope.missing_tickers['list'])
 
-print('='*88)
-print('Screener App')
-print('-'*88)
-print('search results   (screener) = ', scope.apps['screener']['search_results'])
-print('Ticker Worklist  (screener) = ', scope.apps['screener']['worklist'])
-print('mined_ticker     (screener) = ', scope.apps['screener']['mined_tickers'])
-print('='*88)
+
+# print('='*88)
+# print('Download Parameters')
+# print('-'*88)
+# print('scope.download[yf_industry_groups] > ', scope.download['yf_industry_groups'])
+# print('scope.download[yf_ticker_string]   > ', scope.download['yf_ticker_string'])
+# print('scope.download[yf_schema]          > ', scope.download['yf_schema'])
+# print('scope.download[yf_errors]          > ', scope.download['yf_errors'])
+# print('='*88)
+
+
+# print('='*88)
+# print('Screener App')
+# print('-'*88)
+# # print('search results   (screener) = ', scope.apps['screener']['search_results'])
+# print('Ticker Worklist  (screener) = ', scope.apps['screener']['worklist'])
+# print('mined_ticker     (screener) = ', scope.apps['screener']['mined_tickers'])
+# print('='*88)
 
 
 

@@ -31,7 +31,7 @@ ticker_file_dates 		= ['date']
 # column keys > 50 will be ignored
 
 y_finance_schemas =    {
-							'y_finance_single' :   {
+							'single_ticker' :   	{
 													1 : { 'col_name' : 'Date'       , 'index_col' : True  },
 													2 : { 'col_name' : 'Open'       , 'index_col' : False },
 													3 : { 'col_name' : 'High'       , 'index_col' : False },
@@ -41,7 +41,7 @@ y_finance_schemas =    {
 													6 : { 'col_name' : 'Volume'     , 'index_col' : False },
 													0 : { 'col_name' : 'Ticker'     , 'index_col' : False },   # manually added by the imported for consistency
 													},
-							'y_finance_multi' :     {
+							'multiple_tickers' :    {
 													1 : { 'col_name' : 'Date'       , 'index_col' : True  },
 													0 : { 'col_name' : 'Ticker'     , 'index_col' : False },
 													98: { 'col_name' : 'Adj Close'  , 'index_col' : False },

@@ -1,15 +1,13 @@
 
-
 from tickers.schema import ticker_file_schema
-from tickers.schema import ticker_file_usecols
 from tickers.schema import y_finance_schemas
 
 
 
-
-
-def format_columns_in_downloaded_share_data( scope, yf_download, download_schema ): # DONE
+def format_yf_download(scope, yf_download):
 	
+	download_schema = scope.download['yf_schema']
+
 	yf_download.reset_index(inplace=True)   # remove any index set during import - we will set the index later
 
 	for col_no in y_finance_schemas[download_schema]:

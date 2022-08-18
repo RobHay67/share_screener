@@ -42,6 +42,8 @@ def refresh_app_df_and_columns(scope):
 				for column_adder, status in scope.tickers[ticker]['apps'][app]['column_adders'].items():
 					
 					if status == True:	# Only replace the columns if requested to do so for this column adder
+
+						ticker_df = scope.tickers[ticker]['apps'][app]['df']
 										
 						# Call the column adding function for this column_adder
 						scope[type_of_column_adder][column_adder]['add_columns']['function'](scope, column_adder, ticker, ticker_df)

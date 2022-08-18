@@ -4,9 +4,9 @@
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # def update_download_status(scope): # TODO DONE - but needs robust testing on a large group - also > # TODO What Output to Render
-	# for ticker in scope.download['yf_files']['ticker'].unique():
+	# for ticker in scope.download['yf_data']['ticker'].unique():
 	# 	scope.ticker_index.at[ticker, 'yahoo_status'] = 'downloaded'
-	# for ticker, error_message in scope.download['yf_anomolies'].items():
+	# for ticker, error_message in scope.download['yf_errors'].items():
 	# 	if error_message == 'No data found, symbol may be delisted':
 	# 		scope.ticker_index.at[ticker, 'yahoo_status'] = 'delisted'
 	# 	else:
