@@ -18,7 +18,6 @@
 # delete pkg		- pipenv uninstall django
 # -------------------------------------------------
 
-import jupyter_client
 import streamlit as st
 
 # Testing Code - TODO - delete on Final Release
@@ -46,6 +45,15 @@ render_selected_app(scope)
 # print('Single search results   = ', scope.apps['single']['search_results'])
 # print('Research search results = ', scope.apps['research']['search_results'])
 # print('Screener search results = ', scope.apps['screener']['search_results'])
+
+
+
+# st.info('Info')
+# st.error('error')
+# st.warning('warning')
+# st.success('Success')
+# st.exception('exception')
+
 
 
 

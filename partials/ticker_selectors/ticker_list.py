@@ -49,6 +49,7 @@ def update_ticker_list(scope):
 			list_of_industries = ( list(scope.ticker_index['industry_group'].unique() ))
 		
 	# Store the ticker_list and list_of_industries variables
+	ticker_list.sort()
 	scope.apps[app]['selected_tickers'] = ticker_list
 	scope.download['industries'] = list_of_industries
 

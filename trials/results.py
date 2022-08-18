@@ -14,7 +14,7 @@ def trial_results(scope):
 	column_list = ['ticker'] + active_trial_list + ['overall_result']
 
 	trial_results_df = pd.DataFrame(columns=column_list)
-
+	
 	for ticker in scope.apps[app]['selected_tickers']:
 
 		trial_results_for_ticker = []

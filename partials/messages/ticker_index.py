@@ -13,7 +13,6 @@ def message_new_index_file():
 	st.success('successfully created empty Ticker Index Dataframe / File')
 
 
-
 # Save messages
 
 def message_save():
@@ -21,8 +20,6 @@ def message_save():
 
 
 # Update Messages
-
-
 
 def message_updating():
 
@@ -35,13 +32,6 @@ def message_warning(add_records_counter, message):
 		st.warning( message)
 	else:
 		st.info( message)
-
-
-	# st.warning( message) if add_records_counter > 0 else st.info( message)
-
-
-
-
 
 
 # Ticker Index Download Messages

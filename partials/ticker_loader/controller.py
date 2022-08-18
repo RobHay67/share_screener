@@ -15,7 +15,7 @@ from partials.reports.dfs import render_chart_dfs
 from partials.reports.dfs import render_trial_dfs
 
 
-
+from partials.ticker_loader.ticker_list import render_selected_tickers
 
 
 def render_ticker_loader(scope):
@@ -29,6 +29,10 @@ def render_ticker_loader(scope):
 
 	if we_have_selected_tickers:
 		
+		render_selected_tickers(scope)
+
+		clear_messages_button(scope)
+
 		load_tickers(scope)
 
 		render_ticker_name(scope)
@@ -36,7 +40,6 @@ def render_ticker_loader(scope):
 		refresh_app_df_and_columns(scope)
 
 		# Render buttons that allow the use to display or remove further informaiton
-		clear_messages_button(scope)
 
 		with scope.col4: 
 			show_ticker_files = dataframe_button(scope, 'tickers')

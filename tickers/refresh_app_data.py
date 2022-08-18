@@ -15,7 +15,7 @@ def refresh_app_df_and_columns(scope):
 
 	for ticker in app_ticker_list:
 		
-		# Double Check if share data available for this ticker
+		# Double Check if share data id already available for this ticker
 		# (function will fail if ticker data is not available) 
 		if ticker in list(scope.tickers.keys()): 
 			
@@ -55,4 +55,4 @@ def refresh_app_df_and_columns(scope):
 						
 		else:
 			print ( '\033[91m' + ticker.ljust(10) + '> ticker file not in scope.tickers \033[0m')
-
+			print('This message should never be displayed')
