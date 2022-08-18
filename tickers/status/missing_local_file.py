@@ -11,4 +11,3 @@ def set_missing_status(scope, ticker):
 	scope.missing_tickers['list'].append(ticker)
 
 
-	# scope.download['missing_list'].append(ticker)

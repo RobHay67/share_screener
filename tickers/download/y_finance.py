@@ -24,6 +24,7 @@ from tickers.download.format_cols import format_columns_in_downloaded_share_data
 # download ticker data for a single or group of tickers
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def download_from_yahoo_finance(scope): 													# TODO What Output to Render
+	
 	# group_by: group by column or ticker (‘column’/’ticker’, default is ‘column’)
 	# threads : use threads for mass downloading? (True/False/Integer)
 
@@ -32,10 +33,7 @@ def download_from_yahoo_finance(scope): 													# TODO What Output to Rende
 
 	# reset_download_status(scope)
 
-	# TODO scope.download['industries'] - this variable needs to be better defined and explained
-	# industry_groups_to_download = scope.download['industries'] - something like this anyway TODO
-
-	for count, industry in enumerate(scope.download['industries']):
+	for count, industry in enumerate(scope.download['industry_groups']):
 		render_download_message(scope, count, industry)
 
 		download_ticker_string = generate_ticker_string_by_industry(scope, industry)

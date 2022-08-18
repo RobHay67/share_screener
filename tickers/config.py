@@ -15,10 +15,9 @@ def scope_download_variables(scope):
 
 	scope.download 					= {}
 	base_config_download(scope)
-	scope.download['industries'] 	= ['random_tickers']
+	scope.download['industry_groups'] 	= ['random_tickers']
 	scope.download['yf_files']		= {}
 	scope.download['yf_anomolies'] 	= {}
-	# scope.download['missing_list'] 	= []
 
 
 

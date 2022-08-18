@@ -51,6 +51,6 @@ def update_ticker_list(scope):
 	# Store the ticker_list and list_of_industries variables
 	ticker_list.sort()
 	scope.apps[app]['worklist'] = ticker_list
-	scope.download['industries'] = list_of_industries
+	scope.download['industry_groups'] = list_of_industries
 
 	return we_have_selected_tickers

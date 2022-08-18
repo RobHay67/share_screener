@@ -15,9 +15,8 @@ def render_download_message(scope, count, industry):
 	if industry == 'random_tickers':
 		download_message = ('Yahoo Finance downloading > ' + scope.apps[app]['worklist'][0] )
 	else:
-		download_message = ('Yahoo Finance downloading > ' + industry + ' ( ' + str(count+1) + ' of ' + str(len(scope.download['industries'])) + ' )' )
+		download_message = ('Yahoo Finance downloading > ' + industry + ' ( ' + str(count+1) + ' of ' + str(len(scope.download['industry_groups'])) + ' )' )
 	
 	download_industry_message(scope, download_message)
 
 
-	
