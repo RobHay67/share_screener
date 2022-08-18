@@ -1,8 +1,8 @@
 import os
 
 from files.path import path_for_ticker_file
-from tickers.load import load_ticker
-from tickers.cache import cache_in_tickers
+from tickers.load.load import load_ticker
+from tickers.load.cache import cache_in_tickers
 from tickers.status.missing_local_file import set_missing_local_file_status
 
 

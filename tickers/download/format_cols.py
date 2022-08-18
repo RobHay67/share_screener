@@ -1,6 +1,6 @@
 
 from tickers.schema import ticker_file_schema
-from tickers.schema import y_finance_schemas
+from tickers.download.schema import y_finance_schemas
 
 
 

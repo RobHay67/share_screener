@@ -1,7 +1,7 @@
 from tickers.download.y_finance import download_from_yahoo_finance
 from tickers.download.cache import combine_cached_and_yf_data
 
-from tickers.save import save_tickers
+from tickers.download.save import save_tickers
 from tickers.config import reset_yf_download_config
 
 import streamlit as st

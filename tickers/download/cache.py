@@ -2,7 +2,7 @@ import pandas as pd
 
 from tickers.schema import ticker_file_usecols
 from tickers.status.combine import set_data_status
-from tickers.cache import cache_in_tickers
+from tickers.load.cache import cache_in_tickers
 from tickers.status.download import set_download_failure_status, set_download_new_data_status
 
 
