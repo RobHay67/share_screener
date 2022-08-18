@@ -1,4 +1,4 @@
-from tickers.download import download_from_yahoo_finance
+from tickers.download.y_finance import download_from_yahoo_finance
 from tickers.combiner import combine_loaded_and_downloaded_ticker_data
 from partials.messages.progress import render_progress_messages
 from tickers.save import save_tickers

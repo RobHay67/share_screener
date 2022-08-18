@@ -3,9 +3,9 @@ import os
 from progress.cache import cache_progress
 from files.path import path_for_ticker_file
 from tickers.load import load_ticker
-from tickers.cache import cache_ticker_file
+from tickers.cache import cache_ticker_data
 from partials.messages.progress import render_progress_messages
-
+from tickers.status.missing_local_file import set_missing_status
 
 def load_tickers(scope):
 	
@@ -19,20 +19,19 @@ def load_tickers(scope):
 					)
 
 	for ticker in ticker_list:
-		# We only need to load if it has NOT previously been loaded into memory
-		if ticker not in scope.tickers:					
+		# Attempt to load unless we already know the file is missing
+		if ticker not in scope.missing_tickers['local']:
+			
 			path_for_ticker_file(scope, ticker )
 
 			# Check that a local file is available to load
 			if os.path.exists( scope.files['paths']['ticker_data'] ):										
-				print ( '\033[92m' + ticker.ljust(10) + '> loading local ticker file \033[0m')
-				ticker_data_file = load_ticker(scope, ticker )
-				cache_ticker_file(scope, ticker, ticker_data_file)
+				ticker_data = load_ticker(scope, ticker )
+				cache_ticker_data(scope, ticker, ticker_data)
 				cache_progress( scope, ticker, result='passed' )
 			else:
-				# The expected Local file is not available - so report this																
-				print ( '\033[95m' + ticker.ljust(10) + '> missing local ticker file \033[0m')
-				scope.download['missing_list'].append(ticker)
+				# The expected Local file is not available
+				set_missing_status(scope, ticker)															
 				cache_progress( scope, ticker, result='failed' )
 
 	cache_progress(scope, 'Finished', final_print=True )

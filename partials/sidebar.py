@@ -8,11 +8,7 @@ from widgets.row_limit import edit_row_limit
 from widgets.download import edit_download_days, download_button
 from widgets.logout import logout_button
 
-from tickers.download_controller import download_tickers
-
-
-
-		
+from tickers.download.controller import download_tickers
 
 
 def render_sidebar(scope):

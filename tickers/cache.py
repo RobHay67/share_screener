@@ -1,8 +1,8 @@
 
 
-def cache_ticker_file(scope, ticker, ticker_data_file):
+def cache_ticker_data(scope, ticker, ticker_data):
 
-	# This event is triggered when new ticker data is
+	# This event is triggered after new ticker data is
 	# either loaded or downloaded. 
 	#  
 	# Add keys to the ticker to house the df 
@@ -10,11 +10,11 @@ def cache_ticker_file(scope, ticker, ticker_data_file):
 
 
 	# Sort ticker file into ascending order
-	ticker_data_file.sort_values(by=['date'], inplace=True, ascending=False)	
+	ticker_data.sort_values(by=['date'], inplace=True, ascending=False)	
 
 	# Store the ticker data in ['df']
 	scope.tickers[ticker] = {}
-	scope.tickers[ticker]['df'] = ticker_data_file
+	scope.tickers[ticker]['df'] = ticker_data
 
 	# Config for each APP
 	scope.tickers[ticker]['apps'] = {}
@@ -43,38 +43,4 @@ def cache_ticker_file(scope, ticker, ticker_data_file):
 			scope.tickers[ticker]['apps'][app]['type_col_adder'] = 'trials'
 			scope.tickers[ticker]['apps'][app]['column_adders'] = scope.trial_config['column_adders'].copy()
 
-
-
-# Sample scope.
-# TICKER 		= 'CBA.AX'
-# dataframe 	= 'DataFrame'
-# app1 		= 'volume'
-# app2 		= 'screener'
-
-
-# sample_scope = 'tickers':{
-# 					TICKER:{
-# 							'df': dataframe,
-# 							'apps': {
-# 									app1:{
-# 											'df'				:dataframe,
-# 											'replace_df'		:True,			# True or False,
-# 											'type_column_adder'	:None, 			# None, 'charts' or 'trials'
-# 											'column_adders'		:{},
-# 										},
-# 									app2:{
-# 											'df'				:dataframe,
-# 											'replace_df'		:True,			# True or False,
-# 											'type_column_adder'	:None, 			# None, 'charts' or 'trials'
-# 											'column_adders': {
-# 																'trend_open': False, 
-# 																'trend_high': True, 
-# 																'trend_low': False, 
-# 																'trend_close': True, 
-# 																'trend_volume': False,
-# 															},
-# 										},
-# 									},
-# 							},
-# 						}
 

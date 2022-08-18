@@ -42,8 +42,9 @@ render_selected_app(scope)
 
 
 
-print(scope.missing_tickers['local'])
-print(scope.missing_tickers['cloud'])
+print('Missing Tickers - local = ', scope.missing_tickers['local'])
+print('Missing Tickers - cloud = ', scope.missing_tickers['cloud'])
+print('Missing Tickers - list  = ', scope.missing_tickers['list'])
 
 print('='*88)
 print('Screener App')

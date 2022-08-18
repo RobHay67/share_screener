@@ -3,7 +3,7 @@ import pandas as pd
 from progress.cache import cache_progress
 from tickers.schema import ticker_file_usecols
 from tickers.status.combine import set_data_status
-from tickers.cache import cache_ticker_file
+from tickers.cache import cache_ticker_data
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Combiner
@@ -49,7 +49,7 @@ def combine_loaded_and_downloaded_ticker_data(scope):
 					cache_progress( scope, ticker, result='passed' )
 				else:
 					# its brand new - so we can just add it to the dictionary
-					cache_ticker_file(scope, ticker, ticker_data)
+					cache_ticker_data(scope, ticker, ticker_data)
 					cache_progress( scope, ticker, result='passed_2' )
 				
 				

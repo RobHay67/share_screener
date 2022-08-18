@@ -28,19 +28,20 @@ def render_single_ticker_page(scope):
 
 		if ticker != 'select a ticker' :
 
-			ticker 			= scope.apps[app]['selectors']['ticker']
-			chart_df		= scope.tickers[ticker]['apps'][app]['df']
-			schema 			= create_schema_for_plotly(scope)
-			
-			if schema['no_of_charts'] > 0:
+			if ticker not in scope.missing_tickers['list']:
+
+				chart_df		= scope.tickers[ticker]['apps'][app]['df']
+				schema 			= create_schema_for_plotly(scope)
 				
-				fig = add_main_chart(schema)
-				
-				fig = add_child_charts(scope, fig, chart_df, schema )
-				
-				fig = format_main_chart(scope, fig)
-				
-				st.plotly_chart(fig, use_container_width=True)
+				if schema['no_of_charts'] > 0:
+					
+					fig = add_main_chart(schema)
+					
+					fig = add_child_charts(scope, fig, chart_df, schema )
+					
+					fig = format_main_chart(scope, fig)
+					
+					st.plotly_chart(fig, use_container_width=True)
 
 	else:
 		render_search_results(scope)

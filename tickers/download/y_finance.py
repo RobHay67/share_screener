@@ -13,13 +13,8 @@ from progress.cache import cache_progress
 from ticker_index.save import save_index			# TODO we may need to get this working again
 
 
-# ==============================================================================================================================================================
-#
-# Yahoo Finance 
-#
-# ==============================================================================================================================================================
-
-
+from partials.messages.y_finance import render_download_message
+from tickers.download.format_cols import format_columns_in_downloaded_share_data
 
 
 
@@ -60,40 +55,7 @@ def download_from_yahoo_finance(scope): 													# TODO What Output to Rende
 
 
 
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Update Share Index with download status information
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# def reset_download_status(scope): # TODO - ERROR - which tickers are being updated????
-	# app = scope.apps['display_app']
 
-	# ticker_list = list(scope.selected[app]['worklist'])
-	# for ticker in ticker_list:
-	# 	scope.ticker_index.at[ticker, 'yahoo_status'] = 'set_for_download'
-
-# def update_download_status(scope): # TODO DONE - but needs robust testing on a large group - also > # TODO What Output to Render
-	# for ticker in scope.download['yf_files']['ticker'].unique():
-	# 	scope.ticker_index.at[ticker, 'yahoo_status'] = 'downloaded'
-	# for ticker, error_message in scope.download['yf_anomolies'].items():
-	# 	if error_message == 'No data found, symbol may be delisted':
-	# 		scope.ticker_index.at[ticker, 'yahoo_status'] = 'delisted'
-	# 	else:
-	# 		st.write( ticker + ' - download error = ' + str(error_message))
-	# save_index(scope)
-
-
-
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Yahoo Finance - helpers
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def render_download_message(scope, count, industry):
-	app = scope.apps['display_app']
-
-	if industry == 'random_tickers':
-		download_message = ('Yahoo Finance downloading > ' + scope.apps[app]['worklist'][0] )
-	else:
-		download_message = ('Yahoo Finance downloading > ' + industry + ' ( ' + str(count+1) + ' of ' + str(len(scope.download['industries'])) + ' )' )
-	
-	download_industry_message(scope, download_message)
 
 
 def generate_ticker_string_by_industry(scope, industry): # OK
@@ -115,20 +77,8 @@ def generate_ticker_string_by_industry(scope, industry): # OK
 
 	return download_ticker_string
 
-def format_columns_in_downloaded_share_data( scope, yf_download, download_schema ): # DONE
-	
-	yf_download.reset_index(inplace=True)   # remove any index set during import - we will set the index later
 
-	for col_no in y_finance_schemas[download_schema]:
-		provider_column_name    = y_finance_schemas[download_schema][col_no]['col_name']
-		if col_no < 50:                 	# its a column we are keeping - anything tagged with a key above 50 can be removed
-			application_column_name = ticker_file_schema[col_no]['col_name']
-			
-			yf_download.rename(columns = { provider_column_name : application_column_name }, inplace = True)
-		else:                           	# its a column we do not need so lets delete it
-			del yf_download[provider_column_name]
-	yf_download['volume'] = yf_download['volume'].fillna(0).astype(int)
-	return( yf_download )
+
 
 def store_yf_download_in_scope( scope, download_ticker_string, yf_download, download_errors ): # TODO What Output to Render
 	# store the downloaded data in a single dictionary
@@ -138,7 +88,7 @@ def store_yf_download_in_scope( scope, download_ticker_string, yf_download, down
 	scope.download['yf_files'] = pd.concat([scope.download['yf_files'], yf_download], sort=False)
 	scope.download['yf_anomolies'].update(download_errors)	# store any errors
 	
-	cache_progress( 	scope, 
+	cache_progress( scope, 
 					passed='Downloaded > ', 
 					passed_2='na', 
 					failed='Falied to Download > ' 
@@ -156,7 +106,6 @@ def store_yf_download_in_scope( scope, download_ticker_string, yf_download, down
 		else:
 			cache_progress( scope, ticker, result='failed' )
 	cache_progress(scope, 'Finished', final_print=True )
-
 
 
 

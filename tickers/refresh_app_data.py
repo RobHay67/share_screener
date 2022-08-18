@@ -1,11 +1,6 @@
-
-
-
 # The primary code to 
 # - refresh the App df
 # - Refresh specific df columns 
-
-
 
 def refresh_app_df_and_columns(scope):
 
@@ -15,12 +10,12 @@ def refresh_app_df_and_columns(scope):
 
 	for ticker in app_ticker_list:
 		
-		# Double Check if share data id already available for this ticker
-		# (function will fail if ticker data is not available) 
+		# Ensure data available for this ticker (function will fail if data is not available) 
 		if ticker in list(scope.tickers.keys()): 
 			
 			# -------------------------------------------------------------------
 			# Replace the App df if requested
+			# -------------------------------------------------------------------
 			if scope.tickers[ticker]['apps'][app]['replace_df'] == True:
 			
 				ticker_df = scope.tickers[ticker]['df'].copy()
@@ -38,6 +33,7 @@ def refresh_app_df_and_columns(scope):
 
 			# -------------------------------------------------------------------
 			# Replace specific columns in the app df if requested
+			# -------------------------------------------------------------------
 			type_of_column_adder = scope.tickers[ticker]['apps'][app]['type_col_adder']
 
 			
@@ -52,8 +48,3 @@ def refresh_app_df_and_columns(scope):
 
 						# Set the status to false to prevent refreshing unnecesarily
 						scope.tickers[ticker]['apps'][app]['column_adders'][column_adder] = False
-						
-		else:
-			print ( '\033[91m' + ticker.ljust(10) + '> ticker file not in scope.tickers \033[0m')
-			print('This message should never be displayed')
-			#TODO - we need to remove this message or bug out as we are expecting data to be availbale and it is not
