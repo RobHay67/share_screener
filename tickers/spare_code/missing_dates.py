@@ -82,7 +82,7 @@ import os
 # 	if params.ticker_index['specified_trading_halt_codes'] != None:  # just make sure we have specified some codes
 # 		terminal_heading( params, ( 'editing share index to account for trading halt days' + cyan + '   Changed' + '  /  ' + purple + 'Failed' + white ), line_filler='-' )
 # 		output_result_to_terminal(params)
-# 		for ticker in params.analysis['selected_tickers']:
+# 		for ticker in params.analysis['worklist']:
 # 			missing_dates_string = str(params.ticker_index['file'].loc[ticker]['missing_dates'])
 # 			trading_halt_dates_string = str(params.ticker_index['file'].loc[ticker]['trading_halt_dates'])
 

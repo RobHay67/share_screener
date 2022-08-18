@@ -10,7 +10,7 @@ from partials.messages.progress import render_progress_messages
 def load_tickers(scope):
 	
 	app = scope.apps['display_app']
-	ticker_list = scope.apps[app]['selected_tickers']
+	ticker_list = scope.apps[app]['worklist']
 
 	cache_progress(	scope, 
 					passed='Loaded Local files > ', 

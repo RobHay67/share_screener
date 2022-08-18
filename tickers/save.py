@@ -4,7 +4,7 @@ from files.path import path_for_ticker_file
 
 def save_tickers(scope):
 	app 		= scope.apps['display_app']
-	ticker_list = scope.apps[app]['selected_tickers']
+	ticker_list = scope.apps[app]['worklist']
 	
 	cache_progress( scope, 
 					passed='Saved > ', 

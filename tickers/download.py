@@ -66,7 +66,7 @@ def download_from_yahoo_finance(scope): 													# TODO What Output to Rende
 # def reset_download_status(scope): # TODO - ERROR - which tickers are being updated????
 	# app = scope.apps['display_app']
 
-	# ticker_list = list(scope.selected[app]['selected_tickers'])
+	# ticker_list = list(scope.selected[app]['worklist'])
 	# for ticker in ticker_list:
 	# 	scope.ticker_index.at[ticker, 'yahoo_status'] = 'set_for_download'
 
@@ -89,7 +89,7 @@ def render_download_message(scope, count, industry):
 	app = scope.apps['display_app']
 
 	if industry == 'random_tickers':
-		download_message = ('Yahoo Finance downloading > ' + scope.apps[app]['selected_tickers'][0] )
+		download_message = ('Yahoo Finance downloading > ' + scope.apps[app]['worklist'][0] )
 	else:
 		download_message = ('Yahoo Finance downloading > ' + industry + ' ( ' + str(count+1) + ' of ' + str(len(scope.download['industries'])) + ' )' )
 	
@@ -101,7 +101,7 @@ def generate_ticker_string_by_industry(scope, industry): # OK
 	app = scope.apps['display_app']
 
 	if industry == 'random_tickers': 							# we have selected specific tickers 
-		batch_of_tickers = scope.apps[app]['selected_tickers']
+		batch_of_tickers = scope.apps[app]['worklist']
 	else: 														# user has selected a share market, industry or multiple industries
 		industry_tickers = scope.ticker_index[scope.ticker_index['industry_group'] == industry ]
 		batch_of_tickers = industry_tickers.index.tolist()

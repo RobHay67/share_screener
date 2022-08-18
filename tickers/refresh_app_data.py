@@ -11,7 +11,7 @@ def refresh_app_df_and_columns(scope):
 
 	app 				= scope.apps['display_app']
 	app_row_limit 		= int(scope.apps['row_limit'])
-	app_ticker_list 	= scope.apps[app]['selected_tickers']
+	app_ticker_list 	= scope.apps[app]['worklist']
 
 	for ticker in app_ticker_list:
 		

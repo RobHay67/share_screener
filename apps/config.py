@@ -15,7 +15,7 @@ def scope_apps(scope):
 	for app in scope.apps['app_list']:
 		scope.apps[app] = {}
 		scope.apps[app]['search_results'] = {}
-		scope.apps[app]['selected_tickers'] = []  # formally known as scope.apps[app]['ticker_list']
+		scope.apps[app]['worklist'] = []  # formally known as scope.apps[app]['ticker_list']
 		scope.apps[app]['mined_tickers'] = []
 		
 		scope.apps[app]['selectors'] = {

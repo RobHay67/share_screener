@@ -10,7 +10,7 @@ def render_selected_tickers(scope):
 	col_height = 5
 
 	app = scope.apps['display_app']
-	ticker_list = scope.apps[app]['selected_tickers']
+	ticker_list = scope.apps[app]['worklist']
 	no_of_tickers = len(ticker_list)
 
 

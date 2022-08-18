@@ -41,6 +41,20 @@ render_sidebar(scope)
 render_selected_app(scope)
 
 
+
+print(scope.missing_tickers['local'])
+print(scope.missing_tickers['cloud'])
+
+print('='*88)
+print('Screener App')
+print('-'*88)
+print('search results   (screener) = ', scope.apps['screener']['search_results'])
+print('Ticker Worklist  (screener) = ', scope.apps['screener']['worklist'])
+print('mined_ticker     (screener) = ', scope.apps['screener']['mined_tickers'])
+print('='*88)
+
+
+
 # print('IntraDay search results = ', scope.apps['intraday']['search_results'])
 # print('Single search results   = ', scope.apps['single']['search_results'])
 # print('Research search results = ', scope.apps['research']['search_results'])
@@ -160,7 +174,7 @@ def level_3_details(level_1, level_2, level_3):
 # # print('active list      (trials)   = ', scope.trial_config['active_list'])
 # print('-'*88)
 # print('search results   (screener) = ', scope.apps['screener']['search_results'])
-# print('selected tickers (screener) = ', scope.apps['screener']['selected_tickers'])
+# print('selected tickers (screener) = ', scope.apps['screener']['worklist'])
 # print('mined_ticker     (screener) = ', scope.apps['screener']['mined_tickers'])
 # print('='*88)
 
@@ -173,7 +187,7 @@ def level_3_details(level_1, level_2, level_3):
 # # print('active list      (charts) = ', scope.chart_config['active_list'])
 # print('-'*88)
 # print('search results   (single) = ', scope.apps['single']['search_results'])
-# print('selected tickers (single) = ', scope.apps['single']['selected_tickers'])
+# print('selected tickers (single) = ', scope.apps['single']['worklist'])
 # print('mined_ticker     (single) = ', scope.apps['single']['mined_tickers'])
 # print('='*88)
 

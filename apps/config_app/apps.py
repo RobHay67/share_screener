@@ -38,8 +38,8 @@ def view_page_specific_variables(scope, app):
 	# for App in scope.apps['app_list']:
 	st.subheader(app.upper() + ' App')
 	three_cols( 'Search Results'  , scope.apps[app]['search_results'], 'scope.apps.'+ app +'.search_results'    , widget_type='string' )
-	three_cols( 'Selected Tickers'  , scope.apps[app]['selected_tickers'], 'scope.apps.'+ app +'.selected_tickers'    , widget_type='string' )
-	three_cols( 'Mined Tickers'  , scope.apps[app]['mined_tickers'], 'scope.apps.'+ app +'.mined_tickers'    , widget_type='string' )
+	three_cols( 'App Worklist'    , scope.apps[app]['worklist'], 'scope.apps.'+ app +'.worklist'    , widget_type='string' )
+	three_cols( 'Mined Tickers'   , scope.apps[app]['mined_tickers'], 'scope.apps.'+ app +'.mined_tickers'    , widget_type='string' )
 
 	three_cols( 'Selected - Market'  , scope.apps[app]['selectors']['market']    , 'scope.apps.'+ app +'.selectors.market'    , widget_type='string' )
 	three_cols( 'Selected - Industry', scope.apps[app]['selectors']['industries'], 'scope.apps.'+ app +'.selectors.industries', widget_type='string' )

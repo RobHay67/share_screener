@@ -8,9 +8,9 @@ def render_ticker_name(scope):
 
 	if app != 'screener':
 		# there should only be 1 ticker in this list
-		if len(scope.apps[app]['selected_tickers']) == 1:
+		if len(scope.apps[app]['worklist']) == 1:
 			# Base Data
-			ticker = scope.apps[app]['selected_tickers'][0]
+			ticker = scope.apps[app]['worklist'][0]
 			ticker_name = scope.ticker_search[ticker]
 			ticker_df = scope.tickers[ticker]['df']
 
