@@ -56,3 +56,4 @@ def refresh_app_df_and_columns(scope):
 		else:
 			print ( '\033[91m' + ticker.ljust(10) + '> ticker file not in scope.tickers \033[0m')
 			print('This message should never be displayed')
+			#TODO - we need to remove this message or bug out as we are expecting data to be availbale and it is not

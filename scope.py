@@ -10,7 +10,7 @@ from trials.config import scope_trials
 from charts.config import scope_charts
 from ticker_index.config import scope_index_file
 from partials.ticker_search.config import scope_ticker_search
-from tickers.config import scope_ticker_files, scope_download_variables
+from tickers.config import scope_ticker_files, scope_missing_tickers, scope_download_variables
 from strategies.config import scope_strategy
 
 
@@ -44,6 +44,8 @@ def set_scope(scope):
 		scope_ticker_search(scope)			# variable to facilite searching for ticker by name
 		
 		scope_ticker_files(scope)			# variables for storing the ticker files
+
+		scope_missing_tickers(scope)		# lists of tickers that failed to upload or download
 		
 		scope_download_variables(scope)		# variable used during download of ticker data
 
