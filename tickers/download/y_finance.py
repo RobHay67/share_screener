@@ -53,6 +53,7 @@ def download_from_yahoo_finance(scope):
 
 
 
+
 def yf_ticker_string(scope, industry):
 	# convert an industry into a string of tickers acceptable to y_finance
 	
@@ -73,7 +74,6 @@ def yf_ticker_string(scope, industry):
 		y_finance_ticker_string =  y_finance_ticker_string + ticker
 
 	scope.download['yf_ticker_string'] = y_finance_ticker_string
-
 
 
 

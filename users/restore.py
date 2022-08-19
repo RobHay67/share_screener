@@ -1,8 +1,10 @@
 
-from charts.config import base_config_charts
-from tickers.config import base_config_download
-from apps.config import base_config_apps
+
 from users.config import base_config_users
+from charts.config import base_config_charts
+from tickers.download.config import base_config_download
+from apps.config import base_config_apps
+
 
 def restore_base_config(scope):
 	# Reinstate default user setting across config

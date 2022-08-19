@@ -4,7 +4,7 @@ from partials.ticker_loader.schema import column_layout_schema
 from partials.ticker_selectors.selectors import render_ticker_selectors
 from partials.ticker_loader.ticker_name import render_ticker_name
 
-from tickers.refresh_app_data import refresh_app_df_and_columns
+from tickers.status.refresh_app_data import refresh_app_df_and_columns
 from tickers.load.controller import load_tickers
 
 from widgets.clear import clear_messages_button

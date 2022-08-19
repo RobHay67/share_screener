@@ -10,7 +10,8 @@ from trials.config import scope_trials
 from charts.config import scope_charts
 from ticker_index.config import scope_index_file
 from partials.ticker_search.config import scope_ticker_search
-from tickers.config import scope_ticker_files, scope_missing_tickers, scope_download_variables
+from tickers.config import scope_ticker_files, scope_missing_tickers
+from tickers.download import scope_download_variables
 from strategies.config import scope_strategy
 
 
