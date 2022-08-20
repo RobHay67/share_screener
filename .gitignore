@@ -4,8 +4,10 @@ __pycache__/
 *$py.class
 
 # Ignore Data Folders during Development
-files/tickers/
 
+files/results_analysis
+files/tickers/
+files/website
 
 # C extensions
 *.so
