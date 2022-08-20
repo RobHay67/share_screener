@@ -60,7 +60,11 @@ def cache_yf_batch_data(scope):
 
 	# cache the download errors for later reporting
 	scope.download['yf_errors'].update(scope.download['yf_batch_errors'])
-
+	print('='*100)
+	print('cache download errors')
+	print('-'*100)
+	print(scope.download['yf_errors'])
+	print('-'*100)
 
 
 

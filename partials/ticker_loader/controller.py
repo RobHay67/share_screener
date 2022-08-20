@@ -15,7 +15,8 @@ from partials.reports.dfs import render_chart_dfs
 from partials.reports.dfs import render_trial_dfs
 
 
-from partials.ticker_loader.ticker_list import render_selected_tickers
+from partials.ticker_loader.worklist import render_worklist
+from partials.ticker_loader.worklist import render_errors
 
 
 def render_ticker_loader(scope):
@@ -29,11 +30,13 @@ def render_ticker_loader(scope):
 
 	if we_have_selected_tickers:
 		
-		render_selected_tickers(scope)
-
+		render_worklist(scope)
+		
 		clear_messages_button(scope)
 
 		load_tickers(scope)
+
+		render_errors(scope)
 
 		render_ticker_name(scope)
 		

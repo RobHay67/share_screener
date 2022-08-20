@@ -4,7 +4,7 @@ import pandas as pd
 
 
 
-def render_selected_tickers(scope):
+def render_worklist(scope):
 
 	col_height = 5
 
@@ -42,4 +42,28 @@ def render_selected_tickers(scope):
 		with scope.col5: 
 			my_expander = st.expander(label=description, expanded=False )
 			my_expander.dataframe(ticker_df)
+
+
+
+def render_errors(scope):
+	print('')
+	print('='*100)
+	print('render_errors')
+	print('-'*100)
+
+	app = scope.apps['display_app']
+	for ticker in scope.apps[app]['worklist']:
+		if ticker in scope.missing_tickers['errors'].keys():
+			# print(ticker)
+			if scope.missing_tickers['errors'][ticker]['load'] != None:
+				print(ticker, '   >    ', scope.missing_tickers['errors'][ticker]['load'])
+			if scope.missing_tickers['errors'][ticker]['yf'] != None:
+				print(ticker, '   >    ', scope.missing_tickers['errors'][ticker]['yf'])
+			# for error in scope.missing_tickers['errors'][ticker]:
+			# 	print(ticker, '   >    ', error)
+
+	print('-'*100)
+
+
+
 

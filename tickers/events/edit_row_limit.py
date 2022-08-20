@@ -7,8 +7,6 @@ def set_data_status(scope):
 	#
 	# App dataframes will require refreshing
 	# Column  adders will require refreshing as well
-
-	print('editing the row limit')
 	
 	for ticker in scope.tickers.keys():
 		for app in scope.apps['app_list']:

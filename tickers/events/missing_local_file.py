@@ -1,5 +1,5 @@
 
-
+from tickers.config import scope_missing_ticker_error
 
 
 
@@ -9,5 +9,12 @@ def set_missing_local_file_status(scope, ticker):
 
 	scope.missing_tickers['local'].append(ticker)
 	scope.missing_tickers['list'].append(ticker)
+
+	# Cache Error
+	if ticker not in scope.missing_tickers['errors']:
+		scope_missing_ticker_error(scope, ticker)
+	
+	scope.missing_tickers['errors'][ticker]['load'] = 'Missing Local file'
+
 
 

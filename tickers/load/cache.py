@@ -1,5 +1,8 @@
 
 
+
+
+
 def cache_in_tickers(scope, ticker, ticker_data):
 
 	# This event is triggered after new ticker data is

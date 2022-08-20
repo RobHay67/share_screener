@@ -1,4 +1,5 @@
 
+from tickers.config import scope_missing_ticker_error
 
 
 def set_download_failure_status(scope, ticker):
@@ -14,6 +15,12 @@ def set_download_failure_status(scope, ticker):
 	if ticker not in scope.missing_tickers['list']:
 		scope.missing_tickers['list'].append(ticker)
 
+
+	# Cache Download Error
+	if ticker not in scope.missing_tickers['errors']:
+		scope_missing_ticker_error(scope, ticker)
+
+	scope.missing_tickers['errors'][ticker]['yf'] = (scope.download['yf_errors'][ticker])
 
 
 def set_download_new_data_status(scope, ticker):
