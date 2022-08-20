@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 
 # Ignore Data Folders during Development
-share_data/
+files/tickers/
 
 
 # C extensions
