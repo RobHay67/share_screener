@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from tickers.status.edit_row_limit import set_data_status
+from tickers.events.edit_row_limit import set_data_status
 
 
 def edit_row_limit(scope):

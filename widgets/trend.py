@@ -1,6 +1,6 @@
 import streamlit as st
 
-from tickers.status.edit_column_adder import set_data_status
+from tickers.events.edit_column_adder import set_data_status
 
 
 def edit_trend_direction(scope, type_config, column_adder ):

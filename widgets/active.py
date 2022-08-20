@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from tickers.status.edit_active import set_data_status
+from tickers.events.edit_active import set_data_status
 
 
 
