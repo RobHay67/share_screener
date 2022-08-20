@@ -10,7 +10,9 @@ from apps.config_app.results import view_all_results
 from apps.config_app.files import view_folders
 # Data
 from partials.reports.index import render_ticker_index
-from tickers.view.download import view_download
+from apps.config_app.download import view_download
+
+
 # Pages
 from apps.config_app.apps import view_apps
 from apps.config_app.apps import view_single_page
