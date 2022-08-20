@@ -7,17 +7,17 @@ from tickers.status.download import set_download_failure_status, set_download_ne
 
 
 
-def cache_yf_downloaded_data( scope, yf_download, download_errors ):
+def cache_yf_batch_data(scope):
 
-	# cache list of tickers we attempted to download
-	yf_ticker_list = scope.download['yf_ticker_string'].split(' ')
+	# cache a list of tickers for later reporting
+	yf_ticker_list = scope.download['yf_batch_ticker_string'].split(' ')
 	scope.download['yf_ticker_list'].extend(yf_ticker_list)
 	
-	# cache the downloaded data later processing and reporting
-	scope.download['yf_data'] = pd.concat([scope.download['yf_data'], yf_download], sort=False)
+	# cache the downloaded data for later processing and reporting
+	scope.download['yf_data'] = pd.concat([scope.download['yf_data'], scope.download['yf_batch_data']], sort=False)
 
 	# cache the download errors for later reporting
-	scope.download['yf_errors'].update(download_errors)
+	scope.download['yf_errors'].update(scope.download['yf_batch_errors'])
 
 
 def combine_cached_and_yf_data(scope):

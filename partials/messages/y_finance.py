@@ -6,13 +6,21 @@ import streamlit as st
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Yahoo Finance - helpers
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-def render_download_message(scope, batch_no, industry):
-	app = scope.apps['display_app']
+def render_download_message(scope):
 
-	if industry == 'random_tickers':
-		download_message = ('Yahoo Finance > ' + scope.download['yf_ticker_string'] )
+	if scope.download['yf_batch_industry'] == 'random_tickers':
+		download_message = (	'Yahoo Finance > ' + 
+								scope.download['yf_batch_ticker_string']
+							)
 	else:
-		download_message = ('Yahoo Finance > ' + industry + ' ( batch ' + str(batch_no+1) + ' of ' + str(len(scope.download['yf_industry_groups'])) + ' )' )
+		download_message = (	'Yahoo Finance > ' + 
+								scope.download['yf_batch_industry'] + 
+								' ( batch ' + 
+								str(scope.download['yf_batch_no']+1) + 
+								' of ' + 
+								str(len(scope.download['yf_download_these_industries'])) + 
+								' )' 
+							)
 	
 	with scope.col5:
 		st.write(  download_message )
