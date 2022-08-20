@@ -1,7 +1,6 @@
 from tickers.download.y_finance import download_from_yahoo_finance
 from tickers.download.cache import combine_cached_and_yf_data
 
-from tickers.download.save import save_tickers
 from tickers.download.config import reset_yf_download_config
 
 import streamlit as st
@@ -12,7 +11,6 @@ def download_tickers(scope):
 
 	combine_cached_and_yf_data(scope)
 
-	save_tickers(scope)
 
 	print('Rob - we are playing with various process end output - i think we only need to report the erros')
 	failed_download_list = []

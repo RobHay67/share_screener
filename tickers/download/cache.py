@@ -4,29 +4,15 @@ from tickers.schema import ticker_file_usecols
 from tickers.status.combine import set_data_status
 from tickers.load.cache import cache_in_tickers
 from tickers.status.download import set_download_failure_status, set_download_new_data_status
-
-
-
-def cache_yf_batch_data(scope):
-
-	# cache a list of tickers for later reporting
-	yf_ticker_list = scope.download['yf_batch_ticker_string'].split(' ')
-	scope.download['yf_ticker_list'].extend(yf_ticker_list)
-	
-	# cache the downloaded data for later processing and reporting
-	scope.download['yf_data'] = pd.concat([scope.download['yf_data'], scope.download['yf_batch_data']], sort=False)
-
-	# cache the download errors for later reporting
-	scope.download['yf_errors'].update(scope.download['yf_batch_errors'])
+from tickers.download.save import save_ticker
 
 
 def combine_cached_and_yf_data(scope):
 	# concatenates any downloaded data with any loaded data 
 	# resulting in a complete (hopefully) temporal transaction history for a ticker
 
-	app = scope.apps['display_app']
-
 	# iterate through the target tickers for the App
+	app = scope.apps['display_app']
 	for ticker in scope.apps[app]['worklist']:
 				
 		if ticker in scope.download['yf_data']['ticker'].unique():
@@ -50,6 +36,8 @@ def combine_cached_and_yf_data(scope):
 					# its brand new - so treat like a locally loaded file
 					cache_in_tickers(scope, ticker, ticker_data)
 					set_download_new_data_status(scope, ticker)
+
+				save_ticker(scope, ticker)
 				set_data_status(scope, ticker)
 			else:
 				print('\033[95m', ticker, ' downloaded but we dont have any data', '\033[0m')
@@ -61,7 +49,17 @@ def combine_cached_and_yf_data(scope):
 		
 
 
+def cache_yf_batch_data(scope):
 
+	# cache a list of tickers for later reporting
+	yf_ticker_list = scope.download['yf_batch_ticker_string'].split(' ')
+	scope.download['yf_ticker_list'].extend(yf_ticker_list)
+	
+	# cache the downloaded data for later processing and reporting
+	scope.download['yf_data'] = pd.concat([scope.download['yf_data'], scope.download['yf_batch_data']], sort=False)
+
+	# cache the download errors for later reporting
+	scope.download['yf_errors'].update(scope.download['yf_batch_errors'])
 
 
 

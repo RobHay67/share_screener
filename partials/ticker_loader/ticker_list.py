@@ -1,9 +1,8 @@
-
 import streamlit as st
-
 import pandas as pd
 
-import numpy as np
+
+
 
 def render_selected_tickers(scope):
 
@@ -38,7 +37,7 @@ def render_selected_tickers(scope):
 				ticker_df[col_name] = sublist
 				col_no +=1
 
-		description = 'Target (' + str(no_of_tickers) + ')'
+		description = 'Work List (' + str(no_of_tickers) + ')'
 
 		with scope.col5: 
 			my_expander = st.expander(label=description, expanded=False )
