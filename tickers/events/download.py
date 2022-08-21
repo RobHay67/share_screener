@@ -2,7 +2,7 @@
 from tickers.config import scope_missing_ticker_error
 
 
-def set_download_failure_status(scope, ticker):
+def set_download_failure_status(scope, ticker, zero_volume=False):
 
 	# SO the download has failed and we need to update the missing_tickers list
 	scope.missing_tickers['cloud'].append(ticker)
@@ -20,7 +20,12 @@ def set_download_failure_status(scope, ticker):
 	if ticker not in scope.missing_tickers['errors']:
 		scope_missing_ticker_error(scope, ticker)
 
-	scope.missing_tickers['errors'][ticker]['yf'] = (scope.download['yf_errors'][ticker])
+	if zero_volume:
+		error_message = 'Zero volume - no trading activity'
+	else:
+		error_message = scope.download['yf_errors'][ticker]
+
+	scope.missing_tickers['errors'][ticker]['yf'] = error_message
 
 
 def set_download_new_data_status(scope, ticker):
@@ -34,3 +39,4 @@ def set_download_new_data_status(scope, ticker):
 
 	if ticker in scope.missing_tickers['list']:
 		scope.missing_tickers['list'].remove(ticker)
+

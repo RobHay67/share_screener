@@ -53,7 +53,7 @@ print('perhaps we cache all the erros for the app page so we can see whats been 
 print('Missing Tickers - local  = ', scope.missing_tickers['local'])
 print('Missing Tickers - cloud  = ', scope.missing_tickers['cloud'])
 print('Missing Tickers - list   = ', scope.missing_tickers['list'])
-print('Missing Tickers - Errors = ', scope.missing_tickers['errors'])
+# print('Missing Tickers - Errors = ', scope.missing_tickers['errors'])
 
 
 

@@ -2,7 +2,7 @@ import pandas as pd
 
 from tickers.schema import ticker_file_usecols
 from tickers.events.combine import set_data_status
-from tickers.load.cache import cache_in_tickers
+from tickers.load.cache import cache_ticker_data
 from tickers.events.download import set_download_failure_status, set_download_new_data_status
 from tickers.download.save import save_ticker
 
@@ -25,7 +25,6 @@ def combine_cached_and_yf_data(scope):
 			
 			if len(ticker_data)>0:
 				# We may have no data after dropping the zero volume rows
-
 				if ticker in scope.tickers.keys():	
 					# we have exisiting ticker date to concatenate the downloaded data
 					scope.tickers[ticker]['df'] = pd.concat([scope.tickers[ticker]['df'], ticker_data]).drop_duplicates(subset=['date'], keep='last')
@@ -34,17 +33,17 @@ def combine_cached_and_yf_data(scope):
 					scope.tickers[ticker]['df'].sort_values(by=['date'], inplace=True, ascending=False)		
 				else:
 					# its brand new - so treat like a locally loaded file
-					cache_in_tickers(scope, ticker, ticker_data)
+					cache_ticker_data(scope, ticker, ticker_data)
 					set_download_new_data_status(scope, ticker)
 
 				save_ticker(scope, ticker)
 				set_data_status(scope, ticker)
+
 			else:
-				print('\033[95m', ticker, ' downloaded but we dont have any data', '\033[0m')
-				scope.download['yf_errors'].update({ticker:'downloaded ok, but after dropping 0 volume days contained no records'})
-				set_download_failure_status(scope, ticker)
+				# Ticker Downloaded ok but only contained dates with zero volume
+				set_download_failure_status(scope, ticker, zero_volume=True)
 		else:
-			print('\033[91m', ticker, ' failed to download', '\033[0m')
+			# Ticker Failed to download
 			set_download_failure_status(scope, ticker)	
 		
 
@@ -60,11 +59,6 @@ def cache_yf_batch_data(scope):
 
 	# cache the download errors for later reporting
 	scope.download['yf_errors'].update(scope.download['yf_batch_errors'])
-	print('='*100)
-	print('cache download errors')
-	print('-'*100)
-	print(scope.download['yf_errors'])
-	print('-'*100)
 
 
 

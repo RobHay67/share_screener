@@ -2,9 +2,9 @@ import os
 
 from files.path import path_for_ticker_file
 from tickers.load.load import load_ticker
-from tickers.load.cache import cache_in_tickers
+from tickers.load.cache import cache_ticker_data
 from tickers.events.missing_local_file import set_missing_local_file_status
-
+from tickers.events.add_ticker import set_add_ticker_status
 
 def load_tickers(scope):
 	
@@ -20,11 +20,10 @@ def load_tickers(scope):
 
 				# Check that a local file is available to load
 				if os.path.exists( scope.files['paths']['ticker_data'] ):
-					print('loading local >', ticker)								
 					ticker_data = load_ticker(scope, ticker )
-					cache_in_tickers(scope, ticker, ticker_data)
+					set_add_ticker_status(scope, ticker)
+					cache_ticker_data(scope, ticker, ticker_data)
 				else:
-					print('missing local >', ticker)	
 					# The expected Local file is not available
 					set_missing_local_file_status(scope, ticker)															
 	
