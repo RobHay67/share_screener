@@ -1,5 +1,5 @@
 
-def set_data_status(scope, type_col_adder, column_adder, status):
+def edit_active_event(scope, type_col_adder, column_adder, status):
 	
 	# This event is triggered when a column adder is set
 	# to either Active (True) or Inactive (False)

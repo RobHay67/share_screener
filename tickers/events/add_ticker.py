@@ -3,7 +3,7 @@
 
 
 
-def set_add_ticker_status(scope, ticker):
+def add_ticker_event(scope, ticker):
 
 	print('add a ticker - what does this function do')
 

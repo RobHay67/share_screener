@@ -1,9 +1,9 @@
 import pandas as pd
 
 from tickers.schema import ticker_file_usecols
-from tickers.events.combine import set_data_status
+from tickers.events.combine import combine_event
 from tickers.load.cache import cache_ticker_data
-from tickers.events.download import set_download_failure_status, set_download_new_data_status
+from tickers.events.download import fail_download_event, new_download_event
 from tickers.download.save import save_ticker
 
 
@@ -34,17 +34,17 @@ def combine_cached_and_yf_data(scope):
 				else:
 					# its brand new - so treat like a locally loaded file
 					cache_ticker_data(scope, ticker, ticker_data)
-					set_download_new_data_status(scope, ticker)
+					new_download_event(scope, ticker)
 
 				save_ticker(scope, ticker)
-				set_data_status(scope, ticker)
+				combine_event(scope, ticker)
 
 			else:
 				# Ticker Downloaded ok but only contained dates with zero volume
-				set_download_failure_status(scope, ticker, zero_volume=True)
+				fail_download_event(scope, ticker, zero_volume=True)
 		else:
 			# Ticker Failed to download
-			set_download_failure_status(scope, ticker)	
+			fail_download_event(scope, ticker)	
 		
 
 

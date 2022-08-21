@@ -3,7 +3,7 @@
 
 
 
-def set_data_status(scope, column_adder):
+def edit_column_adder_event(scope, column_adder):
 
 	# Event is called when one of the column adders has its
 	# criteria changed - i.e. sma_days changed from 5 to 10

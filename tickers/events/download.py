@@ -2,7 +2,7 @@
 from tickers.config import scope_missing_ticker_error
 
 
-def set_download_failure_status(scope, ticker, zero_volume=False):
+def fail_download_event(scope, ticker, zero_volume=False):
 
 	# SO the download has failed and we need to update the missing_tickers list
 	scope.missing_tickers['cloud'].append(ticker)
@@ -28,9 +28,9 @@ def set_download_failure_status(scope, ticker, zero_volume=False):
 	scope.missing_tickers['errors'][ticker]['yf'] = error_message
 
 
-def set_download_new_data_status(scope, ticker):
+def new_download_event(scope, ticker):
 	# we may not have had any local data (ie its a new ticker)
-	# so we need to rest the local load status and change
+	# so we need to resrt the local load status and change
 	# the overall status
 
 

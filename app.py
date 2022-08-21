@@ -42,11 +42,7 @@ render_selected_app(scope)
 
 
 #TODO
-print('Rob - we are trying to report on the download state')
-print('we have manually added an error in the event we delete all the rows')
-print('perhaps we cache all the erros for the app page so we can see whats been happening over time')
-
-
+print('Rob - add output for the errors - sdee worklist code')
 
 
 

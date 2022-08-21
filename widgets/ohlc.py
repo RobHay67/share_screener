@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from tickers.events.edit_column_adder import set_data_status
+from tickers.events.edit_column_adder import edit_column_adder_event
 
 def edit_ohlc(scope, type_config, column_adder ):
 	
@@ -28,4 +28,4 @@ def on_change_ohlc(scope:dict, type_config:str, column_adder:str, widget_key:str
 	scope[type_config][column_adder]['add_columns']['column'] = changed_value	
 
 	# update the app data renew status
-	set_data_status(scope, column_adder)
+	edit_column_adder_event(scope, column_adder)

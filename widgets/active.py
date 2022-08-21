@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from tickers.events.edit_active import set_data_status
+from tickers.events.edit_active import edit_active_event
 
 
 
@@ -29,6 +29,6 @@ def on_change_active_status(scope:dict, type_config:str, column_adder:str, widge
 	scope[type_config][column_adder]['active'] = changed_value
 
 	# update the app data renew status
-	set_data_status(scope, type_config, column_adder, changed_value)
+	edit_active_event(scope, type_config, column_adder, changed_value)
 
 

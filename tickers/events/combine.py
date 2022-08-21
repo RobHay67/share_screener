@@ -3,7 +3,7 @@
 
 
 
-def set_data_status(scope, ticker):
+def combine_event(scope, ticker):
 
 	# This event is triggered when new ticker data has been successfully downloaded
 	# and combined with the existing loaded date

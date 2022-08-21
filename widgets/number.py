@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from tickers.events.edit_column_adder import set_data_status
+from tickers.events.edit_column_adder import edit_column_adder_event
 
 
 def edit_number(scope, type_config, column_adder, measure ):
@@ -29,4 +29,4 @@ def on_change_number(scope:dict, type_config:str, column_adder:str, measure:str,
 	scope[type_config][column_adder]['add_columns'][measure] = changed_value
 
 	# update the app data renew status
-	set_data_status(scope, column_adder)
+	edit_column_adder_event(scope, column_adder)

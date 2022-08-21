@@ -1,6 +1,6 @@
 
 
-def set_data_status(scope):
+def edit_row_limit_event(scope):
 
 	# This event is triggered when the user sets a new row limit for
 	# every app - there is only a singlr global row limit

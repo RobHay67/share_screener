@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from tickers.events.edit_row_limit import set_data_status
+from tickers.events.edit_row_limit import edit_row_limit_event
 
 
 def edit_row_limit(scope):
@@ -28,5 +28,5 @@ def on_change_row_limit(scope:dict, widget_key:str):
 	scope.apps['row_limit'] = changed_value
 
 	# update the app data refresh status
-	set_data_status(scope)
+	edit_row_limit_event(scope)
 	

@@ -3,7 +3,7 @@
 
 
 
-def set_save_ticker_status(scope, ticker):
+def save_ticker_event(scope, ticker):
 
 	# so we must have data to save... right???
 

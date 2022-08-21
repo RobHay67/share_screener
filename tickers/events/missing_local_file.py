@@ -3,7 +3,7 @@ from tickers.config import scope_missing_ticker_error
 
 
 
-def set_missing_local_file_status(scope, ticker):
+def missing_file_event(scope, ticker):
 	# There is no local file so record this fact
 	# to prevent further attempts to load the local file
 
