@@ -1,3 +1,5 @@
+import streamlit as st
+
 from widgets.ticker import select_a_ticker
 from widgets.search import search_ticker_by_name
 
@@ -11,26 +13,29 @@ from partials.ticker_selectors.ticker_list import update_ticker_list
 
 def render_ticker_selectors(scope):
 
+	col1,col2,col3,col4,col5 = st.columns([2.0, 3.0, 2.0, 3.0, 2.0])
+	
 	app = scope.apps['display_app']
-
-	with scope.col1: 
-		search_ticker_by_name(scope)
 
 	if app != 'screener':
 		# One of the Single Ticker Pages - Single / Volume / Research or IntraDay
 
-		with scope.col2:
+		with col1:
 			select_a_ticker(scope)
 	
 	if app == 'screener':	
 		# Screener app (Potentially Multiple Tickers depending on the dropdown selections)
 		
-		with scope.col2: 
+		with col1: 
 			select_tickers(scope)
-		with scope.col2: 
+		with col2: 
 			select_industries(scope)
-		with scope.col2: 
+		with col3: 
 			select_a_market(scope)
+
+	with col5: 
+		search_ticker_by_name(scope)
+
 
 	we_have_selected_tickers = update_ticker_list(scope)
 

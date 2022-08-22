@@ -12,11 +12,13 @@ def render_ticker_name(scope):
 		
 		if len(scope.apps[app]['worklist']) == 1:
 			
+			col1,col2,col3,col4 = st.columns([6.0, 2.0, 2.0, 2.0])
+
 			# Base Data
 			ticker = scope.apps[app]['worklist'][0]
 			ticker_name = scope.ticker_search[ticker]
 
-			with scope.col1:
+			with col1:
 				st.write('')
 				st.subheader(ticker_name)
 
@@ -38,9 +40,13 @@ def render_ticker_name(scope):
 				close = round((ticker_df['close'].values[0]),2)
 				close = "${:.2f}".format(close)
 
-				with scope.col1:
+				with col2:
+					st.subheader(close)
 
-					st.subheader(close + ' ..... ' + volume)
+				with col3:
+					st.subheader(volume)
+				
+				with col4:
 					st.write(min_date + ' << >> ' + max_date)
 			
 

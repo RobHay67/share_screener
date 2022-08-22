@@ -1,7 +1,5 @@
 
-from partials.header import render_page_title
-from partials.ticker_loader.controller import render_ticker_loader
-
+from partials.app_header import render_app_header
 
 from apps.research.metadata import fetch_yfinance_metadata
 
@@ -46,9 +44,7 @@ def render_research_page(scope):
 
 	app = scope.apps['display_app']
 
-	render_page_title(scope, 'Company Research')
-
-	render_ticker_loader(scope)
+	render_app_header(scope, 'Company Research')
 
 	if len(scope.apps[app]['search_results']) == 0:
 

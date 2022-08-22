@@ -1,7 +1,7 @@
 import streamlit as st
 
-from partials.header import render_page_title
-from partials.ticker_loader.controller import render_ticker_loader
+from partials.app_header import render_app_header
+# from partials.ticker_loader.controller import render_ticker_loader
 
 from apps.single.schema import create_schema_for_plotly
 from apps.single.chart_main import add_main_chart 
@@ -17,9 +17,9 @@ def render_single_ticker_page(scope):
 
 	app = scope.apps['display_app']
 	
-	render_page_title(scope, 'Ticker Analysis (single ticker)')
+	render_app_header(scope, 'Ticker Analysis (single ticker)')
 
-	render_ticker_loader(scope)
+	# render_ticker_loader(scope)
 
 
 	if len(scope.apps[app]['search_results']) == 0:

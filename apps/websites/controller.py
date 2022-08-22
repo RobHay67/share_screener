@@ -1,12 +1,12 @@
 import streamlit as st
 
-from partials.header import render_page_title
+from partials.app_header import render_app_header
 
 
 
 def render_websites(scope):
 
-	render_page_title(scope, 'Internet Resources')
+	render_app_header(scope, 'Internet Resources')
 
 	col1,col2 = st.columns([4,4])
 

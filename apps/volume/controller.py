@@ -4,8 +4,7 @@ import pytz
 
 from markets.schema import opening_hours
 
-from partials.header import render_page_title
-from partials.ticker_loader.controller import render_ticker_loader
+from partials.app_header import render_app_header
 from apps.volume.view.input_volume import view_input_volume
 from apps.volume.view.prediction import view_prediction
 
@@ -15,9 +14,7 @@ def render_volume_page(scope):
 
 	app = scope.apps['display_app']
 
-	render_page_title(scope, 'Predict Closing Volume to End of Today')
-
-	render_ticker_loader(scope)
+	render_app_header(scope, 'Predict Closing Volume to End of Today')
 
 	if len(scope.apps[app]['search_results']) == 0:
 	

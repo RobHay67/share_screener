@@ -14,8 +14,8 @@ def render_worklist(scope):
 
 
 	if no_of_tickers == 1:
-		with scope.col5: 
-			st.button('Target = ' + ticker_list[0])
+		# with scope.col5: 
+		st.button('Target = ' + ticker_list[0])
 
 
 	if no_of_tickers > 1:
@@ -39,9 +39,9 @@ def render_worklist(scope):
 
 		description = 'Work List (' + str(no_of_tickers) + ')'
 
-		with scope.col5: 
-			my_expander = st.expander(label=description, expanded=False )
-			my_expander.dataframe(ticker_df)
+		# with scope.col5: 
+		my_expander = st.expander(label=description, expanded=False )
+		my_expander.dataframe(ticker_df)
 
 
 
