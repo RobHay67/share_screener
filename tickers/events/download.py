@@ -4,8 +4,11 @@ from tickers.config import scope_missing_ticker_error
 
 def fail_download_event(scope, ticker, zero_volume=False):
 
+	print('Function Called > fail_download_event ', ticker)
 	# SO the download has failed and we need to update the missing_tickers list
-	scope.missing_tickers['cloud'].append(ticker)
+	if ticker not in scope.missing_tickers['cloud']:
+		scope.missing_tickers['cloud'].append(ticker)
+
 	# if ticker not in scope.missing_tickers['list']:
 	
 	

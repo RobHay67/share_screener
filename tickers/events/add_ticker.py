@@ -5,14 +5,13 @@
 
 def add_ticker_event(scope, ticker):
 
-	print('add a ticker - what does this function do')
-
-
 	# This event is triggered after new ticker data is
 	# either loaded or downloaded. 
 	#  
 	# Add keys to the ticker to house the df 
 	# Add appropriate column adders state information
+	# This function only generate the empty objects with
+	# there default values. Data is added by other functions.
 
 
 	# Store the ticker data in ['df']
