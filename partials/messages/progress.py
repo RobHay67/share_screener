@@ -6,7 +6,6 @@ import streamlit as st
 # -----------------------------------------------------------------------------------------------------------------------------------
 
 def render_progress_messages(scope):
-	# with scope.col5:
 	if scope.progress['passed_count'] > 0: 
 		st.info(scope.progress['passed'])
 	if scope.progress['passed_2_count'] > 0: 

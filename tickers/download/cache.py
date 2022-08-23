@@ -3,7 +3,7 @@ import pandas as pd
 from tickers.schema import ticker_file_usecols
 from tickers.events.combine import combine_event
 from tickers.load.cache import cache_ticker_data
-from tickers.events.download import fail_download_event, new_download_event
+from tickers.events.download import fail_download_event, download_data_event
 from tickers.download.save import save_ticker
 
 
@@ -25,6 +25,7 @@ def combine_cached_and_yf_data(scope):
 			
 			if len(ticker_data)>0:
 				# We may have no data after dropping the zero volume rows
+				download_data_event(scope, ticker)
 				if ticker in scope.tickers.keys():	
 					# we have exisiting ticker date to concatenate the downloaded data
 					scope.tickers[ticker]['df'] = pd.concat([scope.tickers[ticker]['df'], ticker_data]).drop_duplicates(subset=['date'], keep='last')
@@ -34,7 +35,7 @@ def combine_cached_and_yf_data(scope):
 				else:
 					# its brand new - so treat like a locally loaded file
 					cache_ticker_data(scope, ticker, ticker_data)
-					new_download_event(scope, ticker)
+					
 
 				save_ticker(scope, ticker)
 				combine_event(scope, ticker)

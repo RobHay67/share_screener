@@ -24,14 +24,6 @@ def render_app_header(scope, title):
 	
 	with col1:
 		st.header(title)
-
-
-
-# TODO - need to remove anything referenceing scope.col - this was not so wise config
-	print('TODO - should we render_download_message during the download or store these messages for later rendering??')
-
-
-# def render_ticker_loader(scope):
 	
 	show_ticker_dfs = False
 	show_chart_dfs = False

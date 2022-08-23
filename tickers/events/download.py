@@ -30,14 +30,17 @@ def fail_download_event(scope, ticker, zero_volume=False):
 	scope.missing_tickers['errors'][ticker]['yf'] = error_message
 
 
-def new_download_event(scope, ticker):
+def download_data_event(scope, ticker):
 	# we may not have had any local data (ie its a new ticker)
-	# so we need to resrt the local load status and change
+	# so we need to reset the local load status and change
 	# the overall status
 
 
 	if ticker in scope.missing_tickers['local']:
 		scope.missing_tickers['local'].remove(ticker)
+	
+	if ticker in scope.missing_tickers['cloud']:
+		scope.missing_tickers['cloud'].remove(ticker)
 
 	if ticker in scope.missing_tickers['list']:
 		scope.missing_tickers['list'].remove(ticker)
