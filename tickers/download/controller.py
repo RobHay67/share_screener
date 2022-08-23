@@ -11,7 +11,6 @@ def download_tickers(scope):
 
 	combine_cached_and_yf_data(scope)
 
-	print('ToDO - we might want to clear the download cache before each run - not after as we havnt reported yet')
 	reset_yf_download_config(scope)
 
 

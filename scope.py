@@ -4,7 +4,6 @@ import time
 from partials.dropdowns.config import scope_dropdown_menus
 from files.config import scope_folders_and_paths
 from users.config import scope_users
-from progress.config import scope_progress
 from apps.config import scope_apps
 from trials.config import scope_trials
 from charts.config import scope_charts
@@ -32,8 +31,6 @@ def set_scope(scope):
 		
 		scope_users(scope)					# Set Default Values ready for a user to login
 		
-		scope_progress(scope)				# Used to report on Function Progress
-
 		scope_apps(scope)					# This contains all the app Specific settings
 
 		scope_trials(scope)					# add the trials configuration

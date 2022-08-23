@@ -12,8 +12,6 @@ def render_search_results(scope):
 
 	search_results = scope.apps[app]['search_results']
 
-	print('search results = ', search_results)
-
 	if len(search_results) > 0:
 		st.write('First 10 Search Results')
 		for ticker, company_name in search_results.items():

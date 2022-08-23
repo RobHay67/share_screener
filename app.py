@@ -42,13 +42,21 @@ render_selected_app(scope)
 
 
 #TODO
-print('Rob - add output for the errors - sdee worklist code')
 
 
 
-print('Missing Tickers - local  = ', scope.missing_tickers['local'])
-print('Missing Tickers - cloud  = ', scope.missing_tickers['cloud'])
-print('Missing Tickers - list   = ', scope.missing_tickers['list'])
+
+
+
+
+
+
+
+
+
+# print('Missing Tickers - local  = ', scope.missing_tickers['local'])
+# print('Missing Tickers - cloud  = ', scope.missing_tickers['cloud'])
+# print('Missing Tickers - list   = ', scope.missing_tickers['list'])
 # print('Missing Tickers - Errors = ', scope.missing_tickers['errors'])
 
 

@@ -9,11 +9,9 @@ import streamlit as st
 def render_download_message(scope):
 
 	if scope.download['yf_batch_industry'] == 'random_tickers':
-		download_message = (	'Yahoo Finance > ' + 
-								scope.download['yf_batch_ticker_string']
-							)
+		download_message = (	scope.download['yf_batch_ticker_string'])
 	else:
-		download_message = (	'Yahoo Finance > ' + 
+		download_message = (
 								scope.download['yf_batch_industry'] + 
 								' ( batch ' + 
 								str(scope.download['yf_batch_no']+1) + 

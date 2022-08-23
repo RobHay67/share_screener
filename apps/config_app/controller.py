@@ -118,7 +118,7 @@ def render_scope_categories(scope):
 
 	with col6:
 		st.subheader('Actions and Reports')
-		st.button('Import New Tickers', on_click=set_st_button, args=(scope, 'import_tickers', ))
+		st.button('Download Ticker Info from Share Market', on_click=set_st_button, args=(scope, 'import_tickers', ))
 		st.button('Industry Report', on_click=set_st_button, args=(scope, 'view_industries', ))
 
 	st.markdown("""---""")

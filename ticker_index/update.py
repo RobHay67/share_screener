@@ -1,7 +1,5 @@
 import pandas as pd
 
-from progress.cache import cache_progress
-
 from ticker_index.schema import default_values
 from ticker_index.schema import data_types
 from ticker_index.schema import schema
@@ -21,28 +19,19 @@ def update_index(scope, downloaded_ticker_info ):
 	downloaded_ticker_info = apply_defaults_to_missing_values(downloaded_ticker_info)
 	downloaded_ticker_info.set_index('share_code', inplace=True)
 	
-	cache_progress( scope, 
-					passed='Updating these Tickers > ', 
-					passed_2='Adding these Tickers > ', 
-					failed='not applicable > ' 
-					)
 
 	for ticker, row in downloaded_ticker_info.iterrows(): 
-		# 
 		if ticker not in scope.ticker_index.index:
 			add_records_counter += 1
 			row['opening_time'] = open_time( scope, ticker )
 			row['minutes_per_day'] = trading_minutes( scope, ticker )
 			row['blue_chip'] = schema['blue_chip']['default']
 			scope.ticker_index = scope.ticker_index.append(row)
-			cache_progress( scope, ticker, result='passed_2' )
 		else:
 			scope.ticker_index.at[ticker, 'company_name'] = row['company_name']
 			scope.ticker_index.at[ticker, 'listing_date'] = row['listing_date']
 			scope.ticker_index.at[ticker, 'industry_group'] = row['industry_group']
 			scope.ticker_index.at[ticker, 'market_cap'] = row['market_cap']
-			cache_progress( scope, ticker, result='passed' )
-	cache_progress(scope, 'Finished', final_print=True )
 	
 	scope.ticker_index = apply_defaults_to_missing_values(scope.ticker_index)
 	scope.ticker_index['listing_date'] = pd.to_datetime( scope.ticker_index['listing_date'].dt.date  )
