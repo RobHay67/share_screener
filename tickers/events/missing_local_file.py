@@ -13,7 +13,6 @@ def missing_file_event(scope, ticker):
 	# Cache Error
 	if ticker not in scope.missing_tickers['errors']:
 		scope_missing_ticker_error(scope, ticker)
-	
 	scope.missing_tickers['errors'][ticker]['load'] = 'Missing Local file'
 
 

@@ -1,8 +1,6 @@
 
 
 
-
-
 def add_ticker_event(scope, ticker):
 
 	# This event is triggered after new ticker data is

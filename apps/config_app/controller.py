@@ -5,7 +5,6 @@ from apps.config_app.scope import view_app
 from apps.config_app.dropdowns import view_dropdowns
 from apps.config_app.scope import view_trials_config
 from apps.config_app.scope import view_charts_config
-from apps.config_app.results import view_all_results
 # Files
 from apps.config_app.files import view_folders
 # Data
@@ -40,7 +39,6 @@ def render_selected_scope_page(scope):
 			'dropdowns'				:view_dropdowns,
 			'trials'				:view_trials_config,
 			'charts'				:view_charts_config,
-			'results'				:view_all_results,
 			# Column 2 - Files
 			'view_folders'			:view_folders,
 			# Column 3 - Data
@@ -84,7 +82,6 @@ def render_scope_categories(scope):
 		st.button('Dropdowns', on_click=set_st_button, args=(scope, 'dropdowns', ))
 		st.button('Trials  (column adders)', on_click=set_st_button, args=(scope, 'trials', ))
 		st.button('Charts (column adders)', on_click=set_st_button, args=(scope, 'charts', ))
-		st.button('Results', on_click=set_st_button, args=(scope, 'results', ))
 
 	with col2: 
 		st.subheader('Files')
