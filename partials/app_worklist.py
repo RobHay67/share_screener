@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 def render_worklist(scope):
-	# Render an button or an expander object that shows the 
+	# Render a button and/or an expander object that shows the 
 	# current state of the tickers for the current app worklist
 
 	app = scope.apps['display_app']
@@ -10,8 +10,7 @@ def render_worklist(scope):
 	no_of_tickers = len(ticker_list)
 
 	if no_of_tickers == 1:
-		ticker = ticker_list[0]
-		render_button_for_ticker(scope, ticker)
+		render_button_for_ticker(scope, ticker_list[0])
 
 	if no_of_tickers > 1:
 		button_description = 'Work List (' + str(no_of_tickers) + ')'
@@ -24,20 +23,28 @@ def render_worklist(scope):
 
 
 def render_errors(scope):
+	# Render errors only 
 
 	app = scope.apps['display_app']
-	ticker_list = scope.missing_tickers['list']
-	no_of_tickers = len(ticker_list)
-	
-	if no_of_tickers == 0:
+	ticker_list = scope.apps[app]['worklist']
+
+	# create a list of errors relevant for this app
+	ticker_error_list = []
+	for ticker in scope.missing_tickers['list']:
+		if ticker in ticker_list:
+			ticker_error_list.append(ticker)
+	no_of_errors = len(ticker_error_list)
+
+	if no_of_errors == 0:
 		st.success('no errors')
-	else:
-		button_description = 'Errors (' + str(no_of_tickers) + ')'
+	
+	if no_of_errors > 1:
+		button_description = 'Errors (' + str(no_of_errors) + ')'
 		my_errors = st.expander(label=button_description, expanded=False )
 		
 		with my_errors:
 			st.write('List of Errors (only)')
-			for ticker in ticker_list:
+			for ticker in ticker_error_list:
 				render_button_for_ticker(scope, ticker)
 
 
