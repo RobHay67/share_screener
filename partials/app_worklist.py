@@ -1,68 +1,60 @@
 import streamlit as st
 import pandas as pd
 
-
-
-
 def render_worklist(scope):
-
-	col_height = 5
+	# Render an button or an expander object that shows the 
+	# current state of the tickers for the current app worklist
 
 	app = scope.apps['display_app']
 	ticker_list = scope.apps[app]['worklist']
 	no_of_tickers = len(ticker_list)
 
-
 	if no_of_tickers == 1:
-		# with scope.col5: 
-		st.button('Target = ' + ticker_list[0])
-
+		ticker = ticker_list[0]
+		render_button_for_ticker(scope, ticker)
 
 	if no_of_tickers > 1:
-		# Create Dataframe of the Selected Tickers
-		if no_of_tickers < col_height:
-			ticker_df = pd.DataFrame(ticker_list, columns=['Tickers'])
-		else:		
-			no_of_columns = no_of_tickers/col_height
-			col_no = 0
-			ticker_df = pd.DataFrame()
-
-			# add tickers in columns of col_height(10) tickers
-			while col_no < no_of_columns:
-				col_name = 'col_' + str(col_no)
-				sublist = ticker_list[col_no*col_height:(col_no*col_height)+(col_height)]
-				# pad for short list length
-				while len(sublist) < col_height:
-					sublist.append('')
-				ticker_df[col_name] = sublist
-				col_no +=1
-
-		description = 'Work List (' + str(no_of_tickers) + ')'
-
-		# with scope.col5: 
-		my_expander = st.expander(label=description, expanded=False )
-		my_expander.dataframe(ticker_df)
-
+		button_description = 'Work List (' + str(no_of_tickers) + ')'
+		my_worklist = st.expander(label=button_description, expanded=False )
+		
+		with my_worklist:
+			st.write('Load and Download Errors')
+			for ticker in ticker_list:
+				render_button_for_ticker(scope, ticker)
 
 
 def render_errors(scope):
-	print('')
-	print('='*100)
-	print('render_errors')
-	print('-'*100)
 
 	app = scope.apps['display_app']
-	for ticker in scope.apps[app]['worklist']:
-		if ticker in scope.missing_tickers['errors'].keys():
-			# print(ticker)
-			if scope.missing_tickers['errors'][ticker]['load'] != None:
-				print(ticker, '   >    ', scope.missing_tickers['errors'][ticker]['load'])
-			if scope.missing_tickers['errors'][ticker]['yf'] != None:
-				print(ticker, '   >    ', scope.missing_tickers['errors'][ticker]['yf'])
-			# for error in scope.missing_tickers['errors'][ticker]:
-			# 	print(ticker, '   >    ', error)
+	ticker_list = scope.missing_tickers['list']
+	no_of_tickers = len(ticker_list)
+	
+	if no_of_tickers == 0:
+		st.success('no errors')
+	else:
+		button_description = 'Errors (' + str(no_of_tickers) + ')'
+		my_errors = st.expander(label=button_description, expanded=False )
+		
+		with my_errors:
+			st.write('List of Errors (only)')
+			for ticker in ticker_list:
+				render_button_for_ticker(scope, ticker)
 
-	print('-'*100)
+
+
+def render_button_for_ticker(scope, ticker):
+	# Cloud Errors over-ride local error. If we 
+	# cant download from cloud, there probably wont be
+	# a local file anyway.
+
+	if ticker in scope.missing_tickers['cloud']:
+		download_error = ticker + '  ---- ' + scope.missing_tickers['errors'][ticker]['yf']
+		st.error(download_error)
+	elif ticker in scope.missing_tickers['local']:
+		load_error = ticker + '  ---- ' + scope.missing_tickers['errors'][ticker]['load']
+		st.warning(load_error)
+	else:
+		st.success(ticker)
 
 
 

@@ -43,12 +43,16 @@ def render_dfs(scope, type_df, df_location, ticker_list):
 	# No of dfs required
 	dfs_total = len(ticker_list)
 
-	# render dfs in 3 column matrix
+	# render dfs in 7 column matrix
 	for i in range(0, dfs_total, 3):	
-		col1,col2,col3=st.columns([2,2,2])
+		col1,col2,col3,col4=st.columns([2,2,2,2])
 		with col1: render_df(scope, type_df, ticker_list, i, )
 		with col2: render_df(scope, type_df, ticker_list, i+1)
 		with col3: render_df(scope, type_df, ticker_list, i+2)
+		with col4: render_df(scope, type_df, ticker_list, i+3)
+		# with col5: render_df(scope, type_df, ticker_list, i+4)
+		# with col6: render_df(scope, type_df, ticker_list, i+5)
+		# with col7: render_df(scope, type_df, ticker_list, i+6)
 
 
 def render_df(scope, type_df, ticker_list, i):
@@ -66,7 +70,7 @@ def render_df(scope, type_df, ticker_list, i):
 			df = scope.tickers[ticker]['apps']['screener']['df']
 
 		no_of_rows = str(len(df))
-		my_expander = st.expander(label=(ticker+' ( ' + no_of_rows + ' )'), expanded=False )
+		my_expander = st.expander(label=(ticker+' (' + no_of_rows + ')'), expanded=False )
 		my_expander.dataframe(df, 2000, 2000)	
 
 

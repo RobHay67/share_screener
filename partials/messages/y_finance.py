@@ -22,6 +22,5 @@ def render_download_message(scope):
 								' )' 
 							)
 	
-	with scope.col5:
-		st.write(  download_message )
+	st.write(download_message)
 

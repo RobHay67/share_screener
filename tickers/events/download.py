@@ -4,14 +4,13 @@ from tickers.config import scope_missing_ticker_error
 
 def fail_download_event(scope, ticker, zero_volume=False):
 
-	print('Function Called > fail_download_event ', ticker)
-	# SO the download has failed and we need to update the missing_tickers list
+	# SO the download has failed and we need to update the 
+	# missing_tickers list
+	
 	if ticker not in scope.missing_tickers['cloud']:
-		scope.missing_tickers['cloud'].append(ticker)
+		scope.missing_tickers['cloud'].append(ticker)	
+	
 
-	# if ticker not in scope.missing_tickers['list']:
-	
-	
 	# however, we may still have local data for this ticker which 
 	# overrides the need to store this status in the total list
 
