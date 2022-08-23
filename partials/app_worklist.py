@@ -30,9 +30,9 @@ def render_errors(scope):
 
 	# create a list of errors relevant for this app
 	ticker_error_list = []
-	for ticker in scope.missing_tickers['list']:
-		if ticker in ticker_list:
-			ticker_error_list.append(ticker)
+	for ticker_with_error in scope.missing_tickers['list']:
+		if ticker_with_error in ticker_list:
+			ticker_error_list.append(ticker_with_error)
 	no_of_errors = len(ticker_error_list)
 
 	if no_of_errors == 0:

@@ -2,7 +2,7 @@ import os
 
 from files.path import path_for_ticker_file
 from tickers.load.load import load_ticker
-from tickers.load.cache import cache_ticker_data
+from tickers.cache import cache_ticker_data
 from tickers.events.missing_local_file import missing_file_event
 from tickers.events.add_ticker import add_ticker_event
 
