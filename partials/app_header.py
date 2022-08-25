@@ -98,18 +98,20 @@ def load_tickers(scope):
 	worklist = scope.apps[app]['worklist']
 	no_of_tickers = len(worklist)
 	already_loaded_list = scope.apps[app]['mined_tickers']
+	added_progress_bar = False
 
-	# Add Message Bar
-	col1,col2 = st.columns([2,10])
-	with col1:st.write('Loading Tickers')
-	with col2:my_bar = st.progress(0)
-	
 	for counter, ticker in enumerate(worklist):
-		poc = int(((counter+1) / no_of_tickers ) * 100)
-		my_bar.progress(poc)
-
 		if ticker not in scope.missing_tickers['local']:
 			if ticker not in already_loaded_list:
+				# this is the first place i might need a bar
+				if added_progress_bar==False:
+					col1,col2 = st.columns([2,10])
+					with col1:st.write('Loading Tickers')
+					with col2:my_bar = st.progress(0)
+					added_progress_bar = True
+				poc = int(((counter+1) / no_of_tickers ) * 100)
+				my_bar.progress(poc)
+
 				path_for_ticker_file(scope, ticker )
 				# Check that a local file is available to load
 				if os.path.exists( scope.files['paths']['ticker_data'] ):
@@ -119,6 +121,12 @@ def load_tickers(scope):
 				else:
 					# The expected Local file is not available
 					missing_file_event(scope, ticker)		
+
+	if counter+1 == no_of_tickers:
+		if added_progress_bar == True:
+			my_bar.progress(100)
+
+
 
 
 
@@ -136,7 +144,7 @@ def refresh_app_df_and_columns(scope):
 
 	# Add Message Bar
 	col1,col2 = st.columns([2,10])
-	with col1:st.write('Refresh App Data')
+	with col1:st.write('Data Refresh')
 	with col2:my_bar = st.progress(0)
 
 	for counter, ticker in enumerate(worklist):

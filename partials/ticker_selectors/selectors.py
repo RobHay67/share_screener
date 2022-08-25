@@ -23,8 +23,6 @@ def render_ticker_selectors(scope):
 
 		with col1:
 			select_a_ticker(scope)
-		with col5:
-			download_button(scope)
 
 	
 	if app == 'screener':	
@@ -36,8 +34,9 @@ def render_ticker_selectors(scope):
 			select_industries(scope)
 		with col3: 
 			select_a_market(scope)
-		with col5:
-			download_ticker_data = download_button(scope)
+	
+	with col5:
+		download_ticker_data = download_button(scope)
 
 	with col4: 
 		search_ticker_by_name(scope)

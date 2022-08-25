@@ -58,14 +58,12 @@ def set_batch_params(scope):
 		scope.download['yf_batch_type'] = 'multiple_tickers'
 
 
-
 def download_ticker_data(scope):
 
 	# empty the temporary download data holder
 	scope.download['yf_batch_data'] = {}
 	scope.download['yf_batch_errors'] = {}
 	downloaded_data = False
-
 
 	if scope.download['yf_batch_type'] == 'single_ticker':
 		# Single Ticker being downloaded
@@ -102,12 +100,6 @@ def download_ticker_data(scope):
 	if downloaded_data:
 		scope.download['yf_batch_data'] = yf_download
 		scope.download['yf_batch_errors'] = yf.shared._ERRORS
-
-
-
-
-
-
 
 
 def format_yf_data(scope):
