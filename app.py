@@ -43,10 +43,26 @@ render_selected_app(scope)
 
 #TODO
 
+# print('Render a progress bar')
+# import time
 
+# my_bar = st.progress(0)
 
+# my_bar.progress(6+1)
+# my_bar.progress(12+1)
+# my_bar.progress(20+1)
+# my_bar.progress(40+1)
+# my_bar.progress(99+1)
 
+# for percent_complete in range(100):
+#      time.sleep(0.1)
+#      my_bar.progress(percent_complete + 1)
 
+# Assume 6 items
+
+# for ticker in range(1,100, 6):
+# 	print(ticker)
+# 	my_bar.progress(ticker+1)
 
 
 
