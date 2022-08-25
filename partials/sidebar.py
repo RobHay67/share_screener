@@ -3,12 +3,9 @@ import pytz
 from datetime import datetime
 from markets.schema import opening_hours
 
-
 from widgets.row_limit import edit_row_limit
-from widgets.download import edit_download_days, download_button
+from widgets.download import edit_download_days
 from widgets.logout import logout_button
-
-from tickers.download.controller import download_tickers
 
 
 def render_sidebar(scope):
@@ -28,9 +25,6 @@ def render_sidebar(scope):
 			st.caption('Local Time : ' + str(local_time.strftime('%H:%M:%S %p')))
 
 			edit_download_days(scope)
-			download_new_ticker_data = download_button(scope)	
-			if download_new_ticker_data: 
-				download_tickers(scope)
 
 			st.subheader('Analysis')
 			st.button('Single'  			, on_click=set_page, args=(scope, 'single', ))
@@ -44,10 +38,7 @@ def render_sidebar(scope):
 			st.subheader('Chart Settings')
 			st.button('Primary Charts'  	, on_click=set_page, args=(scope, 'charts_primary', ))
 			st.button('Secondary Charts'	, on_click=set_page, args=(scope, 'charts_secondary', ))
-
-			# st.subheader('Download and Analysis Settings')
 		
-			# edit_download_days(scope)
 			edit_row_limit(scope)
 
 			st.button('Config (scope)'		, on_click=set_page, args=(scope, 'scope', ))

@@ -38,6 +38,9 @@ def render_errors(scope):
 	if no_of_errors == 0:
 		st.success('no errors')
 	
+	if no_of_errors == 1:
+		render_button_for_ticker(scope, ticker_error_list[0])
+
 	if no_of_errors > 1:
 		button_description = 'Errors (' + str(no_of_errors) + ')'
 		my_errors = st.expander(label=button_description, expanded=False )
