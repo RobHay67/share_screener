@@ -1,4 +1,5 @@
 
+from unittest import result
 import pandas as pd
 
 
@@ -30,15 +31,16 @@ def trial_results(scope):
 		# if ticker in scope.apps[app]['dfs'].keys():
 		if ticker in scope.apps[app]['mined_tickers']:
 			
-			ticker_df = scope.tickers[ticker][app]['df']
+			# ticker_df = scope.tickers[ticker][app]['df']
 
-			if ticker == 'MIN.AX':
-				print(ticker_df)
+			# if ticker == 'MIN.AX':
+			# 	print(ticker_df)
 
 			for trial in active_trial_list:
 
 				# trial_result = ticker_df[trial].iloc[-1]
-				trial_result = ticker_df[trial].iloc[0]
+				# trial_result = ticker_df[trial].iloc[0]
+				trial_result = scope.tickers[ticker][app]['df'][trial].iloc[0]
 
 				if trial_result != 'pass':
 					# not all trials have passed so we fail overall
@@ -56,3 +58,9 @@ def trial_results(scope):
 
 	return trial_results_df
 
+
+
+
+ticker  : { trial1 : result,
+			trial2 : result,
+			trial3 : result, }

@@ -22,7 +22,12 @@ def trend_cols(scope, trial, ticker, df):
 
 	df['temp_trend_total'] = df['temp_trend'].rolling(timespan, min_periods=1).sum().astype(int)
 
+	# Determine the Result for each row
 	df[trial] = np.where( df['temp_trend_total'] >= duration, 'pass', 'fail')
+
+	# Store the Final result - it should be the first row
+	print(df[trial].head(5))
+	scope.tickers[ticker]['trials'][trial] = df[trial].iloc[0]
 
 
 	df.drop(['temp_shifted', 'temp_trend', 'temp_trend_total'], axis=1, inplace=True)
