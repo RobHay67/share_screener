@@ -1,4 +1,4 @@
-from partials.app_header import render_app_header		
+from partials.app_header.controller import render_app_header		
 from apps.screener.results import render_trial_results
 from apps.screener.trials import render_available_trials
 

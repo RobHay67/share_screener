@@ -25,17 +25,13 @@ def trend_cols(scope, trial, ticker, df):
 	# Determine the Result for each row
 	df[trial] = np.where( df['temp_trend_total'] >= duration, 'pass', 'fail')
 
-	# Store the Final result - it should be the first row
-	print(df[trial].head(5))
-	scope.tickers[ticker]['trials'][trial] = df[trial].iloc[0]
-
-
 	df.drop(['temp_shifted', 'temp_trend', 'temp_trend_total'], axis=1, inplace=True)
 
 	# ensure Screener_df is back in its descending order (latest first)
 	df.sort_values(by=['date'], inplace=True, ascending=False)
 
-	
+	# Store the Final result - it should be the first row
+	scope.tickers[ticker]['trials'][trial] = df[trial].iloc[0]
 
 
 

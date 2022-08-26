@@ -4,7 +4,7 @@ import pytz
 
 from markets.schema import opening_hours
 
-from partials.app_header import render_app_header
+from partials.app_header.controller import render_app_header
 from apps.volume.view.input_volume import view_input_volume
 from apps.volume.view.prediction import view_prediction
 

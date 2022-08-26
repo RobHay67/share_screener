@@ -1,6 +1,6 @@
 import streamlit as st
 
-from partials.app_header import render_app_header
+from partials.app_header.controller import render_app_header
 # from partials.ticker_loader.controller import render_ticker_loader
 
 from apps.single.schema import create_schema_for_plotly

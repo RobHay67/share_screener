@@ -1,5 +1,5 @@
 
-from partials.app_header import render_app_header
+from partials.app_header.controller import render_app_header
 
 from apps.research.metadata import fetch_yfinance_metadata
 

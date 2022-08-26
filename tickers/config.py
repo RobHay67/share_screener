@@ -37,6 +37,11 @@ def scope_new_ticker(scope, ticker):
 	# To store the raw ticker data - all we have
 	scope.tickers[ticker]['df'] = {}
 
+	# To Store Trial Results
+	scope.tickers[ticker]['trials'] = {}
+	for trial in scope.trial_config['trial_list']:
+		scope.tickers[ticker]['trials'][trial] = None
+
 
 	# Ticker Config for each Application
 	for app in scope.apps['app_list']:
@@ -49,3 +54,5 @@ def scope_new_ticker(scope, ticker):
 		scope.tickers[ticker][app]['replace_df'] = True
 		scope.tickers[ticker][app]['type_col_adder'] = None
 		scope.tickers[ticker][app]['column_adders'] = {}
+
+	print(scope.tickers[ticker]['trials'])

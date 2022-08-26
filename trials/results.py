@@ -61,6 +61,6 @@ def trial_results(scope):
 
 
 
-ticker  : { trial1 : result,
-			trial2 : result,
-			trial3 : result, }
+# ticker  : { trial1 : result,
+# 			trial2 : result,
+# 			trial3 : result, }

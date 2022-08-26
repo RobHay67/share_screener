@@ -43,6 +43,10 @@ render_selected_app(scope)
 
 #TODO
 
+print(scope.tickers['CBA.AX']['trials'])
+
+
+
 tab1, tab2, tab3 = st.tabs(["Cat", "Dog", "Owl"])
 
 with tab1:
