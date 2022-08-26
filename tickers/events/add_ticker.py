@@ -13,25 +13,8 @@ def add_ticker_event(scope, ticker):
 	# the default values. Data is added by other functions.
 
 
+	# config for new ticcker is kept in the config module for consistency
 	scope_new_ticker(scope, ticker)
 
 
-	# # Store the ticker data in ['df']
-	# scope.tickers[ticker] = {}
-	
-
-	# # Config for each APP
-	# scope.tickers[ticker] = {}
-
-	# # Iterate through each Application
-	# for app in scope.apps['app_list']:
-
-	# 	# add a key for each app
-	# 	scope.tickers[ticker][app] = {}
-
-	# 	# add a 'df' key to house the app dataframe
-	# 	scope.tickers[ticker][app]['df'] = {}
-	# 	scope.tickers[ticker][app]['replace_df'] = True
-	# 	scope.tickers[ticker][app]['type_col_adder'] = None
-	# 	scope.tickers[ticker][app]['column_adders'] = {}
 

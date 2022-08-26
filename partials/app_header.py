@@ -72,25 +72,29 @@ def render_app_header(scope, title):
 
 
 
-
+# ==============================================================
 # App Header - Layout
-# 			-------------------------------------------------------------------------------------------------------------------------------------
+# ==============================================================
+# 			------------------------------------------------------------------------------------------------------------------------
 #           ....x....1....x....2....x....3....x....4....x....5....x....6....x....7....x....8....x....9....x....0....x....1....x....2
-# selectors | tickers_selector | industry_selector | Market_selectors  |                                       |   Search          |
-# data      |      work_list             |         error_list          |  ticker_dfs       |    app_dfs        |   Work-List       |
-# name      |                      Ticker_Name                         |  Price            |    Volume         |   Date_Range      |
-
+# selectors | tickers_selector | industry_selector | Market_selectors  |              Search                   | Download Button   |
+# data      |      work_list             |         error_list          |  ticker_dfs       |    app_dfs        | Clear Msg Button  |
+# name      |                      Ticker_Name                         |  Price            |    Volume         | Ticker Date_Range |
+# 			------------------------------------------------------------------------------------------------------------------------
 # col1,col2,col3,col4,col5 = st.columns([2.0, 3.0, 2.0, 3.0, 2.0])
 # col1,col2,col3,col4,col5 = st.columns([3.0, 3.0, 2.0, 2.0, 2.0])
 # col1,col2,col3,col4      = st.columns([6.0, 2.0, 2.0, 2.0])
+# ==============================================================
 
 
 
 
 
 
-
-
+# ==============================================================
+# Load ticker controller here so we can render a progress bar
+# on this function which can be time consuming
+# ==============================================================
 
 def load_tickers(scope):
 	app = scope.apps['display_app']
@@ -129,10 +133,12 @@ def load_tickers(scope):
 
 
 
-
+# ==============================================================
 # The primary code to 
 # - refresh the App df
 # - Refresh specific df columns 
+# ==============================================================
+
 
 def refresh_app_df_and_columns(scope):
 
@@ -159,7 +165,7 @@ def refresh_app_df_and_columns(scope):
 			if scope.tickers[ticker][app]['replace_df'] == True:
 				ticker_df = scope.tickers[ticker]['df'].copy()
 				ticker_df = ticker_df.head(app_row_limit) 				# limit no of rows for the APP df (speeds up app rendering)				
-				scope.tickers[ticker][app]['df'] = ticker_df	# Cache the ticker dataframe to be mined by this app
+				scope.tickers[ticker][app]['df'] = ticker_df			# Cache the ticker dataframe to be mined by this app
 
 				# add ticker to the mined_ticker list
 				if ticker not in scope.apps[app]['mined_tickers']:
@@ -172,9 +178,11 @@ def refresh_app_df_and_columns(scope):
 			# Replace specific columns in the app df if requested
 			# -------------------------------------------------------------------
 			type_of_column_adder = scope.tickers[ticker][app]['type_col_adder']
-			if type_of_column_adder != None:			# Some apps do not have any column adder
+			if type_of_column_adder != None:			
+				# Some apps do not have any column adders
 				for column_adder, status in scope.tickers[ticker][app]['column_adders'].items():
-					if status == True:	# Only replace the columns if requested to do so for this column adder
+					if status == True:	
+						# Only replace the columns if requested to do so for this column adder
 						ticker_df = scope.tickers[ticker][app]['df']
 						# Call the column adding function for this column_adder
 						scope[type_of_column_adder][column_adder]['add_columns']['function'](scope, column_adder, ticker, ticker_df)
