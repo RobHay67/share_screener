@@ -11,8 +11,8 @@ def edit_active_event(scope, type_col_adder, column_adder, status):
 		for app in scope.apps['app_list']: 
 			
 			# if the activated column adder is used by this page then change the refresh status
-			if column_adder in scope.tickers[ticker]['apps'][app]['column_adders'].keys():
-				scope.tickers[ticker]['apps'][app]['column_adders'][column_adder] = status
+			if column_adder in scope.tickers[ticker][app]['column_adders'].keys():
+				scope.tickers[ticker][app]['column_adders'][column_adder] = status
 
 				
 	# Take this opportunity to update the shortcut lists

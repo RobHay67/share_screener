@@ -65,9 +65,9 @@ def render_df(scope, type_df, ticker_list, i):
 			df = scope.tickers[ticker]['df']
 		# to cope with scope also calling these functions
 		if type_df == 'charts':
-			df = scope.tickers[ticker]['apps']['single']['df']
+			df = scope.tickers[ticker]['single']['df']
 		if type_df == 'trials':
-			df = scope.tickers[ticker]['apps']['screener']['df']
+			df = scope.tickers[ticker]['screener']['df']
 
 		no_of_rows = str(len(df))
 		my_expander = st.expander(label=(ticker+' (' + no_of_rows + ')'), expanded=False )

@@ -43,6 +43,25 @@ render_selected_app(scope)
 
 #TODO
 
+tab1, tab2, tab3 = st.tabs(["Cat", "Dog", "Owl"])
+
+with tab1:
+    st.header("A cat")
+    st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
+
+with tab2:
+    st.header("A dog")
+    st.image("https://static.streamlit.io/examples/dog.jpg", width=200)
+
+with tab3:
+    st.header("An owl")
+    st.image("https://static.streamlit.io/examples/owl.jpg", width=200)
+
+
+
+
+
+
 # print('Render a progress bar')
 # import time
 
@@ -166,18 +185,18 @@ def level_3_details(level_1, level_2, level_3):
 # 		print('\033[93m', ticker, '\033[0m')
 # 		print('Loaded df = ', len(temp_scope[ticker]['df']))
 # 		print('-'*99)
-# 		for app in temp_scope[ticker]['apps']:
+# 		for app in temp_scope[ticker]:
 # 			print ('\033[96m', app.upper(), '\033[0m')
 # 			print('-'*99)
-# 			print('Dataframe size'.ljust(20), ' = ', len(temp_scope[ticker]['apps'][app]['df']))
+# 			print('Dataframe size'.ljust(20), ' = ', len(temp_scope[ticker][app]['df']))
 # 			print('-'*99)
-# 			print('Replace App DF'.ljust(20), ' = ', temp_scope[ticker]['apps'][app]['replace_df'])
+# 			print('Replace App DF'.ljust(20), ' = ', temp_scope[ticker][app]['replace_df'])
 # 			print('-'*99)
-# 			type_col_adder = temp_scope[ticker]['apps'][app]['type_col_adder']
+# 			type_col_adder = temp_scope[ticker][app]['type_col_adder']
 # 			print('Type of Column Adder'.ljust(20), ' = ', type_col_adder)
 # 			if type_col_adder != None:
 # 				print('-'*99)
-# 				for column_adder, status in temp_scope[ticker]['apps'][app]['column_adders'].items():
+# 				for column_adder, status in temp_scope[ticker][app]['column_adders'].items():
 # 					print(str(column_adder).ljust(20),  ' : ', status)
 # 			print('-'*99)
 

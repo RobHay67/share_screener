@@ -11,13 +11,13 @@ def edit_row_limit_event(scope):
 	for ticker in scope.tickers.keys():
 		for app in scope.apps['app_list']:
 
-			scope.tickers[ticker]['apps'][app]['replace_df'] = True
+			scope.tickers[ticker][app]['replace_df'] = True
 
 			if app == 'single':
-				scope.tickers[ticker]['apps'][app]['column_adders'] = scope.chart_config['column_adders'].copy()
+				scope.tickers[ticker][app]['column_adders'] = scope.chart_config['column_adders'].copy()
 
 			if app == 'screener':
-				scope.tickers[ticker]['apps'][app]['column_adders'] = scope.trial_config['column_adders'].copy()
+				scope.tickers[ticker][app]['column_adders'] = scope.trial_config['column_adders'].copy()
 
 
 

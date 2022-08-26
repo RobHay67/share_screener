@@ -18,7 +18,7 @@ def edit_column_adder_event(scope, column_adder):
 		for app in scope.apps['app_list']: 
 			
 			# if column adder is used by this app then change the refresh status to True
-			if column_adder in scope.tickers[ticker]['apps'][app]['column_adders'].keys():
-				scope.tickers[ticker]['apps'][app]['column_adders'][column_adder] = status
+			if column_adder in scope.tickers[ticker][app]['column_adders'].keys():
+				scope.tickers[ticker][app]['column_adders'][column_adder] = status
 
 

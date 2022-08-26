@@ -1,6 +1,7 @@
 
 # A function that handles all of the data loading and column adding for the current App
 import streamlit as st
+import os
 
 from partials.ticker_selectors.selectors import render_ticker_selectors
 
@@ -13,6 +14,12 @@ from partials.reports.dfs import render_ticker_dfs
 from partials.reports.dfs import render_chart_dfs
 from partials.reports.dfs import render_trial_dfs
 
+
+from files.path import path_for_ticker_file
+from tickers.load import load_ticker
+from tickers.cache import cache_ticker_data
+from tickers.events.missing_local_file import missing_file_event
+from tickers.events.add_ticker import add_ticker_event
 
 
 def render_app_header(scope, title):
@@ -81,16 +88,8 @@ def render_app_header(scope, title):
 
 
 
-import os
-
-from files.path import path_for_ticker_file
-from tickers.load.load import load_ticker
-from tickers.cache import cache_ticker_data
-from tickers.events.missing_local_file import missing_file_event
-from tickers.events.add_ticker import add_ticker_event
 
 
-import streamlit as st
 
 
 def load_tickers(scope):
@@ -157,27 +156,27 @@ def refresh_app_df_and_columns(scope):
 			# -------------------------------------------------------------------
 			# Replace the App df if requested
 			# -------------------------------------------------------------------
-			if scope.tickers[ticker]['apps'][app]['replace_df'] == True:
+			if scope.tickers[ticker][app]['replace_df'] == True:
 				ticker_df = scope.tickers[ticker]['df'].copy()
 				ticker_df = ticker_df.head(app_row_limit) 				# limit no of rows for the APP df (speeds up app rendering)				
-				scope.tickers[ticker]['apps'][app]['df'] = ticker_df	# Cache the ticker dataframe to be mined by this app
+				scope.tickers[ticker][app]['df'] = ticker_df	# Cache the ticker dataframe to be mined by this app
 
 				# add ticker to the mined_ticker list
 				if ticker not in scope.apps[app]['mined_tickers']:
 					scope.apps[app]['mined_tickers'].append(ticker)
 				
 				# Set the status to false to prevent refreshing unnecesarily	
-				scope.tickers[ticker]['apps'][app]['replace_df'] = False
+				scope.tickers[ticker][app]['replace_df'] = False
 
 			# -------------------------------------------------------------------
 			# Replace specific columns in the app df if requested
 			# -------------------------------------------------------------------
-			type_of_column_adder = scope.tickers[ticker]['apps'][app]['type_col_adder']
+			type_of_column_adder = scope.tickers[ticker][app]['type_col_adder']
 			if type_of_column_adder != None:			# Some apps do not have any column adder
-				for column_adder, status in scope.tickers[ticker]['apps'][app]['column_adders'].items():
+				for column_adder, status in scope.tickers[ticker][app]['column_adders'].items():
 					if status == True:	# Only replace the columns if requested to do so for this column adder
-						ticker_df = scope.tickers[ticker]['apps'][app]['df']
+						ticker_df = scope.tickers[ticker][app]['df']
 						# Call the column adding function for this column_adder
 						scope[type_of_column_adder][column_adder]['add_columns']['function'](scope, column_adder, ticker, ticker_df)
 						# Set the status to false to prevent refreshing unnecesarily
-						scope.tickers[ticker]['apps'][app]['column_adders'][column_adder] = False
+						scope.tickers[ticker][app]['column_adders'][column_adder] = False

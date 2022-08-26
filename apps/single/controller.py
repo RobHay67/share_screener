@@ -30,7 +30,7 @@ def render_single_ticker_page(scope):
 
 			if ticker not in scope.missing_tickers['list']:
 
-				chart_df		= scope.tickers[ticker]['apps'][app]['df']
+				chart_df		= scope.tickers[ticker][app]['df']
 				schema 			= create_schema_for_plotly(scope)
 				
 				if schema['no_of_charts'] > 0:

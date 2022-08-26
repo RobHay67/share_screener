@@ -33,7 +33,7 @@ def dataframe_button(scope, type_df):
 		
 		# Number of rows
 		for ticker in scope.apps[app]['mined_tickers']:
-			df_row_count = len(scope.tickers[ticker]['apps'][app]['df'])
+			df_row_count = len(scope.tickers[ticker][app]['df'])
 			rows_total += df_row_count
 
 	# Number of Dataframes

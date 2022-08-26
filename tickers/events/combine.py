@@ -12,13 +12,13 @@ def combine_event(scope, ticker):
 
 	for app in scope.apps['app_list']:
 
-		scope.tickers[ticker]['apps'][app]['replace_df'] = True
+		scope.tickers[ticker][app]['replace_df'] = True
 
 		if app == 'single':
-			scope.tickers[ticker]['apps'][app]['column_adders'] = scope.chart_config['column_adders'].copy()
+			scope.tickers[ticker][app]['column_adders'] = scope.chart_config['column_adders'].copy()
 
 		if app == 'screener':
-			scope.tickers[ticker]['apps'][app]['column_adders'] = scope.trial_config['column_adders'].copy()
+			scope.tickers[ticker][app]['column_adders'] = scope.trial_config['column_adders'].copy()
 
 
 

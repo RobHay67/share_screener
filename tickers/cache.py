@@ -24,11 +24,11 @@ def cache_ticker_data(scope, ticker, ticker_data):
 	for app in scope.apps['app_list']:
 
 		if app == 'single':
-			scope.tickers[ticker]['apps'][app]['type_col_adder'] = 'charts'
-			scope.tickers[ticker]['apps'][app]['column_adders'] = scope.chart_config['column_adders'].copy()
+			scope.tickers[ticker][app]['type_col_adder'] = 'charts'
+			scope.tickers[ticker][app]['column_adders'] = scope.chart_config['column_adders'].copy()
 
 		if app == 'screener':
-			scope.tickers[ticker]['apps'][app]['type_col_adder'] = 'trials'
-			scope.tickers[ticker]['apps'][app]['column_adders'] = scope.trial_config['column_adders'].copy()
+			scope.tickers[ticker][app]['type_col_adder'] = 'trials'
+			scope.tickers[ticker][app]['column_adders'] = scope.trial_config['column_adders'].copy()
 
 

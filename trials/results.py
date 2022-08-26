@@ -2,7 +2,7 @@
 import pandas as pd
 
 
-from trials.active_trials import scope_active_trial_list
+# from trials.active_trials import scope_active_trial_list
 
 
 
@@ -10,7 +10,9 @@ def trial_results(scope):
 
 	app = scope.apps['display_app']
 	# TODO - this should be stored in scope???
-	active_trial_list = scope_active_trial_list(scope)
+	# active_trial_list = scope_active_trial_list(scope)
+	active_trial_list = scope.trial_config['active_list']
+
 	column_list = ['ticker'] + active_trial_list + ['overall_result']
 
 	trial_results_df = pd.DataFrame(columns=column_list)
@@ -28,7 +30,10 @@ def trial_results(scope):
 		# if ticker in scope.apps[app]['dfs'].keys():
 		if ticker in scope.apps[app]['mined_tickers']:
 			
-			ticker_df = scope.tickers[ticker]['apps'][app]['df']
+			ticker_df = scope.tickers[ticker][app]['df']
+
+			if ticker == 'MIN.AX':
+				print(ticker_df)
 
 			for trial in active_trial_list:
 

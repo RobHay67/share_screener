@@ -4,7 +4,8 @@ from apps.screener.trials import render_available_trials
 
 from partials.ticker_search.search_results import render_search_results
 
-from apps.screener.screener_example import example_settings			#TODO fleshing out some ideas - delete when happy
+from apps.screener.example import example_settings			#TODO fleshing out some ideas - delete when happy
+
 
 
 def render_screener_page(scope):
