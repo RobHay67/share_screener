@@ -19,17 +19,12 @@ def drill_app_button(scope, app, ticker):
 				)
 
 def drill_app(scope, app, ticker):
-
-	print('Drill to app = ', app)
-	print('Set Ticker   > ', ticker)
-
 	scope.apps['display_app'] = app
 	scope.apps[app]['selectors']['ticker'] = ticker
 
 
 def drill_website_button(scope, website, ticker):
 
-	# widget_key = ticker + '_button'
 	widget_key = website + '_' + ticker + '_button'
 
 	st.button(

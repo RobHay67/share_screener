@@ -4,7 +4,7 @@ from widgets.drill import drill_website_button
 from widgets.drill import drill_app_button
 
 
-def render_trial_results(scope):
+def render_trial_verdicts(scope):
 
 	st.write('**Trial Verdicts = Passed**')
 
@@ -44,7 +44,6 @@ def render_trial_results(scope):
 				for ticker in tickers_for_tab:
 					col1,col2,col3,col4,col5,col6,col7,col8,col9,col10 = st.columns([1,4,1,1,1,1,1,1,1,1])
 					company_name = scope.ticker_search[ticker]
-
 					with col1 : st.write(ticker)
 					with col2 : st.write(company_name)
 					with col3 : drill_app_button(scope, 'single', ticker)

@@ -1,5 +1,5 @@
 from partials.app_header.controller import render_app_header		
-from apps.screener.results import render_trial_results
+from apps.screener.verdicts import render_trial_verdicts
 from apps.screener.trials import render_available_trials
 
 from partials.ticker_search.search_results import render_search_results
@@ -16,7 +16,7 @@ def render_screener_page(scope):
 
 	if len(scope.apps[app]['search_results']) == 0:
 
-		render_trial_results(scope)
+		render_trial_verdicts(scope)
 
 		render_available_trials(scope)
 
