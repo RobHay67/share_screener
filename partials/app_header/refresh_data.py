@@ -1,6 +1,7 @@
 import streamlit as st
 
 
+from trials.verdict import trial_verdict
 
 
 # ==============================================================
@@ -16,17 +17,23 @@ def refresh_app_df_and_columns(scope):
 	worklist 			= scope.apps[app]['worklist']
 	no_of_tickers		= len(worklist)
 	app_row_limit 		= int(scope.apps['row_limit'])
+	
 
-	# Add Message Bar
+	# Progress Bar
 	col1,col2 = st.columns([2,10])
 	with col1:st.write('Data Refresh')
 	with col2:my_bar = st.progress(0)
 
+	
 	for counter, ticker in enumerate(worklist):
+		determine_verdict	= False
+
+		# Determine POC % for Progress Bar
 		poc = int(((counter+1) / no_of_tickers ) * 100)
 		my_bar.progress(poc)
 
-		# Ensure data available for this ticker (function will fail if data is not available) 
+		# Ensure ticker data available 
+		# - function will fail if data is not available
 		if ticker in list(scope.tickers.keys()): 
 			
 			# -------------------------------------------------------------------
@@ -58,3 +65,13 @@ def refresh_app_df_and_columns(scope):
 						scope[type_of_column_adder][column_adder]['add_columns']['function'](scope, column_adder, ticker, ticker_df)
 						# Set the status to false to prevent refreshing unnecesarily
 						scope.tickers[ticker][app]['column_adders'][column_adder] = False
+
+						if type_of_column_adder == 'trials':
+							# the trials have been rerun and we need a new overall trial verdict
+							determine_verdict = True
+			
+			# -------------------------------------------------------------------
+			# Determine an overall verdict if changes have been made to trials
+			# -------------------------------------------------------------------
+			if determine_verdict == True:	
+				trial_verdict(scope, ticker)

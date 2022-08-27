@@ -45,11 +45,11 @@ def render_dfs(scope, type_df, df_location, ticker_list):
 
 	# render dfs in 7 column matrix
 	for i in range(0, dfs_total, 3):	
-		col1,col2,col3,col4=st.columns([2,2,2,2])
+		col1,col2=st.columns([2,2])
 		with col1: render_df(scope, type_df, ticker_list, i, )
 		with col2: render_df(scope, type_df, ticker_list, i+1)
-		with col3: render_df(scope, type_df, ticker_list, i+2)
-		with col4: render_df(scope, type_df, ticker_list, i+3)
+		# with col3: render_df(scope, type_df, ticker_list, i+2)
+		# with col4: render_df(scope, type_df, ticker_list, i+3)
 		# with col5: render_df(scope, type_df, ticker_list, i+4)
 		# with col6: render_df(scope, type_df, ticker_list, i+5)
 		# with col7: render_df(scope, type_df, ticker_list, i+6)

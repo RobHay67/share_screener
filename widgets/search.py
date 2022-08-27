@@ -17,21 +17,22 @@ def search_ticker_by_name(scope):
 					key			=widget_key,
 	)
 
+
 def search_for_ticker(scope, app, widget_key):
 
-	changed_value = scope[widget_key].upper()
+	search_string = scope[widget_key].upper()
 
 	# Set other selectors to their defualt values
 	scope.apps[app]['selectors']['tickers'] = []
 	scope.apps[app]['selectors']['industries'] = []
 	scope.apps[app]['selectors']['market'] = 'select entire market'
 
-	# Search through the ticker index for this term in the company name
+	# Search through the ticker index for this string in the company name
 	search_results = {}
 	counter = 0
 
 	for ticker, company_name in scope.ticker_search.items():
-		if changed_value in company_name:
+		if search_string in company_name:
 			counter += 1
 			search_results[ticker] = company_name
 			if counter > 9:break

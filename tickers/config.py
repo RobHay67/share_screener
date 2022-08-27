@@ -39,20 +39,19 @@ def scope_new_ticker(scope, ticker):
 
 	# To Store Trial Results
 	scope.tickers[ticker]['trials'] = {}
+	scope.tickers[ticker]['trials']['verdict'] = None
 	for trial in scope.trial_config['trial_list']:
 		scope.tickers[ticker]['trials'][trial] = None
 
 
 	# Ticker Config for each Application
 	for app in scope.apps['app_list']:
-
 		# add a key for each app
 		scope.tickers[ticker][app] = {}
-
 		# add a 'df' key to house the app dataframe
+		# and other df and column management information
 		scope.tickers[ticker][app]['df'] = {}
 		scope.tickers[ticker][app]['replace_df'] = True
-		scope.tickers[ticker][app]['type_col_adder'] = None
+		scope.tickers[ticker][app]['type_col_adder'] = None   # 'charts' or 'trials'
 		scope.tickers[ticker][app]['column_adders'] = {}
 
-	print(scope.tickers[ticker]['trials'])
