@@ -21,7 +21,7 @@ def load_tickers(scope):
 	app = scope.apps['display_app']
 	worklist = scope.apps[app]['worklist']
 	no_of_tickers = len(worklist)
-	already_loaded_list = scope.apps[app]['mined_tickers']
+	already_loaded_list = list(scope.tickers.keys())
 	added_progress_bar = False
 
 	for counter, ticker in enumerate(worklist):
