@@ -20,8 +20,14 @@ def drill_app_button(scope, app, ticker):
 
 def drill_app(scope, app, ticker):
 	scope.apps['display_app'] = app
-	scope.apps[app]['selectors']['ticker'] = ticker
 
+	if app != 'screener':	
+		scope.apps[app]['selectors']['ticker'] = ticker
+	else:
+		scope.apps[app]['selectors']['tickers'] = [ticker]
+		scope.apps[app]['selectors']['industries'] = []
+		scope.apps[app]['selectors']['market'] = 'select entire market'
+		scope.apps[app]['search_results'] = {}
 
 def drill_website_button(scope, website, ticker):
 

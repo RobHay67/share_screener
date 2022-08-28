@@ -5,6 +5,7 @@ import streamlit as st
 from partials.ticker_selectors.selectors import render_ticker_selectors
 from partials.app_header.load import load_tickers
 from partials.app_header.refresh_data import refresh_app_df_and_columns
+from partials.app_navigation import render_app_navigation
 
 from partials.app_worklist import render_worklist, render_errors
 from widgets.dataframe import dataframe_button
@@ -35,8 +36,7 @@ from partials.reports.dfs import render_trial_dfs
 
 def render_app_header(scope, title):
 
-	# App Report Options (default to off)
-	app = scope.apps['display_app']
+	# App Report Options (default to do not display)
 	show_ticker_dfs = False
 	show_chart_dfs = False
 	show_trial_dfs = False
@@ -53,9 +53,11 @@ def render_app_header(scope, title):
 
 		refresh_app_df_and_columns(scope) # iterate through worklist
 
-		col1,col2,col3,col4,col5 = st.columns([3.0, 3.0, 2.0, 2.0, 2.0])
+		render_app_navigation(scope)
 
 		# Render Data Status - whats loaded - what has load or download errors
+		col1,col2,col3,col4,col5 = st.columns([3.0, 3.0, 2.0, 2.0, 2.0])
+		
 		with col1:
 			render_worklist(scope)
 		with col2:

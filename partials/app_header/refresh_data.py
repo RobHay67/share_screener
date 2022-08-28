@@ -18,7 +18,6 @@ def refresh_app_df_and_columns(scope):
 	no_of_tickers		= len(worklist)
 	app_row_limit 		= int(scope.apps['row_limit'])
 	
-
 	# Progress Bar
 	col1,col2 = st.columns([2,10])
 	with col1:st.write('Data Refresh')
@@ -48,7 +47,7 @@ def refresh_app_df_and_columns(scope):
 				if ticker not in scope.apps[app]['mined_tickers']:
 					scope.apps[app]['mined_tickers'].append(ticker)
 				
-				# Set the status to false to prevent refreshing unnecesarily	
+				# Set the status to false to prevent refreshing unnecesarily
 				scope.tickers[ticker][app]['replace_df'] = False
 
 			# -------------------------------------------------------------------

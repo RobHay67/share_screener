@@ -30,7 +30,6 @@ def scope_new_ticker(scope, ticker):
 	# default values. 
 	# Data is added by other functions.
 
-
 	# Store the ticker data in ['df']
 	scope.tickers[ticker] = {}
 	

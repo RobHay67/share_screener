@@ -21,10 +21,11 @@ def render_trial_verdicts(scope):
 				verdict_list.append(ticker)
 	no_of_verdicts = len(verdict_list)
 
-	
 	if no_of_verdicts > (group_size * tab_limit):
 		# Dont render more than say 100 Tickers
 		st.error('Too many passing verdicts to render (' + str(no_of_verdicts) + ')')
+	elif no_of_verdicts == 0:
+		st.warning('No Passing Verdicts to Render')
 	else:
 		# Render the Results
 		no_of_tabs = int(no_of_verdicts / group_size)		
@@ -33,7 +34,7 @@ def render_trial_verdicts(scope):
 		tab_list = []
 		for tab_no in range(no_of_tabs):
 			tab_list.append('Group ' + str(tab_no+1))
-			
+
 		# Create Tabs and populate from verdicts
 		tabs = st.tabs(tab_list)
 		ticker_start = 0
