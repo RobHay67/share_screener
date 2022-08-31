@@ -1,5 +1,7 @@
 import streamlit as st
 
+from tickers.download.config import set_yf_period
+
 
 def download_button(scope):
 
@@ -37,3 +39,7 @@ def on_change_download_days(scope:dict, widget_key:str):
 
 	# store the selection
 	scope.download['days'] = changed_value
+
+	# update the yf download days
+	set_yf_period(scope)
+

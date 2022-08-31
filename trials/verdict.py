@@ -5,4 +5,5 @@ def trial_verdict(scope, ticker):
 	for trial in scope.trial_config['trial_list']:
 		if scope.tickers[ticker]['trials'][trial] not in [ 'pass', None ]:
 			final_verdict = 'fail'
+			break
 	scope.tickers[ticker]['trials']['verdict'] = final_verdict

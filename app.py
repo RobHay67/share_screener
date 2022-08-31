@@ -43,46 +43,30 @@ render_selected_app(scope)
 
 #TODO
 
-# print(scope.tickers['CBA.AX']['trials'])
+
+
+
+
+
+
+
+# # I think the issue is in the replace df status or the column adder status
+# # lets check this for each app
+
+# # Iterate through every loaded ticker
+# for ticker in list(scope.tickers.keys()):
+# 	print(ticker)
+# 	for app in scope.apps['app_list']:
+# 		print('.'*88)
+# 		print(app)
+# 		print('Refresh App DF     = ', scope.tickers[ticker][app]['replace_df'])
+# 		for col_adder, status in scope.tickers[ticker][app]['column_adders'].items():
+# 			print( (col_adder ).ljust(25), ' = ', status)
+# 		# print(scope.tickers[ticker][app]['column_adders'])
+# 	# print('worklist       = ', scope.apps[app]['worklist'])
+
+
 # print('='*88)
-# app = scope.apps['display_app']
-# ticker = 'CBA.AX'
-# print('Display app    = ', app)
-# print('Ticker         = ', ticker)
-# print('-'*88)
-# print('loaded tickers = ', list(scope.tickers.keys()))
-# print('worklist       = ', scope.apps[app]['worklist'])
-# print('missing local  = ', scope.missing_tickers['local'])
-# print('already loaded = ', scope.apps[app]['mined_tickers'])
-# print(scope.apps[app]['selectors']['ticker'])
-# print(scope.apps[app]['selectors']['tickers'])
-# print(scope.apps[app]['selectors']['industries'])
-# print(scope.apps[app]['selectors']['market'])
-# print('-'*88)
-# print('Replace DFs    = ',  scope.tickers[ticker][app]['replace_df'])
-# for column_adder, status in scope.tickers[ticker][app]['column_adders'].items():
-# 	print( (column_adder ).ljust(20), ' = ', status)
-
-# print('='*88)
-
-
-# I think the issue is in the replace df status or the column adder status
-# lets check this for each app
-
-# Iterate through every loaded ticker
-for ticker in list(scope.tickers.keys()):
-	print(ticker)
-	for app in scope.apps['app_list']:
-		print('.'*88)
-		print(app)
-		print('Refresh App DF     = ', scope.tickers[ticker][app]['replace_df'])
-		for col_adder, status in scope.tickers[ticker][app]['column_adders'].items():
-			print( (col_adder ).ljust(25), ' = ', status)
-		# print(scope.tickers[ticker][app]['column_adders'])
-	# print('worklist       = ', scope.apps[app]['worklist'])
-
-
-print('='*88)
 
 # Store the ticker data in ['df']
 # scope.tickers[ticker] = {}

@@ -6,7 +6,7 @@ from widgets.drill import drill_app_button
 
 def render_trial_verdicts(scope):
 
-	st.write('**Trial Verdicts = Passed**')
+	
 
 	app = scope.apps['display_app']
 	group_size = 10
@@ -20,6 +20,8 @@ def render_trial_verdicts(scope):
 			if scope.tickers[ticker]['trials']['verdict'] == 'pass':
 				verdict_list.append(ticker)
 	no_of_verdicts = len(verdict_list)
+
+	st.write('**Trial Verdicts > ' + str(no_of_verdicts) + ' Guilty**')
 
 	if no_of_verdicts > (group_size * tab_limit):
 		# Dont render more than say 100 Tickers

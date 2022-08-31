@@ -29,7 +29,7 @@ def load_tickers(scope):
 			if ticker not in already_loaded_list:
 				# this is the first place i might need a bar
 				if added_progress_bar==False:
-					col1,col2 = st.columns([2,10])
+					col1,col2 = st.columns([1,11])
 					with col1:st.write('Loading Tickers')
 					with col2:my_bar = st.progress(0)
 					added_progress_bar = True

@@ -9,7 +9,7 @@ from widgets.drill import drill_app_button
 
 def render_app_navigation(scope):
 
-	col1,col2,col3,col4,col5,col6,col7,col8,col9,col10 = st.columns([1,1,1,1,1,1,1,1,1,1])
+	col1,col2,col3,col4,col5,col6,col7,col8,col9,col10,col11 = st.columns([1, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 3.8])
 
 	app = scope.apps['display_app']
 	show_quick_link_navigation = True
@@ -24,23 +24,23 @@ def render_app_navigation(scope):
 
 
 	if show_quick_link_navigation:
-		with col1 : st.write('Quick Links')
+		with col1 : st.write('Quick Links :')
 		
-		if app != 'single':
-			with col2:
-				drill_app_button(scope, 'single', ticker)
-		if app != 'intraday':
-			with col3:
-				drill_app_button(scope, 'intraday', ticker)
-		if app != 'volume':
-			with col4: 
-				drill_app_button(scope, 'volume', ticker)
-		if app != 'research':
-			with col5:
-				drill_app_button(scope, 'research', ticker)
-		if app != 'screener':
-			with col6:
-				drill_app_button(scope, 'screener', ticker)
+		# if app != 'single':
+		with col2:
+			drill_app_button(scope, 'single', ticker)
+		# if app != 'intraday':
+		with col3:
+			drill_app_button(scope, 'intraday', ticker)
+		# if app != 'volume':
+		with col4: 
+			drill_app_button(scope, 'volume', ticker)
+		# if app != 'research':
+		with col5:
+			drill_app_button(scope, 'research', ticker)
+		# if app != 'screener':
+		with col6:
+			drill_app_button(scope, 'screener', ticker)
 		
 		with col7 : drill_website_button(scope, 'asx', ticker)
 		with col8 : drill_website_button(scope, 'google', ticker)

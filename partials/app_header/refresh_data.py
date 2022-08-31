@@ -19,8 +19,8 @@ def refresh_app_df_and_columns(scope):
 	app_row_limit 		= int(scope.apps['row_limit'])
 	
 	# Progress Bar
-	col1,col2 = st.columns([2,10])
-	with col1:st.write('Data Refresh')
+	col1,col2 = st.columns([1,11])
+	with col1:st.write('Data Refresh :')
 	with col2:my_bar = st.progress(0)
 
 	

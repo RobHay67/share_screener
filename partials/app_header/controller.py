@@ -56,22 +56,25 @@ def render_app_header(scope, title):
 		render_app_navigation(scope)
 
 		# Render Data Status - whats loaded - what has load or download errors
-		col1,col2,col3,col4,col5 = st.columns([3.0, 3.0, 2.0, 2.0, 2.0])
+		col1,col2,col3,col4,col5,col6 = st.columns([1.0, 2.5, 2.5, 2.0, 2.0, 2.0])
 		
 		with col1:
-			render_worklist(scope)
+			st.write('App Data :')
+
 		with col2:
+			render_worklist(scope)
+		with col3:
 			render_errors(scope)
 
 		# Render buttons that allow the use to display or remove further informaiton
-		with col3: show_ticker_dfs = dataframe_button(scope, 'tickers')
+		with col4: show_ticker_dfs = dataframe_button(scope, 'tickers')
 
 		if scope.apps['display_app'] == 'screener':
-			with col4: show_trial_dfs = dataframe_button(scope, 'trials')
+			with col5: show_trial_dfs = dataframe_button(scope, 'trials')
 		else:
-			with col4: show_chart_dfs = dataframe_button(scope, 'charts')
+			with col5: show_chart_dfs = dataframe_button(scope, 'charts')
 		
-		with col5: clear_messages_button(scope)
+		with col6: clear_messages_button(scope)
 
 		render_ticker_name(scope)
 
