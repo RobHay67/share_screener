@@ -1,7 +1,7 @@
 import pandas as pd
 
 from ticker_index.update import update_index
-from partials.dropdowns.dropdowns import refresh_dropdown_lists
+from partials.app_header.dropdowns import refresh_dropdown_lists
 from partials.messages.ticker_index import message_download_ticker_index_asx
 from partials.messages.ticker_index import message_index_download_success
 from partials.messages.ticker_index import message_index_not_asx

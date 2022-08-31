@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-from partials.dropdowns.dropdowns import refresh_dropdown_lists
+from partials.app_header.dropdowns import refresh_dropdown_lists
 
 from ticker_index.schema import schema
 from ticker_index.schema import csv_dates

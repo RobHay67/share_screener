@@ -8,7 +8,7 @@ from partials.app_header.controller import render_app_header
 from apps.volume.view.input_volume import view_input_volume
 from apps.volume.view.prediction import view_prediction
 
-from partials.ticker_search.search_results import render_search_results
+from partials.search_results import render_search_results
 
 def render_volume_page(scope):
 

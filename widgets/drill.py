@@ -10,7 +10,7 @@ import webbrowser
 def drill_app_button(scope, app, ticker):
 
 	widget_key = app + '_' + ticker + '_button'
-	print(widget_key)
+
 	st.button(
 				label=app.title(), 
 				key=widget_key,

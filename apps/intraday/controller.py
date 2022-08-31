@@ -1,6 +1,6 @@
 from partials.app_header.controller import render_app_header
 
-from partials.ticker_search.search_results import render_search_results
+from partials.search_results import render_search_results
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Intra Day Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------

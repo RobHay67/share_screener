@@ -5,10 +5,6 @@ from tickers.download.config import set_yf_period
 
 def download_button(scope):
 
-	# Note - this has been moved to the sidebar to imporve readibility of the limited screen realestate
-
-
-	# download_button_msg = 'Download most recent ' + str(int(scope.download['days'])) + ' day'
 	download_button_msg = 'Download Prior ' + str(int(scope.download['days'])) + ' day'
 
 	if scope.download['days'] > 1: 

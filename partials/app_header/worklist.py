@@ -1,5 +1,5 @@
 
-def update_ticker_list(scope):
+def update_app_worklist(scope):
 	
 	# Create a ticker list based on the selectors
 	# most detailed takes precedence ie a single ticker is used, even if a user has also selected an industry

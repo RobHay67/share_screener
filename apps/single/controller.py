@@ -8,7 +8,7 @@ from apps.single.chart_main import add_main_chart
 from apps.single.chart_children import add_child_charts
 from apps.single.chart_main import format_main_chart
 
-from partials.ticker_search.search_results import render_search_results
+from partials.search_results import render_search_results
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Single Ticker Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------

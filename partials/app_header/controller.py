@@ -2,15 +2,15 @@
 # A function that handles all of the data loading and column adding for the current App
 import streamlit as st
 
-from partials.ticker_selectors.selectors import render_ticker_selectors
+from partials.app_header.selectors import render_ticker_selectors
 from partials.app_header.load import load_tickers
 from partials.app_header.refresh_data import refresh_app_df_and_columns
-from partials.app_navigation import render_app_navigation
+from partials.app_header.navigation import render_app_navigation
 
 from partials.app_worklist import render_worklist, render_errors
 from widgets.dataframe import dataframe_button
 from widgets.clear import clear_messages_button
-from partials.ticker_name import render_ticker_name
+from partials.app_header.ticker_name import render_ticker_name
 from partials.reports.dfs import render_ticker_dfs
 from partials.reports.dfs import render_chart_dfs
 from partials.reports.dfs import render_trial_dfs
