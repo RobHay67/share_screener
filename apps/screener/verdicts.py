@@ -6,8 +6,6 @@ from widgets.drill import drill_app_button
 
 def render_trial_verdicts(scope):
 
-	
-
 	app = scope.apps['display_app']
 	group_size = 10
 	tab_limit = 10
@@ -15,7 +13,7 @@ def render_trial_verdicts(scope):
 	# Generate a list of tickers with an overall passing result
 	verdict_list = []
 	for ticker in scope.apps[app]['worklist']:
-		# Only mined tickers can have a verdict
+		# Only mined tickers can have verdicts
 		if ticker in scope.apps[app]['mined_tickers']:
 			if scope.tickers[ticker]['trials']['verdict'] == 'pass':
 				verdict_list.append(ticker)

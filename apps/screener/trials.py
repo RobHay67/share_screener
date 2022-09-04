@@ -35,13 +35,9 @@ def render_available_trials(scope):
 		st.write('This will be the criteria')
 
 
-	# st.markdown("""---""")
 	st.write('**Ticker Technical Performance Criteria**')
-
 	with st.expander(label='Trend Analysis on Open, High, Low, Close and Volume', expanded=True):
-		
 		col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([1,1,1,1,1,1,1,1])
-
 		with col1: render_ohlcv_trend(scope, trial='trend_open')
 		with col2: render_ohlcv_trend(scope, trial='trend_high')
 		with col3: render_ohlcv_trend(scope, trial='trend_low')
@@ -49,26 +45,9 @@ def render_available_trials(scope):
 		with col5: render_ohlcv_trend(scope, trial='trend_volume')
 
 
-		# with st.form(key='my_form'):
-		# 	text_input = st.text_input(label='Criteria for OHLCV ticker values')
-
-		# 	col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([1,1,1,1,1,1,1,1])
-		
-		# 	with col1: render_ohlcv_trend(scope, 'trend_open',   'open')
-		# 	with col2: render_ohlcv_trend(scope, 'trend_high',   'high')
-		# 	with col3: render_ohlcv_trend(scope, 'trend_low',    'low')
-		# 	with col4: render_ohlcv_trend(scope, 'trend_close',  'close')
-		# 	with col5: render_ohlcv_trend(scope, 'trend_volume', 'volume')
-
-		# 	submit_button = st.form_submit_button(label='Apply OHLCV Criteria')
-
 	st.write('**Above or Below Simple Moving Average (SMA)**')
-
 	with st.expander(label='Simple Moving Averages (SMA) on Open, High, Low, Close and Volume', expanded=True):
-		
 		col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([1,1,1,1,1,1,1,1])
-		
-		# def render_sma_trend(scope, column_adder, column_name):
 		with col1: render_sma_trend(scope, trial='sma_open')
 		with col2: render_sma_trend(scope, trial='sma_high')
 		with col3: render_sma_trend(scope, trial='sma_low')
