@@ -47,6 +47,11 @@ def open_asx_website(scope, website, ticker):
 	ticker_code = ticker[0:pos]
 	share_market = scope.config['share_market']
 
+	if website == 'eTrade':
+		etrade_url = 'https://trading.anzshareinvesting.com.au/Market/Charts.aspx?asxcode='
+		external_url = etrade_url + ticker_code
+
+
 	if website == 'asx':
 		asx_url = 'https://www2.asx.com.au/markets/company/'
 		external_url = asx_url + ticker_code
@@ -73,3 +78,4 @@ def open_asx_website(scope, website, ticker):
 # https://www.google.com/finance/quote/GMA:ASX
 # https://au.finance.yahoo.com/quote/CBA.AX?p=CBA.AX&.tsrc=fin-srch
 # https://au.investing.com/equities/commonwealth-bank-of-australia
+# https://trading.anzshareinvesting.com.au/Market/Charts.aspx?asxcode=CBA

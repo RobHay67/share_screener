@@ -2,8 +2,10 @@
 def scope_trials(scope):
 
 	scope.trial_config = {}
-	scope.trial_config['trends']	= trend_directions
-	scope.trial_config['trial_list']	= list(trials_config.keys())
+	scope.trial_config['trend_directions'] = trend_directions
+	scope.trial_config['sma_directions'] = sma_directions
+
+	scope.trial_config['trial_list'] = list(trials_config.keys())
 
 	scope.trials = {}
 	for trial, config in trials_config.items():
@@ -44,6 +46,7 @@ def trial_column_adders(scope):
 
 
 from add_cols.trend import trend_cols
+from add_cols.sma import sma_trend
 
 
 # ==============================================================================================================================================================
@@ -55,13 +58,16 @@ name 			= 'name'				# The display name for the Analysis (used in the settings ap
 column 			= 'column'				# OHLCV column required for the Analysis
 duration		= 'duration'			# the lenght or number of consecutive occurances
 timespan 		= 'timespan'			# The entire analysis Period
-trend			= 'trend'				# the trend or direction of the trend - up or down
+trend			= 'trend'				# the trend or direction of the trend - up or down / above or below
 add_columns		= 'add_columns'			# Dictionary of Dataframe Column Params	
 function		= 'function'			# The function to add the columns for this column_adder
+
+periods 		= 'periods'				# Most Indicators use a base number of days/hours (periods) for their calcs - store it here
 
 
 # 
 trend_directions = [ 'up', 'down' ]
+sma_directions = ['above', 'below']
 
 
 
@@ -121,7 +127,57 @@ trials_config = {
 											timespan : 10,
 										},
 					},
-}
+	'sma_open' 		: {
+						active			: True,
+						name			: 'Open SMA',
+						add_columns		: {
+											function : sma_trend,
+											column 	 : 'open',
+											trend	 : 'above',
+											periods : 21,
+										},
+					},
+	'sma_high' 		: {
+						active			: True,
+						name			: 'High SMA',
+						add_columns		: {
+											function : sma_trend,
+											column 	 : 'high',
+											trend	 : 'above',
+											periods : 21,
+										},
+					},
+	'sma_low' 		: {
+						active			: True,
+						name			: 'Low SMA',
+						add_columns		: {
+											function : sma_trend,
+											column 	 : 'low',
+											trend	 : 'above',
+											periods : 21,
+										},
+					},
 
+	'sma_close' 	: {
+						active			: True,
+						name			: 'Close SMA',
+						add_columns		: {
+											function : sma_trend,
+											column 	 : 'close',
+											trend	 : 'above',
+											periods : 21,
+										},
+					},
+	'sma_volume' 	: {
+						active			: True,
+						name			: 'Volume SMA',
+						add_columns		: {
+											function : sma_trend,
+											column 	 : 'volume',
+											trend	 : 'above',
+											periods : 21,
+										},
+					},
+}
 
 
