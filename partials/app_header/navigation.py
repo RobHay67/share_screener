@@ -23,7 +23,7 @@ def render_app_navigation(scope):
 		with col1 : st.write('Quick Links :')
 		
 		with col2:
-			drill_app_button(scope, 'single', ticker)
+			drill_app_button(scope, 'chart', ticker)
 		with col3:
 			drill_app_button(scope, 'intraday', ticker)
 		with col4: 

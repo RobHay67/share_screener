@@ -3,21 +3,21 @@ import streamlit as st
 from partials.app_header.controller import render_app_header
 # from partials.ticker_loader.controller import render_ticker_loader
 
-from apps.single.schema import create_schema_for_plotly
-from apps.single.chart_main import add_main_chart 
-from apps.single.chart_children import add_child_charts
-from apps.single.chart_main import format_main_chart
+from apps.chart.schema import create_schema_for_plotly
+from apps.chart.chart_main import add_main_chart 
+from apps.chart.chart_children import add_child_charts
+from apps.chart.chart_main import format_main_chart
 
 from partials.search_results import render_search_results
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Single Ticker Analysis
+# Chart Ticker Analysis
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def render_single_ticker_page(scope):
+def render_chart_ticker_page(scope):
 
 	app = scope.apps['display_app']
 	
-	render_app_header(scope, 'Ticker Analysis (single ticker)')
+	render_app_header(scope, 'Chart Ticker')
 
 	# render_ticker_loader(scope)
 

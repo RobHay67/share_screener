@@ -47,7 +47,7 @@ def render_trial_verdicts(scope):
 					company_name = scope.ticker_search[ticker]
 					with col1 : st.write(ticker)
 					with col2 : st.write(company_name)
-					with col3 : drill_app_button(scope, 'single', ticker)
+					with col3 : drill_app_button(scope, 'chart', ticker)
 					with col4 : drill_app_button(scope, 'intraday', ticker)
 					with col5 : drill_app_button(scope, 'volume', ticker)
 					with col6 : drill_app_button(scope, 'research', ticker)

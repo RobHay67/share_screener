@@ -23,7 +23,7 @@ def cache_ticker_data(scope, ticker, ticker_data):
 
 	for app in scope.apps['app_list']:
 
-		if app == 'single':
+		if app == 'chart':
 			scope.tickers[ticker][app]['type_col_adder'] = 'charts'
 			scope.tickers[ticker][app]['column_adders'] = scope.chart_config['column_adders'].copy()
 

@@ -17,8 +17,8 @@ def view_apps(scope):
 	# st.markdown("""---""")
 
 
-def view_single_page(scope):
-	view_page_specific_variables(scope, 'single')
+def view_chart_page(scope):
+	view_page_specific_variables(scope, 'chart')
 
 def view_intra_day_page(scope):
 	view_page_specific_variables(scope, 'intraday')

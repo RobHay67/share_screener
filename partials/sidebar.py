@@ -27,7 +27,7 @@ def render_sidebar(scope):
 			edit_download_days(scope)
 
 			st.subheader('Analysis')
-			st.button('Single'  			, on_click=set_page, args=(scope, 'single', ))
+			st.button('Chart'  				, on_click=set_page, args=(scope, 'chart', ))
 			st.button('IntraDay'			, on_click=set_page, args=(scope, 'intraday', ))
 			st.button('Volume'				, on_click=set_page, args=(scope, 'volume', ))
 			st.button('Research'			, on_click=set_page, args=(scope, 'research', ))

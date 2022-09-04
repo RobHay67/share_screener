@@ -27,7 +27,7 @@
 #																/					|			   		\
 #											---------------------			---------------------		---------------------
 #											| 	 scope.apps	|			| 	 scope.apps	|		| 	 scope.apps	|
-# 											|	 ['screener']	|			|	  ['single']	|		|	['intra_day']	|
+# 											|	 ['screener']	|			|	  ['chart']	|		|	['intra_day']	|
 #											|    	[df]   		|			|     	[df]   		|		|      [df]   		|
 #											|					|			|					|		|					|
 #											---------------------			---------------------		---------------------
@@ -47,8 +47,8 @@
 # Update value in overlay or 2nd chart		------	------	------			T-r_col			T-r_col		T-r_col			T-r_col		= recalculate the specific add_cols only	for NON screener pages	
 # Activate a column_adder						T-r_col	T-r_col	T-r_col			-------			-------		-------			-------		= recalculate the specific add_cols only	for screener app
 # Change column_adder value 					T-r_col	T-r_col	T-r_col			-------			-------		-------			-------		= recalculate the specific add_cols only	for screener app
-# Replace the page_df on single app		R-r_df	-------	-------			-------			-------		-------			-------
-# Rerun the column adder single app		R-r_col	-------	-------			-------			-------		-------			-------		
+# Replace the page_df on chart app		R-r_df	-------	-------			-------			-------		-------			-------
+# Rerun the column adder chart app		R-r_col	-------	-------			-------			-------		-------			-------		
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 # KEY		Description				Pages		Tickers		Dataframe									add_columns	replace_cols							Replace DF Func		Replace Cols Func		
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 

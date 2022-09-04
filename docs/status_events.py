@@ -33,7 +33,7 @@
 # Current app and usage of column adders
 # APP		Objects
 # --------------------------------------------
-# single	charts and overlays
+# chart	charts and overlays
 # intraday	none
 # volume	none
 # research	none

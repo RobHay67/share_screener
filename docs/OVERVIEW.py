@@ -13,9 +13,9 @@
 
 # 	The user then selections an option from the various type of Analysis as follows :
 #		
-# 		Single Share Ticker Analysis or research on :
-# 			(1) Single Ticker (EOD)		> End Of Day (EOD) data		= Charts
-#			(2) Single Ticker (ID)  	> Intra Day  (ID ) data		= Charts
+# 		Chart Share Ticker Analysis or research on :
+# 			(1) Chart Ticker (EOD)		> End Of Day (EOD) data		= Charts
+#			(2) Chart Ticker (ID)  	> Intra Day  (ID ) data		= Charts
 # 			(3) Volume Prediction (EOD)	> End Of Day (EOD) data		= Table detailing the predicted volume
 # 			(4) Company Research									= Information about the ticker
 #
@@ -38,8 +38,8 @@
 #
 #
 #	Ticker Data is stored in 			< scope.tickers >
-# 	Ticker Screener Data is stored in 	< scope.apps[app].screener_df >		ie scope.apps['single'].screener_df
-#	Chart Data is stored in 			< scope.apps[app].chart_df > 			ie scope.apps['single'].chart_df
+# 	Ticker Screener Data is stored in 	< scope.apps[app].screener_df >		ie scope.apps['chart'].screener_df
+#	Chart Data is stored in 			< scope.apps[app].chart_df > 			ie scope.apps['chart'].chart_df
 
 
 # Ticker files to be in descending order so that we keep the latest data at the top of the app

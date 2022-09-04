@@ -1,6 +1,6 @@
 from apps.login.login import render_login_form
 from apps.home.home_page import render_home_page
-from apps.single.controller import render_single_ticker_page
+from apps.chart.controller import render_chart_ticker_page
 from apps.research.controller import render_research_page
 from apps.intraday.controller import render_intraday_page
 from apps.volume.controller import render_volume_page
@@ -21,7 +21,7 @@ def render_selected_app(scope):
 						'login'				:render_login_form,
 						'home_page'			:render_home_page,
 						
-						'single'			:render_single_ticker_page,
+						'chart'				:render_chart_ticker_page,
 						'intraday'			:render_intraday_page,
 						'volume'			:render_volume_page,
 						'research'			:render_research_page,

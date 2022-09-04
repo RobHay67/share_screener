@@ -130,7 +130,7 @@ render_selected_app(scope)
 
 
 # print('IntraDay search results = ', scope.apps['intraday']['search_results'])
-# print('Single search results   = ', scope.apps['single']['search_results'])
+# print('Chart search results   = ', scope.apps['chart']['search_results'])
 # print('Research search results = ', scope.apps['research']['search_results'])
 # print('Screener search results = ', scope.apps['screener']['search_results'])
 
@@ -219,13 +219,13 @@ def level_3_details(level_1, level_2, level_3):
 # 	terminal_heading(level_1)
 # 	for key in st.session_state[level_1]:print(key)
 # # 	level_2_details(level_1, 'templates')
-# 	level_2_details(level_1, 'single')
+# 	level_2_details(level_1, 'chart')
 # 	level_2_details(level_1, 'intraday')
 # 	level_2_details(level_1, 'volume')
 # 	level_2_details(level_1, 'research')
 # 	level_2_details(level_1, 'screener')
-# 	level_3_details(level_1, 'single', 'renew')
-# 	# level_3_details(level_1, 'single', 'chart')
+# 	level_3_details(level_1, 'chart', 'renew')
+# 	# level_3_details(level_1, 'chart', 'chart')
 	# level_3_details(level_1, 'screener', 'ticker_data')
 	# level_3_details(level_1, 'screener', 'ticker_data')
 	# level_3_details(level_1, 'screener', 'ticker_data')
@@ -238,7 +238,7 @@ def level_3_details(level_1, level_2, level_3):
 # if level_1 in st.session_state:
 # 	terminal_heading(level_1)
 # 	for key in st.session_state[level_1]:print(key)
-# 	level_2_details(level_1, 'single')
+# 	level_2_details(level_1, 'chart')
 
 # print('='*88)
 # print('Screener App')
@@ -254,15 +254,15 @@ def level_3_details(level_1, level_2, level_3):
 
 
 # print('='*88)
-# print('Single App')
+# print('Chart App')
 # print('-'*88)
 # # print('trial list       (charts) = ', scope.chart_config['chart_list'])
 # # print('column adders    (charts) = ', scope.chart_config['column_adders'])
 # # print('active list      (charts) = ', scope.chart_config['active_list'])
 # print('-'*88)
-# print('search results   (single) = ', scope.apps['single']['search_results'])
-# print('selected tickers (single) = ', scope.apps['single']['worklist'])
-# print('mined_ticker     (single) = ', scope.apps['single']['mined_tickers'])
+# print('search results   (chart) = ', scope.apps['chart']['search_results'])
+# print('selected tickers (chart) = ', scope.apps['chart']['worklist'])
+# print('mined_ticker     (chart) = ', scope.apps['chart']['mined_tickers'])
 # print('='*88)
 
 

@@ -12,8 +12,8 @@ def render_ticker_dfs(scope):
 	render_dfs(scope, 'tickers', df_locations, ticker_list )
 
 def render_chart_dfs(scope):
-	df_locations = 'single'
-	ticker_list = sorted(scope.apps['single']['mined_tickers'])
+	df_locations = 'chart'
+	ticker_list = sorted(scope.apps['chart']['mined_tickers'])
 	render_dfs(scope, 'charts', df_locations, ticker_list )
 
 def render_trial_dfs(scope):
@@ -65,7 +65,7 @@ def render_df(scope, type_df, ticker_list, i):
 			df = scope.tickers[ticker]['df']
 		# to cope with scope also calling these functions
 		if type_df == 'charts':
-			df = scope.tickers[ticker]['single']['df']
+			df = scope.tickers[ticker]['chart']['df']
 		if type_df == 'trials':
 			df = scope.tickers[ticker]['screener']['df']
 

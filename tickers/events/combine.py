@@ -14,7 +14,7 @@ def combine_event(scope, ticker):
 
 		scope.tickers[ticker][app]['replace_df'] = True
 
-		if app == 'single':
+		if app == 'chart':
 			scope.tickers[ticker][app]['column_adders'] = scope.chart_config['column_adders'].copy()
 
 		if app == 'screener':

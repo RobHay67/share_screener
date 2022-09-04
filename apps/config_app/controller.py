@@ -14,7 +14,7 @@ from apps.config_app.download import view_download
 
 # Pages
 from apps.config_app.apps import view_apps
-from apps.config_app.apps import view_single_page
+from apps.config_app.apps import view_chart_page
 from apps.config_app.apps import view_intra_day_page
 from apps.config_app.apps import view_volume_page
 from apps.config_app.apps import view_research_page
@@ -47,7 +47,7 @@ def render_selected_scope_page(scope):
 			'view_download'			:view_download,
 			# Column 4 - Pages
 			'view_apps'				:view_apps,
-			'view_single_page'		:view_single_page,
+			'view_chart_page'		:view_chart_page,
 			'view_intra_day_page'	:view_intra_day_page,
 			'view_volume_page'		:view_volume_page,
 			'view_research_page'	:view_research_page,
@@ -98,13 +98,13 @@ def render_scope_categories(scope):
 	with col4: 
 		st.subheader('Apps')
 		st.button('App', on_click=set_st_button, args=(scope, 'view_apps', ))
-		st.button('App > Single', on_click=set_st_button, args=(scope, 'view_single_page', ))
+		st.button('App > Chart', on_click=set_st_button, args=(scope, 'view_chart_page', ))
 		st.button('App > IntraDay', on_click=set_st_button, args=(scope, 'view_intra_day_page', ))
 		st.button('App > Volume', on_click=set_st_button, args=(scope, 'view_volume_page', ))
 		st.button('App > Research', on_click=set_st_button, args=(scope, 'view_research_page', ))
 		st.button('App > Screener', on_click=set_st_button, args=(scope, 'view_screener_page', ))
 		
-		no_of_chart_dfs = str(len(scope.apps['single']['mined_tickers']))
+		no_of_chart_dfs = str(len(scope.apps['chart']['mined_tickers']))
 		no_of_trial_dfs = str(len(scope.apps['screener']['mined_tickers']))
 		st.button('Chart Dataframes ( ' + no_of_chart_dfs + ' )', on_click=set_st_button, args=(scope, 'render_chart_dfs', ))
 		st.button('Trial Dataframes ( ' + no_of_trial_dfs + ' )', on_click=set_st_button, args=(scope, 'render_trial_dfs', ))

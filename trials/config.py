@@ -74,7 +74,7 @@ sma_directions = ['above', 'below']
 trials_config = {
 	'trend_open'	: {
 						active			: False,
-						name			: 'Open trend',
+						name			: 'Trend of Open Price',
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'open',
@@ -85,7 +85,7 @@ trials_config = {
 					},
 	'trend_high'	: {
 						active			: True,
-						name			: 'High trend',
+						name			: 'Trend of High price',
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'high',
@@ -96,7 +96,7 @@ trials_config = {
 					},
 	'trend_low'	: {
 						active			: False,
-						name			: 'Low trend',
+						name			: 'Trend of Low price',
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'low',
@@ -107,7 +107,7 @@ trials_config = {
 					},
 	'trend_close'	: {
 						active			: False,
-						name			: 'Close trend',
+						name			: 'Trend of Close price',
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'close',
@@ -118,7 +118,7 @@ trials_config = {
 					},
 	'trend_volume'	: {
 						active			: False,
-						name			: 'Volume trend',
+						name			: 'Trend of Volume',
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'volume',
@@ -129,7 +129,7 @@ trials_config = {
 					},
 	'sma_open' 		: {
 						active			: True,
-						name			: 'Open SMA',
+						name			: 'Above/Below SMA of Open',
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'open',
@@ -139,7 +139,7 @@ trials_config = {
 					},
 	'sma_high' 		: {
 						active			: True,
-						name			: 'High SMA',
+						name			: 'Above/Below SMA of High',
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'high',
@@ -149,7 +149,7 @@ trials_config = {
 					},
 	'sma_low' 		: {
 						active			: True,
-						name			: 'Low SMA',
+						name			: 'Above/Below SMA of Low',
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'low',
@@ -160,7 +160,7 @@ trials_config = {
 
 	'sma_close' 	: {
 						active			: True,
-						name			: 'Close SMA',
+						name			: 'Above/Below SMA of Close',
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'close',
@@ -170,7 +170,7 @@ trials_config = {
 					},
 	'sma_volume' 	: {
 						active			: True,
-						name			: 'Volume SMA',
+						name			: 'Above/Below SMA of Volume',
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'volume',

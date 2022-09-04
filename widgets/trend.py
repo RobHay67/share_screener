@@ -6,7 +6,8 @@ from tickers.events.edit_column_adder import edit_column_adder_event
 def edit_trend_direction(scope, type_config, column_adder ):
 
 	widget_key = 'widget_direction_' + type_config + '_' + column_adder
-	display_name =  '' + ('Direction for ' + scope[type_config][column_adder]['name'] )
+	# display_name =  '' + ('Direction for ' + scope[type_config][column_adder]['name'] )
+	display_name =  'Direction'
 	previous_selection = scope[type_config][column_adder]['add_columns']['trend']
 	pos_for_previous = scope.trial_config['trend_directions'].index(previous_selection)	
 	
