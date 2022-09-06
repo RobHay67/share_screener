@@ -2,8 +2,6 @@
 def scope_trials(scope):
 
 	scope.trial_config = {}
-	scope.trial_config['trend_directions'] = trend_directions
-	scope.trial_config['sma_directions'] = sma_directions
 
 	scope.trial_config['trial_list'] = list(trials_config.keys())
 
@@ -47,6 +45,10 @@ def trial_column_adders(scope):
 
 from add_cols.trend import trend_cols
 from add_cols.sma import sma_trend
+from add_cols.stochastic import stochastic_trend
+from add_cols.rsi import rsi_trend
+
+
 
 
 # ==============================================================================================================================================================
@@ -63,12 +65,16 @@ add_columns		= 'add_columns'			# Dictionary of Dataframe Column Params
 function		= 'function'			# The function to add the columns for this column_adder
 
 periods 		= 'periods'				# Most Indicators use a base number of days/hours (periods) for their calcs - store it here
-
+short 			= 'short'				# for the MACD
+signal 			= 'signal'				# Stochastic
+lookback_days 	= 'lookback_days'		# Stochastic Oscillator
+slow 			= 'slow'				# Stochastic Oscillator
 
 # 
-trend_directions = [ 'up', 'down' ]
-sma_directions = ['above', 'below']
-
+trends_for_ohlcv = [ 'up_trend', 'down_trend' ]
+trends_for_sma = ['above_line', 'below_line']
+trends_for_stochastic = ['above_line', 'below_line', 'over_bought', 'over_sold', 'cross_up', 'cross_down']
+trends_for_rsi = ['up_trend', 'down_trend', 'over_bought', 'over_sold' ]
 
 
 trials_config = {
@@ -78,18 +84,18 @@ trials_config = {
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'open',
-											trend	 : 'up',
+											trend	 : 'up_trend',
 											duration : 4,
 											timespan : 10,
 										},
 					},
 	'trend_high'	: {
-						active			: True,
+						active			: False,
 						name			: 'Trend of High price',
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'high',
-											trend	 : 'up',
+											trend	 : 'up_trend',
 											duration : 5,
 											timespan : 5,
 										},
@@ -100,7 +106,7 @@ trials_config = {
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'low',
-											trend	 : 'up',
+											trend	 : 'up_trend',
 											duration : 4,
 											timespan : 10,
 										},
@@ -111,7 +117,7 @@ trials_config = {
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'close',
-											trend	 : 'up',
+											trend	 : 'up_trend',
 											duration : 4,
 											timespan : 10,
 										},
@@ -122,62 +128,116 @@ trials_config = {
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'volume',
-											trend	 : 'up',
+											trend	 : 'up_trend',
 											duration : 4,
 											timespan : 10,
 										},
 					},
 	'sma_open' 		: {
-						active			: True,
+						active			: False,
 						name			: 'Above/Below SMA of Open',
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'open',
-											trend	 : 'above',
+											trend	 : 'above_line',
 											periods : 21,
 										},
 					},
 	'sma_high' 		: {
-						active			: True,
+						active			: False,
 						name			: 'Above/Below SMA of High',
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'high',
-											trend	 : 'above',
+											trend	 : 'above_line',
 											periods : 21,
 										},
 					},
 	'sma_low' 		: {
-						active			: True,
+						active			: False,
 						name			: 'Above/Below SMA of Low',
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'low',
-											trend	 : 'above',
+											trend	 : 'above_line',
 											periods : 21,
 										},
 					},
 
 	'sma_close' 	: {
-						active			: True,
+						active			: False,
 						name			: 'Above/Below SMA of Close',
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'close',
-											trend	 : 'above',
+											trend	 : 'above_line',
 											periods : 21,
 										},
 					},
 	'sma_volume' 	: {
-						active			: True,
+						active			: False,
 						name			: 'Above/Below SMA of Volume',
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'volume',
-											trend	 : 'above',
+											trend	 : 'above_line',
 											periods : 21,
 										},
 					},
+	'stochastic_1' 	: {
+						active			: True,
+						name			: 'Stochastic',
+						add_columns		: {
+											function : stochastic_trend,
+											trend	 : 'above_line',
+											lookback_days	: 14, 
+											slow			: 3, 
+											signal			: 3,
+										},
+					},
+	'stochastic_2' 	: {
+						active			: True,
+						name			: 'Stochastic',
+						add_columns		: {
+											function : stochastic_trend,
+											trend	 : 'over_sold',
+											lookback_days	: 14, 
+											slow			: 3, 
+											signal			: 3,
+										},
+					},
+	'stochastic_3' 	: {
+						active			: True,
+						name			: 'Stochastic',
+						add_columns		: {
+											function : stochastic_trend,
+											trend	 : 'cross_up',
+											lookback_days	: 14, 
+											slow			: 3, 
+											signal			: 3,
+										},
+					},
+	'rsi_1' 		: {
+						active			: True,
+						name			: 'Above/Below SMA of Open',
+						add_columns		: {
+											function 		: rsi_trend,
+											trend	 		: 'up_trend',
+											column 	 		: 'close',
+											lookback_days 	: 10,
+										},
+					},
+	'rsi_2' 		: {
+						active			: True,
+						name			: 'Above/Below SMA of High',
+						add_columns		: {
+											function 		: rsi_trend,
+											trend	 		: 'over_sold',
+											column 	 		: 'close',
+											lookback_days 	: 10,
+										},
+					},
+
 }
 
 

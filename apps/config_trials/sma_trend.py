@@ -2,7 +2,7 @@
 import streamlit as st
 
 from widgets.active import edit_active
-from widgets.sma_direction import edit_sma_direction
+from widgets.trend_sma import edit_trend_sma
 from widgets.number import edit_number
 
 
@@ -13,7 +13,7 @@ def render_sma_trend(scope, trial):
 
 	edit_active(scope, type_config, trial)
 	# st.write('column_name = ', column_name)
-	edit_sma_direction(scope, type_config, trial)
+	edit_trend_sma(scope, type_config, trial)
 	edit_number(scope, type_config, trial, 'periods' )
 
 	

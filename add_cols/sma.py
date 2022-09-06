@@ -20,10 +20,10 @@ def sma_cols( scope, chart, ticker, chart_df):
 
 
 def sma_trend(scope, trial, ticker, df):
-
+	
+	trend 		= scope.trials[trial]['add_columns']['trend']
 	column 		= scope.trials[trial]['add_columns']['column']
 	no_of_days 	= scope.trials[trial]['add_columns']['periods']
-	trend 		= scope.trials[trial]['add_columns']['trend']
 
 	# Change df to be ascending to simplify the shifting
 	df.sort_values(by=['date'], inplace=True, ascending=True)
@@ -32,7 +32,7 @@ def sma_trend(scope, trial, ticker, df):
 	df['temp_ma'] = df[column].rolling(window=no_of_days).mean()
 
 	# Determine the Result for each row
-	if trend == 'above':
+	if trend == 'above_line':
 		df[trial] = np.where( df[column] > df['temp_ma'], 'pass', 'fail' )
 	else:
 		df[trial] = np.where( df[column] <= df['temp_ma'], 'pass', 'fail' )

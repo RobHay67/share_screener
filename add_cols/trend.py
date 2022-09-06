@@ -15,7 +15,7 @@ def trend_cols(scope, trial, ticker, df):
 	df['temp_shifted'] = df[column].shift(1)
 	df['temp_shifted'] = df['temp_shifted'].fillna(0.0).astype(float)
 
-	if trend == 'up':
+	if trend == 'up_trend':
 		df['temp_trend'] = np.where( df[column] > df['temp_shifted'], 1, 0 )
 	else:
 		df['temp_trend'] = np.where( df[column] < df['temp_shifted'], 1, 0 )
