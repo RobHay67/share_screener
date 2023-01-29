@@ -33,3 +33,16 @@ def render_download_message(scope):
 		st.write(scope.download['yf_batch_industry'])
 
 
+def render_download_complete_message(scope):
+
+	col1,col2,col3,col4 = st.columns([5.5,1.5,1,4])
+
+	with col2:
+		st.write('--------')
+		st.write('complete')
+	with col3:
+		st.write('---------------')
+		st.write('tickers = ' + str(len(scope.download['yf_ticker_list'])))
+	with col4:
+		st.write('-----------------')
+		st.write('Download Complete')

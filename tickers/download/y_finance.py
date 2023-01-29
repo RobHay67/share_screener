@@ -1,7 +1,7 @@
 import yfinance as yf					# https://github.com/ranaroussi/yfinance
 
 from tickers.download.cache_yf import cache_yf_batch_data
-from partials.messages.y_finance import render_download_message
+from partials.messages.y_finance import render_download_message, render_download_complete_message
 from tickers.schema import ticker_file_schema
 from tickers.download.schema import y_finance_schemas
 
@@ -25,6 +25,8 @@ def download_from_yahoo_finance(scope):
 		format_yf_data(scope)	
 
 		cache_yf_batch_data(scope)
+
+	render_download_complete_message(scope)
 
 
 def set_batch_params(scope):

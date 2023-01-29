@@ -26,7 +26,6 @@ def reset_yf_download_config(scope):
 	scope.download['yf_data'] 			= pd.DataFrame(columns=ticker_file_usecols + ['ticker'] )		
 	scope.download['yf_errors'] 		=  {}
 
-
 def base_config_download(scope):
 	# Setting can be changed for each user
 	# so we need to be able to call when changing user

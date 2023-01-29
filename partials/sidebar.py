@@ -25,6 +25,8 @@ def render_sidebar(scope):
 			st.caption('Local Time : ' + str(local_time.strftime('%H:%M:%S %p')))
 
 			edit_download_days(scope)
+		
+			edit_row_limit(scope)
 
 			st.subheader('Analysis')
 			st.button('Chart'  				, on_click=set_page, args=(scope, 'chart', ))
@@ -38,8 +40,6 @@ def render_sidebar(scope):
 			st.subheader('Chart Settings')
 			st.button('Primary Charts'  	, on_click=set_page, args=(scope, 'charts_primary', ))
 			st.button('Secondary Charts'	, on_click=set_page, args=(scope, 'charts_secondary', ))
-		
-			edit_row_limit(scope)
 
 			st.button('Config (scope)'		, on_click=set_page, args=(scope, 'scope', ))
 			

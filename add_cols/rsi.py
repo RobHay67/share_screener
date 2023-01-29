@@ -37,7 +37,7 @@ def rsi_cols(scope, chart, ticker, chart_df):
 	# ensure Screener_df is back in its descending order (latest first)
 	chart_df.sort_values(by=['date'], inplace=True, ascending=False)
 	print('Charting for > ', ticker)
-	print(chart_df.head(30))
+	# print(chart_df.head(30))
 
 
 def rsi_trend(scope, trial, ticker, df):
