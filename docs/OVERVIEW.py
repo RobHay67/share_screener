@@ -15,7 +15,7 @@
 #		
 # 		Chart Share Ticker Analysis or research on :
 # 			(1) Chart Ticker (EOD)		> End Of Day (EOD) data		= Charts
-#			(2) Chart Ticker (ID)  	> Intra Day  (ID ) data		= Charts
+#			(2) Chart Ticker (ID)  		> Intra Day  (ID ) data		= Charts
 # 			(3) Volume Prediction (EOD)	> End Of Day (EOD) data		= Table detailing the predicted volume
 # 			(4) Company Research									= Information about the ticker
 #

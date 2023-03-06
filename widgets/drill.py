@@ -33,15 +33,19 @@ def drill_website_button(scope, website, ticker):
 
 	widget_key = website + '_' + ticker + '_button'
 
-	st.button(
-				label=website, 
-				key=widget_key,
-				on_click=open_asx_website,
-				args=(scope, website, ticker)
-				)
+	open_asx_website(scope, website, ticker)
+
+	# st.button(
+	# 			label=website, 
+	# 			key=widget_key,
+	# 			on_click=open_asx_website,
+	# 			args=(scope, website, ticker)
+	# 			)
 
 
 def open_asx_website(scope, website, ticker):
+
+
 
 	pos = ticker.find(".")
 	ticker_code = ticker[0:pos]
@@ -71,7 +75,18 @@ def open_asx_website(scope, website, ticker):
 		external_url = url + ticker_code.lower()
 
 
-	webbrowser.open(external_url)
+	# webbrowser.open(external_url)
+
+
+	# url_string = website + "[link](" +  external_url + ")"
+
+	url_string = "[" + website + "](" +  external_url + ")"
+
+	# st.write("check out this [link](https://share.streamlit.io/mesmith027/streamlit_webapps/main/MC_pi/streamlit_app.py)")
+
+	st.write(url_string)
+
+	# asxlink
 
 
 # https://www.marketindex.com.au/asx/cba
