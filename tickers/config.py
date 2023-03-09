@@ -23,24 +23,22 @@ def scope_missing_ticker_error(scope, ticker):
 def scope_new_ticker(scope, ticker):
 
 	# Add keys to scope.tickers object
-	# ready to house : 
+	# Ready to house : 
 	#  - ticker date in df 
-	# add appropriate column adders state information
-	# This function only generates the empty containers and
-	# default values. 
+	# Add appropriate column adders state information
+	# This function only generates the empty containers and default values. 
 	# Data is added by other functions.
 
-	# Store the ticker data in ['df']
 	scope.tickers[ticker] = {}
 	
-	# To store the raw ticker data - all we have
+	# To store the raw ticker data
 	scope.tickers[ticker]['df'] = {}
 
 	# To Store Trial Results
 	scope.tickers[ticker]['trials'] = {}
-	scope.tickers[ticker]['trials']['verdict'] = None
 	for trial in scope.trial_config['trial_list']:
 		scope.tickers[ticker]['trials'][trial] = None
+	scope.tickers[ticker]['trials']['verdict'] = None
 
 
 	# Ticker Config for each Application

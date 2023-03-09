@@ -28,11 +28,11 @@ def trial_active_list(scope):
 def trial_column_adders(scope):
 	# Seperate function so it can be called after the initial load - i.e. change user
 
-	# Reset the dictionary as this function will rebuild it
+	# Reset the dictionary as calling this function will recreate the dictionary
 	scope.trial_config['column_adders'] = {}
 
 	for trial in scope.trial_config['trial_list']:
-		# Add charts that require additional columns
+		# Add trials that require additional columns
 		if scope.trials[trial]['add_columns'] != None:
 			scope.trial_config['column_adders'][trial] = scope.trials[trial]['active']
 
