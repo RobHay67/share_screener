@@ -1,24 +1,20 @@
-
 import streamlit as st
-import webbrowser
+# import webbrowser
 
 
-# This function should only be available from the screener page
-
-
-
-def drill_app_button(scope, app, ticker):
+def link_to_app_button(scope, app, ticker):
 
 	widget_key = app + '_' + ticker + '_button'
 
 	st.button(
 				label=app.title(), 
 				key=widget_key,
-				on_click=drill_app,
+				on_click=open_app,
 				args=(scope, app, ticker)
 				)
 
-def drill_app(scope, app, ticker):
+def open_app(scope, app, ticker):
+	
 	scope.apps['display_app'] = app
 
 	if app != 'screener':	
@@ -29,23 +25,8 @@ def drill_app(scope, app, ticker):
 		scope.apps[app]['selectors']['market'] = 'select entire market'
 		scope.apps[app]['search_results'] = {}
 
-def drill_website_button(scope, website, ticker):
 
-	widget_key = website + '_' + ticker + '_button'
-
-	open_asx_website(scope, website, ticker)
-
-	# st.button(
-	# 			label=website, 
-	# 			key=widget_key,
-	# 			on_click=open_asx_website,
-	# 			args=(scope, website, ticker)
-	# 			)
-
-
-def open_asx_website(scope, website, ticker):
-
-
+def website_hyperlink(scope, website, ticker):
 
 	pos = ticker.find(".")
 	ticker_code = ticker[0:pos]
@@ -54,7 +35,6 @@ def open_asx_website(scope, website, ticker):
 	if website == 'eTrade':
 		etrade_url = 'https://trading.anzshareinvesting.com.au/Market/Charts.aspx?asxcode='
 		external_url = etrade_url + ticker_code
-
 
 	if website == 'asx':
 		asx_url = 'https://www2.asx.com.au/markets/company/'
@@ -75,19 +55,13 @@ def open_asx_website(scope, website, ticker):
 		external_url = url + ticker_code.lower()
 
 
-	# webbrowser.open(external_url)
-
-
-	# url_string = website + "[link](" +  external_url + ")"
-
 	url_string = "[" + website + "](" +  external_url + ")"
-
-	# st.write("check out this [link](https://share.streamlit.io/mesmith027/streamlit_webapps/main/MC_pi/streamlit_app.py)")
 
 	st.write(url_string)
 
-	# asxlink
 
+
+# Url Examples
 
 # https://www.marketindex.com.au/asx/cba
 # https://www.google.com/finance/quote/GMA:ASX

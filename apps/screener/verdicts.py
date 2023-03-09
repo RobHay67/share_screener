@@ -1,7 +1,7 @@
 import streamlit as st
 
-from widgets.drill import drill_website_button
-from widgets.drill import drill_app_button
+from widgets.links import website_hyperlink
+from widgets.links import link_to_app_button
 
 
 def render_trial_verdicts(scope):
@@ -47,15 +47,15 @@ def render_trial_verdicts(scope):
 					company_name = scope.ticker_search[ticker]
 					with col1 : st.write(ticker)
 					with col2 : st.write(company_name)
-					with col3 : drill_app_button(scope, 'chart', ticker)
-					with col4 : drill_app_button(scope, 'intraday', ticker)
-					with col5 : drill_app_button(scope, 'volume', ticker)
-					with col6 : drill_app_button(scope, 'research', ticker)
-					with col7 : drill_website_button(scope, 'eTrade', ticker)
-					with col8 : drill_website_button(scope, 'asx', ticker)
-					with col9 : drill_website_button(scope, 'google', ticker)
-					with col10 : drill_website_button(scope, 'yahoo', ticker)
-					with col11 : drill_website_button(scope, 'marketindex', ticker)
+					with col3 : link_to_app_button(scope, 'chart', ticker)
+					with col4 : link_to_app_button(scope, 'intraday', ticker)
+					with col5 : link_to_app_button(scope, 'volume', ticker)
+					with col6 : link_to_app_button(scope, 'research', ticker)
+					with col7 : website_hyperlink(scope, 'eTrade', ticker)
+					with col8 : website_hyperlink(scope, 'asx', ticker)
+					with col9 : website_hyperlink(scope, 'google', ticker)
+					with col10 : website_hyperlink(scope, 'yahoo', ticker)
+					with col11 : website_hyperlink(scope, 'marketindex', ticker)
 
 
 

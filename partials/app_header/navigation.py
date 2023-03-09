@@ -3,8 +3,8 @@
 
 import streamlit as st
 
-from widgets.drill import drill_website_button
-from widgets.drill import drill_app_button
+from widgets.links import website_hyperlink
+from widgets.links import link_to_app_button
 
 
 def render_app_navigation(scope):
@@ -23,17 +23,17 @@ def render_app_navigation(scope):
 		with col1 : st.write('Quick Links :')
 		
 		with col2:
-			drill_app_button(scope, 'chart', ticker)
+			link_to_app_button(scope, 'chart', ticker)
 		with col3:
-			drill_app_button(scope, 'intraday', ticker)
+			link_to_app_button(scope, 'intraday', ticker)
 		with col4: 
-			drill_app_button(scope, 'volume', ticker)
+			link_to_app_button(scope, 'volume', ticker)
 		with col5:
-			drill_app_button(scope, 'research', ticker)
+			link_to_app_button(scope, 'research', ticker)
 		# with col6:
-		# 	drill_app_button(scope, 'screener', ticker)
+		# 	link_to_app_button(scope, 'screener', ticker)
 		
-		with col7 : drill_website_button(scope, 'asx', ticker)
-		with col8 : drill_website_button(scope, 'google', ticker)
-		with col9 : drill_website_button(scope, 'yahoo', ticker)
-		with col10 : drill_website_button(scope, 'marketindex', ticker)
+		with col7 : website_hyperlink(scope, 'asx', ticker)
+		with col8 : website_hyperlink(scope, 'google', ticker)
+		with col9 : website_hyperlink(scope, 'yahoo', ticker)
+		with col10 : website_hyperlink(scope, 'marketindex', ticker)
