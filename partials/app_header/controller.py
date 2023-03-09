@@ -36,12 +36,12 @@ from partials.reports.dfs import render_trial_dfs
 
 def render_app_header(scope, title):
 
-	# App Report Options (default to do not display)
+	# Page Report Options (default to do not display)
 	show_ticker_dfs = False
 	show_chart_dfs = False
 	show_trial_dfs = False
 
-	# Render App Title
+	# Render Page Title
 	col1,col2 = st.columns([6,8])
 	with col1:st.header(title)
 	
@@ -58,32 +58,23 @@ def render_app_header(scope, title):
 		# Render Data Status - whats loaded - what has load or download errors
 		col1,col2,col3,col4,col5,col6 = st.columns([1.0, 2.5, 2.5, 2.0, 2.0, 2.0])
 		
-		with col1:
-			st.write('App Data :')
-
-		with col2:
-			render_worklist(scope)
-		with col3:
-			render_errors(scope)
-
-		# Render buttons that allow the use to display or remove further informaiton
+		with col1:st.write('Page Data :')
+		with col2:render_worklist(scope)
+		with col3:render_errors(scope)
 		with col4: show_ticker_dfs = dataframe_button(scope, 'tickers')
-
-		if scope.apps['display_app'] == 'screener':
-			with col5: show_trial_dfs = dataframe_button(scope, 'trials')
-		else:
-			with col5: show_chart_dfs = dataframe_button(scope, 'charts')
-		
+		with col5:
+			if scope.apps['display_app'] == 'screener':
+				show_trial_dfs = dataframe_button(scope, 'trials')
+			else:
+				show_chart_dfs = dataframe_button(scope, 'charts')		
 		with col6: clear_messages_button(scope)
 
 		render_ticker_name(scope)
 
 		# Render selected information
 		if show_ticker_dfs: render_ticker_dfs(scope)
-
-		if show_chart_dfs: render_chart_dfs(scope)
-		
-		if show_trial_dfs: render_trial_dfs(scope)
+		if show_chart_dfs: 	render_chart_dfs(scope)
+		if show_trial_dfs: 	render_trial_dfs(scope)
 		
 
 

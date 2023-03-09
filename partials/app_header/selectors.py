@@ -19,32 +19,31 @@ def render_ticker_selectors(scope):
 	
 	app = scope.apps['display_app']
 
-	if app != 'screener':
-		# One of the Single Ticker Pages - Single / Volume / Research or IntraDay
-
-		with col1:
-			select_a_ticker(scope)
-
-	
-	if app == 'screener':	
-		# Screener app (Potentially Multiple Tickers depending on the dropdown selections)
-		
+	if app == 'screener':
 		with col1: 
 			select_tickers(scope)
 		with col2: 
 			select_industries(scope)
 		with col3: 
 			select_a_market(scope)
-	
+		with col4: 
+			search_ticker_by_name(scope)
+	elif app == 'websites':
+		# dont provide any search options - we dont have any data
+		with col1: 
+			st.write('No Need to show selectors')
+	else:
+		# One of the Single Ticker Pages - Single / Volume / Research or IntraDay
+		with col1: 
+			select_a_ticker(scope)
+		with col4: 
+			search_ticker_by_name(scope)
+
 	we_have_selected_tickers = update_app_worklist(scope)
 	
-	
-	with col5:
-		if we_have_selected_tickers:
+	if we_have_selected_tickers:
+		with col5:		
 			download_ticker_data = download_button(scope)
-
-	with col4: 
-		search_ticker_by_name(scope)
 
 	if download_ticker_data:
 		download_tickers(scope)
