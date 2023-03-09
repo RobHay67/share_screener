@@ -42,7 +42,7 @@ def render_app_header(scope, title):
 	show_trial_dfs = False
 
 	# Render Page Title
-	col1,col2 = st.columns([6,8])
+	col1,col2,col3 = st.columns([8,2,2])
 	with col1:st.header(title)
 	
 	we_have_selected_tickers = render_ticker_selectors(scope)

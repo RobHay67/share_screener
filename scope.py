@@ -85,20 +85,43 @@ def set_streamlit_page_config():
 		}} </style> """, unsafe_allow_html=True)
 
 	# Remove whitespace from the top of the app and sidebar
-	st.markdown("""
-        <style>
-            #    .css-18e3th9 {
-            #         padding-top: 0rem;
-            #         padding-bottom: 10rem;
-            #         padding-left: 5rem;
-            #         padding-right: 5rem;
-            #     }
-            #    .css-1d391kg {
-            #         padding-top: 1rem;
-            #         padding-right: 1rem;
-            #         padding-bottom: 3.5rem;
-            #         padding-left: 1rem;
-            #     }
-        </style>
-        """, unsafe_allow_html=True)
+	st.write('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True) # this is heaps better
+
+	# st.markdown("""
+	# 				<style>
+	# 					.css-o18uir.e16nr0p33 {
+	# 					margin-top: -75px;
+	# 					}
+	# 				</style>
+	# 				""", unsafe_allow_html=True)
+
+	# st.markdown(
+    #         f'''
+    #         <style>
+    #             .reportview-container .sidebar-content {{
+    #                 padding-top: {1}rem;
+    #             }}
+    #             .reportview-container .main .block-container {{
+    #                 padding-top: {1}rem;
+    #             }}
+    #         </style>
+    #         ''',unsafe_allow_html=True)
+
+
+	# st.markdown("""
+    #     <style>
+    #         #    .css-18e3th9 {
+    #         #         padding-top: 0rem;
+    #         #         padding-bottom: 10rem;
+    #         #         padding-left: 5rem;
+    #         #         padding-right: 5rem;
+    #         #     }
+    #         #    .css-1d391kg {
+    #         #         padding-top: 1rem;
+    #         #         padding-right: 1rem;
+    #         #         padding-bottom: 3.5rem;
+    #         #         padding-left: 1rem;
+    #         #     }
+    #     </style>
+    #     """, unsafe_allow_html=True)
 

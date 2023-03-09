@@ -24,9 +24,9 @@ def view_app(scope):
 
 def view_trials_config(scope):
 	st.subheader('Trials Configuration')
-	
-	three_cols( 'Trends', scope.trial_config['trend_directions'], 'scope.apps.trials.trend_directions' )
-	three_cols( 'Test List', scope.trial_config['trial_list'], 'scope.apps.trials.trial_list' )
+	three_cols( 'Trial List', scope.trial_config['trial_list'], 'scope.trial_config.trial_list' )
+	three_cols( 'Trial Active List', scope.trial_config['active_list'], 'scope.trial_config.active_list' )
+	three_cols( 'Trial Column Adders', scope.trial_config['column_adders'], 'scope.trial_config.column_adders' )
 
 	st.markdown("""---""")
 	

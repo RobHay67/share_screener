@@ -37,6 +37,7 @@ def render_ticker_selectors(scope):
 	else:
 		# One of the Single Ticker Pages - Single / Volume / Research or IntraDay
 		with col2: 
+			
 			select_a_ticker(scope)
 		with col5: 
 			search_ticker_by_name(scope)
