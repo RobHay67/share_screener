@@ -20,16 +20,18 @@ def refresh_app_df_and_columns(scope):
 	
 	# Progress Bar
 	col1,col2 = st.columns([1,11])
-	description = 'Recalc Cols :'
-	if app  != 'screener':
-		with col1:st.write(description)
-		replace_cols = True
-	else:
-		with col1:replace_cols = st.button(label=description)
-	with col2:my_bar = st.progress(0)
+	description = 'Add Cols :'
+
+	with col1:
+		if app == 'screener': 
+			replace_cols = st.button(label=description)
+		else:
+			st.write(description)
+			replace_cols = True
+	with col2:
+		my_bar = st.progress(0)
 
 	if replace_cols:
-
 		for counter, ticker in enumerate(worklist):
 			determine_verdict	= False
 

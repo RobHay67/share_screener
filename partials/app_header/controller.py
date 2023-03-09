@@ -5,7 +5,7 @@ import streamlit as st
 from partials.app_header.selectors import render_ticker_selectors
 from partials.app_header.load import load_tickers
 from partials.app_header.refresh_data import refresh_app_df_and_columns
-from partials.app_header.navigation import render_app_navigation
+from partials.app_header.navigation import render_quick_links
 
 from partials.app_worklist import render_worklist, render_errors
 from widgets.dataframe import dataframe_button
@@ -53,7 +53,7 @@ def render_app_header(scope, title):
 
 		refresh_app_df_and_columns(scope) # iterate through worklist
 
-		render_app_navigation(scope)
+		render_quick_links(scope)
 
 		# Render Data Status - whats loaded - what has load or download errors
 		col1,col2,col3,col4,col5,col6 = st.columns([1.0, 2.5, 2.5, 2.0, 2.0, 2.0])

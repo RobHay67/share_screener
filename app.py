@@ -310,17 +310,6 @@ def level_3_details(level_1, level_2, level_3):
 # 			if attribute not in ['function' ]:
 # 				print(attribute)
 
-# print('-'*75)
-# print('Configurable trial variables')
-# for trial in scope.trials['test_list']:
-# 	active_status = scope.trials[trial]['active']
-# 	print(trial.upper(), '   -   active = ', active_status)
-# 	add_columns = scope.trials[trial]['add_columns']
-# 	if add_columns != None:
-# 		# print(add_columns)
-# 		for attribute in add_columns.keys():
-# 			if attribute not in ['function']:
-# 				print(attribute)
 
 
 
@@ -331,22 +320,6 @@ def level_3_details(level_1, level_2, level_3):
 
 
 
-
-
-
-
-
-
-
-
-
-
-# Happy 60th Big Fella
-# You have aged well
-# It must be all that red wine keeping you well preserved
-# Enjoy the celebrations. 
-# Party hard
-# All the best, Rob and Fliss
 
 
 
