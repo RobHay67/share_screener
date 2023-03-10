@@ -24,6 +24,12 @@ def scope_apps(scope):
 										'industries': [],
 										'market'	: 'select entire market', 
 										}
+		
+		scope.apps[app]['render'] = 	{
+										'tickers':False,
+										'charts':False,
+										'trials':False
+								}
 
 
 def base_config_apps(scope):

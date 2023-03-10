@@ -45,4 +45,31 @@ def dataframe_button(scope, type_df):
 	# construct button message
 	button_message 	= (str(dfs_total) + dfs_description + str(rows_total) + ' rows)')
 
-	return st.button(button_message)
+	return st.button(button_message, on_click=render_status, args=(scope, app, type_df, ))
+
+
+
+
+def render_status(scope, app, type_df):
+
+	previous_value = scope.apps[app]['render'][type_df]
+	new_value = True if previous_value == False else False
+
+	scope.apps[app]['render'][type_df] = new_value
+
+
+def reset_page_render(scope):
+	st.button('Hide Additional Info', on_click=reset_render_status, args=(scope,))
+
+
+
+def reset_render_status(scope):
+	app = scope.apps['display_app']
+
+	scope.apps[app]['render']['tickers'] = False
+	scope.apps[app]['render']['charts'] = False
+	scope.apps[app]['render']['trials'] = False
+
+
+
+
