@@ -45,7 +45,7 @@ def dataframe_button(scope, type_df):
 	# construct button message
 	button_message 	= (str(dfs_total) + dfs_description + str(rows_total) + ' rows)')
 
-	return st.button(button_message, on_click=render_status, args=(scope, app, type_df, ))
+	return st.button(button_message, use_container_width=True, on_click=render_status, args=(scope, app, type_df, ))
 
 
 
@@ -59,7 +59,12 @@ def render_status(scope, app, type_df):
 
 
 def reset_page_render(scope):
-	st.button('Hide Additional Info', on_click=reset_render_status, args=(scope,))
+	st.button(
+			label='Hide Additional Info', 
+			use_container_width=True,
+			on_click=reset_render_status, 
+			args=(scope,)
+			)
 
 
 

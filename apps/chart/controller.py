@@ -17,7 +17,7 @@ def render_chart_ticker_page(scope):
 
 	app = scope.apps['display_app']
 	
-	render_app_header(scope, 'Chart Ticker')
+	render_app_header(scope, 'Charting Applicaton (Single Ticker)')
 
 	# render_ticker_loader(scope)
 

@@ -34,7 +34,7 @@ def load_tickers(scope):
 					with col2:my_bar = st.progress(0)
 					added_progress_bar = True
 				poc = int(((counter+1) / no_of_tickers ) * 100)
-				my_bar.progress(poc)
+				my_bar.progress(poc, text='Loading Ticker Data')
 
 				path_for_ticker_file(scope, ticker )
 				# Check that a local file is available to load
@@ -48,5 +48,5 @@ def load_tickers(scope):
 
 	if counter+1 == no_of_tickers:
 		if added_progress_bar == True:
-			my_bar.progress(100)
+			my_bar.progress(100, text='Finished Loading Ticker Data')
 

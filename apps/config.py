@@ -28,7 +28,8 @@ def scope_apps(scope):
 		scope.apps[app]['render'] = 	{
 										'tickers':False,
 										'charts':False,
-										'trials':False
+										'trials':False,
+										'config':False,
 								}
 
 

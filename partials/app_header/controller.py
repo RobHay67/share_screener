@@ -2,6 +2,7 @@
 # A function that handles all of the data loading and column adding for the current App
 import streamlit as st
 
+from partials.app_header.app_title import render_app_title
 from partials.app_header.selectors import render_ticker_selectors
 from partials.app_header.load import load_tickers
 from partials.app_header.refresh_data import refresh_app_df_and_columns
@@ -11,7 +12,7 @@ from partials.app_header.extra_data import render_optional_information
 
 
 from partials.app_header.ticker_name import render_ticker_name
-
+from partials.app_header.extra_data import render_config
 
 
 # ==============================================================
@@ -30,21 +31,11 @@ from partials.app_header.ticker_name import render_ticker_name
 
 
 
-
-
 def render_app_header(scope, title):
+	
+	render_app_title(scope, title)
 
-	# Render Page Title
-	col1,col2,col3 = st.columns([8,2,2])
-	with col1:
-		st.subheader(title)
-		# st.write('This is the header')
-	with col2:
-		st.write('Test this')
-
-
-	# TODO - the title probably needs to be in its own module as well
-	print('Working onn this part now rob')
+	render_config(scope)
 	
 	we_have_selected_tickers = render_ticker_selectors(scope)
 

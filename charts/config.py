@@ -63,6 +63,9 @@ def chart_column_adders(scope):
 # rsi				DONE
 # vol_osssy
 # stochastic		DONE
+# ichi_moku
+# ichi_moku_daily
+# Overlays.............................
 # sma_1				DONE
 # sma_2				DONE
 # sma_3				DONE
@@ -72,8 +75,7 @@ def chart_column_adders(scope):
 # bollinger_bands
 # dividends			DONE
 # announcements
-# ichi_moku
-# ichi_moku_daily
+
 
 
 

@@ -9,6 +9,7 @@ def link_to_app_button(scope, app, ticker):
 	st.button(
 				label=app.title(), 
 				key=widget_key,
+				use_container_width=True,
 				on_click=open_app,
 				args=(scope, app, ticker)
 				)

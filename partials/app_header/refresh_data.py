@@ -20,7 +20,7 @@ def refresh_app_df_and_columns(scope):
 	
 	# Progress Bar
 	col1,col2 = st.columns([1,11])
-	description = 'Add Cols :'
+	description = 'Calc Ratios :'
 
 	with col1:
 		if app == 'screener': 
@@ -37,7 +37,7 @@ def refresh_app_df_and_columns(scope):
 
 			# Determine POC % for Progress Bar
 			poc = int(((counter+1) / no_of_tickers ) * 100)
-			my_bar.progress(poc)
+			my_bar.progress(poc, text='Calculating Ratios and Metrics for Each Ticker')
 
 			# Ensure ticker data available 
 			# - function will fail if data is not available
@@ -82,3 +82,6 @@ def refresh_app_df_and_columns(scope):
 				# -------------------------------------------------------------------
 				if determine_verdict == True:	
 					trial_verdict(scope, ticker)
+
+		my_bar.progress(100, text='Finished Calculating Ratios and Metrics for Each Ticker')
+
