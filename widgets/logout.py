@@ -13,4 +13,5 @@ def logout_button(scope):
 					on_click=logout_user, 
 					args=(scope, ), 
 					key=widget_key,
+					use_container_width=True
 					)

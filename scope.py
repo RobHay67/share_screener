@@ -57,7 +57,7 @@ def set_scope(scope):
 def scope_application_variables(scope):
 	# Application Fixex Variables
 	scope.config = {}
-	scope.config['project_description'] = 'Share Screener Application'
+	scope.config['project_description'] = 'Share Picker'
 	scope.config['project_start_time'] = time.time()
 
 	# System Wide Variables

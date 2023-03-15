@@ -8,3 +8,7 @@ def render_ticker_index(scope):
 	with col2: st.write('< scope.ticker_index >')
 
 	st.dataframe(scope.ticker_index, 2000, 1200)
+
+
+
+

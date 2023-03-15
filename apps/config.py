@@ -8,7 +8,7 @@ def scope_apps(scope):
 	scope.apps = {}
 	base_config_apps(scope)
 	scope.apps['button_for_scope'] = None
-	scope.apps['app_list'] = ['chart', 'intraday', 'volume', 'research', 'screener', 'websites']
+	scope.apps['app_list'] = ['chart', 'intraday', 'volume', 'research', 'screener', 'websites', 'index']
 	
 	# ==========================================
 	# variables for each app from the app list above
@@ -32,6 +32,7 @@ def scope_apps(scope):
 										'config':False,
 										'chart':False,
 										'overlay':False,
+										'strategy':False,
 								}
 
 

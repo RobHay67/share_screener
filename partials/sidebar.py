@@ -30,18 +30,17 @@ def render_sidebar(scope):
 		
 			edit_row_limit(scope)
 
-			st.subheader('Analysis')
-			st.button('Chart'  				, on_click=set_page, args=(scope, 'chart', ))
-			st.button('IntraDay'			, on_click=set_page, args=(scope, 'intraday', ))
-			st.button('Volume'				, on_click=set_page, args=(scope, 'volume', ))
-			st.button('Research'			, on_click=set_page, args=(scope, 'research', ))
-			st.button('Screener'			, on_click=set_page, args=(scope, 'screener', ))
 
-			st.button('Websites'			, on_click=set_page, args=(scope, 'websites', ))
-
-			st.button('Config (scope)'		, on_click=set_page, args=(scope, 'scope', ))
-			
+			# st.subheader('Analysis')
+			st.button('Chart'  		, on_click=set_page, args=(scope, 'chart', ), use_container_width=True)
+			st.button('IntraDay'	, on_click=set_page, args=(scope, 'intraday', ), use_container_width=True)
+			st.button('Volume'		, on_click=set_page, args=(scope, 'volume', ), use_container_width=True)
+			st.button('Research'	, on_click=set_page, args=(scope, 'research', ), use_container_width=True)
+			st.button('Screener'	, on_click=set_page, args=(scope, 'screener', ), use_container_width=True)
+			st.button('Websites'	, on_click=set_page, args=(scope, 'websites', ), use_container_width=True)	
 			st.write('---------')
+			st.button('Ticker index', on_click=set_page, args=(scope, 'index', ), use_container_width=True)
+			st.button('Config'		, on_click=set_page, args=(scope, 'scope', ), use_container_width=True)
 			logout_button(scope)
 
 

@@ -23,7 +23,7 @@ def scope_strategy(scope):
 
 
 
-def view_strategy(scope):
+def render_strategies(scope):
 	st.subheader('Strategy Parameters')
 	three_cols( 'Strategy Name', scope.strategy['name'], 'scope.strategy.name' )
 	three_cols( 'Price Columns', scope.strategy['price_columns'], 'scope.strategy.price_columns' )

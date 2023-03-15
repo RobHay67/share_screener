@@ -6,6 +6,7 @@ from apps.intraday.controller import render_intraday_page
 from apps.volume.controller import render_volume_page
 from apps.screener.controller import render_screener_page
 from apps.websites.controller import render_websites
+from apps.index.controller import render_ticker_index_page
 from apps.config_app.controller import render_scope_categories
 
 
@@ -25,6 +26,8 @@ def render_selected_app(scope):
 						'research'			:render_research_page,
 						'screener'			:render_screener_page,
 						'websites'			:render_websites,
+
+						'index'				:render_ticker_index_page,
 												
 						'scope'				:render_scope_categories,
 						
