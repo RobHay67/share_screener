@@ -10,7 +10,7 @@ def app_config_status(scope):
 
 	app = scope.apps['display_app']
 
-	previous_value = scope.apps[app]['render']['config']
+	previous_value = scope.apps[app]['render']['app_config']
 	new_value = True if previous_value == False else False
 
-	scope.apps[app]['render']['config'] = new_value
+	scope.apps[app]['render']['app_config'] = new_value

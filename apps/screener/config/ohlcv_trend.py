@@ -11,10 +11,13 @@ def render_ohlcv_trend(scope, trial):
 	type_config = 'trials'
 	column_name = scope[type_config][trial]['add_columns']['column']
 
-	edit_active(scope, type_config, trial)
+	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1,1])
+
+
+	with col1:edit_active(scope, type_config, trial)
 	# st.write('column_name = ', column_name)
-	edit_trend_ohlcv (scope, type_config, trial)
-	edit_number(scope, type_config, trial, 'duration' )
-	edit_number(scope, type_config, trial, 'timespan' )
+	with col2:edit_trend_ohlcv (scope, type_config, trial)
+	with col3:edit_number(scope, type_config, trial, 'duration' )
+	with col4:edit_number(scope, type_config, trial, 'timespan' )
 
 	

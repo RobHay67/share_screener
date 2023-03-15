@@ -49,9 +49,10 @@ def render_app_config(scope):
 	three_cols( 'Trial DFs'  , scope.apps[app]['render']['trials']    , 'scope.apps.'+ app +'.render.trials'    , widget_type='string' )
 	
 	st.caption('Render Configuration')
-	three_cols( 'App Config (this page section)'  , scope.apps[app]['render']['config']    , 'scope.apps.'+ app +'.render.config'    , widget_type='string' )
-	three_cols( 'Chart Config'  , scope.apps[app]['render']['chart']    , 'scope.apps.'+ app +'.render.chart'    , widget_type='string' )
-	three_cols( 'Overlay Config'  , scope.apps[app]['render']['overlay']    , 'scope.apps.'+ app +'.render.overlay'    , widget_type='string' )
+	three_cols( 'App Config (this page section)'  , scope.apps[app]['render']['app_config']    , 'scope.apps.'+ app +'.render.app_config'    , widget_type='string' )
+	three_cols( 'Chart Config'  , scope.apps[app]['render']['chart_config']    , 'scope.apps.'+ app +'.render.chart_config'    , widget_type='string' )
+	three_cols( 'Overlay Config'  , scope.apps[app]['render']['overlay_config']    , 'scope.apps.'+ app +'.render.overlay_config'    , widget_type='string' )
+	three_cols( 'Trial Config'  , scope.apps[app]['render']['trial_config']    , 'scope.apps.'+ app +'.render.trial_config'    , widget_type='string' )
 	three_cols( 'Strategies'  , scope.apps[app]['render']['strategy']    , 'scope.apps.'+ app +'.render.strategy'    , widget_type='string' )
 
 	st.write('---')

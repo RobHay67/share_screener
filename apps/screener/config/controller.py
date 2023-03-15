@@ -1,10 +1,12 @@
 
 import streamlit as st
 
-from apps.config_trials.ohlcv_trend import render_ohlcv_trend
-from apps.config_trials.sma_trend import render_sma_trend
-from apps.config_trials.stochastic_trend import render_stochastic_trend
-from apps.config_trials.rsi_trend import render_rsi_trend
+from apps.screener.config.ohlcv_trend import render_ohlcv_trend
+from apps.screener.config.sma_trend import render_sma_trend
+from apps.screener.config.stochastic_trend import render_stochastic_trend
+from apps.screener.config.rsi_trend import render_rsi_trend
+from apps.screener.config.example import example_settings
+
 
 
 def render_available_trials(scope):
@@ -21,38 +23,35 @@ def render_available_trials(scope):
 	with st.expander(label='Price to Earnings Ratio - P/E', expanded=False):
 		st.write('Dividend per share / Earning per share')
 
-
-
 	st.write('**Technical Trading Indicators**')
 
 
 	with st.expander(label='Trend Analysis on Open, High, Low, Close and Volume', expanded=False):
-		col1,col2,col3,col4,col5 = st.columns([1,1,1,1,1])
-		with col1: render_ohlcv_trend(scope, trial='trend_open')
-		with col2: render_ohlcv_trend(scope, trial='trend_high')
-		with col3: render_ohlcv_trend(scope, trial='trend_low')
-		with col4: render_ohlcv_trend(scope, trial='trend_close')
-		with col5: render_ohlcv_trend(scope, trial='trend_volume')
+		# col1,col2,col3,col4,col5 = st.columns([1,1,1,1,1])
+		render_ohlcv_trend(scope, trial='trend_open')
+		render_ohlcv_trend(scope, trial='trend_high')
+		render_ohlcv_trend(scope, trial='trend_low')
+		render_ohlcv_trend(scope, trial='trend_close')
+		render_ohlcv_trend(scope, trial='trend_volume')
 
 	with st.expander(label='Simple Moving Averages (SMA) on Open, High, Low, Close and Volume', expanded=False):
-		col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([1,1,1,1,1,1,1,1])
-		with col1: render_sma_trend(scope, trial='sma_open')
-		with col2: render_sma_trend(scope, trial='sma_high')
-		with col3: render_sma_trend(scope, trial='sma_low')
-		with col4: render_sma_trend(scope, trial='sma_close')
-		with col5: render_sma_trend(scope, trial='sma_volume')
+		# col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([1,1,1,1,1,1,1,1])
+		render_sma_trend(scope, trial='sma_open')
+		render_sma_trend(scope, trial='sma_high')
+		render_sma_trend(scope, trial='sma_low')
+		render_sma_trend(scope, trial='sma_close')
+		render_sma_trend(scope, trial='sma_volume')
 
 	with st.expander(label='Stochastic Oscillator - Momentum Indicator x 3 concurrrent options', expanded=True):
-		col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([1,1,1,1,1,1,1,1])
-		with col1: render_stochastic_trend(scope, trial='stochastic_1')
-		with col2: render_stochastic_trend(scope, trial='stochastic_2')
-		with col3: render_stochastic_trend(scope, trial='stochastic_3')
+		# col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([1,1,1,1,1,1,1,1])
+		render_stochastic_trend(scope, trial='stochastic_1')
+		render_stochastic_trend(scope, trial='stochastic_2')
+		render_stochastic_trend(scope, trial='stochastic_3')
 
 	with st.expander(label='Relative Strength Index (RSI) - Momentum Indicator x 3 concurrrent options', expanded=True):
-		st.write('This will be the criteria')
-		col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([1,1,1,1,1,1,1,1])
-		with col1: render_rsi_trend(scope, trial='rsi_1')
-		with col2: render_rsi_trend(scope, trial='rsi_2')
+		# col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([1,1,1,1,1,1,1,1])
+		render_rsi_trend(scope, trial='rsi_1')
+		render_rsi_trend(scope, trial='rsi_2')
 
 
 
@@ -83,4 +82,4 @@ def render_available_trials(scope):
 
 
 
-
+	example_settings(scope)

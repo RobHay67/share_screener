@@ -29,9 +29,10 @@ def scope_apps(scope):
 										'tickers':False,
 										'charts':False,
 										'trials':False,
-										'config':False,
-										'chart':False,
-										'overlay':False,
+										'app_config':False,
+										'chart_config':False,
+										'overlay_config':False,
+										'trial_config':False,
 										'strategy':False,
 								}
 
