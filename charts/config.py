@@ -121,6 +121,7 @@ from charts.overlays.dividends 	import dividend_plot
 
 active 			= 'active'				# True or False - The chart is active or inactive (displayed or not displayed)
 name 			= 'name'				# The display name for the chart (used in the settings app)
+short_name		= 'short_name'			# A short name used if various Screen Outputs
 is_overlay 		= 'is_overlay'			# Indicates that this chart is over layed on top of the other charts which accept overlays
 add_overlays	= 'add_overlays'		# Apply the overlay to this chart - some charts are % in which case $ based averages distort the overall chart
 active 			= 'active'				# True or False - is this technical Indicator is being applied to our Primary Chart?
@@ -151,7 +152,8 @@ charts_config = {
 		# Primary Charts -----------------------------------------------------------------------
 		'candlestick'		: { 
 								active			: True,
-								name			: 'CandleStick', 
+								name			: 'CandleStick',
+								short_name		: 'Candle',
 								is_overlay		: False, 
 								add_overlays	: True, 
 								plot			: { 
@@ -165,6 +167,7 @@ charts_config = {
 		'scatter'			: { 
 								active			: False, 
 								name			: 'Scatter', 
+								short_name		: 'Scatter',
 								is_overlay		: False, 
 								add_overlays	: False, 
 								plot			: { 
@@ -177,7 +180,8 @@ charts_config = {
 							},
 		'bar'				: { 
 								active			: False, 
-								name			: 'Bar', 
+								name			: 'Bar Chart', 
+								short_name		: 'Bar',
 								is_overlay		: False, 
 								add_overlays	: False, 
 								plot			: { 
@@ -191,6 +195,7 @@ charts_config = {
 		'line'				: { 
 								active			: True , 
 								name			: 'Line charts', 
+								short_name		: 'Line',
 								is_overlay		: False, 
 								add_overlays	: True , 
 								plot			: { 
@@ -204,6 +209,7 @@ charts_config = {
 		'heiken_ashi'		: { 
 								active			: False, 
 								name			: 'Heikin Ashi', 
+								short_name		: 'Heikin Ashi',
 								is_overlay		: False, 
 								add_overlays	: False, 
 								plot			: { 
@@ -218,6 +224,7 @@ charts_config = {
 		'volume'			: { 
 								active			: True , 
 								name			: 'Volume', 
+								short_name		: 'Volume',
 								is_overlay		: False, 
 								add_overlays	: False, 
 								plot			: { 
@@ -230,7 +237,8 @@ charts_config = {
 								},
 		'vol_per_minute'	: { 
 								active			: False, 
-								name			: 'Volume Per Minute', 
+								name			: 'Volume Per Minute (VPM)',
+								short_name		: 'VPM', 
 								is_overlay		: False, 
 								add_overlays	: False, 
 								plot			: { 
@@ -243,7 +251,8 @@ charts_config = {
 								},  
 		'vac'				: { 
 								active			: False, 
-								name			: 'VAC', 
+								name			: 'I have no idea what this is - VAC', 
+								short_name		: 'VAC',
 								is_overlay		: False, 
 								add_overlays	: False, 
 								plot			: { 
@@ -256,7 +265,8 @@ charts_config = {
 								},
 		'macd'				: { 
 								active			: True, 
-								name			: 'MACD', 
+								name			: 'Moving Average Convergence Divergence (MACD)', 
+								short_name		: 'MACD',
 								is_overlay		: False, 
 								add_overlays	: False, 
 								plot			: { 
@@ -276,6 +286,7 @@ charts_config = {
 		'macd_vol'			: { 
 								active			: True, 
 								name			: 'MACD on Volume', 
+								short_name		: 'MACD Vol',
 								is_overlay		: False, 
 								add_overlays	: False, 
 								plot			: { 
@@ -294,7 +305,8 @@ charts_config = {
 								},
 		'rsi'				: { 
 								active			: True, 
-								name			: 'RSI',
+								name			: 'Relative Strength Index (RSI)',
+								short_name		: 'RSI',
 								is_overlay		: False, 
 								add_overlays	: False, 
 								plot			: { 
@@ -312,6 +324,7 @@ charts_config = {
 		'vol_osssy'			: { 
 								active			: False, 
 								name			: 'Volume Oscillator', 
+								short_name		: 'Volume Oscillator',
 								is_overlay		: False, 
 								add_overlays	: False, 
 								plot			: { 
@@ -330,6 +343,7 @@ charts_config = {
 		'stochastic'		: { 
 								active			: True, 
 								name			: 'Stochastic', 
+								short_name		: 'Stochastic',
 								is_overlay		: False, 
 								add_overlays	: False, 
 								plot			: { 
@@ -349,7 +363,8 @@ charts_config = {
 		# Overlays -----------------------------------------------------------------------------
 		'sma_1' 			: { 
 								active			: False, 
-								name			: 'SMA-1', 
+								name			: 'Simple Moving Average (1)', 
+								short_name		: 'SMA-1',
 								is_overlay		: True , 
 								add_overlays	: False, 
 								plot			: { function : sma_plot, colour : 'blue' }, 									
@@ -357,7 +372,8 @@ charts_config = {
 								},		
 		'sma_2' 			: { 
 								active			: False, 
-								name			: 'SMA-2', 
+								name			: 'Simple Moving Average (2)', 
+								short_name		: 'SMA-2',
 								is_overlay		: True , 
 								add_overlays		: False, 
 								plot			: { function : sma_plot, colour : 'green' }, 									
@@ -365,7 +381,8 @@ charts_config = {
 								},		
 		'sma_3' 			: { 
 								active			: False, 
-								name			: 'SMA-3', 
+								name			: 'Simple Moving Average (3)', 
+								short_name		: 'SMA-3',
 								is_overlay		: True , 
 								add_overlays	: False, 
 								plot			: { function : sma_plot, colour : 'green' }, 									
@@ -373,7 +390,8 @@ charts_config = {
 								},		
 		'ema_1' 			: { 
 								active			: False, 
-								name			: 'EMA-1', 
+								name			: 'Exponential Moving Average (1)', 
+								short_name		: 'EMA-1',
 								is_overlay		: True , 
 								add_overlays	: False, 
 								plot			: { function : ema_plot, colour : 'red' }, 									
@@ -381,7 +399,8 @@ charts_config = {
 								},
 		'ema_2' 			: { 
 								active			: False, 
-								name			: 'EMA-2', 
+								name			: 'Exponential Moving Average (2)', 
+								short_name		: 'EMA-2',
 								is_overlay		: True , 
 								add_overlays	: False, 
 								plot			: { function : ema_plot, colour : 'blue' }, 									
@@ -389,7 +408,8 @@ charts_config = {
 								},
 		'ema_3' 			: { 
 								active			: False, 
-								name			: 'EMA-3', 
+								name			: 'Exponential Moving Average (3)', 
+								short_name		: 'EMA-3',
 								is_overlay		: True , 
 								add_overlays	: False, 
 								plot			: { function : ema_plot, colour : 'SteelBlue' }, 									
@@ -398,6 +418,7 @@ charts_config = {
 		'bollinger_bands' 	: { 
 								active			: False, 
 								name			: 'Bollinger Bands', 
+								short_name		: 'Bollinger',
 								is_overlay		: True, 
 								add_overlays	: False, 
 								plot			: { 
@@ -416,6 +437,7 @@ charts_config = {
 		'dividends' 		: { 
 								active			: True, 
 								name			: 'Dividends', 
+								short_name		: 'Dividends',
 								is_overlay		: True , 
 								add_overlays	: False, 
 								plot			: { 
@@ -427,11 +449,12 @@ charts_config = {
 												} 
 								},		
 		'announcements' 	: { 
-								active			:False, 
-								name			:'Announcements', 
-								is_overlay		:True , 
-								add_overlays	:False, 
-								plot			:{ 
+								active			: False, 
+								name			: 'Announcements', 
+								short_name		: 'Announcements',
+								is_overlay		: True , 
+								add_overlays	: False, 
+								plot			: { 
 													function:sma_plot, 
 													colour	:'black' 		
 												}, 									
@@ -440,6 +463,7 @@ charts_config = {
 		'ichi_moku' 		: { 
 								active			: False, 
 								name			: 'Icki Moku', 
+								short_name		: 'Icki Moku',
 								is_overlay		: True, 
 								add_overlays	: False, 
 								plot			:{ 
@@ -451,6 +475,7 @@ charts_config = {
 		'ichi_moku_daily'	: { 
 								active			:False, 
 								name			:'Icki Moku Daily', 
+								short_name		:'Icki Moku Daily',
 								is_overlay		:True,
 								add_overlays	:False,
 								plot			: { 

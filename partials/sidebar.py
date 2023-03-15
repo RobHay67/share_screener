@@ -37,10 +37,6 @@ def render_sidebar(scope):
 
 			st.button('Websites'			, on_click=set_page, args=(scope, 'websites', ))
 
-			st.subheader('Chart Settings')
-			st.button('Primary Charts'  	, on_click=set_page, args=(scope, 'charts_primary', ))
-			st.button('Secondary Charts'	, on_click=set_page, args=(scope, 'charts_secondary', ))
-
 			st.button('Config (scope)'		, on_click=set_page, args=(scope, 'scope', ))
 			
 			st.write('---------')

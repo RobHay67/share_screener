@@ -7,7 +7,7 @@ import streamlit as st
 def set_chart_height_primary(scope):
 
 	previous_selection = int(scope.chart_config['primary_height'])
-	display_name = 'Primary Chart Height'
+	display_name = 'Total Height of All Charts Combined (default = 500)'
 	widget_key = 'widget_chart_height'
 
 	st.number_input( 	

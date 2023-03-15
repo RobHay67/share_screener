@@ -10,11 +10,9 @@ def render_volume_oscillator(scope):
 	column_adder = 'vol_osssy'
 	type_config = 'charts'
 
-	st.markdown('##### Volume Oscillator')
-	col1,col2,col3,col4,col5,col6 = st.columns([1,1,1,1,1,1])
+	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1,1])
 
 	with col1:edit_active(scope, type_config, column_adder)
 	with col2:edit_number(scope, type_config, column_adder, 'fast' )
 	with col3:edit_number(scope, type_config, column_adder, 'slow' )
 	
-	st.markdown("""---""")

@@ -5,7 +5,7 @@ import streamlit as st
 def edit_colour(scope, type_config, column_adder ):
 	
 	widget_key = 'widget_colour_' + type_config + '_' + column_adder
-	display_name =  ('Colour for ' + scope[type_config][column_adder]['name'])
+	display_name =  ('Colour for ' + scope[type_config][column_adder]['short_name'])
 	previous_selection = scope[type_config][column_adder]['plot']['colour']
 	pos_for_previous = scope.chart_config['colours'].index(previous_selection)	
 	

@@ -30,6 +30,7 @@ def scope_apps(scope):
 										'charts':False,
 										'trials':False,
 										'config':False,
+										'overlay':False,
 								}
 
 
