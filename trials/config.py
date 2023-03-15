@@ -57,6 +57,8 @@ from add_cols.rsi import rsi_trend
 
 active 			= 'active'				# True or False - The Analysis is active or inactive (displayed or not displayed)
 name 			= 'name'				# The display name for the Analysis (used in the settings app)
+short_name		= 'short_name'			# A short name used if various Screen Outputs
+
 column 			= 'column'				# OHLCV column required for the Analysis
 duration		= 'duration'			# the lenght or number of consecutive occurances
 timespan 		= 'timespan'			# The entire analysis Period
@@ -81,6 +83,7 @@ trials_config = {
 	'trend_open'	: {
 						active			: False,
 						name			: 'Trend of Open Price',
+						short_name		: 'Trend of Open Price',
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'open',
@@ -92,6 +95,7 @@ trials_config = {
 	'trend_high'	: {
 						active			: False,
 						name			: 'Trend of High price',
+						short_name		: 'Trend of High price',
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'high',
@@ -103,6 +107,7 @@ trials_config = {
 	'trend_low'	: {
 						active			: False,
 						name			: 'Trend of Low price',
+						short_name		: 'Trend of Low price',
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'low',
@@ -114,6 +119,7 @@ trials_config = {
 	'trend_close'	: {
 						active			: False,
 						name			: 'Trend of Close price',
+						short_name		: 'Trend of Close price',
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'close',
@@ -125,6 +131,7 @@ trials_config = {
 	'trend_volume'	: {
 						active			: False,
 						name			: 'Trend of Volume',
+						short_name		: 'Trend of Volume',
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'volume',
@@ -136,6 +143,7 @@ trials_config = {
 	'sma_open' 		: {
 						active			: False,
 						name			: 'Above/Below SMA of Open',
+						short_name		: 'Above/Below SMA of Open',
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'open',
@@ -146,6 +154,7 @@ trials_config = {
 	'sma_high' 		: {
 						active			: False,
 						name			: 'Above/Below SMA of High',
+						short_name		: 'Above/Below SMA of High',
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'high',
@@ -156,6 +165,7 @@ trials_config = {
 	'sma_low' 		: {
 						active			: False,
 						name			: 'Above/Below SMA of Low',
+						short_name		: 'Above/Below SMA of Low',
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'low',
@@ -167,6 +177,7 @@ trials_config = {
 	'sma_close' 	: {
 						active			: False,
 						name			: 'Above/Below SMA of Close',
+						short_name		: 'Above/Below SMA of Close',
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'close',
@@ -177,6 +188,7 @@ trials_config = {
 	'sma_volume' 	: {
 						active			: False,
 						name			: 'Above/Below SMA of Volume',
+						short_name		: 'Above/Below SMA of Volume',
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'volume',
@@ -187,6 +199,7 @@ trials_config = {
 	'stochastic_1' 	: {
 						active			: True,
 						name			: 'Stochastic',
+						short_name		: 'Stochastic',
 						add_columns		: {
 											function : stochastic_trend,
 											trend	 : 'above_line',
@@ -198,6 +211,7 @@ trials_config = {
 	'stochastic_2' 	: {
 						active			: True,
 						name			: 'Stochastic',
+						short_name		: 'Stochastic',
 						add_columns		: {
 											function : stochastic_trend,
 											trend	 : 'over_sold',
@@ -209,6 +223,7 @@ trials_config = {
 	'stochastic_3' 	: {
 						active			: True,
 						name			: 'Stochastic',
+						short_name		: 'Stochastic',
 						add_columns		: {
 											function : stochastic_trend,
 											trend	 : 'cross_up',
@@ -220,6 +235,7 @@ trials_config = {
 	'rsi_1' 		: {
 						active			: True,
 						name			: 'Above/Below SMA of Open',
+						short_name		: 'Above/Below SMA of Open',
 						add_columns		: {
 											function 		: rsi_trend,
 											trend	 		: 'up_trend',
@@ -230,6 +246,7 @@ trials_config = {
 	'rsi_2' 		: {
 						active			: True,
 						name			: 'Above/Below SMA of High',
+						short_name		: 'Above/Below SMA of High',
 						add_columns		: {
 											function 		: rsi_trend,
 											trend	 		: 'over_sold',

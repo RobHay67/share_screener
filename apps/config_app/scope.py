@@ -12,7 +12,6 @@ def view_app(scope):
 	start_time =  datetime.fromtimestamp(scope.config['project_start_time']).strftime('%Y-%m-%d %H:%M:%S %p')
 	three_cols( 'Project Start Time', start_time, 'scope.config.project_start_time' )
 
-
 	st.subheader('Share Market')
 	three_cols( 'Current Share Market', scope.config['share_market'], 'scope.config.share_market' )
 

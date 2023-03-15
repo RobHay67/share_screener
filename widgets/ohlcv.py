@@ -4,7 +4,6 @@ from tickers.events.edit_column_adder import edit_column_adder_event
 
 
 def edit_ohlcv(scope, type_config, column_adder ):
-	print(column_adder)
 	widget_key = 'widget_' + type_config + '_' + column_adder
 	display_name =  ('Column for ' + scope[type_config][column_adder]['short_name'])
 	previous_selection = scope[type_config][column_adder]['add_columns']['column']
