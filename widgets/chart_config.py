@@ -11,10 +11,10 @@ def chart_overlay_button(scope):
 
 def chart_config_status(scope):
 
-	previous_value = scope.apps['chart']['render']['config']
+	previous_value = scope.apps['chart']['render']['chart']
 	new_value = True if previous_value == False else False
 
-	scope.apps['chart']['render']['config'] = new_value
+	scope.apps['chart']['render']['chart'] = new_value
 
 def overlay_config_status(scope):
 

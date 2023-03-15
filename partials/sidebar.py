@@ -19,9 +19,11 @@ def render_sidebar(scope):
 	if scope.users['login_name'] != 'Login to Use the Application':
 		with st.sidebar:
 
-			st.write('Welcome : ' +  scope.users['login_name'])
+			st.write('Welcome      : ' +  scope.users['login_name'])
 			st.write('Share Market : ' + str(scope.config['share_market']))
-			st.write('Market Time : ' + str(local_time.strftime('%Y-%m-%d')) + '  ' + str(market_time.strftime('%H:%M:%S %p')))
+			# st.write('Market Date  : ' + str(local_time.strftime('%Y-%m-%d')))
+			st.write('Market Date  : ' + str(local_time.strftime('%a-%d-%b')))
+			st.write('Market Time  : ' + str(market_time.strftime('%H:%M:%S %p')))
 			st.caption('Local Time : ' + str(local_time.strftime('%H:%M:%S %p')))
 
 			edit_download_days(scope)

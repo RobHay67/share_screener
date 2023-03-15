@@ -10,7 +10,7 @@ def download_button(scope):
 	if scope.download['days'] > 1: 
 		download_button_msg += 's'
 
-	return st.button(download_button_msg, use_container_width=True)
+	return st.button(download_button_msg, use_container_width=True, type='primary')
 
 	
 def edit_download_days(scope):
