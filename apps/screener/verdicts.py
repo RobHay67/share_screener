@@ -19,7 +19,7 @@ def render_trial_verdicts(scope):
 				verdict_list.append(ticker)
 	no_of_verdicts = len(verdict_list)
 
-	st.write('**Trial Verdicts > ' + str(no_of_verdicts) + ' Guilty**')
+	st.write('**Test Results > ' + str(no_of_verdicts) + ' Passed**')
 
 	if no_of_verdicts > (group_size * tab_limit):
 		# Dont render more than say 100 Tickers

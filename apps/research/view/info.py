@@ -5,7 +5,7 @@ import pandas as pd
 from apps.config_app.two_cols import view_2_columns
 
 def company_general(metadata):
-	st.subheader(metadata.info['longName'])
+	# st.subheader(metadata.info['longName'])
 
 	col1,col2,col3,col4 = st.columns([1,1,2,4])
 

@@ -8,7 +8,7 @@ def select_tickers(scope):
 	
 	widget_key = 'widget_' + app + '_select_tickers'
 	previous_selection = scope.apps['screener']['selectors']['tickers']
-	display_name = 'Add a Ticker or Tickers'
+	display_name = 'Ticker(s)'
 
 	st.multiselect ( 
 				label		=display_name,

@@ -19,14 +19,22 @@ def refresh_app_df_and_columns(scope):
 	app_row_limit 		= int(scope.apps['row_limit'])
 	
 	# Progress Bar
-	col1,col2 = st.columns([1,11])
-	description = 'Calc Ratios :'
+	col1,col2 = st.columns([1.5, 10.5])
+	# description = 'Run Tests :'
 
 	with col1:
 		if app == 'screener': 
-			replace_cols = st.button(label=description)
+			replace_cols = st.button(
+				label='Run Tests', 
+				use_container_width=True, 
+				type='primary'
+				)
 		else:
-			st.write(description)
+			replace_cols = st.button(
+				label='Rates & Ratios', 
+				use_container_width=True, 
+				disabled=True,
+				)
 			replace_cols = True
 	with col2:
 		my_bar = st.progress(0)
@@ -83,5 +91,5 @@ def refresh_app_df_and_columns(scope):
 				if determine_verdict == True:	
 					trial_verdict(scope, ticker)
 
-		my_bar.progress(100, text='Finished Calculating Ratios and Metrics for Each Ticker')
+		my_bar.progress(100, text='Finished running tests.')
 

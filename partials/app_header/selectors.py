@@ -15,12 +15,16 @@ from tickers.download.controller import download_tickers
 def render_ticker_selectors(scope):
 
 	download_ticker_data = None
-	col1,col2,col3,col4,col5,col6 = st.columns([1, 2.0, 3.0, 2.0, 3.0, 2.0])
+	col1,col2,col3,col4,col5,col6 = st.columns([1.5, 2.0, 2.0, 2.0, 3.0, 1.5])
 	
 	app = scope.apps['display_app']
 
-	with col1 : st.write('Ticker Selection :')
-
+	with col1 : 
+		st.button(
+				label='Ticker(s) Selection', 
+				use_container_width=True, 
+				disabled=True,
+				)
 	if app == 'screener':
 		with col2: 
 			select_tickers(scope)

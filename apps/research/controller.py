@@ -53,14 +53,8 @@ def render_research_page(scope):
 		if ticker != 'select a ticker' :
 			metadata = fetch_yfinance_metadata(ticker)
 
-
 			company_general(metadata)
 
-			import yfinance as yf
-			metadata = yf.Ticker('CBA.AX')
-			print(metadata.info)
-
-			
 			# business_summary(metadata)
 			fundamental(metadata)
 			general(metadata)

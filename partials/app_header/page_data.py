@@ -17,8 +17,6 @@ def render_page_data(scope):
 
 	app = scope.apps['display_app']
 
-	print(app)
-
 	if app in ['screener', 'chart', 'intraday']:
 		
 		col1,col2,col3,col4,col5,col6 = st.columns([1.0, 2.5, 2.5, 2.0, 2.0, 2.0])

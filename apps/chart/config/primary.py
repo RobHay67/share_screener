@@ -20,25 +20,30 @@ def render_primary_charts_config(scope):
 	# ----------------------------------------------------------------------
 	
 	st.markdown("""---""")
-	col1, col2, col3 = st.columns([5,2,5])
+	col1,col2 = st.columns([6,3])
 	with col1:
 		st.subheader('Charts Config')
-		st.caption('Tick to display the chart')
-	with col2:set_chart_height_primary(scope)
-	# st.markdown("""---""")
+		st.caption('Tick to display chart')
+	with col2:
+		set_chart_height_primary(scope)
 
-	col1, col2 = st.columns([10,5])
-	with col1:render_primary_chart(scope, 'candlestick')
-	with col1:render_primary_chart(scope, 'scatter')
-	with col1:render_primary_chart(scope, 'bar')
-	with col1:render_primary_chart(scope, 'line')
-	with col1:render_primary_chart(scope, 'heiken_ashi')
-
-	with col1: 
+	col1,col2,col3 = st.columns(3)
+	with col1:
+		render_activate_metric(scope, 'candlestick')
+		render_activate_metric(scope, 'scatter')
+		render_activate_metric(scope, 'bar')
+	with col2: 
+		render_activate_metric(scope, 'line')
+		render_activate_metric(scope, 'heiken_ashi')
+		render_activate_metric(scope, 'VWAP')
+	with col3:
 		render_activate_metric(scope, 'volume')
 		render_activate_metric(scope, 'vac')
 		render_activate_metric(scope, 'vol_per_minute')
 
+	st.markdown("""---""")
+
+	st.caption('Charts with additional configuration')
 	render_macd(scope)
 	render_macd_vol(scope)
 	render_rsi(scope)
@@ -49,13 +54,6 @@ def render_primary_charts_config(scope):
 
 
 
-
-
-
-	
-
-def render_primary_chart(scope, column_adder):
-	render_activate_metric(scope, column_adder)
 
 
 

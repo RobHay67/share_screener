@@ -16,7 +16,7 @@ def render_macd_vol(scope):
 	with col1:edit_active(scope, type_config, column_adder)
 	with col2:
 		st.write('Column for MACD Vol')
-		st.write('Volume')
+		st.caption('Volume')
 	with col3:edit_number(scope, type_config, column_adder, 'long' )
 	with col4:edit_number(scope, type_config, column_adder, 'short' )
 	with col5:edit_number(scope, type_config, column_adder, 'signal' )

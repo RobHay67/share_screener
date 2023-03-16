@@ -10,7 +10,7 @@ def select_industries(scope):
 	previous_selection = scope.apps['screener']['selectors']['industries']
 
 	st.multiselect ( 
-				label		='Add an Industry or Industries', 
+				label		='Industry(s)', 
 				options		=scope.config['dropdowns']['industries'],
 				default		=previous_selection, 
 				help		='Select all tickers within a particular industry',

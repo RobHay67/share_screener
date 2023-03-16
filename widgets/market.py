@@ -13,7 +13,7 @@ def select_a_market(scope):
 	pos_for_previous = scope.config['dropdowns']['markets'].index(previous_selection)	
 
 	st.selectbox ( 
-				label		='Add a Market to Ticker List',
+				label		='Market',
 				options		=scope.config['dropdowns']['markets'],
 				index		=pos_for_previous, 
 				help		='Select an Entire Share Market for Analysis',

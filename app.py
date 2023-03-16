@@ -12,7 +12,7 @@
 # deactivate env	- exit
 # install packages  - pipenv install
 # add a package 	- pipenv install django
-# upgrade package	- 
+# upgrade package	- pipenv update yfinance (but wont override version specified in pipfile)
 # specify ver   	- pipenv install mplfinance==0.12.7a5
 # latest ver		- pipenv update pandas
 # delete pkg		- pipenv uninstall django

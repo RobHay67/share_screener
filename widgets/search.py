@@ -15,6 +15,7 @@ def search_ticker_by_name(scope):
 					on_change	=search_for_ticker,
 					args		=(scope, app, widget_key, ),
 					key			=widget_key,
+					help		='Enter name or part of a name and be presented with a table of companies that contain that search term',
 	)
 
 

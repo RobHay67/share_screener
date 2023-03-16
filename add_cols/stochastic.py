@@ -16,7 +16,7 @@ def stoch_cols( scope, chart, ticker, chart_df):
 	# https://school.stockcharts.com/doku.php?id=technical_indicators:stochastic_oscillator_fast_slow_and_full
 
 
-	lookback_days	= scope.charts[chart]['add_columns']['lookback_days']   # lookback days
+	lookback_days	= int(scope.charts[chart]['add_columns']['lookback_days'])
 	signal 			= scope.charts[chart]['add_columns']['signal']
 	slow_k 			= scope.charts[chart]['add_columns']['slow']
 
@@ -56,7 +56,7 @@ def stoch_cols( scope, chart, ticker, chart_df):
 def stochastic_trend( scope, trial, ticker, df):
 
 	trend 			= scope.trials[trial]['add_columns']['trend']
-	lookback_days	= scope.trials[trial]['add_columns']['lookback_days']   # lookback days
+	lookback_days	= int(scope.trials[trial]['add_columns']['lookback_days'])
 	signal 			= scope.trials[trial]['add_columns']['signal']
 	slow_k 			= scope.trials[trial]['add_columns']['slow']
 

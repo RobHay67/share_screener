@@ -4,7 +4,7 @@ import streamlit as st
 
 def three_cols( description, variable, variable_name, diff_col_size=None, widget_type='string' ):
 	if diff_col_size == None:
-		col1,col2,col3 = st.columns([2,4,2])
+		col1,col2,col3 = st.columns([2,2,2])
 	else:
 		col1,col2,col3 = st.columns(diff_col_size)
 	

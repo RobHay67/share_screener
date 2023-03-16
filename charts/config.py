@@ -58,6 +58,7 @@ def chart_column_adders(scope):
 # volume			DONE
 # vol_per_minute	scope
 # vac
+# VWAP											- What Is the Volume-Weighted Average Price (VWAP)?
 # macd				DONE
 # macd_vol			DONE
 # rsi				DONE
@@ -220,6 +221,24 @@ charts_config = {
 												}, 	
 								add_columns		: None, 
 								},
+
+		
+		'VWAP'				: { 
+								active			: True , 
+								name			: 'Volume Weighted Average Price', 
+								short_name		: 'VWAP',
+								is_overlay		: False, 
+								add_overlays	: False, 
+								plot			: { 
+													function	:  volume_plot, 
+													title		: 'Volume', 
+													scale		: 0.25, 
+													yaxis		: ',.'
+												}, 	
+								add_columns		: None, 
+								},
+
+		
 		# Secondary Charts ---------------------------------------------------------------------
 		'volume'			: { 
 								active			: True , 

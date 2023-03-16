@@ -15,7 +15,6 @@ def render_ohlcv_trend(scope, trial):
 
 
 	with col1:edit_active(scope, type_config, trial)
-	# st.write('column_name = ', column_name)
 	with col2:edit_trend_ohlcv (scope, type_config, trial)
 	with col3:edit_number(scope, type_config, trial, 'duration' )
 	with col4:edit_number(scope, type_config, trial, 'timespan' )
