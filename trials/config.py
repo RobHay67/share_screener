@@ -234,8 +234,8 @@ trials_config = {
 					},
 	'rsi_1' 		: {
 						active			: True,
-						name			: 'Above/Below SMA of Open',
-						short_name		: 'Above/Below SMA of Open',
+						name			: 'RSI-1',
+						short_name		: 'RSI-1',
 						add_columns		: {
 											function 		: rsi_trend,
 											trend	 		: 'up_trend',
@@ -245,8 +245,8 @@ trials_config = {
 					},
 	'rsi_2' 		: {
 						active			: True,
-						name			: 'Above/Below SMA of High',
-						short_name		: 'Above/Below SMA of High',
+						name			: 'RSI-2',
+						short_name		: 'RSI-2',
 						add_columns		: {
 											function 		: rsi_trend,
 											trend	 		: 'over_sold',

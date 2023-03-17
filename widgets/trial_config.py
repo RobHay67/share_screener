@@ -2,7 +2,7 @@ import streamlit as st
 
 
 def trial_config_button(scope):
-	return st.button('Trial Config', use_container_width=True, on_click=trial_config_status, args=(scope, ))
+	return st.button('Tests Config', use_container_width=True, on_click=trial_config_status, args=(scope, ))
 
 def trial_config_status(scope):
 
