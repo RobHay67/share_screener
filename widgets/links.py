@@ -11,13 +11,14 @@ import streamlit as st
 def link_to_app_button(scope, app, ticker):
 
 	widget_key = app + '_' + ticker + '_button'
-
-	if app == 'volume':
-		app_desc = 'vol'
+	if app == 'chart':
+		app_desc = '📊'
+	elif app == 'volume':
+		app_desc = '🔊 '
 	elif app == 'intraday':
-		app_desc = 'intra'
+		app_desc = '🌤️'
 	elif app == 'research':
-		app_desc = 'info'
+		app_desc = '🕵'
 	else:
 		app_desc = app
 
