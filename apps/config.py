@@ -22,7 +22,7 @@ def scope_apps(scope):
 										'ticker'	: 'select a ticker',
 										'tickers'	: [],
 										'industries': [],
-										'market'	: 'select entire market', 
+										'market'	: 'select market', 
 										}
 		
 		scope.apps[app]['render'] = 	{

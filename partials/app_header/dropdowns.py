@@ -11,7 +11,7 @@ def refresh_dropdown_lists(scope):
 	# THis function should only be run after the ticker index has been loaded
 
 	list_of_markets = list(markets.keys())
-	list_of_markets.insert(0, 'select entire market')
+	list_of_markets.insert(0, 'select market')
 	scope.config['dropdowns']['markets'] = list_of_markets
 	
 	list_of_industries = scope.ticker_index['industry_group'].unique().tolist()

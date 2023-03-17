@@ -42,7 +42,7 @@ def update_app_worklist(scope):
 			pass
 		
 		# Selected an entire share market
-		elif scope.apps['screener']['selectors']['market'] != 'select entire market':
+		elif scope.apps['screener']['selectors']['market'] != 'select market':
 			we_have_selected_tickers = True
 			tickers_in_market = scope.ticker_index.index.values.tolist()
 			ticker_list = tickers_in_market

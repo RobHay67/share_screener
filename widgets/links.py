@@ -23,7 +23,7 @@ def open_app(scope, app, ticker):
 	else:
 		scope.apps[app]['selectors']['tickers'] = [ticker]
 		scope.apps[app]['selectors']['industries'] = []
-		scope.apps[app]['selectors']['market'] = 'select entire market'
+		scope.apps[app]['selectors']['market'] = 'select market'
 		scope.apps[app]['search_results'] = {}
 
 

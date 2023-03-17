@@ -67,7 +67,6 @@ def refresh_app_df_and_columns(scope):
 						# Only replace the columns if requested to do so for this column adder
 							ticker_df = scope.tickers[ticker][app]['df']
 							# Call the column adding function for this column_adder
-							print('Running Trial = ', column_adder)
 							scope[type_of_column_adder][column_adder]['add_columns']['function'](scope, column_adder, ticker, ticker_df)
 							# Set the status to false to prevent refreshing unnecesarily
 							scope.tickers[ticker][app]['column_adders'][column_adder] = False

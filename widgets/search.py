@@ -26,7 +26,7 @@ def search_for_ticker(scope, app, widget_key):
 	# Set other selectors to their defualt values
 	scope.apps[app]['selectors']['tickers'] = []
 	scope.apps[app]['selectors']['industries'] = []
-	scope.apps[app]['selectors']['market'] = 'select entire market'
+	scope.apps[app]['selectors']['market'] = 'select market'
 
 	# Search through the ticker index for this string in the company name
 	search_results = {}

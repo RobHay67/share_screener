@@ -18,10 +18,6 @@ def edit_active_event(scope, type_col_adder, column_adder, status):
 				# if the users has deactivated this test
 				if app == 'screener' and status == False:
 					remove_test_result_column(scope, ticker, column_adder)
-					# ticker_df = scope.tickers[ticker][app]['df']
-					# if column_adder in ticker_df:
-					# 	del ticker_df[column_adder]
-
 
 
 	# Take this opportunity to update the shortcut lists
