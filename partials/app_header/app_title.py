@@ -11,7 +11,7 @@ def render_app_title(scope, title):
 	app = scope.apps['display_app']
 
 	# Render Page Title
-	col1,col2,col3,col4 = st.columns([7,2,2,2])
+	col1,col2,col3,col4 = st.columns([10.5,0.5,0.5,0.5])
 	with col1:
 		st.subheader(title)
 	if app == 'chart':

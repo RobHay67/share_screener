@@ -2,12 +2,29 @@ import streamlit as st
 # import webbrowser
 
 
+# def hyperlink_to_app_link(scope, new_app_page, ticker):
+
+
+
+
+
 def link_to_app_button(scope, app, ticker):
 
 	widget_key = app + '_' + ticker + '_button'
 
+	if app == 'volume':
+		app_desc = 'vol'
+	elif app == 'intraday':
+		app_desc = 'intra'
+	elif app == 'research':
+		app_desc = 'info'
+	else:
+		app_desc = app
+
+
 	st.button(
-				label=app.title(), 
+				# label=app.title(), 
+				label=app_desc,
 				key=widget_key,
 				use_container_width=True,
 				on_click=open_app,

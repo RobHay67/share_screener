@@ -8,10 +8,11 @@ def chart_config_button(scope):
 	type_of_button = 'primary' if current_value == True else 'secondary'
 
 	button = st.button(
-						label='Chart Config', 
+						label='📊', 
 						use_container_width=True, 
 						on_click=chart_config_status, args=(scope, ),
-						type=type_of_button
+						type=type_of_button,
+						help='Chart Configuration Settings'
 						)
 	return button
 
@@ -30,10 +31,11 @@ def chart_overlay_button(scope):
 	type_of_button = 'primary' if current_value == True else 'secondary'
 
 	button = st.button(
-					label = 'Overlays', 
+					label = '📈', 
 					use_container_width=True, 
 					on_click=overlay_config_status, args=(scope, ),
-					type=type_of_button
+					type=type_of_button,
+					help='Overlays - lines to put over the top of various charts'
 					)
 	return 
 

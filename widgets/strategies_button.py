@@ -7,10 +7,11 @@ def strategies_button(scope):
 	type_of_button = 'primary' if current_value == True else 'secondary'
 
 	button = st.button(
-						label='Strategies', 
+						label='♟️', 
 						use_container_width=True, 
 						on_click=strategy_status, args=(scope, ),
-						type=type_of_button
+						type=type_of_button,
+						help='Strategies - save current tests into a strategy'
 						)
 
 	return button

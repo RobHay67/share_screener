@@ -8,10 +8,11 @@ def app_config_button(scope):
 	type_of_button = 'primary' if current_value == True else 'secondary'
 
 	button = st.button(
-					label = 'App Config', 
+					label = '⚙️', 
 					use_container_width=True, 
 					on_click=app_config_status, args=(scope, ),
 					type=type_of_button,
+					help='Page Configuration'
 					)
 
 	return button

@@ -8,10 +8,11 @@ def trial_config_button(scope):
 	type_of_button = 'primary' if current_value == True else 'secondary'
 
 	button = st.button(
-						label='Tests Config', 
+						label='🧪', 
 						use_container_width=True, 
 						on_click=trial_config_status, args=(scope, ),
 						type=type_of_button,
+						help='Test Configuration Settings'
 						)
 
 	return button
