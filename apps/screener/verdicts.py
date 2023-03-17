@@ -43,19 +43,20 @@ def render_trial_verdicts(scope):
 			ticker_start += group_size
 			with tab:
 				for ticker in tickers_for_tab:
-					col1,col2,col3,col4,col5,col6,col7,col8,col9,col10,col11 = st.columns([1,4,1,1,1,1,1,1,1,1,1])
+					col1,col2,col3,col4,col5,col6,col7,col8,col9,col10,col11,col12 = st.columns([1,4,1,1,1,1,1,1,1,1,1,1])
 					company_name = scope.ticker_search[ticker]
-					with col1 : st.write(ticker)
-					with col2 : st.write(company_name)
-					with col3 : link_to_app_button(scope, 'chart', ticker)
-					with col4 : link_to_app_button(scope, 'intraday', ticker)
-					with col5 : link_to_app_button(scope, 'volume', ticker)
-					with col6 : link_to_app_button(scope, 'research', ticker)
-					with col7 : website_hyperlink(scope, 'eTrade', ticker)
-					with col8 : website_hyperlink(scope, 'asx', ticker)
-					with col9 : website_hyperlink(scope, 'google', ticker)
-					with col10 : website_hyperlink(scope, 'yahoo', ticker)
-					with col11 : website_hyperlink(scope, 'marketindex', ticker)
+					with col1 :st.write(ticker)
+					with col2 :st.write(company_name)
+					with col3 :link_to_app_button(scope, 'chart', ticker)
+					with col4 :link_to_app_button(scope, 'intraday', ticker)
+					with col5 :link_to_app_button(scope, 'volume', ticker)
+					with col6 :link_to_app_button(scope, 'research', ticker)
+					with col7 :website_hyperlink(scope, 'eTrade', ticker)
+					with col8 :website_hyperlink(scope, 'asx', ticker)
+					with col9 :website_hyperlink(scope, 'google', ticker)
+					with col10:website_hyperlink(scope, 'yahoo', ticker)
+					with col11:website_hyperlink(scope, 'market index', ticker)
+					with col12:website_hyperlink(scope, 'hot copper', ticker)
 
 
 

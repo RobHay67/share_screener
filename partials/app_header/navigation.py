@@ -30,10 +30,10 @@ def render_quick_links(scope):
 			link_to_app_button(scope, 'volume', ticker)
 		with col5:
 			link_to_app_button(scope, 'research', ticker)
-		# with col6:
-		# 	link_to_app_button(scope, 'screener', ticker)
+		# dont link to screener - too complicated
 		
-		with col7 : website_hyperlink(scope, 'asx', ticker)
-		with col8 : website_hyperlink(scope, 'google', ticker)
-		with col9 : website_hyperlink(scope, 'yahoo', ticker)
-		with col10 : website_hyperlink(scope, 'marketindex', ticker)
+		with col6 :(scope, 'asx', ticker)
+		with col7 :website_hyperlink(scope, 'google', ticker)
+		with col8 :website_hyperlink(scope, 'yahoo', ticker)
+		with col9 :website_hyperlink(scope, 'market index', ticker)
+		with col10:website_hyperlink(scope, 'hot copper', ticker)

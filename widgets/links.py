@@ -51,15 +51,18 @@ def website_hyperlink(scope, website, ticker):
 		suffix = '&.tsrc=fin-srch'
 		external_url = 	url + ticker + query + ticker + suffix
 
-	if website == 'marketindex':
+	if website == 'market index':
 		url = 'https://www.marketindex.com.au/asx/'
+		external_url = url + ticker_code.lower()
+
+	if website == 'hot copper':
+		url = 'https://hotcopper.com.au/asx/'
 		external_url = url + ticker_code.lower()
 
 
 	url_string = "[" + website + "](" +  external_url + ")"
 
 	st.write(url_string)
-
 
 
 # Url Examples
@@ -69,3 +72,5 @@ def website_hyperlink(scope, website, ticker):
 # https://au.finance.yahoo.com/quote/CBA.AX?p=CBA.AX&.tsrc=fin-srch
 # https://au.investing.com/equities/commonwealth-bank-of-australia
 # https://trading.anzshareinvesting.com.au/Market/Charts.aspx?asxcode=CBA
+# https://hotcopper.com.au/asx/cba/
+
