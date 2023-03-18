@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-from partials.app_header.config import render_app_config
+from partials.app_header.page_config import render_page_config
 from partials.reports.dfs import render_ticker_dfs
 from partials.reports.dfs import render_chart_dfs
 from partials.reports.dfs import render_trial_dfs
@@ -19,15 +19,15 @@ def render_config(scope):
 	app = scope.apps['display_app']
 
 	if scope.apps[app]['render']['app_config'] == True:
-		render_app_config(scope)
+		render_page_config(scope)
 
-	if scope.apps[app]['render']['chart_config'] == True:
+	if scope.apps[app]['render']['chart_settings'] == True:
 		render_primary_charts_config(scope)
 
-	if scope.apps[app]['render']['overlay_config'] == True:
+	if scope.apps[app]['render']['overlay_settings'] == True:
 		render_overlays_config(scope)
 
-	if scope.apps[app]['render']['trial_config'] == True:
+	if scope.apps[app]['render']['trial_settings'] == True:
 		render_available_trials(scope)
 
 

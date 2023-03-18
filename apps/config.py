@@ -29,11 +29,11 @@ def scope_apps(scope):
 										'tickers':False,
 										'charts':False,
 										'trials':False,
-										'app_config':False,
-										'chart_config':False,
-										'overlay_config':False,
-										'trial_config':False,
-										'strategy':False,
+										'app_config':False,		# the raw dictionary and list
+										'chart_settings':False,	# for the user to change
+										'overlay_settings':False,# for the user to change
+										'trial_settings':False,	# for the user to change
+										'strategy':False,		# for the user to change
 								}
 
 

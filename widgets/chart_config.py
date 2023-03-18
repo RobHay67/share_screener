@@ -4,7 +4,7 @@ import streamlit as st
 def chart_config_button(scope):
 
 	app = scope.apps['display_app']
-	current_value = scope.apps[app]['render']['chart_config']
+	current_value = scope.apps[app]['render']['chart_settings']
 	type_of_button = 'primary' if current_value == True else 'secondary'
 
 	button = st.button(
@@ -18,16 +18,16 @@ def chart_config_button(scope):
 
 def chart_config_status(scope):
 
-	previous_value = scope.apps['chart']['render']['chart_config']
+	previous_value = scope.apps['chart']['render']['chart_settings']
 	new_value = True if previous_value == False else False
 
-	scope.apps['chart']['render']['chart_config'] = new_value
+	scope.apps['chart']['render']['chart_settings'] = new_value
 
 
 def chart_overlay_button(scope):
 
 	app = scope.apps['display_app']
-	current_value = scope.apps[app]['render']['overlay_config']
+	current_value = scope.apps[app]['render']['overlay_settings']
 	type_of_button = 'primary' if current_value == True else 'secondary'
 
 	button = st.button(
@@ -41,7 +41,7 @@ def chart_overlay_button(scope):
 
 def overlay_config_status(scope):
 
-	previous_value = scope.apps['chart']['render']['overlay_config']
+	previous_value = scope.apps['chart']['render']['overlay_settings']
 	new_value = True if previous_value == False else False
 
-	scope.apps['chart']['render']['overlay_config'] = new_value
+	scope.apps['chart']['render']['overlay_settings'] = new_value

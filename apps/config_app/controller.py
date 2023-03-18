@@ -1,10 +1,10 @@
 import streamlit as st
 
 # Config (scope)
-from apps.config_app.scope import view_app
+from apps.config_app.app import view_app
 from apps.config_app.dropdowns import view_dropdowns
-from apps.config_app.scope import view_trials_config
-from apps.config_app.scope import view_charts_config
+from apps.config_app.trials import view_trials_config
+from apps.config_app.charts import view_charts_config
 # Files
 from apps.config_app.files import view_folders
 # Data

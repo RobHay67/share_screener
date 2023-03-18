@@ -1,7 +1,8 @@
 import streamlit as st
 
 from apps.config_app.three_cols import three_cols
-
+from apps.config_app.charts import view_charts_config
+from apps.config_app.trials import view_trials_config
 
 
 
@@ -26,7 +27,7 @@ def scope_dropdown_menus(scope):
 
 
 
-def render_app_config(scope):
+def render_page_config(scope):
 
 	app = scope.apps['display_app']
 
@@ -49,11 +50,13 @@ def render_app_config(scope):
 	three_cols( 'Trial DFs'  , scope.apps[app]['render']['trials']    , 'scope.apps.'+ app +'.render.trials'    , widget_type='string' )
 	
 	st.caption('Render Configuration')
-	three_cols( 'App Config (this page section)'  , scope.apps[app]['render']['app_config']    , 'scope.apps.'+ app +'.render.app_config'    , widget_type='string' )
-	three_cols( 'Chart Config'  , scope.apps[app]['render']['chart_config']    , 'scope.apps.'+ app +'.render.chart_config'    , widget_type='string' )
-	three_cols( 'Overlay Config'  , scope.apps[app]['render']['overlay_config']    , 'scope.apps.'+ app +'.render.overlay_config'    , widget_type='string' )
-	three_cols( 'Trial Config'  , scope.apps[app]['render']['trial_config']    , 'scope.apps.'+ app +'.render.trial_config'    , widget_type='string' )
+	three_cols( 'Chart Settings'  , scope.apps[app]['render']['chart_settings']    , 'scope.apps.'+ app +'.render.chart_config'    , widget_type='string' )
+	three_cols( 'Overlay Settings'  , scope.apps[app]['render']['overlay_settings']    , 'scope.apps.'+ app +'.render.overlay_config'    , widget_type='string' )
+	three_cols( 'Trial Settings'  , scope.apps[app]['render']['trial_settings']    , 'scope.apps.'+ app +'.render.trial_config'    , widget_type='string' )
 	three_cols( 'Strategies'  , scope.apps[app]['render']['strategy']    , 'scope.apps.'+ app +'.render.strategy'    , widget_type='string' )
+	
+
+	three_cols( 'App Config (this page section)'  , scope.apps[app]['render']['app_config']    , 'scope.apps.'+ app +'.render.app_config'    , widget_type='string' )
 
 	st.write('---')
 	st.caption('Global Application Configuration - applies to all apps/pages')
@@ -63,5 +66,10 @@ def render_app_config(scope):
 	three_cols( 'Streamlit Latest Button Pressed', scope.apps['button_for_scope'], 'scope.apps.button_for_scope' )
 	st.write('---')
 
+	# Add in the User config
+	if app == 'chart':
+		view_charts_config(scope)
 
+	if app == 'screener':
+		view_trials_config(scope)
 

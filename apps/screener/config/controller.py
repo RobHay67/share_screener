@@ -10,19 +10,19 @@ from apps.screener.config.example import example_settings
 
 
 def render_available_trials(scope):
-	
-	st.markdown("""---""")
-	st.write('**Fundamental Analysis**')
 
+	st.markdown("""---""")
+	col1,col2=st.columns([8,4])
+	with col1:st.subheader('Test Configuration Settings')
+	# with col2:
+	
+	st.write('**Fundamental Analysis**')
 	with st.expander(label='Annual General Meeting', expanded=False):
 		st.write('This will be the criteria')
-
 	with st.expander(label='Divdends - Dividend Yield', expanded=False):
 		st.write('This will be the criteria')
-
 	with st.expander(label='Price to Earnings Ratio - P/E', expanded=False):
 		st.write('Dividend per share / Earning per share')
-
 	st.write('**Technical Trading Indicators**')
 
 

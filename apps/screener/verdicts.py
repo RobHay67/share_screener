@@ -12,15 +12,20 @@ def render_trial_verdicts(scope):
 
 	# Generate a list of tickers with an overall passing result
 	verdict_list = []
+	print('GENERATE A LIST OF TEST RESULTS')
 	for ticker in scope.apps[app]['worklist']:
+		print(ticker)
 		# Only mined tickers can have verdicts
 		if ticker in scope.apps[app]['mined_tickers']:
+			print('ticker is in mined tickers')
+			print(scope.tickers[ticker]['trials']['verdict'])
 			if scope.tickers[ticker]['trials']['verdict'] == 'pass':
+				print(ticker, 'has passed the test')
 				verdict_list.append(ticker)
 	no_of_verdicts = len(verdict_list)
 
-	st.write('**Test Results > ' + str(no_of_verdicts) + ' Passed**')
-
+	# st.write('**Passing Test Results > ' + str(no_of_verdicts) + ' Passed**')
+	st.subheader('Passing Test Results       (' + str(no_of_verdicts) + ') passed')
 	if no_of_verdicts > (group_size * tab_limit):
 		# Dont render more than say 100 Tickers
 		st.error('Too many passing verdicts to render (' + str(no_of_verdicts) + ')')

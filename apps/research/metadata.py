@@ -2,7 +2,7 @@ import streamlit as st
 
 import yfinance as yf					# https://github.com/ranaroussi/yfinance
 
-print ('yfinance version ========== ', yf.__version__)
+# print ('yfinance version ========== ', yf.__version__)
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
