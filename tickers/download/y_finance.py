@@ -1,7 +1,7 @@
 import yfinance as yf					# https://github.com/ranaroussi/yfinance
 
 from tickers.download.cache_yf import cache_yf_batch_data
-from partials.messages.y_finance import render_download_message, render_download_complete_message
+from apps.messages.y_finance import render_download_message, render_download_complete_message
 from tickers.schema import ticker_file_schema
 from tickers.download.schema import y_finance_schemas
 

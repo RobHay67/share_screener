@@ -1,17 +1,18 @@
 import streamlit as st
 import time  
 
-# from partials.dropdowns.config import scope_dropdown_menus
 from files.config import scope_folders_and_paths
 from users.config import scope_users
 from apps.config import scope_apps
 from trials.config import scope_trials
 from charts.config import scope_charts
 from ticker_index.config import scope_index_file
-from partials.app_header.page_config import scope_ticker_search, scope_dropdown_menus
+from apps.app_header.page_config import scope_ticker_search, scope_dropdown_menus
 from tickers.config import scope_ticker_files, scope_missing_tickers
 from tickers.download.config import scope_download_variables
 from strategies.config import scope_strategy
+
+
 
 
 def set_scope(scope):

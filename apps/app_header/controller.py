@@ -2,17 +2,17 @@
 # A function that handles all of the data loading and column adding for the current App
 import streamlit as st
 
-from partials.app_header.app_title import render_app_title
-from partials.app_header.selectors import render_ticker_selectors
-from partials.app_header.load import load_tickers
-from partials.app_header.refresh_data import refresh_app_df_and_columns
-from partials.app_header.navigation import render_quick_links
-from partials.app_header.page_data import render_page_data
-from partials.app_header.extra_data import render_optional_information
+from apps.app_header.app_title import render_app_title
+from apps.app_header.selectors import render_ticker_selectors
+from apps.app_header.load import load_tickers
+from apps.app_header.refresh_data import refresh_app_df_and_columns
+from apps.app_header.navigation import render_quick_links
+from apps.app_header.page_data import render_page_data
+from apps.app_header.extra_data import render_optional_information
 
 
-from partials.app_header.ticker_name import render_ticker_name
-from partials.app_header.extra_data import render_config
+from apps.app_header.ticker_name import render_ticker_name
+from apps.app_header.extra_data import render_config
 
 
 # ==============================================================

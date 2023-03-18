@@ -1,6 +1,6 @@
 import streamlit as st
 
-from partials.app_header.controller import render_app_header
+from apps.app_header.controller import render_app_header
 
 
 

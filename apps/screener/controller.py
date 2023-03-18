@@ -1,7 +1,7 @@
-from partials.app_header.controller import render_app_header		
+from apps.app_header.controller import render_app_header		
 from apps.screener.verdicts import render_trial_verdicts
 
-from partials.search_results import render_search_results
+from apps.search_results import render_search_results
 
 
 

@@ -1,10 +1,10 @@
 import streamlit as st
 
 
-from partials.app_header.page_config import render_page_config
-from partials.reports.dfs import render_ticker_dfs
-from partials.reports.dfs import render_chart_dfs
-from partials.reports.dfs import render_trial_dfs
+from apps.app_header.page_config import render_page_config
+from apps.reports.dfs import render_ticker_dfs
+from apps.reports.dfs import render_chart_dfs
+from apps.reports.dfs import render_trial_dfs
 
 from apps.chart.config.primary import render_primary_charts_config
 from apps.chart.config.overlays import render_overlays_config

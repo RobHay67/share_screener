@@ -8,7 +8,7 @@ from ticker_index.save import save_index
 from markets.open_time import open_time
 from markets.trading_minutes import trading_minutes
 
-from partials.messages.ticker_index import message_updating, message_warning
+from apps.messages.ticker_index import message_updating, message_warning
 
 
 def update_index(scope, downloaded_ticker_info ):

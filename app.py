@@ -29,7 +29,7 @@ pd.set_option('display.width', 1000)
 
 
 from scope import set_scope
-from partials.sidebar import render_sidebar
+from apps.sidebar import render_sidebar
 from apps.routes import render_selected_app
 
 print ( '\033[94m' + 'Application Re-Rendering Now ' + '>'*50 + '\033[0m')

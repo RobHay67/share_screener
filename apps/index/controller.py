@@ -2,7 +2,7 @@
 import streamlit as st
 
 from ticker_index.download import download_ticker_index_data
-from partials.reports.industries import view_industries
+from apps.reports.industries import view_industries
 
 
 

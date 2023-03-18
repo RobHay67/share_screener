@@ -1,6 +1,6 @@
 import streamlit as st
 
-from partials.app_worklist import render_worklist, render_errors
+from apps.app_worklist import render_worklist, render_errors
 from widgets.dataframe import dataframe_button
 from widgets.clear import clear_messages_button
 from widgets.dataframe import reset_page_render

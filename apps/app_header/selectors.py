@@ -8,7 +8,7 @@ from widgets.industries import select_industries
 from widgets.tickers import select_tickers
 from widgets.download import download_button
 
-from partials.app_header.worklist import update_app_worklist
+from apps.app_header.worklist import update_app_worklist
 from tickers.download.controller import download_tickers
 
 

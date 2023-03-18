@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-from partials.app_header.dropdowns import refresh_dropdown_lists
+from apps.app_header.dropdowns import refresh_dropdown_lists
 
 from ticker_index.schema import schema
 from ticker_index.schema import csv_dates
@@ -9,8 +9,8 @@ from ticker_index.schema import csv_dtypes
 from ticker_index.save import save_index
 
 
-from partials.messages.ticker_index import message_missing_index_file
-from partials.messages.ticker_index import message_new_index_file
+from apps.messages.ticker_index import message_missing_index_file
+from apps.messages.ticker_index import message_new_index_file
 
 
 def load_ticker_index_file( scope ):

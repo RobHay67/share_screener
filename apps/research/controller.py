@@ -1,5 +1,5 @@
 
-from partials.app_header.controller import render_app_header
+from apps.app_header.controller import render_app_header
 
 from apps.research.metadata import fetch_yfinance_metadata
 
@@ -31,7 +31,7 @@ from apps.research.view.financials import earnings_qtr
 from apps.research.view.calendar import calendar
 from apps.research.view.news import news
 
-from partials.search_results import render_search_results
+from apps.search_results import render_search_results
 
 # TODO - I like this example from the ASX for CBA - https://www2.asx.com.au/markets/company/cba
 
