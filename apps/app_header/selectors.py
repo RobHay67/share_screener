@@ -12,6 +12,15 @@ from apps.app_header.worklist import update_app_worklist
 from tickers.download.controller import download_tickers
 
 
+def selector_title(scope):
+	button = st.button(
+						label='Ticker(s) Selectors', 
+						use_container_width=True, 
+						disabled=True,
+						)
+	return button
+
+
 def render_ticker_selectors(scope):
 
 	download_ticker_data = None
@@ -19,32 +28,26 @@ def render_ticker_selectors(scope):
 	
 	app = scope.apps['display_app']
 
-	with col1 : 
-		st.button(
-				label='Ticker(s) Selection', 
-				use_container_width=True, 
-				disabled=True,
-				)
 	if app == 'screener':
-		with col2: 
-			select_tickers(scope)
-		with col3: 
-			select_industries(scope)
-		with col4: 
-			select_a_market(scope)
-		with col5: 
-			search_ticker_by_name(scope)
-	elif app == 'websites':
-		# dont provide any search options - we dont have any data
-		with col2: 
-			st.write('No Need to show selectors')
-	else:
+		with col1:selector_title(scope)
+		with col2:select_tickers(scope)
+		with col3:select_industries(scope)
+		with col4:select_a_market(scope)
+		with col5:search_ticker_by_name(scope)
+
+	if app in ['chart', 'intraday', 'volume', 'research']:
 		# One of the Single Ticker Pages - Single / Volume / Research or IntraDay
-		with col2: 
-			
-			select_a_ticker(scope)
-		with col5: 
-			search_ticker_by_name(scope)
+		with col1:selector_title(scope)
+		with col2:select_a_ticker(scope)
+		with col5:search_ticker_by_name(scope)
+
+	# if app == 'websites':
+	#	selectors not applicable for this page
+	
+	# if app == 'index':
+	#	selectors not applicable for this page
+	
+		
 
 	we_have_selected_tickers = update_app_worklist(scope)
 	

@@ -36,7 +36,7 @@ def render_page_config(scope):
 	# st.caption('App/Page Specific Lists')
 	three_cols( 'Search Results'  , scope.apps[app]['search_results'], 'scope.apps.'+ app +'.search_results'    , widget_type='string' )
 	three_cols( 'App Worklist'    , scope.apps[app]['worklist'], 'scope.apps.'+ app +'.worklist'    , widget_type='string' )
-	three_cols( 'Mined Tickers'   , scope.apps[app]['mined_tickers'], 'scope.apps.'+ app +'.mined_tickers'    , widget_type='string' )
+	three_cols( 'Loaded Tickers'   , scope.apps[app]['loaded_tickers'], 'scope.apps.'+ app +'.loaded_tickers'    , widget_type='string' )
 
 	st.caption('Selectors')
 	three_cols( 'Market'  , scope.apps[app]['selectors']['market']    , 'scope.apps.'+ app +'.selectors.market'    , widget_type='string' )

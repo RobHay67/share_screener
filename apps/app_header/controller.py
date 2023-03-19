@@ -1,5 +1,12 @@
 
-# A function that handles all of the data loading and column adding for the current App
+# A function that facilitates
+#  (1) loading of exisiting share data
+#  (2) adding extra columns (ie MACD) to that share data
+
+
+
+
+
 import streamlit as st
 
 from apps.app_header.app_title import render_app_title
@@ -39,7 +46,7 @@ def render_app_header(scope, title):
 	
 	we_have_selected_tickers = render_ticker_selectors(scope)
 
-	if we_have_selected_tickers:		
+	if we_have_selected_tickers:
 		
 		load_tickers(scope)
 

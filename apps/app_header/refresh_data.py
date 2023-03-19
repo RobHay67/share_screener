@@ -1,3 +1,8 @@
+# TODO what is the responsibility of this function
+# it seems to update the columns
+
+
+
 import streamlit as st
 
 
@@ -45,9 +50,9 @@ def refresh_app_df_and_columns(scope):
 					ticker_df = ticker_df.head(app_row_limit) 				# limit no of rows for the APP df (speeds up app rendering)				
 					scope.tickers[ticker][app]['df'] = ticker_df			# Cache the ticker dataframe to be mined by this app
 
-					if ticker not in scope.apps[app]['mined_tickers']:
+					if ticker not in scope.apps[app]['loaded_tickers']:
 					# add ticker to the mined_ticker list
-						scope.apps[app]['mined_tickers'].append(ticker)
+						scope.apps[app]['loaded_tickers'].append(ticker)
 					
 					# Set the status to false to prevent refreshing unnecesarily
 					scope.tickers[ticker][app]['replace_df'] = False

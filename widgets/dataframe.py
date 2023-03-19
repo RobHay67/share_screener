@@ -27,12 +27,12 @@ def dataframe_button(scope, type_df):
 			rows_total += df_row_count
 		
 	if type_df in ['charts', 'trials']:
-		# This will be a count of the tickers that have been selcted
+		# This will be a count of the tickers that have been selected
 		# for this app for mining
-		ticker_list = scope.apps[app]['mined_tickers']
+		ticker_list = scope.apps[app]['loaded_tickers']
 		
 		# Number of rows
-		for ticker in scope.apps[app]['mined_tickers']:
+		for ticker in scope.apps[app]['loaded_tickers']:
 			df_row_count = len(scope.tickers[ticker][app]['df'])
 			rows_total += df_row_count
 

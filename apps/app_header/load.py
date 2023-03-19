@@ -8,14 +8,10 @@ from tickers.events.missing_local_file import missing_file_event
 from tickers.events.add_ticker import add_ticker_event
 
 
-
-
 # ==============================================================
 # Load ticker controller here so we can render a progress bar
 # on this function which can be time consuming
 # ==============================================================
-
-
 
 def load_tickers(scope):
 	app = scope.apps['display_app']
@@ -27,12 +23,16 @@ def load_tickers(scope):
 	for counter, ticker in enumerate(worklist):
 		if ticker not in scope.missing_tickers['local']:
 			if ticker not in already_loaded_list:
-				# this is the first place i might need a bar
+				# Add a Progress Bar for user process feedback
 				if added_progress_bar==False:
-					col1,col2 = st.columns([1,11])
-					with col1:st.write('Loading Tickers')
-					with col2:my_bar = st.progress(0)
-					added_progress_bar = True
+					col1,col2,col3 = st.columns([1,11,2])
+					with col1:
+						st.write('Loading Tickers')
+					with col2:
+						my_bar = st.progress(0)
+						added_progress_bar = True
+					with col3:
+						st.write('dataframes here')
 				poc = int(((counter+1) / no_of_tickers ) * 100)
 				my_bar.progress(poc, text='Loading Ticker Data')
 
