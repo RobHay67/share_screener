@@ -26,9 +26,10 @@ def scope_apps(scope):
 										}
 		
 		scope.apps[app]['render'] = 	{
-										'tickers':False,
-										'charts':False,
-										'trials':False,
+										'ticker_file':'Show/Hide Data',	
+										'col_added_df':'Show/Hide Data',
+										'charts':False,			# TODO - remove maybe
+										'trials':False,			# TODO - remove maybe
 										'app_config':False,		# the raw dictionary and list
 										'chart_settings':False,	# for the user to change
 										'overlay_settings':False,# for the user to change

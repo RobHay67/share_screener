@@ -17,7 +17,7 @@ def render_trial_verdicts(scope):
 		print(ticker)
 		# Only mined tickers can have verdicts
 		if ticker in scope.apps[app]['loaded_tickers']:
-			print('ticker is in mined tickers')
+			print('ticker is in loaded_tickers list')
 			print(scope.tickers[ticker]['trials']['verdict'])
 			if scope.tickers[ticker]['trials']['verdict'] == 'pass':
 				print(ticker, 'has passed the test')

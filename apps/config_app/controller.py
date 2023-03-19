@@ -28,13 +28,14 @@ def render_selected_scope_page(scope):
 	scope.apps['button_for_scope'] =  None
 
 
+
 def set_st_button(scope:dict, button:str):
 	scope.apps['button_for_scope'] = button
 
 
 def render_scope_categories(scope):
 	st.subheader('Configuration Setting')
-
+	st.write('Current Page = ', scope.apps['display_app'])
 	# col1,col2,col3,col4,col5,col6 = st.columns([2,2,2,2,2,2])
 	col1,col2,col3,col4,col5,col6 = st.columns(6)
 	

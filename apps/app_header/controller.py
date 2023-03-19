@@ -11,11 +11,13 @@ import streamlit as st
 
 from apps.app_header.app_title import render_app_title
 from apps.app_header.selectors import render_ticker_selectors
-from apps.app_header.load import load_tickers
+from apps.app_header.ticker_data import render_ticker_data_ohlcv
+
+# from apps.app_header.load import load_tickers
 from apps.app_header.refresh_data import refresh_app_df_and_columns
 from apps.app_header.navigation import render_quick_links
-from apps.app_header.page_data import render_page_data
-from apps.app_header.extra_data import render_optional_information
+from apps.app_header.ticker_data import render_page_data
+from apps.app_header.extra_data import render_dataframes
 
 
 from apps.app_header.ticker_name import render_ticker_name
@@ -43,22 +45,28 @@ def render_app_header(scope, title):
 	render_app_title(scope, title)
 
 	render_config(scope)
+
+	render_ticker_selectors(scope)
+
+	render_ticker_data_ohlcv(scope)
+
+	render_dataframes(scope)
+
 	
-	we_have_selected_tickers = render_ticker_selectors(scope)
+	# we_have_selected_tickers = render_ticker_selectors(scope)
 
-	if we_have_selected_tickers:
+	# if we_have_selected_tickers:
 		
-		load_tickers(scope)
+	# 	load_tickers(scope)
 
-		refresh_app_df_and_columns(scope)
+	# 	refresh_app_df_and_columns(scope)
 
-		render_quick_links(scope)
+	# 	render_quick_links(scope)
 
-		render_page_data(scope)
+	# 	render_ticker_data(scope)
 
-		render_ticker_name(scope)
+	# 	render_ticker_name(scope)
 
-		render_optional_information(scope)
 
 
 		

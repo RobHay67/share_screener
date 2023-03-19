@@ -6,6 +6,24 @@ import streamlit as st
 
 # Callers - so that the embedded functions will still work without adding additional function variable attributes
 
+def render_dataframe(scope):
+
+	app = scope.apps['display_app']
+
+	ticker = scope.apps[app]['render']['ticker_file']
+
+	dataframe = scope.tickers[ticker]['df']
+
+	no_of_rows = str(len(dataframe))
+	my_expander = st.expander(
+					label=(ticker+' (' + no_of_rows + ')'), 
+					expanded=True 
+					)
+	my_expander.dataframe(dataframe, 2000, 2000)	
+
+
+
+
 def render_ticker_dfs(scope):
 	df_locations = 'tickers'
 	ticker_list = sorted(list(scope.tickers.keys()))

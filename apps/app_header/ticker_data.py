@@ -8,7 +8,7 @@ import streamlit as st
 
 from tickers.load import load_ticker
 from widgets.worklist import render_worklist, render_errors
-from widgets.dataframe import dataframe_button
+from widgets.dataframe import dataframe_dropdown_list
 from widgets.dataframe import reset_page_render
 
 
@@ -23,7 +23,9 @@ def render_ticker_data_ohlcv(scope):
 		with col1:st.write('ohlcv Ticker Files')
 		with col2:render_ticker_load_progress_bar(scope) # loads ticker data as well
 		with col3:render_errors(scope)
-		with col4:dataframe_button(scope)
+		with col4:dataframe_dropdown_list(scope)
+
+
 
 
 def render_ticker_load_progress_bar(scope):
@@ -86,11 +88,11 @@ def render_page_data(scope):
 		with col3:
 			render_errors(scope)
 		with col4:
-			dataframe_button(scope, 'tickers')
+			dataframe_dropdown_list(scope, 'tickers')
 		with col5:
 			if app == 'screener':
-				dataframe_button(scope, 'trials')
+				dataframe_dropdown_list(scope, 'trials')
 			if app == 'chart':
-				dataframe_button(scope, 'charts')		
+				dataframe_dropdown_list(scope, 'charts')		
 		with col6:
 			reset_page_render(scope)

@@ -17,7 +17,8 @@ from widgets.add_columns import add_columns_button
 
 
 def refresh_app_df_and_columns(scope):
-
+	print('%'*33)
+	print('refresh_app_df_and_columns')
 	app 				= scope.apps['display_app']
 	worklist 			= scope.apps[app]['worklist']
 	no_of_tickers		= len(worklist)
@@ -51,7 +52,8 @@ def refresh_app_df_and_columns(scope):
 					scope.tickers[ticker][app]['df'] = ticker_df			# Cache the ticker dataframe to be mined by this app
 
 					if ticker not in scope.apps[app]['loaded_tickers']:
-					# add ticker to the mined_ticker list
+					# add ticker to the loaded_ticker list
+						print('Adding ticker to loaded_tickers > ', ticker)
 						scope.apps[app]['loaded_tickers'].append(ticker)
 					
 					# Set the status to false to prevent refreshing unnecesarily
@@ -87,6 +89,8 @@ def refresh_app_df_and_columns(scope):
 				# -------------------------------------------------------------------
 				if screener_assessment_required == True:	
 					trial_verdict(scope, ticker)
+
+				print('Need a status that this ticker is ready to render >', ticker)
 
 		my_bar.progress(100, text='Finished running tests.')
 
