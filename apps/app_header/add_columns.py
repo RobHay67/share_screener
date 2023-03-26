@@ -1,36 +1,48 @@
-# TODO what is the responsibility of this function
-# it seems to update the columns
-
-
+# ==============================================================
+# The primary code to 
+# - refresh the App df (completely)
+# - Refresh specific df columns (activate or change col_adders)
+# ==============================================================
 
 import streamlit as st
 
-
 from trials.verdict import trial_verdict
 from widgets.add_columns import add_columns_button
-
-# ==============================================================
-# The primary code to 
-# - refresh the App df
-# - Refresh specific df columns 
-# ==============================================================
+from widgets.dataframes import page_dataframe_dropdown_list
 
 
-def refresh_app_df_and_columns(scope):
+def col_adder_title(scope):
+	button = st.button(
+						label='Add Columns to Ticker Data', 
+						use_container_width=True, 
+						disabled=True,
+						key='col_adder_title'
+						)
+	return button
+
+
+
+def render_add_cols_to_df(scope):
 	print('%'*33)
-	print('refresh_app_df_and_columns')
+	print('render_add_cols_to_df')
 	app 				= scope.apps['display_app']
 	worklist 			= scope.apps[app]['worklist']
 	no_of_tickers		= len(worklist)
 	app_row_limit 		= int(scope.apps['row_limit'])
 	
 	# Progress Bar
-	col1,col2 = st.columns([1.5, 10.5])
+	# col1,col2 = st.columns([1.5, 10.5])
+	col1,col2,col3,col4,col5 = st.columns([1.5, 5.0, 2.0, 2.0, 1.5])  #12.5
 
-	with col1:replace_cols = add_columns_button(scope)
+
+	with col1:col_adder_title(scope)
 	with col2:my_bar = st.progress(0)
+	# with col3:'Keep this blank'
+	with col4:page_dataframe_dropdown_list(scope)
+	with col5:replace_cols = add_columns_button(scope)
 
 	if replace_cols:
+		st.write('Replace Columns variable = ', replace_cols)
 		for counter, ticker in enumerate(worklist):
 			
 			screener_assessment_required = False
@@ -51,10 +63,10 @@ def refresh_app_df_and_columns(scope):
 					ticker_df = ticker_df.head(app_row_limit) 				# limit no of rows for the APP df (speeds up app rendering)				
 					scope.tickers[ticker][app]['df'] = ticker_df			# Cache the ticker dataframe to be mined by this app
 
-					if ticker not in scope.apps[app]['loaded_tickers']:
+					if ticker not in scope.apps[app]['tickers_with_add_cols']:
 					# add ticker to the loaded_ticker list
-						print('Adding ticker to loaded_tickers > ', ticker)
-						scope.apps[app]['loaded_tickers'].append(ticker)
+						print('Adding ticker to tickers_with_add_cols > ', ticker)
+						scope.apps[app]['tickers_with_add_cols'].append(ticker)
 					
 					# Set the status to false to prevent refreshing unnecesarily
 					scope.tickers[ticker][app]['replace_df'] = False

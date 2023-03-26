@@ -16,7 +16,7 @@ def scope_apps(scope):
 		scope.apps[app] = {}
 		scope.apps[app]['search_results'] = {}
 		scope.apps[app]['worklist'] = []  # formally known as scope.apps[app]['ticker_list']
-		scope.apps[app]['loaded_tickers'] = []
+		scope.apps[app]['tickers_with_add_cols'] = []
 		
 		scope.apps[app]['selectors'] = {
 										'ticker'	: 'select a ticker',
@@ -28,8 +28,6 @@ def scope_apps(scope):
 		scope.apps[app]['render'] = 	{
 										'ticker_file':'Show/Hide Data',	
 										'col_added_df':'Show/Hide Data',
-										'charts':False,			# TODO - remove maybe
-										'trials':False,			# TODO - remove maybe
 										'app_config':False,		# the raw dictionary and list
 										'chart_settings':False,	# for the user to change
 										'overlay_settings':False,# for the user to change

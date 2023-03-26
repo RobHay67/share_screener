@@ -24,7 +24,7 @@ def render_chart_ticker_page(scope):
 
 		ticker = scope.apps[app]['selectors']['ticker']
 
-		if ticker in scope.apps[app]['loaded_tickers']:
+		if ticker in scope.apps[app]['tickers_with_add_cols']:
 
 
 		# if ticker != 'select a ticker' :

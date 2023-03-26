@@ -25,12 +25,14 @@ def cache_ticker_data(scope, ticker, ticker_data):
 	#  - type of column adder
 	#  - and the current config template (dict of functions) 
 
-	if app == 'chart':
-		scope.tickers[ticker][app]['type_col_adder'] = 'charts'
-		scope.tickers[ticker][app]['column_adders'] = scope.chart_config['column_adders'].copy()
+	for app in scope.apps['app_list']:
 
-	if app == 'screener':
-		scope.tickers[ticker][app]['type_col_adder'] = 'trials'
-		scope.tickers[ticker][app]['column_adders'] = scope.trial_config['column_adders'].copy()
+		if app == 'chart':
+			scope.tickers[ticker][app]['type_col_adder'] = 'charts'
+			scope.tickers[ticker][app]['column_adders'] = scope.chart_config['column_adders'].copy()
+
+		if app == 'screener':
+			scope.tickers[ticker][app]['type_col_adder'] = 'trials'
+			scope.tickers[ticker][app]['column_adders'] = scope.trial_config['column_adders'].copy()
 
 
