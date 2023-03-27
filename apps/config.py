@@ -16,6 +16,7 @@ def scope_apps(scope):
 		scope.apps[app] = {}
 		scope.apps[app]['search_results'] = {}
 		scope.apps[app]['worklist'] = []  # formally known as scope.apps[app]['ticker_list']
+		scope.apps[app]['worklist_dropdown'] = []
 		scope.apps[app]['tickers_with_add_cols'] = []
 		
 		scope.apps[app]['selectors'] = {

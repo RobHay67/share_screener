@@ -1,7 +1,4 @@
-
-
 from markets.schema import markets
-
 
 
 def refresh_dropdown_lists(scope):
@@ -26,4 +23,3 @@ def refresh_dropdown_lists(scope):
 	scope.config['dropdowns']['ticker'] = alt_ticker_list
 	
 	
-

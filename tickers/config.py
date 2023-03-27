@@ -42,10 +42,7 @@ def scope_new_ticker(scope, ticker):
 
 
 	# Ticker Config for each Application
-	print('='*44)
-	print('Add ticker for > ', ticker)
 	for app in scope.apps['app_list']:
-		print('adding config for > ', app)
 		# add a key for each app
 		scope.tickers[ticker][app] = {}
 		# add a 'df' key to house the app dataframe

@@ -25,8 +25,7 @@ def selector_title(scope):
 
 def render_ticker_selectors(scope):
 
-	download_ticker_data = None
-	col1,col2,col3,col4,col5,col6 = st.columns([1.5, 2.0, 2.0, 2.0, 3.0, 1.5])  #12
+	col1,col2,col3,col4,col5,col6 = st.columns([1.5, 2.0, 2.0, 2.0, 2.0, 2.5])  #12
 	
 	app = scope.apps['display_app']
 
@@ -49,8 +48,5 @@ def render_ticker_selectors(scope):
 	# if app == 'index':
 	#	selectors not applicable for this page
 
-	we_have_selected_tickers = update_app_worklist(scope)
+	update_app_worklist(scope)
 	
-	if we_have_selected_tickers:
-		with col6:		
-			render_worklist(scope)

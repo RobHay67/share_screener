@@ -5,9 +5,10 @@
 
 import streamlit as st
 
+from apps.worklist import refresh_worklist_dropdown
 from tickers.load import load_ticker
 from tickers.download.controller import download_tickers
-from widgets.worklist import render_worklist, render_errors
+from widgets.worklist import render_errors
 from widgets.dataframes import dataframe_dropdown_list
 from widgets.dataframes import reset_page_render
 from widgets.download import download_button
@@ -37,7 +38,9 @@ def render_ticker_files(scope):
 		with col4:dataframe_dropdown_list(scope)
 		with col5:download_ticker_data = download_button(scope)
 
-		if download_ticker_data:download_tickers(scope)
+		if download_ticker_data:
+			download_tickers(scope)
+			refresh_worklist_dropdown(scope)
 
 
 def render_ticker_load_progress_bar(scope):
@@ -57,11 +60,14 @@ def render_ticker_load_progress_bar(scope):
 			poc = int(((counter+1) / no_of_tickers ) * 100)
 			my_bar.progress(poc, text='Loading ohlcv Ticker Files')
 			load_ticker(scope, ticker)
-	
+
+	refresh_worklist_dropdown(scope)
+
 	if progress_bar_exists==True:
 		my_bar.progress(100, text='All files loaded')
 	else:
 		my_bar = st.progress(100, text='No Files to Load')
+
 
 
 def ticker_list_to_load(scope):

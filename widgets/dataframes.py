@@ -102,7 +102,7 @@ def page_dataframe_dropdown_list(scope):
 
 	no_of_dfs 	= len(page_ticker_list)-1
 	widget_label_count = ' files ' if no_of_dfs == 1 else ' files ('
-	widget_label 	= ('Page ' + str(no_of_dfs) + widget_label_count + str(rows_total) + ' rows)')
+	widget_label 	= ('Added Colums to ' + str(no_of_dfs) + widget_label_count + str(rows_total) + ' rows)')
 
 	previous_selection = scope.apps[app]['render']['ticker_file']
 	pos_for_previous = scope.apps[app]['render']['ticker_file'].index(previous_selection)	

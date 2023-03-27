@@ -1,36 +1,32 @@
 import streamlit as st
-import pandas as pd
 
 
 def render_worklist(scope):
-	# Render a button and/or an expander object that shows the 
-	# current state of the tickers for the current app worklist
 
 	app = scope.apps['display_app']
-	ticker_list = scope.apps[app]['worklist']
-	no_of_tickers = len(ticker_list)
-	widget_key = 'widget_' + app + '_worklist'
-	worklist = []
+
+	worklist = scope.apps[app]['worklist_dropdown']
+	widget_key = 'widget_' + app + '_worklist_dropdown'
+	no_of_tickers = len(worklist)
 
 	if no_of_tickers == 0:
 		widget_label = 'Empty Worklist'
-		
+
 	if no_of_tickers == 1:
-		widget_label = '1 Ticker'
-		worklist.append(ticker_load_status(scope, ticker_list[0]))
+		widget_label = 'Worklist (1 Ticker)'
 
 	if no_of_tickers > 1:
-		widget_label = 'Work List (' + str(no_of_tickers) + ')'
-		for ticker in ticker_list:
-			worklist.append(ticker_load_status(scope, ticker))
-		
+		widget_label = 'Work List (' + str(no_of_tickers) + ') Tickers'
+
 	selectbox = st.selectbox(
 			label		=widget_label, 
 			options		=worklist,
 			key			=widget_key,
 			)
-	
+
 	return selectbox
+
+
 
 
 def render_errors(scope):
@@ -64,59 +60,31 @@ def ticker_load_status(scope, ticker):
 	# Cloud Errors over-ride local error. If we 
 	# cant download from cloud, there probably wont be
 	# a local file anyway.
-	ticker_status = ticker + ' > '
+	ticker_status = ticker + ' '
 
 	if ticker in scope.missing_tickers['cloud']:
 		ticker_status =  ticker_status + scope.missing_tickers['errors'][ticker]['yf']
 	elif ticker in scope.missing_tickers['local']:
 		ticker_status = ticker_status + scope.missing_tickers['errors'][ticker]['load']
 	else:
-		ticker_status = ticker_status + 'ok'
+		if ticker in list(scope.tickers.keys()): 
+			ticker_df = scope.tickers[ticker]['df']
+
+			no_of_rows = ' (' + str(len(ticker_df)) +') '
+			# Date Range
+			min_date = ticker_df['date'].min()
+			max_date = ticker_df['date'].max()
+			# min_date = str(min_date).split()[0]
+			# max_date = str(max_date).split()[0]
+			min_date = str(min_date.strftime("%d-%b-%Y"))
+			max_date = str(max_date.strftime("%d-%b-%Y"))
+
+			ticker_status = ticker_status + no_of_rows + min_date + ' - ' + max_date 
+		else:
+			ticker_status = ticker_status + 'not loaded'
 	
 	return ticker_status
 
 
-
-
-
-# ===================================
-# Old code that build an amazing list of buttons
-
-# def render_worklist(scope):
-# 	# Render a button and/or an expander object that shows the 
-# 	# current state of the tickers for the current app worklist
-
-# 	app = scope.apps['display_app']
-# 	ticker_list = scope.apps[app]['worklist']
-# 	no_of_tickers = len(ticker_list)
-
-# 	if no_of_tickers == 1:
-# 		render_button_for_ticker(scope, ticker_list[0])
-
-# 	if no_of_tickers > 1:
-# 		button_description = 'Work List (' + str(no_of_tickers) + ')'
-# 		my_worklist = st.expander(label=button_description, expanded=False )
-		
-# 		with my_worklist:
-# 			st.write('Load and Download Errors')
-# 			for ticker in ticker_list:
-# 				render_button_for_ticker(scope, ticker)
-
-
-
-
-# def render_button_for_ticker(scope, ticker):
-# 	# Cloud Errors over-ride local error. If we 
-# 	# cant download from cloud, there probably wont be
-# 	# a local file anyway.
-
-# 	if ticker in scope.missing_tickers['cloud']:
-# 		download_error = ticker + '  ---- ' + scope.missing_tickers['errors'][ticker]['yf']
-# 		st.error(download_error)
-# 	elif ticker in scope.missing_tickers['local']:
-# 		load_error = ticker + '  ---- ' + scope.missing_tickers['errors'][ticker]['load']
-# 		st.warning(load_error)
-# 	else:
-# 		st.success(ticker)
 
 

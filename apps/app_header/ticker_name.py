@@ -2,6 +2,7 @@ import streamlit as st
 
 
 
+
 def render_selected_ticker_name(scope):
 
 	app = scope.apps['display_app']

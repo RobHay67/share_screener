@@ -10,6 +10,7 @@ from apps.app_header.extra_data import render_config
 from apps.app_header.selectors import render_ticker_selectors
 from apps.app_header.ticker_data import render_ticker_files
 from apps.app_header.add_columns import render_add_cols_to_df
+from apps.app_header.worklist import render_ticker_worklist
 from apps.app_header.navigation import render_quick_links
 from apps.app_header.extra_data import render_dataframes
 from apps.app_header.ticker_name import render_selected_ticker_name
@@ -26,6 +27,8 @@ def render_app_header(scope, title):
 	render_ticker_files(scope)
 
 	render_add_cols_to_df(scope)
+
+	render_ticker_worklist(scope)
 
 	render_quick_links(scope)
 
