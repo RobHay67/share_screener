@@ -9,7 +9,7 @@ from widgets.links import link_to_app_button
 
 def render_quick_links(scope):
 
-	col1,col2,col3,col4,col5,col6,col7,col8,col9,col10,col11 = st.columns([1.0,   0.5, 0.5, 0.5, 0.5,   0.5, 0.5, 0.5, 0.5, 1.0, 0.1])
+	col1,col2,col3,col4,col5,col6,col7,col8,col9,col10,col11 = st.columns([1.0,   0.5, 0.5, 0.5, 0.5,   0.5, 0.5, 0.5, 0.5, 0.5,    1.0])
 
 	app = scope.apps['display_app']
 	show_quick_link_navigation = False
@@ -37,3 +37,4 @@ def render_quick_links(scope):
 		with col8 :website_hyperlink(scope, 'yahoo', ticker)
 		with col9 :website_hyperlink(scope, 'market index', ticker)
 		with col10:website_hyperlink(scope, 'hot copper', ticker)
+		with col11:website_hyperlink(scope, 'market watch', ticker)

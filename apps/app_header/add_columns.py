@@ -23,8 +23,6 @@ def col_adder_title(scope):
 
 
 def render_add_cols_to_df(scope):
-	print('%'*33)
-	print('render_add_cols_to_df')
 	app 				= scope.apps['display_app']
 	worklist 			= scope.apps[app]['worklist']
 	no_of_tickers		= len(worklist)
@@ -42,7 +40,6 @@ def render_add_cols_to_df(scope):
 	with col5:replace_cols = add_columns_button(scope)
 
 	if replace_cols:
-		st.write('Replace Columns variable = ', replace_cols)
 		for counter, ticker in enumerate(worklist):
 			
 			screener_assessment_required = False
@@ -65,7 +62,6 @@ def render_add_cols_to_df(scope):
 
 					if ticker not in scope.apps[app]['tickers_with_add_cols']:
 					# add ticker to the loaded_ticker list
-						print('Adding ticker to tickers_with_add_cols > ', ticker)
 						scope.apps[app]['tickers_with_add_cols'].append(ticker)
 					
 					# Set the status to false to prevent refreshing unnecesarily

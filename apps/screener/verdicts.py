@@ -5,22 +5,16 @@ from widgets.links import link_to_app_button
 
 
 def render_trial_verdicts(scope):
-
 	app = scope.apps['display_app']
 	group_size = 10
 	tab_limit = 10
 
 	# Generate a list of tickers with an overall passing result
 	verdict_list = []
-	print('GENERATE A LIST OF TEST RESULTS')
 	for ticker in scope.apps[app]['worklist']:
-		print(ticker)
 		# Only mined tickers can have verdicts
 		if ticker in scope.apps[app]['tickers_with_add_cols']:
-			print('ticker is in tickers_with_add_cols list')
-			print(scope.tickers[ticker]['trials']['verdict'])
 			if scope.tickers[ticker]['trials']['verdict'] == 'pass':
-				print(ticker, 'has passed the test')
 				verdict_list.append(ticker)
 	no_of_verdicts = len(verdict_list)
 
@@ -48,7 +42,7 @@ def render_trial_verdicts(scope):
 			ticker_start += group_size
 			with tab:
 				for ticker in tickers_for_tab:
-					col1,col2,col3,col4,col5,col6,col7,col8,col9,col10,col11,col12 = st.columns([1,4,1,1,1,1,1,1,1,1,1,1])
+					col1,col2,col3,col4,col5,col6,col7,col8,col9,col10,col11,col12,col13 = st.columns([1,4,1,1,1,1,1,1,1,1,1,1,1])
 					company_name = scope.ticker_search[ticker]
 					with col1 :st.write(ticker)
 					with col2 :st.write(company_name)
@@ -62,6 +56,7 @@ def render_trial_verdicts(scope):
 					with col10:website_hyperlink(scope, 'yahoo', ticker)
 					with col11:website_hyperlink(scope, 'market index', ticker)
 					with col12:website_hyperlink(scope, 'hot copper', ticker)
+					with col13:website_hyperlink(scope, 'market watch', ticker)
 
 
 
