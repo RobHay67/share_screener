@@ -9,8 +9,8 @@ from apps.config_app.trials import view_trials_config, view_global_trial_config
 def scope_ticker_search(scope):
 
 	# company names for the ticker search
-	scope.ticker_search = {}
-	scope.ticker_search = (scope.ticker_index['company_name']).to_dict()
+	scope.config['ticker_search'] = {}
+	scope.config['ticker_search'] = (scope.ticker_index['company_name']).to_dict()
 
 
 

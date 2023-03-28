@@ -2,9 +2,9 @@
 def scope_charts(scope):
 	scope.chart_config = {}
 	base_config_charts(scope)
-	scope.chart_config['colours'] = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
 	scope.chart_config['chart_list'] = list(charts_config.keys())
-
+	scope.chart_config['colours'] = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
+	
 	scope.charts = {}
 	for chart, config in charts_config.items():
 		scope.charts[chart] = config
@@ -24,7 +24,6 @@ def base_config_charts(scope):
 
 def chart_active_list(scope):
 	# Seperate function so it can be called after the initial load - i.e. change user
-
 	# Reset the list as this function will rebuild it
 	scope.chart_config['active_list'] = []
 

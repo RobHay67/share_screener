@@ -67,7 +67,7 @@ def refresh_app_worklist_dropdown(scope):
 
 	for ticker in scope.apps[app]['worklist']:
 
-		ticker_name = scope.ticker_search[ticker]
+		ticker_name = scope.config['ticker_search'][ticker]
 		
 		ticker_length = len(ticker)
 		padding = 10 - ticker_length

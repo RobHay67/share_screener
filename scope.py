@@ -70,7 +70,7 @@ def set_streamlit_page_config():
 	
 	# Set the Browser Tab Name for the App
 	st.set_page_config( 
-			page_title='DDT - Data Driven Trading', 
+			page_title='Share Picker', 
 			page_icon='📊',
 			layout="wide",								# Allow wide Screen to be taken advantage of
 			)

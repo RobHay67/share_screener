@@ -20,7 +20,19 @@ def add_cols_to_df_layer(scope):
 	with col3:add_cols_now = add_columns_button(scope)
 
 	if add_cols_now:
+		# this is disabled in all but the screen app
 		print('add_cols_now = ', add_cols_now)
+
+
+
+def default_progress_bar(scope):
+	app = scope.apps['display_app']
+
+	if app == 'screener':
+		my_bar = st.progress(0)
+		my_bar = st.progress(100, text='No Files available - cannot add columns')
+
+
 
 
 

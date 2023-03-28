@@ -41,6 +41,8 @@ def download_ticker_index_data(scope):
 
 		refresh_dropdown_lists(scope)
 
+		#TODO - do we need to refresh the ticker search here?
+
 	else:
 		message_index_not_asx(scope)
 		pass

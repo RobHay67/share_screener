@@ -17,7 +17,7 @@ def selected_ticker_name_layer(scope):
 
 			# Base Data
 			ticker = scope.apps[app]['worklist'][0]
-			ticker_name = scope.ticker_search[ticker]
+			ticker_name = scope.config['ticker_search'][ticker]
 
 			with col1:
 				st.write('')
