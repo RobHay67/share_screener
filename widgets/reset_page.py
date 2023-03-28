@@ -30,3 +30,5 @@ def reset_render_status(scope):
 	scope.apps[app]['render']['trial_settings'] = False
 
 	scope.apps[app]['render']['strategy'] = False
+
+	scope.apps[app]['search_results'] = {}
