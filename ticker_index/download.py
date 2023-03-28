@@ -6,7 +6,10 @@ from apps.messages.ticker_index import message_download_ticker_index_asx
 from apps.messages.ticker_index import message_index_download_success
 from apps.messages.ticker_index import message_index_not_asx
 
+from apps.app_header.page_config import scope_ticker_search
 # from apps.
+
+
 
 def download_ticker_index_data(scope):
 	message_download_ticker_index_asx(scope)
@@ -42,6 +45,7 @@ def download_ticker_index_data(scope):
 		refresh_dropdown_lists(scope)
 
 		#TODO - do we need to refresh the ticker search here?
+		scope_ticker_search(scope)
 
 	else:
 		message_index_not_asx(scope)
