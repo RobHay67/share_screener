@@ -10,7 +10,14 @@ def scope_download_variables(scope):
 	base_config_download(scope)
 	reset_yf_download_config(scope)
 
+def base_config_download(scope):
+	# Setting can be changed for each user
+	# so we need to be able to call when changing user
 
+	scope.download['days'] = 7
+	set_yf_period(scope)
+
+	
 def reset_yf_download_config(scope):
 	# Reset back to these values after each download
 	scope.download['yf_download_these_industries'] = ['random_tickers']
@@ -26,12 +33,7 @@ def reset_yf_download_config(scope):
 	scope.download['yf_data'] 			= pd.DataFrame(columns=ticker_file_usecols + ['ticker'] )		
 	scope.download['yf_errors'] 		=  {}
 
-def base_config_download(scope):
-	# Setting can be changed for each user
-	# so we need to be able to call when changing user
 
-	scope.download['days'] = 7
-	set_yf_period(scope)
 
 	
 
