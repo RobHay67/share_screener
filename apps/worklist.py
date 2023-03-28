@@ -9,7 +9,6 @@ def update_app_worklist(scope):
 	scope.apps[app]['worklist_dropdown']
 
 	ticker_list = []
-	# refresh_worklist_dropdown = False
 
 	# default industry group for y_finance downloading - random_tickers = special code is run
 	list_of_industries = ['random_tickers']
@@ -20,7 +19,6 @@ def update_app_worklist(scope):
 		selected_ticker = scope.apps[app]['selectors']['ticker']
 
 		if selected_ticker != 'select a ticker' :
-			# refresh_worklist_dropdown = True		
 			ticker_list = [selected_ticker]
 	
 	else:
@@ -28,14 +26,12 @@ def update_app_worklist(scope):
 
 		# Selected a ticker or tickers
 		if len(scope.apps['screener']['selectors']['tickers']) != 0:
-			# refresh_worklist_dropdown = True
 			for ticker in scope.apps['screener']['selectors']['tickers']:
 				ticker_list.append(ticker)
 			pass
 
 		# Selected an Industry
 		elif len(scope.apps['screener']['selectors']['industries']) != 0:
-			# refresh_worklist_dropdown = True
 			list_of_industries = []
 			for industry in scope.apps['screener']['selectors']['industries']:
 				tickers_in_industry_df = scope.ticker_index[scope.ticker_index['industry_group'] == industry ]
@@ -46,7 +42,6 @@ def update_app_worklist(scope):
 		
 		# Selected an entire share market
 		elif scope.apps['screener']['selectors']['market'] != 'select market':
-			# refresh_worklist_dropdown = True
 			tickers_in_market = scope.ticker_index.index.values.tolist()
 			ticker_list = tickers_in_market
 			list_of_industries = ( list(scope.ticker_index['industry_group'].unique() ))
@@ -57,7 +52,12 @@ def update_app_worklist(scope):
 	scope.download['yf_download_these_industries'] = list_of_industries
 
 
-def refresh_worklist_dropdown(scope):
+
+
+
+
+
+def refresh_app_worklist_dropdown(scope):
 	# Cloud Errors over-ride local error. If we 
 	# cant download from cloud, there probably wont be
 	# a local file anyway.

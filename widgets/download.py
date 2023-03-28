@@ -3,17 +3,20 @@ import streamlit as st
 from tickers.download.config import set_yf_period
 
 
+
 def download_button(scope):
+
+	app = scope.apps['display_app']
 
 	download_button_msg = 'Download Prior ' + str(int(scope.download['days'])) + ' day'
 
 	if scope.download['days'] > 1: 
 		download_button_msg += 's'
-
+		
 	button = st.button(
 		label=download_button_msg, 
+		# help="Press to download the previous X days. If button disabled, select ticker(s)",
 		use_container_width=True, 
-		type='primary'
 		)
 
 	return button

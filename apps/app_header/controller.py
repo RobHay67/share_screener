@@ -1,40 +1,36 @@
 # A function that facilitates
-#  (1) loading of exisiting share data
+#  (1) loading of existing share data
 #  (2) adding extra columns (ie MACD) to that share data
 
 
 import streamlit as st
 
-from apps.app_header.app_title import render_app_title
+from apps.app_header.layer_app_title import app_title_layer
 from apps.app_header.extra_data import render_config
-from apps.app_header.selectors import render_ticker_selectors
-from apps.app_header.ticker_data import render_ticker_files
-from apps.app_header.add_columns import render_add_cols_to_df
-from apps.app_header.worklist import render_ticker_worklist
-from apps.app_header.navigation import render_quick_links
+from apps.app_header.layer_selectors import selectors_layer
+from apps.app_header.layer_ticker_files import ticker_files_layer
+from apps.app_header.layer_add_cols import add_cols_to_df_layer
+from apps.app_header.layer_worklist import ticker_worklist_layer
+from apps.app_header.layer_quicklinks import quick_links_layer
 from apps.app_header.extra_data import render_dataframes
-from apps.app_header.ticker_name import render_selected_ticker_name
+from apps.app_header.layer_ticker_name import selected_ticker_name_layer
 
 
 def render_app_header(scope, title):
 	
-	render_app_title(scope, title)
-
+	app_title_layer(scope, title)
+	
 	render_config(scope)
 
-	render_ticker_selectors(scope)
-
-	render_ticker_files(scope)
-
-	render_add_cols_to_df(scope)
-
-	render_ticker_worklist(scope)
-
-	render_quick_links(scope)
+	selectors_layer(scope)
+	ticker_files_layer(scope)
+	add_cols_to_df_layer(scope)
+	ticker_worklist_layer(scope)
+	quick_links_layer(scope)
 
 	render_dataframes(scope)
 
-	render_selected_ticker_name(scope)
+	selected_ticker_name_layer(scope)
 
 	
 

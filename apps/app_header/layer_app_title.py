@@ -5,13 +5,15 @@ from widgets.chart_config import chart_config_button
 from widgets.chart_config import chart_overlay_button
 from widgets.strategies_button import strategies_button
 from widgets.trial_config import trial_config_button
+from widgets.reset_page import reset_page_render
 
-def render_app_title(scope, title):
+
+def app_title_layer(scope, title):
     
 	app = scope.apps['display_app']
 
 	# Render Page Title
-	col1,col2,col3,col4 = st.columns([10.5,0.5,0.5,0.5])
+	col1,col2,col3,col4,col5 = st.columns([9.5,0.5,0.5,0.5,1.0])
 	with col1:
 		st.subheader(title)
 	if app == 'chart':
@@ -22,6 +24,7 @@ def render_app_title(scope, title):
 		with col3:trial_config_button(scope)
 	with col4:
 		app_config_button(scope)
+	with col5:reset_page_render(scope)
 		
 
 

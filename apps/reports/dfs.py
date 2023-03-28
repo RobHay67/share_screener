@@ -2,34 +2,34 @@
 import streamlit as st
 
 
-def render_loaded_df(scope):
+def render_available_dataframes(scope):
 
 	app = scope.apps['display_app']
 
-	ticker = scope.apps[app]['render']['ticker_file']
+	selected_ticker = scope.apps[app]['render']['ticker_file'].split("---")
+	ticker = selected_ticker[0]
 
-	dataframe = scope.tickers[ticker]['df']
+	col1,col2=st.columns([4,8])
 
-	no_of_rows = str(len(dataframe))
-	my_expander = st.expander(
-					label=('raw file > ' + ticker+' (' + no_of_rows + ')'), 
-					expanded=True 
-					)
-	my_expander.dataframe(dataframe, 2000, 500)	
+	if ticker in scope.tickers.keys():
+		with col1:render_dataframe(scope, app, ticker, 'ticker_file')
+		with col2:render_dataframe(scope, app, ticker, 'with_added_columns')
 
 
-def render_df_with_added_cols(scope):
 
-	app = scope.apps['display_app']
+def render_dataframe(scope, app, ticker, type_df):
 
-	ticker = scope.apps[app]['render']['col_added_df']
+	if type_df == 'ticker_file':
+		df = scope.tickers[ticker]['df']
+		prefix='raw ticker file    >'
 
-	dataframe = scope.tickers[ticker][app]['df']
+	if type_df == 'with_added_columns':
+		df = scope.tickers[ticker][app]['df']
+		prefix='with added columns >'
 
-	no_of_rows = str(len(dataframe))
-	my_expander = st.expander(
-					label=('add cols > ' + ticker+' (' + no_of_rows + ')'), 
-					expanded=True 
-					)
-	my_expander.dataframe(dataframe, 2000, 500)	
+	# TODO - maybe set the index to be the date range for better scrollability
+
+	no_of_rows = str(len(df))
+	my_expander = st.expander(label=(prefix+ticker+' (' + no_of_rows + ')'), expanded=False )
+	my_expander.dataframe(df, 2000, 2000)	
 

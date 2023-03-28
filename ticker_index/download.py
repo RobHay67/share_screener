@@ -1,7 +1,7 @@
 import pandas as pd
 
 from ticker_index.update import update_index
-from apps.app_header.dropdowns import refresh_dropdown_lists
+from apps.app_header.layer_selectors import refresh_dropdown_lists
 from apps.messages.ticker_index import message_download_ticker_index_asx
 from apps.messages.ticker_index import message_index_download_success
 from apps.messages.ticker_index import message_index_not_asx

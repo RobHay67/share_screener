@@ -3,7 +3,7 @@ import streamlit as st
 
 
 
-def render_selected_ticker_name(scope):
+def selected_ticker_name_layer(scope):
 
 	app = scope.apps['display_app']
 
