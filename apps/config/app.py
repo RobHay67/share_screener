@@ -34,6 +34,7 @@ def scope_apps(scope):
 		
 		scope.apps[app]['render'] = 	{
 										'ticker_file':'Show/Hide Data',	
+										
 										'verdicts':False,			# so we can rerun the verdicts   # TODO - not sure we need this here
 										
 										'app_config':False,			# the raw dictionary and list

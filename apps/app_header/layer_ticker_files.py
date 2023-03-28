@@ -47,7 +47,7 @@ def progress_bar_loading_tickers(scope, app):
 
 		for counter, ticker in enumerate(list_of_tickers_to_load):
 			poc = int(((counter+1) / no_of_tickers ) * 100)
-			my_bar.progress(poc, text='Loading ohlcv Ticker Files')
+			my_bar.progress(poc, text='Loading ohlcv Ticker File = '+ticker)
 			load_ticker(scope, ticker)
 	
 	# we will have new information after the load so update

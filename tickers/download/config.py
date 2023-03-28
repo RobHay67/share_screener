@@ -22,16 +22,16 @@ def reset_yf_download_config(scope):
 	# Reset back to these values after each download
 	scope.download['yf_download_these_industries'] = ['random_tickers']
 	# Batch specific params and data is stored here
-	scope.download['yf_batch_no']		= 0
-	scope.download['yf_batch_industry']	= ''
+	scope.download['yf_batch_no']				= 0
+	scope.download['yf_batch_industry']			= ''
 	scope.download['yf_batch_ticker_string']	= ''
-	scope.download['yf_batch_type']	= ''
-	scope.download['yf_batch_data'] = {}
-	scope.download['yf_batch_errors'] = {}
+	scope.download['yf_batch_type']				= ''
+	scope.download['yf_batch_data'] 			= {}
+	scope.download['yf_batch_errors'] 			= {}
 	# Entire Download run is stored here
-	scope.download['yf_ticker_list'] 	= []	
-	scope.download['yf_data'] 			= pd.DataFrame(columns=ticker_file_usecols + ['ticker'] )		
-	scope.download['yf_errors'] 		=  {}
+	scope.download['yf_ticker_list'] 			= []	
+	scope.download['yf_data'] 					= pd.DataFrame(columns=ticker_file_usecols + ['ticker'] )		
+	scope.download['yf_errors'] 				=  {}
 
 
 
