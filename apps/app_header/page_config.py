@@ -1,40 +1,50 @@
 import streamlit as st
 
-from apps.config_app.three_cols import three_cols
-from apps.config_app.charts import view_charts_config, view_global_chart_config
-from apps.config_app.trials import view_trials_config, view_global_trial_config
+from apps.config.three_cols import three_cols
+import streamlit as st
+
+
+from apps.chart.config.primary import render_primary_charts_config
+from apps.chart.config.overlays import render_overlays_config
+from apps.screener.config.controller import render_available_trials
+from strategies.config import render_strategies
 
 
 
-def scope_ticker_search(scope):
-	# company names for the ticker search
-	scope.config['ticker_search'] = {}
-	scope.config['ticker_search'] = (scope.ticker_index['company_name']).to_dict()
+def render_config_and_settings(scope):
+
+	app = scope.apps['display_app']
+
+	if scope.apps[app]['render']['app_config'] == True:
+		render_page_config(scope)
+
+	if scope.apps[app]['render']['chart_settings'] == True:
+		render_primary_charts_config(scope)
+
+	if scope.apps[app]['render']['overlay_settings'] == True:
+		render_overlays_config(scope)
+
+	if scope.apps[app]['render']['trial_settings'] == True:
+		render_available_trials(scope)
+
+	if scope.apps[app]['render']['strategy'] == True:
+		render_strategies(scope)
 
 
-
-
-def scope_dropdown_menus(scope):
-	# Dropdowns
-	scope.config['dropdowns'] = {}
-	scope.config['dropdowns']['markets'] = []
-	scope.config['dropdowns']['industries'] = []
-	scope.config['dropdowns']['tickers'] = []
-	scope.config['dropdowns']['ticker'] = []
-	scope.config['dropdowns']['ohlcv_columns'] 	= ['open', 'high', 'low', 'close', 'volume']
-	scope.config['dropdowns']['price_columns'] = ['open', 'high', 'low', 'close' 		   ]	
-
+def view_app_page_config(scope):
+	st.subheader('App / Page Configuration - applies to all apps/pages')
+	three_cols( 'App / Page  Configuration stored in', {}, 'scope.apps', widget_type='string' )
+	three_cols( 'Application List', scope.apps['app_list'], 'scope.apps.app_list', widget_type='string' )
+	three_cols( 'App / Page to Display', scope.apps['display_app'], 'scope.apps.display_app', widget_type='string' )
+	three_cols( 'Row Limit for Page', scope.apps['row_limit'], 'scope.apps.row_limit', widget_type='string' )
+	three_cols( 'Streamlit Latest Button Pressed', scope.apps['button_for_scope'], 'scope.apps.button_for_scope' )
 
 
 def render_page_config(scope):
 
 	st.write('---')
-	st.subheader('Global Application Configuration - applies to all apps/pages')
-	three_cols( 'Global Application Configuration stored in', {}, 'scope.apps', widget_type='string' )
-	three_cols( 'Application List', scope.apps['app_list'], 'scope.apps.app_list', widget_type='string' )
-	three_cols( 'App / Page to Display', scope.apps['display_app'], 'scope.apps.display_app', widget_type='string' )
-	three_cols( 'Row Limit for Page', scope.apps['row_limit'], 'scope.apps.row_limit', widget_type='string' )
-	three_cols( 'Streamlit Latest Button Pressed', scope.apps['button_for_scope'], 'scope.apps.button_for_scope' )
+	
+	view_app_page_config(scope)
 
 	app = scope.apps['display_app']
 	st.write('---')
@@ -52,16 +62,14 @@ def render_page_config(scope):
 	three_cols( 'Tickers' , scope.apps[app]['selectors']['tickers']   , 'scope.apps.'+ app +"['selectors']['tickers']"   , widget_type='string' )
 	three_cols( 'Ticker'  , scope.apps[app]['selectors']['ticker']    , 'scope.apps.'+ app +"['selectors']['ticker']"    , widget_type='string' )
 	
-	st.caption('Render Dataframes')
-	three_cols( 'Ticker DFs'  , scope.apps[app]['render']['ticker_file']    , 'scope.apps.'+ app +"['render']['ticker_file']"    , widget_type='string' )
-	three_cols( 'Chart DFs'  , scope.apps[app]['render']['col_added_df']    , 'scope.apps.'+ app +"['render']['col_added_df']"    , widget_type='string' )
-	
-	st.caption('Render Configuration')
-	three_cols( 'Chart Settings'  , scope.apps[app]['render']['chart_settings']    , 'scope.apps.'+ app +"['render']['chart_config']"    , widget_type='string' )
-	three_cols( 'Overlay Settings'  , scope.apps[app]['render']['overlay_settings']    , 'scope.apps.'+ app +"['render']['overlay_config']"    , widget_type='string' )
-	three_cols( 'Trial Settings'  , scope.apps[app]['render']['trial_settings']    , 'scope.apps.'+ app +"['render']['trial_config']"    , widget_type='string' )
-	three_cols( 'Strategies'  , scope.apps[app]['render']['strategy']    , 'scope.apps.'+ app +"['render']['strategy']"    , widget_type='string' )
-	three_cols( 'App Config (this page)'  , scope.apps[app]['render']['app_config']    , 'scope.apps.'+ app +"['render']['app_config']"    , widget_type='string' )
+	st.caption('Render')
+	three_cols( 'Verdicts ????'  , scope.apps[app]['render']['verdicts']    , 'scope.apps.'+ app +"['render']['verdicts']"    , widget_type='string' )
+	three_cols( 'Show Ticker DFs'  , scope.apps[app]['render']['ticker_file']    , 'scope.apps.'+ app +"['render']['ticker_file']"    , widget_type='string' )
+	three_cols( 'Show Chart Settings'  , scope.apps[app]['render']['chart_settings']    , 'scope.apps.'+ app +"['render']['chart_config']"    , widget_type='string' )
+	three_cols( 'Show Overlay Settings'  , scope.apps[app]['render']['overlay_settings']    , 'scope.apps.'+ app +"['render']['overlay_config']"    , widget_type='string' )
+	three_cols( 'Show Trial Settings'  , scope.apps[app]['render']['trial_settings']    , 'scope.apps.'+ app +"['render']['trial_config']"    , widget_type='string' )
+	three_cols( 'Show Strategies'  , scope.apps[app]['render']['strategy']    , 'scope.apps.'+ app +"['render']['strategy']"    , widget_type='string' )
+	three_cols( 'Show App Config (this page)'  , scope.apps[app]['render']['app_config']    , 'scope.apps.'+ app +"['render']['app_config']"    , widget_type='string' )
 
 	st.write('---')
 	st.header('Data Management')
@@ -88,15 +96,5 @@ def render_page_config(scope):
 		three_cols( 'Which Columns require replacement ?'  , scope.tickers[ticker][app]['column_adders']    , 'scope.tickers['+ ticker + '][' + app + "]['column_adders']", widget_type='string' )
 
 
-
-
-	# Add in the User config
-
-	if app == 'chart':
-		view_global_chart_config(scope)
-		view_charts_config(scope)
-
-	if app == 'screener':
-		view_global_trial_config(scope)
-		view_trials_config(scope)
+	st.write('---')
 

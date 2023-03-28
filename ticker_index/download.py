@@ -5,9 +5,7 @@ from apps.app_header.layer_selectors import refresh_dropdown_lists
 from apps.messages.ticker_index import message_download_ticker_index_asx
 from apps.messages.ticker_index import message_index_download_success
 from apps.messages.ticker_index import message_index_not_asx
-
-from apps.app_header.page_config import scope_ticker_search
-# from apps.
+from apps.config.ticker_search import scope_ticker_search
 
 
 

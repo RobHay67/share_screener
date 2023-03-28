@@ -8,6 +8,7 @@ from widgets.download import edit_download_days
 from widgets.logout import logout_button
 
 
+
 def render_sidebar(scope):
 	
 	st.sidebar.title(scope.config['project_description'])
@@ -15,6 +16,11 @@ def render_sidebar(scope):
 	local_time=datetime.now()
 	market_timezone = opening_hours[scope.config['share_market']]['timezone']
 	market_time = datetime.now(pytz.timezone(market_timezone))
+
+	print('local_time      = ', local_time)
+	print('market_timezone = ', market_timezone)
+	print('market_time     = ', market_time)
+	
 	
 	if scope.users['login_name'] != 'Login to Use the Application':
 		with st.sidebar:

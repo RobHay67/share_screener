@@ -3,12 +3,14 @@ import time
 
 from files.config import scope_folders_and_paths
 from users.config import scope_users
-from apps.config import scope_apps
+from apps.config.app import scope_apps
 from trials.config import scope_trials
 from charts.config import scope_charts
 from ticker_index.config import scope_index_file
-from apps.app_header.page_config import scope_ticker_search, scope_dropdown_menus
-from tickers.config import scope_ticker_files, scope_missing_tickers
+from apps.config.ticker_search import scope_ticker_search
+from apps.config.dropdowns import scope_dropdown_menus
+from tickers.config import scope_ticker_files
+from apps.config.missing_tickers import scope_missing_tickers
 from tickers.download.config import scope_download_variables
 from strategies.config import scope_strategy
 

@@ -1,6 +1,6 @@
 import os
 
-from apps.config_app.three_cols import three_cols
+from apps.config.three_cols import three_cols
 
 
 def scope_folders_and_paths(scope):

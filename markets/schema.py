@@ -15,6 +15,8 @@ public_holidays = {
 opening_hours = { 
 						'ASX':{
 							'timezone':'Australia/Sydney',
+                            'market_open':'10:00:00',
+                            'market_close':'16:12:00',
 							# https://www.marketindex.com.au/trading-hours
 							'group_1':{'letter_range':['1', '2', '3', '4', '5', '8', '9', 'A', 'B'], 'opening_time':'10:00:00','minutes_per_day':360   },
 							'group_2':{'letter_range':['C', 'D', 'E', 'F'],                          'opening_time':'10:02:15','minutes_per_day':357.75},
@@ -24,6 +26,8 @@ opening_hours = {
 						},
 						'USA':{	
 							'timezone':'US/Central',
+                            'market_open':'10:00:00',
+                            'market_close':'10:00:00',
 							'group_1':{'letter_range':['1', '2', '3', '4', '5', '8', '9', 'A', 'B'], 'opening_time':'10:00:00','minutes_per_day':360   },
 							},
 				}

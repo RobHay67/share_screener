@@ -1,6 +1,4 @@
-
-from tickers.config import scope_missing_ticker_error
-
+from apps.config.missing_tickers import scope_missing_ticker_error
 
 
 def missing_file_event(scope, ticker):

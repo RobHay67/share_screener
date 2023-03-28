@@ -2,6 +2,7 @@
 from users.load import load_user_table
 
 
+
 def scope_users(scope:dict):
 
 	scope.users = {}
@@ -17,3 +18,9 @@ def base_config_users(scope):
 	# so we need to be able to call when changing user
 
 	scope.users['login_name'] = 'Login to Use the Application'
+
+
+
+
+
+

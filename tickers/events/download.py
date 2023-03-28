@@ -1,5 +1,6 @@
+from apps.config.missing_tickers import scope_missing_ticker_error
 
-from tickers.config import scope_missing_ticker_error
+
 
 
 def fail_download_event(scope, ticker, zero_volume=False):

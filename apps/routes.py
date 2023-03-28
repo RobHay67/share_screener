@@ -7,7 +7,7 @@ from apps.volume.controller import render_volume_page
 from apps.screener.controller import render_screener_page
 from apps.websites.controller import render_websites
 from apps.index.controller import render_ticker_index_page
-from apps.config_app.controller import render_scope_categories
+from apps.config.controller import render_scope_categories
 
 
 

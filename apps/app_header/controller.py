@@ -6,13 +6,13 @@
 import streamlit as st
 
 from apps.app_header.layer_app_title import app_title_layer
-from apps.app_header.extra_data import render_config
+from apps.app_header.page_config import render_config_and_settings
 from apps.app_header.layer_selectors import selectors_layer
 from apps.app_header.layer_ticker_files import ticker_files_layer
 from apps.app_header.layer_add_cols import add_cols_to_df_layer
 from apps.app_header.layer_worklist import ticker_worklist_layer
 from apps.app_header.layer_quicklinks import quick_links_layer
-from apps.app_header.extra_data import render_dataframes
+from apps.app_header.dataframes import render_dataframes
 from apps.app_header.layer_ticker_name import selected_ticker_name_layer
 
 
@@ -20,7 +20,7 @@ def render_app_header(scope, title):
 	
 	app_title_layer(scope, title)
 	
-	render_config(scope)
+	render_config_and_settings(scope)
 
 	selectors_layer(scope)
 	ticker_files_layer(scope)

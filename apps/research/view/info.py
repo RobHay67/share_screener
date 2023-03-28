@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 
-from apps.config_app.two_cols import view_2_columns
+from apps.config.two_cols import view_2_columns
 
 def company_general(metadata):
 	# st.subheader(metadata.info['longName'])
