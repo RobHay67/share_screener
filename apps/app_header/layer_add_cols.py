@@ -10,23 +10,24 @@ from trials.verdict import determine_overall_ticker_verdict
 
 def add_cols_to_df_layer(scope):
 
-	col1,col2,col3 = st.columns([1.5, 9.0, 1.5])  #12.0
-	with col1:st.caption('Add Columns to Ticker Files')
-	with col2:render_progress_bar(scope)      # TODO this will add/update the columns as well!
-
-
-def render_progress_bar(scope):
 	app = scope.apps['display_app']
+
+	if app in ['chart','intraday','screener']:
+		col1,col2,col3 = st.columns([1.5, 9.0, 1.5])  #12.0
+		with col1:st.caption('Add Columns to Ticker Files')
+		with col2:render_progress_bar(scope, app)      # will add/update the columns as well!
+
+
+def render_progress_bar(scope, app):
 
 	if len(scope.apps[app]['worklist']) == 0:
 		st.write('No Files available - make some selections')
 	else:
-		replace_df_and_add_columns(scope)
+		replace_df_and_add_columns(scope, app)
 
 
-def replace_df_and_add_columns(scope):
+def replace_df_and_add_columns(scope, app):
 
-	app = scope.apps['display_app']
 	ticker_list = create_ticker_list_to_add_columns(scope, app)
 	app_row_limit = int(scope.apps['row_limit'])
 	completion_text = 'Finished adding columns to Ticker File(s)'

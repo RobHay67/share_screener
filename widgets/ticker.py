@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-def select_a_ticker(scope, ticker=None):
+def select_a_ticker(scope):
 
 	app = scope.apps['display_app']
 	
@@ -9,7 +9,7 @@ def select_a_ticker(scope, ticker=None):
 	display_name = 'Select a Ticker'
 	previous_selection = scope.apps[app]['selectors']['ticker']
 	pos_for_previous = scope.config['dropdowns']['ticker'].index(previous_selection)	
-
+	
 	st.selectbox ( 
 				label		=display_name, 
 				options		=scope.config['dropdowns']['ticker'],

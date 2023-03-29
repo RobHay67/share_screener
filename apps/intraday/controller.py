@@ -10,7 +10,7 @@ def render_intraday_page(scope):
 
 	app = scope.apps['display_app']
 
-	render_app_header(scope, 'Intra Day Analysis')
+	render_app_header(scope, '🌤️ Intra Day Analysis')
 
 	ticker = scope.apps[app]['selectors']['ticker']
 

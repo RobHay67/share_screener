@@ -6,7 +6,7 @@ from apps.app_header.controller import render_app_header
 
 def render_websites_page(scope):
 
-	render_app_header(scope, 'Internet Resources')
+	render_app_header(scope, '🌐 Internet Resources')
 
 	col1,col2 = st.columns([4,4])
 

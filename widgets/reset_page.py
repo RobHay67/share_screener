@@ -21,7 +21,6 @@ def reset_page_render(scope):
 
 def reset_render_status(scope):
 	app = scope.apps['display_app']
-
 	scope.apps[app]['render']['ticker_file'] = 'Show/Hide Data'
 
 	scope.apps[app]['render']['app_config'] = False

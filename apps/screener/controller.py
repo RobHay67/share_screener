@@ -6,6 +6,6 @@ def render_screener_page(scope):
 
 	app = scope.apps['display_app']
 
-	render_app_header(scope, 'Ticker Screener')
+	render_app_header(scope, '🧪 Ticker Screener')
 
 	render_trial_verdicts(scope)

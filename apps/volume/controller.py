@@ -12,7 +12,7 @@ def render_volume_page(scope):
 
 	app = scope.apps['display_app']
 
-	render_app_header(scope, 'Predict Closing Volume to End of Today')
+	render_app_header(scope, '🔊 Predict Closing Volume to End of Today')
 	
 	ticker = scope.apps['volume']['selectors']['ticker']
 

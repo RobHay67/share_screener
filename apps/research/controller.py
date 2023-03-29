@@ -43,7 +43,7 @@ def render_research_page(scope):
 
 	app = scope.apps['display_app']
 
-	render_app_header(scope, 'Company Research')
+	render_app_header(scope, '🕵 Company Research')
 
 	ticker = scope.apps[app]['selectors']['ticker']
 

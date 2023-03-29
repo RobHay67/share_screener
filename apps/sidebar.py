@@ -17,9 +17,9 @@ def render_sidebar(scope):
 	market_timezone = opening_hours[scope.config['share_market']]['timezone']
 	market_time = datetime.now(pytz.timezone(market_timezone))
 
-	print('local_time      = ', local_time)
-	print('market_timezone = ', market_timezone)
-	print('market_time     = ', market_time)
+	# print('local_time      = ', local_time)
+	# print('market_timezone = ', market_timezone)
+	# print('market_time     = ', market_time)
 	
 	
 	if scope.users['login_name'] != 'Login to Use the Application':
@@ -35,7 +35,6 @@ def render_sidebar(scope):
 			edit_download_days(scope)
 		
 			edit_row_limit(scope)
-
 
 			# st.subheader('Analysis')
 			st.button('📊 Chart'  		, on_click=set_page, args=(scope, 'chart', ), use_container_width=True)

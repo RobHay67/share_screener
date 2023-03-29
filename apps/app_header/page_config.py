@@ -63,7 +63,6 @@ def render_page_config(scope):
 	three_cols( 'Ticker'  , scope.apps[app]['selectors']['ticker']    , 'scope.apps.'+ app +"['selectors']['ticker']"    , widget_type='string' )
 	
 	st.caption('Render')
-	three_cols( 'Verdicts ????'  , scope.apps[app]['render']['verdicts']    , 'scope.apps.'+ app +"['render']['verdicts']"    , widget_type='string' )
 	three_cols( 'Show Ticker DFs'  , scope.apps[app]['render']['ticker_file']    , 'scope.apps.'+ app +"['render']['ticker_file']"    , widget_type='string' )
 	three_cols( 'Show Chart Settings'  , scope.apps[app]['render']['chart_settings']    , 'scope.apps.'+ app +"['render']['chart_config']"    , widget_type='string' )
 	three_cols( 'Show Overlay Settings'  , scope.apps[app]['render']['overlay_settings']    , 'scope.apps.'+ app +"['render']['overlay_config']"    , widget_type='string' )

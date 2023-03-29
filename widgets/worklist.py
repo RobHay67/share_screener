@@ -1,22 +1,20 @@
 import streamlit as st
 
 
-def render_worklist(scope):
+def render_worklist_dropdown(scope):
 
 	app = scope.apps['display_app']
 
 	worklist = scope.apps[app]['worklist_dropdown']
 	widget_key = 'widget_' + app + '_worklist_dropdown'
-	no_of_tickers = len(worklist)
+	no_of_tickers = len(worklist)-1 # as a default is inserted at the top
 
-	if no_of_tickers == 0:widget_label = 'Worklist (Empty)'
+	if no_of_tickers  < 1:widget_label = 'Worklist (Empty)'
 	if no_of_tickers == 1:widget_label = 'Worklist (1 Ticker)'
 	if no_of_tickers  > 1:widget_label = 'Worklist (' + str(no_of_tickers) + ') Tickers'
 
 	previous_selection = scope.apps[app]['render']['ticker_file']
 	pos_for_previous = scope.apps[app]['render']['ticker_file'].index(previous_selection)	
-
-	worklist.insert(0, 'Show/Hide Data')
 
 	selectbox = st.selectbox(
 			label		=widget_label, 
@@ -51,7 +49,7 @@ def store_loaded_ticker(scope, app, widget_key):
 
 
 def render_ticker_load_and_download_errors(scope):
-	# Same as render_worklist but only the errirs only 
+	# Same as render_worklist_dropdown but only the errirs only 
 
 	app = scope.apps['display_app']
 

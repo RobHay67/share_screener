@@ -34,6 +34,8 @@ def render_app_header(scope, title):
 
 	selected_ticker_name_layer(scope)
 
+
+
 	
 
 	

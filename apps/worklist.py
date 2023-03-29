@@ -5,9 +5,6 @@ def update_app_worklist(scope):
 	# most detailed takes precedence ie a single ticker is used, even if a user has also selected an industry
 
 	app = scope.apps['display_app']
-
-	scope.apps[app]['worklist_dropdown']
-
 	ticker_list = []
 
 	# default industry group for y_finance downloading - random_tickers = special code is run
@@ -57,7 +54,7 @@ def update_app_worklist(scope):
 
 
 
-def refresh_app_worklist_dropdown(scope):
+def build_app_worklist_dropdown(scope):
 	# Cloud Errors over-ride local error. If we 
 	# cant download from cloud, there probably wont be
 	# a local file anyway.
@@ -94,6 +91,8 @@ def refresh_app_worklist_dropdown(scope):
 				ticker_status = ticker_status + 'not loaded'
 		
 		work_list_dropdown.append(ticker_status)
+	
+	work_list_dropdown.insert(0, 'Show/Hide Data')
 
 	scope.apps[app]['worklist_dropdown'] = work_list_dropdown
 

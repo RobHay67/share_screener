@@ -4,8 +4,6 @@
 # - expecting the verdicts to be stored in scope.tickers[ticker]['trials']['verdict']
 
 
-
-
 import streamlit as st
 
 from widgets.links import website_hyperlink
@@ -13,25 +11,21 @@ from widgets.links import link_to_app_button
 
 
 def render_trial_verdicts(scope):
-	app = scope.apps['display_app']
+	
 	group_size = 10
-	tab_limit = 10
-
-	# Generate a list of tickers with an overall passing result
-	verdict_list = []
-	for ticker in scope.apps[app]['worklist']:
-		# Only mined tickers can have verdicts
-		if ticker in scope.apps[app]['tickers_with_add_cols']:
-			if scope.tickers[ticker][app]['verdict'] == 'pass':
-				verdict_list.append(ticker)
+	number_of_tabs = 30
+	verdict_list = passing_verdict_list(scope)
 	no_of_verdicts = len(verdict_list)
 
 	st.subheader('Passing Test Results       (' + str(no_of_verdicts) + ') passed')
-	if no_of_verdicts > (group_size * tab_limit):
-		# Dont render more than say 100 Tickers
-		st.error('Too many passing verdicts to render (' + str(no_of_verdicts) + ')')
-	elif no_of_verdicts == 0:
+	
+	if no_of_verdicts == 0:
 		st.warning('No Passing Verdicts to Render')
+	elif no_of_verdicts > (group_size * number_of_tabs):
+		st.error('Too many passing verdicts ('+str(no_of_verdicts)+') to render.')
+		st.write('Maximum No of Tabs           = '+str(number_of_tabs))
+		st.write('Maximum Verdicts in each tab = '+str(group_size))
+		st.write('Limit = Tabs x Verdict per Tab = '+str(group_size * number_of_tabs))
 	else:
 		# Render the Results
 		no_of_tabs = int(no_of_verdicts / group_size)		
@@ -39,7 +33,7 @@ def render_trial_verdicts(scope):
 			
 		tab_list = []
 		for tab_no in range(no_of_tabs):
-			tab_list.append('Group ' + str(tab_no+1))
+			tab_list.append(str(tab_no+1))
 
 		# Create Tabs and populate from verdicts
 		tabs = st.tabs(tab_list)
@@ -68,7 +62,18 @@ def render_trial_verdicts(scope):
 
 
 
+def passing_verdict_list(scope):
+	# Generate a list of tickers with an overall passing result
+	app = scope.apps['display_app']
+	verdict_list = []
 
+	for ticker in scope.apps[app]['worklist']:
+		# Only mined tickers can have verdicts
+		if ticker in scope.apps[app]['tickers_with_add_cols']:
+			if scope.tickers[ticker][app]['verdict'] == 'pass':
+				verdict_list.append(ticker)
+
+	return verdict_list
 
 
 

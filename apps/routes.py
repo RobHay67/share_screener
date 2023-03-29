@@ -14,7 +14,6 @@ from apps.config.controller import render_lconfig_page
 def render_selected_app(scope):
 	
 	app = scope.apps['display_app']
-	print( 'Rendering > ', app)
 	
 	page_map = {
 						'login'				:render_login_page,

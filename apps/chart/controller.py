@@ -15,7 +15,7 @@ def render_chart_ticker_page(scope):
 	app = scope.apps['display_app']
 	ticker = scope.apps[app]['selectors']['ticker']
 
-	render_app_header(scope, 'Charting Applicaton (Single Ticker)')
+	render_app_header(scope, '📊 Charting Applicaton (Single Ticker)')
 	
 	if ticker in scope.apps[app]['tickers_with_add_cols']:
 
