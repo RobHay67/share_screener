@@ -3,7 +3,7 @@ import streamlit as st
 
 from users.login import login_user
 
-def render_login_form(scope):
+def render_login_page(scope):
 
 	col1,col2 = st.columns([2,8])
 	

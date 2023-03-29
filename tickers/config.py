@@ -6,6 +6,7 @@
 # Data is added by other functions.
 
 
+
 def scope_ticker_files(scope):
 	scope.tickers = {}
 

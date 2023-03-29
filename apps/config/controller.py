@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Config (scope)
-from apps.config.app import view_app
+from apps.config.config import view_app
 from apps.config.dropdowns import view_dropdowns
 from apps.config.ticker_search import view_ticker_search
 from apps.config.trials import view_trials_config
@@ -41,7 +41,7 @@ def set_st_button(scope:dict, button:str):
 	scope.apps['button_for_scope'] = button
 
 
-def render_scope_categories(scope):
+def render_lconfig_page(scope):
 	st.subheader('Configuration Setting')
 	col1,col2,col3,col4,col5,col6,col7,col8,col9,col10 = st.columns(10)
 	

@@ -41,7 +41,7 @@ def set_batch_params(scope):
 		ticker_list = scope.apps[app]['worklist']
 	else:
 		# selected a share market, industry or multiple industries
-		industry_tickers = scope.ticker_index[scope.ticker_index['industry_group'] == industry ]
+		industry_tickers = scope.ticker_index['df'][scope.ticker_index['df']['industry_group'] == industry ]
 		ticker_list = industry_tickers.index.tolist()
 
 	# Create a readable list of the tickers for Y_Finance

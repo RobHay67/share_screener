@@ -34,7 +34,7 @@ def update_app_worklist(scope):
 		elif len(scope.apps['screener']['selectors']['industries']) != 0:
 			list_of_industries = []
 			for industry in scope.apps['screener']['selectors']['industries']:
-				tickers_in_industry_df = scope.ticker_index[scope.ticker_index['industry_group'] == industry ]
+				tickers_in_industry_df = scope.ticker_index['df'][scope.ticker_index['df']['industry_group'] == industry ]
 				tickers_in_industry = tickers_in_industry_df.index.tolist()
 				ticker_list += tickers_in_industry 
 				list_of_industries.append(industry)
@@ -42,9 +42,9 @@ def update_app_worklist(scope):
 		
 		# Selected an entire share market
 		elif scope.apps['screener']['selectors']['market'] != 'select market':
-			tickers_in_market = scope.ticker_index.index.values.tolist()
+			tickers_in_market = scope.ticker_index['df'].index.values.tolist()
 			ticker_list = tickers_in_market
-			list_of_industries = ( list(scope.ticker_index['industry_group'].unique() ))
+			list_of_industries = ( list(scope.ticker_index['df']['industry_group'].unique() ))
 		
 	# Store the ticker_list and list_of_industries variables
 	ticker_list.sort()

@@ -27,8 +27,8 @@ def render_volume_page(scope):
 		###########################################################################################
 
 		# Relevant Times for this Ticker
-		ticker_opening_time 	= scope.ticker_index.loc[ticker]['opening_time']
-		ticker_minutes_per_day 	= scope.ticker_index.loc[ticker]['minutes_per_day']
+		ticker_opening_time 	= scope.ticker_index['df'].loc[ticker]['opening_time']
+		ticker_minutes_per_day 	= scope.ticker_index['df'].loc[ticker]['minutes_per_day']
 						
 		# Build the open time for this ticker
 		open_hour 	= int(ticker_opening_time[:2])

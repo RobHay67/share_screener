@@ -27,7 +27,7 @@ def load_ticker_index_file( scope ):
 		
 		# remove any delisted stocks here
 
-		scope.ticker_index = ticker_index		
+		scope.ticker_index['df'] = ticker_index		
 
 		refresh_dropdown_lists(scope)
 
@@ -45,7 +45,7 @@ def load_ticker_index_file( scope ):
 		
 		# remove any delisted stocks here
 		
-		scope.ticker_index = ticker_index
+		scope.ticker_index['df'] = ticker_index
 		
 		save_index(scope)
 

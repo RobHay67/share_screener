@@ -8,7 +8,7 @@ def vpm_cols( scope, chart, ticker, chart_df):
 
 	app  	= scope.apps['display_app']
 	
-	minutes_per_day = scope.ticker_index.loc[ticker]['minutes_per_day']
+	minutes_per_day = scope.ticker_index['df'].loc[ticker]['minutes_per_day']
 
 	chart_df['vpm'] = (chart_df['volume'] / minutes_per_day).astype(int)
 

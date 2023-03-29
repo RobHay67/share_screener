@@ -7,7 +7,7 @@ from apps.messages.ticker_index import message_save
 def save_index( scope ): # DONE
 	# st.subheader('Save Ticker Index File')
 	
-	saving_df = scope.ticker_index.copy()
+	saving_df = scope.ticker_index['df'].copy()
 	
 	saving_df.reset_index(inplace=True)      	 # ensure that the index is saved as a normal column
 	

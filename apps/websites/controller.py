@@ -4,7 +4,7 @@ from apps.app_header.controller import render_app_header
 
 
 
-def render_websites(scope):
+def render_websites_page(scope):
 
 	render_app_header(scope, 'Internet Resources')
 

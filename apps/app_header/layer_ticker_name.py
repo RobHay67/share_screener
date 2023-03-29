@@ -20,7 +20,7 @@ def selected_ticker_name_layer(scope):
 			col1,col2 = st.columns([8.0, 4.0])  #12
 
 			with col1:st.subheader(ticker_name)
-			with col2:st.dataframe(ticker_latest_price_df)
+			with col2:st.dataframe(ticker_latest_price_df, use_container_width=True)
 			
 
 
