@@ -20,6 +20,5 @@ def render_search_results(scope):
 			with col1: ticker_button(scope, app, ticker)
 			with col2: st.write(ticker)
 			with col3: st.write(company_name)
-	else:
-		st.write('No Search Results')
+
 			

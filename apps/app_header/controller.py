@@ -14,7 +14,7 @@ from apps.app_header.layer_worklist import ticker_worklist_layer
 from apps.app_header.layer_quicklinks import quick_links_layer
 from apps.app_header.dataframes import render_dataframes
 from apps.app_header.layer_ticker_name import selected_ticker_name_layer
-
+from apps.app_header.layer_search import render_search_results
 
 def render_app_header(scope, title):
 	
@@ -30,7 +30,11 @@ def render_app_header(scope, title):
 
 	render_dataframes(scope)
 
+	render_search_results(scope)
+
 	selected_ticker_name_layer(scope)
+
+	
 
 	
 

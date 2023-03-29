@@ -31,7 +31,6 @@ from apps.research.view.financials import earnings_qtr
 from apps.research.view.calendar import calendar
 from apps.research.view.news import news
 
-from apps.search_results import render_search_results
 
 # TODO - I like this example from the ASX for CBA - https://www2.asx.com.au/markets/company/cba
 
@@ -46,45 +45,40 @@ def render_research_page(scope):
 
 	render_app_header(scope, 'Company Research')
 
-	if len(scope.apps[app]['search_results']) == 0:
+	ticker = scope.apps[app]['selectors']['ticker']
 
-		ticker = scope.apps[app]['selectors']['ticker']
+	if ticker != 'select a ticker' :
+		metadata = fetch_yfinance_metadata(ticker)
 
-		if ticker != 'select a ticker' :
-			metadata = fetch_yfinance_metadata(ticker)
+		company_general(metadata)
 
-			company_general(metadata)
+		# business_summary(metadata)
+		fundamental(metadata)
+		general(metadata)
+		market_info(metadata)
 
-			# business_summary(metadata)
-			fundamental(metadata)
-			general(metadata)
-			market_info(metadata)
-
-			dividends(metadata)
+		dividends(metadata)
 
 
-			financial_statements(metadata)
+		financial_statements(metadata)
 
 
-			major(metadata)
-			institutional(metadata)
-			annual(metadata)
-			quarterly(metadata)
-			balance_sheet(metadata)
-			balance_sheet_qtr(metadata)
-			cashflow(metadata)
-			cashflow_qtr(metadata)
-			earnings(metadata)
-			earnings_qtr(metadata)
+		major(metadata)
+		institutional(metadata)
+		annual(metadata)
+		quarterly(metadata)
+		balance_sheet(metadata)
+		balance_sheet_qtr(metadata)
+		cashflow(metadata)
+		cashflow_qtr(metadata)
+		earnings(metadata)
+		earnings_qtr(metadata)
 
-			calendar(metadata)
-			news(metadata)
+		calendar(metadata)
+		news(metadata)
 
-			# plot_basic_chart(scope)		
-			# view_ticker_file(scope, ticker)
-
-	else:
-		render_search_results(scope)
+		# plot_basic_chart(scope)		
+		# view_ticker_file(scope, ticker)
 
 
 

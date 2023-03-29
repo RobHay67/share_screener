@@ -1,9 +1,6 @@
 from apps.app_header.controller import render_app_header		
 from apps.screener.verdicts import render_trial_verdicts
 
-from apps.search_results import render_search_results
-
-
 
 def render_screener_page(scope):
 
@@ -11,9 +8,4 @@ def render_screener_page(scope):
 
 	render_app_header(scope, 'Ticker Screener')
 
-	if len(scope.apps[app]['search_results']) == 0:
-
-		render_trial_verdicts(scope)
-	else:
-
-		render_search_results(scope)
+	render_trial_verdicts(scope)
