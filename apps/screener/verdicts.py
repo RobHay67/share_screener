@@ -1,3 +1,11 @@
+# Display the Results from all the tests run on the ticker data
+# - limit to tickers in the page worklist
+# - ensure we have actually added columns to the ticker
+# - expecting the verdicts to be stored in scope.tickers[ticker]['trials']['verdict']
+
+
+
+
 import streamlit as st
 
 from widgets.links import website_hyperlink
@@ -14,11 +22,10 @@ def render_trial_verdicts(scope):
 	for ticker in scope.apps[app]['worklist']:
 		# Only mined tickers can have verdicts
 		if ticker in scope.apps[app]['tickers_with_add_cols']:
-			if scope.tickers[ticker]['trials']['verdict'] == 'pass':
+			if scope.tickers[ticker][app]['verdict'] == 'pass':
 				verdict_list.append(ticker)
 	no_of_verdicts = len(verdict_list)
 
-	# st.write('**Passing Test Results > ' + str(no_of_verdicts) + ' Passed**')
 	st.subheader('Passing Test Results       (' + str(no_of_verdicts) + ') passed')
 	if no_of_verdicts > (group_size * tab_limit):
 		# Dont render more than say 100 Tickers

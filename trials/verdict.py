@@ -1,29 +1,23 @@
+# Determine an overall test result for a particular ticker
+# - more than one test may be run
+# - the assumption is that every test must pass to obtain
+#   an overall pass
 
 
-def trial_verdict(scope):
-# def trial_verdict(scope, ticker):
+def determine_overall_ticker_verdict(scope, ticker):
 
 	app = scope.apps['display_app']
-	determine_verdicts = scope.apps[app]['render']['verdicts']
 
-	print('*'*333)
-	print('the trial_verdict function is not currently working as expected')
-	print(app)
-	print(determine_verdicts)
-
-
-
-	# if determine_verdicts:
-	# 	final_verdict = 'pass'
-	# 	print('='*33)
-	# 	print(ticker, ' - determine trial_verdict')
-	# 	# Determine a verdict/test result for this ticker
-	# 	# - but only assess currently active trials 
-	# 	# - a trial may have since been turned off
-	# 	for trial in scope.trial_config['active_list']:
-	# 		print(trial)
-	# 		print(scope.tickers[ticker]['trials'][trial])
-	# 		if scope.tickers[ticker]['trials'][trial] not in [ 'pass', None ]:
-	# 			final_verdict = 'fail'
-	# 			break
-	# 	scope.tickers[ticker]['trials']['verdict'] = final_verdict
+	if scope.tickers[ticker][app]['replace_verdict']:
+	# determine an overall verdict for this ticker
+		final_verdict = 'pass'
+		# Determine a verdict/test result for this ticker
+		# - but only assess currently active trials 
+		# - a trial may have since been turned off
+		for trial in scope.trial_config['active_list']:
+			if scope.tickers[ticker][app]['trials'][trial] not in [ 'pass', None ]:
+				final_verdict = 'fail'
+				break
+		scope.tickers[ticker][app]['verdict'] = final_verdict
+		# reset request so this does not re-run unncessarily
+		scope.tickers[ticker][app]['replace_verdict'] = False

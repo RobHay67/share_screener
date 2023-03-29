@@ -33,15 +33,12 @@ def scope_apps(scope):
 										}
 		
 		scope.apps[app]['render'] = 	{
-										'ticker_file':'Show/Hide Data',	
-										
-										'verdicts':False,			# so we can rerun the verdicts   # TODO - not sure we need this here
-										
-										'app_config':False,			# the raw dictionary and list
-										'chart_settings':False,		# for the user to change
-										'overlay_settings':False,	# for the user to change
-										'trial_settings':False,		# for the user to change
-										'strategy':False,			# for the user to change
+										'ticker_file':'Show/Hide Data',	# display the ticker files
+										'app_config':False,				# display the application config
+										'chart_settings':False,			# display the chart settings
+										'overlay_settings':False,		# display the overlay settings
+										'trial_settings':False,			# display the trial settings
+										'strategy':False,				# display the strategy settings
 								}
 
 

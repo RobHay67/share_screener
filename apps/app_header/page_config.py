@@ -78,16 +78,18 @@ def render_page_config(scope):
 
 	if app == 'screener':
 		st.write('---')
-		st.subheader('Trial Verdicts - only for Screener page')
-		three_cols( 'Trials and Verdicts Stored in ', {}    , 'scope.tickers[ticker]' + "['trials']"    , widget_type='string' )
+		st.subheader('Test Results (Trial Verdicts) - only for Screener page')
+		st.caption('Indiviual Ticker Test Results')
 		for ticker in list(scope.tickers.keys()):
 			st.subheader(ticker)
-			three_cols( 'Current Verdict = ', scope.tickers[ticker]['trials']['verdict'], "scope.tickers["+ ticker + "]['trials']['verdict']", widget_type='string' )
-			three_cols( 'Current Trial Dictionary', scope.tickers[ticker]['trials'], "scope.tickers["+ ticker + "]['trials']", widget_type='string' )
-
+			three_cols( 'Overall Test Result (all test must pass)', scope.tickers[ticker][app]['verdict'], "scope.tickers["+ ticker + "]["+app+"['verdict']", widget_type='string' )
+			three_cols( 'Do we need to update the verdict', scope.tickers[ticker][app]['replace_verdict'], "scope.tickers["+ ticker + "]["+app+"['replace_verdict']", widget_type='string' )
+			three_cols( 'Individual Test (Trial) Results', scope.tickers[ticker][app]['trials'], "scope.tickers["+ ticker + "]["+app+"['trials']", widget_type='string' )
+		
 
 	st.write('---')
 	st.subheader('Dataframe Status')
+	st.caption('What Data needs replacing or recalculating')
 	three_cols( 'Dataframe Status Stored in ', {}, 'scope.tickers[ticker][app]', widget_type='string' )
 	for ticker in list(scope.tickers.keys()):
 		st.subheader(ticker)
