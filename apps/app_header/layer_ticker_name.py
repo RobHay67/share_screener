@@ -1,5 +1,6 @@
 import streamlit as st
 
+from tickers.latest_price import latest_ticker_price
 
 
 
@@ -8,47 +9,18 @@ def selected_ticker_name_layer(scope):
 	app = scope.apps['display_app']
 
 	if app != 'screener':
-
-		# there should only be 1 ticker in this list
+		# non screener app - there will  be 1 ticker in worklist
+		if len(scope.apps[app]['worklist'])==1:
+			# we have a ticker to work with
 		
-		if len(scope.apps[app]['worklist']) == 1:
-			
-			col1,col2,col3,col4 = st.columns([6.0, 2.0, 2.0, 2.0])
-
-			# Base Data
 			ticker = scope.apps[app]['worklist'][0]
 			ticker_name = scope.config['ticker_search'][ticker]
-
-			with col1:
-				st.write('')
-				st.subheader(ticker_name)
-
-			# Check that we have data for this ticker
-			if ticker in list(scope.tickers.keys()): 
+			ticker_latest_price_df = latest_ticker_price(scope, ticker)
 				
-				ticker_df = scope.tickers[ticker]['df']
+			col1,col2 = st.columns([8.0, 4.0])  #12
 
-				# Date Range
-				min_date = ticker_df['date'].min()
-				max_date = ticker_df['date'].max()
-				min_date = str(min_date).split()[0]
-				max_date = str(max_date).split()[0]
-				
-				# Key Values
-				close = str(round((ticker_df['close'].values[0]),2))
-				volume = format( (ticker_df['volume'].values[0]), ',d')
-
-				close = round((ticker_df['close'].values[0]),2)
-				close = "${:.2f}".format(close)
-
-				with col2:
-					st.subheader(close)
-
-				with col3:
-					st.subheader(volume)
-				
-				with col4:
-					st.write(min_date + ' << >> ' + max_date)
+			with col1:st.subheader(ticker_name)
+			with col2:st.dataframe(ticker_latest_price_df)
 			
 
 

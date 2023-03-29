@@ -16,10 +16,10 @@ def selectors_layer(scope):
 	col1,col2,col3,col4,col5 = st.columns([1.5, 2.0, 2.0, 2.0, 4.5])  #12
 	
 	app = scope.apps['display_app']
-	layer_title = st.caption('Ticker(s) Selectors')
+	layer_title = 'Ticker(s) Selectors'
 
 	if app == 'screener':
-		with col1:layer_title
+		with col1:st.caption(layer_title)
 		with col2:select_tickers(scope)
 		with col3:select_industries(scope)
 		with col4:select_a_market(scope)
@@ -27,7 +27,7 @@ def selectors_layer(scope):
 
 	if app in ['chart', 'intraday', 'volume', 'research']:
 		# One of the Single Ticker Pages - Single / Volume / Research or IntraDay
-		with col1:layer_title
+		with col1:st.caption(layer_title)
 		with col2:select_a_ticker(scope)
 		with col5:search_ticker_by_name(scope)
 
