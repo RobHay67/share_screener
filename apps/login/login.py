@@ -2,8 +2,12 @@
 import streamlit as st
 
 from users.login import login_user
+from widgets.ticker_index import render_ticker_index_messages
 
 def render_login_page(scope):
+
+
+	render_ticker_index_messages(scope)
 
 	col1,col2 = st.columns([2,8])
 	

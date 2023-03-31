@@ -1,53 +1,38 @@
 import os
 import pandas as pd
 
-from apps.app_header.layer_selectors import refresh_dropdown_lists
-
-from ticker_index.schema import schema
 from ticker_index.schema import csv_dates
 from ticker_index.schema import csv_dtypes
-from ticker_index.save import save_index
+from apps.app_header.layer_selectors import refresh_dropdown_lists
 
-
-from apps.messages.ticker_index import message_missing_index_file
-from apps.messages.ticker_index import message_new_index_file
+from ticker_index.create_empty import create_empty_ticker_index
 
 
 def load_ticker_index_file( scope ):
 
 	if os.path.exists( scope.files['paths']['ticker_index'] ):
 		
-		ticker_index = pd.read_csv(  scope.files['paths']['ticker_index'], 
-									dtype=csv_dtypes(schema),
-									parse_dates=csv_dates(schema),
+		ticker_index_file = pd.read_csv(  scope.files['paths']['ticker_index'], 
+									dtype=csv_dtypes(scope),
+									parse_dates=csv_dates(scope),
 									)
 
-		ticker_index['listing_date'] = pd.to_datetime( ticker_index['listing_date'].dt.date  )
-		ticker_index.set_index('share_code', inplace=True)
+		ticker_index_file.set_index('share_code', inplace=True)
 		
 		# remove any delisted stocks here
 
-		scope.ticker_index['df'] = ticker_index		
+		if len(ticker_index_file) > 0:
+			ticker_index_file['listing_date'] = pd.to_datetime( ticker_index_file['listing_date'].dt.date  )
+
+		scope.ticker_index['df'] = ticker_index_file	# Cache the loaded ticker Index file	
 
 		refresh_dropdown_lists(scope)
 
 	else: 
-		message_missing_index_file(scope)
-
-		dataframe_columns = []
-		for column_name in schema: 
-			dataframe_columns.append(column_name)
-			ticker_index = pd.DataFrame(columns=dataframe_columns)
-
-		message_new_index_file()
-
-		ticker_index.set_index('share_code', inplace=True)
+		create_empty_ticker_index(scope)
 		
-		# remove any delisted stocks here
-		
-		scope.ticker_index['df'] = ticker_index
-		
-		save_index(scope)
+
+	
 
 
 

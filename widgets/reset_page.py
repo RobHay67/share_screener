@@ -2,11 +2,6 @@
 import streamlit as st
 
 
-# TODO - not sure that these are needed anymore - might be able to
-# deprecate or delete these functions
-# keep handy for a template for the minute
-
-
 
 def reset_page_render(scope):
 	st.button(
@@ -16,7 +11,6 @@ def reset_page_render(scope):
 			args=(scope,),
 			help='Reset the Page to the Initial State (hides everything)'
 			)
-
 
 
 def reset_render_status(scope):
@@ -31,3 +25,6 @@ def reset_render_status(scope):
 	scope.apps[app]['render']['strategy'] = False
 
 	scope.apps[app]['search_results'] = {}
+
+	if app == 'index':
+		scope.ticker_index['render']['industry_report'] = False

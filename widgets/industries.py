@@ -31,21 +31,17 @@ def on_change_industry_selection(scope:dict, app:str, widget_key:str):
 	scope.apps[app]['search_results'] = {}
 
 
-
-
-
-
 def industry_report_button(scope):
 
 	widget_key = 'widget_' + 'ticker_index' + '_industry_report'
-	current_value = scope.ticker_index['render']['industry_report']
 
 	button = st.button(
 					label = 'Industry Report', 
 					use_container_width=True, 
-					on_click=industry_report_status, args=(scope, ),
-					# type=type_of_button,
-					help='Show a Report by Industry (expandable to show codes)'
+					on_click=industry_report_status, 
+					args=(scope, ),
+	# 				help='Show a Report by Industry (expandable to show codes)',
+					key=widget_key,
 					)
 
 	return button

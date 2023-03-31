@@ -1,16 +1,13 @@
 import pandas as pd
 
-from ticker_index.update import update_index
+from ticker_index.update import update_ticker_index
 from apps.app_header.layer_selectors import refresh_dropdown_lists
-from apps.messages.ticker_index import message_download_ticker_index_asx
-from apps.messages.ticker_index import message_index_download_success
-from apps.messages.ticker_index import message_index_not_asx
 from apps.config.ticker_search import scope_ticker_search
 
 
-
 def download_ticker_index_data(scope):
-	message_download_ticker_index_asx(scope)
+
+	scope.ticker_index['render']['downloading_asx'] = True
 
 	if scope.config['share_market'] == 'ASX':
 		url = 'https://asx.api.markitdigital.com/asx-research/1.0/companies/directory/file?'
@@ -36,16 +33,21 @@ def download_ticker_index_data(scope):
 		downloaded_df['industry_group'] = downloaded_df['industry_group'].str.replace('&', 'and' )
 		downloaded_df['industry_group'] = downloaded_df['industry_group'].str.lower()
 
-		message_index_download_success(scope, downloaded_df)
+		downloaded_df.set_index('share_code', inplace=True)
+		downloaded_df['listing_date'] = pd.to_datetime( downloaded_df['listing_date'].dt.date  )
 
-		update_index(scope, downloaded_df )
+		scope.ticker_index['df_downloaded'] = downloaded_df # Cache the downloaded file
+		scope.ticker_index['render']['download_success'] = True
+
+
+		update_ticker_index(scope)
 
 		refresh_dropdown_lists(scope)
 
 		scope_ticker_search(scope)	# refresh the default ticker search list
 
 	else:
-		message_index_not_asx(scope)
+		scope.ticker_index['render']['download_market_n_a'] = True
 		pass
 
 
