@@ -34,10 +34,8 @@ def rsi_cols(scope, chart, ticker, chart_df):
 	chart_df['rsi_trend'] = chart_df['rsi_trend'].replace(np.nan, 0)
 	chart_df['rsi_trend'] = ( chart_df['rsi_trend'] / 10 ).astype(int)
 
-	# ensure Screener_df is back in its descending order (latest first)
+	# ensure df is back in its descending order (latest first)
 	chart_df.sort_values(by=['date'], inplace=True, ascending=False)
-	print('Charting for > ', ticker)
-	# print(chart_df.head(30))
 
 
 def rsi_trend(scope, trial, ticker, df):
@@ -76,6 +74,6 @@ def rsi_trend(scope, trial, ticker, df):
 	# clean up temp columns
 	df.drop(['rsi_delta', 'rsi_gain', 'rsi_loss', 'rsi_avg_gains', 'rsi_avg_losses', 'rsi_rs', 'rsi', 'rsi_shifted'], axis=1, inplace=True)
 
-	# ensure Screener_df is back in its descending order (latest first)
+	# ensure df is back in its descending order (latest first)
 	df.sort_values(by=['date'], inplace=True, ascending=False)
 

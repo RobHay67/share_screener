@@ -107,7 +107,6 @@ def save_changes_to_ticker_index(scope):
 				save_required = True
 			else:
 				scope.ticker_index['render']['non_editable_cols'].append(col_no)
-				print ( '\033[91m' + 'Cannot Edit Column Number > ' + str(col_no) + '\033[0m')	
 		
 		if save_required:save_index(scope)
 
