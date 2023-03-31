@@ -1,10 +1,6 @@
 import streamlit as st
-
 from apps.config.three_cols import three_cols
-import streamlit as st
-
-
-from apps.chart.config.primary import render_primary_charts_config
+from apps.chart.config.controller import render_available_charts
 from apps.chart.config.overlays import render_overlays_config
 from apps.screener.config.controller import render_available_trials
 from strategies.config import render_strategies
@@ -19,7 +15,7 @@ def render_config_and_settings(scope):
 		render_page_config(scope)
 
 	if scope.apps[app]['render']['chart_settings'] == True:
-		render_primary_charts_config(scope)
+		render_available_charts(scope)
 
 	if scope.apps[app]['render']['overlay_settings'] == True:
 		render_overlays_config(scope)

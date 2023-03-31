@@ -21,14 +21,15 @@ def login_user(scope:dict, login_name:str):
 
 	# Over-write the trials settings with the user trial values
 	for trial in user_trials.keys():
-		active_status = user_trials[trial]['active']
-		add_columns = user_trials[trial]['add_columns']
+		if trial in scope.trials.keys():
+			active_status = user_trials[trial]['active']
+			add_columns = user_trials[trial]['add_columns']
 
-		# Update the user config into the scope.config
-		scope.trials[trial]['active'] = active_status
-		if add_columns != None:
-			for attribute in add_columns.keys():
-				scope.trials[trial]['add_columns'][attribute] = add_columns[attribute]
+			# Update the user config into the scope.config
+			scope.trials[trial]['active'] = active_status
+			if add_columns != None:
+				for attribute in add_columns.keys():
+					scope.trials[trial]['add_columns'][attribute] = add_columns[attribute]
 	
 	# refresh the trial_config lists
 	trial_active_list(scope)
@@ -36,15 +37,15 @@ def login_user(scope:dict, login_name:str):
 
 	# Over-write the config charts with the user values
 	for chart in user_charts.keys():
-
-		active_status = user_charts[chart]['active']
-		add_columns = user_charts[chart]['add_columns']
-		
-		# Update the user config into the scope.config
-		scope.charts[chart]['active'] = active_status
-		if add_columns != None:
-			for attribute in add_columns.keys():
-				scope.charts[chart]['add_columns'][attribute] = add_columns[attribute]
+		if chart in scope.charts.keys():
+			active_status = user_charts[chart]['active']
+			add_columns = user_charts[chart]['add_columns']
+			
+			# Update the user config into the scope.config
+			scope.charts[chart]['active'] = active_status
+			if add_columns != None:
+				for attribute in add_columns.keys():
+					scope.charts[chart]['add_columns'][attribute] = add_columns[attribute]
 
 		
 	# refresh the chart_config lists
