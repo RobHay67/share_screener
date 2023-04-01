@@ -1,6 +1,32 @@
 import streamlit as st
 
 
+
+def render_active_charts_or_tests(scope):
+
+	app = scope.apps['display_app']
+	
+	if app in ['screener', 'chart']:
+
+		widget_key = 'widget_' + app + '_active_list_dropdown'
+		widget_label = 'Number of active '
+
+		if app == 'screener':
+			active_list = scope.trial_config['active_list']
+			widget_label = widget_label+'trials / tests = '+str(len(active_list))
+		if app =='chart':
+			active_list = scope.chart_config['active_list']
+			widget_label = widget_label+'charts = '+str(len(active_list))
+
+		print(widget_label)
+
+		st.selectbox(
+				label		=widget_label, 
+				options		=active_list,
+				key			=widget_key,
+				)
+
+
 def render_worklist_dropdown(scope):
 
 	app = scope.apps['display_app']
@@ -27,7 +53,6 @@ def render_worklist_dropdown(scope):
 
 	return selectbox
 
-
 def store_loaded_ticker(scope, app, widget_key):
 
 	selected_ticker = scope[widget_key]
@@ -38,17 +63,12 @@ def store_loaded_ticker(scope, app, widget_key):
 	st.write(selected_ticker)
 
 
-
-
-
-
-# =========================================
-# Errors Dropdown list
-# =========================================
-
-
-
 def render_ticker_load_and_download_errors(scope):
+	# =========================================
+	# Errors Dropdown list
+	# =========================================
+
+	
 	# Same as render_worklist_dropdown but only the errirs only 
 
 	app = scope.apps['display_app']
