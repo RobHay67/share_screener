@@ -4,6 +4,7 @@ import streamlit as st
 from widgets.active import edit_active
 from widgets.trend_ohlcv import edit_trend_ohlcv
 from widgets.number import edit_number
+from widgets.ohlcv import edit_ohlcv
 
 
 def render_ohlcv_trend(scope, trial):
@@ -15,8 +16,7 @@ def render_ohlcv_trend(scope, trial):
 
 
 	with col1:edit_active(scope, type_config, trial)
-	with col2:edit_trend_ohlcv (scope, type_config, trial)
-	with col3:edit_number(scope, type_config, trial, 'duration' )
-	with col4:edit_number(scope, type_config, trial, 'timespan' )
-
-	
+	with col2:edit_ohlcv(scope, type_config, trial)
+	with col3:edit_trend_ohlcv (scope, type_config, trial)
+	with col4:edit_number(scope, type_config, trial, 'duration' )
+	with col5:edit_number(scope, type_config, trial, 'timespan' )
