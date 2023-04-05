@@ -73,53 +73,20 @@ lookback_days 	= 'lookback_days'		# Stochastic Oscillator
 slow 			= 'slow'				# Stochastic Oscillator
 
 # 
+trends_for_sma 	= ['above_sma', 'below_sma']
 trends_for_ohlcv = [ 'up_trend', 'down_trend' ]
-trends_for_sma = ['above_line', 'below_line']
+
+
+
 trends_for_stochastic = ['above_line', 'below_line', 'over_bought', 'over_sold', 'cross_up', 'cross_down']
 trends_for_rsi = ['up_trend', 'down_trend', 'over_bought', 'over_sold' ]
 
 
 trials_config = {
-	'trend_open'	: {
+	'price_1'	: {
 						active			: False,
-						name			: 'Trend of Open Price',
-						short_name		: 'Trend of Open Price',
-						add_columns		: {
-											function : trend_cols,
-											column 	 : 'open',
-											trend	 : 'up_trend',
-											duration : 4,
-											timespan : 10,
-										},
-					},
-	'trend_high'	: {
-						active			: False,
-						name			: 'Trend of High price',
-						short_name		: 'Trend of High price',
-						add_columns		: {
-											function : trend_cols,
-											column 	 : 'high',
-											trend	 : 'up_trend',
-											duration : 5,
-											timespan : 5,
-										},
-					},
-	'trend_low'	: {
-						active			: False,
-						name			: 'Trend of Low price',
-						short_name		: 'Trend of Low price',
-						add_columns		: {
-											function : trend_cols,
-											column 	 : 'low',
-											trend	 : 'up_trend',
-											duration : 4,
-											timespan : 10,
-										},
-					},
-	'trend_close'	: {
-						active			: False,
-						name			: 'Trend of Close price',
-						short_name		: 'Trend of Close price',
+						name			: 'OHLCV Price Direction',
+						short_name		: 'OHLCV Price Direction',
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'close',
@@ -128,10 +95,22 @@ trials_config = {
 											timespan : 10,
 										},
 					},
-	'trend_volume'	: {
+	'price_2'	: {
 						active			: False,
-						name			: 'Trend of Volume',
-						short_name		: 'Trend of Volume',
+						name			: 'OHLCV Price Direction',
+						short_name		: 'OHLCV Price Direction',
+						add_columns		: {
+											function : trend_cols,
+											column 	 : 'high',
+											trend	 : 'up_trend',
+											duration : 4,
+											timespan : 10,
+										},
+					},
+	'price_3'		: {
+						active			: False,
+						name			: 'OHLCV Price Direction',
+						short_name		: 'OHLCV Price Direction',
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'volume',
@@ -140,62 +119,39 @@ trials_config = {
 											timespan : 10,
 										},
 					},
-	'sma_open' 		: {
+	'sma_1' 	: {
 						active			: False,
-						name			: 'Above/Below SMA of Open',
-						short_name		: 'Above/Below SMA of Open',
-						add_columns		: {
-											function : sma_trend,
-											column 	 : 'open',
-											trend	 : 'above_line',
-											periods : 21,
-										},
-					},
-	'sma_high' 		: {
-						active			: False,
-						name			: 'Above/Below SMA of High',
-						short_name		: 'Above/Below SMA of High',
-						add_columns		: {
-											function : sma_trend,
-											column 	 : 'high',
-											trend	 : 'above_line',
-											periods : 21,
-										},
-					},
-	'sma_low' 		: {
-						active			: False,
-						name			: 'Above/Below SMA of Low',
-						short_name		: 'Above/Below SMA of Low',
-						add_columns		: {
-											function : sma_trend,
-											column 	 : 'low',
-											trend	 : 'above_line',
-											periods : 21,
-										},
-					},
-
-	'sma_close' 	: {
-						active			: False,
-						name			: 'Above/Below SMA of Close',
-						short_name		: 'Above/Below SMA of Close',
+						name			: 'OHLCV Trending Above or Below SMA',
+						short_name		: 'SMA Trend 1',
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'close',
-											trend	 : 'above_line',
-											periods : 21,
+											trend	 : 'above_sma',
+											periods  : 21,
 										},
 					},
-	'sma_volume' 	: {
+	'sma_2' 	: {
 						active			: False,
-						name			: 'Above/Below SMA of Volume',
-						short_name		: 'Above/Below SMA of Volume',
+						name			: 'OHLCV Trending Above or Below SMA',
+						short_name		: 'SMA Trend 2',
 						add_columns		: {
 											function : sma_trend,
-											column 	 : 'volume',
-											trend	 : 'above_line',
-											periods : 21,
+											column 	 : 'close',
+											trend	 : 'above_sma',
+											periods  : 50,
 										},
 					},
+	'sma_3' 	: {
+						active			: False,
+						name			: 'OHLCV Trending Above or Below SMA',
+						short_name		: 'SMA Trend 3',
+						add_columns		: {
+											function : sma_trend,
+											column 	 : 'close',
+											trend	 : 'above_sma',
+											periods  : 200,
+										},
+					},	
 	'stochastic_1' 	: {
 						active			: True,
 						name			: 'Stochastic',
@@ -256,5 +212,3 @@ trials_config = {
 					},
 
 }
-
-
