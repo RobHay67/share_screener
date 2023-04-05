@@ -43,7 +43,4 @@ def sma_trend(scope, trial, ticker, df):
 	# ensure Screener_df is back in its descending order (latest first)
 	df.sort_values(by=['date'], inplace=True, ascending=False)
 
-	# Store the Final result - it should be the first row
-	scope.tickers[ticker]['trials'][trial] = df[trial].iloc[0]
-
 
