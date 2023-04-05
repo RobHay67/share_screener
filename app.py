@@ -27,6 +27,10 @@ pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
 
 
+print('TODO - move login to the sidebar')
+print('TODO - add dropdown of active tests/charts')
+print('TODO - we need to download the dividend data as well')
+
 
 from scope import set_scope
 from apps.sidebar import render_sidebar
@@ -80,9 +84,17 @@ def level_3_details(level_1, level_2, level_3):
 				# print(type(st.session_state[level_1][level_2][level_3]))
 
 
+if 'initial_load' in st.session_state:
+	print('')
+	terminal_heading('All keys in st.session_state')
+	for key in sorted(st.session_state):print(key)
+
+
 # if 'initial_load' in st.session_state:
-# 	print('')
-# 	terminal_heading('All keys in st.session_state')
-# 	for key in sorted(st.session_state):print(key)
+# 	scope = st.session_state
+# 	# scope.users['user_list'] = [rob, Fliss]
+# 	# json file has structure
+# 	# for key in sorted(scope.users['json']['Rob']):print(key)
+# 	for key in sorted(scope.users['json']['Rob']):print(key)
 
 
