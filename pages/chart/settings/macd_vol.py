@@ -2,8 +2,8 @@
 import streamlit as st
 
 
-from widgets.active import edit_active
-from widgets.number import edit_number
+from pages.widgets.active import edit_active
+from pages.widgets.number import edit_number
 
 
 def render_macd_vol(scope):

@@ -5,7 +5,7 @@ from pages.config.controller import render_config_page
 
 # Page Configuration
 page = 'config'
-page_title = 'Intra Day Analysis'
+page_title = 'Application Configuration'
 page_icon = '⚙️'
 # -----------------------------
 scope = st.session_state

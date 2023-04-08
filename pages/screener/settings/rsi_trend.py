@@ -1,10 +1,10 @@
 
 import streamlit as st
 
-from widgets.active import edit_active
-from widgets.number import edit_number
-from widgets.ohlcv import edit_ohlcv
-from widgets.trend_rsi import edit_trend_rsi
+from pages.widgets.active import edit_active
+from pages.widgets.number import edit_number
+from pages.widgets.ohlcv import edit_ohlcv
+from pages.widgets.trend_rsi import edit_trend_rsi
 
 
 def render_rsi_trend(scope, trial):

@@ -1,10 +1,10 @@
 
 import streamlit as st
 
-from widgets.active import edit_active
-from widgets.trend_sma import edit_trend_sma
-from widgets.number import edit_number
-from widgets.ohlcv import edit_ohlcv
+from pages.widgets.active import edit_active
+from pages.widgets.trend_sma import edit_trend_sma
+from pages.widgets.number import edit_number
+from pages.widgets.ohlcv import edit_ohlcv
 
 def render_sma_trend(scope, trial):
 	

@@ -1,10 +1,10 @@
 import streamlit as st
 
 
-from widgets.active import edit_active
-from widgets.number import edit_number
-from widgets.ohlc import edit_ohlc
-from widgets.colour import edit_colour
+from pages.widgets.active import edit_active
+from pages.widgets.number import edit_number
+from pages.widgets.ohlc import edit_ohlc
+from pages.widgets.colour import edit_colour
 
 
 def render_moving_average(scope, column_adder):  # SMA or EMA

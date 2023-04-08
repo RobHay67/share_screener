@@ -3,7 +3,7 @@
 import streamlit as st
 
 
-from widgets.search import ticker_button
+from pages.widgets.search import ticker_button
 
 
 def render_search_results(scope):

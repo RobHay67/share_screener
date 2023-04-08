@@ -6,7 +6,7 @@ from pages.screener.settings.sma_trend import render_sma_trend
 from pages.screener.settings.stochastic_trend import render_stochastic_trend
 from pages.screener.settings.rsi_trend import render_rsi_trend
 from pages.screener.settings.example import example_settings
-from widgets.save_user_settings import save_user_settings_button
+from pages.widgets.save_user_settings import save_user_settings_button
 
 
 def render_available_trials(scope):
