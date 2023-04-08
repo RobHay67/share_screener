@@ -7,12 +7,13 @@ name = "pypi"
 pandas = "*"
 streamlit = "*"
 datetime = "*"
-yfinance = "==0.2.12"
+yfinance = "==0.2.14"
 mplfinance = "===0.12.7a5"
 matplotlib = "*"
 plotly = "*"
 pytz = "==2021.3"
 watchdog = "*"
+streamlit-extras = "*"
 
 [dev-packages]
 

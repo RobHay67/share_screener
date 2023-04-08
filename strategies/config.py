@@ -1,5 +1,5 @@
 import streamlit as st
-from apps.config.three_cols import three_cols
+from pages.config.three_cols import three_cols
 
 def scope_strategy(scope):
 	# Strategy Params

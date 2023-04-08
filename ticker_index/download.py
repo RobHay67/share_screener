@@ -1,9 +1,8 @@
 import pandas as pd
 
 from ticker_index.update import update_ticker_index
-from apps.app_header.layer_selectors import refresh_dropdown_lists
-from apps.config.ticker_search import scope_ticker_search
-
+from pages.header.selectors import refresh_dropdown_lists
+from page.config.ticker_search import scope_ticker_search
 
 def download_ticker_index_data(scope):
 

@@ -56,7 +56,7 @@ from add_cols.rsi import rsi_trend
 # ==============================================================================================================================================================
 
 active 			= 'active'				# True or False - The Analysis is active or inactive (displayed or not displayed)
-name 			= 'name'				# The display name for the Analysis (used in the settings app)
+name 			= 'name'				# The display name for the Analysis (used in the settings Page)
 short_name		= 'short_name'			# A short name used if various Screen Outputs
 
 column 			= 'column'				# OHLCV column required for the Analysis

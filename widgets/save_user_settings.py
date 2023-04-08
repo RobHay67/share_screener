@@ -6,8 +6,8 @@ from users.save import save_users_table
 
 def save_user_settings_button(scope):
 
-	app = scope.apps['display_app']
-	# current_value = scope.apps[app]['render']['strategy']
+	# page = scope.display_page
+	# current_value = scope.pages[page]['render']['strategy']
 	# type_of_button = 'primary' if current_value == True else 'secondary'
 
 	button = st.button(

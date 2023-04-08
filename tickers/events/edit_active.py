@@ -10,13 +10,13 @@ def edit_active_event(scope, type_col_adder, column_adder, status):
 	# Only column adders that have been activated will require refreshing
 	
 	for ticker in scope.tickers.keys():
-		for app in scope.apps['app_list']: 
+		for page in scope.pages['page_list']: 
 			# if the activated column adder is used by this page then change the refresh status
-			if column_adder in scope.tickers[ticker][app]['column_adders'].keys():
-				scope.tickers[ticker][app]['column_adders'][column_adder] = status
+			if column_adder in scope.tickers[ticker][page]['column_adders'].keys():
+				scope.tickers[ticker][page]['column_adders'][column_adder] = status
 				# for the screener page, remove the test result 
 				# if the users has deactivated this test
-				if app == 'screener' and status == False:
+				if page == 'screener' and status == False:
 					remove_test_result_column(scope, ticker, column_adder)
 
 

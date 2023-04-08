@@ -1,12 +1,12 @@
 import pandas as pd
 
 
-from apps.research.metadata import fetch_yfinance_metadata
+from y_finance.metadata import fetch_yfinance_metadata
 
 
 def dividend_cols( scope, chart, ticker, chart_df):
 
-	app 	= scope.apps['display_app']
+	page 	= scope.display_page
 
 	# Fetch the Dividend Information for this ticker
 	metadata = fetch_yfinance_metadata(ticker)

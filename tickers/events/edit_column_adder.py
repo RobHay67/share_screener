@@ -15,10 +15,10 @@ def edit_column_adder_event(scope, column_adder):
 
 	# Update where this column adder is being used
 	for ticker in scope.tickers.keys():
-		for app in scope.apps['app_list']: 
+		for page in scope.pages['page_list']: 
 			
-			# if column adder is used by this app then change the refresh status to True
-			if column_adder in scope.tickers[ticker][app]['column_adders'].keys():
-				scope.tickers[ticker][app]['column_adders'][column_adder] = status
+			# if column adder is used by this page then change the refresh status to True
+			if column_adder in scope.tickers[ticker][page]['column_adders'].keys():
+				scope.tickers[ticker][page]['column_adders'][column_adder] = status
 
 

@@ -32,7 +32,7 @@ def on_change_active_status(scope:dict, type_config:str, column_adder:str, widge
 	# store the selection
 	scope[type_config][column_adder]['active'] = changed_value
 
-	# update the app data renew status
+	# update the page data renew status
 	edit_active_event(scope, type_config, column_adder, changed_value)
 
 

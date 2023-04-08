@@ -12,7 +12,7 @@ def cache_ticker_data(scope, ticker, ticker_data):
 	# Add appropriate column adders state information
 
 
-	app = scope.apps['display_app']
+	page = scope.display_page
 
 
 	# Sort ticker file into ascending order
@@ -21,18 +21,18 @@ def cache_ticker_data(scope, ticker, ticker_data):
 	# cache the ticker data in the primary object holder
 	scope.tickers[ticker]['df'] = ticker_data	
 		
-	# add Column Adders for the type of app/page
+	# add Column Adders for the type of page
 	#  - type of column adder
 	#  - and the current config template (dict of functions) 
 
-	for app in scope.apps['app_list']:
+	for page in scope.pages['page_list']:
 
-		if app == 'chart':
-			scope.tickers[ticker][app]['type_col_adder'] = 'charts'
-			scope.tickers[ticker][app]['column_adders'] = scope.chart_config['column_adders'].copy()
+		if page == 'chart':
+			scope.tickers[ticker][page]['type_col_adder'] = 'charts'
+			scope.tickers[ticker][page]['column_adders'] = scope.chart_config['column_adders'].copy()
 
-		if app == 'screener':
-			scope.tickers[ticker][app]['type_col_adder'] = 'trials'
-			scope.tickers[ticker][app]['column_adders'] = scope.trial_config['column_adders'].copy()
+		if page == 'screener':
+			scope.tickers[ticker][page]['type_col_adder'] = 'trials'
+			scope.tickers[ticker][page]['column_adders'] = scope.trial_config['column_adders'].copy()
 
 

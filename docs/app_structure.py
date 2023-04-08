@@ -32,7 +32,7 @@
 
 
 
-# app
+# page
 # 		- controllers			handles the web requests
 # 		- helpers				code for the MVC's
 # 		- models				data

@@ -1,7 +1,7 @@
 import yfinance as yf					# https://github.com/ranaroussi/yfinance
 
 from tickers.download.cache_yf import cache_yf_batch_data
-from apps.messages.y_finance import render_download_message, render_download_complete_message
+from pages.messages.y_finance import render_download_message, render_download_complete_message
 from tickers.schema import ticker_file_schema
 from tickers.download.schema import y_finance_schemas
 
@@ -37,8 +37,8 @@ def set_batch_params(scope):
 	
 	if industry == 'random_tickers':
 		# Selected specific tickers rather than by industry group					 
-		app = scope.apps['display_app']
-		ticker_list = scope.apps[app]['worklist']
+		page = scope.display_page
+		ticker_list = scope.pages[page]['worklist']
 	else:
 		# selected a share market, industry or multiple industries
 		industry_tickers = scope.ticker_index['df'][scope.ticker_index['df']['industry_group'] == industry ]

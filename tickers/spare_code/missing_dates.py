@@ -43,7 +43,7 @@ import os
 # 					missing_dates_list = list(set(missing_dates_list) - set(pre_listing_dates))
 
 # 			if len(missing_dates_list) > 0:
-# 				# at the moment we need to manually tag the trading halt dates (after confirmation with the ASX that this is the case) terminal > pipenv run python app.py -th boq
+# 				# at the moment we need to manually tag the trading halt dates (after confirmation with the ASX that this is the case) terminal > pipenv run python page.py -th boq
 # 				if pd.notna(params.ticker_index['file'].loc[ticker]['trading_halt_dates']):
 # 					trading_halt_dates_list = [ date for date in params.ticker_index['file'].loc[ticker]['trading_halt_dates'].split()]
 # 					missing_dates_list = list(set(missing_dates_list) - set(trading_halt_dates_list))

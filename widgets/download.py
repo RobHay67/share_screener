@@ -6,7 +6,7 @@ from tickers.download.config import set_yf_period
 
 def download_button(scope):
 
-	app = scope.apps['display_app']
+	# page = scope.display_page
 
 	download_button_msg = 'Download Prior ' + str(int(scope.download['days'])) + ' day'
 

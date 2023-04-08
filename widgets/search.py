@@ -3,9 +3,9 @@ import streamlit as st
 
 def search_ticker_by_name(scope):
 
-	app = scope.apps['display_app']
+	page = scope.display_page
 
-	widget_key = 'widget_' + app + '_search'
+	widget_key = 'widget_' + page + '_search'
 	previous_selection = ''
 	display_name = 'Search by Company Name'
 
@@ -13,20 +13,20 @@ def search_ticker_by_name(scope):
 					label		=display_name,
 					value		=previous_selection,
 					on_change	=search_for_ticker,
-					args		=(scope, app, widget_key, ),
+					args		=(scope, page, widget_key, ),
 					key			=widget_key,
 					help		='Enter name or part of a name and be presented with a table of companies that contain that search term',
 	)
 
 
-def search_for_ticker(scope, app, widget_key):
+def search_for_ticker(scope, page, widget_key):
 
 	search_string = scope[widget_key].upper()
 
 	# Set other selectors to their defualt values
-	scope.apps[app]['selectors']['tickers'] = []
-	scope.apps[app]['selectors']['industries'] = []
-	scope.apps[app]['selectors']['market'] = 'select market'
+	scope.pages[page]['selectors']['tickers'] = []
+	scope.pages[page]['selectors']['industries'] = []
+	scope.pages[page]['selectors']['market'] = 'select market'
 
 	# Search through the ticker index for this string in the company name
 	search_results = {}
@@ -40,14 +40,14 @@ def search_for_ticker(scope, app, widget_key):
 
 	# Cache search_results
 	if len(search_results) > 0:
-		scope.apps[app]['search_results'] = search_results
+		scope.pages[page]['search_results'] = search_results
 		# Reset the search_ticker_by_name to blank for next search
 		scope[widget_key] = ''
 	else:	# No search Results
-		scope.apps[app]['search_results'] = {}
+		scope.pages[page]['search_results'] = {}
 
 
-def ticker_button(scope, app, ticker):
+def ticker_button(scope, page, ticker):
 
 	widget_key = ticker + '_button'
 
@@ -55,19 +55,19 @@ def ticker_button(scope, app, ticker):
 				label='Choose', 
 				key=widget_key,
 				on_click=select_search_result_ticker,
-				args=(scope, app, ticker, widget_key)
+				args=(scope, page, ticker, widget_key)
 				)
 
 
-def select_search_result_ticker(scope, app, ticker, widget_key):
+def select_search_result_ticker(scope, page, ticker, widget_key):
 
 	# set selected ticker as the target for the page
-	if app == 'screener':
-		scope.apps[app]['selectors']['tickers'] = [ticker]
+	if page == 'screener':
+		scope.pages[page]['selectors']['tickers'] = [ticker]
 	else:
-		scope.apps[app]['selectors']['ticker'] = ticker
+		scope.pages[page]['selectors']['ticker'] = ticker
 
 	# Clear Search Results
-	scope.apps[app]['search_results'] = {}
+	scope.pages[page]['search_results'] = {}
 
 

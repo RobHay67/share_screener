@@ -28,6 +28,6 @@ def on_change_sma_selection(scope:dict, type_config:str, column_adder:str, widge
 	# store the selection
 	scope[type_config][column_adder]['add_columns']['trend'] = changed_value	
 
-	# update the app data renew status
+	# update the page data renew status
 	edit_column_adder_event(scope, column_adder)
 	

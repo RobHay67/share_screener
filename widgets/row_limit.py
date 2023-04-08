@@ -6,7 +6,7 @@ from tickers.events.edit_row_limit import edit_row_limit_event
 
 def edit_row_limit(scope):
 
-	previous_selection = int(scope.apps['row_limit'])
+	previous_selection = int(scope.pages['row_limit'])
 	display_name = 'No of Rows for Analysis & Charts'
 	widget_key = 'widget_row_limit'
 
@@ -20,13 +20,13 @@ def edit_row_limit(scope):
 								)  
 
 
-def on_change_row_limit(scope:dict, widget_key:str):
+def on_change_row_limit(scope, widget_key):
 
 	changed_value = scope[widget_key]
 
 	# store the selection
-	scope.apps['row_limit'] = changed_value
+	scope.pages['row_limit'] = changed_value
 
-	# update the app data refresh status
+	# update the page data refresh status
 	edit_row_limit_event(scope)
 	

@@ -1,5 +1,4 @@
-from apps.config.missing_tickers import scope_missing_ticker_error
-
+from page.config.missing_tickers import scope_missing_ticker_error
 
 
 

@@ -3,7 +3,8 @@
 from users.config import base_config_users
 from charts.config import base_config_charts
 from tickers.download.config import base_config_download
-from apps.config.config import base_config_apps
+from page.config.pages import base_config_pages
+
 
 
 def restore_base_config(scope):
@@ -19,7 +20,7 @@ def restore_base_config(scope):
 	base_config_download(scope)
 
 	# row_limit
-	base_config_apps(scope)
+	base_config_pages(scope)
 
 
 	# TODO - what about the trials config - should this also not revert to the base values

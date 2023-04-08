@@ -1,10 +1,5 @@
-
-
-
 from users.save import save_users_table
-
 from users.restore import restore_base_config
-
 
 
 def logout_user(scope):
@@ -14,6 +9,7 @@ def logout_user(scope):
 	save_users_table(scope)
 
 	restore_base_config(scope)
+
 
 
 

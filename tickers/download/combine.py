@@ -12,9 +12,9 @@ def combine_cached_and_yf_data(scope):
 	# concatenates any downloaded data with any loaded data 
 	# resulting in a complete (hopefully) temporal transaction history for a ticker
 
-	# iterate through the target tickers for the App
-	app = scope.apps['display_app']
-	for ticker in scope.apps[app]['worklist']:
+	# iterate through the target tickers for the Page
+	page = scope.display_page
+	for ticker in scope.pages[page]['worklist']:
 				
 		if ticker in scope.download['yf_data']['ticker'].unique():
 			# we appear to have downloaded data (we may have nothing)

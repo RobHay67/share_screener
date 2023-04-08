@@ -29,5 +29,5 @@ def on_change_number(scope:dict, type_config:str, column_adder:str, measure:str,
 	# store the selection
 	scope[type_config][column_adder]['add_columns'][measure] = changed_value
 
-	# update the app data renew status
+	# update the page data renew status
 	edit_column_adder_event(scope, column_adder)

@@ -1,42 +1,41 @@
 import streamlit as st
+from streamlit_extras.switch_page_button import switch_page
 
 
-
-def link_to_app_button(scope, app, ticker):
+def link_to_app_button(scope, page, ticker):
 	
-	widget_key = 'widget_link_to_' + app + '_page_for_' + ticker
+	widget_key = 'widget_link_to_' + page + '_page_for_' + ticker
 
-	if app == 'chart':
+	if page == 'chart':
 		app_desc = '📊'
-	elif app == 'volume':
+	elif page == 'volume':
 		app_desc = '🔊'
-	elif app == 'intraday':
+	elif page == 'intraday':
 		app_desc = '🌤️'
-	elif app == 'research':
+	elif page == 'research':
 		app_desc = '🕵'
 	else:
-		app_desc = app
+		app_desc = page
 
-	st.button(
-				# label=app.title(), 
-				label=app_desc,
-				key=widget_key,
-				use_container_width=True,
-				on_click=open_app,
-				args=(scope, app, ticker)
-				)
-
-def open_app(scope, app, ticker):
+	open_app_button = st.button(
+						# label=page.title(), 
+						label=app_desc,
+						key=widget_key,
+						use_container_width=True,
+						)
 	
-	scope.apps['display_app'] = app
 
-	if app != 'screener':	
-		scope.apps[app]['selectors']['ticker'] = ticker
-	else:
-		scope.apps[app]['selectors']['tickers'] = [ticker]
-		scope.apps[app]['selectors']['industries'] = []
-		scope.apps[app]['selectors']['market'] = 'select market'
-		scope.apps[app]['search_results'] = {}
+	if open_app_button:
+		if page != 'screener':	
+			scope.pages[page]['selectors']['ticker'] = ticker
+		else:
+			scope.pages[page]['selectors']['tickers'] = [ticker]
+			scope.pages[page]['selectors']['industries'] = []
+			scope.pages[page]['selectors']['market'] = 'select market'
+			scope.pages[page]['search_results'] = {}
+
+		switch_page(page)
+
 
 
 def website_hyperlink(scope, website, ticker):

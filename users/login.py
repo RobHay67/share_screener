@@ -3,11 +3,12 @@ from trials.config import trial_column_adders
 from charts.config import chart_active_list
 from charts.config import chart_column_adders
 
-def login_user(scope:dict, login_name:str):
+def login_user(scope, login_name):
 
 	# Store User params
-	scope.apps['display_app'] = 'home_page'
+	scope.display_page = 'home_page'
 	scope.users['login_name'] = login_name
+	scope.user_logged_in = True
 
 	# Determine the Users Settings
 	user_trials = scope.users['json'][login_name]['trials']
@@ -16,7 +17,7 @@ def login_user(scope:dict, login_name:str):
 	# Over-write key user settings
 	scope.chart_config['primary_height'] = scope.users['json'][login_name]['chart_height']
 	scope.download['days'] = scope.users['json'][login_name]['download_days']
-	scope.apps['row_limit'] = scope.users['json'][login_name]['row_limit']
+	scope.pages['row_limit'] = scope.users['json'][login_name]['row_limit']
 
 
 	# Over-write the trials settings with the user trial values

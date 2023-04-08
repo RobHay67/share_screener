@@ -7,8 +7,8 @@
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # ticker_index 									DataFrame  				A list of all tickers available to the application
 # ticker_data_files								dict of DataFrames		All Share Data files indexed by Ticker Code
-# scope.selected[app]['df'][ticker]			DataFrame				Copy of selected ticker(s) from share_data_files with all add_cols added for screening
-# scope.selected[app]['df]['ticker]			DataFrame				Copy of selected ticker(s) from share_data_files with all add_cols added for plotting
+# scope.selected[page]['df'][ticker]			DataFrame				Copy of selected ticker(s) from share_data_files with all add_cols added for screening
+# scope.selected[page]['df]['ticker]			DataFrame				Copy of selected ticker(s) from share_data_files with all add_cols added for plotting
 
 
 #																		---------------------------------
@@ -19,20 +19,20 @@
 #																					|
 #																					|
 #							  										copy specific <ticker_data_files> only
-# 														specific tickers stored in < scope.apps[app]['ticker_list] >
+# 														specific tickers stored in < scope.pages[page]['ticker_list] >
 # 																Limit rows to < app_row_limit > default = 100	
 #																   /				|				 \
 #															  	  /					|			 	  \
 #																 /					|			  	   \
 #																/					|			   		\
 #											---------------------			---------------------		---------------------
-#											| 	 scope.apps	|			| 	 scope.apps	|		| 	 scope.apps	|
+#											| 	 scope.pages	|			| 	 scope.pages	|		| 	 scope.pages	|
 # 											|	 ['screener']	|			|	  ['chart']	|		|	['intra_day']	|
 #											|    	[df]   		|			|     	[df]   		|		|      [df]   		|
 #											|					|			|					|		|					|
 #											---------------------			---------------------		---------------------
 #
-# example (app.ticker_list)				[cba 	NAB		anz ]			[ifl			NAB ]		[NAB			wbc ]
+# example (page.ticker_list)				[cba 	NAB		anz ]			[ifl			NAB ]		[NAB			wbc ]
 #
 #
 # Events that change the data
@@ -45,10 +45,10 @@
 # Change the < app_row_limit >				T-r_all T-r_all T-r_all			T-r_all			T-r_all		T-r_all			T-r_all		= refresh all tickers and rerun all active add_cols
 # Activate overlay or 2nd chart				------	------	------			T-r_col			T-r_col		T-r_col			T-r_col		= recalculate the specific add_cols only	for NON screener pages							
 # Update value in overlay or 2nd chart		------	------	------			T-r_col			T-r_col		T-r_col			T-r_col		= recalculate the specific add_cols only	for NON screener pages	
-# Activate a column_adder						T-r_col	T-r_col	T-r_col			-------			-------		-------			-------		= recalculate the specific add_cols only	for screener app
-# Change column_adder value 					T-r_col	T-r_col	T-r_col			-------			-------		-------			-------		= recalculate the specific add_cols only	for screener app
-# Replace the page_df on chart app		R-r_df	-------	-------			-------			-------		-------			-------
-# Rerun the column adder chart app		R-r_col	-------	-------			-------			-------		-------			-------		
+# Activate a column_adder						T-r_col	T-r_col	T-r_col			-------			-------		-------			-------		= recalculate the specific add_cols only	for screener page
+# Change column_adder value 					T-r_col	T-r_col	T-r_col			-------			-------		-------			-------		= recalculate the specific add_cols only	for screener page
+# Replace the page_df on chart page		R-r_df	-------	-------			-------			-------		-------			-------
+# Rerun the column adder chart page		R-r_col	-------	-------			-------			-------		-------			-------		
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 # KEY		Description				Pages		Tickers		Dataframe									add_columns	replace_cols							Replace DF Func		Replace Cols Func		
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
@@ -61,9 +61,9 @@
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 # T			= tag the object
 # R			= perform the actual replacement (results in a False status)
-# r_df		= scope.apps[app]['replace_dfs']
-# r_col		= scope.apps[app]['replace_cols']
-# r_all		= both the scope.apps[app]['replace_dfs'] and scope.apps[app]['replace_cols'] dictionaries
+# r_df		= scope.pages[page]['replace_dfs']
+# r_col		= scope.pages[page]['replace_cols']
+# r_all		= both the scope.pages[page]['replace_dfs'] and scope.pages[page]['replace_cols'] dictionaries
 
 
 # tag the add_cols when they have been run													???? - updated function
