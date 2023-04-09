@@ -26,11 +26,11 @@ with col1:
 	st.write('Finfiz - Ticker Map (proportional)')
 	# st.write('Yahoo Finance')
 	st.write('Investing.com')
-	st.write('Yield Curve')
+	st.write('Yield Curve - United States (video)')
 	# st.write('Google Finance')
 	# st.write('ASX Company Data')
-	st.write('')
-	st.write('')
+	st.write('Yield Curve - United States')
+	st.write('Yield Curve - Australia')
 	st.write('')
 
 
@@ -48,8 +48,8 @@ with col2:
 	st.write('https://stockcharts.com/freecharts/yieldcurve.php')
 	# st.write('https://www.google.com/finance/')
 	# st.write('https://www2.asx.com.au/markets/company/cba')
-	st.write('')
-	st.write('')
+	st.write('https://www.ustreasuryyieldcurve.com')
+	st.write('https://www.statista.com/statistics/1275329/australian-government-bonds-yields-curve/')
 	st.write('')
 	st.write('')
 
