@@ -5,7 +5,7 @@ import streamlit as st
 
 def reset_page_render(scope):
 	st.button(
-			label='Reset Page', 
+			label='Reset', 
 			use_container_width=True,
 			on_click=reset_render_status, 
 			args=(scope,),

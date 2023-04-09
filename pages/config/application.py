@@ -19,6 +19,9 @@ def view_app(scope):
 	st.subheader('Share Market')
 	three_cols( 'Current Share Market', scope.config['share_market'], 'scope.config.share_market' )
 
+	st.subheader('Days to Download')
+	three_cols( 'Days to Download (recent)', scope.config['download_days'], "scope.config['download_days']" )
+
 	st.subheader('System')
 	three_cols( 'Initial Load ?', scope.initial_load, 'initial_load' )
 	

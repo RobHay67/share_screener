@@ -4,11 +4,14 @@ from pages.config.two_cols import view_2_columns
 
 def company_general(metadata):
 	# st.subheader(metadata.info['longName'])
+
+	info_keys = metadata.info.keys()
 	
 	col1,col2,col3,col4 = st.columns([1,1,2,4])
 
 	with col1:
-		st.image(metadata.info['logo_url'])
+		if 'logo_url' in info_keys:
+			st.image(metadata.info['logo_url'])
 
 	with col2:
 		st.caption('Sector')
@@ -18,21 +21,27 @@ def company_general(metadata):
 		st.caption('Website')
 
 	with col3:
-		st.write(metadata.info['sector'])
-		st.write(metadata.info['industry'])
-		st.write(metadata.info['phone'])
-		st.write(metadata.info['website'])
-		st.write(metadata.info['address1'] 
-		+ ', ' + metadata.info['address2'] 
-		+ ', ' + metadata.info['city'] 
-		+ ', ' + metadata.info['zip'] 
-		+ ', ' + metadata.info['country'])
+		if 'sector' in info_keys:
+			st.write(metadata.info['sector'])
+		if 'industry' in info_keys:
+			st.write(metadata.info['industry'])
+		if 'phone' in info_keys:
+			st.write(metadata.info['phone'])
+		if 'website' in info_keys:
+			st.write(metadata.info['website'])
+		if 'address1' in info_keys:
+			st.write(metadata.info['address1'] 
+			+ ', ' + metadata.info['address2'] 
+			+ ', ' + metadata.info['city'] 
+			+ ', ' + metadata.info['zip'] 
+			+ ', ' + metadata.info['country'])
 
 	with col4:
-		sentences = metadata.info['longBusinessSummary'].split('. ')
-		my_expander = st.expander(label='Business Summary', expanded=False)
-		for sentence in sentences:
-			with my_expander: st.write(sentence)
+		if 'longBusinessSummary' in info_keys:
+			sentences = metadata.info['longBusinessSummary'].split('. ')
+			my_expander = st.expander(label='Business Summary', expanded=False)
+			for sentence in sentences:
+				with my_expander: st.write(sentence)
 
 
 
@@ -63,21 +72,21 @@ def fundamental(metadata):
 	# col1,col2 = st.columns([5,7])
 	my_expander = st.expander(label='Fundamental Information', expanded=False)
 	with my_expander:
-		view_2_columns( 'Enterprise Value (AUD)', metadata.info['enterpriseValue'])
-		view_2_columns( 'Enterprise To Revenue Ratio', metadata.info['enterpriseToRevenue'])
-		view_2_columns( 'Enterprise To Ebitda Ratio', metadata.info['enterpriseToEbitda'])
-		view_2_columns( 'Net Income (AUD)', metadata.info['netIncomeToCommon'])
-		view_2_columns( 'Profit Margin Ratio', metadata.info['profitMargins'])
+		# view_2_columns( 'Enterprise Value (AUD)', metadata.info['enterpriseValue'])
+		# view_2_columns( 'Enterprise To Revenue Ratio', metadata.info['enterpriseToRevenue'])
+		# view_2_columns( 'Enterprise To Ebitda Ratio', metadata.info['enterpriseToEbitda'])
+		# view_2_columns( 'Net Income (AUD)', metadata.info['netIncomeToCommon'])
+		# view_2_columns( 'Profit Margin Ratio', metadata.info['profitMargins'])
 		view_2_columns( 'Forward PE Ratio', metadata.info['forwardPE'])
-		view_2_columns( 'PEG Ratio', metadata.info['pegRatio'])
+		# view_2_columns( 'PEG Ratio', metadata.info['pegRatio'])
 		view_2_columns( 'Price to Book Ratio', metadata.info['priceToBook'])
-		view_2_columns( 'Forward EPS (AUD)', metadata.info['forwardEps'])
-		view_2_columns( 'Beta', metadata.info['beta'])
+		# view_2_columns( 'Forward EPS (AUD)', metadata.info['forwardEps'])
+		# view_2_columns( 'Beta', metadata.info['beta'])
 		view_2_columns( 'Book Value (AUD)', metadata.info['bookValue'])
-		view_2_columns( 'Dividend Rate (%)', metadata.info['dividendRate'])
-		view_2_columns( 'Dividend Yield (%)', metadata.info['dividendYield'])
-		view_2_columns( 'Five year Avg Dividend Yield (%)', metadata.info['fiveYearAvgDividendYield'])
-		view_2_columns( 'Payout Ratio', metadata.info['payoutRatio'])
+		# view_2_columns( 'Dividend Rate (%)', metadata.info['dividendRate'])
+		# view_2_columns( 'Dividend Yield (%)', metadata.info['dividendYield'])
+		# view_2_columns( 'Five year Avg Dividend Yield (%)', metadata.info['fiveYearAvgDividendYield'])
+		# view_2_columns( 'Payout Ratio', metadata.info['payoutRatio'])
 
 
 def general(metadata):
@@ -92,18 +101,19 @@ def general(metadata):
 
 def market_info(metadata):
 	my_expander = st.expander(label='Market Information', expanded=False)
+	info_keys = metadata.info.keys()
+	
+	volume = str(metadata.info['volume']) if 'volume' in info_keys else '0'
+	averageVolume = str(metadata.info['averageVolume']) if 'averageVolume' in info_keys else '0'
+	marketCap = str(metadata.info['marketCap']) if 'marketCap' in info_keys else '0'
+	floatShares = str(metadata.info['floatShares']) if 'floatShares' in info_keys else '0'
+	regularMarketPrice = str(metadata.info['regularMarketPrice']) if 'regularMarketPrice' in info_keys else '0'
+	bidSize = str(metadata.info['bidSize']) if 'bidSize' in info_keys else '0'
+	askSize = str(metadata.info['askSize']) if 'askSize' in info_keys else '0'
+	sharesShort = str(metadata.info['sharesShort']) if 'sharesShort' in info_keys else '0'
+	shortRatio = str(metadata.info['shortRatio']) if 'shortRatio' in info_keys else '0'
+	sharesOutstanding = str(metadata.info['sharesOutstanding']) if 'sharesOutstanding' in info_keys else '0'
 
-
-	volume = str(metadata.info['volume'])
-	averageVolume = str(metadata.info['averageVolume'])
-	marketCap = str(metadata.info['marketCap'])
-	floatShares = str(metadata.info['floatShares'])
-	regularMarketPrice = str(metadata.info['regularMarketPrice'])
-	bidSize = str(metadata.info['bidSize'])
-	askSize = str(metadata.info['askSize'])
-	sharesShort = str(metadata.info['sharesShort'])
-	shortRatio = str(metadata.info['shortRatio'])
-	sharesOutstanding = str(metadata.info['sharesOutstanding'])
 
 	with my_expander:
 		st.markdown('** Volume **: ' + volume)

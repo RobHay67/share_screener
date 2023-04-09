@@ -7,7 +7,7 @@
 import streamlit as st
 
 from pages.widgets.download import download_button
-from tickers.download.controller import download_tickers
+from y_finance.price_data.controller import download_tickers
 from page.worklist import build_app_worklist_dropdown
 from tickers.load import load_ticker
 

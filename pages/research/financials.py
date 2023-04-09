@@ -12,11 +12,10 @@ def financial_statements(metadata):
 
 	col1,col2,col3 = st.columns([4,1,4])
 
+	# if 'financials' in metadata.keys:
 	profit_loss = pd.DataFrame(metadata.financials)
+	# if 'quarterly_financials' in metadata.keys():
 	profit_loss_qtr = pd.DataFrame(metadata.quarterly_financials)
-
-
-	print(profit_loss)
 
 
 	with col1:

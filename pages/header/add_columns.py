@@ -21,7 +21,7 @@ def add_cols_to_df_layer(scope):
 def render_progress_bar(scope, page):
 
 	if len(scope.pages[page]['worklist']) == 0:
-		st.write('No Files available - make some selections')
+		st.write('No Files available - select some')
 	else:
 		replace_df_and_add_columns(scope, page)
 

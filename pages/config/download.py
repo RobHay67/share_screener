@@ -13,7 +13,7 @@ def view_download(scope):
 
 	# st.subheader('Most Recent Download Variables and Data')
 	st.subheader('Download Days')
-	three_cols( 'Days to Download (recent)', scope.download['days'], 'scope.download.days' )
+	three_cols( 'Days to Download (recent)', scope.config['download_days'], "scope.config['download_days']" )
 	three_cols( 'Days to Download (yfinance format)', scope.download['yf_period'], 'scope.download.yf_period' )
 	
 	st.subheader('yFinance Batch Download Variables')

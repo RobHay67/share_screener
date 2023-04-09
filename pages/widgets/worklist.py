@@ -9,14 +9,14 @@ def render_active_charts_or_tests(scope):
 	if page in ['screener', 'chart']:
 
 		widget_key = 'widget_' + page + '_active_list_dropdown'
-		widget_label = 'Number of active '
+		widget_label = 'Active '
 
 		if page == 'screener':
 			active_list = scope.trial_config['active_list']
-			widget_label = widget_label+'trials / tests = '+str(len(active_list))
+			widget_label = widget_label+'Tests = '+str(len(active_list))
 		if page =='chart':
 			active_list = scope.chart_config['active_list']
-			widget_label = widget_label+'charts = '+str(len(active_list))
+			widget_label = widget_label+'Charts = '+str(len(active_list))
 
 		st.selectbox(
 				label		=widget_label, 
