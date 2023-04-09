@@ -1,23 +1,17 @@
 
+
 import pandas as pd
 from tickers.schema import ticker_file_usecols
 
 
 
-
 def scope_download_variables(scope):
 	scope.download = {}
-	base_config_download(scope)
 	reset_yf_download_config(scope)
-
-def base_config_download(scope):
-	# Setting can be changed for each user
-	# so we need to be able to call when changing user
-
-	scope.download['days'] = 7
 	set_yf_period(scope)
 
-	
+
+
 def reset_yf_download_config(scope):
 	# Reset back to these values after each download
 	scope.download['yf_download_these_industries'] = ['random_tickers']
@@ -34,15 +28,11 @@ def reset_yf_download_config(scope):
 	scope.download['yf_errors'] 				=  {}
 
 
-
-	
-
-
 def set_yf_period(scope):
+	
 	# set appropriate period for YF download
 	# valid periods = 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo
-	scope.download['yf_period'] = str(int(scope.download['days'])) + 'd' 
+	scope.download['yf_period'] = str(int(scope.config['download_days'])) + 'd' 
 
-
-
+	# Setting can be changed for each user - so called by the restore user code
 

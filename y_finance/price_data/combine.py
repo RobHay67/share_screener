@@ -5,7 +5,7 @@ from tickers.events.combine import combine_event
 from tickers.events.add_ticker import add_ticker_event
 from tickers.cache import cache_ticker_data
 from tickers.events.download import fail_download_event, download_data_event
-from tickers.download.save import save_ticker
+from tickers.save import save_ticker
 
 
 def combine_cached_and_yf_data(scope):
