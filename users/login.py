@@ -16,7 +16,7 @@ def login_user(scope, login_name):
 
 	# Over-write key user settings
 	scope.chart_config['primary_height'] = scope.users['json'][login_name]['chart_height']
-	scope.download['days'] = scope.users['json'][login_name]['download_days']
+	scope.config['download_days'] = scope.users['json'][login_name]['download_days']
 	scope.pages['row_limit'] = scope.users['json'][login_name]['row_limit']
 
 

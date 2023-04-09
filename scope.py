@@ -12,7 +12,7 @@ from ticker_index.config import scope_index_file
 from page.config.ticker_search import scope_ticker_search
 from tickers.config import scope_ticker_files
 from page.config.missing_tickers import scope_missing_tickers
-from tickers.download.config import scope_download_variables
+from y_finance.config import scope_download_variables
 from strategies.config import scope_strategy
 
 
@@ -61,8 +61,8 @@ def set_streamlit_page_config():
 		}} </style> """, unsafe_allow_html=True)
 
 	# Remove whitespace from the top of the page and sidebar
-	st.write('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True) # this is heaps better
-
+	st.write('<style>div.block-container{padding-top:0rem;}</style>', unsafe_allow_html=True) # this is heaps better
+	# st.write('<style>div.block-container{padding-top:2rem;}</style>', unsafe_allow_html=True)
 	# st.markdown("""
 	# 				<style>
 	# 					.css-o18uir.e16nr0p33 {
