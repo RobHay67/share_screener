@@ -19,7 +19,7 @@
 # -------------------------------------------------
 
 for i in range(10):print('')
-print ( '\033[94m' + 'Application Re-Rendering - see below this line ' + '>'*50 + '\033[0m')
+print ( '\033[94m' + 'Application Re-Rendering - see below this line ' + '>'*33 + '\033[0m')
 for i in range(5):print('')
 
 import streamlit as st
@@ -56,6 +56,14 @@ if scope.user_logged_in == False:
 else:
 	render_sidebar(scope)
 
+
+
+
+
+# import yfinance as yf
+# print (yf.__version__)
+# metadata = yf.Ticker('CBA.AX')
+# for key in metadata.info:print(key)
 
 
 #======================================================== TODO s

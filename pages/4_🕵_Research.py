@@ -42,7 +42,7 @@ if scope.user_logged_in:
 
 	if ticker != 'select a ticker' :
 		metadata = fetch_yfinance_metadata(ticker)
-		print(metadata)
+		# print(metadata)
 		if metadata.info != None:
 			company_general(metadata)
 
@@ -53,20 +53,20 @@ if scope.user_logged_in:
 
 			dividends(metadata)
 
-			financial_statements(metadata)
-
-			major(metadata)
-			institutional(metadata)
-			annual(metadata)
-			quarterly(metadata)
-			balance_sheet(metadata)
-			balance_sheet_qtr(metadata)
-			cashflow(metadata)
-			cashflow_qtr(metadata)
-			earnings(metadata)
-			earnings_qtr(metadata)
-
-			calendar(metadata)
+			print('None of the financial statements are coming out now')
+			# financial_statements(metadata)
+			# major(metadata)
+			# institutional(metadata)
+			# annual(metadata)
+			# quarterly(metadata)
+			# balance_sheet(metadata)
+			# balance_sheet_qtr(metadata)
+			# cashflow(metadata)
+			# cashflow_qtr(metadata)
+			# earnings(metadata)
+			# earnings_qtr(metadata)
+			print('Calendar no longer available')
+			# calendar(metadata)
 			news(metadata)
 
 			# plot_basic_chart(scope)		
