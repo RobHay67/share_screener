@@ -5,9 +5,11 @@ from streamlit_extras.switch_page_button import switch_page
 def link_to_app_button(scope, page, ticker):
 	
 	widget_key = 'widget_link_to_' + page + '_page_for_' + ticker
+	streamlit_page_name = page
 
 	if page == 'chart':
 		app_desc = '📊'
+		streamlit_page_name = 'charting'
 	elif page == 'volume':
 		app_desc = '🔊'
 	elif page == 'intraday':
@@ -34,7 +36,7 @@ def link_to_app_button(scope, page, ticker):
 			scope.pages[page]['selectors']['market'] = 'select market'
 			scope.pages[page]['search_results'] = {}
 
-		switch_page(page)
+		switch_page(streamlit_page_name)
 
 
 
