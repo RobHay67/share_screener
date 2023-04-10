@@ -9,15 +9,15 @@ from pages.widgets.ohlc import edit_ohlc
 
 def render_macd(scope):
 	
-	column_adder = 'macd'
-	type_config = 'charts'
+	config_key_name = 'macd'
+	config_group = 'charts'
 
 	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1,1])
 
-	with col1:edit_active(scope, type_config, column_adder)
-	with col2:edit_ohlc  (scope, type_config, column_adder)
-	with col3:edit_number(scope, type_config, column_adder, 'long' )
-	with col4:edit_number(scope, type_config, column_adder, 'short' )
-	with col5:edit_number(scope, type_config, column_adder, 'signal' )
+	with col1:edit_active(scope, config_group, config_key_name)
+	with col2:edit_ohlc  (scope, config_group, config_key_name)
+	with col3:edit_number(scope, config_group, config_key_name, 'long' )
+	with col4:edit_number(scope, config_group, config_key_name, 'short' )
+	with col5:edit_number(scope, config_group, config_key_name, 'signal' )
 
 

@@ -1,6 +1,6 @@
-# Add and Replace Dataframes and columns within Page/page Dataframes
+# Add and Replace Dataframes and columns within Page Dataframes
 # - refresh the page df (completely)
-# - Refresh specific df columns (activate or change col_adders)
+# - Refresh specific df columns (activate or change col_adders settings)
 # - utilised the scope.tickers object to track what needs to be done
 
 import streamlit as st
@@ -40,8 +40,8 @@ def replace_df_and_add_columns(scope, page):
 		for counter, ticker in enumerate(ticker_list):
 			poc = int(((counter+1) / no_of_tickers ) * 100)
 			my_bar.progress(poc, text='Adding columns where file = '+ticker)
-			replace_app_df(scope, page, ticker, app_row_limit)
-			replace_specific_app_columns(scope, page, ticker)
+			replace_page_df(scope, page, ticker, app_row_limit)
+			replace_page_df_columns(scope, page, ticker)
 			determine_overall_ticker_verdict(scope, ticker)
 
 		my_bar.progress(100, text=completion_text)
@@ -62,7 +62,7 @@ def create_ticker_list_to_add_columns(scope, page):
 	return list_of_tickers_to_add_columns
 
 
-def replace_app_df(scope, page, ticker, app_row_limit):
+def replace_page_df(scope, page, ticker, app_row_limit):
 	# Replace the page df if requested
 
 	if scope.tickers[ticker][page]['replace_df'] == True:
@@ -73,35 +73,35 @@ def replace_app_df(scope, page, ticker, app_row_limit):
 		# Cache the ticker dataframe to be utilised by this page/page
 		scope.tickers[ticker][page]['df'] = ticker_df
 
-		if ticker not in scope.pages[page]['tickers_with_add_cols']:
+		if ticker not in scope.pages[page]['tickers_used_by_page']:
 		# add ticker to the loaded_ticker list
-			scope.pages[page]['tickers_with_add_cols'].append(ticker)
+			scope.pages[page]['tickers_used_by_page'].append(ticker)
 		
 		# Set the status to false to prevent refreshing unnecesarily
 		scope.tickers[ticker][page]['replace_df'] = False
 
 
-def replace_specific_app_columns(scope, page, ticker):
+def replace_page_df_columns(scope, page, ticker):
 
-	type_of_column_adder = scope.tickers[ticker][page]['type_col_adder']
+	config_group = scope.tickers[ticker][page]['config_group']
 	scope.pages[page]['render']['verdicts'] = False
 				
-	if type_of_column_adder != None:			
-	# Some apps/pages do not have any column adders
-		for column_adder, status in scope.tickers[ticker][page]['column_adders'].items():
+	if config_group != None:			
+	# Some pages do not have any data or settings
+		for config_key_name, status in scope.tickers[ticker][page]['column_adders'].items():
 			if status == True:	
 			# Only replace the columns if requested to do so for this column adder
 				ticker_df = scope.tickers[ticker][page]['df']
-				# Call the column adding function for this column_adder
-				scope[type_of_column_adder][column_adder]['add_columns']['function'](scope, column_adder, ticker, ticker_df)
+				# Call the column adding function for this config_key_name
+				scope[config_group][config_key_name]['add_columns']['function'](scope, config_key_name, ticker, ticker_df)
 				# Set the status to false to prevent refreshing unnecesarily
-				scope.tickers[ticker][page]['column_adders'][column_adder] = False
+				scope.tickers[ticker][page]['column_adders'][config_key_name] = False
 
-				if type_of_column_adder == 'trials':
+				if config_group == 'trials':
 					# set stutus to recalc overall verdict for this ticker
 					scope.tickers[ticker][page]['replace_verdict'] = True
 					# Store the most date recent test result - it should be the first row
-					scope.tickers[ticker][page]['trials'][column_adder] = ticker_df[column_adder].iloc[0]
+					scope.tickers[ticker][page]['trials'][config_key_name] = ticker_df[config_key_name].iloc[0]
 
 
 

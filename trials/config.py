@@ -1,13 +1,25 @@
+# trials_config - all config
+# trial_list	- list of trial config keys
+# active_list	- list of active trial config keys
+# column_adders	- dict of { trial : active_status } (includes active and inactive)
+
+# trials is the config
+# trials_config are the current settings!!!
+
+
+
+
+
 
 def scope_trials(scope):
 
-	scope.trial_config = {}
+	scope.trial_settings = {}
 
-	scope.trial_config['trial_list'] = list(trials_config.keys())
+	scope.trial_settings['trial_list'] = list(trial_configuration_dict.keys())
 
 	scope.trials = {}
-	for trial, config in trials_config.items():
-		scope.trials[trial] = config
+	for trial, configuration in trial_configuration_dict.items():
+		scope.trials[trial] = configuration
 	
 	trial_active_list(scope)
 
@@ -15,26 +27,28 @@ def scope_trials(scope):
 
 
 def trial_active_list(scope):
+	# a list of every currently active trial
 	# Seperate function so it can be called after the initial load - i.e. change user
 
 	# Reset the list as this function will rebuild it
-	scope.trial_config['active_list'] = []
+	scope.trial_settings['active_list'] = []
 
-	for trial in scope.trial_config['trial_list']:	
+	for trial in scope.trial_settings['trial_list']:	
 		if scope.trials[trial]['active'] == True:
-			scope.trial_config['active_list'].append(trial)
+			scope.trial_settings['active_list'].append(trial)
 
 
 def trial_column_adders(scope):
+	# A dictionary of every trial that requires additional columns
 	# Seperate function so it can be called after the initial load - i.e. change user
 
 	# Reset the dictionary as calling this function will recreate the dictionary
-	scope.trial_config['column_adders'] = {}
+	scope.trial_settings['column_adders'] = {}
 
-	for trial in scope.trial_config['trial_list']:
+	for trial in scope.trial_settings['trial_list']:
 		# Add trials that require additional columns
 		if scope.trials[trial]['add_columns'] != None:
-			scope.trial_config['column_adders'][trial] = scope.trials[trial]['active']
+			scope.trial_settings['column_adders'][trial] = scope.trials[trial]['active']
 
 
 
@@ -64,7 +78,7 @@ duration		= 'duration'			# the lenght or number of consecutive occurances
 timespan 		= 'timespan'			# The entire analysis Period
 trend			= 'trend'				# the trend or direction of the trend - up or down / above or below
 add_columns		= 'add_columns'			# Dictionary of Dataframe Column Params	
-function		= 'function'			# The function to add the columns for this column_adder
+function		= 'function'			# The function to add the columns for this config_key_name
 
 periods 		= 'periods'				# Most Indicators use a base number of days/hours (periods) for their calcs - store it here
 short 			= 'short'				# for the MACD
@@ -82,7 +96,7 @@ trends_for_stochastic = ['above_line', 'below_line', 'over_bought', 'over_sold',
 trends_for_rsi = ['up_trend', 'down_trend', 'over_bought', 'over_sold' ]
 
 
-trials_config = {
+trial_configuration_dict = {
 	'price_1'	: {
 						active			: False,
 						name			: 'OHLCV Price Direction',

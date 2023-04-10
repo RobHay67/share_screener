@@ -27,7 +27,7 @@ def scope_pages(scope):
 		scope.pages[page]['search_results'] = {}
 		scope.pages[page]['worklist'] = []  # formally known as scope.pages[page]['ticker_list']
 		scope.pages[page]['worklist_dropdown'] = []
-		scope.pages[page]['tickers_with_add_cols'] = []
+		scope.pages[page]['tickers_used_by_page'] = []
 		
 		scope.pages[page]['selectors'] = {
 										'ticker'	: 'select a ticker',

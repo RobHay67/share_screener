@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-def app_config_button(scope):
+def page_config_button(scope):
 
 	page = scope.display_page
 	current_value = scope.pages[page]['render']['app_config']
@@ -10,7 +10,7 @@ def app_config_button(scope):
 	button = st.button(
 					label = '⚙️', 
 					use_container_width=True, 
-					on_click=app_config_status, args=(scope, ),
+					on_click=page_config_status, args=(scope, ),
 					type=type_of_button,
 					help='Page Configuration'
 					)
@@ -19,7 +19,7 @@ def app_config_button(scope):
 
 
 
-def app_config_status(scope):
+def page_config_status(scope):
 
 	page = scope.display_page
 

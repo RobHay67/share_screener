@@ -18,5 +18,5 @@ def view_ticker_data(scope):
 			st.subheader(page.upper() + ' page')
 			three_cols( 'Dataframe with added columns', scope.tickers[ticker][page]['df'],  "scope.tickers["+ticker+"]["+page+"]['df']", widget_type='string' )
 			three_cols( 'Replace this Dataframe', scope.tickers[ticker][page]['replace_df'],  "scope.tickers["+ticker+"]["+page+"]['replace_df']", widget_type='string' )
-			three_cols( 'Type of Column Adder', scope.tickers[ticker][page]['type_col_adder'],  "scope.tickers["+ticker+"]["+page+"]['type_col_adder']", widget_type='string' )
+			three_cols( 'Settings Group (Charts or Trials)', scope.tickers[ticker][page]['config_group'],  "scope.tickers["+ticker+"]["+page+"]['config_group']", widget_type='string' )
 			three_cols( 'Column Adder Config', scope.tickers[ticker][page]['column_adders'],  "scope.tickers["+ticker+"]["+page+"]['column_adders']", widget_type='string' )

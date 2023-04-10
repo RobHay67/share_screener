@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Config (scope)
-from pages.config.application import view_app
+from pages.config.application import render_scope_config
 from pages.config.dropdowns import view_dropdowns
 from pages.config.ticker_search import view_ticker_search
 from pages.config.trials import view_trials_config
@@ -18,7 +18,7 @@ from pages.config.ticker_data import view_ticker_data
 def render_selected_scope_page(scope):
 
 	scope_page = {
-			'application'			:view_app,
+			'application'			:render_scope_config,
 			'dropdowns'				:view_dropdowns,
 			'ticker_search'			:view_ticker_search,
 			# 'apps'

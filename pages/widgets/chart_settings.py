@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-def chart_config_button(scope):
+def chart_settings_button(scope):
 
 	page = scope.display_page
 	current_value = scope.pages[page]['render']['chart_settings']
@@ -10,13 +10,13 @@ def chart_config_button(scope):
 	button = st.button(
 						label='📊', 
 						use_container_width=True, 
-						on_click=chart_config_status, args=(scope, page, ),
+						on_click=chart_settings_status, args=(scope, page, ),
 						type=type_of_button,
 						help='Chart Configuration Settings'
 						)
 	return button
 
-def chart_config_status(scope, page):
+def chart_settings_status(scope, page):
 	
 	previous_value = scope.pages[page]['render']['chart_settings']
 	new_value = True if previous_value == False else False

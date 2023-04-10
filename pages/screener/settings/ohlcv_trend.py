@@ -9,14 +9,14 @@ from pages.widgets.ohlcv import edit_ohlcv
 
 def render_ohlcv_trend(scope, trial):
 	
-	type_config = 'trials'
-	column_name = scope[type_config][trial]['add_columns']['column']
+	config_group = 'trials'
+	column_name = scope[config_group][trial]['add_columns']['column']
 
 	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1,1])
 
 
-	with col1:edit_active(scope, type_config, trial)
-	with col2:edit_ohlcv(scope, type_config, trial)
-	with col3:edit_trend_ohlcv (scope, type_config, trial)
-	with col4:edit_number(scope, type_config, trial, 'duration' )
-	with col5:edit_number(scope, type_config, trial, 'timespan' )
+	with col1:edit_active(scope, config_group, trial)
+	with col2:edit_ohlcv(scope, config_group, trial)
+	with col3:edit_trend_ohlcv (scope, config_group, trial)
+	with col4:edit_number(scope, config_group, trial, 'duration' )
+	with col5:edit_number(scope, config_group, trial, 'timespan' )

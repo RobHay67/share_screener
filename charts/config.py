@@ -1,9 +1,18 @@
+# trials_config - all config
+# chart_list	- list of chart config keys
+# active_list	- list of acttive chart config keys
+# column_adders	-  dict of { chart : active_status } (includes active and inactive)
+
+
+
+
+
 
 def scope_charts(scope):
-	scope.chart_config = {}
+	scope.chart_settings = {}
 	base_config_charts(scope)
-	scope.chart_config['chart_list'] = list(charts_config.keys())
-	scope.chart_config['colours'] = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
+	scope.chart_settings['chart_list'] = list(charts_config.keys())
+	scope.chart_settings['colours'] = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
 	
 	scope.charts = {}
 	for chart, config in charts_config.items():
@@ -18,29 +27,29 @@ def base_config_charts(scope):
 	# Setting can be changed for each user
 	# so we need to be able to call when changing user
 
-	scope.chart_config['primary_height'] = 500
-	scope.chart_config['total_height'] = scope.chart_config['primary_height']
+	scope.chart_settings['primary_height'] = 500
+	scope.chart_settings['total_height'] = scope.chart_settings['primary_height']
 
 
 def chart_active_list(scope):
 	# Seperate function so it can be called after the initial load - i.e. change user
 	# Reset the list as this function will rebuild it
-	scope.chart_config['active_list'] = []
+	scope.chart_settings['active_list'] = []
 
-	for chart in scope.chart_config['chart_list']:	
+	for chart in scope.chart_settings['chart_list']:	
 		if scope.charts[chart]['active'] == True:
-			scope.chart_config['active_list'].append(chart)
+			scope.chart_settings['active_list'].append(chart)
 
 
 def chart_column_adders(scope):
 
 	# Reset the list as this function will rebuild it
-	scope.chart_config['column_adders'] = {}
+	scope.chart_settings['column_adders'] = {}
 
-	for chart in scope.chart_config['chart_list']:
+	for chart in scope.chart_settings['chart_list']:
 		# Only add charts that require additional columns
 		if scope.charts[chart]['add_columns'] != None:
-			scope.chart_config['column_adders'][chart] = scope.charts[chart]['active']
+			scope.chart_settings['column_adders'][chart] = scope.charts[chart]['active']
 
 
 
@@ -51,13 +60,13 @@ def chart_column_adders(scope):
 # ---------------------------------------------------------------------------------
 # candlestick		DONE
 # scatter			ignore for now
-# bar				ignore for now
+# bar				DONE
 # line				DONE						- WIP - custom button to select line
 # heiken_ashi		ignore for now
 # volume			DONE
 # vol_per_minute	scope
 # vac
-# VWAP											- What Is the Volume-Weighted Average Price (VWAP)?
+# VWAP							- What Is the Volume-Weighted Average Price (VWAP)?
 # macd				DONE
 # macd_vol			DONE
 # rsi				DONE
@@ -86,7 +95,7 @@ def chart_column_adders(scope):
 # Primary Charts -------------------------------------
 from charts.candlestick 		import candle_plot
 # from charts.scatter										# TODO
-# from charts.bar											# TODO
+from charts.bar					import bar_ohlc_plot
 from charts.line 				import line_plot
 # from charts.heikin_ashi
 
@@ -124,7 +133,9 @@ name 			= 'name'				# The display name for the chart (used in the settings page)
 short_name		= 'short_name'			# A short name used if various Screen Outputs
 is_overlay 		= 'is_overlay'			# Indicates that this chart is over layed on top of the other charts which accept overlays
 add_overlays	= 'add_overlays'		# Apply the overlay to this chart - some charts are % in which case $ based averages distort the overall chart
-active 			= 'active'				# True or False - is this technical Indicator is being applied to our Primary Chart?
+use_columns		= 'use_columns'			# List of columns to utilise by this config group
+definition		= 'definition'			# URL link to the definition for this chart or overlay
+notes			= 'notes'				# Notes regarding this chart or overlay
 # Chart Releated Parameters -------------------------------------------------------------------------------------------------------
 plot			= 'plot'				# Dictionary of Plot Parameters for Rendering this chart
 function 		= 'function'			# The function to render this chart
@@ -152,18 +163,36 @@ charts_config = {
 		# Primary Charts -----------------------------------------------------------------------
 		'candlestick'		: { 
 								active			: True,
-								name			: 'CandleStick',
+								name			: 'Candlestick',
 								short_name		: 'Candle',
 								is_overlay		: False, 
 								add_overlays	: True, 
+								definition		: 'https://www.investopedia.com/terms/c/candlestick.asp',
+								notes			: 'Open set by he novice trading yesterdays sentiment, High is set by the Bulls, Low is set by the Bears. The close is set by the professional investors.',
 								plot			: { 
 									 				function	: candle_plot, 
-													title		: 'Price', 
+													title		: 'Candlestick', 
 													scale		: 1.00, 
 													yaxis		: '$,.2f',
 												},
 								add_columns		: None, 
 								},
+		'bar'				: { 
+								active			: False, 
+								name			: 'Bar Chart', 
+								short_name		: 'Bar',
+								is_overlay		: False, 
+								add_overlays	: True, 
+								definition		: 'https://www.investopedia.com/terms/b/barchart.asp',
+								notes			: '',
+								plot			: { 
+													function	: bar_ohlc_plot, 
+													title		: 'Bar Chart - OHLC', 
+													scale		: 0.80, 
+													yaxis		: '$,.2f' 
+												}, 
+								add_columns		: None, 
+							},
 		'scatter'			: { 
 								active			: False, 
 								name			: 'Scatter', 
@@ -178,29 +207,18 @@ charts_config = {
 												}, 	
 								add_columns		: None, 
 							},
-		'bar'				: { 
-								active			: False, 
-								name			: 'Bar Chart', 
-								short_name		: 'Bar',
-								is_overlay		: False, 
-								add_overlays	: False, 
-								plot			: { 
-													function	: None, 
-													title		: '', 
-													scale		: 0.80, 
-													yaxis		: '$,.2f' 
-												}, 
-								add_columns		: None, 
-							},
 		'line'				: { 
 								active			: True , 
-								name			: 'Line charts', 
+								name			: 'Line Chart', 
 								short_name		: 'Line',
 								is_overlay		: False, 
 								add_overlays	: True , 
+								use_columns		: ['o','h','l','c'], 
+								definition		: '',
+								notes			: '',
 								plot			: { 
 													function	: line_plot, 
-													title		: 'Line', 
+													title		: 'Line Chart', 
 													scale		: 0.50, 
 													yaxis		: '$,.2f' 
 												}, 	
@@ -212,6 +230,8 @@ charts_config = {
 								short_name		: 'Heikin Ashi',
 								is_overlay		: False, 
 								add_overlays	: False, 
+								definition		: '',
+								notes			: '',
 								plot			: { 
 													function:None, 
 													title:'', 
@@ -228,6 +248,8 @@ charts_config = {
 								short_name		: 'VWAP',
 								is_overlay		: False, 
 								add_overlays	: False, 
+								definition		: '',
+								notes			: '',
 								plot			: { 
 													function	:  volume_plot, 
 													title		: 'Volume', 
@@ -245,6 +267,8 @@ charts_config = {
 								short_name		: 'Volume',
 								is_overlay		: False, 
 								add_overlays	: False, 
+								definition		: '',
+								notes			: '',
 								plot			: { 
 													function	:  volume_plot, 
 													title		: 'Volume', 
@@ -259,6 +283,8 @@ charts_config = {
 								short_name		: 'VPM', 
 								is_overlay		: False, 
 								add_overlays	: False, 
+								definition		: '',
+								notes			: '',
 								plot			: { 
 													function	: vpm_plot, 
 													title		: '', 
@@ -273,6 +299,8 @@ charts_config = {
 								short_name		: 'VAC',
 								is_overlay		: False, 
 								add_overlays	: False, 
+								definition		: '',
+								notes			: '',
 								plot			: { 
 													function	: None, 
 													title		: '', 
@@ -287,6 +315,8 @@ charts_config = {
 								short_name		: 'MACD',
 								is_overlay		: False, 
 								add_overlays	: False, 
+								definition		: '',
+								notes			: '',
 								plot			: { 
 													function	: macd_plot, 
 													title		: 'MACD', 
@@ -307,6 +337,8 @@ charts_config = {
 								short_name		: 'MACD Vol',
 								is_overlay		: False, 
 								add_overlays	: False, 
+								definition		: '',
+								notes			: '',
 								plot			: { 
 													function	: macd_vol_plot	, 
 													title		: 'MACD (Volume)', 
@@ -327,6 +359,8 @@ charts_config = {
 								short_name		: 'RSI',
 								is_overlay		: False, 
 								add_overlays	: False, 
+								definition		: '',
+								notes			: '',
 								plot			: { 
 													function		: rsi_plot, 
 													title			: 'RSI', 
@@ -334,8 +368,8 @@ charts_config = {
 													yaxis			: '.0%',
 												}, 	
 								add_columns		: { 
-													function		: rsi_cols		, 
-													column			: 'close'	, 
+													function		: rsi_cols, 
+													column			: 'close', 
 													lookback_days	: 10, 
 												}, 
 								},
@@ -345,6 +379,8 @@ charts_config = {
 								short_name		: 'Volume Oscillator',
 								is_overlay		: False, 
 								add_overlays	: False, 
+								definition		: '',
+								notes			: '',
 								plot			: { 
 													function	: None, 
 													title		: '', 
@@ -364,6 +400,8 @@ charts_config = {
 								short_name		: 'Stochastic',
 								is_overlay		: False, 
 								add_overlays	: False, 
+								definition		: '',
+								notes			: '',
 								plot			: { 
 													function		: stoch_plot, 
 													title			: 'Stochastic', 
@@ -385,6 +423,8 @@ charts_config = {
 								short_name		: 'SMA-1',
 								is_overlay		: True , 
 								add_overlays	: False, 
+								definition		: '',
+								notes			: '',
 								plot			: { function : sma_plot, colour : 'blue' }, 									
 								add_columns		: {	function : sma_cols, column : 'close', periods:21 } 
 								},		
@@ -394,6 +434,8 @@ charts_config = {
 								short_name		: 'SMA-2',
 								is_overlay		: True , 
 								add_overlays		: False, 
+								definition		: '',
+								notes			: '',
 								plot			: { function : sma_plot, colour : 'green' }, 									
 								add_columns		: {	function : sma_cols, column : 'close', periods:50 } 
 								},		
@@ -403,6 +445,8 @@ charts_config = {
 								short_name		: 'SMA-3',
 								is_overlay		: True , 
 								add_overlays	: False, 
+								definition		: '',
+								notes			: '',
 								plot			: { function : sma_plot, colour : 'green' }, 									
 								add_columns		: {	function : sma_cols, column : 'close', periods:200 } 
 								},		
@@ -412,6 +456,8 @@ charts_config = {
 								short_name		: 'EMA-1',
 								is_overlay		: True , 
 								add_overlays	: False, 
+								definition		: '',
+								notes			: '',
 								plot			: { function : ema_plot, colour : 'red' }, 									
 								add_columns		: {	function : ema_cols, column : 'close', periods:21 } 
 								},
@@ -421,6 +467,8 @@ charts_config = {
 								short_name		: 'EMA-2',
 								is_overlay		: True , 
 								add_overlays	: False, 
+								definition		: '',
+								notes			: '',
 								plot			: { function : ema_plot, colour : 'blue' }, 									
 								add_columns		: {	function : ema_cols, column : 'close', periods:50 } 
 								},
@@ -430,6 +478,8 @@ charts_config = {
 								short_name		: 'EMA-3',
 								is_overlay		: True , 
 								add_overlays	: False, 
+								definition		: '',
+								notes			: '',
 								plot			: { function : ema_plot, colour : 'SteelBlue' }, 									
 								add_columns		: {	function : ema_cols, column : 'close', periods:200 } 
 								},
@@ -439,6 +489,8 @@ charts_config = {
 								short_name		: 'Bollinger',
 								is_overlay		: True, 
 								add_overlays	: False, 
+								definition		: '',
+								notes			: '',
 								plot			: { 
 													function:sma_plot, 
 													colour:'black' 		
@@ -458,6 +510,8 @@ charts_config = {
 								short_name		: 'Dividends',
 								is_overlay		: True , 
 								add_overlays	: False, 
+								definition		: '',
+								notes			: '',
 								plot			: { 
 													function: dividend_plot, 
 													colour	:'blue' 		
@@ -472,6 +526,8 @@ charts_config = {
 								short_name		: 'Announcements',
 								is_overlay		: True , 
 								add_overlays	: False, 
+								definition		: '',
+								notes			: '',
 								plot			: { 
 													function:sma_plot, 
 													colour	:'black' 		
@@ -484,6 +540,8 @@ charts_config = {
 								short_name		: 'Icki Moku',
 								is_overlay		: True, 
 								add_overlays	: False, 
+								definition		: '',
+								notes			: '',
 								plot			:{ 
 													function:sma_plot, 
 													colour	:'black' 		
@@ -496,6 +554,8 @@ charts_config = {
 								short_name		:'Icki Moku Daily',
 								is_overlay		:True,
 								add_overlays	:False,
+								definition		: '',
+								notes			: '',
 								plot			: { 
 													function:sma_plot, 
 													colour	:'black'

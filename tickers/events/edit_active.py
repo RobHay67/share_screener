@@ -1,42 +1,54 @@
 from trials.remove_test_result import remove_test_result_column
 
+# This event is triggered when a column adder is changed to either 
+#
+# Active 	(True) 
+# or 
+# Inactive 	(False)
+#
+# Column Adder require recalculation for every ticker using this test
+# Column adders activated will require recalculation
+# Column adders deactived need to be removed from the page_df
 
-
-def edit_active_event(scope, type_col_adder, column_adder, status):
-	
-	# This event is triggered when a column adder is set
-	# to either Active (True) or Inactive (False)
-	# Column Adder requires a refresh for every ticker
-	# Only column adders that have been activated will require refreshing
+def edit_active_event(scope, config_group, config_key_name, status):
 	
 	for ticker in scope.tickers.keys():
 		for page in scope.pages['page_list']: 
 			# if the activated column adder is used by this page then change the refresh status
-			if column_adder in scope.tickers[ticker][page]['column_adders'].keys():
-				scope.tickers[ticker][page]['column_adders'][column_adder] = status
+			if config_key_name in scope.tickers[ticker][page]['column_adders'].keys():
+				scope.tickers[ticker][page]['column_adders'][config_key_name] = status
 				# for the screener page, remove the test result 
 				# if the users has deactivated this test
 				if page == 'screener' and status == False:
-					remove_test_result_column(scope, ticker, column_adder)
+					remove_test_result_column(scope, ticker, config_key_name)
 
 
 	# Take this opportunity to update the shortcut lists
 	#  - column_adders - list of trials that add columns to a dataframe
 	#  - active_trials - list of trials that are currently active
 
-	if type_col_adder == 'trials':
-		type_config = 'trial_config'
+	if config_group == 'trials':
+		config_group = 'trial_settings'
 
-	if type_col_adder == 'charts':
-		type_config = 'chart_config'
+	if config_group == 'charts':
+		config_group = 'chart_settings'
 	
-	if column_adder in scope[type_col_adder].keys():
+
+
+
+	if config_key_name in scope[config_group].keys():
 		# restict to functions that add columns
-		if scope[type_col_adder][column_adder]['add_columns'] != None:
-			scope[type_config]['column_adders'][column_adder] = status
+		if scope[config_group][config_key_name]['add_columns'] != None:
+			scope[config_group]['column_adders'][config_key_name] = status
+
+
+	# Update the Active lists for charts or trial
+	# either add the chart or trial or remove it
 
 	if status == True:
-		scope[type_config]['active_list'].append(column_adder)
+		# add chart or trial to active list
+		scope[config_group]['active_list'].append(config_key_name)
 	else:
-		if column_adder in scope[type_config]['active_list']:
-			scope[type_config]['active_list'].remove(column_adder)
+		# remove the chart or trial from the active list
+		if config_key_name in scope[config_group]['active_list']:
+			scope[config_group]['active_list'].remove(config_key_name)

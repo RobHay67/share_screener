@@ -45,8 +45,8 @@
 # Change the < app_row_limit >				T-r_all T-r_all T-r_all			T-r_all			T-r_all		T-r_all			T-r_all		= refresh all tickers and rerun all active add_cols
 # Activate overlay or 2nd chart				------	------	------			T-r_col			T-r_col		T-r_col			T-r_col		= recalculate the specific add_cols only	for NON screener pages							
 # Update value in overlay or 2nd chart		------	------	------			T-r_col			T-r_col		T-r_col			T-r_col		= recalculate the specific add_cols only	for NON screener pages	
-# Activate a column_adder						T-r_col	T-r_col	T-r_col			-------			-------		-------			-------		= recalculate the specific add_cols only	for screener page
-# Change column_adder value 					T-r_col	T-r_col	T-r_col			-------			-------		-------			-------		= recalculate the specific add_cols only	for screener page
+# Activate a config_key_name						T-r_col	T-r_col	T-r_col			-------			-------		-------			-------		= recalculate the specific add_cols only	for screener page
+# Change config_key_name value 					T-r_col	T-r_col	T-r_col			-------			-------		-------			-------		= recalculate the specific add_cols only	for screener page
 # Replace the page_df on chart page		R-r_df	-------	-------			-------			-------		-------			-------
 # Rerun the column adder chart page		R-r_col	-------	-------			-------			-------		-------			-------		
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
@@ -54,7 +54,7 @@
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 # T-r_df 	tag to replace df		All			Specific	set_replace_df_status_for_ticker			------------------------------------------------	replace_dfs			---------------------	
 # T-r_col	tag to add_cols			All			Specific	-----------------------------------------	set_replace_col_status_for_ticker					--------------- 	replace_cols
-# t-col		change column_adder		All			All			-----------------------------------------	set_replace_col_status_for_col_adder					---------------		replace_cols
+# t-col		change config_key_name		All			All			-----------------------------------------	set_replace_col_status_for_col_adder					---------------		replace_cols
 # t-ALL 	replace all dfs	& cols	All			All			set_replace_df_status_for_all_tickers 		set_replace_cols_status_for_all_tickers 				replace_dfs			replace_cols
 # Rdf		replace the DF			Specific	Specific	set_replace_df_status_for_ticker_and_page	------------------------------------------------	
 # Rcol		replace the cols		Specific	Specific	-----------------------------------------	set_replace_col_adder_status_for_ticker_and_page

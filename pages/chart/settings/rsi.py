@@ -10,13 +10,13 @@ from pages.widgets.ohlcv import edit_ohlcv
 
 def render_rsi(scope):
 	
-	column_adder = 'rsi'
-	type_config = 'charts'
+	config_key_name = 'rsi'
+	config_group = 'charts'
 
 	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1,1])
 
-	with col1:edit_active(scope, type_config, column_adder)
-	with col2:edit_ohlcv(scope, type_config, column_adder )
-	with col3:edit_number(scope, type_config, column_adder, 'lookback_days' )
+	with col1:edit_active(scope, config_group, config_key_name)
+	with col2:edit_ohlcv(scope, config_group, config_key_name )
+	with col3:edit_number(scope, config_group, config_key_name, 'lookback_days' )
 	
 

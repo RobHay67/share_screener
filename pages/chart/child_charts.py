@@ -8,11 +8,12 @@ def add_child_charts(scope, fig, chart_df, schema):
 		row_no = chart_no+1 
 		col_no = schema['col_no']
 
-		# add sub_plot
+		# add chart (plot) to FIG
 		scope.charts[chart]['plot']['function'](scope, fig, chart, chart_df, row_no, col_no)
+	
 		fig = format_child_chart(scope, fig, chart, row_no, 1 )
 		
-		# only apply overlays to relevant charts
+		# apply overlays to relevant charts
 		if scope.charts[chart]['add_overlays'] == True:											
 			for overlay in schema['add_overlay']:
 				scope.charts[overlay]['plot']['function'](scope, fig, overlay, chart_df, row_no, col_no)

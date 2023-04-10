@@ -7,16 +7,16 @@ from pages.widgets.ohlc import edit_ohlc
 from pages.widgets.colour import edit_colour
 
 
-def render_moving_average(scope, column_adder):  # SMA or EMA
+def render_moving_average(scope, config_key_name):  # SMA or EMA
 
-	type_config = 'charts'
+	config_group = 'charts'
 
 	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1,1])
 
-	with col1:edit_active(scope, type_config, column_adder)
-	with col2:edit_number(scope, type_config, column_adder, 'periods' )
-	with col3:edit_ohlc(scope, type_config, column_adder )
-	with col4:edit_colour(scope, type_config, column_adder )
+	with col1:edit_active(scope, config_group, config_key_name)
+	with col2:edit_number(scope, config_group, config_key_name, 'periods' )
+	with col3:edit_ohlc(scope, config_group, config_key_name )
+	with col4:edit_colour(scope, config_group, config_key_name )
 
 
 

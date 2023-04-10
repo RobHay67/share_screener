@@ -25,20 +25,20 @@ def format_main_chart(scope, fig):
 	ticker 	= scope.pages[page]['selectors']['ticker']
 	
 	fig.update_layout(	
-						height 		= scope.chart_config['total_height'],
+						height 		= scope.chart_settings['total_height'],
 						# width		= 1200, 									# let streamlit take care of this
 						showlegend	= False, 									# Not Possible to have individual legends per subplot
 						margin		= go.layout.Margin(l=20, r=20, b=20, t=35),
 
-						title={
-								'text'		:  ticker,
-								'font_color': 'blue',
-								'font_size'	: 25,
-								'y'			: 1,
-								'x'			: 0.5,
-								'xanchor'	: 'center',
-								'yanchor'	: 'top'
-								},
+						# title={
+						# 		'text'		:  ticker,
+						# 		'font_color': 'blue',
+						# 		'font_size'	: 25,
+						# 		'y'			: 1,
+						# 		'x'			: 0.5,
+						# 		'xanchor'	: 'center',
+						# 		'yanchor'	: 'top'
+						# 		},
 						font={
 								'size'		: 14,
 								'color'		: 'green',

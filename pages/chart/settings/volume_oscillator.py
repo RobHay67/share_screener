@@ -7,12 +7,12 @@ from pages.widgets.number import edit_number
 
 def render_volume_oscillator(scope):
 	
-	column_adder = 'vol_osssy'
-	type_config = 'charts'
+	config_key_name = 'vol_osssy'
+	config_group = 'charts'
 
 	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1,1])
 
-	with col1:edit_active(scope, type_config, column_adder)
-	with col2:edit_number(scope, type_config, column_adder, 'fast' )
-	with col3:edit_number(scope, type_config, column_adder, 'slow' )
+	with col1:edit_active(scope, config_group, config_key_name)
+	with col2:edit_number(scope, config_group, config_key_name, 'fast' )
+	with col3:edit_number(scope, config_group, config_key_name, 'slow' )
 	

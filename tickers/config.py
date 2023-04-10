@@ -22,8 +22,8 @@ def scope_new_ticker(scope, ticker):
 	for page in scope.pages['page_list']:
 		scope.tickers[ticker][page] = {}
 		scope.tickers[ticker][page]['df'] = {}					# to store the dataframe for this page
-		scope.tickers[ticker][page]['replace_df'] = True			# does the df need replace
-		scope.tickers[ticker][page]['type_col_adder'] = None   	# relevant type of col_adder - 'charts' or 'trials'
+		scope.tickers[ticker][page]['replace_df'] = True		# does the df need replace
+		scope.tickers[ticker][page]['config_group'] = None   	# relevant type of col_adder - 'charts' or 'trials'
 		scope.tickers[ticker][page]['column_adders'] = {}		# dict of col_adder functions for this page
 
 		# To Store Test (trial) Results for the screener page
@@ -32,7 +32,7 @@ def scope_new_ticker(scope, ticker):
 			scope.tickers[ticker][page]['verdict'] = None
 			scope.tickers[ticker][page]['replace_verdict'] = False
 			scope.tickers[ticker][page]['trials'] = {}
-			for trial in scope.trial_config['trial_list']:
+			for trial in scope.trial_settings['trial_list']:
 				scope.tickers[ticker][page]['trials'][trial] = None
 
 

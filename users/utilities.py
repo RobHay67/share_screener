@@ -7,7 +7,7 @@ def summarise_trial_config_for_user(scope):
 
 	trial_dict = {}
 
-	for trial in scope.trial_config['trial_list']:
+	for trial in scope.trial_settings['trial_list']:
 		trial_dict[trial] = {}
 		trial_dict[trial]['active'] = scope.trials[trial]['active']
 		add_columns = scope.trials[trial]['add_columns']
@@ -26,7 +26,7 @@ def summarise_chart_config_for_user(scope):
 
 	chart_dict = {}
 
-	for chart in scope.chart_config['chart_list']:
+	for chart in scope.chart_settings['chart_list']:
 		chart_dict[chart] = {}
 		chart_dict[chart]['active'] = scope.charts[chart]['active']
 		add_columns = scope.charts[chart]['add_columns']

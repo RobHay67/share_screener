@@ -9,7 +9,7 @@ from pages.chart.main_chart import format_main_chart
 
 # Page Configuration
 page = 'chart'
-page_title = 'Charting'
+page_title = 'Daily Charting'
 page_icon = '📊'
 # -----------------------------
 scope = st.session_state
@@ -21,7 +21,7 @@ if scope.user_logged_in:
 
 	ticker = scope.pages[page]['selectors']['ticker']
 
-	if ticker in scope.pages[page]['tickers_with_add_cols']:
+	if ticker in scope.pages[page]['tickers_used_by_page']:
 
 		chart_df		= scope.tickers[ticker][page]['df']
 		schema 			= create_schema_for_plotly(scope)

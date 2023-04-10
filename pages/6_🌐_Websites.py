@@ -18,6 +18,7 @@ render_app_header(scope, page_title, page_icon)
 col1,col2 = st.columns([4,4])
 
 with col1:
+	st.write('Guppy Traders')
 	st.write('Kitco News')
 	st.write('Upcomming Dividends')
 	st.write('Director Transactions')
@@ -35,6 +36,7 @@ with col1:
 
 
 with col2:
+	st.write("https://www.guppytraders.com")
 	st.write('https://www.kitco.com')
 
 	st.write('https://www.marketindex.com.au/upcoming-dividends')

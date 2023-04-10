@@ -14,13 +14,18 @@ def selected_ticker_name_layer(scope):
 			# we have a ticker to work with
 		
 			ticker = scope.pages[page]['worklist'][0]
-			ticker_name = scope.config['ticker_search'][ticker]
+			ticker_name = scope.config['ticker_search'][ticker].title()
 			ticker_latest_price_df = latest_ticker_price(scope, ticker)
 				
-			col1,col2 = st.columns([8.0, 4.0])  #12
+			col1,col2,col3 = st.columns([1.0,6.0, 5.0])  #12
 
-			with col1:st.subheader(ticker_name)
-			with col2:st.dataframe(ticker_latest_price_df, use_container_width=True)
+			with col1:
+				st.subheader(":blue["+ticker+"]")
+			with col2:
+				st.write('')
+				st.write(":blue["+ticker_name+"]")
+			with col3:
+				st.dataframe(ticker_latest_price_df, use_container_width=True)
 			
 
 

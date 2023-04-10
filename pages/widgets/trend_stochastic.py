@@ -5,10 +5,10 @@ from tickers.events.edit_column_adder import edit_column_adder_event
 from trials.config import trends_for_stochastic
 
 
-def edit_trend_stochastic(scope, type_config, column_adder ):
-	widget_key = 'widget_trend_' + type_config + '_' + column_adder
+def edit_trend_stochastic(scope, config_group, config_key_name ):
+	widget_key = 'widget_trend_' + config_group + '_' + config_key_name
 	display_name = 'Trend'
-	previous_selection = scope[type_config][column_adder]['add_columns']['trend']
+	previous_selection = scope[config_group][config_key_name]['add_columns']['trend']
 	pos_for_previous = trends_for_stochastic.index(previous_selection)	
 
 	st.selectbox ( 
@@ -16,18 +16,18 @@ def edit_trend_stochastic(scope, type_config, column_adder ):
 					options		=trends_for_stochastic,
 					index		=pos_for_previous, 
 					on_change	=on_change_stochastic_selection,
-					args		=(scope, type_config, column_adder, widget_key, ),
+					args		=(scope, config_group, config_key_name, widget_key, ),
 					key			=widget_key,
 					) 
 
 
-def on_change_stochastic_selection(scope:dict, type_config:str, column_adder:str, widget_key:str):
+def on_change_stochastic_selection(scope:dict, config_group:str, config_key_name:str, widget_key:str):
 
 	changed_value = scope[widget_key]
 
 	# store the selection
-	scope[type_config][column_adder]['add_columns']['trend'] = changed_value	
+	scope[config_group][config_key_name]['add_columns']['trend'] = changed_value	
 
 	# update the page data renew status
-	edit_column_adder_event(scope, column_adder)
+	edit_column_adder_event(scope, config_key_name)
 	

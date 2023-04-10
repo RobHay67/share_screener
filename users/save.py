@@ -7,10 +7,9 @@ def save_users_table(scope):
 	
 	if user != 'Login to Use the Application':
 		print('Saving the Users Table')
-
 		
 		# Set User Variables to the values currently stored in the application
-		scope.users['json'][user]['chart_height'] = scope.chart_config['primary_height']
+		scope.users['json'][user]['chart_height'] = scope.chart_settings['primary_height']
 		scope.users['json'][user]['download_days'] = scope.config['download_days']
 		scope.users['json'][user]['row_limit'] = scope.pages['row_limit']
 
@@ -32,7 +31,7 @@ def trials_config(scope):
 
 	trial_dict = {}
 
-	for trial in scope.trial_config['trial_list']:
+	for trial in scope.trial_settings['trial_list']:
 		trial_dict[trial] = {}
 		trial_dict[trial]['active'] = scope.trials[trial]['active']
 		add_columns = scope.trials[trial]['add_columns']
@@ -53,7 +52,7 @@ def charts_config(scope):
 
 	chart_dict = {}
 
-	for chart in scope.chart_config['chart_list']:
+	for chart in scope.chart_settings['chart_list']:
 		chart_dict[chart] = {}
 		chart_dict[chart]['active'] = scope.charts[chart]['active']
 		add_columns = scope.charts[chart]['add_columns']

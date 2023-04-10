@@ -5,12 +5,12 @@ from tickers.events.edit_active import edit_active_event
 
 
 
-def edit_active(scope, type_config, column_adder ):
+def edit_active(scope, config_group, config_key_name ):
 
-	widget_key = 'widget_active_' + type_config + '_' + column_adder
-	display_name =  '' + scope[type_config][column_adder]['name']
-	previous_selection = scope[type_config][column_adder]['active']
-	add_columns = scope[type_config][column_adder]['add_columns']
+	widget_key = 'widget_active_' + config_group + '_' + config_key_name
+	display_name =  '' + scope[config_group][config_key_name]['name']
+	previous_selection = scope[config_group][config_key_name]['active']
+	add_columns = scope[config_group][config_key_name]['add_columns']
 	
 	if add_columns != None:
 		# add some space above active for charts/trials that have colume config
@@ -19,20 +19,20 @@ def edit_active(scope, type_config, column_adder ):
 				label		=display_name, 
 				value		=previous_selection,
 				on_change	=on_change_active_status,
-				args		=(scope, type_config, column_adder, widget_key, ),
+				args		=(scope, config_group, config_key_name, widget_key, ),
 				key			=widget_key,
 				)
 
 
 
 
-def on_change_active_status(scope:dict, type_config:str, column_adder:str, widget_key:str):
+def on_change_active_status(scope:dict, config_group:str, config_key_name:str, widget_key:str):
 	changed_value = scope[widget_key]
 
 	# store the selection
-	scope[type_config][column_adder]['active'] = changed_value
+	scope[config_group][config_key_name]['active'] = changed_value
 
 	# update the page data renew status
-	edit_active_event(scope, type_config, column_adder, changed_value)
+	edit_active_event(scope, config_group, config_key_name, changed_value)
 
 
