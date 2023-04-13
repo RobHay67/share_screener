@@ -16,11 +16,11 @@ def combine_cached_and_yf_data(scope):
 	page = scope.display_page
 	for ticker in scope.pages[page]['worklist']:
 				
-		if ticker in scope.download['yf_data']['ticker'].unique():
+		if ticker in scope.yf['data']['ticker'].unique():
 			# we appear to have downloaded data (we may have nothing)
 			
 			# subset to specific ticker from the downloaded data
-			ticker_data = scope.download['yf_data'][scope.download['yf_data']['ticker'] == ticker]			
+			ticker_data = scope.yf['data'][scope.yf['data']['ticker'] == ticker]			
 			ticker_data = ticker_data[ticker_file_usecols]				# standardise the columns
 			ticker_data = ticker_data[ticker_data['volume'] != 0]		# drop rows where volume is zero 
 			

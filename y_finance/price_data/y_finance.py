@@ -11,11 +11,11 @@ def download_from_yahoo_finance(scope):
 	# download ticker data for a single or group of tickers
 	# utilising the y_finance platform
 
-	for batch_no, industry in enumerate(scope.download['yf_download_these_industries']):
+	for batch_no, industry in enumerate(scope.yf['download_these_industries']):
 
 		# cache batch download params
-		scope.download['yf_batch_no'] = batch_no
-		scope.download['yf_batch_industry'] = industry
+		scope.yf['batch_no'] = batch_no
+		scope.yf['batch_industry'] = industry
 		set_batch_params(scope)
 
 		render_download_message(scope)		
@@ -33,7 +33,7 @@ def set_batch_params(scope):
 
 	# convert an industry into a string of tickers acceptable to y_finance
 
-	industry = scope.download['yf_batch_industry']
+	industry = scope.yf['batch_industry']
 	
 	if industry == 'random_tickers':
 		# Selected specific tickers rather than by industry group					 
@@ -51,45 +51,45 @@ def set_batch_params(scope):
 			y_finance_ticker_string += " "
 		y_finance_ticker_string =  y_finance_ticker_string + ticker
 
-	scope.download['yf_batch_ticker_string'] = y_finance_ticker_string
+	scope.yf['batch_ticker_string'] = y_finance_ticker_string
 
 	# Set type of download for y_finance - single or multiple tickers
 	if y_finance_ticker_string.count(' ') == 0:
-		scope.download['yf_batch_type'] = 'single_ticker'
+		scope.yf['batch_type'] = 'single_ticker'
 	else:
-		scope.download['yf_batch_type'] = 'multiple_tickers'
+		scope.yf['batch_type'] = 'multiple_tickers'
 
 
 def download_ticker_data(scope):
 
 	# empty the temporary download data holder
-	scope.download['yf_batch_data'] = {}
-	scope.download['yf_batch_errors'] = {}
+	scope.yf['batch_data'] = {}
+	scope.yf['batch_errors'] = {}
 	downloaded_data = False
 
-	if scope.download['yf_batch_type'] == 'single_ticker':
+	if scope.yf['batch_type'] == 'single_ticker':
 		# Single Ticker being downloaded
 	
 		yf_download = yf.download( 
-									tickers=scope.download['yf_batch_ticker_string'], 
-									period=scope.download['yf_period'], 
+									tickers=scope.yf['batch_ticker_string'], 
+									period=scope.yf['period'], 
 									interval='1d', 
 									progress=True, 
 									show_errors=False
 									)			
 		# manually add the ticker column as its missing
-		yf_download['Ticker'] = scope.download['yf_batch_ticker_string']
+		yf_download['Ticker'] = scope.yf['batch_ticker_string']
 
 		# print(yf_download)
 		downloaded_data = True
 
-	if scope.download['yf_batch_type'] == 'multiple_tickers':
+	if scope.yf['batch_type'] == 'multiple_tickers':
 		# Multiple Tickers being downloaded
 			
 		yf_download = yf.download( 
-									tickers=scope.download['yf_batch_ticker_string'], 
+									tickers=scope.yf['batch_ticker_string'], 
 									group_by = 'ticker', 				# group_by: group by column or ticker (‘column’/’ticker’, default is ‘column’)
-									period=scope.download['yf_period'], 
+									period=scope.yf['period'], 
 									interval='1d', 
 									progress=True, 
 									threads=True, 						# threads : use threads for mass downloading? (True/False/Integer)
@@ -101,15 +101,15 @@ def download_ticker_data(scope):
 		downloaded_data = True
 
 	if downloaded_data:
-		scope.download['yf_batch_data'] = yf_download
-		scope.download['yf_batch_errors'] = yf.shared._ERRORS
+		scope.yf['batch_data'] = yf_download
+		scope.yf['batch_errors'] = yf.shared._ERRORS
 
 
 def format_yf_data(scope):
 	
 	# simple object reference
-	schema = scope.download['yf_batch_type']
-	yf_download = scope.download['yf_batch_data']
+	schema = scope.yf['batch_type']
+	yf_download = scope.yf['batch_data']
 
 	# remove any index set during import - we will set the index later
 	yf_download.reset_index(inplace=True)   
