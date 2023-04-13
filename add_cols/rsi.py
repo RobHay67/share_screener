@@ -11,8 +11,8 @@ def rsi_cols(scope, chart, ticker, chart_df):
 
 	# https://www.alpharithms.com/relative-strength-index-rsi-in-python-470209/   Python Calculation methodology
 
-	column 			= scope.charts[chart]['add_columns']['column']
-	lookback_days	= int(scope.charts[chart]['add_columns']['lookback_days'])
+	column 			= scope.charts['config'][chart]['add_columns']['column']
+	lookback_days	= int(scope.charts['config'][chart]['add_columns']['lookback_days'])
 
 	# Change chart_df to be ascending to simplify the shifting
 	chart_df.sort_values(by=['date'], inplace=True, ascending=True)
@@ -40,9 +40,9 @@ def rsi_cols(scope, chart, ticker, chart_df):
 
 def rsi_trend(scope, trial, ticker, df):
 
-	trend 			= scope.trials[trial]['add_columns']['trend']
-	column 			= scope.trials[trial]['add_columns']['column']
-	lookback_days	= int(scope.trials[trial]['add_columns']['lookback_days'])
+	trend 			= scope.trials['config'][trial]['add_columns']['trend']
+	column 			= scope.trials['config'][trial]['add_columns']['column']
+	lookback_days	= int(scope.trials['config'][trial]['add_columns']['lookback_days'])
 
 	# Change chart_df to be ascending to simplify the shifting
 	df.sort_values(by=['date'], inplace=True, ascending=True)

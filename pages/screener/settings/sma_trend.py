@@ -9,7 +9,7 @@ from pages.widgets.ohlcv import edit_ohlcv
 def render_sma_trend(scope, trial):
 	
 	config_group = 'trials'
-	column_name = scope[config_group][trial]['add_columns']['column']
+	column_name = scope[config_group]['config'][trial]['add_columns']['column']
 
 	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1,1])
 

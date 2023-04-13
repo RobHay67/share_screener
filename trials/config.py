@@ -13,13 +13,14 @@
 
 def scope_trials(scope):
 
-	scope.trial_settings = {}
-
-	scope.trial_settings['trial_list'] = list(trial_configuration_dict.keys())
-
 	scope.trials = {}
+
+	scope.trials['trial_list'] = list(trial_configuration_dict.keys())
+
+	# store the trial configuration dictionary (from below)
+	scope.trials['config'] = {}
 	for trial, configuration in trial_configuration_dict.items():
-		scope.trials[trial] = configuration
+		scope.trials['config'][trial] = configuration
 	
 	trial_active_list(scope)
 
@@ -31,29 +32,26 @@ def trial_active_list(scope):
 	# Seperate function so it can be called after the initial load - i.e. change user
 
 	# Reset the list as this function will rebuild it
-	scope.trial_settings['active_list'] = []
+	scope.trials['active_list'] = []
 
-	for trial in scope.trial_settings['trial_list']:	
-		if scope.trials[trial]['active'] == True:
-			scope.trial_settings['active_list'].append(trial)
+	for trial in scope.trials['trial_list']:	
+		if scope.trials['config'][trial]['active'] == True:
+			scope.trials['active_list'].append(trial)
 
 
 def trial_column_adders(scope):
 	# A dictionary of every trial that requires additional columns
+	# ignore and trials that dont have column adders
 	# Seperate function so it can be called after the initial load - i.e. change user
 
 	# Reset the dictionary as calling this function will recreate the dictionary
-	scope.trial_settings['column_adders'] = {}
+	scope.trials['template_col_adders'] = {}
 
-	for trial in scope.trial_settings['trial_list']:
+	for trial in scope.trials['trial_list']:
+		if scope.trials['config'][trial]['add_columns'] != None:
 		# Add trials that require additional columns
-		if scope.trials[trial]['add_columns'] != None:
-			scope.trial_settings['column_adders'][trial] = scope.trials[trial]['active']
-
-
-
-
-
+			active_status_of_trial = scope.trials['config'][trial]['active']
+			scope.trials['template_col_adders'][trial] = active_status_of_trial
 
 
 
@@ -78,7 +76,7 @@ duration		= 'duration'			# the lenght or number of consecutive occurances
 timespan 		= 'timespan'			# The entire analysis Period
 trend			= 'trend'				# the trend or direction of the trend - up or down / above or below
 add_columns		= 'add_columns'			# Dictionary of Dataframe Column Params	
-function		= 'function'			# The function to add the columns for this config_key_name
+function		= 'function'			# The function to add the columns for this config_key
 
 periods 		= 'periods'				# Most Indicators use a base number of days/hours (periods) for their calcs - store it here
 short 			= 'short'				# for the MACD

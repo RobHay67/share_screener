@@ -33,6 +33,8 @@ if 'display_page' not in st.session_state:
 	scope = set_scope(st.session_state)
 
 
+
+
 # Page Configuration
 scope = st.session_state
 page = 'home'
@@ -42,13 +44,12 @@ page_icon = '🏠'
 scope.display_page = page
 
 
-# print(page, ' > Number of Keys in Scope = ', len(scope))
-# for count, key in enumerate(sorted(st.session_state)):print(count+1, key)
+print(page, ' > Number of Keys in Scope = ', len(scope))
+for count, key in enumerate(sorted(st.session_state)):print(count+1, key)
 
 page_title_layer(scope, page_title, page_icon)
 st.write('Welcome to the Share Picker Appliction.')
 st.write('Select from the options in the sidebar (left)')
-st.warning('Users Logged in = ' + str(scope.user_logged_in))
 
 if scope.user_logged_in == False:
 	col1,col2 = st.columns([2,8])

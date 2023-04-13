@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 
 def sma_plot(scope, fig, overlay, chart_df, row_no, col_no):
 
-	line_colour = scope.charts[overlay]['plot']['colour']
+	line_colour = scope.charts['config'][overlay]['plot']['colour']
 
 	fig.add_trace(go.Scatter(
 								x		= chart_df['date'], 

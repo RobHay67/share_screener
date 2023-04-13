@@ -6,7 +6,7 @@ import streamlit as st
 
 def set_chart_height_primary(scope):
 
-	previous_selection = int(scope.chart_settings['primary_height'])
+	previous_selection = int(scope.charts['primary_height'])
 	display_name = 'Total Height of All Charts Combined (default = 500)'
 	widget_key = 'widget_chart_height'
 
@@ -25,7 +25,7 @@ def on_change_chart_height(scope:dict, widget_key:str):
 	changed_value = scope[widget_key]
 
 	# store the selection
-	scope.chart_settings['primary_height'] = changed_value
+	scope.charts['primary_height'] = changed_value
 
 	# update the page data renew status
 	# Does not require renewal of page data

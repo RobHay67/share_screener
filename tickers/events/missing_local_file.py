@@ -1,17 +1,16 @@
-from page.config.missing_tickers import scope_missing_ticker_error
-
+from tickers.config import scope_missing_ticker_error
 
 def missing_file_event(scope, ticker):
 	# There is no local file so record this fact
 	# to prevent further attempts to load the local file
 
-	scope.missing_tickers['local'].append(ticker)
-	scope.missing_tickers['list'].append(ticker)
+	scope.tickers['missing']['local'].append(ticker)
+	scope.tickers['missing']['list'].append(ticker)
 
 	# Cache Error
-	if ticker not in scope.missing_tickers['errors']:
+	if ticker not in scope.tickers['missing']['errors']:
 		scope_missing_ticker_error(scope, ticker)
-	scope.missing_tickers['errors'][ticker]['load'] = 'Missing Local file'
+	scope.tickers['missing']['errors'][ticker]['load'] = 'Missing Local file'
 
 
 

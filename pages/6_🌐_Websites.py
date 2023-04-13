@@ -32,7 +32,8 @@ with col1:
 	# st.write('ASX Company Data')
 	st.write('Yield Curve - United States')
 	st.write('Yield Curve - Australia')
-	st.write('')
+	st.write('Australian Dollar')
+	st.write('Australian Dollar (live)')
 
 
 with col2:
@@ -52,8 +53,8 @@ with col2:
 	# st.write('https://www2.asx.com.au/markets/company/cba')
 	st.write('https://www.ustreasuryyieldcurve.com')
 	st.write('https://www.statista.com/statistics/1275329/australian-government-bonds-yields-curve/')
-	st.write('')
-	st.write('')
+	st.write('https://www.rba.gov.au/statistics/frequency/exchange-rates.html')
+	st.write('https://audtoday.com')
 
 
 

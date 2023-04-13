@@ -7,8 +7,20 @@
 
 
 
-def scope_ticker_files(scope):
+def scope_tickers(scope):
 	scope.tickers = {}
+
+	# To Store the missing ticker information
+	scope.tickers['missing'] = {
+								'errors': {},
+								'local' : [],
+								'cloud' : [],
+								'list'  : [],
+								}
+	
+	
+def scope_missing_ticker_error(scope, ticker):
+	scope.tickers['missing']['errors'][ticker] = {'load':None, 'yf':None}
 
 
 def scope_new_ticker(scope, ticker):
@@ -24,7 +36,7 @@ def scope_new_ticker(scope, ticker):
 		scope.tickers[ticker][page]['df'] = {}					# to store the dataframe for this page
 		scope.tickers[ticker][page]['replace_df'] = True		# does the df need replace
 		scope.tickers[ticker][page]['config_group'] = None   	# relevant type of col_adder - 'charts' or 'trials'
-		scope.tickers[ticker][page]['column_adders'] = {}		# dict of col_adder functions for this page
+		scope.tickers[ticker][page]['replace_column'] = {}		# dict of col_adder functions for this page
 
 		# To Store Test (trial) Results for the screener page
 		if page == 'screener':
@@ -32,7 +44,9 @@ def scope_new_ticker(scope, ticker):
 			scope.tickers[ticker][page]['verdict'] = None
 			scope.tickers[ticker][page]['replace_verdict'] = False
 			scope.tickers[ticker][page]['trials'] = {}
-			for trial in scope.trial_settings['trial_list']:
+			for trial in scope.trials['trial_list']:
 				scope.tickers[ticker][page]['trials'][trial] = None
+
+
 
 

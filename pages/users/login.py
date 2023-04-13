@@ -13,7 +13,7 @@ def render_login_page(scope):
 	login_name = st.text_input('User Name')
 	login_pword = st.text_input('Password', type='password')
 
-	if scope.autologin:
+	if scope.user_autologin:
 		login_name = 'Rob'
 		st.button(		'Press to Auto Login to Rob ', 
 						on_click=login_user, 

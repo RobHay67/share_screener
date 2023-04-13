@@ -5,8 +5,8 @@ def sma_cols( scope, chart, ticker, chart_df):
 	# Add a Simple Moving Average (SMA)
 	# https://www.investopedia.com/terms/s/sma.asp
 	
-	column 		= scope.charts[chart]['add_columns']['column']
-	no_of_days 	= scope.charts[chart]['add_columns']['periods']
+	column 		= scope.charts['config'][chart]['add_columns']['column']
+	no_of_days 	= scope.charts['config'][chart]['add_columns']['periods']
 
 	# Change chart_df to be ascending to simplify the shifting
 	chart_df.sort_values(by=['date'], inplace=True, ascending=True)
@@ -21,9 +21,9 @@ def sma_cols( scope, chart, ticker, chart_df):
 
 def sma_trend(scope, trial, ticker, df):
 	
-	trend 		= scope.trials[trial]['add_columns']['trend']
-	column 		= scope.trials[trial]['add_columns']['column']
-	no_of_days 	= scope.trials[trial]['add_columns']['periods']
+	trend 		= scope.trials['config'][trial]['add_columns']['trend']
+	column 		= scope.trials['config'][trial]['add_columns']['column']
+	no_of_days 	= scope.trials['config'][trial]['add_columns']['periods']
 
 	# Change df to be ascending to simplify the shifting
 	df.sort_values(by=['date'], inplace=True, ascending=True)

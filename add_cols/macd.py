@@ -7,10 +7,10 @@ def macd_cols( scope, chart, ticker, chart_df):
 
 	# MACD = https://www.investopedia.com/terms/m/macd.asp
 	
-	column 	= scope.charts[chart]['add_columns']['column']
-	short 	= scope.charts[chart]['add_columns']['short']
-	long 	= scope.charts[chart]['add_columns']['long']
-	signal 	= scope.charts[chart]['add_columns']['signal']
+	column 	= scope.charts['config'][chart]['add_columns']['column']
+	short 	= scope.charts['config'][chart]['add_columns']['short']
+	long 	= scope.charts['config'][chart]['add_columns']['long']
+	signal 	= scope.charts['config'][chart]['add_columns']['signal']
 		
 	chart_df['macd_short'] 		= chart_df[column].ewm(span=short, adjust=False).mean()
 	chart_df['macd_long']  		= chart_df[column].ewm(span=long , adjust=False).mean()

@@ -9,14 +9,14 @@ def add_child_charts(scope, fig, chart_df, schema):
 		col_no = schema['col_no']
 
 		# add chart (plot) to FIG
-		scope.charts[chart]['plot']['function'](scope, fig, chart, chart_df, row_no, col_no)
+		scope.charts['config'][chart]['plot']['function'](scope, fig, chart, chart_df, row_no, col_no)
 	
 		fig = format_child_chart(scope, fig, chart, row_no, 1 )
 		
 		# apply overlays to relevant charts
-		if scope.charts[chart]['add_overlays'] == True:											
+		if scope.charts['config'][chart]['add_overlays'] == True:											
 			for overlay in schema['add_overlay']:
-				scope.charts[overlay]['plot']['function'](scope, fig, overlay, chart_df, row_no, col_no)
+				scope.charts['config'][overlay]['plot']['function'](scope, fig, overlay, chart_df, row_no, col_no)
 
 	return fig
 
@@ -24,8 +24,8 @@ def add_child_charts(scope, fig, chart_df, schema):
 
 def format_child_chart(scope, fig, chart, row_no, col_no):
 
-	sub_plot_title = scope.charts[chart]['plot']['title']
-	yaxis_format = scope.charts[chart]['plot']['yaxis']
+	sub_plot_title = scope.charts['config'][chart]['plot']['title']
+	yaxis_format = scope.charts['config'][chart]['plot']['yaxis']
 
 	fig.update_xaxes(
 					showgrid	= False,				# Vertical Lines

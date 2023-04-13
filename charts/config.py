@@ -9,14 +9,15 @@
 
 
 def scope_charts(scope):
-	scope.chart_settings = {}
-	base_config_charts(scope)
-	scope.chart_settings['chart_list'] = list(charts_config.keys())
-	scope.chart_settings['colours'] = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
-	
 	scope.charts = {}
+	base_config_charts(scope)
+	scope.charts['chart_list'] = list(charts_config.keys())
+	scope.charts['colours'] = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
+	
+	# store the trial configuration dictionary (from below)
+	scope.charts['config'] = {}
 	for chart, config in charts_config.items():
-		scope.charts[chart] = config
+		scope.charts['config'][chart] = config
 	
 	chart_active_list(scope)
 
@@ -27,29 +28,29 @@ def base_config_charts(scope):
 	# Setting can be changed for each user
 	# so we need to be able to call when changing user
 
-	scope.chart_settings['primary_height'] = 500
-	scope.chart_settings['total_height'] = scope.chart_settings['primary_height']
+	scope.charts['primary_height'] = 500
+	scope.charts['total_height'] = scope.charts['primary_height']
 
 
 def chart_active_list(scope):
 	# Seperate function so it can be called after the initial load - i.e. change user
 	# Reset the list as this function will rebuild it
-	scope.chart_settings['active_list'] = []
+	scope.charts['active_list'] = []
 
-	for chart in scope.chart_settings['chart_list']:	
-		if scope.charts[chart]['active'] == True:
-			scope.chart_settings['active_list'].append(chart)
+	for chart in scope.charts['chart_list']:	
+		if scope.charts['config'][chart]['active'] == True:
+			scope.charts['active_list'].append(chart)
 
 
 def chart_column_adders(scope):
 
 	# Reset the list as this function will rebuild it
-	scope.chart_settings['column_adders'] = {}
+	scope.charts['template_col_adders'] = {}
 
-	for chart in scope.chart_settings['chart_list']:
+	for chart in scope.charts['chart_list']:
 		# Only add charts that require additional columns
-		if scope.charts[chart]['add_columns'] != None:
-			scope.chart_settings['column_adders'][chart] = scope.charts[chart]['active']
+		if scope.charts['config'][chart]['add_columns'] != None:
+			scope.charts['template_col_adders'][chart] = scope.charts['config'][chart]['active']
 
 
 

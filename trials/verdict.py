@@ -15,7 +15,7 @@ def determine_overall_ticker_verdict(scope, ticker):
 			# Determine a verdict/test result for this ticker
 			# - but only assess currently active trials 
 			# - a trial may have since been turned off
-			for trial in scope.trial_settings['active_list']:
+			for trial in scope.trials['active_list']:
 				if scope.tickers[ticker][page]['trials'][trial] not in [ 'pass', None ]:
 					final_verdict = 'fail'
 					break

@@ -99,7 +99,7 @@ def sma_trends(scope):
 def set_open_status(scope, trial_group):
 	open_expanded = False
 	for trial in trial_group:
-		if scope.trials[trial]['active']:
+		if scope.trials['config'][trial]['active']:
 			open_expanded=True
 			break
 	return open_expanded

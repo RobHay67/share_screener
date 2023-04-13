@@ -29,10 +29,10 @@ def cache_ticker_data(scope, ticker, ticker_data):
 
 		if page == 'chart':
 			scope.tickers[ticker][page]['config_group'] = 'charts'
-			scope.tickers[ticker][page]['column_adders'] = scope.chart_settings['column_adders'].copy()
+			scope.tickers[ticker][page]['replace_column'] = scope.charts['template_col_adders'].copy()
 
 		if page == 'screener':
 			scope.tickers[ticker][page]['config_group'] = 'trials'
-			scope.tickers[ticker][page]['column_adders'] = scope.trial_settings['column_adders'].copy()
+			scope.tickers[ticker][page]['replace_column'] = scope.trials['template_col_adders'].copy()
 
 

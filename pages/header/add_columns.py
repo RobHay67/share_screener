@@ -5,6 +5,8 @@
 
 import streamlit as st
 
+from add_cols.replace_page_df import replace_page_df
+from add_cols.replace_df_cols import replace_page_df_columns
 from trials.verdict import determine_overall_ticker_verdict
 
 
@@ -62,46 +64,6 @@ def create_ticker_list_to_add_columns(scope, page):
 	return list_of_tickers_to_add_columns
 
 
-def replace_page_df(scope, page, ticker, app_row_limit):
-	# Replace the page df if requested
-
-	if scope.tickers[ticker][page]['replace_df'] == True:
-		ticker_df = scope.tickers[ticker]['df'].copy()
-		# limit no of rows for the page df (speeds up page rendering)	
-		ticker_df = ticker_df.head(app_row_limit)
-		
-		# Cache the ticker dataframe to be utilised by this page/page
-		scope.tickers[ticker][page]['df'] = ticker_df
-
-		if ticker not in scope.pages[page]['tickers_used_by_page']:
-		# add ticker to the loaded_ticker list
-			scope.pages[page]['tickers_used_by_page'].append(ticker)
-		
-		# Set the status to false to prevent refreshing unnecesarily
-		scope.tickers[ticker][page]['replace_df'] = False
-
-
-def replace_page_df_columns(scope, page, ticker):
-
-	config_group = scope.tickers[ticker][page]['config_group']
-	scope.pages[page]['render']['verdicts'] = False
-				
-	if config_group != None:			
-	# Some pages do not have any data or settings
-		for config_key_name, status in scope.tickers[ticker][page]['column_adders'].items():
-			if status == True:	
-			# Only replace the columns if requested to do so for this column adder
-				ticker_df = scope.tickers[ticker][page]['df']
-				# Call the column adding function for this config_key_name
-				scope[config_group][config_key_name]['add_columns']['function'](scope, config_key_name, ticker, ticker_df)
-				# Set the status to false to prevent refreshing unnecesarily
-				scope.tickers[ticker][page]['column_adders'][config_key_name] = False
-
-				if config_group == 'trials':
-					# set stutus to recalc overall verdict for this ticker
-					scope.tickers[ticker][page]['replace_verdict'] = True
-					# Store the most date recent test result - it should be the first row
-					scope.tickers[ticker][page]['trials'][config_key_name] = ticker_df[config_key_name].iloc[0]
 
 
 

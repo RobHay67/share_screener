@@ -71,10 +71,10 @@ def render_page_config(scope):
 	st.write('---')
 	st.subheader('Settings for '+page+' page.')
 	if page == 'screener':
-		three_cols( 'Current Trial Settings stored in', {}, 'scope.trial_settings', widget_type='string' )
-		three_cols( 'Every Trial in Config Dictionary', scope.trial_settings['trial_list'], "scope.trial_settings['trial_list']" )
-		three_cols( 'Active Trial List', scope.trial_settings['active_list'], "scope.trial_settings['active_list']" )
-		three_cols( 'Trials which require Column Adders', scope.trial_settings['column_adders'], "scope.trial_settings['column_adders']" )
+		three_cols( 'Current Trial Settings stored in', {}, 'scope.trials', widget_type='string' )
+		three_cols( 'Every Trial in Config Dictionary', scope.trials['trial_list'], "scope.trials['trial_list']" )
+		three_cols( 'Active Trial List', scope.trials['active_list'], "scope.trials['active_list']" )
+		three_cols( 'Trials which require Column Adders', scope.trials['template_col_adders'], "scope.trials['template_col_adders']" )
 
 		st.write('---')
 		st.subheader('Test Results (Trial Verdicts) - only for Screener page')
@@ -86,13 +86,13 @@ def render_page_config(scope):
 			three_cols( 'Individual Test (Trial) Results', scope.tickers[ticker][page]['trials'], "scope.tickers["+ ticker + "]["+page+"['trials']", widget_type='string' )
 	
 	if page == 'chart':
-		three_cols( 'Current Chart Settings stored in', {}, 'scope.chart_settings', widget_type='string' )
-		three_cols( 'Total Height for all currently active charts', scope.chart_settings['total_height'], "scope.chart_settings['total_height']" )
-		three_cols( 'Height of a single charts', scope.chart_settings['primary_height'], "scope.chart_settings['primary_height']" )
-		three_cols( 'Available Colours', scope.chart_settings['colours'], "scope.chart_settings['colours']" )
-		three_cols( 'Every Chart and Overlay in Config dictionary', scope.chart_settings['chart_list'], "scope.chart_settings['chart_list']" )
-		three_cols( 'Active Chart List', scope.chart_settings['active_list'], "scope.chart_settings['active_list']" )
-		three_cols( 'Charts which require Column Adders', scope.chart_settings['column_adders'], "scope.chart_settings['column_adders']" )
+		three_cols( 'Chart Configuration stored in', {}, 'scope.charts', widget_type='string' )
+		three_cols( 'Total Height for all currently active charts', scope.charts['total_height'], "scope.charts['total_height']" )
+		three_cols( 'Height of a single charts', scope.charts['primary_height'], "scope.charts['primary_height']" )
+		three_cols( 'Available Colours', scope.charts['colours'], "scope.charts['colours']" )
+		three_cols( 'Every Chart and Overlay in Config dictionary', scope.charts['chart_list'], "scope.charts['chart_list']" )
+		three_cols( 'Active Chart List', scope.charts['active_list'], "scope.charts['active_list']" )
+		three_cols( 'Charts which require Column Adders', scope.charts['template_col_adders'], "scope.charts['template_col_adders']" )
 
 
 
@@ -109,7 +109,7 @@ def render_page_config(scope):
 		st.subheader(ticker)
 		three_cols( 'Replace this DF entirely ?'  , scope.tickers[ticker][page]['replace_df']    , 'scope.tickers['+ ticker + '][' + page + "]['replace_df']"    , widget_type='string' )
 		three_cols( 'Settings Group (Charts or Trials) ='  , scope.tickers[ticker][page]['config_group']    , 'scope.tickers['+ ticker + '][' + page + "]['config_group']"    , widget_type='string' )
-		three_cols( 'Which Columns require replacement ?'  , scope.tickers[ticker][page]['column_adders']    , 'scope.tickers['+ ticker + '][' + page + "]['column_adders']", widget_type='string' )
+		three_cols( 'Which Columns require replacement ?'  , scope.tickers[ticker][page]['replace_column']    , 'scope.tickers['+ ticker + '][' + page + "]['replace_column']", widget_type='string' )
 
 	st.write('---')
 	st.header('Data Management')

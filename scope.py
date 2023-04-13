@@ -10,8 +10,7 @@ from trials.config import scope_trials
 from charts.config import scope_charts
 from ticker_index.config import scope_index_file
 from page.config.ticker_search import scope_ticker_search
-from tickers.config import scope_ticker_files
-from page.config.missing_tickers import scope_missing_tickers
+from tickers.config import scope_tickers
 from y_finance.config import scope_download_variables
 from strategies.config import scope_strategy
 
@@ -21,7 +20,7 @@ def set_scope(scope):
 	set_streamlit_page_config()								# should only run onetime
 	
 	if 'display_page' not in scope:	
-		scope.autologin = True				# TODO for releases purposes only - delete later
+		scope.user_autologin = True				# TODO for releases purposes only - delete later
 		scope.display_page = 'home'			# Prevent session_state/scope from reloading with the default values
 		scope_application_variables(scope)	# This contains all the application settings (see below)	
 		scope_dropdown_menus(scope)			# The data for the various selectors
@@ -32,8 +31,7 @@ def set_scope(scope):
 		scope_charts(scope)					# add the chart configuration
 		scope_index_file(scope)				# load the share index
 		scope_ticker_search(scope)			# variable to facilite searching for ticker by name
-		scope_ticker_files(scope)			# variables for storing the ticker files
-		scope_missing_tickers(scope)		# lists of tickers that failed to upload or download
+		scope_tickers(scope)				# variables for storing the ticker files
 		scope_download_variables(scope)		# variable used during download of ticker data
 		scope_strategy(scope)				# TODO - this may not even be required - keeping just in case
 

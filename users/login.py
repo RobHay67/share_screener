@@ -15,22 +15,22 @@ def login_user(scope, login_name):
 	user_chart_settings = scope.users['json'][login_name]['charts']
 
 	# Over-write key user settings
-	scope.chart_settings['primary_height'] = scope.users['json'][login_name]['chart_height']
+	scope.charts['primary_height'] = scope.users['json'][login_name]['chart_height']
 	scope.config['download_days'] = scope.users['json'][login_name]['download_days']
 	scope.pages['row_limit'] = scope.users['json'][login_name]['row_limit']
 
 
 	# Over-write the trials settings with the user trial values
 	for trial in user_trial_settings.keys():
-		if trial in scope.trials.keys():
+		if trial in scope.trials['config'].keys():
 			active_status = user_trial_settings[trial]['active']
 			add_columns = user_trial_settings[trial]['add_columns']
 
 			# Update the user config into the scope.config
-			scope.trials[trial]['active'] = active_status
+			scope.trials['config'][trial]['active'] = active_status
 			if add_columns != None:
 				for attribute in add_columns.keys():
-					scope.trials[trial]['add_columns'][attribute] = add_columns[attribute]
+					scope.trials['config'][trial]['add_columns'][attribute] = add_columns[attribute]
 	
 	# refresh the trial_settings lists
 	trial_active_list(scope)
@@ -38,15 +38,15 @@ def login_user(scope, login_name):
 
 	# Over-write the config charts with the user values
 	for chart in user_chart_settings.keys():
-		if chart in scope.charts.keys():
+		if chart in scope.charts['config'].keys():
 			active_status = user_chart_settings[chart]['active']
 			add_columns = user_chart_settings[chart]['add_columns']
 			
 			# Update the user config into the scope.config
-			scope.charts[chart]['active'] = active_status
+			scope.charts['config'][chart]['active'] = active_status
 			if add_columns != None:
 				for attribute in add_columns.keys():
-					scope.charts[chart]['add_columns'][attribute] = add_columns[attribute]
+					scope.charts['config'][chart]['add_columns'][attribute] = add_columns[attribute]
 
 		
 	# refresh the chart_settings lists

@@ -12,10 +12,10 @@ def render_active_charts_or_tests(scope):
 		widget_label = 'Active '
 
 		if page == 'screener':
-			active_list = scope.trial_settings['active_list']
+			active_list = scope.trials['active_list']
 			widget_label = widget_label+'Tests = '+str(len(active_list))
 		if page =='chart':
-			active_list = scope.chart_settings['active_list']
+			active_list = scope.charts['active_list']
 			widget_label = widget_label+'Charts = '+str(len(active_list))
 
 		st.selectbox(
@@ -94,17 +94,17 @@ def create_error_list_for_page(scope, page):
 	ticker_error_list = []
 	drop_down_list = []
 	
-	for ticker in scope.missing_tickers['list']:
+	for ticker in scope.tickers['missing']['list']:
 		if ticker in scope.pages[page]['worklist']:
 			ticker_error_list.append(ticker)
 
 	for ticker in ticker_error_list:
 		ticker_error_status = ticker + '---'
 
-		if ticker in scope.missing_tickers['cloud']:
-			ticker_error_status =  ticker_error_status + scope.missing_tickers['errors'][ticker]['yf']
-		elif ticker in scope.missing_tickers['local']:
-			ticker_error_status = ticker_error_status + scope.missing_tickers['errors'][ticker]['load']
+		if ticker in scope.tickers['missing']['cloud']:
+			ticker_error_status =  ticker_error_status + scope.tickers['missing']['errors'][ticker]['yf']
+		elif ticker in scope.tickers['missing']['local']:
+			ticker_error_status = ticker_error_status + scope.tickers['missing']['errors'][ticker]['load']
 		else:
 			ticker_error_status = ticker_error_status + 'UNDETERMINED ERROR'
 
