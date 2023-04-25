@@ -13,4 +13,3 @@ def logout_user(scope):
 
 
 
-

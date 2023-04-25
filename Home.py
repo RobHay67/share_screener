@@ -58,9 +58,6 @@ else:
 	render_sidebar(scope)
 
 
-
-
-
 # import yfinance as yf
 # print (yf.__version__)
 # metadata = yf.Ticker('CBA.AX')

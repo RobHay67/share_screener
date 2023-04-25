@@ -5,19 +5,11 @@
 
 
 
-
-
-
 def scope_charts(scope):
 	scope.charts = {}
 	base_config_charts(scope)
 	scope.charts['chart_list'] = list(charts_config.keys())
 	scope.charts['colours'] = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
-	
-	# store the trial configuration dictionary (from below)
-	scope.charts['config'] = {}
-	for chart, config in charts_config.items():
-		scope.charts['config'][chart] = config
 	
 	chart_active_list(scope)
 
@@ -31,6 +23,11 @@ def base_config_charts(scope):
 	scope.charts['primary_height'] = 500
 	scope.charts['total_height'] = scope.charts['primary_height']
 
+	# store the chart configuration dictionary (from below)
+	scope.charts['config'] = {}
+	for chart, config in charts_config.items():
+		scope.charts['config'][chart] = config.copy()
+	
 
 def chart_active_list(scope):
 	# Seperate function so it can be called after the initial load - i.e. change user
@@ -214,7 +211,7 @@ charts_config = {
 								short_name		: 'Line',
 								is_overlay		: False, 
 								add_overlays	: True , 
-								active_columns	: ['o','h','l','c'], 
+								active_columns	: ['open','high','low','close'], 
 								definition		: '',
 								notes			: '',
 								plot			: { 

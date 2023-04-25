@@ -55,7 +55,7 @@ def login_user(scope, login_name):
 
 			# Chart Active_Columns (if available)
 			if 'active_columns' in user_chart_settings[chart].keys():
-				user_chart_settings[chart]['active_columns'] = user_chart_settings[chart]['active_columns']
+				scope.charts['config'][chart]['active_columns'] = user_chart_settings[chart]['active_columns']
 
 			# Chart additional column attribute settings
 			add_columns = user_chart_settings[chart]['add_columns']

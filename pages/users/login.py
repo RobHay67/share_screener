@@ -14,11 +14,12 @@ def render_login_page(scope):
 	login_pword = st.text_input('Password', type='password')
 
 	if scope.user_autologin:
+		# TODO - delete this later as it over rides the login_name part below
 		login_name = 'Rob'
 		st.button(		'Press to Auto Login to Rob ', 
 						on_click=login_user, 
 						args=(scope, login_name, ), 
-						key='widget_login_button',
+						key='widget_auto_login_button',
 						)
 	
 	if login_name in scope.users['user_list']:

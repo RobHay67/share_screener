@@ -36,7 +36,8 @@ def render_available_charts(scope):
 		st.caption('Price Display Charts')
 		render_activate_metric(scope, 'candlestick')
 		# render_activate_metric(scope, 'line')
-		render_line_chart(scope)
+		# render_line_chart(scope)
+		st.caption('Line Chart - see below')
 		render_activate_metric(scope, 'bar')
 	with col2: 
 		st.caption('?? Charts')
@@ -52,6 +53,7 @@ def render_available_charts(scope):
 	st.markdown("""---""")
 
 	st.caption('Charts with additional configuration')
+	render_line_chart(scope)
 	render_macd(scope)
 	render_macd_vol(scope)
 	render_rsi(scope)

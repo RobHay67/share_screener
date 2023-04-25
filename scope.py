@@ -21,7 +21,7 @@ def set_scope(scope):
 	set_streamlit_page_config()								# should only run onetime
 	
 	if 'display_page' not in scope:	
-		scope.user_autologin = True				# TODO for releases purposes only - delete later
+		scope.user_autologin = True			# TODO for releases purposes only - delete later
 		scope.display_page = 'home'			# Prevent session_state/scope from reloading with the default values
 		scope_application_variables(scope)	# This contains all the application settings (see below)	
 		scope_dropdown_menus(scope)			# The data for the various selectors

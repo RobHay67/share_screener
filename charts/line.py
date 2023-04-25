@@ -12,11 +12,8 @@ import plotly.graph_objects as go
 
 def line_plot(scope, fig, chart, chart_df, row_no, col_no):
 
-	colors = ['yellow', 'green', 'red', 'blue']
-	#         open        high    low    close
-	columns = scope.config['dropdowns']['price_columns']
-
-	print(columns)
+	columns = scope['charts']['config'][chart]['active_columns']
+	column_colours = ['blue', 'red', 'green', 'yellow']
 	
 	for pos, column in enumerate(columns):
 
@@ -25,7 +22,7 @@ def line_plot(scope, fig, chart, chart_df, row_no, col_no):
 								y		= chart_df[column],
 								name 	= column,
 								visible = True,
-								line	= dict(color=colors[pos], width=2),
+								line	= dict(color=column_colours[pos], width=2),
 								), 
 					row=row_no, 
 					col=col_no,
@@ -44,9 +41,9 @@ def line_plot(scope, fig, chart, chart_df, row_no, col_no):
 		# 				label=col,
 		# 				visible=True,
 		# 				args=[{'visible':True,
-		# 						'line.color' : colors[i]}, [i]],
+		# 						'line.color' : column_colours[i]}, [i]],
 		# 				args2 = [{'visible': False,
-		# 							'line.color' : colors[i]}, [i]],
+		# 							'line.color' : column_colours[i]}, [i]],
 		# 				)
 			
 		# 	# adjust some button features
