@@ -41,7 +41,7 @@ page = 'home'
 page_title = scope.config['project_description']
 page_icon = '🏠'
 # -----------------------------
-scope.display_page = page
+scope.pages['display'] = page
 
 
 print(page, ' > Number of Keys in Scope = ', len(scope))
@@ -50,8 +50,12 @@ for count, key in enumerate(sorted(st.session_state)):print(count+1, key)
 page_title_layer(scope, page_title, page_icon)
 st.write('Welcome to the Share Picker Appliction.')
 st.write('Select from the options in the sidebar (left)')
+st.write('User : ', scope.users['login_name'])
 
-if scope.user_logged_in == False:
+
+
+
+if scope.users['logged_in'] == False:
 	col1,col2 = st.columns([2,8])
 	with col1:render_login_page(scope)
 else:

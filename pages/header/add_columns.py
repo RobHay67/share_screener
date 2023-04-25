@@ -12,7 +12,7 @@ from trials.verdict import determine_overall_ticker_verdict
 
 def add_cols_to_df_layer(scope):
 
-	page = scope.display_page
+	page = scope.pages['display']
 
 	if page in ['chart','intraday','screener']:
 		col1,col2,col3 = st.columns([1.5, 9.0, 1.5])  #12.0

@@ -31,12 +31,12 @@ page_title = 'Company Research'
 page_icon = '🕵'
 # -----------------------------
 scope = st.session_state
-scope.display_page = page
+scope.pages['display'] = page
 
 
 render_app_header(scope, page_title, page_icon)
 
-if scope.user_logged_in:
+if scope.users['logged_in']:
 
 	ticker = scope.pages[page]['selectors']['ticker']
 

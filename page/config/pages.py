@@ -49,6 +49,5 @@ def scope_pages(scope):
 def base_config_pages(scope):
 	# Setting can be changed for each user
 	# so we need to be able to call when changing user
-
 	scope.pages['row_limit'] = 100
-	scope.display_page = 'login'
+	scope.pages['display'] = 'home'

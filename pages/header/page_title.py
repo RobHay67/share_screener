@@ -9,7 +9,7 @@ from pages.widgets.reset_page import reset_page_render
 
 def page_title_layer(scope, page_title, page_icon):
     
-	page = scope.display_page
+	page = scope.pages['display']
 
 	if page in ['home', 'config', 'ticker_index', 'logout']:
 		# Single Line Titles only

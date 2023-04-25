@@ -15,7 +15,7 @@ def selectors_layer(scope):
 
 	col1,col2,col3,col4,col5 = st.columns([1.5, 2.0, 2.0, 2.0, 4.5])  #12
 	
-	page = scope.display_page
+	page = scope.pages['display']
 	layer_title = 'Ticker(s) Selectors'
 
 	if page == 'screener':

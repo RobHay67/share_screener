@@ -24,7 +24,7 @@ def render_app_header(scope, page_title, page_icon):
 
 	page_title_layer(scope, page_title, page_icon)
 
-	if scope.user_logged_in:
+	if scope.users['logged_in']:
 	
 		render_config_and_settings(scope)
 

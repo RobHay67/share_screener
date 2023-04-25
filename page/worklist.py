@@ -4,7 +4,7 @@ def update_page_worklist(scope):
 	# Create a ticker list based on the selectors
 	# most detailed takes precedence ie a single ticker is used, even if a user has also selected an industry
 
-	page = scope.display_page
+	page = scope.pages['display']
 	ticker_list = []
 
 	# default industry group for y_finance downloading - random_tickers = special code is run
@@ -59,7 +59,7 @@ def build_app_worklist_dropdown(scope):
 	# cant download from cloud, there probably wont be
 	# a local file anyway.
 
-	page = scope.display_page
+	page = scope.pages['display']
 	work_list_dropdown = []
 
 	for ticker in scope.pages[page]['worklist']:

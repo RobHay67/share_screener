@@ -3,7 +3,7 @@ import streamlit as st
 
 def page_config_button(scope):
 
-	page = scope.display_page
+	page = scope.pages['display']
 	current_value = scope.pages[page]['render']['app_config']
 	type_of_button = 'primary' if current_value == True else 'secondary'
 
@@ -21,7 +21,7 @@ def page_config_button(scope):
 
 def page_config_status(scope):
 
-	page = scope.display_page
+	page = scope.pages['display']
 
 	previous_value = scope.pages[page]['render']['app_config']
 	new_value = True if previous_value == False else False

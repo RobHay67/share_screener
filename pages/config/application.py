@@ -34,8 +34,8 @@ def render_scope_config(scope):
 
 	st.subheader('System')
 	three_cols( 'Current Page to Display', 
-	    		scope.display_page, 
-				'scope.display_page' )
+	    		scope.pages['display'], 
+				"scope.pages['display']" )
 
 	st.write('---')
 	view_page_config(scope)

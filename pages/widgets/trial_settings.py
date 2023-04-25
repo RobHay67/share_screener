@@ -3,7 +3,7 @@ import streamlit as st
 
 def trial_settings_button(scope):
 
-	page = scope.display_page
+	page = scope.pages['display']
 	current_value = scope.pages[page]['render']['trial_settings']
 	type_of_button = 'primary' if current_value == True else 'secondary'
 
@@ -19,7 +19,7 @@ def trial_settings_button(scope):
 
 def trial_config_status(scope):
 
-	page = scope.display_page
+	page = scope.pages['display']
 
 	previous_value = scope.pages[page]['render']['trial_settings']
 	new_value = True if previous_value == False else False

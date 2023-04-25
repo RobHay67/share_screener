@@ -9,7 +9,6 @@ def scope_users(scope):
 	scope.users['json'] = {}
 	scope.users['user_list'] = []
 	base_config_users(scope)
-
 	load_user_table(scope)
 
 
@@ -18,7 +17,7 @@ def base_config_users(scope):
 	# so we need to be able to call when changing user
 
 	scope.users['login_name'] = 'Login to Use the Application'
-	scope.user_logged_in = False
+	scope.users['logged_in'] = False
 
 
 

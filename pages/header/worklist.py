@@ -5,7 +5,7 @@ from pages.widgets.worklist import render_active_charts_or_tests
 
 def ticker_worklist_layer(scope):
 
-	page=scope.display_page
+	page=scope.pages['display']
 
 	if page in ['screener', 'chart', 'intraday', 'volume', 'research']:
 

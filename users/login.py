@@ -6,9 +6,9 @@ from charts.config import chart_column_adders
 def login_user(scope, login_name):
 
 	# Store User params
-	scope.display_page = 'home_page'
+	# scope.pages['display'] = 'home_page'
 	scope.users['login_name'] = login_name
-	scope.user_logged_in = True
+	scope.users['logged_in'] = True
 
 	# Over-write global user settings
 	scope.charts['primary_height'] = scope.users['json'][login_name]['chart_height']

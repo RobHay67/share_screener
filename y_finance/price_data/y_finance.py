@@ -37,7 +37,7 @@ def set_batch_params(scope):
 	
 	if industry == 'random_tickers':
 		# Selected specific tickers rather than by industry group					 
-		page = scope.display_page
+		page = scope.pages['display']
 		ticker_list = scope.pages[page]['worklist']
 	else:
 		# selected a share market, industry or multiple industries

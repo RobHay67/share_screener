@@ -12,7 +12,7 @@ def cache_ticker_data(scope, ticker, ticker_data):
 	# Add appropriate column adders state information
 
 
-	page = scope.display_page
+	page = scope.pages['display']
 
 
 	# Sort ticker file into ascending order

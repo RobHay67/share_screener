@@ -16,14 +16,14 @@ page_title = 'Ticker Index File'
 page_icon = '🗄️'
 # -----------------------------
 scope = st.session_state
-scope.display_page = page
+scope.pages['display'] = page
 
 
 render_app_header(scope, page_title, page_icon)
 st.write('Rob - we need to find how we can have a dropdown categorical to change values in certain columns')
 
 
-if scope.user_logged_in:
+if scope.users['logged_in']:
 
 
 	col1,col2 = st.columns([10,2]) #12

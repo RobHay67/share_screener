@@ -8,7 +8,7 @@ from pages.widgets.search import ticker_button
 
 def render_search_results(scope):
 	
-	page = scope.display_page
+	page = scope.pages['display']
 
 	search_results = scope.pages[page]['search_results']
 

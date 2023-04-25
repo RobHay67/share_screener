@@ -4,7 +4,7 @@ import streamlit as st
 
 def render_available_dataframes(scope):
 
-	page = scope.display_page
+	page = scope.pages['display']
 
 	selected_ticker = scope.pages[page]['render']['ticker_file'].split("---")
 	ticker = selected_ticker[0]

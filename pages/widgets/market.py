@@ -6,7 +6,7 @@ import streamlit as st
 
 def select_a_market(scope):
 
-	page = scope.display_page
+	page = scope.pages['display']
 	
 	widget_key = 'widget_' + page + '_select_market'
 	previous_selection = scope.pages[page]['selectors']['market']

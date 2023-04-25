@@ -6,7 +6,7 @@ def vpm_cols( scope, chart, ticker, chart_df):
 
 	# Not on Investpedia - Rob made this one up specifically for Volume
 
-	# page = scope.display_page
+	# page = scope.pages['display']
 	
 	minutes_per_day = scope.ticker_index['df'].loc[ticker]['minutes_per_day']
 

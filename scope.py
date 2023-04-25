@@ -20,14 +20,13 @@ def set_scope(scope):
 
 	set_streamlit_page_config()								# should only run onetime
 	
-	if 'display_page' not in scope:	
-		scope.user_autologin = True			# TODO for releases purposes only - delete later
-		scope.display_page = 'home'			# Prevent session_state/scope from reloading with the default values
+	if 'pages' not in scope:	
+		scope.autologin_user = True			# TODO for releases purposes only - delete later
 		scope_application_variables(scope)	# This contains all the application settings (see below)	
+		scope_pages(scope)					# This contains all the page Specific settings
 		scope_dropdown_menus(scope)			# The data for the various selectors
 		scope_folders_and_paths(scope)		# Required before we can attempt to load the data
 		scope_users(scope)					# Set Default Values ready for a user to login
-		scope_pages(scope)					# This contains all the page Specific settings
 		scope_trials(scope)					# add the trials configuration
 		scope_charts(scope)					# add the chart configuration
 		scope_index_file(scope)				# load the share index

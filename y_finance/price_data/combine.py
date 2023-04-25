@@ -13,7 +13,7 @@ def combine_cached_and_yf_data(scope):
 	# resulting in a complete (hopefully) temporal transaction history for a ticker
 
 	# iterate through the target tickers for the Page
-	page = scope.display_page
+	page = scope.pages['display']
 	for ticker in scope.pages[page]['worklist']:
 				
 		if ticker in scope.yf['data']['ticker'].unique():

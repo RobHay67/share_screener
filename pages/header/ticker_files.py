@@ -14,7 +14,7 @@ from tickers.load import load_ticker
 
 def ticker_files_layer(scope):
 
-	page = scope.display_page
+	page = scope.pages['display']
 
 	if page in ['chart', 'intraday', 'volume', 'screener',  ]:
 		
@@ -47,23 +47,25 @@ def progress_bar_loading_tickers(scope):
 
 		for counter, ticker in enumerate(list_of_tickers_to_load):
 			poc = int(((counter+1) / no_of_tickers ) * 100)
-			my_bar.progress(poc, text='Loading ohlcv Ticker File = '+ticker)
+			my_bar.progress(poc, text='Loading ohlcv Ticker File ( '+str(counter)+' )  > '+ticker)
 			load_ticker(scope, ticker)
 	
 	# we will have new information after the load so update
 	# the dropdown list for the worklist
 	build_app_worklist_dropdown(scope)
 
+	no_loaded_tickers = str(len(scope.tickers.keys()))
+
 	if progress_bar_exists==True:
-		my_bar.progress(100, text='All files loaded')
+		my_bar.progress(100, text='All files loaded ( '+no_loaded_tickers+' )')
 	else:
-		no_of_loaded_tickers = len(scope.tickers.keys())
-		my_bar = st.progress(100, text='Already Loaded ( '+str(no_of_loaded_tickers)+ ' ) tickers. No additional Files to Load')
+		
+		my_bar = st.progress(100, text='Already Loaded ( '+no_loaded_tickers+ ' ) tickers. No additional Files to Load')
 
 
 def create_ticker_list_to_load(scope):
 
-	page = scope.display_page
+	page = scope.pages['display']
 	already_loaded_list = list(scope.tickers.keys())
 
 	list_of_tickers_to_load = []

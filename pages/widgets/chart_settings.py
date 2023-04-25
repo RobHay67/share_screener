@@ -3,7 +3,7 @@ import streamlit as st
 
 def chart_settings_button(scope):
 
-	page = scope.display_page
+	page = scope.pages['display']
 	current_value = scope.pages[page]['render']['chart_settings']
 	type_of_button = 'primary' if current_value == True else 'secondary'
 
@@ -26,7 +26,7 @@ def chart_settings_status(scope, page):
 
 def chart_overlay_button(scope):
 
-	page = scope.display_page
+	page = scope.pages['display']
 	current_value = scope.pages[page]['render']['overlay_settings']
 	type_of_button = 'primary' if current_value == True else 'secondary'
 

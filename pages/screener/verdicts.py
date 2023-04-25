@@ -64,7 +64,7 @@ def render_trial_verdicts(scope):
 
 def passing_verdict_list(scope):
 	# Generate a list of tickers with an overall passing result
-	page = scope.display_page
+	page = scope.pages['display']
 	verdict_list = []
 
 	for ticker in scope.pages[page]['worklist']:

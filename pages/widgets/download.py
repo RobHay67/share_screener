@@ -5,7 +5,7 @@ from y_finance.config import set_yf_period
 
 def download_button(scope):
 
-	# page = scope.display_page
+	# page = scope.pages['display']
 
 	download_button_msg = 'Download Prior ' + str(int(scope.config['download_days'])) + ' day'
 

@@ -9,7 +9,7 @@ from strategies.config import render_strategies
 
 def render_config_and_settings(scope):
 
-	page = scope.display_page
+	page = scope.pages['display']
 
 	if scope.pages[page]['render']['app_config'] == True:
 		render_page_config(scope)
@@ -31,7 +31,7 @@ def view_page_config(scope):
 	st.subheader('Page Configuration - applies to all pages')
 	three_cols( 'Page  Configuration stored in', {}, 'scope.pages', widget_type='string' )
 	three_cols( 'Page List', scope.pages['page_list'], 'scope.pages.app_list', widget_type='string' )
-	three_cols( 'Page to Display', scope.display_page, 'scope.display_app', widget_type='string' )
+	three_cols( 'Page to Display', scope.pages['display'], "scope.pages['display']", widget_type='string' )
 	three_cols( 'Row Limit for Page', scope.pages['row_limit'], 'scope.pages.row_limit', widget_type='string' )
 	three_cols( 'Streamlit Latest Button Pressed', scope.pages['button_for_scope'], 'scope.pages.button_for_scope' )
 
@@ -42,7 +42,7 @@ def render_page_config(scope):
 	
 	view_page_config(scope)
 
-	page = scope.display_page
+	page = scope.pages['display']
 
 	st.write('---')
 	st.subheader( 'Configuration for ' + page.upper() + ' page')

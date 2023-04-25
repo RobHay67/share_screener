@@ -10,7 +10,7 @@ page_title = 'Logout ( Save User Settings )'
 page_icon = '🔒'
 # -----------------------------
 scope = st.session_state
-scope.display_page = page
+scope.pages['display'] = page
 
 
 page_title_layer(scope, page_title, page_icon)

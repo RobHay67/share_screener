@@ -4,7 +4,7 @@ import streamlit as st
 
 def select_industries(scope):
 
-	page = scope.display_page
+	page = scope.pages['display']
 	
 	widget_key = 'widget_' + page + '_select_industries'
 	previous_selection = scope.pages[page]['selectors']['industries']

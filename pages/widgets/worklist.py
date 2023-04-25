@@ -4,7 +4,7 @@ import streamlit as st
 
 def render_active_charts_or_tests(scope):
 
-	page = scope.display_page
+	page = scope.pages['display']
 	
 	if page in ['screener', 'chart']:
 
@@ -27,7 +27,7 @@ def render_active_charts_or_tests(scope):
 
 def render_worklist_dropdown(scope):
 
-	page = scope.display_page
+	page = scope.pages['display']
 
 	worklist = scope.pages[page]['worklist_dropdown']
 	widget_key = 'widget_' + page + '_worklist_dropdown'
@@ -69,7 +69,7 @@ def render_ticker_load_and_download_errors(scope):
 	
 	# Same as render_worklist_dropdown but only the errirs only 
 
-	page = scope.display_page
+	page = scope.pages['display']
 
 	widget_key = 'widget_' + page + '_load_errors'
 	

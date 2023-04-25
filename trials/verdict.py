@@ -6,7 +6,7 @@
 
 def determine_overall_ticker_verdict(scope, ticker):
 
-	page = scope.display_page
+	page = scope.pages['display']
 
 	if page == 'screener':
 		if scope.tickers[ticker][page]['replace_verdict']:
