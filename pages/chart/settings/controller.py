@@ -25,7 +25,6 @@ def render_available_charts(scope):
 		st.subheader('Chart Settings')
 	with col2:
 		st.write('')
-		st.write('')
 		st.caption('Tick to display chart')
 	with col3:
 		set_chart_height_primary(scope)

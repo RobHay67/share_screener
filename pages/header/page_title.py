@@ -28,11 +28,12 @@ def page_title_layer(scope, page_title, page_icon):
 
 		# Additional Information for chart and screener
 		if page == 'chart':
-			with col2:chart_overlay_button(scope)
-			with col3:chart_settings_button(scope)
+			with col2:chart_settings_button(scope)
+			with col3:chart_overlay_button(scope)
 		if page == 'screener':
-			with col2:strategies_button(scope)
-			with col3:trial_settings_button(scope)
+			with col2:trial_settings_button(scope)
+			with col3:strategies_button(scope)
+			
 	
 		
 

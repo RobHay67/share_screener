@@ -15,6 +15,8 @@ def line_plot(scope, fig, chart, chart_df, row_no, col_no):
 	colors = ['yellow', 'green', 'red', 'blue']
 	#         open        high    low    close
 	columns = scope.config['dropdowns']['price_columns']
+
+	print(columns)
 	
 	for pos, column in enumerate(columns):
 

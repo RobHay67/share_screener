@@ -130,11 +130,11 @@ from charts.overlays.dividends 	import dividend_plot
 # ==============================================================================================================================================================
 
 active 			= 'active'				# True or False - The chart is active or inactive (displayed or not displayed)
+active_columns	= 'active_columns'		# List of columns to utilise by this config group
 name 			= 'name'				# The display name for the chart (used in the settings page)
 short_name		= 'short_name'			# A short name used if various Screen Outputs
 is_overlay 		= 'is_overlay'			# Indicates that this chart is over layed on top of the other charts which accept overlays
 add_overlays	= 'add_overlays'		# Apply the overlay to this chart - some charts are % in which case $ based averages distort the overall chart
-use_columns		= 'use_columns'			# List of columns to utilise by this config group
 definition		= 'definition'			# URL link to the definition for this chart or overlay
 notes			= 'notes'				# Notes regarding this chart or overlay
 # Chart Releated Parameters -------------------------------------------------------------------------------------------------------
@@ -214,7 +214,7 @@ charts_config = {
 								short_name		: 'Line',
 								is_overlay		: False, 
 								add_overlays	: True , 
-								use_columns		: ['o','h','l','c'], 
+								active_columns	: ['o','h','l','c'], 
 								definition		: '',
 								notes			: '',
 								plot			: { 
