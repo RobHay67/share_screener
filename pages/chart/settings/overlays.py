@@ -23,13 +23,13 @@ def render_overlays_config(scope):
 	render_dividends(scope)
 	render_announcements(scope)
 
-	render_moving_average(scope, 'sma_1')
-	render_moving_average(scope, 'sma_2')
-	render_moving_average(scope, 'sma_3')
+	render_moving_average(scope, 'sma_a')
+	render_moving_average(scope, 'sma_b')
+	render_moving_average(scope, 'sma_c')
 	
-	render_moving_average(scope, 'ema_1')
-	render_moving_average(scope, 'ema_2')
-	render_moving_average(scope, 'ema_3')
+	render_moving_average(scope, 'ema_a')
+	render_moving_average(scope, 'ema_b')
+	render_moving_average(scope, 'ema_c')
 
 	render_bollinger_bands(scope)
 

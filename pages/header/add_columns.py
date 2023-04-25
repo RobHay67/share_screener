@@ -32,7 +32,7 @@ def replace_df_and_add_columns(scope, page):
 
 	ticker_list = create_ticker_list_to_add_columns(scope, page)
 	app_row_limit = int(scope.pages['row_limit'])
-	completion_text = 'Finished adding columns to Ticker File(s)'
+	# completion_text = 
 
 	my_bar = st.progress(0)
 
@@ -46,7 +46,7 @@ def replace_df_and_add_columns(scope, page):
 			replace_page_df_columns(scope, page, ticker)
 			determine_overall_ticker_verdict(scope, ticker)
 
-		my_bar.progress(100, text=completion_text)
+		my_bar.progress(100, text='Finished adding columns to ( ' + str(len(ticker_list)) + ' ) ticker files')
 	else:
 		my_bar = st.progress(100, text='No Files available - cannot add columns')
 

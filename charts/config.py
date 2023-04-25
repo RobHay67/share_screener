@@ -415,7 +415,7 @@ charts_config = {
 								},
 
 		# Overlays -----------------------------------------------------------------------------
-		'sma_1' 			: { 
+		'sma_a' 			: { 
 								active			: False, 
 								name			: 'Simple Moving Average (1)', 
 								short_name		: 'SMA-1',
@@ -426,7 +426,7 @@ charts_config = {
 								plot			: { function : sma_plot, colour : 'blue' }, 									
 								add_columns		: {	function : sma_cols, column : 'close', periods:21 } 
 								},		
-		'sma_2' 			: { 
+		'sma_b' 			: { 
 								active			: False, 
 								name			: 'Simple Moving Average (2)', 
 								short_name		: 'SMA-2',
@@ -437,7 +437,7 @@ charts_config = {
 								plot			: { function : sma_plot, colour : 'green' }, 									
 								add_columns		: {	function : sma_cols, column : 'close', periods:50 } 
 								},		
-		'sma_3' 			: { 
+		'sma_c' 			: { 
 								active			: False, 
 								name			: 'Simple Moving Average (3)', 
 								short_name		: 'SMA-3',
@@ -448,7 +448,7 @@ charts_config = {
 								plot			: { function : sma_plot, colour : 'green' }, 									
 								add_columns		: {	function : sma_cols, column : 'close', periods:200 } 
 								},		
-		'ema_1' 			: { 
+		'ema_a' 			: { 
 								active			: False, 
 								name			: 'Exponential Moving Average (1)', 
 								short_name		: 'EMA-1',
@@ -459,7 +459,7 @@ charts_config = {
 								plot			: { function : ema_plot, colour : 'red' }, 									
 								add_columns		: {	function : ema_cols, column : 'close', periods:21 } 
 								},
-		'ema_2' 			: { 
+		'ema_b' 			: { 
 								active			: False, 
 								name			: 'Exponential Moving Average (2)', 
 								short_name		: 'EMA-2',
@@ -470,7 +470,7 @@ charts_config = {
 								plot			: { function : ema_plot, colour : 'blue' }, 									
 								add_columns		: {	function : ema_cols, column : 'close', periods:50 } 
 								},
-		'ema_3' 			: { 
+		'ema_c' 			: { 
 								active			: False, 
 								name			: 'Exponential Moving Average (3)', 
 								short_name		: 'EMA-3',

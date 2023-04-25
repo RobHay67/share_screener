@@ -57,7 +57,8 @@ def progress_bar_loading_tickers(scope):
 	if progress_bar_exists==True:
 		my_bar.progress(100, text='All files loaded')
 	else:
-		my_bar = st.progress(100, text='No Files to Load')
+		no_of_loaded_tickers = len(scope.tickers.keys())
+		my_bar = st.progress(100, text='Already Loaded ( '+str(no_of_loaded_tickers)+ ' ) tickers. No additional Files to Load')
 
 
 def create_ticker_list_to_load(scope):
