@@ -32,7 +32,7 @@ def sma_trend(scope, trial, ticker, df):
 	df['temp_ma'] = df[column].rolling(window=no_of_days).mean()
 
 	# Determine the Result for each row
-	if trend == 'above_line':
+	if trend == 'above_sma':
 		df[trial] = np.where( df[column] > df['temp_ma'], 'pass', 'fail' )
 	else:
 		df[trial] = np.where( df[column] <= df['temp_ma'], 'pass', 'fail' )
