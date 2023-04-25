@@ -4,7 +4,7 @@ from users.config import base_config_users
 from charts.config import base_config_charts
 from trials.config import base_config_trials
 from page.config.application import base_config_download_days
-from page.config.pages import base_config_pages
+from page.config import base_config_pages
 from y_finance.config import set_yf_period
 
 

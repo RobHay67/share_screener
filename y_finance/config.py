@@ -32,7 +32,7 @@ def set_yf_period(scope):
 	
 	# set appropriate period for YF download
 	# valid periods = 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo
-	scope.yf['period'] = str(int(scope.config['download_days'])) + 'd' 
+	scope.yf['period'] = str(int(scope.pages['download_days'])) + 'd' 
 
 	# Setting can be changed for each user - so called by the restore user code
 

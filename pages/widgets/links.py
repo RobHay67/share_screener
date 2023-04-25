@@ -44,7 +44,7 @@ def website_hyperlink(scope, website, ticker):
 
 	pos = ticker.find(".")
 	ticker_code = ticker[0:pos]
-	share_market = scope.config['share_market']
+	share_market = scope.pages['share_market']
 
 	if website == 'eTrade':
 		leader = 'https://trading.anzshareinvesting.com.au/Market/Charts.aspx?asxcode='

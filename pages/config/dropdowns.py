@@ -6,16 +6,19 @@ from pages.config.three_cols import three_cols
 def view_dropdowns(scope):
 
 	st.subheader('Dropdown Configuration')
-	three_cols( 'Dropdown Configuration stored in', {}, "scope.config['dropdowns']", widget_type='string' )
+	three_cols( 'Dropdown Configuration stored in', {}, "scope.pages['dropdowns']", widget_type='string' )
 
-	st.subheader('Dropdowns')
-	three_cols( 'Ticker', scope.config['dropdowns']['ticker'],  "scope.config['ticker']", widget_type='selectbox' )
-	three_cols( 'Tickers', scope.config['dropdowns']['tickers'],  "scope.config['tickers']", widget_type='multiselect' )
-	three_cols( 'Industry', scope.config['dropdowns']['industries'],  "scope.config['industries']", widget_type='multiselect' )
-	three_cols( 'Market', scope.config['dropdowns']['markets'], "scope.config['markets']", widget_type='selectbox' )
+	st.write('---')
+	st.caption('Dropdowns')
+	three_cols( 'Ticker', scope.pages['dropdowns']['ticker'],  "scope.pages['dropdowns']['ticker']", widget_type='selectbox' )
+	three_cols( 'Tickers', scope.pages['dropdowns']['tickers'],  "scope.config['dropdowns']['tickers']", widget_type='multiselect' )
+	three_cols( 'Industry', scope.pages['dropdowns']['industries'],  "scope.config['dropdowns']['industries']", widget_type='multiselect' )
+	three_cols( 'Market', scope.pages['dropdowns']['markets'], "scope.config['dropdowns']['markets']", widget_type='selectbox' )
 
-	three_cols( 'OHLCV Columns', scope.config['dropdowns']['ohlcv_columns'],  "scope.config['ohlcv_columns']", widget_type='selectbox' )
-	three_cols( 'Price Columns', scope.config['dropdowns']['price_columns'],  "scope.config['price_columns']", widget_type='selectbox' )
+	st.write('---')
+	st.caption('Column Selectors')
+	three_cols( 'OHLCV Columns', scope.pages['dropdowns']['ohlcv_columns'],  "scope.config['dropdowns']['ohlcv_columns']", widget_type='selectbox' )
+	three_cols( 'Price Columns', scope.pages['dropdowns']['price_columns'],  "scope.config['dropdowns']['price_columns']", widget_type='selectbox' )
 
 
 

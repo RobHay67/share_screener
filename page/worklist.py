@@ -64,7 +64,7 @@ def build_app_worklist_dropdown(scope):
 
 	for ticker in scope.pages[page]['worklist']:
 
-		ticker_name = scope.config['ticker_search'][ticker]
+		ticker_name = scope.pages['ticker_search'][ticker]
 		
 		ticker_length = len(ticker)
 		padding = 10 - ticker_length

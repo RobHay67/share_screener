@@ -10,7 +10,7 @@ from pages.widgets.download import edit_download_days
 def render_sidebar(scope):
 
 	local_time=datetime.now()
-	market_timezone = opening_hours[scope.config['share_market']]['timezone']
+	market_timezone = opening_hours[scope.pages['share_market']]['timezone']
 	market_time = datetime.now(pytz.timezone(market_timezone))
 
 	# print('local_time      = ', local_time)
@@ -20,7 +20,7 @@ def render_sidebar(scope):
 	with st.sidebar:
 		# st.title(scope.config['project_description'])
 		st.write('Welcome      : ' +  scope.users['login_name'])
-		st.write('Share Market : ' + str(scope.config['share_market']))
+		st.write('Share Market : ' + str(scope.pages['share_market']))
 		# st.write('Market Date  : ' + str(local_time.strftime('%Y-%m-%d')))
 		st.write('Market Date  : ' + str(local_time.strftime('%a-%d-%b')))
 		st.write('Market Time  : ' + str(market_time.strftime('%H:%M:%S %p')))

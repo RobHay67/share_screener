@@ -32,7 +32,7 @@ def search_for_ticker(scope, page, widget_key):
 	search_results = {}
 	counter = 0
 
-	for ticker, company_name in scope.config['ticker_search'].items():
+	for ticker, company_name in scope.pages['ticker_search'].items():
 		if search_string in company_name:
 			counter += 1
 			search_results[ticker] = company_name

@@ -10,11 +10,11 @@ def select_a_market(scope):
 	
 	widget_key = 'widget_' + page + '_select_market'
 	previous_selection = scope.pages[page]['selectors']['market']
-	pos_for_previous = scope.config['dropdowns']['markets'].index(previous_selection)	
+	pos_for_previous = scope.pages['dropdowns']['markets'].index(previous_selection)	
 
 	st.selectbox ( 
 				label		='Market',
-				options		=scope.config['dropdowns']['markets'],
+				options		=scope.pages['dropdowns']['markets'],
 				index		=pos_for_previous, 
 				help		='Select an Entire Share Market for Analysis',
 				on_change	=on_change_market_selection,

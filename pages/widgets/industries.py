@@ -11,7 +11,7 @@ def select_industries(scope):
 
 	st.multiselect ( 
 				label		='Industry(s)', 
-				options		=scope.config['dropdowns']['industries'],
+				options		=scope.pages['dropdowns']['industries'],
 				default		=previous_selection, 
 				help		='Select all tickers within a particular industry',
 				on_change	=on_change_industry_selection,

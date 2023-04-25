@@ -25,7 +25,7 @@ if scope.users['logged_in']:
 
 	if ticker != 'select a ticker' :		
 
-		market_timezone = opening_hours[scope.config['share_market']]['timezone']		# Timezone for the share market
+		market_timezone = opening_hours[scope.pages['share_market']]['timezone']		# Timezone for the share market
 		market_time = datetime.now(pytz.timezone(market_timezone))						# Current Market time
 
 		ticker_current_volume = view_input_volume()

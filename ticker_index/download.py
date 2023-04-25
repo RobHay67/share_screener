@@ -2,13 +2,13 @@ import pandas as pd
 
 from ticker_index.update import update_ticker_index
 from pages.header.selectors import refresh_dropdown_lists
-from page.config.ticker_search import scope_ticker_search
+from page.config import scope_ticker_search
 
 def download_ticker_index_data(scope):
 
 	scope.ticker_index['render']['downloading_asx'] = True
 
-	if scope.config['share_market'] == 'ASX':
+	if scope.pages['share_market'] == 'ASX':
 		url = 'https://asx.api.markitdigital.com/asx-research/1.0/companies/directory/file?'
 		column_names = ['share_code', 'company_name', 'listing_date', 'industry_group', 'market_cap' ]
 		downloaded_df = pd.read_csv( 	url, 

@@ -12,7 +12,7 @@ def select_tickers(scope):
 
 	st.multiselect ( 
 				label		=display_name,
-				options		=scope.config['dropdowns']['tickers'],
+				options		=scope.pages['dropdowns']['tickers'],
 				default		=previous_selection, 
 				help		='Select a ticker, or multiple tickers from the dropdown. Start typing to jump within list',
 				on_change	=on_change_tickers_selection,

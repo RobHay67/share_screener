@@ -7,9 +7,9 @@ def download_button(scope):
 
 	# page = scope.pages['display']
 
-	download_button_msg = 'Download Prior ' + str(int(scope.config['download_days'])) + ' day'
+	download_button_msg = 'Download Prior ' + str(int(scope.pages['download_days'])) + ' day'
 
-	if scope.config['download_days'] > 1: 
+	if scope.pages['download_days'] > 1: 
 		download_button_msg += 's'
 		
 	button = st.button(
@@ -23,7 +23,7 @@ def download_button(scope):
 	
 def edit_download_days(scope):
 
-	previous_selection = int(scope.config['download_days'])
+	previous_selection = int(scope.pages['download_days'])
 	display_name = 'Days to Download (recent)'
 	widget_key = 'widget_download_days'
 
@@ -42,7 +42,7 @@ def on_change_download_days(scope:dict, widget_key:str):
 	changed_value = scope[widget_key]
 
 	# store the selection
-	scope.config['download_days'] = changed_value
+	scope.pages['download_days'] = changed_value
 
 	# update the yf download days
 	set_yf_period(scope)

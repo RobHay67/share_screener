@@ -19,7 +19,19 @@ def scope_pages(scope):
 								'logout',
 								]
 
-	
+	# Dropdowns
+	scope.pages['dropdowns'] = {}
+	scope.pages['dropdowns']['markets'] = []
+	scope.pages['dropdowns']['industries'] = []
+	scope.pages['dropdowns']['tickers'] = []
+	scope.pages['dropdowns']['ticker'] = []
+	scope.pages['dropdowns']['ohlcv_columns'] 	= ['open', 'high', 'low', 'close', 'volume']
+	scope.pages['dropdowns']['price_columns'] = ['open', 'high', 'low', 'close' 		   ]	
+
+
+
+
+
 	# ==========================================
 	# variables for each page from the page list above
 	for page in scope.pages['page_list']:
@@ -51,3 +63,11 @@ def base_config_pages(scope):
 	# so we need to be able to call when changing user
 	scope.pages['row_limit'] = 100
 	scope.pages['display'] = 'home'
+	scope.pages['share_market'] = 'ASX'
+	scope.pages['download_days'] = 7
+
+
+def scope_ticker_search(scope):
+	# company names for the ticker search
+	scope.pages['ticker_search'] = {}
+	scope.pages['ticker_search'] = (scope.ticker_index['df']['company_name']).to_dict()

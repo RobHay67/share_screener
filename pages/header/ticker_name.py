@@ -14,7 +14,7 @@ def selected_ticker_name_layer(scope):
 			# we have a ticker to work with
 		
 			ticker = scope.pages[page]['worklist'][0]
-			ticker_name = scope.config['ticker_search'][ticker].title()
+			ticker_name = scope.pages['ticker_search'][ticker].title()
 			ticker_latest_price_df = latest_ticker_price(scope, ticker)
 				
 			col1,col2,col3 = st.columns([1.0,6.0, 5.0])  #12

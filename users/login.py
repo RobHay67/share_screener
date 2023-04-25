@@ -12,7 +12,7 @@ def login_user(scope, login_name):
 
 	# Over-write global user settings
 	scope.charts['primary_height'] = scope.users['json'][login_name]['chart_height']
-	scope.config['download_days'] = scope.users['json'][login_name]['download_days']
+	scope.pages['download_days'] = scope.users['json'][login_name]['download_days']
 	scope.pages['row_limit'] = scope.users['json'][login_name]['row_limit']
 
 

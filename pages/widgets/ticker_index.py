@@ -124,17 +124,17 @@ def render_ticker_index_messages(scope):
 		scope.ticker_index['render']['created_empty_ticker_index_file'] = False
 
 	if scope.ticker_index['render']['downloading_asx']:
-		st.header('Downloading Ticker Index information for the ' + scope.config['share_market'])
+		st.header('Downloading Ticker Index information for the ' + scope.pages['share_market'])
 		st.subheader('Downloading Ticker Master Data from https://asx.api.markitdigital.com and adding to the Ticker Index File')
 		scope.ticker_index['render']['downloading_asx'] = False
 
 	if scope.ticker_index['render']['download_market_n_a']:
-		st.error('DOWNLOAD Ticker data NOT YET CONFIGURED FOR ' + scope.config['share_market'])
+		st.error('DOWNLOAD Ticker data NOT YET CONFIGURED FOR ' + scope.pages['share_market'])
 		scope.ticker_index['render']['download_market_n_a'] = False
 
 	if scope.ticker_index['render']['download_success']:
 		no_downloaded = str(len(scope.ticker_index['df_downloaded']))
-		st.success('number of downloaded ' + scope.config['share_market'] + ' ticker codes = ' + no_downloaded)
+		st.success('number of downloaded ' + scope.pages['share_market'] + ' ticker codes = ' + no_downloaded)
 		scope.ticker_index['render']['download_success'] = False
 
 	if scope.ticker_index['render']['updating_ticker_index'] == True:

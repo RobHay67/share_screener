@@ -46,17 +46,17 @@ def refresh_dropdown_lists(scope):
 
 	list_of_markets = list(markets.keys())
 	list_of_markets.insert(0, 'select market')
-	scope.config['dropdowns']['markets'] = list_of_markets
+	scope.pages['dropdowns']['markets'] = list_of_markets
 	
 	list_of_industries = scope.ticker_index['df']['industry_group'].unique().tolist()
 	list_of_industries.sort()
-	scope.config['dropdowns']['industries'] = list_of_industries
+	scope.pages['dropdowns']['industries'] = list_of_industries
 	
 	list_of_tickers = scope.ticker_index['df'].index.values.tolist()
-	scope.config['dropdowns']['tickers'] = list_of_tickers
+	scope.pages['dropdowns']['tickers'] = list_of_tickers
 
 	alt_ticker_list = scope.ticker_index['df'].index.values.tolist()
 	alt_ticker_list.insert(0, 'select a ticker')
-	scope.config['dropdowns']['ticker'] = alt_ticker_list
+	scope.pages['dropdowns']['ticker'] = alt_ticker_list
 	
 	

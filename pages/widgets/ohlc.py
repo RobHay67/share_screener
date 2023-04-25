@@ -8,11 +8,11 @@ def edit_ohlc(scope, config_group, config_key ):
 	widget_key = 'widget_' + config_group + '_' + config_key
 	display_name =  ('Column for ' +  scope[config_group]['config'][config_key]['short_name'])
 	previous_selection = scope[config_group]['config'][config_key]['add_columns']['column']
-	pos_for_previous = scope.config['dropdowns']['price_columns'].index(previous_selection)	
+	pos_for_previous = scope.pages['dropdowns']['price_columns'].index(previous_selection)	
 
 	st.selectbox ( 
 					label		=display_name, 
-					options		=scope.config['dropdowns']['price_columns'],
+					options		=scope.pages['dropdowns']['price_columns'],
 					index		=pos_for_previous, 
 					on_change	=on_change_ohlc,
 					args		=(scope, config_group, config_key, widget_key, ),
