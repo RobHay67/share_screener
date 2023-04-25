@@ -3,13 +3,14 @@
 def edit_row_limit_event(scope):
 
 	# This event is triggered when the user sets a new row limit for
-	# every page - there is only a singlr global row limit
+	# every page - there is only a single global row limit
 	#
 	# page dataframes will require refreshing
 	# Column  adders will require refreshing as well
-	
+
+
 	for ticker in scope.tickers.keys():
-		for page in scope.page['page_list']:
+		for page in scope.pages['page_list']:
 
 			scope.tickers[ticker][page]['replace_df'] = True
 

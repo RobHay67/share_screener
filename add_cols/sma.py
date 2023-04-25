@@ -34,8 +34,10 @@ def sma_trend(scope, trial, ticker, df):
 	# Determine the Result for each row
 	if trend == 'above_sma':
 		df[trial] = np.where( df[column] > df['temp_ma'], 'pass', 'fail' )
-	else:
+	elif trend == 'below_sma':
 		df[trial] = np.where( df[column] <= df['temp_ma'], 'pass', 'fail' )
+	else:
+		df[trial] = 'error'
 
 	# clean up temp columns
 	df.drop(['temp_ma'], axis=1, inplace=True)
