@@ -26,7 +26,7 @@ def on_change_colour_selection(scope:dict, config_group:str, config_key:str, wid
 	changed_value = scope[widget_key]
 
 	# store the selection
-	scope[config_group][config_key]['plot']['colour'] = changed_value	
+	scope[config_group]['config'][config_key]['plot']['colour'] = changed_value	
 
 	# update the page data renew status
 	# does not require a set_refresh_ticker_df to be set to TRUE

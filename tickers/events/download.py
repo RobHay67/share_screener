@@ -6,19 +6,19 @@ def fail_download_event(scope, ticker, zero_volume=False):
 	# SO the download has failed and we need to update the 
 	# missing_tickers list
 	
-	if ticker not in scope.tickers['missing']['cloud']:
-		scope.tickers['missing']['cloud'].append(ticker)	
+	if ticker not in scope.tickers_missing['cloud']:
+		scope.tickers_missing['cloud'].append(ticker)	
 	
 
 	# however, we may still have local data for this ticker which 
 	# overrides the need to store this status in the total list
 
-	if ticker not in scope.tickers['missing']['list']:
-		scope.tickers['missing']['list'].append(ticker)
+	if ticker not in scope.tickers_missing['list']:
+		scope.tickers_missing['list'].append(ticker)
 
 
 	# Cache Download Error
-	if ticker not in scope.tickers['missing']['errors']:
+	if ticker not in scope.tickers_missing['errors']:
 		scope_missing_ticker_error(scope, ticker)
 
 	if zero_volume:
@@ -26,7 +26,7 @@ def fail_download_event(scope, ticker, zero_volume=False):
 	else:
 		error_message = scope.yf['errors'][ticker]
 
-	scope.tickers['missing']['errors'][ticker]['yf'] = error_message
+	scope.tickers_missing['errors'][ticker]['yf'] = error_message
 
 
 def download_data_event(scope, ticker):
@@ -35,12 +35,12 @@ def download_data_event(scope, ticker):
 	# the overall status
 
 
-	if ticker in scope.tickers['missing']['local']:
-		scope.tickers['missing']['local'].remove(ticker)
+	if ticker in scope.tickers_missing['local']:
+		scope.tickers_missing['local'].remove(ticker)
 	
-	if ticker in scope.tickers['missing']['cloud']:
-		scope.tickers['missing']['cloud'].remove(ticker)
+	if ticker in scope.tickers_missing['cloud']:
+		scope.tickers_missing['cloud'].remove(ticker)
 
-	if ticker in scope.tickers['missing']['list']:
-		scope.tickers['missing']['list'].remove(ticker)
+	if ticker in scope.tickers_missing['list']:
+		scope.tickers_missing['list'].remove(ticker)
 

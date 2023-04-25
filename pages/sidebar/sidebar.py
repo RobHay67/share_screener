@@ -8,7 +8,7 @@ from pages.widgets.download import edit_download_days
 
 
 def render_sidebar(scope):
-	
+
 	local_time=datetime.now()
 	market_timezone = opening_hours[scope.config['share_market']]['timezone']
 	market_time = datetime.now(pytz.timezone(market_timezone))

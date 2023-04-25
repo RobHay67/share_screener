@@ -71,10 +71,10 @@ def build_app_worklist_dropdown(scope):
 		pad_string = '-'*padding
 		ticker_status = ticker + pad_string
 
-		if ticker in scope.tickers['missing']['cloud']:
-			ticker_status =  ticker_status + scope.tickers['missing']['errors'][ticker]['yf']
-		elif ticker in scope.tickers['missing']['local']:
-			ticker_status = ticker_status + scope.tickers['missing']['errors'][ticker]['load']
+		if ticker in scope.tickers_missing['cloud']:
+			ticker_status =  ticker_status + scope.tickers_missing['errors'][ticker]['yf']
+		elif ticker in scope.tickers_missing['local']:
+			ticker_status = ticker_status + scope.tickers_missing['errors'][ticker]['load']
 		else:
 			if ticker in list(scope.tickers.keys()): 
 				ticker_df = scope.tickers[ticker]['df']

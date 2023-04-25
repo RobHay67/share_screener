@@ -27,19 +27,10 @@ def edit_active_event(scope, config_group, config_key, status):
 	#  - column_adders - list of trials that add columns to a dataframe
 	#  - active_trials - list of trials that are currently active
 
-	if config_group == 'trials':
-		config_group = 'trial_settings'
-
-	if config_group == 'charts':
-		config_group = 'chart_settings'
-	
-
-
-
 	if config_key in scope[config_group]['config'].keys():
-		# restict to functions that add columns
 		if scope[config_group]['config'][config_key]['add_columns'] != None:
-			scope[config_group]['config']['column_adders'][config_key] = status
+		# restict to functions that add columns
+			scope[config_group]['config'][config_key]['status'] = status
 
 
 	# Update the Active lists for charts or trial
@@ -47,8 +38,10 @@ def edit_active_event(scope, config_group, config_key, status):
 
 	if status == True:
 		# add chart or trial to active list
-		scope[config_group]['config']['active_list'].append(config_key)
+		scope[config_group]['active_list'].append(config_key)
 	else:
 		# remove the chart or trial from the active list
-		if config_key in scope[config_group]['config']['active_list']:
-			scope[config_group]['config']['active_list'].remove(config_key)
+		if config_key in scope[config_group]['active_list']:
+			scope[config_group]['active_list'].remove(config_key)
+
+

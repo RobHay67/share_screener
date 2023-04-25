@@ -4,23 +4,12 @@
 # Add appropriate column adders state information
 # This function only generates the empty containers and default values. 
 # Data is added by other functions.
+# Also includes any missing ticker information in the scope.tickers_missing object
 
 
 
 def scope_tickers(scope):
 	scope.tickers = {}
-
-	# To Store the missing ticker information
-	scope.tickers['missing'] = {
-								'errors': {},
-								'local' : [],
-								'cloud' : [],
-								'list'  : [],
-								}
-	
-	
-def scope_missing_ticker_error(scope, ticker):
-	scope.tickers['missing']['errors'][ticker] = {'load':None, 'yf':None}
 
 
 def scope_new_ticker(scope, ticker):
@@ -48,5 +37,17 @@ def scope_new_ticker(scope, ticker):
 				scope.tickers[ticker][page]['trials'][trial] = None
 
 
+def scope_tickers_missing(scope):
+	# To Store the missing ticker information
+	scope.tickers_missing = {
+								'errors': {},
+								'local' : [],
+								'cloud' : [],
+								'list'  : [],
+								}
+	
+	
+def scope_missing_ticker_error(scope, ticker):
+	scope.tickers_missing['errors'][ticker] = {'load':None, 'yf':None}
 
 

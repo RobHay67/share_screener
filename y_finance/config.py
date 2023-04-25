@@ -18,14 +18,14 @@ def reset_yf_download_config(scope):
 	# Batch specific params and data is stored here
 	scope.yf['batch_no']				= 0
 	scope.yf['batch_industry']			= ''
-	scope.yf['batch_ticker_string']	= ''
+	scope.yf['batch_ticker_string']		= ''
 	scope.yf['batch_type']				= ''
-	scope.yf['batch_data'] 			= {}
+	scope.yf['batch_data'] 				= {}
 	scope.yf['batch_errors'] 			= {}
 	# Entire Download run is stored here
 	scope.yf['ticker_list'] 			= []	
 	scope.yf['data'] 					= pd.DataFrame(columns=ticker_file_usecols + ['ticker'] )		
-	scope.yf['errors'] 				=  {}
+	scope.yf['errors'] 					=  {}
 
 
 def set_yf_period(scope):

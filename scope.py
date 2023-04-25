@@ -11,6 +11,7 @@ from charts.config import scope_charts
 from ticker_index.config import scope_index_file
 from page.config.ticker_search import scope_ticker_search
 from tickers.config import scope_tickers
+from tickers.config import scope_tickers_missing
 from y_finance.config import scope_download_variables
 from strategies.config import scope_strategy
 
@@ -32,6 +33,7 @@ def set_scope(scope):
 		scope_index_file(scope)				# load the share index
 		scope_ticker_search(scope)			# variable to facilite searching for ticker by name
 		scope_tickers(scope)				# variables for storing the ticker files
+		scope_tickers_missing(scope)		# track missing tickers and associated errors
 		scope_download_variables(scope)		# variable used during download of ticker data
 		scope_strategy(scope)				# TODO - this may not even be required - keeping just in case
 
