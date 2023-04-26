@@ -7,7 +7,7 @@ import streamlit as st
 
 from add_cols.replace_page_df import replace_page_df
 from add_cols.replace_df_cols import replace_page_df_columns
-from trials.verdict import determine_overall_ticker_verdict
+from trials.verdict import determine_verdict_for_ticker
 
 
 def add_cols_to_df_layer(scope):
@@ -44,7 +44,7 @@ def replace_df_and_add_columns(scope, page):
 			my_bar.progress(poc, text='Adding columns where file = '+ticker)
 			replace_page_df(scope, page, ticker, app_row_limit)
 			replace_page_df_columns(scope, page, ticker)
-			determine_overall_ticker_verdict(scope, ticker)
+			determine_verdict_for_ticker(scope, ticker)
 
 		my_bar.progress(100, text='Finished adding columns to ( ' + str(len(ticker_list)) + ' ) ticker files')
 	else:

@@ -17,6 +17,10 @@ def three_cols( description, variable, variable_name, diff_col_size=None, widget
 			st.selectbox(label=variable_name, options=variable)
 		elif  widget_type == 'multiselect':
 			st.multiselect(label=variable_name, options=variable)
+		elif  widget_type == 'df':
+			st.dataframe(data=variable, width=None, height=None, use_container_width=True)
+		else:
+			st.write(variable)
 		
 	with col3: 
 		st.write( ('< ' + variable_name + ' >') )

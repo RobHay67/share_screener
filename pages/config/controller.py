@@ -6,9 +6,9 @@ from pages.config.files import view_files
 from pages.config.pages import view_page_global_config
 from pages.config.dropdowns import view_dropdowns
 from pages.config.ticker_search import view_ticker_search
-from pages.config.trials import view_trials_config
-from pages.config.charts import view_charts_config
-from pages.config.ticker_data import view_ticker_data
+from pages.config.trials import render_trials_config
+from pages.config.charts import render_charts_config
+from pages.config.ticker_data import render_ticker_config
 from pages.config.missing_tickers import view_missing_tickers
 from pages.config.users import view_users
 from pages.config.download import view_download
@@ -22,9 +22,9 @@ def render_selected_scope_page(scope):
 			'page'					:view_page_global_config,
 			'dropdowns'				:view_dropdowns,
 			'ticker_search'			:view_ticker_search,
-			'trials'				:view_trials_config,
-			'charts'				:view_charts_config,
-			'view_ticker_data'		:view_ticker_data,
+			'trials'				:render_trials_config,
+			'charts'				:render_charts_config,
+			'view_ticker_data'		:render_ticker_config,
 			'view_missing_tickers'	:view_missing_tickers,
 			'view_users'			:view_users,
 			'view_download'			:view_download,
@@ -47,9 +47,9 @@ def render_config_page(scope):
 		st.button('Application', use_container_width=True, on_click=set_st_button, args=(scope, 'application', ))
 		st.button('Folders and Paths', use_container_width=True, on_click=set_st_button, args=(scope, 'view_files', ))
 	with col2: 
-		st.button('Page', use_container_width=True, on_click=set_st_button, args=(scope, 'page', ))
-		st.button('Dropdowns', use_container_width=True, on_click=set_st_button, args=(scope, 'dropdowns', ))
-		st.button('Ticker Search', use_container_width=True, on_click=set_st_button, args=(scope, 'ticker_search', ))
+		st.button('Pages', use_container_width=True, on_click=set_st_button, args=(scope, 'page', ))
+		st.button('Page Dropdowns', use_container_width=True, on_click=set_st_button, args=(scope, 'dropdowns', ))
+		st.button('Page Search', use_container_width=True, on_click=set_st_button, args=(scope, 'ticker_search', ))
 	with col3: 
 		st.button('Trials  (column adders)', use_container_width=True, on_click=set_st_button, args=(scope, 'trials', ))
 	with col4: 
@@ -63,9 +63,6 @@ def render_config_page(scope):
 		st.button('Download Info', use_container_width=True, on_click=set_st_button, args=(scope, 'view_download', ))
 	with col8: 
 		st.button('Strategies (WIP)', use_container_width=True, on_click=set_st_button, args=(scope, 'view_strategies', ))
-
-	
-	st.markdown("""---""")
 
 	if scope.pages['button_for_scope'] != None:
 		render_selected_scope_page(scope)

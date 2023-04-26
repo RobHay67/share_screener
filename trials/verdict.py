@@ -4,7 +4,7 @@
 #   an overall pass
 
 
-def determine_overall_ticker_verdict(scope, ticker):
+def determine_verdict_for_ticker(scope, ticker):
 
 	page = scope.pages['display']
 
