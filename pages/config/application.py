@@ -10,7 +10,7 @@ def render_scope_config(scope):
 	st.subheader('Application Configuration')
 	three_cols( 'Application Configuration stored in', {}, "scope.config", widget_type='string' )
 
-	st.write('---')	
+	st.divider()	
 	st.caption('Application')
 	three_cols( 'Project Description', 
 	    		scope.config['project_description'], 

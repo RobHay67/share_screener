@@ -3,20 +3,22 @@ import streamlit as st
 from pages.config.three_cols import three_cols
 
 
-def view_page_config(scope):
-	st.subheader('Page Configuration - applies to all pages')
+def view_page_global_config(scope):
+
+	st.subheader('Page Configuration - Global Page Settings')
 	three_cols( 'Page Configuration stored in', {}, 'scope.pages', widget_type='string' )
-	st.write('---')
+	st.divider()
+	st.divider()
 	three_cols( 'Current Page to Display', scope.pages['display'], "scope.pages['display']" )
-	st.write('---')
+	st.divider()
 	three_cols( 'Share Market', scope.pages['share_market'], "scope.pages['share_market']" )
 	three_cols( 'Row Limit for Page', scope.pages['row_limit'], 'scope.pages.row_limit', widget_type='string' )
 	three_cols( 'Days to Download (recent)', scope.pages['download_days'], "scope.pages['download_days']" )
-	st.write('---')
+	st.divider()
 	three_cols( 'Streamlit Latest Button Pressed', scope.pages['button_for_scope'], 'scope.pages.button_for_scope' )
 	three_cols( 'Page List', scope.pages['page_list'], 'scope.pages.app_list', widget_type='string' )
 
-	st.write('---')
+	st.divider()
 	three_cols('Specific Page Config', '{}', "scope.pages[page]")
 	st.caption('navigate to each page and select config button)')
 
@@ -24,13 +26,9 @@ def view_page_config(scope):
 
 def render_page_config(scope):
 
-	st.write('---')
-	
-	view_page_config(scope)
-
 	page = scope.pages['display']
 
-	st.write('---')
+	st.divider()
 	st.subheader( 'Configuration for ' + page.upper() + ' page')
 	three_cols( 'Page Specific Configuration stored in', {}, 'scope.pages['+page+']', widget_type='string' )
 	
@@ -54,7 +52,7 @@ def render_page_config(scope):
 	three_cols( 'Show page Config (this page)'  , scope.pages[page]['render']['app_config']    , 'scope.pages.'+ page +"['render']['app_config']"    , widget_type='string' )
 
 
-	st.write('---')
+	st.divider()
 	st.subheader('Settings for '+page+' page.')
 	if page == 'screener':
 		three_cols( 'Current Trial Settings stored in', {}, 'scope.trials', widget_type='string' )
@@ -62,7 +60,7 @@ def render_page_config(scope):
 		three_cols( 'Active Trial List', scope.trials['active_list'], "scope.trials['active_list']" )
 		three_cols( 'Trials which require Column Adders', scope.trials['template_col_adders'], "scope.trials['template_col_adders']" )
 
-		st.write('---')
+		st.divider()
 		st.subheader('Test Results (Trial Verdicts) - only for Screener page')
 		st.caption('Indiviual Ticker Test Results')
 		for ticker in list(scope.tickers.keys()):
@@ -70,7 +68,13 @@ def render_page_config(scope):
 			three_cols( 'Overall Test Result (all test must pass)', scope.tickers[ticker][page]['verdict'], "scope.tickers["+ ticker + "]["+page+"['verdict']", widget_type='string' )
 			three_cols( 'Do we need to update the verdict', scope.tickers[ticker][page]['replace_verdict'], "scope.tickers["+ ticker + "]["+page+"['replace_verdict']", widget_type='string' )
 			three_cols( 'Individual Test (Trial) Results', scope.tickers[ticker][page]['trials'], "scope.tickers["+ ticker + "]["+page+"['trials']", widget_type='string' )
-	
+
+		# view_trials_config(scope)
+
+
+
+
+
 	if page == 'chart':
 		three_cols( 'Chart Configuration stored in', {}, 'scope.charts', widget_type='string' )
 		three_cols( 'Total Height for all currently active charts', scope.charts['total_height'], "scope.charts['total_height']" )
@@ -81,7 +85,7 @@ def render_page_config(scope):
 		three_cols( 'Charts which require Column Adders', scope.charts['template_col_adders'], "scope.charts['template_col_adders']" )
 
 
-	st.write('---')
+	st.divider()
 	st.subheader('Dataframe Status')
 	st.caption('What Data needs replacing or recalculating')
 	three_cols( 'Dataframe Status Stored in ', {}, 'scope.tickers[ticker][page]', widget_type='string' )
@@ -91,10 +95,10 @@ def render_page_config(scope):
 		three_cols( 'Settings Group (Charts or Trials) ='  , scope.tickers[ticker][page]['config_group']    , 'scope.tickers['+ ticker + '][' + page + "]['config_group']"    , widget_type='string' )
 		three_cols( 'Which Columns require replacement ?'  , scope.tickers[ticker][page]['replace_column']    , 'scope.tickers['+ ticker + '][' + page + "]['replace_column']", widget_type='string' )
 
-	st.write('---')
+	st.divider()
 	st.header('Data Management')
 	three_cols( 'Ticker Data and Status Stored in', {}, 'scope.tickers[ticker]', widget_type='string' )
 	three_cols( 'Loaded DF File', {}, 'scope.tickers[ticker]' + "['df']", widget_type='string' )
 
-	st.write('---')
+	st.divider()
 

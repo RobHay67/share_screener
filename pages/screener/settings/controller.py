@@ -20,6 +20,12 @@ def render_available_trials(scope):
 	sma_trends(scope)
 	rsi_trends(scope)
 	stochastic_trend(scope)
+
+	with st.expander(label='Moving Average - Convergence / Divergence (MACD)', expanded=False):
+		st.write('This will be the criteria')
+
+	with st.expander(label='MACD - Volume', expanded=False):
+		st.write('This will be the criteria')
 	
 
 	st.write('**Fundamental Analysis**')
@@ -29,13 +35,8 @@ def render_available_trials(scope):
 		st.write('This will be the criteria')
 	with st.expander(label='Price to Earnings Ratio - P/E', expanded=False):
 		st.write('Dividend per share / Earning per share')
-	st.write('**Technical Trading Indicators**')
 
-	with st.expander(label='Moving Average - Convergence / Divergence (MACD)', expanded=False):
-		st.write('This will be the criteria')
 
-	with st.expander(label='MACD - Volume', expanded=False):
-		st.write('This will be the criteria')
 
 	st.markdown("""---""")
 

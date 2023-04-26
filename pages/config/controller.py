@@ -3,7 +3,7 @@ import streamlit as st
 # Config (scope)
 from pages.config.application import render_scope_config
 from pages.config.files import view_files
-from pages.config.pages import view_page_config
+from pages.config.pages import view_page_global_config
 from pages.config.dropdowns import view_dropdowns
 from pages.config.ticker_search import view_ticker_search
 from pages.config.trials import view_trials_config
@@ -19,7 +19,7 @@ def render_selected_scope_page(scope):
 	scope_page = {
 			'application'			:render_scope_config,
 			'view_files'			:view_files,
-			'page'					:view_page_config,
+			'page'					:view_page_global_config,
 			'dropdowns'				:view_dropdowns,
 			'ticker_search'			:view_ticker_search,
 			'trials'				:view_trials_config,

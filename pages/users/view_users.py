@@ -38,7 +38,7 @@ def render_user_maintenance(scope):
 									key=widget_key,
 									)
 
-	st.write('---')
+	st.divider()
 
 	list_of_users = list(scope.user_df.index.values)
 	
@@ -116,7 +116,7 @@ def render_user_maintenance(scope):
 			st.write('Selected Country')
 			st.write(scope.user_df.loc[user_name].at['selected_country'])
 
-	st.write('---')
+	st.divider()
 	st.write(scope.user_df)
 
 def render_new_user_name(scope, custom_label):

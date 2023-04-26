@@ -145,7 +145,7 @@ trial_configuration_dict = {
 						short_name		: 'SMA Trend 2',
 						add_columns		: {
 											function : sma_trend,
-											column 	 : 'close',
+											column 	 : 'open',
 											trend	 : 'above_sma',
 											periods  : 50,
 										},
@@ -156,7 +156,7 @@ trial_configuration_dict = {
 						short_name		: 'SMA Trend 3',
 						add_columns		: {
 											function : sma_trend,
-											column 	 : 'close',
+											column 	 : 'volume',
 											trend	 : 'above_sma',
 											periods  : 200,
 										},

@@ -14,7 +14,7 @@ def view_ticker_data(scope):
 		three_cols( 'Ticker DataFrame', '{ }',  "scope.tickers["+ticker+"]['df']", widget_type='string' )
 		three_cols( 'Ticker Trials', scope.tickers[ticker]['trials'],  "scope.tickers["+ticker+"]['df']", widget_type='string' )
 		for page in scope.pages['page_list']:
-			st.write('---')
+			st.divider()
 			st.subheader(page.upper() + ' page')
 			three_cols( 'Dataframe with added columns', scope.tickers[ticker][page]['df'],  "scope.tickers["+ticker+"]["+page+"]['df']", widget_type='string' )
 			three_cols( 'Replace Dataframe for page', scope.tickers[ticker][page]['replace_df'],  "scope.tickers["+ticker+"]["+page+"]['replace_df']", widget_type='string' )

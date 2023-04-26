@@ -7,7 +7,7 @@ def render_strategies(scope):
 	st.subheader('Strategy Settings')
 	three_cols( 'Strategy Settings stored in', {}, "scope.strategy", widget_type='string' )
 
-	st.write('---')	
+	st.divider()	
 	three_cols( 'Strategy Name', scope.strategy['name'], 'scope.strategy.name' )
 	three_cols( 'Price Columns', scope.strategy['price_columns'], 'scope.strategy.price_columns' )
 	three_cols( 'JSON Dictionary', scope.strategy['json_dict'], 'scope.strategy_json_dict' )

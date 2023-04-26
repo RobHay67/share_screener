@@ -10,7 +10,7 @@ def view_files(scope):
 	st.subheader('File Configuration')
 	three_cols( 'File Configuration stored in', {}, "scope.files", diff_col_size, widget_type='string' )
 
-	st.write('---')	
+	st.divider()	
 	st.caption('Folders')
 	three_cols( 'Project', scope.files['folders']['project'], "scope.files['folders']['project']", diff_col_size )
 	three_cols( 'Files', scope.files['folders']['files'], "scope.files['folders']['files']", diff_col_size )
