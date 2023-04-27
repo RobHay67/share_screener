@@ -7,8 +7,8 @@ from pages.config.pages import view_page_global_config
 from pages.config.dropdowns import view_dropdowns
 from pages.config.ticker_search import view_ticker_search
 from pages.config.trials import render_trials_config
-from pages.config.charts import render_charts_config
-from pages.config.ticker_data import render_ticker_config
+from pages.config.charts import render_scope_charts
+from pages.config.ticker_data import render_scope_tickers
 from pages.config.missing_tickers import view_missing_tickers
 from pages.config.users import view_users
 from pages.config.download import view_download
@@ -23,8 +23,8 @@ def render_selected_scope_page(scope):
 			'dropdowns'				:view_dropdowns,
 			'ticker_search'			:view_ticker_search,
 			'trials'				:render_trials_config,
-			'charts'				:render_charts_config,
-			'view_ticker_data'		:render_ticker_config,
+			'charts'				:render_scope_charts,
+			'view_ticker_data'		:render_scope_tickers,
 			'view_missing_tickers'	:view_missing_tickers,
 			'view_users'			:view_users,
 			'view_download'			:view_download,

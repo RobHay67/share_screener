@@ -12,7 +12,7 @@ def trial_settings_button(scope):
 						use_container_width=True, 
 						on_click=trial_config_status, args=(scope, ),
 						type=type_of_button,
-						help='Test Configuration Settings'
+						help='Trial Settings'
 						)
 
 	return button
