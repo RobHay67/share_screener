@@ -25,7 +25,8 @@ def scope_pages(scope):
 	scope.pages['dropdowns']['industries'] = []
 	scope.pages['dropdowns']['tickers'] = []
 	scope.pages['dropdowns']['ticker'] = []
-	scope.pages['dropdowns']['ohlcv_columns'] 	= ['open', 'high', 'low', 'close', 'volume']
+	scope.pages['dropdowns']['config_ticker'] = ['select a ticker']
+	scope.pages['dropdowns']['ohlcv_columns'] = ['open', 'high', 'low', 'close', 'volume']
 	scope.pages['dropdowns']['price_columns'] = ['open', 'high', 'low', 'close' 		   ]	
 
 
@@ -42,10 +43,11 @@ def scope_pages(scope):
 		scope.pages[page]['tickers_used_by_page'] = []
 		
 		scope.pages[page]['selectors'] = {
-										'ticker'	: 'select a ticker',
-										'tickers'	: [],
-										'industries': [],
-										'market'	: 'select market', 
+										'ticker'		: 'select a ticker',
+										'tickers'		: [],
+										'industries'	: [],
+										'market'		: 'select market',
+										'config_ticker'	: 'select a ticker',
 										}
 		
 		scope.pages[page]['render'] = 	{

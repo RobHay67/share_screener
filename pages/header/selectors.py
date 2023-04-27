@@ -36,10 +36,6 @@ def selectors_layer(scope):
 	update_page_worklist(scope)
 	
 
-
-
-
-
 def refresh_dropdown_lists(scope):
 	# Repopulate the scope with the latest information for the dropdown lists
 	# THis function only needs running after the ticker index has been loaded/downloaded
@@ -52,11 +48,17 @@ def refresh_dropdown_lists(scope):
 	list_of_industries.sort()
 	scope.pages['dropdowns']['industries'] = list_of_industries
 	
+	#
 	list_of_tickers = scope.ticker_index['df'].index.values.tolist()
-	scope.pages['dropdowns']['tickers'] = list_of_tickers
+	scope.pages['dropdowns']['tickers'] = list_of_tickers.copy()
 
-	alt_ticker_list = scope.ticker_index['df'].index.values.tolist()
-	alt_ticker_list.insert(0, 'select a ticker')
-	scope.pages['dropdowns']['ticker'] = alt_ticker_list
+	list_of_tickers.insert(0, 'select a ticker')
+	scope.pages['dropdowns']['ticker'] = list_of_tickers.copy()
+
+
+def refresh_ticker_dropdown_for_config(scope):
+	list_of_loaded_tickers = list(scope.tickers.keys())
+	list_of_loaded_tickers.insert(0, 'select a ticker')
+	scope.pages['dropdowns']['config_ticker'] = list_of_loaded_tickers.copy()
 	
 	

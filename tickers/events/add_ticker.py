@@ -1,6 +1,6 @@
 
 from tickers.config import scope_new_ticker
-
+from pages.header.selectors import refresh_ticker_dropdown_for_config
 
 def add_ticker_event(scope, ticker):
 
@@ -15,6 +15,7 @@ def add_ticker_event(scope, ticker):
 
 	# config for new ticcker is kept in the config module for consistency
 	scope_new_ticker(scope, ticker)
+	refresh_ticker_dropdown_for_config(scope)
 
 
 

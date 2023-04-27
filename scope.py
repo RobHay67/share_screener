@@ -28,8 +28,8 @@ def set_scope(scope):
 		scope_users(scope)					# Set Default Values ready for a user to login
 		scope_trials(scope)					# add the trials configuration
 		scope_charts(scope)					# add the chart configuration
-		scope_index_file(scope)				# load the share index
 		scope_tickers(scope)				# variables for storing the ticker files
+		scope_index_file(scope)				# load the share index
 		scope_tickers_missing(scope)		# track missing tickers and associated errors
 		scope_ticker_search(scope)			# variable to facilite searching for ticker by name
 		scope_download_variables(scope)		# variable used during download of ticker data
