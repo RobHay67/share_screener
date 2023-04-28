@@ -215,7 +215,7 @@ trial_configuration_dict = {
 						add_columns		: {
 											function 		: rsi_trend,
 											trend	 		: 'over_sold',
-											column 	 		: 'close',
+											column 	 		: 'open',
 											lookback_days 	: 10,
 										},
 					},

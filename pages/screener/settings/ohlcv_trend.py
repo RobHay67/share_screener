@@ -13,7 +13,7 @@ def render_ohlcv_trend(scope, trial):
 
 	column_name = scope[config_group]['config'][trial]['add_columns']['column']
 
-	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1,1])
+	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1.5,1])
 
 	with col1:edit_active(scope, config_group, trial)
 	with col2:edit_ohlcv(scope, config_group, trial)
