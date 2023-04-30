@@ -1,22 +1,8 @@
 # ------------------------------------------------- Execute Application
 # pipenv shell
 # streamlit run home.py
-# ------------------------------------------------- GitHub
-# git push -u origin <branch>
-# git branch -d <branch>   will delete local branch
-# ------------------------------------------------- Package Management
-# pip3 install --user --upgrade django
-# ------------------------------------------------- Pipenv
-# cd into project folder 
-# activate Pipenv 	- pipenv shell
-# deactivate env	- exit
-# install packages  - pipenv install
-# add a package 	- pipenv install django
-# upgrade package	- pipenv update yfinance (but wont override version specified in pipfile)
-# specify ver   	- pipenv install mplfinance==0.12.7a5
-# latest ver		- pipenv update pandas
-# delete pkg		- pipenv uninstall django
-# -------------------------------------------------
+# ------------------------------------------------- 
+
 
 for i in range(10):print('')
 print ( '\033[94m' + 'Application Re-Rendering - see below this line ' + '>'*33 + '\033[0m')

@@ -74,7 +74,8 @@ https://benjaminpack.com/blog/vs-code-python-pipenv/
 |Determine Path to PipEnv Setup File				|pipenv --py|
 |Create project settings file fo VS Code to use		|mkdir .vscode && touch .vscode/settings.json|
 |Open the Settings File and paste in the following	|Change the VirtualENV path to yours|
-```{
+```
+	{
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
@@ -85,6 +86,7 @@ https://benjaminpack.com/blog/vs-code-python-pipenv/
         "**/__pycache__": true
     },
     "python.pythonPath": "<VIRTUALENV_PYTHON_PATH_HERE>"
+	}
 ```
 Restart VSC Project by File/Open Folder/[choose your project]
 
