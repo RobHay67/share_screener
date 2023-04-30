@@ -7,7 +7,7 @@ from trials.config import trends_for_sma
 
 def edit_trend_sma(scope, config_group, config_key ):
 	widget_key = 'widget_trend_' + config_group + '_' + config_key
-	display_name = 'Trend'
+	display_name = 'Is Trending'
 	previous_selection = scope[config_group]['config'][config_key]['add_columns']['trend']
 	pos_for_previous = trends_for_sma.index(previous_selection)	if previous_selection in trends_for_sma else 0
 
