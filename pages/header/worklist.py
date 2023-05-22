@@ -1,4 +1,5 @@
 import streamlit as st
+from pages.header.widgets.format import md_for_header
 from pages.header.widgets.worklist import render_worklist_dropdown
 from pages.header.widgets.worklist import render_ticker_load_and_download_errors
 from pages.header.widgets.worklist import render_active_charts_or_tests
@@ -11,7 +12,7 @@ def ticker_worklist_layer(scope):
 
 		col1,col2,col3,col4 = st.columns([1.5, 6.5, 2.0, 2.0])  #12
 
-		with col1:st.caption('Worklists')
+		with col1:md_for_header('Worklists')
 		with col2:render_worklist_dropdown(scope)
 		with col3:render_ticker_load_and_download_errors(scope)
 		with col4:render_active_charts_or_tests(scope)

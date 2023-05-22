@@ -10,6 +10,7 @@ from pages.header.widgets.download import download_button
 from y_finance.price_data.controller import download_tickers
 from page.worklist import build_app_worklist_dropdown
 from tickers.load import load_ticker
+from pages.header.widgets.format import md_for_header
 
 
 def ticker_files_layer(scope):
@@ -20,16 +21,13 @@ def ticker_files_layer(scope):
 		
 		col1,col2,col3 = st.columns([1.5, 9.0, 1.5])  #12.0
 
-		with col1:st.caption('Ticker Files (loaded)')
+		with col1:md_for_header('Ticker Files (loaded)')
 		with col2:progress_bar_loading_tickers(scope, ) # loads ticker data as well
 		with col3:download_ticker_data = download_button(scope)
 
 		if download_ticker_data:
 			download_tickers(scope)
 			build_app_worklist_dropdown(scope)
-
-
-
 
 
 def progress_bar_loading_tickers(scope):

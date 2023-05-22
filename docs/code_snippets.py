@@ -2,6 +2,23 @@
 
 
 
+# def format_string(string, align=None, bold=False ):
+
+# 	formatted_string = str(string)
+
+# 	if bold:formatted_string = "<b>"+formatted_string+"</b>"
+	
+# 	if align != None:
+# 		formatted_string = f"""
+# 							<div style="text-align: {align};">{formatted_string}</div>
+# 							"""
+	
+# 	return formatted_string
+
+
+
+
+
 
 # col1,col2,col3,col4,col5,col6,col7,col8 = st.columns(8)
 # with col1: st.write('Select Options')

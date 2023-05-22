@@ -5,6 +5,7 @@
 
 import streamlit as st
 
+from pages.header.widgets.format import md_for_header
 from add_cols.replace_page_df import replace_page_df
 from add_cols.replace_df_cols import replace_page_df_columns
 from trials.verdict import determine_verdict_for_ticker
@@ -16,7 +17,7 @@ def add_cols_to_df_layer(scope):
 
 	if page in ['chart','intraday','screener']:
 		col1,col2,col3 = st.columns([1.5, 9.0, 1.5])  #12.0
-		with col1:st.caption('Add Columns to Ticker Files')
+		with col1:md_for_header('Add Columns to Ticker Files')
 		with col2:render_progress_bar(scope, page)      # will add/update the columns as well!
 
 
