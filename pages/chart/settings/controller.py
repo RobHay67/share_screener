@@ -1,6 +1,6 @@
 import streamlit as st
 
-from pages.widgets.chart_height import set_chart_height_primary
+from pages.chart.settings.chart_height import set_chart_height_primary
 from pages.chart.settings.active import render_activate_metric
 
 from pages.chart.settings.active import render_activate_metric
@@ -9,7 +9,7 @@ from pages.chart.settings.macd_vol import render_macd_vol
 from pages.chart.settings.rsi import render_rsi
 from pages.chart.settings.stochastic import render_stochastic
 from pages.chart.settings.volume_oscillator import render_volume_oscillator
-from pages.widgets.save_user_settings import save_user_settings_button
+from pages.users.save_user_settings import save_user_settings_button
 from pages.chart.settings.line import render_line_chart
 
 

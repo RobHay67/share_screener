@@ -1,6 +1,6 @@
 import streamlit as st
 from pages.config.three_cols import three_cols
-from pages.widgets.ticker import select_a_ticker_for_config
+from pages.header.widgets.ticker import select_a_ticker_for_config
 
 def render_scope_tickers(scope):
 	ticker_keys = scope.tickers.keys()

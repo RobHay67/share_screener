@@ -1,7 +1,7 @@
 import streamlit as st
-from pages.widgets.worklist import render_worklist_dropdown
-from pages.widgets.worklist import render_ticker_load_and_download_errors
-from pages.widgets.worklist import render_active_charts_or_tests
+from pages.header.widgets.worklist import render_worklist_dropdown
+from pages.header.widgets.worklist import render_ticker_load_and_download_errors
+from pages.header.widgets.worklist import render_active_charts_or_tests
 
 def ticker_worklist_layer(scope):
 

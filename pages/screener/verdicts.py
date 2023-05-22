@@ -6,8 +6,8 @@
 
 import streamlit as st
 
-from pages.widgets.links import website_hyperlink
-from pages.widgets.links import link_to_app_button
+from pages.websites.links import website_hyperlink
+from pages.websites.links import link_to_app_button
 
 
 def render_trial_verdicts(scope):
@@ -17,10 +17,9 @@ def render_trial_verdicts(scope):
 	verdict_list = passing_verdict_list(scope)
 	no_of_verdicts = len(verdict_list)
 
-	st.subheader('Passing Test Results       (' + str(no_of_verdicts) + ') passed')
 	
 	if no_of_verdicts == 0:
-		st.warning('No Passing Verdicts to Render')
+		st.info('No Passing Verdicts to Render')
 	elif no_of_verdicts > (group_size * number_of_tabs):
 		st.error('Too many passing verdicts ('+str(no_of_verdicts)+') to render.')
 		st.write('Maximum No of Tabs           = '+str(number_of_tabs))
@@ -28,6 +27,8 @@ def render_trial_verdicts(scope):
 		st.write('Limit = Tabs x Verdict per Tab = '+str(group_size * number_of_tabs))
 	else:
 		# Render the Results
+		st.subheader('Passing Test Results       (' + str(no_of_verdicts) + ') passed')
+
 		no_of_tabs = int(no_of_verdicts / group_size)		
 		if (no_of_verdicts % group_size) > 0:no_of_tabs+=1
 			

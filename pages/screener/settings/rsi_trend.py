@@ -4,7 +4,7 @@ import streamlit as st
 from pages.widgets.active import edit_active
 from pages.widgets.number import edit_number
 from pages.widgets.ohlcv import edit_ohlcv
-from pages.widgets.trend_rsi import edit_trend_rsi
+from pages.trials.trend_rsi import edit_trend_rsi
 
 
 def render_rsi_trend(scope, trial):

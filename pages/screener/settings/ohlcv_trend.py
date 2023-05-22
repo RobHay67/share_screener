@@ -2,7 +2,7 @@
 import streamlit as st
 
 from pages.widgets.active import edit_active
-from pages.widgets.trend_ohlcv import edit_trend_ohlcv
+from pages.trials.trend_ohlcv import edit_trend_ohlcv
 from pages.widgets.number import edit_number
 from pages.widgets.ohlcv import edit_ohlcv
 

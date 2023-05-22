@@ -3,8 +3,8 @@
 
 import streamlit as st
 
-from pages.widgets.links import website_hyperlink
-from pages.widgets.links import link_to_app_button
+from pages.websites.links import website_hyperlink
+from pages.websites.links import link_to_app_button
 
 
 def quick_links_layer(scope):

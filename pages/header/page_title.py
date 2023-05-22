@@ -1,11 +1,11 @@
 import streamlit as st
 
-from pages.widgets.page_config import page_config_button
-from pages.widgets.chart_settings import chart_settings_button
-from pages.widgets.chart_settings import chart_overlay_button
-from pages.widgets.strategies_button import strategies_button
-from pages.widgets.trial_settings import trial_settings_button
-from pages.widgets.reset_page import reset_page_render
+from pages.header.widgets.page_config import page_config_button
+from pages.chart.settings.chart_settings import chart_settings_button
+from pages.chart.settings.chart_settings import chart_overlay_button
+from pages.header.widgets.strategies_button import strategies_button
+from pages.trials.trial_settings import trial_settings_button
+from pages.header.widgets.reset_page import reset_page_render
 
 def page_title_layer(scope, page_title, page_icon):
     

@@ -1,11 +1,11 @@
 import streamlit as st
 
-from pages.widgets.ticker import select_a_ticker
-from pages.widgets.tickers import select_tickers
+from pages.header.widgets.ticker import select_a_ticker
+from pages.header.widgets.tickers import select_tickers
 
-from pages.widgets.industries import select_industries
-from pages.widgets.market import select_a_market
-from pages.widgets.search import search_ticker_by_name
+from pages.header.widgets.industries import select_industries
+from pages.header.widgets.market import select_a_market
+from pages.header.widgets.search import search_ticker_by_name
 
 from page.worklist import update_page_worklist
 from markets.schema import markets
