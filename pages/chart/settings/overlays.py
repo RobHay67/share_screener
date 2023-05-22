@@ -13,7 +13,7 @@ def render_overlays_config(scope):
 	# ----------------------------------------------------------------------
 	
 	
-	st.markdown("""---""")
+	st.divider()
 	st.subheader('Overlays')
 	st.caption('added to every relevant chart')
 	
@@ -33,7 +33,7 @@ def render_overlays_config(scope):
 
 	render_bollinger_bands(scope)
 
-	st.markdown("""---""")
+	st.divider()
 
 
 

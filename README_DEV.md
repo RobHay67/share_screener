@@ -93,6 +93,9 @@ Restart VSC Project by File/Open Folder/[choose your project]
 <br>
 <br>
 
+### pip show pipenv
+##### show where the package is installed
+
 
 ## Template Table 
 |Header_1|Header_2|

@@ -11,7 +11,7 @@ from pages.widgets.save_user_settings import save_user_settings_button
 
 def render_available_trials(scope):
 
-	st.markdown("""---""")
+	st.divider()
 	col1,col2=st.columns([8,4])
 	with col1:st.subheader('Trial / Test Configuration Settings')
 	with col2:save_user_settings_button(scope)
@@ -38,7 +38,7 @@ def render_available_trials(scope):
 
 
 
-	st.markdown("""---""")
+	st.divider()
 
 	with st.expander(label='Current Asset Ratio', expanded=False):
 		st.write('This will be the criteria')

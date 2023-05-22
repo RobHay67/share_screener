@@ -70,7 +70,7 @@ def example_settings(scope):
 	with col9:st.write('tick this')
 
 
-	st.markdown("""---""")
+	st.divider()
 
 	st.button('Determine Tickers meeting the above Criteria')
 

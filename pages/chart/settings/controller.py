@@ -19,7 +19,7 @@ def render_available_charts(scope):
 	# Primary Charts
 	# ----------------------------------------------------------------------
 	
-	st.markdown("""---""")
+	st.divider()
 	col1,col2,col3,col4 = st.columns([4,2,4,2]) #12
 	with col1:
 		st.subheader('Chart Settings')
@@ -50,7 +50,7 @@ def render_available_charts(scope):
 		render_activate_metric(scope, 'vac')
 		render_activate_metric(scope, 'vol_per_minute')
 
-	st.markdown("""---""")
+	st.divider()
 
 	st.caption('Charts with additional configuration')
 	render_line_chart(scope)
@@ -60,7 +60,7 @@ def render_available_charts(scope):
 	render_stochastic(scope)
 	render_volume_oscillator(scope)
 
-	st.markdown("""---""")
+	st.divider()
 
 
 
