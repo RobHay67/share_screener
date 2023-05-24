@@ -7,12 +7,12 @@ from tickers.schema import ticker_file_usecols
 
 def scope_download_variables(scope):
 	scope.yf = {}
-	reset_yf_download_config(scope)
+	scope_yf_config(scope)
 	set_yf_period(scope)
 
 
 
-def reset_yf_download_config(scope):
+def scope_yf_config(scope):
 	# Reset back to these values after each download
 	scope.yf['download_these_industries'] = ['random_tickers']
 	# Batch specific params and data is stored here

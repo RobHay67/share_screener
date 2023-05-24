@@ -1,12 +1,13 @@
 # ------------------------------------------------- Execute Application
 # pipenv shell
 # streamlit run home.py
+# pip install streamlit --upgrade
 # ------------------------------------------------- 
-
-
 for i in range(10):print('')
 print ( '\033[94m' + 'Application Re-Rendering - see below this line ' + '>'*33 + '\033[0m')
 for i in range(5):print('')
+
+
 
 import streamlit as st
 from scope import set_scope
@@ -18,9 +19,6 @@ from pages.header.page_title import page_title_layer
 if 'display_page' not in st.session_state:
 	scope = set_scope(st.session_state)
 
-
-
-
 # Page Configuration
 scope = st.session_state
 page = 'home'
@@ -30,16 +28,11 @@ page_icon = '🏠'
 scope.pages['display'] = page
 
 
-print(page, ' > Number of Keys in Scope = ', len(scope))
-for count, key in enumerate(sorted(st.session_state)):print(count+1, key)
 
 page_title_layer(scope, page_title, page_icon)
 st.write('Welcome to the Share Picker Appliction.')
 st.write('Select from the options in the sidebar (left)')
 st.write('User : ', scope.users['login_name'])
-
-
-
 
 if scope.users['logged_in'] == False:
 	col1,col2 = st.columns([2,8])
@@ -48,10 +41,6 @@ else:
 	render_sidebar(scope)
 
 
-# import yfinance as yf
-# print (yf.__version__)
-# metadata = yf.Ticker('CBA.AX')
-# for key in metadata.info:print(key)
 
 
 #======================================================== TODO s
@@ -61,11 +50,20 @@ print('move this to Trello as soon as you can')
 print('-'*66)
 print('TODO - we need to download and SAVE the dividend data as well')
 print('TODO - might need some code to detect multiple sessions open')
+print('-'*66)
+print('Also get rid of all the problems in the al - need to solve this problem with the linter')
 print('='*66)
 
 
-# if 'initial_load' in st.session_state:
-# 	for key in sorted(st.session_state):print(key)
+print(page, ' > Number of Keys in Scope = ', len(scope))
+for count, key in enumerate(sorted(st.session_state)):print(count+1, key)
+print('='*66)
+
+
+
+
+
+
 
 
 # =======================================

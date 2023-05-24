@@ -7,7 +7,7 @@
 import streamlit as st
 
 from pages.header.widgets.download import download_button
-from y_finance.price_data.controller import download_tickers
+from y_finance.ticker_values import download_ticker_values
 from page.worklist import build_app_worklist_dropdown
 from tickers.load import load_ticker
 from pages.header.widgets.format import md_for_header
@@ -26,7 +26,7 @@ def ticker_files_layer(scope):
 		with col3:download_ticker_data = download_button(scope)
 
 		if download_ticker_data:
-			download_tickers(scope)
+			download_ticker_values(scope)
 			build_app_worklist_dropdown(scope)
 
 

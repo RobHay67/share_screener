@@ -9,9 +9,9 @@ def edit_number(scope, config_group, config_key, measure ):
 	widget_key = 'widget_' + config_group + '_' + config_key + '_' + measure
 	display_name = measure.capitalize()
 	if display_name == 'Duration':
-		display_name =  'At least this many days'
+		display_name =  'at least this many days'
 	elif display_name == 'Timespan':
-		display_name = 'Over the last x days'
+		display_name = 'of the last x days'
 	previous_selection = int(scope[config_group]['config'][config_key]['add_columns'][measure])	
 
 	st.number_input( 	

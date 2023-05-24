@@ -30,9 +30,6 @@ def scope_pages(scope):
 	scope.pages['dropdowns']['price_columns'] = ['open', 'high', 'low', 'close' 		   ]	
 
 
-
-
-
 	# ==========================================
 	# variables for each page from the page list above
 	for page in scope.pages['page_list']:

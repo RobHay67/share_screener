@@ -25,13 +25,13 @@ def edit_active(scope, config_group, config_key ):
 				)
 
 
-
-
 def on_change_active_status(scope:dict, config_group:str, config_key:str, widget_key:str):
 	changed_value = scope[widget_key]
 
 	# store the selection
 	scope[config_group]['config'][config_key]['active'] = changed_value
+	# Update the Column Adder Templates
+	scope[config_group]['template_col_adders'][config_key] = changed_value
 
 	# update the page data renew status
 	edit_active_event(scope, config_group, config_key, changed_value)

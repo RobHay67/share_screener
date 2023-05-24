@@ -5,7 +5,7 @@ from tickers.events.edit_column_adder import edit_column_adder_event
 
 def edit_ohlcv(scope, config_group, config_key ):
 	widget_key = 'widget_' + config_group + '_' + config_key
-	display_name =  ('This value')
+	display_name =  ('This ticker metric')
 	previous_selection = scope[config_group]['config'][config_key]['add_columns']['column']
 	pos_for_previous = scope.pages['dropdowns']['ohlcv_columns'].index(previous_selection)	
 
