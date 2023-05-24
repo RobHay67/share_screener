@@ -12,7 +12,7 @@ def save_users_table(scope):
 		scope.users['json'][user]['chart_height'] = scope.charts['primary_height']
 		scope.users['json'][user]['download_days'] = scope.pages['download_days']
 		scope.users['json'][user]['row_limit'] = scope.pages['row_limit']
-
+		scope.users['json'][user]['yf_period'] = scope.yf['period']
 
 		# Set User Trial and Chart Variables to the values currently stored in the application
 		user_trials = trials_config(scope)
