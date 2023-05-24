@@ -79,17 +79,18 @@ def render_active_trials(scope):
 
 	st.write('https://www.investopedia.com/articles/active-trading/041814/four-most-commonlyused-indicators-trend-trading.asp')
 
-	col1,col2,col3 = st.columns([2,9,1])
+	first_row = True
+	col1,col2,col3,col4 = st.columns([2,1,8,1])
 	# headings
 	with col1:st.caption('Trial Name')
-	with col2:st.caption('Explanation (english)')
-	with col3:st.caption('Config Ref')
+	with col2:st.caption('-- and ---')
+	with col3:st.caption('Criteria (english explanation)')
+	with col4:st.caption('Config Ref')
 	st.divider()
-
-	
 
 	for trial in scope.trials['active_list']:
 
+		joiner = 'and ------- >'
 		english_explanation = ''
 		dict_of_values = scope.trials['config'][trial]['add_columns']
 		column = dict_of_values['column'] if 'column' in dict_of_values else None
@@ -118,16 +119,17 @@ def render_active_trials(scope):
 
 			english_explanation = 'STOCHASTIC'
 
-		
 		if trial in ['rsi_1', 'rsi_2']:
 			column_name = scope.pages['ticker_values'][column]['long_english']
-			# The Closing Price is trading above a 100 day Simple Moving Average 
-			english_explanation =  f"{column_name} is trading {trend} the {periods} day Simple Moving Average (SMA)"
-			english_explanation = 'RSI'
+			english_explanation =  f"{column_name} is trending {trend} on the Relative Strength Index (RSI) having a lookback period of  {lookback_days} days."
 
-
-		with col2: st.write(english_explanation)
-		with col3: st.write(trial)
+		if first_row:
+			joiner= '....'
+			first_row = False
+		
+		with col2: st.write(joiner)
+		with col3: st.write(english_explanation)
+		with col4: st.write(trial)
 
 	st.subheader('Fliss Simple Strategy')
 	st.write('Closing Price is up n times over the last x days')
