@@ -85,7 +85,8 @@ https://benjaminpack.com/blog/vs-code-python-pipenv/
         "**/*.pyc": true,
         "**/__pycache__": true
     },
-    "python.pythonPath": "<VIRTUALENV_PYTHON_PATH_HERE>"
+    "python.pythonPath": "<VIRTUALENV_PYTHON_PATH_HERE>",
+	"python.defaultInterpreterPath": "<VIRTUALENV_PYTHON_PATH_HERE>",
 	}
 ```
 Restart VSC Project by File/Open Folder/[choose your project]
