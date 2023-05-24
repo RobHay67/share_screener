@@ -2,9 +2,8 @@ import pandas as pd
 import os
 
 from files.path import path_for_ticker_file
-from tickers.cache import cache_ticker_data
-from tickers.events.missing_local_file import missing_file_event
-from tickers.events.add_ticker import add_ticker_event
+from tickers.new import add_new_ticker
+from tickers.missing_tickers.failed_load import fail_local_load_event
 
 from tickers.schema import ticker_file_usecols
 from tickers.schema import ticker_file_dtypes
@@ -25,11 +24,10 @@ def load_ticker(scope, ticker):
 									dtype       = ticker_file_dtypes,
 									parse_dates = ticker_file_dates,
 									)
-		add_ticker_event(scope, ticker)
-		cache_ticker_data(scope, ticker, ticker_data_file)
+		add_new_ticker(scope, ticker, ticker_data_file)
 	else:
 		# The expected Local file is not available
-		missing_file_event(scope, ticker)		
+		fail_local_load_event(scope, ticker)		
 
 
 

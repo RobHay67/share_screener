@@ -12,6 +12,7 @@ from trials.remove_test_result import remove_test_result_column
 
 def edit_active_event(scope, config_group, config_key, status):
 	
+	# Update this status in Each Page / Ticker that utilises this column adder (config_key)
 	for ticker in scope.tickers.keys():
 		for page in scope.pages['page_list']: 
 			# if the activated column adder is used by this page then change the refresh status
@@ -22,18 +23,7 @@ def edit_active_event(scope, config_group, config_key, status):
 				if page == 'screener' and status == False:
 					remove_test_result_column(scope, ticker, config_key)
 
-
-	# Take this opportunity to update the shortcut lists
-	#  - column_adders - list of trials that add columns to a dataframe
-	#  - active_trials - list of trials that are currently active
-
-	if config_key in scope[config_group]['config'].keys():
-		if scope[config_group]['config'][config_key]['add_columns'] != None:
-		# restict to functions that add columns
-			scope[config_group]['config'][config_key]['status'] = status
-
-
-	# Update the Active lists for charts or trial
+	# Update the Active lists for charts or trials
 	# either add the chart or trial or remove it
 
 	if status == True:

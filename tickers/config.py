@@ -1,10 +1,5 @@
-# Add keys to scope.tickers object
-# Ready to house : 
-#  - ticker date in df 
-# Add appropriate column adders state information
-# This function only generates the empty containers and default values. 
-# Data is added by other functions.
-# Also includes any missing ticker information in the scope.tickers_missing object
+from pages.header.selectors import refresh_ticker_dropdown_for_config
+
 
 
 
@@ -12,7 +7,20 @@ def scope_tickers(scope):
 	scope.tickers = {}
 
 
-def scope_new_ticker(scope, ticker):
+
+def create_dictionary_to_store_ticker_data(scope, ticker):
+
+	# This function is triggered after NEW ticker data is either
+	# - loaded 
+	# or 
+	# - downloaded (we may not have had local data)
+
+	# Add keys to the ticker to house the df 
+	# Add appropriate column adders state information
+
+	# This function only generates the empty objects with
+	# the default values. Data is added by other functions.
+
 
 	scope.tickers[ticker] = {}
 	
@@ -35,19 +43,5 @@ def scope_new_ticker(scope, ticker):
 			scope.tickers[ticker][page]['trials'] = {}
 			for trial in scope.trials['trial_list']:
 				scope.tickers[ticker][page]['trials'][trial] = None
-
-
-def scope_tickers_missing(scope):
-	# To Store the missing ticker information
-	scope.tickers_missing = {
-								'errors': {},
-								'local' : [],
-								'cloud' : [],
-								'list'  : [],
-								}
 	
-	
-def scope_missing_ticker_error(scope, ticker):
-	scope.tickers_missing['errors'][ticker] = {'load':None, 'yf':None}
-
-
+	refresh_ticker_dropdown_for_config(scope)

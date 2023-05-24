@@ -1,6 +1,7 @@
-from tickers.config import scope_missing_ticker_error
+from tickers.missing_tickers.config import scope_missing_ticker_error
 
-def missing_file_event(scope, ticker):
+
+def fail_local_load_event(scope, ticker):
 	# There is no local file so record this fact
 	# to prevent further attempts to load the local file
 

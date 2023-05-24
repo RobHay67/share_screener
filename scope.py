@@ -7,7 +7,8 @@ from page.config import scope_pages, scope_ticker_search
 from trials.config import scope_trials
 from charts.config import scope_charts
 from ticker_index.config import scope_index_file
-from tickers.config import scope_tickers, scope_tickers_missing
+from tickers.config import scope_tickers
+from tickers.missing_tickers.config import scope_tickers_missing
 from y_finance.config import scope_download_variables
 from strategies.config import scope_strategy
 
