@@ -79,52 +79,55 @@ def render_active_trials(scope):
 
 	st.write('https://www.investopedia.com/articles/active-trading/041814/four-most-commonlyused-indicators-trend-trading.asp')
 
-	col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([2,1,1,1,1,1,1,1])
+	col1,col2,col3 = st.columns([2,9,1])
 	# headings
 	with col1:st.caption('Trial Name')
-	with col2:st.caption('Config Ref')
-	with col3:st.caption('Trending')
-	with col4:st.caption('On Column')
-	with col5:st.caption('Duration / Periods')
-	with col6:st.caption('Lookback Days')
-	with col7:st.caption('Slow')
-	with col8:st.caption('Timespan / Signal')
+	with col2:st.caption('Explanation (english)')
+	with col3:st.caption('Config Ref')
 	st.divider()
+
+	
 
 	for trial in scope.trials['active_list']:
 
+		english_explanation = ''
+		dict_of_values = scope.trials['config'][trial]['add_columns']
+		column = dict_of_values['column'] if 'column' in dict_of_values else None
+		trend = dict_of_values['trend'] if 'trend' in dict_of_values else None
+		duration = dict_of_values['duration'] if 'duration' in dict_of_values else None
+		timespan = dict_of_values['timespan'] if 'timespan' in dict_of_values else None
+		periods = dict_of_values['periods'] if 'periods' in dict_of_values else None
+		lookback_days = dict_of_values['lookback_days'] if 'lookback_days' in dict_of_values else None
+		slow = dict_of_values['slow'] if 'slow' in dict_of_values else None
+		signal = dict_of_values['signal'] if 'signal' in dict_of_values else None
+		
+		
 		with col1: st.write(scope.trials['config'][trial]['short_name'])
-		with col2: st.write(trial)
+		
+		# st.write(scope.pages['ticker_values'])
 		
 		if trial in ['price_1', 'price_2', 'price_3']:
-			with col3:st.write(scope.trials['config'][trial]['add_columns']['trend'])
-			with col4:st.write(scope.trials['config'][trial]['add_columns']['column'])
-			with col5:st.write(scope.trials['config'][trial]['add_columns']['duration'])
-			with col6:st.caption('...')
-			with col7:st.caption('...')
-			with col8:st.write(scope.trials['config'][trial]['add_columns']['timespan'])
-			
+			column_name = scope.pages['ticker_values'][column]['long_english']
+			english_explanation =  f"{column_name} is {trend}, {duration} of the previous {timespan} days"
+
 		if trial in ['sma_1', 'sma_2', 'sma_3']:
-			with col3:st.write(scope.trials['config'][trial]['add_columns']['trend'])
-			with col4:st.write(scope.trials['config'][trial]['add_columns']['column'])
-			with col5:st.write(scope.trials['config'][trial]['add_columns']['periods'])
-			with col6:st.caption('...')
-			with col7:st.caption('...')
-			with col8:st.caption('...')
+			column_name = scope.pages['ticker_values'][column]['long_english']
+			english_explanation =  f"{column_name} is trading {trend} the {periods} day Simple Moving Average (SMA)"
+
 		if trial in ['stochastic_1', 'stochastic_2', 'stochastic_3']:
-			with col3:st.write(scope.trials['config'][trial]['add_columns']['trend'])
-			with col4:st.caption('...')
-			with col6:st.write(scope.trials['config'][trial]['add_columns']['lookback_days'])
-			with col7:st.write(scope.trials['config'][trial]['add_columns']['slow'])
-			with col8:st.write(scope.trials['config'][trial]['add_columns']['signal'])
+
+			english_explanation = 'STOCHASTIC'
+
 		
 		if trial in ['rsi_1', 'rsi_2']:
-			with col3:st.write(scope.trials['config'][trial]['add_columns']['trend'])
-			with col4:st.write(scope.trials['config'][trial]['add_columns']['column'])
-			with col5:st.caption('...')
-			with col6:st.write(scope.trials['config'][trial]['add_columns']['lookback_days'])
-			with col7:st.caption('...')
-			with col8:st.caption('...')
+			column_name = scope.pages['ticker_values'][column]['long_english']
+			# The Closing Price is trading above a 100 day Simple Moving Average 
+			english_explanation =  f"{column_name} is trading {trend} the {periods} day Simple Moving Average (SMA)"
+			english_explanation = 'RSI'
+
+
+		with col2: st.write(english_explanation)
+		with col3: st.write(trial)
 
 	st.subheader('Fliss Simple Strategy')
 	st.write('Closing Price is up n times over the last x days')

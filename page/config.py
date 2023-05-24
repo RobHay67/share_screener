@@ -18,6 +18,7 @@ def scope_pages(scope):
 								'config',
 								'logout',
 								]
+	scope.pages['ticker_values'] = ticker_value_schema
 
 	# Dropdowns
 	scope.pages['dropdowns'] = {}
@@ -70,3 +71,16 @@ def scope_ticker_search(scope):
 	# company names for the ticker search
 	scope.pages['ticker_search'] = {}
 	scope.pages['ticker_search'] = (scope.ticker_index['df']['company_name']).to_dict()
+
+
+
+['open', 'high', 'low', 'close', 'volume']
+
+
+ticker_value_schema = {
+	'open'	:{'english':'Opening', 'long_english':'Opening Price'},
+	'high'	:{'english':'Highest', 'long_english':'Highest Price'},
+	'low'	:{'english':'Lowest', 'long_english':'Lowest Price'},
+	'close'	:{'english':'Closing', 'long_english':'Closing Price'},
+	'volume':{'english':'Volume', 'long_english':'Volume'},
+}

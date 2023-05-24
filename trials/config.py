@@ -82,11 +82,9 @@ lookback_days 	= 'lookback_days'		# Stochastic Oscillator
 slow 			= 'slow'				# Stochastic Oscillator
 
 # 
-trends_for_sma 	= ['above_sma', 'below_sma']
-trends_for_ohlcv = [ 'up_trend', 'down_trend' ]
 
-
-
+trends_for_ohlcv = [ 'up', 'down' ]
+trends_for_sma 	= ['above', 'below']
 trends_for_stochastic = ['above_line', 'below_line', 'over_bought', 'over_sold', 'cross_up', 'cross_down']
 trends_for_rsi = ['up_trend', 'down_trend', 'over_bought', 'over_sold' ]
 
@@ -94,36 +92,36 @@ trends_for_rsi = ['up_trend', 'down_trend', 'over_bought', 'over_sold' ]
 trial_configuration_dict = {
 	'price_1'	: {
 						active			: False,
-						name			: 'OHLCV Price Direction',
-						short_name		: 'OHLCV Price Direction',
+						name			: 'Price Direction (OHLCV)',
+						short_name		: 'Price Direction (OHLCV)',
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'close',
-											trend	 : 'up_trend',
+											trend	 : 'up',
 											duration : 4,
 											timespan : 10,
 										},
 					},
 	'price_2'	: {
 						active			: False,
-						name			: 'OHLCV Price Direction',
-						short_name		: 'OHLCV Price Direction',
+						name			: 'Price Direction (OHLCV)',
+						short_name		: 'Price Direction (OHLCV)',
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'high',
-											trend	 : 'up_trend',
+											trend	 : 'up',
 											duration : 4,
 											timespan : 10,
 										},
 					},
 	'price_3'		: {
 						active			: False,
-						name			: 'OHLCV Price Direction',
-						short_name		: 'OHLCV Price Direction',
+						name			: 'Price Direction (OHLCV)',
+						short_name		: 'Price Direction (OHLCV)',
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'volume',
-											trend	 : 'up_trend',
+											trend	 : 'up',
 											duration : 4,
 											timespan : 10,
 										},
@@ -135,7 +133,7 @@ trial_configuration_dict = {
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'close',
-											trend	 : 'above_sma',
+											trend	 : 'above',
 											periods  : 21,
 										},
 					},
@@ -146,7 +144,7 @@ trial_configuration_dict = {
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'open',
-											trend	 : 'above_sma',
+											trend	 : 'above',
 											periods  : 50,
 										},
 					},
@@ -157,7 +155,7 @@ trial_configuration_dict = {
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'volume',
-											trend	 : 'above_sma',
+											trend	 : 'above',
 											periods  : 200,
 										},
 					},	
