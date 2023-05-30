@@ -8,6 +8,9 @@
 		"**/*.pyc": true,
 		"**/__pycache__": true
 	},
-	"python.pythonPath": "/Users/robhay/.local/share/virtualenvs/share_screener-jrOWuK2z/bin/python",
-	"python.defaultInterpreterPath": "/Users/robhay/.local/share/virtualenvs/share_screener-jrOWuK2z/bin/python",
+	// "python.pythonPath": "/Users/robhay/.local/share/virtualenvs/share_screener-jrOWuK2z/bin/python",
+	// "python.defaultInterpreterPath": "/Users/robhay/.local/share/virtualenvs/share_screener-jrOWuK2z/bin/python",
+	"python.pythonPath": "/Users/robhay/Developer/share_screener/.venv/bin/python",
+	"python.defaultInterpreterPath": "/Users/robhay/Developer/share_screener/.venv/bin/python",
+
 }
