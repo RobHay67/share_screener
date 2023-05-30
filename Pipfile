@@ -4,11 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pandas = "==1.5.3"
+pandas = "==2.0.2"
 streamlit = "*"
 datetime = "*"
 yfinance = "==0.2.14"
-mplfinance = "===0.12.7a5"
+mplfinance = "==0.12.7a5"
 matplotlib = "*"
 plotly = "*"
 pytz = "==2023.3"

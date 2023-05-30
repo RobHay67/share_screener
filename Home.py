@@ -114,3 +114,21 @@ print('='*66)
 # 	# for key in sorted(scope.users['json']['Rob']):print(key)
 
 
+
+# [packages]
+# pandas = "==1.5.3"
+# streamlit = "*"
+# datetime = "*"
+# yfinance = "==0.2.14"
+# mplfinance = "===0.12.7a5"
+# matplotlib = "*"
+# plotly = "*"
+# pytz = "==2023.3"
+# watchdog = "*"
+# streamlit-extras = "*"
+# jinja2 = "*"
+
+# [dev-packages]
+
+# [requires]
+# python_version = "3.8"

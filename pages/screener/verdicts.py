@@ -80,17 +80,18 @@ def render_active_trials(scope):
 	st.write('https://www.investopedia.com/articles/active-trading/041814/four-most-commonlyused-indicators-trend-trading.asp')
 
 	first_row = True
-	col1,col2,col3,col4 = st.columns([2,1,8,1])
+	col1,col2,col3,col4,col5 = st.columns([2,1,7,1,1])
 	# headings
 	with col1:st.caption('Trial Name')
 	with col2:st.caption('-- and ---')
 	with col3:st.caption('Criteria (english explanation)')
-	with col4:st.caption('Config Ref')
+	with col4:st.caption('Link to Definition')
+	with col5:st.caption('Config Ref')
 	st.divider()
 
 	for trial in scope.trials['active_list']:
 
-		joiner = 'and ------- >'
+		connector = 'and ------- >'
 		english_explanation = ''
 		dict_of_values = scope.trials['config'][trial]['add_columns']
 		column = dict_of_values['column'] if 'column' in dict_of_values else None
@@ -101,7 +102,8 @@ def render_active_trials(scope):
 		lookback_days = dict_of_values['lookback_days'] if 'lookback_days' in dict_of_values else None
 		slow = dict_of_values['slow'] if 'slow' in dict_of_values else None
 		signal = dict_of_values['signal'] if 'signal' in dict_of_values else None
-		
+		definition = scope.trials['config'][trial]['definition']
+		print(definition)
 		
 		with col1: st.write(scope.trials['config'][trial]['short_name'])
 		
@@ -120,16 +122,20 @@ def render_active_trials(scope):
 			english_explanation = 'STOCHASTIC'
 
 		if trial in ['rsi_1', 'rsi_2']:
+			# buy and sell zone
+
+			
 			column_name = scope.pages['ticker_values'][column]['long_english']
 			english_explanation =  f"{column_name} is trending {trend} on the Relative Strength Index (RSI) having a lookback period of  {lookback_days} days."
 
 		if first_row:
-			joiner= '....'
+			connector= '....'
 			first_row = False
 		
-		with col2: st.write(joiner)
+		with col2: st.write(connector)
 		with col3: st.write(english_explanation)
-		with col4: st.write(trial)
+		with col4: st.write("[defintion]("+definition+")")
+		with col5: st.write(trial)
 
 	st.subheader('Fliss Simple Strategy')
 	st.write('Closing Price is up n times over the last x days')

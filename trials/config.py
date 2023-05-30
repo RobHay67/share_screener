@@ -67,6 +67,7 @@ from add_cols.rsi import rsi_trend
 active 			= 'active'				# True or False - The Analysis is active or inactive (displayed or not displayed)
 name 			= 'name'				# The display name for the Analysis (used in the settings Page)
 short_name		= 'short_name'			# A short name used if various Screen Outputs
+definition		= 'definition'			# URL link to the definition for this chart or overlay
 
 column 			= 'column'				# OHLCV column required for the Analysis
 duration		= 'duration'			# the lenght or number of consecutive occurances
@@ -94,6 +95,7 @@ trial_configuration_dict = {
 						active			: False,
 						name			: 'Price Direction (OHLCV)',
 						short_name		: 'Price Direction (OHLCV)',
+						definition		: 'https://www.investopedia.com/terms/o/openingprice.asp',
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'close',
@@ -106,6 +108,7 @@ trial_configuration_dict = {
 						active			: False,
 						name			: 'Price Direction (OHLCV)',
 						short_name		: 'Price Direction (OHLCV)',
+						definition		: 'https://www.investopedia.com/terms/c/closingprice.asp',
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'high',
@@ -118,6 +121,7 @@ trial_configuration_dict = {
 						active			: False,
 						name			: 'Price Direction (OHLCV)',
 						short_name		: 'Price Direction (OHLCV)',
+						definition		: '',
 						add_columns		: {
 											function : trend_cols,
 											column 	 : 'volume',
@@ -130,6 +134,7 @@ trial_configuration_dict = {
 						active			: False,
 						name			: 'OHLCV Trending Above or Below SMA',
 						short_name		: 'SMA Trend 1',
+						definition		: 'https://www.investopedia.com/terms/s/sma.asp',
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'close',
@@ -141,6 +146,7 @@ trial_configuration_dict = {
 						active			: False,
 						name			: 'OHLCV Trending Above or Below SMA',
 						short_name		: 'SMA Trend 2',
+						definition		: 'https://www.investopedia.com/terms/s/sma.asp',
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'open',
@@ -152,6 +158,7 @@ trial_configuration_dict = {
 						active			: False,
 						name			: 'OHLCV Trending Above or Below SMA',
 						short_name		: 'SMA Trend 3',
+						definition		: 'https://www.investopedia.com/terms/s/sma.asp',
 						add_columns		: {
 											function : sma_trend,
 											column 	 : 'volume',
@@ -163,6 +170,7 @@ trial_configuration_dict = {
 						active			: True,
 						name			: 'Stochastic',
 						short_name		: 'Stochastic',
+						definition		: 'https://www.investopedia.com/terms/s/stochasticoscillator.asp',
 						add_columns		: {
 											function : stochastic_trend,
 											trend	 : 'above_line',
@@ -175,6 +183,7 @@ trial_configuration_dict = {
 						active			: True,
 						name			: 'Stochastic',
 						short_name		: 'Stochastic',
+						definition		: 'https://www.investopedia.com/terms/s/stochasticoscillator.asp',
 						add_columns		: {
 											function : stochastic_trend,
 											trend	 : 'over_sold',
@@ -187,6 +196,7 @@ trial_configuration_dict = {
 						active			: True,
 						name			: 'Stochastic',
 						short_name		: 'Stochastic',
+						definition		: 'https://www.investopedia.com/terms/s/stochasticoscillator.asp',
 						add_columns		: {
 											function : stochastic_trend,
 											trend	 : 'cross_up',
@@ -199,6 +209,7 @@ trial_configuration_dict = {
 						active			: True,
 						name			: 'RSI-1',
 						short_name		: 'RSI-1',
+						definition		: 'https://www.investopedia.com/terms/r/rsi.asp',
 						add_columns		: {
 											function 		: rsi_trend,
 											trend	 		: 'upwards',
@@ -210,6 +221,7 @@ trial_configuration_dict = {
 						active			: True,
 						name			: 'RSI-2',
 						short_name		: 'RSI-2',
+						definition		: 'https://www.investopedia.com/terms/r/rsi.asp',
 						add_columns		: {
 											function 		: rsi_trend,
 											trend	 		: 'over_sold',
