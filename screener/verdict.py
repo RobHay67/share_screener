@@ -7,7 +7,7 @@
 def determine_verdict_for_ticker(scope, ticker):
 
 	page = scope.pages['display']
-	
+
 	if page == 'screener':
 		# determine an overall verdict for this ticker
 		if scope.tickers[ticker][page]['replace_verdict']:
@@ -25,9 +25,3 @@ def determine_verdict_for_ticker(scope, ticker):
 			scope.tickers[ticker][page]['replace_verdict'] = False
 
 
-	# so i 2 RSI test running
-	# 1 pass and 1 fail
-	# i turned off the fail but .......
-	# these overall test did not rerun
-	# we need to trigger a rerun by setting
-	# scope.tickers[ticker][page]['replace_verdict'] == true
