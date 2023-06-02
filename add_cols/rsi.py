@@ -60,20 +60,24 @@ def rsi_trend(scope, trial, ticker, df):
 
 
 	# Determine the Result for each row
-	if trend == 'up_trend':
+	if trend == 'up':
 		df[trial] = np.where( df['rsi'] >  df['rsi_shifted'], 'pass', 'fail' )
-	elif trend == 'down_trend':
+	elif trend == 'down':
 		df[trial] = np.where( df['rsi'] <= df['rsi_shifted'], 'pass', 'fail' )
-	elif trend == 'over_bought':
+	elif trend == 'over bought':
 		df[trial] = np.where( df['rsi'] > 0.7, 'pass', 'fail' )
-	elif trend == 'over_sold':
+	elif trend == 'over sold':
 		df[trial] = np.where( df['rsi'] < 0.3, 'pass', 'fail' )
 	else:
 		df[trial] = 'fail'
 
+	print(df.tail(3))
+	
 	# clean up temp columns
 	df.drop(['rsi_delta', 'rsi_gain', 'rsi_loss', 'rsi_avg_gains', 'rsi_avg_losses', 'rsi_rs', 'rsi', 'rsi_shifted'], axis=1, inplace=True)
 
 	# ensure df is back in its descending order (latest first)
 	df.sort_values(by=['date'], inplace=True, ascending=False)
+
+	
 

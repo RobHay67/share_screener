@@ -2,13 +2,14 @@ import streamlit as st
 
 from tickers.events.edit_column_adder import edit_column_adder_event
 
-from trials.config import trends_for_rsi
+from screener.config import trends_for_rsi
 
 
 def edit_trend_rsi(scope, config_group, config_key ):
 	widget_key = 'widget_trend_' + config_group + '_' + config_key
 	display_name = 'Trend'
 	previous_selection = scope[config_group]['config'][config_key]['add_columns']['trend']
+	# previous_selection = 'up'
 	pos_for_previous = trends_for_rsi.index(previous_selection)	
 
 	st.selectbox ( 

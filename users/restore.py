@@ -2,7 +2,7 @@
 
 from users.config import base_config_users
 from charts.config import base_config_charts
-from trials.config import base_config_trials
+from screener.config import base_config_trials
 from page.config import base_config_pages
 from y_finance.config import set_yf_period
 

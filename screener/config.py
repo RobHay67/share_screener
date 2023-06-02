@@ -87,7 +87,7 @@ slow 			= 'slow'				# Stochastic Oscillator
 trends_for_ohlcv = [ 'up', 'down' ]
 trends_for_sma 	= ['above', 'below']
 trends_for_stochastic = ['above_line', 'below_line', 'over_bought', 'over_sold', 'cross_up', 'cross_down']
-trends_for_rsi = ['up-wards', 'down-wards', 'over_bought', 'over_sold' ]
+trends_for_rsi = ['up', 'down', 'over bought', 'over sold' ]
 
 
 trial_configuration_dict = {

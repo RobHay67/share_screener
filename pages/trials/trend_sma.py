@@ -2,7 +2,7 @@ import streamlit as st
 
 from tickers.events.edit_column_adder import edit_column_adder_event
 
-from trials.config import trends_for_sma
+from screener.config import trends_for_sma
 
 
 def edit_trend_sma(scope, config_group, config_key ):

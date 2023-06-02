@@ -1,5 +1,3 @@
-# from trials.config import trials_config
-# from charts.config import charts_config
 
 
 def scope_pages(scope):

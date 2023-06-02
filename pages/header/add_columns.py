@@ -8,7 +8,7 @@ import streamlit as st
 from pages.header.widgets.format import md_for_header
 from add_cols.replace_page_df import replace_page_df
 from add_cols.replace_df_cols import replace_page_df_columns
-from trials.verdict import determine_verdict_for_ticker
+from screener.verdict import determine_verdict_for_ticker
 
 
 def add_cols_to_df_layer(scope):

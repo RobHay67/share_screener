@@ -1,4 +1,4 @@
-from trials.remove_test_result import remove_test_result_column
+from screener.remove_test_result import remove_test_result_column
 
 # This event is triggered when a column adder is changed to either 
 #
@@ -9,6 +9,7 @@ from trials.remove_test_result import remove_test_result_column
 # Column Adder require recalculation for every ticker using this test
 # Column adders activated will require recalculation
 # Column adders deactived need to be removed from the page_df
+# Screener Page Overall Verdict will need to be re-run
 
 def edit_active_event(scope, config_group, config_key, status):
 	
@@ -20,8 +21,10 @@ def edit_active_event(scope, config_group, config_key, status):
 				scope.tickers[ticker][page]['replace_column'][config_key] = status
 				# for the screener page, remove the test result 
 				# if the users has deactivated this test
+				# and rerun the overall test
 				if page == 'screener' and status == False:
 					remove_test_result_column(scope, ticker, config_key)
+					scope.tickers[ticker][page]['replace_verdict'] = True
 
 	# Update the Active lists for charts or trials
 	# either add the chart or trial or remove it

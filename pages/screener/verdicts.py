@@ -32,11 +32,13 @@ def render_trial_verdicts(scope):
 def render_no_verdicts():
 	st.error('No Passing Verdicts to Render')
 
+
 def render_too_many_verdicts(no_of_verdicts, number_of_tabs, tab_group_size):
 	st.error('Too many passing verdicts ('+str(no_of_verdicts)+') to render.')
 	st.write('Maximum No of Tabs           = '+str(number_of_tabs))
 	st.write('Maximum Verdicts in each tab = '+str(tab_group_size))
 	st.write('Limit = Tabs x Verdict per Tab = '+str(tab_group_size * number_of_tabs))
+
 
 def render_passing_verdicts(scope, no_of_verdicts, tab_group_size, verdict_list):
 		# Render the Results (in tabs and there could be lots)
@@ -103,7 +105,7 @@ def render_active_trials(scope):
 		slow = dict_of_values['slow'] if 'slow' in dict_of_values else None
 		signal = dict_of_values['signal'] if 'signal' in dict_of_values else None
 		definition = scope.trials['config'][trial]['definition']
-		print(definition)
+		# print(definition)
 		
 		with col1: st.write(scope.trials['config'][trial]['short_name'])
 		
@@ -122,12 +124,15 @@ def render_active_trials(scope):
 			english_explanation = 'STOCHASTIC'
 
 		if trial in ['rsi_1', 'rsi_2']:
-			# buy and sell zone
-
-			
 			column_name = scope.pages['ticker_values'][column]['long_english']
-			english_explanation =  f"{column_name} is trending {trend} on the Relative Strength Index (RSI) having a lookback period of  {lookback_days} days."
 
+			# buy and sell zone
+			if trend in ['up ','down']:
+				english_explanation =  f"{column_name} is trending {trend} on the Relative Strength Index (RSI) with a lookback period of  {lookback_days} days."
+			else:
+				trend = trend.upper()
+				english_explanation =  f"{column_name} is in the {trend} zone of the Relative Strength Index (RSI) with a lookback period of  {lookback_days} days."
+			
 		if first_row:
 			connector= '....'
 			first_row = False

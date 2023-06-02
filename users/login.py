@@ -1,7 +1,8 @@
-from trials.config import trial_active_list
-from trials.config import trial_column_adders
+from screener.config import trial_active_list
+from screener.config import trial_column_adders
 from charts.config import chart_active_list
 from charts.config import chart_column_adders
+
 
 def login_user(scope, login_name):
 
