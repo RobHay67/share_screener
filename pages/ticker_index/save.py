@@ -23,7 +23,7 @@ def save_ticker_index_button(scope):
 
 
 def save_changes_to_ticker_index(scope):
-	# TODO st.experimental_data_editor
+	# TODO st.data_editor
 	# Note this solution is refering to the old_df to get the keys.
 	# it should be referring to the new editable df
 	# this will probable break if we allow add rows
@@ -39,6 +39,7 @@ def save_changes_to_ticker_index(scope):
 	# for key in sorted(st.session_state["widget_ticker_index_df"]):print(key)
 
 	if len(edited_records)>0:
+		non_editable_cols = []
 		for position, new_value in edited_records.items():
 			print('Coordinates  = ', position)
 			print('New Value    = ', new_value)
@@ -66,6 +67,11 @@ def save_changes_to_ticker_index(scope):
 
 				save_required = True
 			else:
-				scope.ticker_index['render']['non_editable_cols'].append(col_no)
+				
+				non_editable_cols.append(col_no)
 		
 		if save_required:save_index(scope)
+	
+		if len(non_editable_cols) > 0:
+			st.toast('Cannot edit these column numbers >'+str(non_editable_cols))
+

@@ -3,12 +3,9 @@ import streamlit as st
 from pages.header.controller import render_app_header
 from pages.reports.industries import render_industry_report
 from pages.header.widgets.industries import industry_report_button
-from pages.ticker_index.download import download_ticker_index_button
-
-from pages.ticker_index.data import ticker_index_editable_df
 from pages.ticker_index.save import save_ticker_index_button
-from pages.ticker_index.messages import render_ticker_index_messages
-
+from pages.ticker_index.download import download_ticker_index_button
+from pages.ticker_index.data import ticker_index_editable_df
 
 # Page Configuration
 page = 'ticker_index'
@@ -25,21 +22,26 @@ st.write('Rob - we need to find how we can have a dropdown categorical to change
 
 if scope.users['logged_in']:
 
-
 	col1,col2 = st.columns([10,2]) #12
-	no_of_tickers_in_index = str((len(scope.ticker_index['df'])))
-	with col1:st.write('Currently ' + no_of_tickers_in_index + ' codes in the ticker index')
-	with col2:st.caption("< scope.ticker_index['df'] >")
+	
+	with col1:
+		no_of_tickers_in_index = str((len(scope.ticker_index['df'])))
+		st.write('Currently ' + no_of_tickers_in_index + ' codes in the ticker index')
+	with col2:
+		st.caption("< scope.ticker_index['df'] >")
+
 
 	col1,col2,col3 = st.columns([4,4,4]) #12
 
-	with col1:save_ticker_index_button(scope)
-	with col2:industry_report_button(scope)
-	with col3:download_ticker_index_button(scope)
+	with col1:
+		save_ticker_index_button(scope)
+	with col2:
+		industry_report_button(scope)
+	with col3:
+		download_ticker_index_button(scope)
 		
 	render_industry_report(scope)
 
-	render_ticker_index_messages(scope)
 
 	# TODO Yfinance messages
 

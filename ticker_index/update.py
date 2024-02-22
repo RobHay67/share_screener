@@ -7,13 +7,14 @@ from ticker_index.save import save_index
 from markets.open_time import open_time
 from markets.trading_minutes import trading_minutes
 
+import streamlit as st
+
 
 def update_ticker_index(scope):
 
 	blue_chip_default_value = scope.ticker_index['schema']['blue_chip']['default']
 	number_of_new_records = 0
-	scope.ticker_index['render']['updating_ticker_index'] = True
-	
+
 	apply_defaults_to_missing_values(scope, 'downloaded_df')
 
 	for ticker, row in scope.ticker_index['df_downloaded'].iterrows(): 
@@ -41,9 +42,13 @@ def update_ticker_index(scope):
 	
 	apply_defaults_to_missing_values(scope, 'ticker_index_df')
 
-
 	scope.ticker_index['df'] = scope.ticker_index['df'].sort_index()
-	scope.ticker_index['render']['added_tickers'] = number_of_new_records
+
+	# Report on the update
+	if number_of_new_records > 0:
+		st.toast('Added '+ str(number_of_new_records) + ' to master ticker index', icon = '⚠️')
+	else:
+		st.toast('Nothing added to master ticker index', icon = 'ℹ️')
 	
 	save_index(scope)
 	

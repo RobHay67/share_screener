@@ -1,4 +1,4 @@
-
+import streamlit as st
 
 
 def save_index(scope):
@@ -10,7 +10,7 @@ def save_index(scope):
 	
 	saving_df.to_csv( scope.files['paths']['ticker_index'], index=False )
 
-	scope.ticker_index['render']['saved_ticker_index'] = True
+	st.toast('Saved the Ticker Index File', icon='💾')
 	print ( '\033[92m' + 'Saving the Ticker Index file Now ' + '>'*50 + '\033[0m')	
 
 

@@ -62,6 +62,7 @@ def base_config_pages(scope):
 	scope.pages['row_limit'] = 100
 	scope.pages['display'] = 'home'
 	scope.pages['share_market'] = 'ASX'
+	# scope.pages['share_market'] = 'USA'
 	scope.pages['download_days'] = 7
 
 

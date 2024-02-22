@@ -1,13 +1,14 @@
 
 import pandas as pd
+import streamlit as st
+
 from ticker_index.save import save_index
 
 
 
 def create_empty_ticker_index(scope):
 
-	scope.ticker_index['render']['missing_ticker_index_file'] = True
-	scope.ticker_index['render']['created_empty_ticker_index_file'] = True
+	st.toast('Ticker Index File does not exist at path > ' + str(scope.files['paths']['ticker_index']), icon='⚠️')
 
 	dataframe_columns = []
 	for column_name in scope.ticker_index['schema']: 
@@ -20,4 +21,6 @@ def create_empty_ticker_index(scope):
 	
 	scope.ticker_index['df'] = ticker_index
 	
+	st.toast('Successfully created empty Ticker Index Dataframe / File', icon='🏆')
+
 	save_index(scope)
