@@ -2,7 +2,7 @@
 import streamlit as st
 
 from users.login import login_user
-from pages.ticker_index.ticker_index import render_ticker_index_messages
+from pages.ticker_index.messages import render_ticker_index_messages
 
 def render_login_page(scope):
 

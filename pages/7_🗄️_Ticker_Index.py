@@ -3,11 +3,11 @@ import streamlit as st
 from pages.header.controller import render_app_header
 from pages.reports.industries import render_industry_report
 from pages.header.widgets.industries import industry_report_button
-from pages.ticker_index.ticker_index import download_ticker_index_button
+from pages.ticker_index.download import download_ticker_index_button
 
-from pages.ticker_index.ticker_index import ticker_index_editable_df
-from pages.ticker_index.ticker_index import save_ticker_index_button
-from pages.ticker_index.ticker_index import render_ticker_index_messages
+from pages.ticker_index.data import ticker_index_editable_df
+from pages.ticker_index.save import save_ticker_index_button
+from pages.ticker_index.messages import render_ticker_index_messages
 
 
 # Page Configuration

@@ -50,10 +50,6 @@ def update_page_worklist(scope):
 
 
 
-
-
-
-
 def build_app_worklist_dropdown(scope):
 	# Cloud Errors over-ride local error. If we 
 	# cant download from cloud, there probably wont be
