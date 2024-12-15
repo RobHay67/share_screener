@@ -31,3 +31,12 @@ def ticker_index_editable_df(scope):
 	return dataframe
 
 
+
+def render_editable_ticker_df(scope):
+	print('render_editable_ticker_df')
+
+
+
+
+
+

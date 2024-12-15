@@ -3,9 +3,9 @@ import streamlit as st
 from ticker_index.download import download_ticker_index_data
 
 
-def download_ticker_index_button(scope):
+def button_download_ticker_index(scope):
 	
-	widget_key = 'widget_download_ticker_index_button'
+	widget_key = 'widget_button_download_ticker_index'
 	
 	button = st.button(
 						label='Download latest Ticker Index data', 

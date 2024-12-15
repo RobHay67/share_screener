@@ -31,7 +31,7 @@ def on_change_industry_selection(scope, page, widget_key):
 	scope.pages[page]['search_results'] = {}
 
 
-def industry_report_button(scope):
+def button_industry_report(scope):
 
 	widget_key = 'widget_' + 'ticker_index' + '_industry_report'
 

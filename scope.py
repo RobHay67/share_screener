@@ -1,5 +1,6 @@
 import streamlit as st
 import time
+import sys
 
 from files.config import scope_folders_and_paths
 from users.config import scope_users
@@ -14,6 +15,11 @@ from strategies.config import scope_strategy
 
 
 def set_scope(scope):
+
+	print ( 'Python build Verion   = 3.13.13')
+	print ( 'Environment Version   =', sys.version )
+	print ( 'Python Executable     = ',sys.executable )  
+	print ( 'Environment Version   =', sys.prefix ) 
 
 	set_streamlit_page_config()								# should only run onetime
 	

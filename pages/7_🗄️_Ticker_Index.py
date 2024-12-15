@@ -2,10 +2,11 @@ import streamlit as st
 
 from pages.header.controller import render_app_header
 from pages.reports.industries import render_industry_report
-from pages.header.widgets.industries import industry_report_button
-from pages.ticker_index.save import save_ticker_index_button
-from pages.ticker_index.download import download_ticker_index_button
+from pages.header.widgets.industries import button_industry_report
+from pages.ticker_index.save import button_save_ticker_index
+from pages.ticker_index.download import button_download_ticker_index
 from pages.ticker_index.data import ticker_index_editable_df
+from pages.ticker_index.data import render_editable_ticker_df
 
 # Page Configuration
 page = 'ticker_index'
@@ -34,11 +35,11 @@ if scope.users['logged_in']:
 	col1,col2,col3 = st.columns([4,4,4]) #12
 
 	with col1:
-		save_ticker_index_button(scope)
+		button_save_ticker_index(scope)
 	with col2:
-		industry_report_button(scope)
+		button_industry_report(scope)
 	with col3:
-		download_ticker_index_button(scope)
+		button_download_ticker_index(scope)
 		
 	render_industry_report(scope)
 
@@ -46,7 +47,12 @@ if scope.users['logged_in']:
 	# TODO Yfinance messages
 
 
-	ticker_index_editable_df(scope)		# This is a copy of the original dataframe
+	# render ticker index as a dataframe
+
+	render_editable_ticker_df(scope)
+
+
+	# ticker_index_editable_df(scope)		# This is a copy of the original dataframe
 	# This is the original output for this page	
 	# st.dataframe(ticker_index_df, 2000, 1200)
 

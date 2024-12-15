@@ -5,7 +5,7 @@ from ticker_index.schema import editable_columns
 
 
 
-def save_ticker_index_button(scope):
+def button_save_ticker_index(scope):
 
 	widget_key = 'widget_save_ticker_index'
 	
@@ -71,7 +71,7 @@ def save_changes_to_ticker_index(scope):
 				non_editable_cols.append(col_no)
 		
 		if save_required:save_index(scope)
-	
+
 		if len(non_editable_cols) > 0:
 			st.toast('Cannot edit these column numbers >'+str(non_editable_cols))
 

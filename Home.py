@@ -2,6 +2,8 @@
 # pipenv shell
 # streamlit run home.py
 # ------------------------------------------------- 
+
+
 for i in range(10):print('')
 print ( '\033[94m' + 'Application Re-Rendering - see below this line ' + '>'*33 + '\033[0m')
 for i in range(5):print('')
