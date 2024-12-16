@@ -1,4 +1,4 @@
-from pages.header.selectors import refresh_ticker_dropdown_for_config
+from views.header.selectors import refresh_ticker_dropdown_for_config
 
 
 

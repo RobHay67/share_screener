@@ -13,34 +13,68 @@ for i in range(5):print('')
 
 import streamlit as st
 from scope import set_scope
-from pages.sidebar.sidebar import render_sidebar
-from pages.users.login import render_login_page
-from pages.header.page_title import page_title_layer
-
+from views.users.login import render_login_page
+from views.sidebar.sidebar import render_sidebar
 
 if 'display_page' not in st.session_state:
 	scope = set_scope(st.session_state)
 
-# Page Configuration
-scope = st.session_state
-page = 'streamlit_app'
-page_title = scope.config['project_description']
-page_icon = '🏠'
-# -----------------------------
-scope.pages['display'] = page
+# Page Setup
+screener_page 	= st.Page(page = "views/screener/screener_page.py",			title = "Screener", 		icon = '🧪', 	default=True,)
+charting_page 	= st.Page(page = "views/chart/charting_page.py",			title = "Charting", 		icon = '📊', 	default=False,)
+intra_day_page 	= st.Page(page = "views/intraday/intraday_page.py",			title = "Intra Day", 		icon = '🌤️', 	default=False,)
+volume_page 	= st.Page(page = "views/volume/volume_page.py",				title = "Volume", 			icon = '🔊', 	default=False,)
+research_page 	= st.Page(page = "views/research/research_page.py",			title = "Research", 		icon = '🕵', 	default=False,)
+websites_page 	= st.Page(page = "views/websites/website_page.py",			title = "Websites", 		icon = '🌐',	default=False,)
+ticker_idx_page = st.Page(page = "views/ticker_index/ticker_index_page.py",	title = "Ticker Index", 	icon = '🗄️',	default=False,)
+logout_page 	= st.Page(page = "views/users/logout_page.py",				title = "Logout", 			icon = '🔒', 	default=False,)
+config_page 	= st.Page(page = "views/config/config_page.py",				title = "Config", 			icon = '⚙️',	default=False,)
 
 
+page_navigation = st.navigation(
+	{
+		"Research & Analysis"	: [screener_page, charting_page, intra_day_page, volume_page, research_page, websites_page],
+		"Config"	: [ticker_idx_page, config_page, logout_page],
+	}
+)
 
-page_title_layer(scope, page_title, page_icon)
-st.write('Welcome to the Share Picker Appliction.')
-st.write('Select from the options in the sidebar (left)')
-st.write('User : ', scope.users['login_name'])
-
-if scope.users['logged_in'] == False:
-	col1,col2 = st.columns([2,8])
-	with col1:render_login_page(scope)
+# Render Pages
+if scope.users['logged_in'] == True:
+	page_navigation.run()		# Run Navigation
+	render_sidebar(scope)	
 else:
-	render_sidebar(scope)
+	render_login_page(scope)
+
+
+
+
+
+
+
+
+# if 'display_page' not in st.session_state:
+# 	scope = set_scope(st.session_state)
+
+# Page Configuration
+# scope = st.session_state
+# page = 'streamlit_app'
+# page_title = scope.config['project_description']
+# page_icon = '🏠'
+# # -----------------------------
+# scope.pages['display'] = page
+
+
+
+# page_title_layer(scope, page_title, page_icon)
+# st.write('Welcome to the Share Picker Appliction.')
+# st.write('Select from the options in the sidebar (left)')
+# st.write('User : ', scope.users['login_name'])
+
+# if scope.users['logged_in'] == False:
+# 	col1,col2 = st.columns([2,8])
+# 	with col1:render_login_page(scope)
+# else:
+# 	render_sidebar(scope)
 
 
 
@@ -57,7 +91,8 @@ print('Also get rid of all the problems in the al - need to solve this problem w
 print('='*66)
 
 
-print(page, ' > Number of Keys in Scope = ', len(scope))
+# print(page, ' > Number of Keys in Scope = ', len(scope))
+print(' > Number of Keys in Scope = ', len(scope))
 for count, key in enumerate(sorted(st.session_state)):print(count+1, key)
 print('='*66)
 

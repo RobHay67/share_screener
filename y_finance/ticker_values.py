@@ -1,5 +1,5 @@
 from y_finance.values.batch import scope_batch_config
-from pages.messages.y_finance import render_download_message, render_download_complete_message
+from views.messages.y_finance import render_download_message, render_download_complete_message
 from y_finance.values.download import download_ticker_data
 from y_finance.values.format import format_downloaded_batch
 from y_finance.values.cache import cache_batch_data

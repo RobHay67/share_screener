@@ -4,7 +4,7 @@ import sys
 
 from files.config import scope_folders_and_paths
 from users.config import scope_users
-from page.config import scope_pages, scope_ticker_search
+from views.app_config import scope_pages, scope_ticker_search
 from screener.config import scope_trials
 from charts.config import scope_charts
 from ticker_index.config import scope_index_file
@@ -16,10 +16,10 @@ from strategies.config import scope_strategy
 
 def set_scope(scope):
 
-	print ( 'Python build Verion   = 3.13.13')
-	print ( 'Environment Version   =', sys.version )
-	print ( 'Python Executable     = ',sys.executable )  
-	print ( 'Environment Version   =', sys.prefix ) 
+	print ( 'EXPECTED Python Verion  = 3.13.13')
+	print ( 'Environment Version   	=', sys.version )
+	print ( 'Python Executable     	=',sys.executable )  
+	print ( 'Environment Version   	=', sys.prefix ) 
 
 	set_streamlit_page_config()								# should only run onetime
 	
@@ -56,17 +56,17 @@ def set_streamlit_page_config():
 			)
 	
 	# Padding Between Controls
-	padding = 1.0
-	st.markdown(f""" <style>
-		.reportview-container .main .block-container{{
-			padding-top: {padding}rem;
-			padding-right: {padding}rem;
-			padding-left: {padding}rem;
-			padding-bottom: {padding}rem;
-		}} </style> """, unsafe_allow_html=True)
+	# padding = 1.0
+	# st.markdown(f""" <style>
+	# 	.reportview-container .main .block-container{{
+	# 		padding-top: {padding}rem;
+	# 		padding-right: {padding}rem;
+	# 		padding-left: {padding}rem;
+	# 		padding-bottom: {padding}rem;
+	# 	}} </style> """, unsafe_allow_html=True)
 
 	# Remove whitespace from the top of the page and sidebar
-	st.write('<style>div.block-container{padding-top:0rem;}</style>', unsafe_allow_html=True) # this is heaps better
+	# st.write('<style>div.block-container{padding-top:0rem;}</style>', unsafe_allow_html=True) # this is heaps better
 	# st.write('<style>div.block-container{padding-top:2rem;}</style>', unsafe_allow_html=True)
 	# st.markdown("""
 	# 				<style>

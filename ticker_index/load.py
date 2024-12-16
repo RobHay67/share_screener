@@ -3,7 +3,7 @@ import pandas as pd
 
 from ticker_index.schema import csv_dates
 from ticker_index.schema import csv_dtypes
-from pages.header.selectors import refresh_dropdown_lists
+from views.header.selectors import refresh_dropdown_lists
 
 from ticker_index.create_empty import create_empty_ticker_index
 

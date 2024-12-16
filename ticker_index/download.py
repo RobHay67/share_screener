@@ -2,8 +2,8 @@ import pandas as pd
 import streamlit as st
 
 from ticker_index.update import update_ticker_index
-from pages.header.selectors import refresh_dropdown_lists
-from page.config import scope_ticker_search
+from views.header.selectors import refresh_dropdown_lists
+from views.app_config import scope_ticker_search
 
 
 def download_ticker_index_data(scope):

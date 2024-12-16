@@ -1,6 +1,6 @@
 import os
 
-from pages.config.three_cols import three_cols
+from views.config.three_cols import three_cols
 
 
 def scope_folders_and_paths(scope):
