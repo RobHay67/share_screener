@@ -8,8 +8,6 @@ from views.sidebar.download import edit_download_days
 
 def render_sidebar(scope):
 
-	print('Rendering the Sidbar')
-
 	local_time=datetime.now()
 	market_timezone = opening_hours[scope.pages['share_market']]['timezone']
 	market_time = datetime.now(pytz.timezone(market_timezone))

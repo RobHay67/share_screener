@@ -10,26 +10,24 @@ print ( '\033[94m' + 'Application Re-Rendering - see below this line ' + '>'*33 
 for i in range(5):print('')
 
 
-
 import streamlit as st
 from scope import set_scope
-from views.users.login import render_login_page
+from views.users.login_page import render_login_page
 from views.sidebar.sidebar import render_sidebar
 
 if 'display_page' not in st.session_state:
 	scope = set_scope(st.session_state)
 
 # Page Setup
-screener_page 	= st.Page(page = "views/screener/screener_page.py",			title = "Screener", 		icon = '🧪', 	default=True,)
+screener_page 	= st.Page(page = "views/screener/screener_page.py",			title = "Screener", 		icon = '🧪', 	default=False,)
 charting_page 	= st.Page(page = "views/chart/charting_page.py",			title = "Charting", 		icon = '📊', 	default=False,)
 intra_day_page 	= st.Page(page = "views/intraday/intraday_page.py",			title = "Intra Day", 		icon = '🌤️', 	default=False,)
 volume_page 	= st.Page(page = "views/volume/volume_page.py",				title = "Volume", 			icon = '🔊', 	default=False,)
 research_page 	= st.Page(page = "views/research/research_page.py",			title = "Research", 		icon = '🕵', 	default=False,)
 websites_page 	= st.Page(page = "views/websites/website_page.py",			title = "Websites", 		icon = '🌐',	default=False,)
 ticker_idx_page = st.Page(page = "views/ticker_index/ticker_index_page.py",	title = "Ticker Index", 	icon = '🗄️',	default=False,)
-logout_page 	= st.Page(page = "views/users/logout_page.py",				title = "Logout", 			icon = '🔒', 	default=False,)
+logout_page 	= st.Page(page = "views/users/logout_page.py",				title = "Logout", 			icon = '🔒', 	default=True,)
 config_page 	= st.Page(page = "views/config/config_page.py",				title = "Config", 			icon = '⚙️',	default=False,)
-
 
 page_navigation = st.navigation(
 	{
@@ -50,10 +48,6 @@ else:
 
 
 
-
-
-# if 'display_page' not in st.session_state:
-# 	scope = set_scope(st.session_state)
 
 # Page Configuration
 # scope = st.session_state
