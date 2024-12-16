@@ -32,8 +32,11 @@ def cache_entire_download(scope):
 
 	# iterate through the target tickers for the Page
 	for ticker in scope.pages[page]['worklist']:
+		print(ticker)
+		print(scope.yf['data']['ticker'])
 				
 		if ticker in scope.yf['data']['ticker'].unique():
+			print(ticker, ' is in the yf.data dict')
 			# we appear to have downloaded data (we may have nothing)
 			
 			# subset to specific ticker from the downloaded data

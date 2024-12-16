@@ -8,23 +8,26 @@ def download_ticker_data(scope):
 	scope.yf['batch_data'] = {}
 	scope.yf['batch_errors'] = {}
 	downloaded_data = False
-
+	
+	print("This is the scoppe.yf[period] variable")
 	print(scope.yf['period'])
 
 	if scope.yf['batch_type'] == 'single_ticker':
 		# Single Ticker being downloaded
+		# yf.download()
 	
 		yf_download = yf.download( 
 									tickers=scope.yf['batch_ticker_string'], 
-									period=scope.yf['period'], 
+									# period=scope.yf['period'], 
+									period='3mo',
 									interval='1d', 
 									progress=True, 
-									show_errors=False
+									# show_errors=False
 									)			
 		# manually add the ticker column as its missing
 		yf_download['Ticker'] = scope.yf['batch_ticker_string']
 
-		# print(yf_download)
+		print(yf_download)
 		downloaded_data = True
 
 	if scope.yf['batch_type'] == 'multiple_tickers':

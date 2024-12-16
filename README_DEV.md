@@ -9,6 +9,7 @@
 |---|---		|-----------|
 | 1	|Git		|Create new project on GitHub|
 | 2	|Terminal	|Clone Git Repo to local machine|
+| 3	|Pipenv		|Create project folder for Virtual Environment|
 | 4	|Pipenv		|Create Virtual Environment|
 | 4	|Pipenv		|Set Python Version|
 | 5	|Pipenv		|Add Default Packages|
@@ -69,6 +70,7 @@ pipenv install --python=/Library/Frameworks/Python.framework/Versions/3.13/bin/p
 | 6 |Packages		|Update package (latest version '*')						|pipenv update pandas|
 | 6 |Packages		|Update ALL packages										|pipenv update
 | 3 |Environment	|Navigate to project folder									| cd {project_folder}				|
+| 3 |Environment	|Create fodler to store virtual environment locally			| see benjaminpack notes below		|
 |	|Environment	|Create virtual environment (install Pipfile packages)		| pipenv install 					|
 | 4	|Environment	|Create virtual environment with Specified Python version	| pipenv install --python 3.13 		|
 |   |Environment	|Set the appropriate Python Version	(after creation)		| pipenv --python 3.13				| per the pipenv notes |
@@ -170,7 +172,7 @@ Restart VSC Project by File/Open Folder/[choose your project]
 |text|text|
 |text|text|
 
-
+pip3 show pandas > will detail the package including its location (handy)
 
 https://bilard.medium.com/change-python-version-in-pipenv-1ac7b8f9b7b9
 
