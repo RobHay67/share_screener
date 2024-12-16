@@ -2,6 +2,7 @@ import streamlit as st
 import time
 import sys
 
+
 from files.config import scope_folders_and_paths
 from users.config import scope_users
 from views.app_config import scope_pages, scope_ticker_search
@@ -16,16 +17,22 @@ from strategies.config import scope_strategy
 
 def set_scope(scope):
 
+	print('='*50)
 	print ( 'EXPECTED Python Verion  = 3.13.13')
 	print ( 'Environment Version   	=', sys.version )
-	print ( 'Python Executable     	=',sys.executable )  
+	print ( 'Python Executable     	=', sys.executable )  
 	print ( 'Environment Version   	=', sys.prefix ) 
 
+
+	print('='*50)
+	for i in range(5):print('')
+
+
+	
 	set_streamlit_page_config()								# should only run onetime
 	
 	if 'pages' not in scope:	
 		scope.autologin_user = True			# TODO for releases purposes only - delete later
-		# scope_application_variables(scope)	# This contains all the application settings (see below)	
 		scope.config = {}
 		scope.config['project_description'] = 'Share Picker'
 		scope.config['project_start_time'] 	= time.time()

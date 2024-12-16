@@ -74,19 +74,18 @@ else:
 
 
 #======================================================== TODO s
+for i in range(5):print('')
 print('='*66)
-print('TODOs - list every thing I think of while coding')
-print('move this to Trello as soon as you can')
-print('-'*66)
+print('TODOs - document while coding then move to Trello')
+
 print('TODO - we need to download and SAVE the dividend data as well')
 print('TODO - might need some code to detect multiple sessions open')
-print('-'*66)
-print('Also get rid of all the problems in the al - need to solve this problem with the linter')
+
 print('='*66)
 
 
 # print(page, ' > Number of Keys in Scope = ', len(scope))
-print(' > Number of Keys in Scope = ', len(scope))
+print('Total Keys in Scope = ', len(scope))
 for count, key in enumerate(sorted(st.session_state)):print(count+1, key)
 print('='*66)
 
