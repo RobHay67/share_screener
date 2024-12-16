@@ -60,7 +60,7 @@ def base_config_pages(scope):
 	# Setting can be changed for each user
 	# so we need to be able to call when changing user
 	scope.pages['row_limit'] = 100
-	scope.pages['display'] = 'home'
+	scope.pages['display'] = 'streamlit_app'
 	scope.pages['share_market'] = 'ASX'
 	# scope.pages['share_market'] = 'USA'
 	scope.pages['download_days'] = 7

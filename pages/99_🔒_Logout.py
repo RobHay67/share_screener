@@ -20,7 +20,7 @@ logout_button = st.button(label='Logout Now')
 if logout_button:
     logout_user(scope)
     st.warning('Logged out the user')
-    switch_page('Home')
+    switch_page('streamlit_app')
 
 
 

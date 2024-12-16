@@ -1,6 +1,7 @@
 # ------------------------------------------------- Execute Application
 # pipenv shell
 # streamlit run home.py
+# streamlit run streamlit_app.py
 # ------------------------------------------------- 
 
 
@@ -22,7 +23,7 @@ if 'display_page' not in st.session_state:
 
 # Page Configuration
 scope = st.session_state
-page = 'home'
+page = 'streamlit_app'
 page_title = scope.config['project_description']
 page_icon = '🏠'
 # -----------------------------

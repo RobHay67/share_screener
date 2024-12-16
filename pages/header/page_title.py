@@ -11,7 +11,7 @@ def page_title_layer(scope, page_title, page_icon):
     
 	page = scope.pages['display']
 
-	if page in ['home', 'config', 'ticker_index', 'logout']:
+	if page in ['streamlit_app', 'config', 'ticker_index', 'logout']:
 		# Single Line Titles only
 		st.subheader(page_icon + ' ' + page_title)
 
