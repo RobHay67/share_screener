@@ -1,0 +1,23 @@
+import streamlit as st
+
+
+
+
+
+def button_cancel_index_changes(scope):
+	widget_key = 'widget_cancel_ticker_index_changes'
+	
+	button = st.button(
+						label='🚫 Cancel Changes', 
+						use_container_width=True, 
+						type='secondary',
+						key=widget_key,
+						on_click=change_cancel_df_save_status,
+						args=(scope,)
+						)
+	
+	return button
+
+
+def change_cancel_df_save_status(scope):
+	scope.ticker_index['render']['editable_df_key'] += 1

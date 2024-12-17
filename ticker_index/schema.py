@@ -27,15 +27,6 @@ schema = {
 # Ticker Index file Schema - Helpers
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-def editable_columns(scope):
-	schema = scope.ticker_index['schema']
-	editable_cols={}
-	for i, key in enumerate(schema):
-		if schema[key]['allow_edits'] == True:
-			editable_cols[i]=key
-	return editable_cols
-
 def data_types(scope):
 	schema = scope.ticker_index['schema']
 	dtypes={}
@@ -66,3 +57,18 @@ def csv_dates(scope):
 			dates_to_parse.append(field)
 	return dates_to_parse
 
+def editable_columns(scope):
+	schema = scope.ticker_index['schema']
+	editable_cols={}
+	for i, key in enumerate(schema):
+		if schema[key]['allow_edits'] == True:
+			editable_cols[i]=key
+	return editable_cols
+
+def uneditable_columns(scope):
+	schema = scope.ticker_index['schema']
+	uneditable_cols=[]
+	for field, schema in schema.items():
+		if schema['allow_edits'] == False:
+			uneditable_cols.append(field)
+	return uneditable_cols

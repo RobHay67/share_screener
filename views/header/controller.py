@@ -1,11 +1,10 @@
-# A function that facilitates
+# A function that facilitates for each page
 #  (1) loading of existing share data
 #  (2) adding extra columns (ie MACD) to that share data
 
 
 import streamlit as st
 
-from views.sidebar.sidebar import render_sidebar
 from views.header.page_title import page_title_layer
 from views.header.page_config import render_config_and_settings
 from views.header.selectors import selectors_layer
@@ -20,8 +19,6 @@ from views.header.search import render_search_results
 
 def render_app_header(scope, page_title, page_icon):
 	
-	# render_sidebar(scope)
-
 	page_title_layer(scope, page_title, page_icon)
 
 	if scope.users['logged_in']:

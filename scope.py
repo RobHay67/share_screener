@@ -17,18 +17,7 @@ from strategies.config import scope_strategy
 
 def set_scope(scope):
 
-	print('='*50)
-	print ( 'EXPECTED Python Verion  = 3.13.13')
-	print ( 'Environment Version   	=', sys.version )
-	print ( 'Python Executable     	=', sys.executable )  
-	print ( 'Environment Version   	=', sys.prefix ) 
-
-
-	print('='*50)
-	for i in range(5):print('')
-
-
-	
+	print_system_info_to_terminal()
 	set_streamlit_page_config()								# should only run onetime
 	
 	if 'pages' not in scope:	
@@ -50,6 +39,23 @@ def set_scope(scope):
 		scope_strategy(scope)				# TODO - this may not even be required - keeping just in case
 
 	return scope
+
+
+def print_system_info_to_terminal():
+
+	print ( '\033[94m')
+	print('='*66)
+	print ( 'EXPECTED Python Verion  = 3.13.13')
+	print ( 'Environment Version   	=', sys.version )
+	print ( 'Python Executable     	=', sys.executable )  
+	print ( 'Environment Version   	=', sys.prefix )
+	print('='*66)
+	print ('\033[0m')
+	for i in range(5):print('')
+
+
+	
+
 
 	
 

@@ -1,6 +1,5 @@
 # ------------------------------------------------- Execute Application
 # pipenv shell
-# streamlit run home.py
 # streamlit run streamlit_app.py
 # ------------------------------------------------- 
 
@@ -45,34 +44,6 @@ else:
 
 
 
-
-
-
-
-# Page Configuration
-# scope = st.session_state
-# page = 'streamlit_app'
-# page_title = scope.config['project_description']
-# page_icon = '🏠'
-# # -----------------------------
-# scope.pages['display'] = page
-
-
-
-# page_title_layer(scope, page_title, page_icon)
-# st.write('Welcome to the Share Picker Appliction.')
-# st.write('Select from the options in the sidebar (left)')
-# st.write('User : ', scope.users['login_name'])
-
-# if scope.users['logged_in'] == False:
-# 	col1,col2 = st.columns([2,8])
-# 	with col1:render_login_page(scope)
-# else:
-# 	render_sidebar(scope)
-
-
-
-
 #======================================================== TODO s
 for i in range(5):print('')
 print('='*66)
@@ -82,15 +53,12 @@ print('TODO - we need to download and SAVE the dividend data as well')
 print('TODO - might need some code to detect multiple sessions open')
 
 print('='*66)
+for i in range(3):print('')
 
-
-# print(page, ' > Number of Keys in Scope = ', len(scope))
+print('='*66)
 print('Total Keys in Scope = ', len(scope))
 for count, key in enumerate(sorted(st.session_state)):print(count+1, key)
 print('='*66)
-
-
-
 
 
 

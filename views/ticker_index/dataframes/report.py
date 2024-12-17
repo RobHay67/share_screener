@@ -2,7 +2,7 @@
 import streamlit as st
 
 
-def render_available_dataframes(scope):
+def render_page_dataframes(scope):
 
 	page = scope.pages['display']
 

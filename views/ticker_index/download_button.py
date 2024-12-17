@@ -8,9 +8,9 @@ def button_download_ticker_index(scope):
 	widget_key = 'widget_button_download_ticker_index'
 	
 	button = st.button(
-						label='Download latest Ticker Index data', 
+						label='🌐 Download new Ticker Index data', 
 						use_container_width=True, 
-						type='primary',
+						type='secondary',
 						key=widget_key,
 						on_click=download_ticker_index_data,
 						args=(scope, )
