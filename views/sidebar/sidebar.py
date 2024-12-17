@@ -16,6 +16,9 @@ def render_sidebar(scope):
 	# print('market_timezone = ', market_timezone)
 	# print('market_time     = ', market_time)
 	
+	st.logo('assets/Logo JPG.jpg')
+
+
 	with st.sidebar:
 		# st.title(scope.config['project_description'])
 		st.write('Welcome      : ' +  scope.users['login_name'])
