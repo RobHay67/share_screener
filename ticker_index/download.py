@@ -1,15 +1,18 @@
 import pandas as pd
-import streamlit as st
 
 from ticker_index.update import update_ticker_index
 from views.header.selectors import refresh_dropdown_lists
 from views.app_config import scope_ticker_search
 
+from views.ticker_index.download.messages import message_downloading
+from views.ticker_index.download.messages import message_completed_download
+from views.ticker_index.download.messages import message_failed_market
+
 
 def download_ticker_index_data(scope):
 
 	if scope.pages['share_market'] == 'ASX':
-		st.toast('Downloading ' + scope.pages['share_market'] + ' Ticker Master Data from https://asx.api.markitdigital.com and adding to the Ticker Index File')
+		message_downloading(scope)
 
 		url = 'https://asx.api.markitdigital.com/asx-research/1.0/companies/directory/file?'
 		column_names = ['share_code', 'company_name', 'industry_group', 'listing_date', 'market_cap' ]
@@ -48,7 +51,7 @@ def download_ticker_index_data(scope):
 		downloaded_df['listing_date'] = pd.to_datetime( downloaded_df['listing_date'].dt.date  )
 
 		# Download Message
-		st.toast('Downloaded ' + str(len(downloaded_df)) + ' for the ' + scope.pages['share_market'] + ' share market', icon='🏆')
+		message_completed_download(scope, downloaded_df)
 
 		# Cache the downloaded file
 		scope.ticker_index['df_downloaded'] = downloaded_df 
@@ -60,7 +63,7 @@ def download_ticker_index_data(scope):
 		scope_ticker_search(scope)	# refresh the default ticker search list
 				
 	else:
-		st.toast('DOWNLOAD Ticker data NOT YET CONFIGURED FOR ' + scope.pages['share_market'], icon='⚠️')
+		message_failed_market(scope)
 		pass
 
 

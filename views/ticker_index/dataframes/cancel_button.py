@@ -20,4 +20,7 @@ def button_cancel_index_changes(scope):
 
 
 def change_cancel_df_save_status(scope):
+	# increment the key counter for the widget. This has the affect
+	# of causing the object to be re-rendered to its initial postition
+	# in effect 'resetting' the dataframe and cancelling any changes
 	scope.ticker_index['render']['editable_df_key'] += 1
