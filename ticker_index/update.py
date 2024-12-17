@@ -6,8 +6,7 @@ from ticker_index.schema import data_types
 from ticker_index.save import save_index
 from markets.open_time import open_time
 from markets.trading_minutes import trading_minutes
-
-import streamlit as st
+from views.ticker_index.dataframes.messages import message_records_added
 
 
 def update_ticker_index(scope):
@@ -45,10 +44,8 @@ def update_ticker_index(scope):
 	scope.ticker_index['df'] = scope.ticker_index['df'].sort_index()
 
 	# Report on the update
-	if number_of_new_records > 0:
-		st.toast('Added '+ str(number_of_new_records) + ' to master ticker index', icon = '⚠️')
-	else:
-		st.toast('Nothing added to master ticker index', icon = 'ℹ️')
+	message_records_added(number_of_new_records)
+	
 	
 	save_index(scope)
 	

@@ -1,5 +1,4 @@
-import streamlit as st
-
+from views.ticker_index.dataframes.messages import message_saved_ticker_index_file
 
 def save_index(scope):
 	
@@ -10,7 +9,7 @@ def save_index(scope):
 	
 	saving_df.to_csv( scope.files['paths']['ticker_index'], index=False )
 
-	st.toast('Saved the Ticker Index File', icon='💾')
+	message_saved_ticker_index_file()
 	print ( '\033[92m' + 'Saving the Ticker Index file Now ' + '>'*50 + '\033[0m')	
 
 
