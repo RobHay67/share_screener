@@ -1,5 +1,5 @@
 
-from views.ticker_index.dataframes.report import render_page_dataframes
+from views.ticker_index.dataframes.dataframes import render_page_dataframes
 
 
 

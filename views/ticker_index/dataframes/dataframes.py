@@ -2,15 +2,22 @@
 import streamlit as st
 
 
-def render_page_dataframes(scope):
+def render_ticker_index_df(scope):
+    # Entire Ticker index
+	if scope.ticker_index['render']['ticker_index']:
+		st.subheader('Ticker Index Dataframe')
+		st.dataframe(scope.ticker_index['df'])
 
+
+def render_page_dataframes(scope):
+	# Just the dataframes relevant for a particular page
 	page = scope.pages['display']
 
 	selected_ticker = scope.pages[page]['render']['ticker_file'].split("---")
 	ticker = selected_ticker[0]
 
 	col1,col2=st.columns([4,8])
-
+	
 	if ticker in scope.tickers.keys():
 		with col1:render_dataframe(scope, page, ticker, 'ticker_file')
 		with col2:render_dataframe(scope, page, ticker, 'with_added_columns')

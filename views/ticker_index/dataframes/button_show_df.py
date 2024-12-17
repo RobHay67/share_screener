@@ -1,0 +1,27 @@
+import streamlit as st
+
+
+def button_show_ticker_index(scope):
+
+	widget_key = 'widget_show_ticker_index'
+	
+	button = st.button(
+						label='🗂 Ticker Index', 
+						use_container_width=True, 
+						type='secondary',
+						key=widget_key,
+						on_click=change_show_ticker_index_status,
+						args=(scope,)
+						)
+	
+	return button
+
+
+def change_show_ticker_index_status(scope):
+	previous_value = scope.ticker_index['render']['ticker_index']
+	new_value = True if previous_value == False else False
+	scope.ticker_index['render']['ticker_index'] = new_value
+
+	if new_value == True:
+		scope.ticker_index['render']['industry_report'] = False
+		scope.ticker_index['render']['editable_df'] = False

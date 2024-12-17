@@ -21,4 +21,8 @@ def change_editable_df_status(scope):
 	new_value = True if previous_value == False else False
 	scope.ticker_index['render']['editable_df'] = new_value
 
+	if new_value == True:
+		scope.ticker_index['render']['industry_report'] = False
+		scope.ticker_index['render']['ticker_index'] = False
+
 

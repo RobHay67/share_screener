@@ -7,7 +7,7 @@ def button_industry_report(scope):
 	widget_key = 'widget_' + 'ticker_index' + '_industry_report'
 
 	button = st.button(
-					label = '🏭 Tickers Grouped by Industry', 
+					label = '🏭 Tickers by Industry', 
 					use_container_width=True, 
 					on_click=change_industry_report_status, 
 					args=(scope, ),
@@ -24,4 +24,7 @@ def change_industry_report_status(scope):
 
 	scope.ticker_index['render']['industry_report'] = new_value
 
+	if new_value == True:
+		scope.ticker_index['render']['ticker_index'] = False
+		scope.ticker_index['render']['editable_df'] = False
 
