@@ -27,13 +27,18 @@ websites_page 	= st.Page(page = "views/websites/website_page.py",			title = "Web
 ticker_idx_page = st.Page(page = "views/ticker_index/ticker_index_page.py",	title = "Ticker Index", 	icon = '🗄️',	default=False,)
 logout_page 	= st.Page(page = "views/users/logout_page.py",				title = "Logout", 			icon = '🔒', 	default=True,)
 config_page 	= st.Page(page = "views/config/config_page.py",				title = "Config", 			icon = '⚙️',	default=False,)
+testing_page 	= st.Page(page = "views/test_page.py",						title = "Testing", 			icon = '🔬',	default=False,)
 
 page_navigation = st.navigation(
 	{
 		"Research & Analysis"	: [screener_page, charting_page, intra_day_page, volume_page, research_page, websites_page],
-		"Config"	: [ticker_idx_page, config_page, logout_page],
+		"Config"	: [ticker_idx_page, config_page, logout_page, testing_page],
 	}
 )
+
+
+
+
 
 # Render Pages
 if scope.users['logged_in'] == True:

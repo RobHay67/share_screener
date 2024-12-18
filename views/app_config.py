@@ -15,6 +15,7 @@ def scope_pages(scope):
 								'ticker_index', 
 								'config',
 								'logout',
+								'testing',
 								]
 	scope.pages['ticker_values'] = ticker_value_schema
 
@@ -63,7 +64,7 @@ def base_config_pages(scope):
 	scope.pages['display'] = 'streamlit_app'
 	scope.pages['share_market'] = 'ASX'
 	# scope.pages['share_market'] = 'USA'
-	scope.pages['download_days'] = 7
+	scope.pages['download_days'] = '5d'
 
 
 def scope_ticker_search(scope):

@@ -1,4 +1,5 @@
 import yfinance as yf					# https://github.com/ranaroussi/yfinance
+										# https://ranaroussi.github.io/yfinance/index.html
 
 
 

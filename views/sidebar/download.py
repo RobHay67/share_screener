@@ -1,21 +1,22 @@
 import streamlit as st
-from y_finance.config import set_yf_period
 
 
 def edit_download_days(scope):
-
-	previous_selection = int(scope.pages['download_days'])
-	display_name = 'Days to Download (recent)'
+	
+	display_name = 'Interval to Download'
 	widget_key = 'widget_download_days'
+	permitted_options = scope.yf['interval']
+	previous_selection = scope.pages['download_days']
+	pos_for_previous = scope.yf['interval'].index(previous_selection)	
 
-	st.sidebar.number_input( 	
+	st.sidebar.selectbox( 	
 							label		=display_name, 
-							min_value	=7, 
-							value		=previous_selection,
+							options		=permitted_options,
+							index		=pos_for_previous,
 							on_change	=on_change_download_days,
 							args		=(scope, widget_key, ),
 							key			=widget_key,
-							)  
+							) 
 
 
 def on_change_download_days(scope:dict, widget_key:str):
@@ -25,5 +26,3 @@ def on_change_download_days(scope:dict, widget_key:str):
 	# store the selection
 	scope.pages['download_days'] = changed_value
 
-	# update the yf download days
-	set_yf_period(scope)
