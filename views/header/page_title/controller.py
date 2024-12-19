@@ -13,14 +13,14 @@ def page_title_layer(scope, page_title, page_icon):
 
 	if page in ['streamlit_app', 'config', 'ticker_index', 'logout']:
 		# Single Line Titles only
-		st.subheader(page_icon + ' ' + page_title)
+		st.subheader(page_icon + ' ' + page_title, divider='gray')
 
 	else:
 		# All Other Pages
 		col1,col2,col3,col4,col5 = st.columns([9.5,0.5,0.5,0.5,1.0])
 		
 		with col1:
-			st.subheader(page_icon + ' ' + page_title)
+			st.subheader(page_icon + ' ' + page_title, divider='gray')
 		with col4:
 			page_config_button(scope)
 		with col5:

@@ -3,7 +3,7 @@ import streamlit as st
 
 def edit_download_days(scope):
 	
-	display_name = 'Interval to Download'
+	display_name = 'Interval for Download'
 	widget_key = 'widget_download_days'
 	permitted_options = scope.yf['intervals']
 	previous_selection = scope.pages['download_days']

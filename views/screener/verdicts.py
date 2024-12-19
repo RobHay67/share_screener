@@ -159,7 +159,7 @@ def passing_verdict_list(scope):
 
 	for ticker in scope.pages[page]['worklist']:
 		# Only mined tickers can have verdicts
-		if ticker in scope.pages[page]['tickers_used_by_page']:
+		if ticker in scope.pages[page]['loaded_ticker_list']:
 			if scope.tickers[ticker][page]['verdict'] == 'pass':
 				verdict_list.append(ticker)
 

@@ -21,7 +21,7 @@ if scope.users['logged_in']:
 
 	ticker = scope.pages[page]['selectors']['ticker']
 
-	if ticker in scope.pages[page]['tickers_used_by_page']:
+	if ticker in scope.pages[page]['loaded_ticker_list']:
 
 		chart_df		= scope.tickers[ticker][page]['df']
 		schema 			= create_schema_for_plotly(scope)

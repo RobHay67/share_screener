@@ -1,6 +1,6 @@
 
 import streamlit as st
-from users.save import save_users_table
+from users.save.controller import save_users_table
 
 
 

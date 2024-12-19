@@ -37,7 +37,8 @@ def scope_pages(scope):
 		scope.pages[page]['search_results'] = {}
 		scope.pages[page]['worklist'] = []  			# formally known as scope.pages[page]['ticker_list']
 		scope.pages[page]['worklist_long_desc'] = []
-		
+		scope.pages[page]['loaded_ticker_list'] = []		# list of every ticker loaded by this particular page - saves checking later
+
 		scope.pages[page]['selectors'] = {
 										'ticker'		: 'select a ticker',
 										'tickers'		: [],

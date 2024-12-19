@@ -37,9 +37,9 @@ def render_page_config(scope):
 	
 	# st.caption('Lists and Dictionaries')
 	with st.expander("Page Dictionary and Lists", expanded=False):
-		three_cols( 'Search Results'  			 , scope.pages[page]['search_results']		, "scope.pages['"+ page +"']['search_results']"    , widget_type='string' )
-		three_cols( 'Worklist - targets for page', scope.pages[page]['worklist']			, "scope.pages['"+ page +"']['worklist']"    , widget_type='string' )
-		three_cols( 'Tickers Used by Page'   	 , scope.pages[page]['tickers_used_by_page'], "scope.pages['"+ page +"']['tickers_used_by_page", widget_type='string' )
+		three_cols( 'Search Results'  			 , scope.pages[page]['search_results']		, "scope.pages['"+ page +"']['search_results']"    	, widget_type='string' )
+		three_cols( 'Worklist - targets for page', scope.pages[page]['worklist']			, "scope.pages['"+ page +"']['worklist']"    		, widget_type='string' )
+		three_cols( 'Tickers Loaded Used by Page', scope.pages[page]['loaded_ticker_list']	, "scope.pages['"+ page +"']['loaded_ticker_list"	, widget_type='string' )
 	
 	# st.caption('Selectors')
 	with st.expander("Ticker Selectors", expanded=False):

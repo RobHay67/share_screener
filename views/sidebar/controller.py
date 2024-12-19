@@ -20,8 +20,6 @@ def render_sidebar(scope):
 	
 
 	with st.sidebar:
-		st.write(scope.pages['download_days'])
-		# st.title(scope.config['project_description'])
 		st.write('Welcome      : ' +  scope.users['login_name'])
 		st.write('Share Market : ' + str(scope.pages['share_market']))
 		# st.write('Market Date  : ' + str(local_time.strftime('%Y-%m-%d')))

@@ -12,7 +12,6 @@ def multiple_tickers_downloader(scope):
 								interval='1d', 
 								progress=True, 
 								threads=True, 						# threads : use threads for mass downloading? (True/False/Integer)
-								# show_errors=False 
 								)
 
 	# Sort out the column headers
