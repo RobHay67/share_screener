@@ -3,9 +3,9 @@ import time
 import sys
 
 
+from app.scope_pages import scope_pages, scope_ticker_search
 from files.config import scope_folders_and_paths
 from users.config import scope_users
-from app.config import scope_pages, scope_ticker_search
 from screener.config import scope_trials
 from charts.config import scope_charts
 from ticker_index.config import scope_index_file

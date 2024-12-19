@@ -5,7 +5,7 @@ from app.dropdowns.controller import refresh_ticker_selector_lists
 
 
 
-from app.config import scope_ticker_search
+from app.scope_pages import scope_ticker_search
 
 from ticker_index.views.download.messages import message_downloading
 from ticker_index.views.download.messages import message_completed_download
