@@ -1,9 +1,9 @@
 
 import streamlit as st
 
-from views.users.login.login_auto_button import auto_login_button
-from views.users.login.login_button import login_button
-from views.users.login.messages import login_message
+from users.views.login.login_auto_button import auto_login_button
+from users.views.login.login_button import login_button
+from users.views.login.messages import login_message
 
 
 def render_login_page(scope):

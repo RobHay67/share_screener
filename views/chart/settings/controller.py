@@ -9,7 +9,7 @@ from views.chart.settings.macd_vol import render_macd_vol
 from views.chart.settings.rsi import render_rsi
 from views.chart.settings.stochastic import render_stochastic
 from views.chart.settings.volume_oscillator import render_volume_oscillator
-from views.users.save_user_settings_button import save_user_settings_button
+from users.views.save_user_settings_button import save_user_settings_button
 from views.chart.settings.line import render_line_chart
 
 

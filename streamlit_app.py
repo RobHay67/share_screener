@@ -11,7 +11,7 @@ for i in range(5):print('')
 
 import streamlit as st
 from page.scope_app import set_scope
-from views.users.login.controller import render_login_page
+from users.views.login.controller import render_login_page
 from views.sidebar.controller import render_sidebar
 
 if 'display_page' not in st.session_state:
@@ -25,7 +25,7 @@ volume_page 	= st.Page(page = "views/volume/volume_page.py",				title = "Volume"
 research_page 	= st.Page(page = "views/research/research_page.py",			title = "Research", 		icon = '🕵', 	default=False,)
 websites_page 	= st.Page(page = "views/websites/website_page.py",			title = "Websites", 		icon = '🌐',	default=False,)
 ticker_idx_page = st.Page(page = "views/ticker_index/ticker_index_page.py",	title = "Ticker Index", 	icon = '🗄️',	default=False,)
-logout_page 	= st.Page(page = "views/users/logout_page.py",				title = "Logout", 			icon = '🔒', 	default=True,)
+logout_page 	= st.Page(page = "users/views/logout_page.py",				title = "Logout", 			icon = '🔒', 	default=True,)
 config_page 	= st.Page(page = "views/config/config_page.py",				title = "Config", 			icon = '⚙️',	default=False,)
 testing_page 	= st.Page(page = "views/test_page.py",						title = "Testing", 			icon = '🔬',	default=False,)
 
