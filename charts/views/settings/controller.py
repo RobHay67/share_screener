@@ -1,16 +1,16 @@
 import streamlit as st
 
-from views.chart.settings.chart_height import set_chart_height_primary
-from views.chart.settings.active import render_activate_metric
+from charts.views.settings.chart_height import set_chart_height_primary
+from charts.views.settings.active import render_activate_metric
 
-from views.chart.settings.active import render_activate_metric
-from views.chart.settings.macd import render_macd
-from views.chart.settings.macd_vol import render_macd_vol
-from views.chart.settings.rsi import render_rsi
-from views.chart.settings.stochastic import render_stochastic
-from views.chart.settings.volume_oscillator import render_volume_oscillator
+from charts.views.settings.active import render_activate_metric
+from charts.views.settings.macd import render_macd
+from charts.views.settings.macd_vol import render_macd_vol
+from charts.views.settings.rsi import render_rsi
+from charts.views.settings.stochastic import render_stochastic
+from charts.views.settings.volume_oscillator import render_volume_oscillator
 from users.views.save_user_settings_button import save_user_settings_button
-from views.chart.settings.line import render_line_chart
+from charts.views.settings.line import render_line_chart
 
 
 def render_available_charts(scope):

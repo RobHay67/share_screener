@@ -20,7 +20,6 @@ def link_to_app_button(scope, page, ticker):
 		app_desc = page
 
 	open_app_button = st.button(
-						# label=page.title(), 
 						label=app_desc,
 						key=widget_key,
 						use_container_width=True,

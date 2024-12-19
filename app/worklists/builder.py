@@ -1,7 +1,7 @@
 
-from page.worklists.single_selector import single_selector_page
-from page.worklists.multi_selector import multi_selector_page
-from page.worklists.long_desc import refresh_worklist_long_description
+from app.worklists.single_selector import single_selector_page
+from app.worklists.multi_selector import multi_selector_page
+from app.worklists.long_desc import refresh_worklist_long_description
 
 
 

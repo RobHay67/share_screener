@@ -1,8 +1,8 @@
 import streamlit as st
 
 from views.config.pages import render_page_config
-from views.chart.settings.controller import render_available_charts
-from views.chart.settings.overlays import render_overlays_config
+from charts.views.settings.controller import render_available_charts
+from charts.views.settings.overlays import render_overlays_config
 from views.screener.settings.controller import render_available_trials
 from views.config.strategies import render_strategies
 

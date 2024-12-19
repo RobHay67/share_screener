@@ -1,7 +1,7 @@
 
-from page.dropdowns.markets import build_list_of_markets
-from page.dropdowns.industries import build_list_of_industries
-from page.dropdowns.tickers import build_list_of_tickers
+from app.dropdowns.markets import build_list_of_markets
+from app.dropdowns.industries import build_list_of_industries
+from app.dropdowns.tickers import build_list_of_tickers
 
 def refresh_ticker_selector_lists(scope):
 	# Repopulate the scope with the latest information for the dropdown lists

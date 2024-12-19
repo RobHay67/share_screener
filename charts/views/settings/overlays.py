@@ -1,9 +1,9 @@
 import streamlit as st
 
-from views.chart.settings.announcements import render_announcements
-from views.chart.settings.bollinger_bands import render_bollinger_bands
-from views.chart.settings.dividends import render_dividends
-from views.chart.settings.moving_average import render_moving_average
+from charts.views.settings.announcements import render_announcements
+from charts.views.settings.bollinger_bands import render_bollinger_bands
+from charts.views.settings.dividends import render_dividends
+from charts.views.settings.moving_average import render_moving_average
 
 
 

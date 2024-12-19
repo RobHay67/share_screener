@@ -4,7 +4,7 @@ import streamlit as st
 from views.widgets.active import edit_active
 from views.widgets.number import edit_number
 from views.widgets.ohlc import edit_ohlc
-from views.chart.settings.colour import edit_colour
+from charts.views.settings.colour import edit_colour
 
 
 def render_moving_average(scope, config_key):  # SMA or EMA

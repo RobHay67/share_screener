@@ -1,11 +1,11 @@
 import pandas as pd
 
 from ticker_index.update import update_ticker_index
-from page.dropdowns.controller import refresh_ticker_selector_lists
+from app.dropdowns.controller import refresh_ticker_selector_lists
 
 
 
-from page.config import scope_ticker_search
+from app.config import scope_ticker_search
 
 from views.ticker_index.download.messages import message_downloading
 from views.ticker_index.download.messages import message_completed_download

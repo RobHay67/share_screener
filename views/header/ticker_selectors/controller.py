@@ -6,7 +6,7 @@ from views.header.ticker_selectors.tickers import select_tickers
 from views.header.ticker_selectors.industries import select_industries
 from views.header.ticker_selectors.market import select_a_market
 from views.header.search.by_name import search_ticker_by_name
-from page.worklists.builder import refresh_page_worklist
+from app.worklists.builder import refresh_page_worklist
 
 
 

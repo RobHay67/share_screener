@@ -1,6 +1,6 @@
 
 
-from page.dropdowns.controller import refresh_ticker_selector_lists
+from app.dropdowns.controller import refresh_ticker_selector_lists
 
 
 def scope_tickers(scope):

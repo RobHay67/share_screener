@@ -1,8 +1,8 @@
 import streamlit as st
 
 from views.header.page_title.page_config import page_config_button
-from views.chart.settings.chart_settings import chart_settings_button
-from views.chart.settings.chart_settings import chart_overlay_button
+from charts.views.settings.chart_settings import chart_settings_button
+from charts.views.settings.chart_settings import chart_overlay_button
 from views.header.page_title.strategies_button import strategies_button
 from views.trials.trial_settings import trial_settings_button
 from views.header.page_title.reset_page import reset_page_render
