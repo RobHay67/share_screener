@@ -4,8 +4,8 @@ from datetime import timedelta
 import pytz
 
 from app.views.header.controller import render_page_header
-from views.volume.input_volume import view_input_volume
-from views.volume.prediction import view_prediction
+from volume.views.input_volume import view_input_volume
+from volume.views.prediction import view_prediction
 from markets.schema import opening_hours
 
 

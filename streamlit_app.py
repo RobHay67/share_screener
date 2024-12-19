@@ -21,13 +21,13 @@ if 'display_page' not in st.session_state:
 screener_page 	= st.Page(page = "screener/views/screener_page.py",			title = "Screener", 		icon = '🧪', 	default=False,)
 charting_page 	= st.Page(page = "charts/views/charting_page.py",			title = "Charting", 		icon = '📊', 	default=False,)
 intra_day_page 	= st.Page(page = "intraday/views/intraday_page.py",			title = "Intra Day", 		icon = '🌤️', 	default=False,)
-volume_page 	= st.Page(page = "views/volume/volume_page.py",				title = "Volume", 			icon = '🔊', 	default=False,)
+volume_page 	= st.Page(page = "volume/views/volume_page.py",				title = "Volume", 			icon = '🔊', 	default=False,)
 research_page 	= st.Page(page = "research/views/research_page.py",			title = "Research", 		icon = '🕵', 	default=False,)
-websites_page 	= st.Page(page = "views/websites/website_page.py",			title = "Websites", 		icon = '🌐',	default=False,)
+websites_page 	= st.Page(page = "websites/views/website_page.py",			title = "Websites", 		icon = '🌐',	default=False,)
 ticker_idx_page = st.Page(page = "ticker_index/views/ticker_index_page.py",	title = "Ticker Index", 	icon = '🗄️',	default=False,)
 logout_page 	= st.Page(page = "users/views/logout_page.py",				title = "Logout", 			icon = '🔒', 	default=True,)
 config_page 	= st.Page(page = "views/config/config_page.py",				title = "Config", 			icon = '⚙️',	default=False,)
-testing_page 	= st.Page(page = "views/test_page.py",						title = "Testing", 			icon = '🔬',	default=False,)
+testing_page 	= st.Page(page = "app/views/test_page.py",						title = "Testing", 			icon = '🔬',	default=False,)
 
 page_navigation = st.navigation(
 	{
