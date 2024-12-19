@@ -10,7 +10,7 @@ for i in range(5):print('')
 
 
 import streamlit as st
-from scope import set_scope
+from page.scope_app import set_scope
 from views.users.login.controller import render_login_page
 from views.sidebar.controller import render_sidebar
 

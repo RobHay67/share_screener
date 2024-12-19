@@ -187,8 +187,6 @@ def on_add_new_user(scope:dict,widget_key:str ):
 
 def on_change_country_codes(scope:dict, user_name:str, df_col_name:str, widget_key:str ):
 
-	# TODO - add in some sense checking on the string to make sure it is in the correct format
-
 	changed_value = scope[widget_key]
 
 	# store the selection

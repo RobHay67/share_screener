@@ -1,5 +1,6 @@
 from views.ticker_index.dataframes.messages import message_saved_ticker_index_file
 
+
 def save_index(scope):
 	
 	saving_df = scope.ticker_index['df'].copy()

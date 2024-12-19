@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-from files.path import path_for_ticker_file
+from files.ticker_path import path_for_ticker_file
 from tickers.new import add_new_ticker
 from tickers.missing_tickers.failed_load import fail_local_load_event
 

@@ -4,6 +4,7 @@ from ticker_index.save import save_index
 from views.ticker_index.dataframes.messages import message_missing_ticker_file
 from views.ticker_index.dataframes.messages import messgae_creation_success
 
+
 def create_empty_ticker_index(scope):
 
 	message_missing_ticker_file(scope)
