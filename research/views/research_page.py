@@ -2,25 +2,25 @@ import streamlit as st
 
 from app.views.header.controller import render_page_header
 from y_finance.metadata import fetch_yfinance_metadata
-from views.research.info import company_general
-# from views.research.info import business_summary
-from views.research.info import fundamental
-from views.research.info import general
-from views.research.info import market_info
-from views.research.dividends import dividends
-from views.research.investors import institutional
-from views.research.investors import major
-from views.research.financials import financial_statements
-from views.research.financials import annual
-from views.research.financials import quarterly
-from views.research.financials import balance_sheet
-from views.research.financials import balance_sheet_qtr
-from views.research.financials import cashflow
-from views.research.financials import cashflow_qtr
-from views.research.financials import earnings
-from views.research.financials import earnings_qtr
-from views.research.calendar import calendar
-from views.research.news import news
+from research.views.info import company_general
+# from research.views.info import business_summary
+from research.views.info import fundamental
+from research.views.info import general
+from research.views.info import market_info
+from research.views.dividends import dividends
+from research.views.investors import institutional
+from research.views.investors import major
+from research.views.financials import financial_statements
+from research.views.financials import annual
+from research.views.financials import quarterly
+from research.views.financials import balance_sheet
+from research.views.financials import balance_sheet_qtr
+from research.views.financials import cashflow
+from research.views.financials import cashflow_qtr
+from research.views.financials import earnings
+from research.views.financials import earnings_qtr
+from research.views.calendar import calendar
+from research.views.news import news
 
 
 # TODO - I like this example from the ASX for CBA - https://www2.asx.com.au/markets/company/cba
