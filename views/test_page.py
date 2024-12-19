@@ -1,6 +1,6 @@
 import streamlit as st
 
-from views.header.controller import render_page_header
+from app.views.header.controller import render_page_header
 
 
 

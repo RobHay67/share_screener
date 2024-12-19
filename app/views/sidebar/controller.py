@@ -3,8 +3,8 @@ import pytz
 from datetime import datetime
 
 from markets.schema import opening_hours
-from views.sidebar.row_limit import edit_row_limit
-from views.sidebar.download import edit_download_days
+from app.views.sidebar.row_limit import edit_row_limit
+from app.views.sidebar.download import edit_download_days
 
 def render_sidebar(scope):
 

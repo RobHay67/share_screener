@@ -5,16 +5,16 @@
 
 
 
-from views.header.page_title.controller import page_title_layer
-from views.header.config_buttons import render_config_buttons
-from views.header.ticker_selectors.controller import render_ticker_selectors
-from views.header.ticker_files.controller import load_ticker_files
-from views.header.add_columns.controller import progress_adding_columns_to_data
-from views.header.worklist.controller import render_ticker_worklist
-from views.header.quicklinks import render_quick_links
-from views.header.dataframes import render_dataframes
-from views.header.ticker_name import render_ticker_name
-from views.header.search.controller import render_search_results
+from app.views.header.page_title.controller import page_title_layer
+from app.views.header.config_buttons import render_config_buttons
+from app.views.header.ticker_selectors.controller import render_ticker_selectors
+from app.views.header.ticker_files.controller import load_ticker_files
+from app.views.header.add_columns.controller import progress_adding_columns_to_data
+from app.views.header.worklist.controller import render_ticker_worklist
+from app.views.header.quicklinks import render_quick_links
+from app.views.header.dataframes import render_dataframes
+from app.views.header.ticker_name import render_ticker_name
+from app.views.header.search.controller import render_search_results
 
 
 def render_page_header(scope, page_title, page_icon):

@@ -1,6 +1,6 @@
 import streamlit as st
 
-from views.header.add_columns.update_files import replace_df_and_add_columns
+from app.views.header.add_columns.update_files import replace_df_and_add_columns
 
 
 def render_progress_bar(scope, page):

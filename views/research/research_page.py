@@ -1,6 +1,6 @@
 import streamlit as st
 
-from views.header.controller import render_page_header
+from app.views.header.controller import render_page_header
 from y_finance.metadata import fetch_yfinance_metadata
 from views.research.info import company_general
 # from views.research.info import business_summary

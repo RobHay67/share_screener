@@ -1,7 +1,7 @@
 import streamlit as st
 
-from views.header.controller import render_page_header
-from views.config.controller import render_config_page
+from app.views.header.controller import render_page_header
+from app.views.config.controller import render_config_page
 
 # Page Configuration
 page = 'config'

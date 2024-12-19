@@ -1,11 +1,11 @@
 import streamlit as st
 
-from views.header.format import md_for_header
-from views.header.ticker_selectors.ticker import select_a_ticker
-from views.header.ticker_selectors.tickers import select_tickers
-from views.header.ticker_selectors.industries import select_industries
-from views.header.ticker_selectors.market import select_a_market
-from views.header.search.by_name import search_ticker_by_name
+from app.views.header.format import md_for_header
+from app.views.header.ticker_selectors.ticker import select_a_ticker
+from app.views.header.ticker_selectors.tickers import select_tickers
+from app.views.header.ticker_selectors.industries import select_industries
+from app.views.header.ticker_selectors.market import select_a_market
+from app.views.header.search.by_name import search_ticker_by_name
 from app.worklists.builder import refresh_page_worklist
 
 

@@ -12,7 +12,7 @@ for i in range(5):print('')
 import streamlit as st
 from app.scope_app import set_scope
 from users.views.login.controller import render_login_page
-from views.sidebar.controller import render_sidebar
+from app.views.sidebar.controller import render_sidebar
 
 if 'display_page' not in st.session_state:
 	scope = set_scope(st.session_state)

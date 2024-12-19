@@ -1,9 +1,9 @@
 import streamlit as st
 
 
-from views.header.format import md_for_header
-from views.header.ticker_files.progress_bar import progress_bar_loading_tickers	
-from views.header.ticker_files.button import download_button
+from app.views.header.format import md_for_header
+from app.views.header.ticker_files.progress_bar import progress_bar_loading_tickers	
+from app.views.header.ticker_files.button import download_button
 from y_finance.controller import download_ticker_data
 
 

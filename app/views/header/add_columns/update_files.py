@@ -3,7 +3,7 @@ import streamlit as st
 from add_cols.replace_page_df import replace_page_df
 from add_cols.replace_df_cols import replace_page_df_columns
 from screener.verdict import determine_verdict_for_ticker
-from views.header.add_columns.ticker_list import create_list_of_tickers_to_add_columns
+from app.views.header.add_columns.ticker_list import create_list_of_tickers_to_add_columns
 
 
 

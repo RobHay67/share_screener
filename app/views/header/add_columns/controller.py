@@ -5,9 +5,9 @@
 
 import streamlit as st
 
-from views.header.format import md_for_header
+from app.views.header.format import md_for_header
 
-from views.header.add_columns.progress_bar import render_progress_bar
+from app.views.header.add_columns.progress_bar import render_progress_bar
 
 
 def progress_adding_columns_to_data(scope):

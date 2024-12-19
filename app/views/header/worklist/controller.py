@@ -1,8 +1,8 @@
 import streamlit as st
-from views.header.format import md_for_header
-from views.header.worklist.dropdown import render_worklist_dropdown
-from views.header.worklist.errors import render_ticker_load_and_download_errors
-from views.header.worklist.active_tests import render_active_charts_or_tests
+from app.views.header.format import md_for_header
+from app.views.header.worklist.dropdown import render_worklist_dropdown
+from app.views.header.worklist.errors import render_ticker_load_and_download_errors
+from app.views.header.worklist.active_tests import render_active_charts_or_tests
 
 
 def render_ticker_worklist(scope):
