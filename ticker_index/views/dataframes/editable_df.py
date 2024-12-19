@@ -3,8 +3,8 @@ import streamlit as st
 from ticker_index.schema import uneditable_columns
 from ticker_index.save import save_changes_into_ticker_index
 
-from views.ticker_index.dataframes.button_save_edits import button_save_ticker_index
-from views.ticker_index.dataframes.button_cancel_edit import button_cancel_index_changes
+from ticker_index.views.dataframes.button_save_edits import button_save_ticker_index
+from ticker_index.views.dataframes.button_cancel_edit import button_cancel_index_changes
 
 # Dropdowns are automatically used for categorical columns.
 

@@ -1,13 +1,13 @@
 import streamlit as st
 
 from app.views.header.controller import render_page_header
-from views.ticker_index.industries.report import render_industry_report
-from views.ticker_index.industries.button import button_industry_report
-from views.ticker_index.dataframes.button_show_df import button_show_ticker_index
-from views.ticker_index.dataframes.button_edit_df import button_edit_ticker_index_df
-from views.ticker_index.dataframes.editable_df import render_editable_ticker_index_df
-from views.ticker_index.dataframes.dataframes import render_ticker_index_df
-from views.ticker_index.download.download_button import button_download_ticker_index
+from ticker_index.views.industries.report import render_industry_report
+from ticker_index.views.industries.button import button_industry_report
+from ticker_index.views.dataframes.button_show_df import button_show_ticker_index
+from ticker_index.views.dataframes.button_edit_df import button_edit_ticker_index_df
+from ticker_index.views.dataframes.editable_df import render_editable_ticker_index_df
+from ticker_index.views.dataframes.dataframes import render_ticker_index_df
+from ticker_index.views.download.download_button import button_download_ticker_index
 
 
 # Page Configuration

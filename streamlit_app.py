@@ -24,7 +24,7 @@ intra_day_page 	= st.Page(page = "views/intraday/intraday_page.py",			title = "I
 volume_page 	= st.Page(page = "views/volume/volume_page.py",				title = "Volume", 			icon = '🔊', 	default=False,)
 research_page 	= st.Page(page = "views/research/research_page.py",			title = "Research", 		icon = '🕵', 	default=False,)
 websites_page 	= st.Page(page = "views/websites/website_page.py",			title = "Websites", 		icon = '🌐',	default=False,)
-ticker_idx_page = st.Page(page = "views/ticker_index/ticker_index_page.py",	title = "Ticker Index", 	icon = '🗄️',	default=False,)
+ticker_idx_page = st.Page(page = "ticker_index/views/ticker_index_page.py",	title = "Ticker Index", 	icon = '🗄️',	default=False,)
 logout_page 	= st.Page(page = "users/views/logout_page.py",				title = "Logout", 			icon = '🔒', 	default=True,)
 config_page 	= st.Page(page = "views/config/config_page.py",				title = "Config", 			icon = '⚙️',	default=False,)
 testing_page 	= st.Page(page = "views/test_page.py",						title = "Testing", 			icon = '🔬',	default=False,)

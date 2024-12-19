@@ -6,7 +6,7 @@ from ticker_index.schema import data_types
 from ticker_index.save import save_index
 from markets.open_time import open_time
 from markets.trading_minutes import trading_minutes
-from views.ticker_index.dataframes.messages import message_records_added
+from ticker_index.views.dataframes.messages import message_records_added
 
 
 def update_ticker_index(scope):
