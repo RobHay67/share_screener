@@ -1,9 +1,9 @@
 import streamlit as st
 
-from views.config.three_cols import three_cols
-from views.config.charts import render_scope_charts
-from views.config.trials import render_trials_config
-from views.config.ticker_data import render_ticker_df, render_page_ticker_df
+from app.views.config.three_cols import three_cols
+from app.views.config.charts import render_scope_charts
+from app.views.config.trials import render_trials_config
+from app.views.config.ticker_data import render_ticker_df, render_page_ticker_df
 
 
 def view_page_global_config(scope):

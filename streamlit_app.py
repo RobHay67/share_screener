@@ -26,8 +26,8 @@ research_page 	= st.Page(page = "research/views/research_page.py",			title = "Re
 websites_page 	= st.Page(page = "websites/views/website_page.py",			title = "Websites", 		icon = '🌐',	default=False,)
 ticker_idx_page = st.Page(page = "ticker_index/views/ticker_index_page.py",	title = "Ticker Index", 	icon = '🗄️',	default=False,)
 logout_page 	= st.Page(page = "users/views/logout_page.py",				title = "Logout", 			icon = '🔒', 	default=True,)
-config_page 	= st.Page(page = "views/config/config_page.py",				title = "Config", 			icon = '⚙️',	default=False,)
-testing_page 	= st.Page(page = "app/views/test_page.py",						title = "Testing", 			icon = '🔬',	default=False,)
+config_page 	= st.Page(page = "app/views/config/config_page.py",			title = "Config", 			icon = '⚙️',	default=False,)
+testing_page 	= st.Page(page = "app/views/test_page.py",					title = "Testing", 			icon = '🔬',	default=False,)
 
 page_navigation = st.navigation(
 	{

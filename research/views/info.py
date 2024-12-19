@@ -1,6 +1,6 @@
 import streamlit as st
 
-from views.config.two_cols import view_2_columns
+from app.views.config.two_cols import view_2_columns
 
 def company_general(metadata):
 	# st.subheader(metadata.info['longName'])

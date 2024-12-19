@@ -1,5 +1,5 @@
 import streamlit as st
-from views.config.three_cols import three_cols
+from app.views.config.three_cols import three_cols
 from app.views.header.ticker_selectors.ticker_config import select_a_ticker_for_config
 
 def render_scope_tickers(scope):

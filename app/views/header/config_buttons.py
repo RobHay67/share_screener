@@ -1,10 +1,10 @@
 import streamlit as st
 
-from views.config.pages import render_page_config
+from app.views.config.pages import render_page_config
 from charts.views.settings.controller import render_available_charts
 from charts.views.settings.overlays import render_overlays_config
 from screener.views.settings.controller import render_available_trials
-from views.config.strategies import render_strategies
+from app.views.config.strategies import render_strategies
 
 def render_config_buttons(scope):
 

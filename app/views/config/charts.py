@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-from views.config.three_cols import three_cols
+from app.views.config.three_cols import three_cols
 
 
 def render_scope_charts(scope):

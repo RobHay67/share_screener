@@ -1,18 +1,18 @@
 import streamlit as st
 
 # Config (scope)
-from views.config.application import render_scope_config
-from views.config.files import view_files
-from views.config.pages import view_page_global_config
-from views.config.dropdowns import view_dropdowns
-from views.config.ticker_search import view_ticker_search
-from views.config.trials import render_trials_config
-from views.config.charts import render_scope_charts
-from views.config.ticker_data import render_scope_tickers
-from views.config.missing_tickers import view_missing_tickers
-from views.config.users import view_users
-from views.config.download import view_download
-from views.config.strategies import render_strategies
+from app.views.config.application import render_scope_config
+from app.views.config.files import view_files
+from app.views.config.pages import view_page_global_config
+from app.views.config.dropdowns import view_dropdowns
+from app.views.config.ticker_search import view_ticker_search
+from app.views.config.trials import render_trials_config
+from app.views.config.charts import render_scope_charts
+from app.views.config.ticker_data import render_scope_tickers
+from app.views.config.missing_tickers import view_missing_tickers
+from app.views.config.users import view_users
+from app.views.config.download import view_download
+from app.views.config.strategies import render_strategies
 
 def render_selected_scope_page(scope):
 
