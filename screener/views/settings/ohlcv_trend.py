@@ -1,10 +1,10 @@
 
 import streamlit as st
 
-from views.widgets.active import edit_active
-from views.trials.trend_ohlcv import edit_trend_ohlcv
-from views.widgets.number import edit_number
-from views.widgets.ohlcv import edit_ohlcv
+from app.views.widgets.active import edit_active
+from screener.views.trials.trend_ohlcv import edit_trend_ohlcv
+from app.views.widgets.number import edit_number
+from app.views.widgets.ohlcv import edit_ohlcv
 
 
 def render_ohlcv_trend(scope, trial):

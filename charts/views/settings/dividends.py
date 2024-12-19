@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-from views.widgets.active import edit_active
+from app.views.widgets.active import edit_active
 
 
 

@@ -1,9 +1,9 @@
 
 import streamlit as st
 
-from views.widgets.active import edit_active
-from views.widgets.number import edit_number
-from views.trials.trend_stochastic import edit_trend_stochastic
+from app.views.widgets.active import edit_active
+from app.views.widgets.number import edit_number
+from screener.views.trials.trend_stochastic import edit_trend_stochastic
 
 
 def render_stochastic_trend(scope, trial):

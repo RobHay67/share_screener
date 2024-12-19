@@ -1,9 +1,9 @@
 import streamlit as st
 
 
-from views.widgets.active import edit_active
-from views.widgets.number import edit_number
-from views.widgets.ohlc import edit_ohlc
+from app.views.widgets.active import edit_active
+from app.views.widgets.number import edit_number
+from app.views.widgets.ohlc import edit_ohlc
 
 
 

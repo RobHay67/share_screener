@@ -1,8 +1,8 @@
 import streamlit as st
 
-from views.widgets.active import edit_active
-from views.widgets.number import edit_number
-from views.widgets.ohlc import edit_ohlc, edit_ohlc_active_col
+from app.views.widgets.active import edit_active
+from app.views.widgets.number import edit_number
+from app.views.widgets.ohlc import edit_ohlc, edit_ohlc_active_col
 
 def render_line_chart(scope):
 	
