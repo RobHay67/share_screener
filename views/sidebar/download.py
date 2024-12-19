@@ -5,9 +5,9 @@ def edit_download_days(scope):
 	
 	display_name = 'Interval to Download'
 	widget_key = 'widget_download_days'
-	permitted_options = scope.yf['interval']
+	permitted_options = scope.yf['intervals']
 	previous_selection = scope.pages['download_days']
-	pos_for_previous = scope.yf['interval'].index(previous_selection)	
+	pos_for_previous = scope.yf['intervals'].index(previous_selection)	
 
 	st.sidebar.selectbox( 	
 							label		=display_name, 

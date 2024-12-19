@@ -1,6 +1,6 @@
 import streamlit as st
 
-from views.header.controller import render_app_header
+from views.header.controller import render_page_header
 from views.config.controller import render_config_page
 
 # Page Configuration
@@ -12,7 +12,7 @@ scope = st.session_state
 scope.pages['display'] = page
 
 
-render_app_header(scope, page_title, page_icon)
+render_page_header(scope, page_title, page_icon)
 
 if scope.users['logged_in']:
 	render_config_page(scope)

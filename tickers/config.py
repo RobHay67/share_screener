@@ -1,11 +1,10 @@
-from views.header.selectors import refresh_ticker_dropdown_for_config
 
 
+from page.dropdowns.controller import refresh_ticker_selector_lists
 
 
 def scope_tickers(scope):
 	scope.tickers = {}
-
 
 
 def create_dictionary_to_store_ticker_data(scope, ticker):
@@ -44,4 +43,4 @@ def create_dictionary_to_store_ticker_data(scope, ticker):
 			for trial in scope.trials['trial_list']:
 				scope.tickers[ticker][page]['trials'][trial] = None
 	
-	refresh_ticker_dropdown_for_config(scope)
+	refresh_ticker_selector_lists(scope)

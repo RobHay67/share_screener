@@ -1,6 +1,6 @@
 import streamlit as st
 
-from views.header.controller import render_app_header
+from views.header.controller import render_page_header
 from views.ticker_index.industries.report import render_industry_report
 from views.ticker_index.industries.button import button_industry_report
 from views.ticker_index.dataframes.button_show_df import button_show_ticker_index
@@ -19,7 +19,7 @@ scope = st.session_state
 scope.pages['display'] = page
 
 
-render_app_header(scope, page_title, page_icon)
+render_page_header(scope, page_title, page_icon)
 
 if scope.users['logged_in']:
 

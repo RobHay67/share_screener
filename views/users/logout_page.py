@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
 
-from views.header.page_title import page_title_layer
+from views.header.page_title.controller import page_title_layer
 from users.logout import logout_user
 
 

@@ -16,10 +16,6 @@ def view_dropdowns(scope):
 	three_cols( 'Market', scope.pages['dropdowns']['markets'], "scope.config['dropdowns']['markets']", widget_type='selectbox' )
 
 	st.divider()
-	st.caption('Ticker Selector in Config')
-	three_cols( 'Ticker (for Config)', scope.pages['dropdowns']['config_ticker'],  "scope.pages['dropdowns']['config_ticker']", widget_type='selectbox' )
-
-	st.divider()
 	st.caption('Column Selectors')
 	three_cols( 'OHLCV Columns', scope.pages['dropdowns']['ohlcv_columns'],  "scope.config['dropdowns']['ohlcv_columns']", widget_type='selectbox' )
 	three_cols( 'Price Columns', scope.pages['dropdowns']['price_columns'],  "scope.config['dropdowns']['price_columns']", widget_type='selectbox' )

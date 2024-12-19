@@ -21,6 +21,9 @@ def fail_download_event(scope, ticker, zero_volume=False):
 	if ticker not in scope.tickers_missing['errors']:
 		scope_missing_ticker_error(scope, ticker)
 
+
+	print(scope.yf['errors'][ticker])
+
 	if zero_volume:
 		error_message = 'Zero volume - no trading activity'
 	else:

@@ -3,7 +3,7 @@
 from users.config import base_config_users
 from charts.config import base_config_charts
 from screener.config import base_config_trials
-from views.app_config import base_config_pages
+from page.config import base_config_pages
 
 
 def restore_base_config(scope):

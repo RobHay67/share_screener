@@ -1,6 +1,6 @@
 import streamlit as st
 
-from views.header.controller import render_app_header
+from views.header.controller import render_page_header
 from views.chart.schema import create_schema_for_plotly
 from views.chart.main_chart import add_main_chart 
 from views.chart.child_charts import add_child_charts
@@ -15,7 +15,7 @@ page_icon = '📊'
 scope = st.session_state
 scope.pages['display'] = page
 
-render_app_header(scope, page_title, page_icon)
+render_page_header(scope, page_title, page_icon)
 
 if scope.users['logged_in']:
 

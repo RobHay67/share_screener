@@ -4,7 +4,7 @@ from tickers.latest_price import latest_ticker_price
 
 
 
-def selected_ticker_name_layer(scope):
+def render_ticker_name(scope):
 
 	page = scope.pages['display']
 

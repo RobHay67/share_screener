@@ -6,8 +6,8 @@
 
 import streamlit as st
 
-from views.links import website_hyperlink
-from views.links import link_to_app_button
+from views.header.links import website_hyperlink
+from views.header.links import link_to_app_button
 
 
 def render_trial_verdicts(scope):

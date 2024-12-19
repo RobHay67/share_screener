@@ -17,9 +17,10 @@ def render_sidebar(scope):
 	# print('market_time     = ', market_time)
 	
 	st.logo('assets/Logo JPG.jpg')
-
+	
 
 	with st.sidebar:
+		st.write(scope.pages['download_days'])
 		# st.title(scope.config['project_description'])
 		st.write('Welcome      : ' +  scope.users['login_name'])
 		st.write('Share Market : ' + str(scope.pages['share_market']))

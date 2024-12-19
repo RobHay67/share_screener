@@ -11,7 +11,7 @@ for i in range(5):print('')
 
 import streamlit as st
 from scope import set_scope
-from views.users.login_page import render_login_page
+from views.users.login.controller import render_login_page
 from views.sidebar.sidebar import render_sidebar
 
 if 'display_page' not in st.session_state:
@@ -35,8 +35,6 @@ page_navigation = st.navigation(
 		"Config"	: [ticker_idx_page, config_page, logout_page, testing_page],
 	}
 )
-
-
 
 
 

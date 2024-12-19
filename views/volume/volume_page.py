@@ -3,7 +3,7 @@ from datetime import datetime
 from datetime import timedelta
 import pytz
 
-from views.header.controller import render_app_header
+from views.header.controller import render_page_header
 from views.volume.input_volume import view_input_volume
 from views.volume.prediction import view_prediction
 from markets.schema import opening_hours
@@ -17,7 +17,7 @@ page_icon = '🔊'
 scope = st.session_state
 scope.pages['display'] = page
 
-render_app_header(scope, page_title, page_icon)
+render_page_header(scope, page_title, page_icon)
 
 if scope.users['logged_in']:
 

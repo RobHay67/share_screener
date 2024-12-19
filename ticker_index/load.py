@@ -3,7 +3,7 @@ import pandas as pd
 
 from ticker_index.schema import csv_dates
 from ticker_index.schema import csv_dtypes
-from views.header.selectors import refresh_dropdown_lists
+from page.dropdowns.controller import refresh_ticker_selector_lists
 
 from ticker_index.create_empty import create_empty_ticker_index
 
@@ -26,7 +26,7 @@ def load_ticker_index_file( scope ):
 
 		scope.ticker_index['df'] = ticker_index_file	# Cache the loaded ticker Index file	
 
-		refresh_dropdown_lists(scope)
+		refresh_ticker_selector_lists(scope)
 
 	else: 
 		create_empty_ticker_index(scope)

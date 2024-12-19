@@ -1,8 +1,11 @@
 import pandas as pd
 
 from ticker_index.update import update_ticker_index
-from views.header.selectors import refresh_dropdown_lists
-from views.app_config import scope_ticker_search
+from page.dropdowns.controller import refresh_ticker_selector_lists
+
+
+
+from page.config import scope_ticker_search
 
 from views.ticker_index.download.messages import message_downloading
 from views.ticker_index.download.messages import message_completed_download
@@ -58,7 +61,7 @@ def download_ticker_index_data(scope):
 		   
 		update_ticker_index(scope)
 
-		refresh_dropdown_lists(scope)
+		refresh_ticker_selector_lists(scope)
 
 		scope_ticker_search(scope)	# refresh the default ticker search list
 				

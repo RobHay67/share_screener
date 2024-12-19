@@ -1,6 +1,6 @@
 import streamlit as st
 
-from views.header.controller import render_app_header		
+from views.header.controller import render_page_header		
 from views.screener.verdicts import render_trial_verdicts
 
 
@@ -14,7 +14,7 @@ page_icon = '🧪'
 scope.pages['display'] = page
 
 
-render_app_header(scope, page_title, page_icon)
+render_page_header(scope, page_title, page_icon)
 
 if scope.users['logged_in']:
 	render_trial_verdicts(scope)
