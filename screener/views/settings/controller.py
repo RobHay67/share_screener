@@ -1,11 +1,11 @@
 
 import streamlit as st
 
-from views.screener.settings.ohlcv_trend import render_ohlcv_trend
-from views.screener.settings.sma_trend import render_sma_trend
-from views.screener.settings.stochastic_trend import render_stochastic_trend
-from views.screener.settings.rsi_trend import render_rsi_trend
-from views.screener.settings.example import example_settings
+from screener.views.settings.ohlcv_trend import render_ohlcv_trend
+from screener.views.settings.sma_trend import render_sma_trend
+from screener.views.settings.stochastic_trend import render_stochastic_trend
+from screener.views.settings.rsi_trend import render_rsi_trend
+from screener.views.settings.example import example_settings
 from users.views.save_user_settings_button import save_user_settings_button
 
 

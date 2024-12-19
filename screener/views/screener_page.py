@@ -1,7 +1,7 @@
 import streamlit as st
 
 from app.views.header.controller import render_page_header		
-from views.screener.verdicts import render_trial_verdicts
+from screener.views.verdicts import render_trial_verdicts
 
 
 # Page Configuration

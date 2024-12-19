@@ -18,7 +18,7 @@ if 'display_page' not in st.session_state:
 	scope = set_scope(st.session_state)
 
 # Page Setup
-screener_page 	= st.Page(page = "views/screener/screener_page.py",			title = "Screener", 		icon = '🧪', 	default=False,)
+screener_page 	= st.Page(page = "screener/views/screener_page.py",			title = "Screener", 		icon = '🧪', 	default=False,)
 charting_page 	= st.Page(page = "charts/views/charting_page.py",			title = "Charting", 		icon = '📊', 	default=False,)
 intra_day_page 	= st.Page(page = "views/intraday/intraday_page.py",			title = "Intra Day", 		icon = '🌤️', 	default=False,)
 volume_page 	= st.Page(page = "views/volume/volume_page.py",				title = "Volume", 			icon = '🔊', 	default=False,)
