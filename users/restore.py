@@ -1,8 +1,8 @@
 
 
 from users.config import base_config_users
-from charts.config import base_config_charts
-from screener.config import base_config_trials
+from charts.config.scope import base_config_charts
+from screener.config.scope import base_config_trials
 from app.scope_pages import base_config_pages
 
 

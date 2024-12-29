@@ -49,6 +49,7 @@
 | 1 |Log into GitHub and create project			|https://www.github.com|
 | 2 |Navigate to project parent folder			| cd {project parent folder}|
 | 2 |Create project folder and Clone repo		|git clone https://github.com/RobHay67/Pluto_blue.git|
+|	|Cd into the project folder					| cd {project folder} 
 |   |Push Local brach to GitHub					|git push -u origin {branch name i.e master} |
 |	|delete local branch						|git branch -d {branch name i.e master} |
 
@@ -186,3 +187,10 @@ This would remove the previous virtual environment and create a new one using th
 Hope this helps :)
 
 pipenv install --python=/Library/Frameworks/Python.framework/Versions/3.13/bin/python3.13
+
+
+
+
+virtualenv : 	packages in env/ then modify PATH - relies on requirements.txt
+pipenv:			same as above but kinda slow
+venv:			same as virtualenv > lightweight VE with their won site directions in isolation

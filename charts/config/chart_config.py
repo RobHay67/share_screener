@@ -1,56 +1,3 @@
-# trials_config - all config
-# chart_list	- list of chart config keys
-# active_list	- list of acttive chart config keys
-# column_adders	-  dict of { chart : active_status } (includes active and inactive)
-
-
-
-def scope_charts(scope):
-	scope.charts = {}
-	base_config_charts(scope)
-	scope.charts['chart_list'] = list(charts_config.keys())
-	scope.charts['colours'] = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
-	
-	chart_active_list(scope)
-
-	chart_column_adders(scope)
-
-
-def base_config_charts(scope):
-	# Setting can be changed for each user
-	# so we need to be able to call when changing user
-
-	scope.charts['primary_height'] = 500
-	scope.charts['total_height'] = scope.charts['primary_height']
-
-	# store the chart configuration dictionary (from below)
-	scope.charts['config'] = {}
-	for chart, config in charts_config.items():
-		scope.charts['config'][chart] = config.copy()
-	
-
-def chart_active_list(scope):
-	# Seperate function so it can be called after the initial load - i.e. change user
-	# Reset the list as this function will rebuild it
-	scope.charts['active_list'] = []
-
-	for chart in scope.charts['chart_list']:	
-		if scope.charts['config'][chart]['active'] == True:
-			scope.charts['active_list'].append(chart)
-
-
-def chart_column_adders(scope):
-
-	# Reset the list as this function will rebuild it
-	scope.charts['template_col_adders'] = {}
-
-	for chart in scope.charts['chart_list']:
-		# Only add charts that require additional columns
-		if scope.charts['config'][chart]['add_columns'] != None:
-			scope.charts['template_col_adders'][chart] = scope.charts['config'][chart]['active']
-
-
-
 
 
 # ---------------------------------------------------------------------------------
@@ -86,6 +33,9 @@ def chart_column_adders(scope):
 
 
 
+
+
+
 # ==============================================================================================================================================================
 # Technical Indicator Specification for the charts
 # ==============================================================================================================================================================
@@ -100,25 +50,25 @@ from charts.line 				import line_plot
 # Secondary Charts -----------------------------------
 from charts.volume 				import volume_plot
 # from charts.vac											# TODO
-from add_cols.vpm				import vpm_cols
+from tickers.add_cols.vpm				import vpm_cols
 from charts.vpm 				import vpm_plot
-from add_cols.macd				import macd_cols
+from tickers.add_cols.macd				import macd_cols
 from charts.macd 				import macd_plot
-from add_cols.macd_on_volume	import macd_vol_cols
+from tickers.add_cols.macd_on_volume	import macd_vol_cols
 from charts.macd_vol			import macd_vol_plot
-from add_cols.rsi 				import rsi_cols
+from tickers.add_cols.rsi 				import rsi_cols
 from charts.rsi 				import rsi_plot
-from add_cols.stochastic		import stoch_cols
+from tickers.add_cols.stochastic		import stoch_cols
 from charts.stoch 				import stoch_plot
 # from analysis.charts.				# Volume Oscillator				# TODO
 # from charts.roc													# TODO - not sure what this one is ROb - investigate and add in - i think it might be a primary chart
 											
 # Overlays -------------------------------------------
-from add_cols.sma				import sma_cols
+from tickers.add_cols.sma				import sma_cols
 from charts.overlays.sma 		import sma_plot
-from add_cols.ema				import ema_cols
+from tickers.add_cols.ema				import ema_cols
 from charts.overlays.ema 		import ema_plot
-from add_cols.dividends			import dividend_cols
+from tickers.add_cols.dividends			import dividend_cols
 from charts.overlays.dividends 	import dividend_plot
 
 
@@ -562,9 +512,6 @@ charts_config = {
 
 								},		
 		}
-
-
-
 
 
 

@@ -1,61 +1,9 @@
-# trials_config - all config
-# trial_list	- list of trial config keys
-# active_list	- list of active trial config keys
-# column_adders	- dict of { trial : active_status } (includes active and inactive)
-
-# trials is the config
-# trials_config are the current settings!!!
 
 
-
-def scope_trials(scope):
-
-	scope.trials = {}
-	base_config_trials(scope)
-	scope.trials['trial_list'] = list(trial_configuration_dict.keys())
-	trial_active_list(scope)
-	trial_column_adders(scope)
-
-
-def base_config_trials(scope):
-	# store the trial configuration dictionary (from below)
-	scope.trials['config'] = {}
-	for trial, configuration in trial_configuration_dict.items():
-		scope.trials['config'][trial] = configuration.copy()
-
-
-def trial_active_list(scope):
-	# a list of every currently active trial
-	# Seperate function so it can be called after the initial load - i.e. change user
-
-	# Reset the list as this function will rebuild it
-	scope.trials['active_list'] = []
-
-	for trial in scope.trials['trial_list']:	
-		if scope.trials['config'][trial]['active'] == True:
-			scope.trials['active_list'].append(trial)
-
-
-def trial_column_adders(scope):
-	# A dictionary of every trial that requires additional columns
-	# ignore and trials that dont have column adders
-	# Seperate function so it can be called after the initial load - i.e. change user
-
-	# Reset the dictionary as calling this function will recreate the dictionary
-	scope.trials['template_col_adders'] = {}
-
-	for trial in scope.trials['trial_list']:
-		if scope.trials['config'][trial]['add_columns'] != None:
-		# Add trials that require additional columns
-			active_status_of_trial = scope.trials['config'][trial]['active']
-			scope.trials['template_col_adders'][trial] = active_status_of_trial
-
-
-
-from add_cols.trend import trend_cols
-from add_cols.sma import sma_trend
-from add_cols.stochastic import stochastic_trend
-from add_cols.rsi import rsi_trend
+from tickers.add_cols.trend import trend_cols
+from tickers.add_cols.sma import sma_trend
+from tickers.add_cols.stochastic import stochastic_trend
+from tickers.add_cols.rsi import rsi_trend
 
 
 
