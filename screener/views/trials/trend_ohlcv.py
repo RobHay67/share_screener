@@ -1,7 +1,7 @@
 import streamlit as st
 
 from tickers.events.edit_column_adder import edit_column_adder_event
-from screener.config.trials import trends_for_ohlcv
+from screener.config.schema import trends_for_ohlcv
 
 
 def edit_trend_ohlcv(scope, config_group, config_key ):

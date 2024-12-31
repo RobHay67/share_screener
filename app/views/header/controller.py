@@ -3,50 +3,28 @@
 #  (2) adding extra columns (ie MACD) to that share data
 
 
-
-
-from app.views.header.page_title.controller import page_title_layer
-from app.views.header.config_buttons import render_config_buttons
-from app.views.header.ticker_selectors.controller import render_ticker_selectors
-from app.views.header.ticker_files.controller import load_ticker_files
-from app.views.header.add_columns.controller import progress_adding_columns_to_data
-from app.views.header.worklist.controller import render_ticker_worklist
-from app.views.header.quicklinks import render_quick_links
-from app.views.header.dataframes import render_dataframes
-from app.views.header.ticker_name import render_ticker_name
-from app.views.header.search.controller import render_search_results
+from app.views.header.a_page_title.controller import page_title_layer
+from app.views.header.b_config.buttons import render_config_buttons
+from app.views.header.c_ticker_selectors.controller import render_ticker_selectors
+from app.views.header.d_ticker_files.controller import load_ticker_data
+from app.views.header.f_worklist.controller import render_ticker_worklist
+from app.views.header.g_quick_links.quicklinks import render_quick_links
+from app.views.header.h_dfs.dataframes import render_dataframes
+from app.views.header.i_search.controller import render_search_results
+from app.views.header.j_ticker_name.ticker_name import render_ticker_name
 
 
 def render_page_header(scope, page_title, page_icon):
-	
-	page_title_layer(scope, page_title, page_icon)
-
+	page_title_layer(scope, page_title, page_icon)		# a_
 	if scope.users['logged_in']:
-		
-		# import streamlit as st
-		# page = scope.pages['display']
-		# col1,col2 = st.columns([2.0,10.0])  #12
-		# with col1:
-		# 	st.write('Worklist')
-		# 	st.write(scope.pages[page]['worklist'])
-			
-		# with col2:
-		# 	st.write('download_these_industries')
-		# 	st.write(scope.yf['download_these_industries'])
-
-
-
-		render_config_buttons(scope)
-		
-		
-		render_ticker_selectors(scope)
-		load_ticker_files(scope)
-		progress_adding_columns_to_data(scope)
-		render_ticker_worklist(scope)
-		render_quick_links(scope)
-		render_dataframes(scope)
-		render_search_results(scope)
-		render_ticker_name(scope)
+		render_config_buttons(scope)					# b_
+		render_ticker_selectors(scope)					# c_
+		load_ticker_data(scope)							# d_
+		render_ticker_worklist(scope)					# f_
+		render_quick_links(scope)						# g_
+		render_dataframes(scope)						# h_
+		render_search_results(scope)					# i_
+		render_ticker_name(scope)						# j_
 
 
 

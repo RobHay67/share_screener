@@ -5,7 +5,7 @@
 
 from charts.config.active_list import chart_active_list
 
-from charts.config.charts import charts_config
+from charts.config.schema import charts_config
 from charts.config.col_adders import chart_column_adders
 
 

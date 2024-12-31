@@ -6,9 +6,9 @@ from tickers.y_finance.download.format import format_downloaded_batch
 from tickers.y_finance.cache.batch_data import cache_batch_data
 from tickers.y_finance.cache.ticker_data import cache_entire_download
 from tickers.y_finance.scope_yf import scope_yf_config
-from tickers.views.download.msg_download import render_message_download
-from tickers.views.download.msg_download_complete import render_message_download_complete
-from tickers.views.download.msg_no_tickers import no_tickers_selected
+from tickers.views.msg_download import render_message_download
+from tickers.views.msg_download_complete import render_message_download_complete
+from tickers.views.msg_no_tickers import no_tickers_selected
 
 
 def download_ticker_data(scope):

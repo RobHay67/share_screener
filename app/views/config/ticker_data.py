@@ -1,6 +1,6 @@
 import streamlit as st
 from app.views.config.three_cols import three_cols
-from app.views.header.ticker_selectors.ticker_config import select_a_ticker_for_config
+from app.views.header.c_ticker_selectors.ticker_config import select_a_ticker_for_config
 
 def render_scope_tickers(scope):
 	ticker_keys = scope.tickers.keys()

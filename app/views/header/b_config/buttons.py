@@ -6,6 +6,7 @@ from charts.views.settings.overlays import render_overlays_config
 from screener.views.settings.controller import render_available_trials
 from app.views.config.strategies import render_strategies
 
+
 def render_config_buttons(scope):
 
 	page = scope.pages['display']

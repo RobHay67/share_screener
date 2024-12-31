@@ -1,10 +1,10 @@
 import streamlit as st
 
-
 from tickers.load.controller import load_ticker
+from tickers.load.builder import create_ticker_list_to_load
 
 
-def progress_bar_loading_tickers(scope):
+def load_tickers_progress_bar(scope):
 	
 	progress_bar_exists = False
 	list_of_tickers_to_load = create_ticker_list_to_load(scope)
@@ -22,10 +22,6 @@ def progress_bar_loading_tickers(scope):
 			my_bar.progress(poc, text='Loading ohlcv Ticker File ( '+str(counter)+' )  > '+ticker)
 			load_ticker(scope, ticker)
 	
-	# we will have new information after the load so update
-	# the dropdown list for the worklist
-	build_app_worklist_dropdown(scope)
-
 	no_loaded_tickers = str(len(scope.tickers.keys()))
 
 	if progress_bar_exists==True:

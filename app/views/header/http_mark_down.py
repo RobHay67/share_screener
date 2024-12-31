@@ -2,7 +2,7 @@
 import streamlit as st
 
 
-def md_for_header(string, bold=False):
+def http_mark_down_for_header(string, bold=False):
 
 	formatted_string = str(string)
 	if bold:formatted_string = "<b>"+formatted_string+"</b>"

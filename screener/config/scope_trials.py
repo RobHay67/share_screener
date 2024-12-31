@@ -6,7 +6,7 @@
 # trials is the config
 # trials_config are the current settings!!!
 
-from screener.config.trials import trial_configuration_dict
+from screener.config.schema import trial_configuration_dict
 from screener.config.active_list import trial_active_list
 from screener.config.add_columns import trial_column_adders
 

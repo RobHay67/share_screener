@@ -1,8 +1,5 @@
 
 
-
-
-
 def create_ticker_list_to_load(scope):
 
 	page = scope.pages['display']
