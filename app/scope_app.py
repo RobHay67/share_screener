@@ -2,16 +2,18 @@ import time
 
 from app.helpers.system import print_system_info_to_terminal
 from app.views.streamlit_config import set_streamlit_page_config
+
 from app.scope_pages import scope_pages, scope_ticker_search
-from files.config import scope_folders_and_paths
-from users.config import scope_users
-from screener.config.scope import scope_trials
-from charts.config.scope import scope_charts
-from ticker_index.config import scope_index_file
-from tickers.scope import scope_tickers
-from tickers.missing_tickers.config import scope_tickers_missing
-from y_finance.config import scope_download_variables
-from strategies.config import scope_strategy
+from files.scope_files import scope_folders_and_paths
+from users.scope_users import scope_users
+from screener.config.scope_trials import scope_trials
+from screener.config.scope_strategy import scope_strategy
+from charts.config.scope_charts import scope_charts
+from ticker_index.scope_ticker_index import scope_index_file
+from tickers.scope_tickers import scope_tickers
+from tickers.missing_tickers.scope_tickers_missing import scope_tickers_missing
+from tickers.y_finance.scope_yf import scope_download_variables
+
 
 
 def set_scope(scope):

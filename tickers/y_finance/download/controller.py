@@ -1,5 +1,5 @@
-from y_finance.download.single_ticker import single_ticker_downloader
-from y_finance.download.multi_tickers import multiple_tickers_downloader
+from tickers.y_finance.download.single_ticker import single_ticker_downloader
+from tickers.y_finance.download.multi_tickers import multiple_tickers_downloader
 
 
 def download_data_from_yf(scope):

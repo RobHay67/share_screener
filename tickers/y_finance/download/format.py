@@ -1,5 +1,5 @@
 
-from y_finance.schemas import y_finance_schemas
+from tickers.y_finance.schemas import y_finance_schemas
 from tickers.schema import ticker_file_schema
 
 

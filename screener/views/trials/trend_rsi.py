@@ -2,7 +2,7 @@ import streamlit as st
 
 from tickers.events.edit_column_adder import edit_column_adder_event
 
-from screener.config.scope import trends_for_rsi
+from screener.config.trials import trends_for_rsi
 
 
 def edit_trend_rsi(scope, config_group, config_key ):

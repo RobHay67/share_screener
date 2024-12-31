@@ -1,4 +1,4 @@
-from tickers.missing_tickers.config import scope_missing_ticker_error
+from tickers.missing_tickers.scope_tickers_missing import scope_missing_ticker_error
 
 
 def fail_local_load_event(scope, ticker):

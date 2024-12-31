@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-from y_finance.metadata import fetch_yfinance_metadata
+from tickers.y_finance.metadata import fetch_yfinance_metadata
 
 
 def dividend_cols( scope, chart, ticker, chart_df):
