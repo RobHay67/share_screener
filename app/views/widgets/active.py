@@ -8,12 +8,12 @@ from tickers.events.edit_active import edit_active_event
 def edit_active(scope, config_group, config_key ):
 
 	widget_key = 'widget_active_' + config_group + '_' + config_key
-	display_name =  '' + scope[config_group]['config'][config_key]['name']
-	previous_selection = scope[config_group]['config'][config_key]['active']
-	add_columns = scope[config_group]['config'][config_key]['add_columns']
+	display_name =  '' + scope[config_group]['user_config'][config_key]['name']
+	previous_selection = scope[config_group]['user_config'][config_key]['active']
+	add_columns = scope[config_group]['user_config'][config_key]['add_columns']
 	
 	if add_columns != None:
-		# add some space above active for charts/trials that have colume config
+		# add some space above active for charts/trials that have column config
 		st.write(' ')
 		
 	st.checkbox( 
@@ -29,7 +29,7 @@ def on_change_active_status(scope:dict, config_group:str, config_key:str, widget
 	changed_value = scope[widget_key]
 
 	# store the selection
-	scope[config_group]['config'][config_key]['active'] = changed_value
+	scope[config_group]['user_config'][config_key]['active'] = changed_value
 	# Update the Column Adder Templates
 	scope[config_group]['template_col_adders'][config_key] = changed_value
 

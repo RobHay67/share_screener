@@ -3,8 +3,7 @@
 def scope_pages(scope):
 
 	scope.pages = {}
-	base_config_pages(scope)
-	scope.pages['button_for_scope'] = None
+	user_config_pages(scope)
 	scope.pages['page_list'] = [ 
 								'chart', 
 								'intraday', 
@@ -18,6 +17,7 @@ def scope_pages(scope):
 								'testing',
 								]
 	scope.pages['ticker_values'] = ticker_value_schema
+	scope.pages['render_config'] = None
 
 	# Dropdowns
 	scope.pages['dropdowns'] = {}
@@ -57,7 +57,7 @@ def scope_pages(scope):
 								}
 
 
-def base_config_pages(scope):
+def user_config_pages(scope):
 	# These Setting can be changed for each user
 	# so we need to be able to call when changing user
 	scope.pages['row_limit'] = 100

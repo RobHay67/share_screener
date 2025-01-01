@@ -25,7 +25,7 @@ research_page 	= st.Page(page = "research/views/research_page.py",			title = "Re
 websites_page 	= st.Page(page = "websites/views/website_page.py",			title = "Websites", 		icon = '🌐',	default=False,)
 ticker_idx_page = st.Page(page = "ticker_index/views/ticker_index_page.py",	title = "Ticker Index", 	icon = '🗄️',	default=False,)
 logout_page 	= st.Page(page = "users/views/logout_page.py",				title = "Logout", 			icon = '🔒', 	default=True,)
-config_page 	= st.Page(page = "app/views/config/config_page.py",			title = "Config", 			icon = '⚙️',	default=False,)
+config_page 	= st.Page(page = "config/views/config_page.py",				title = "Config", 			icon = '⚙️',	default=False,)
 testing_page 	= st.Page(page = "app/views/test_page.py",					title = "Testing", 			icon = '🔬',	default=False,)
 
 page_navigation = st.navigation(
@@ -51,7 +51,6 @@ print('='*66)
 print('TODOs - document while coding then move to Trello')
 
 print('TODO - we need to download and SAVE the dividend data as well')
-print('TODO - might need some code to detect multiple sessions open')
 print('TODO > /Users/robhay/Developer/share_screener/y_finance/cache/batch_data.py:13:')
 print('FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. ')
 print('In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. ')
@@ -64,6 +63,19 @@ print('='*66)
 print('Total Keys in Scope = ', len(scope))
 for count, key in enumerate(sorted(st.session_state)):print(count+1, key)
 print('='*66)
+
+
+for key, item in scope.trials.items():
+	print( key, '   :    ', item)
+
+
+
+
+
+
+
+
+
 
 
 
@@ -82,14 +94,14 @@ print('='*66)
 # 	print('='*70)
 
 
-# def level_2_details(level_1, level_2):
-# 	# print('')
-# 	print('-'*40)
-# 	print(level_1, '/', level_2, ' ( level 2 )', )
-# 	print('-'*40)
-# 	if level_2 in st.session_state[level_1]:
-# 		for key in st.session_state[level_1][level_2]:
-# 			print(level_2 , ' - ', key)
+def level_2_details(level_1, level_2):
+	# print('')
+	print('-'*40)
+	print(level_1, '/', level_2, ' ( level 2 )', )
+	print('-'*40)
+	if level_2 in st.session_state[level_1]:
+		for key in st.session_state[level_1][level_2]:
+			print(level_2 , ' - ', key)
 
 # def level_3_details(level_1, level_2, level_3):
 # 	print('-'*50)

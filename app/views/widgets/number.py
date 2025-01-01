@@ -12,7 +12,7 @@ def edit_number(scope, config_group, config_key, measure ):
 		display_name =  'at least this many days'
 	elif display_name == 'Timespan':
 		display_name = 'of the last x days'
-	previous_selection = int(scope[config_group]['config'][config_key]['add_columns'][measure])	
+	previous_selection = int(scope[config_group]['user_config'][config_key]['add_columns'][measure])	
 
 	st.number_input( 	
 					label		=display_name, 
@@ -30,7 +30,7 @@ def on_change_number(scope:dict, config_group:str, config_key:str, measure:str, 
 	changed_value = scope[widget_key]
 
 	# store the selection
-	scope[config_group]['config'][config_key]['add_columns'][measure] = changed_value
+	scope[config_group]['user_config'][config_key]['add_columns'][measure] = changed_value
 
 	# update the page data renew status
 	edit_column_adder_event(scope, config_key)

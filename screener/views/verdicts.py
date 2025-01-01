@@ -95,7 +95,7 @@ def render_active_trials(scope):
 
 		connector = 'and ------- >'
 		english_explanation = ''
-		dict_of_values = scope.trials['config'][trial]['add_columns']
+		dict_of_values = scope.trials['user_config'][trial]['add_columns']
 		column = dict_of_values['column'] if 'column' in dict_of_values else None
 		trend = dict_of_values['trend'] if 'trend' in dict_of_values else None
 		duration = dict_of_values['duration'] if 'duration' in dict_of_values else None
@@ -104,10 +104,10 @@ def render_active_trials(scope):
 		lookback_days = dict_of_values['lookback_days'] if 'lookback_days' in dict_of_values else None
 		slow = dict_of_values['slow'] if 'slow' in dict_of_values else None
 		signal = dict_of_values['signal'] if 'signal' in dict_of_values else None
-		definition = scope.trials['config'][trial]['definition']
+		definition = scope.trials['user_config'][trial]['definition']
 		# print(definition)
 		
-		with col1: st.write(scope.trials['config'][trial]['short_name'])
+		with col1: st.write(scope.trials['user_config'][trial]['short_name'])
 		
 		# st.write(scope.pages['ticker_values'])
 		

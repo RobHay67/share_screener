@@ -11,9 +11,9 @@ def trial_column_adders(scope):
 	scope.trials['template_col_adders'] = {}
 
 	for trial in scope.trials['trial_list']:
-		if scope.trials['config'][trial]['add_columns'] != None:
+		if scope.trials['user_config'][trial]['add_columns'] != None:
 		# Add trials that require additional columns
-			active_status_of_trial = scope.trials['config'][trial]['active']
+			active_status_of_trial = scope.trials['user_config'][trial]['active']
 			scope.trials['template_col_adders'][trial] = active_status_of_trial
 
 

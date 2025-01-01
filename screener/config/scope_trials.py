@@ -9,23 +9,16 @@
 from screener.config.schema import trial_configuration_dict
 from screener.config.active_list import trial_active_list
 from screener.config.add_columns import trial_column_adders
+from screener.config.user import user_config_trials
 
 
 def scope_trials(scope):
 
 	scope.trials = {}
-	base_config_trials(scope)
+	user_config_trials(scope)
 	scope.trials['trial_list'] = list(trial_configuration_dict.keys())
 	trial_active_list(scope)
 	trial_column_adders(scope)
-
-
-def base_config_trials(scope):
-	# store the trial configuration dictionary (from below)
-	scope.trials['config'] = {}
-	for trial, configuration in trial_configuration_dict.items():
-		scope.trials['config'][trial] = configuration.copy()
-
 
 
 

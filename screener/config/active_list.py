@@ -8,7 +8,7 @@ def trial_active_list(scope):
 	scope.trials['active_list'] = []
 
 	for trial in scope.trials['trial_list']:	
-		if scope.trials['config'][trial]['active'] == True:
+		if scope.trials['user_config'][trial]['active'] == True:
 			scope.trials['active_list'].append(trial)
 
 			

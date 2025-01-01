@@ -18,22 +18,22 @@ def login_user(scope, login_name):
 
 	# ========================================================
 	# Trial Settings
-	# Over-write the scope.trials['config'] settings with the user values
+	# Over-write the scope.trials['user_config'] settings with the user values
 
 	user_trial_settings = scope.users['json'][login_name]['trials']
 	
 	for trial in user_trial_settings.keys():
 		# Ensure the TRIAL is still available
-		if trial in scope.trials['config'].keys():
+		if trial in scope.trials['user_config'].keys():
 			
 			# Trial Active Status
-			scope.trials['config'][trial]['active'] = user_trial_settings[trial]['active']
+			scope.trials['user_config'][trial]['active'] = user_trial_settings[trial]['active']
 
 			# Trial additional column attribute settings
 			add_columns = user_trial_settings[trial]['add_columns']
 			if add_columns != None:
 				for attribute in add_columns.keys():
-					scope.trials['config'][trial]['add_columns'][attribute] = add_columns[attribute]
+					scope.trials['user_config'][trial]['add_columns'][attribute] = add_columns[attribute]
 	
 	# refresh the Trial lists
 	trial_active_list(scope)
@@ -42,26 +42,26 @@ def login_user(scope, login_name):
 
 	# ========================================================
 	# Chart Settings
-	# Over-write the scope.charts['config'] settings with the user values
+	# Over-write the scope.charts['user_config'] settings with the user values
 
 	user_chart_settings = scope.users['json'][login_name]['charts']
 
 	for chart in user_chart_settings.keys():
 		# Ensure the CHART is still available
-		if chart in scope.charts['config'].keys():
+		if chart in scope.charts['user_config'].keys():
 			
 			# Chart Active Status
-			scope.charts['config'][chart]['active'] = user_chart_settings[chart]['active']
+			scope.charts['user_config'][chart]['active'] = user_chart_settings[chart]['active']
 
 			# Chart Active_Columns (if available)
 			if 'active_columns' in user_chart_settings[chart].keys():
-				scope.charts['config'][chart]['active_columns'] = user_chart_settings[chart]['active_columns']
+				scope.charts['user_config'][chart]['active_columns'] = user_chart_settings[chart]['active_columns']
 
 			# Chart additional column attribute settings
 			add_columns = user_chart_settings[chart]['add_columns']
 			if add_columns != None:
 				for attribute in add_columns.keys():
-					scope.charts['config'][chart]['add_columns'][attribute] = add_columns[attribute]
+					scope.charts['user_config'][chart]['add_columns'][attribute] = add_columns[attribute]
 
 		
 	# refresh the Chart lists

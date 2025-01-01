@@ -14,7 +14,7 @@ def replace_page_df_columns(scope, page, ticker):
 			# Only replace the columns if requested to do so for this column adder
 				ticker_df = scope.tickers[ticker][page]['df']
 				# Call the column adding function for this config_key
-				scope[config_group]['config'][config_key]['add_columns']['function'](scope, config_key, ticker, ticker_df)
+				scope[config_group]['user_config'][config_key]['add_columns']['function'](scope, config_key, ticker, ticker_df)
 				# Set the status to false to prevent refreshing unnecesarily
 				scope.tickers[ticker][page]['replace_column'][config_key] = False
 

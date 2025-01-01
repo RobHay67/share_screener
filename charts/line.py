@@ -12,7 +12,7 @@ import plotly.graph_objects as go
 
 def line_plot(scope, fig, chart, chart_df, row_no, col_no):
 
-	columns = scope['charts']['config'][chart]['active_columns']
+	columns = scope['charts']['user_config'][chart]['active_columns']
 	column_colours = ['blue', 'red', 'green', 'yellow']
 	
 	for pos, column in enumerate(columns):

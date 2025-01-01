@@ -10,23 +10,23 @@ def save_charts_config(scope):
 	for chart in scope.charts['chart_list']:
 		chart_dict[chart] = {}
 
-		# print(scope.charts['config'][chart].keys())
+		# print(scope.charts['user_config'][chart].keys())
 
 		# Save the overall active setting for the chart
-		chart_dict[chart]['active'] = scope.charts['config'][chart]['active']
+		chart_dict[chart]['active'] = scope.charts['user_config'][chart]['active']
 
 		# Save active_column attributes
-		if 'active_columns' in scope.charts['config'][chart].keys():
-			chart_dict[chart]['active_columns'] = scope.charts['config'][chart]['active_columns']
+		if 'active_columns' in scope.charts['user_config'][chart].keys():
+			chart_dict[chart]['active_columns'] = scope.charts['user_config'][chart]['active_columns']
 
 		# Save any column adding settings (i.e. selected column or duration)
-		add_columns = scope.charts['config'][chart]['add_columns']
+		add_columns = scope.charts['user_config'][chart]['add_columns']
 		if add_columns != None:
 			chart_dict[chart]['add_columns'] = {}
 			for attribute in add_columns.keys():
 				# Save attributes (unless exluded)
 				if attribute not in excluded_attribute_list:
-					chart_dict[chart]['add_columns'][attribute] = scope.charts['config'][chart]['add_columns'][attribute]
+					chart_dict[chart]['add_columns'][attribute] = scope.charts['user_config'][chart]['add_columns'][attribute]
 
 		else:
 			chart_dict[chart]['add_columns'] = None	

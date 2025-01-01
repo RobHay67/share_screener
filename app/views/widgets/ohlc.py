@@ -6,8 +6,8 @@ from tickers.events.edit_column_adder import edit_column_adder_event
 def edit_ohlc(scope, config_group, config_key ):
 	
 	widget_key = 'widget_' + config_group + '_' + config_key
-	display_name =  ('Column for ' +  scope[config_group]['config'][config_key]['short_name'])
-	previous_selection = scope[config_group]['config'][config_key]['add_columns']['column']
+	display_name =  ('Column for ' +  scope[config_group]['user_config'][config_key]['short_name'])
+	previous_selection = scope[config_group]['user_config'][config_key]['add_columns']['column']
 	pos_for_previous = scope.pages['dropdowns']['price_columns'].index(previous_selection)	
 
 	st.selectbox ( 
@@ -25,7 +25,7 @@ def on_change_ohlc(scope:dict, config_group:str, config_key:str, widget_key:str)
 	changed_value = scope[widget_key]
 
 	# store the selection
-	scope[config_group]['config'][config_key]['add_columns']['column'] = changed_value	
+	scope[config_group]['user_config'][config_key]['add_columns']['column'] = changed_value	
 
 	# update the page data renew status
 	edit_column_adder_event(scope, config_key)
@@ -34,7 +34,7 @@ def on_change_ohlc(scope:dict, config_group:str, config_key:str, widget_key:str)
 
 def edit_ohlc_active_col(scope, config_group, config_key, col_name):
 	
-	active_ohlc_cols = scope[config_group]['config'][config_key]['active_columns']
+	active_ohlc_cols = scope[config_group]['user_config'][config_key]['active_columns']
 	previous_selection = True if col_name in active_ohlc_cols else False
 
 	widget_key = 'widget_active_col_' + config_group + '_' + config_key + '_' + col_name
@@ -52,7 +52,7 @@ def on_change_active_column_status(scope, config_group, config_key, col_name, wi
 
 	changed_value = scope[widget_key]
 
-	active_columns = scope[config_group]['config'][config_key]['active_columns']
+	active_columns = scope[config_group]['user_config'][config_key]['active_columns']
 
 	if changed_value == True and col_name not in active_columns:
 		active_columns.append(col_name)

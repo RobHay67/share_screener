@@ -1,6 +1,5 @@
 import streamlit as st
 
-from app.views.header.http_mark_down import http_mark_down_for_header
 from app.views.header.c_ticker_selectors.ticker import select_a_ticker
 from app.views.header.c_ticker_selectors.tickers import select_tickers
 from app.views.header.c_ticker_selectors.industries import select_industries
@@ -10,7 +9,7 @@ from app.worklists.builder import refresh_page_worklist
 
 
 
-def render_ticker_selectors(scope):
+def show_ticker_selectors(scope):
 
 	col1,col2,col3,col4 = st.columns([2.0, 2.0, 2.0, 6.0])  #12
 	
@@ -18,7 +17,6 @@ def render_ticker_selectors(scope):
 	layer_title = 'Ticker(s) Selectors'
 
 	if page == 'screener':
-		# with col1:http_mark_down_for_header(layer_title)
 		with col1:select_tickers(scope)
 		with col2:select_industries(scope)
 		with col3:select_a_market(scope)
@@ -26,7 +24,6 @@ def render_ticker_selectors(scope):
 
 	if page in ['chart', 'intraday', 'volume', 'research']:
 		# One of the Single Ticker Pages - Single / Volume / Research or IntraDay
-		# with col1:http_mark_down_for_header(layer_title)
 		with col1:select_a_ticker(scope)
 		with col4:search_ticker_by_name(scope)
 
