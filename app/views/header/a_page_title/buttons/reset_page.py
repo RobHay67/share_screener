@@ -22,6 +22,7 @@ def reset_render_status(scope):
 	scope.pages[page]['render']['overlay_settings'] = False
 	scope.pages[page]['render']['trial_settings'] 	= False
 	scope.pages[page]['render']['strategy'] 		= False
+	scope.pages[page]['render']['ticker_config'] 	= False
 
 	scope.pages[page]['search_results'] 			= {}
 

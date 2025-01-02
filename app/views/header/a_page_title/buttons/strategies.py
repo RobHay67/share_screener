@@ -11,7 +11,7 @@ def strategies_button(scope):
 						use_container_width=True, 
 						on_click=strategy_status, args=(scope, ),
 						type=type_of_button,
-						help='Strategies - save current tests into a strategy'
+						help='Strategy Settings'
 						)
 
 	return button

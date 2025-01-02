@@ -1,7 +1,6 @@
 import streamlit as st
 
 
-
 def show_config_buttons(scope):
 	col1,col2,col3,col4,col5 = st.columns(5)
 	with col1: 
@@ -11,7 +10,7 @@ def show_config_buttons(scope):
 		st.button('Page(s)', use_container_width=True, on_click=set_st_button, args=(scope, 'show_page_config', ))
 		st.button('Users', 			use_container_width=True, on_click=set_st_button, args=(scope, 'show_user_config', ))
 	with col3: 
-		st.button('Ticker Data', 	use_container_width=True, on_click=set_st_button, args=(scope, 'show_ticker_config', ))
+		st.button('Ticker Data', 	use_container_width=True, on_click=set_st_button, args=(scope, 'show_ticker_general_config', ))
 		st.button('Missing Tickers',use_container_width=True, on_click=set_st_button, args=(scope, 'show_missing_ticker_config', ))
 	with col4: 		
 		st.button('Charts', 			use_container_width=True, on_click=set_st_button, args=(scope, 'show_chart_config', ))

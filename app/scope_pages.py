@@ -54,6 +54,7 @@ def scope_pages(scope):
 										'overlay_settings':False,		# display the overlay settings
 										'trial_settings':False,			# display the trial settings
 										'strategy':False,				# display the strategy settings
+										'ticker_config':False,			# display the ticker config
 								}
 
 

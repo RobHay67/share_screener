@@ -1,6 +1,6 @@
 import streamlit as st
 
-from app.views.header.controller import render_page_header
+from app.views.header.controller import show_page_header
 
 
 
@@ -13,7 +13,7 @@ scope = st.session_state
 scope.pages['display'] = page
 
 
-render_page_header(scope, page_title, page_icon)
+show_page_header(scope, page_title, page_icon)
 
 # @st.dialog("No Tickers have been selected!")
 # st.dialog('this is a dialog ????', width="wide")

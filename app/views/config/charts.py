@@ -4,7 +4,7 @@ from app.views.widgets.cols_three import three_cols
 
 def show_chart_config(scope):
 
-	with st.expander("Chart Settings", expanded=False):
+	with st.expander("Chart Configuration", expanded=False):
 		three_cols( 'Chart Configuration stored in', 		{}, 'scope.charts', widget_type='string' )
 		three_cols( 'Chart Config Dictionaries stored in', 	{}, "scope.charts['user_config']", widget_type='string' )
 

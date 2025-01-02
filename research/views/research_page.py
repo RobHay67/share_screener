@@ -1,6 +1,6 @@
 import streamlit as st
 
-from app.views.header.controller import render_page_header
+from app.views.header.controller import show_page_header
 from tickers.y_finance.metadata import fetch_yfinance_metadata
 from research.views.info import company_general
 # from research.views.info import business_summary
@@ -34,7 +34,7 @@ scope = st.session_state
 scope.pages['display'] = page
 
 
-render_page_header(scope, page_title, page_icon)
+show_page_header(scope, page_title, page_icon)
 
 if scope.users['logged_in']:
 

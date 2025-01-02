@@ -1,12 +1,13 @@
 import streamlit as st
 
-from app.views.header.a_page_title.button_config import page_config_button
+from app.views.header.a_page_title.buttons.config import page_config_button
 from charts.views.settings.button_chart_config import chart_settings_button
 from charts.views.settings.button_overlay_config import chart_overlay_button
-from app.views.header.a_page_title.button_strategies import strategies_button
+from app.views.header.a_page_title.buttons.strategies import strategies_button
 from screener.views.trials.trial_settings import trial_settings_button
-from app.views.header.a_page_title.button_reset_page import reset_page_button
-from app.views.header.a_page_title.button_download import download_button
+from app.views.header.a_page_title.buttons.dfs import ticker_config_button
+from app.views.header.a_page_title.buttons.reset_page import reset_page_button
+from app.views.header.a_page_title.buttons.download import download_button
 
 
 def page_title_layer(scope, page_title, page_icon):
@@ -18,7 +19,7 @@ def page_title_layer(scope, page_title, page_icon):
 		st.subheader(page_icon + ' ' + page_title, divider='gray')
 	else:
 		# All Other Pages
-		col1,col2,col3,col4,col5,col6 = st.columns([7.5,2.0,0.5,0.5,0.5,1.0])
+		col1,col2,col3,col4,col5,col6,col7 = st.columns([7.0,2.0,0.5,0.5,0.5,0.5,1.0])
 		
 		with col1:st.subheader(page_icon + ' ' + page_title, divider='gray')
 
@@ -34,8 +35,9 @@ def page_title_layer(scope, page_title, page_icon):
 			with col3:trial_settings_button(scope)
 			with col4:strategies_button(scope)
 
-		with col5:page_config_button(scope)
-		with col6:reset_page_button(scope)
+		with col5:ticker_config_button(scope)
+		with col6:page_config_button(scope)
+		with col7:reset_page_button(scope)
 		
 		
 			

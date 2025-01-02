@@ -1,12 +1,12 @@
 import streamlit as st
 
-from app.views.header.controller import render_page_header
+from app.views.header.controller import show_page_header
 from ticker_index.views.industries.report import render_industry_report
 from ticker_index.views.industries.button import button_industry_report
 from ticker_index.views.dataframes.button_show_df import button_show_ticker_index
 from ticker_index.views.dataframes.button_edit_df import button_edit_ticker_index_df
 from ticker_index.views.dataframes.editable_df import render_editable_ticker_index_df
-from ticker_index.views.dataframes.dataframes import render_ticker_index_df
+from ticker_index.views.dataframes.ticker_index import render_ticker_index_df
 from ticker_index.views.download.download_button import button_download_ticker_index
 
 
@@ -19,7 +19,7 @@ scope = st.session_state
 scope.pages['display'] = page
 
 
-render_page_header(scope, page_title, page_icon)
+show_page_header(scope, page_title, page_icon)
 
 if scope.users['logged_in']:
 

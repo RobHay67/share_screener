@@ -4,7 +4,7 @@ from app.views.widgets.cols_three import three_cols
 
 def show_page_config(scope):
 	st.subheader('Page(s)')
-	three_cols( 'Page Configuration stored in', {}, 'scope.pages', widget_type='string' )
+	three_cols( 'Page Configuration', {}, 'scope.pages', widget_type='string' )
 	# st.divider()
 	three_cols('Specific Page Config', '{ }', "scope.pages[page]")
 	# st.caption('navigate to each page and select config button')
@@ -35,7 +35,7 @@ def show_specific_page_config(scope):
 	page = scope.pages['display']
 
 	# st.divider()
-	st.subheader( 'Configuration for ' + page.title() + ' page')
+	st.subheader( 'Page Configuration > page = ' + page.title() + ' page')
 	three_cols( 'Page Specific Configuration stored in', {}, 'scope.pages['+page+']', widget_type='string' )
 	
 	# st.caption('Lists and Dictionaries')
@@ -56,5 +56,6 @@ def show_specific_page_config(scope):
 		three_cols( 'Show Overlay Settings'  	, scope.pages[page]['render']['overlay_settings']	, "scope.pages['"+ page +"']['render']['overlay_config']"    , widget_type='string' )
 		three_cols( 'Show Trial Settings'  		, scope.pages[page]['render']['trial_settings']    	, "scope.pages['"+ page +"']['render']['trial_settings']"    , widget_type='string' )
 		three_cols( 'Show Strategies'  			, scope.pages[page]['render']['strategy']    		, "scope.pages['"+ page +"']['render']['strategy']"    , widget_type='string' )
+		three_cols( 'Show Ticker Configuration'	, scope.pages[page]['render']['ticker_config']    	, "scope.pages['"+ page +"']['render']['ticker_config']"    , widget_type='string' )
 		three_cols( 'Show Ticker DFs'  			, scope.pages[page]['render']['ticker_file']    	, "scope.pages['"+ page +"']['render']['ticker_file']"    , widget_type='string' )
 
