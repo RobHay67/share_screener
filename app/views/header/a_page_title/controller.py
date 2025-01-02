@@ -18,23 +18,17 @@ def page_title_layer(scope, page_title, page_icon):
 		# Single Line Titles only
 		st.subheader(page_icon + ' ' + page_title, divider='gray')
 	else:
-		# All Other Pages
 		col1,col2,col3,col4,col5,col6,col7 = st.columns([7.0,2.0,0.5,0.5,0.5,0.5,1.0])
-		
+		# All Other Pages
 		with col1:st.subheader(page_icon + ' ' + page_title, divider='gray')
-
-		# Download button for appropriate pages
 		if page in ['screener', 'chart', 'intraday', 'volume']:
 			with col2:download_button(scope)
-
-		# Additional Information for chart and screener
 		if page == 'chart':
 			with col3:chart_settings_button(scope)
 			with col4:chart_overlay_button(scope)
 		if page == 'screener':
 			with col3:trial_settings_button(scope)
 			with col4:strategies_button(scope)
-
 		with col5:ticker_config_button(scope)
 		with col6:page_config_button(scope)
 		with col7:reset_page_button(scope)
