@@ -14,7 +14,6 @@ def show_trial_general_config(scope):
 		# st.divider()
 		
 
-
 def show_trial_user_settings(scope):
 	diff_col_size=[2,5,3]
 	with st.expander("User Settings", expanded=False):

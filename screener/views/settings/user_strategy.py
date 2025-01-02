@@ -5,7 +5,7 @@ from app.views.widgets.cols_three import three_cols
 def show_strategy_config(scope):
 
 	st.subheader('Strategy Settings for User')
-	st.write(':red[This should end up as selectable options - this is an examples of what the fields might end up like]')
+	st.write(':red[This should end up as selectable options like the charts and trials - this is an examples of what the fields might end up like]')
 	three_cols( 'Strategy Settings stored in', {}, "scope.strategy", widget_type='string' )
 
 	st.divider()	

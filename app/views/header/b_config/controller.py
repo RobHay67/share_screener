@@ -1,13 +1,17 @@
 import streamlit as st
 
-from app.views.header.b_config.page_config import show_specific_page_config
-from config.views.chart_config import show_chart_config
-
+from app.config.views.pages import show_specific_page_config
 from charts.views.settings.controller_charts import show_chart_settings
 from charts.views.settings.controller_overlays import show_overlay_config
-
 from screener.views.settings.user_trials import show_user_trial_settings
 from screener.views.settings.user_strategy import show_strategy_config
+
+from app.config.views.trials import show_trial_general_config
+from app.config.views.trials import show_trial_user_settings
+from app.config.views.trials import show_trial_verdicts
+from screener.views.settings.user_strategy import show_strategy_config
+from app.config.views.charts import show_chart_config
+from app.config.views.charts import show_chart_user_settings
 
 
 # I am expecting that this just points to config which is stored in other
@@ -26,22 +30,31 @@ def show_page_config(scope):
 
 	if scope.pages[page]['render']['page_config'] == True:
 		show_specific_page_config(scope)
-		if page == 'screener':
-			# show the extra trials general config
-			# verdicts - we need something for this
-			# show_trial_verdicts(scope)
 
-			if scope.pages[page]['render']['trial_settings'] == True:
-				show_user_trial_settings(scope)
-			if scope.pages[page]['render']['strategy'] == True:
-				show_strategy_config(scope)
-
-		if page == 'chart':
+	if page == 'screener':
+		if scope.pages[page]['render']['trial_settings'] == True:
+			show_user_trial_settings(scope)
+		if scope.pages[page]['render']['strategy'] == True:
+			show_strategy_config(scope)
+		if scope.pages[page]['render']['page_config'] == True:
+			st.divider()
+			st.subheader('Screener Page specific config')
+			st.write('TODO we need to default dictionary obkect')
+			show_trial_general_config(scope)
+			show_trial_verdicts(scope)
+			show_trial_user_settings(scope)
+			show_strategy_config(scope)
+		
+	if page == 'chart':
+		if scope.pages[page]['render']['chart_settings'] == True:
+			show_chart_settings(scope)
+		if scope.pages[page]['render']['overlay_settings'] == True:
+			show_overlay_config(scope)
+		if scope.pages[page]['render']['page_config'] == True:
+			st.divider()
+			st.subheader('Charts Page specific config')
+			st.write('TODO we need to default dictionary obkect')
 			show_chart_config(scope)
-
-			if scope.pages[page]['render']['chart_settings'] == True:
-				show_chart_settings(scope)
-			if scope.pages[page]['render']['overlay_settings'] == True:
-				show_overlay_config(scope)
+			show_chart_user_settings(scope)
 
 	

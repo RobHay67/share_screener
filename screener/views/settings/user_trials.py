@@ -13,7 +13,7 @@ def show_user_trial_settings(scope):
 
 	st.divider()
 	col1,col2=st.columns([8,4])
-	with col1:st.subheader('Trial / Test Configuration Settings')
+	with col1:st.subheader('Trial/Test Settings for User ')
 	with col2:save_user_settings_button(scope)
 	
 	ohlcv_price_direction(scope)

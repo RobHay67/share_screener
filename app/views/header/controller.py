@@ -1,8 +1,3 @@
-# A function that facilitates for each page
-#  (1) loading of existing share data
-#  (2) adding extra columns (ie MACD) to that share data
-
-
 from app.views.header.a_page_title.controller import page_title_layer
 from app.views.header.b_config.controller import show_page_config
 from app.views.header.c_ticker_selectors.controller import show_ticker_selectors
@@ -17,8 +12,7 @@ from app.views.header.show_ticker_name import show_ticker_name
 def render_page_header(scope, page_title, page_icon):
 	page_title_layer(scope, page_title, page_icon)		# a_
 	if scope.users['logged_in']:
-		show_page_config(scope)					
-		
+		show_page_config(scope)							# b_
 		show_ticker_selectors(scope)					# c_
 		show_ticker_load_and_col_adding(scope)			# d_
 		show_worklist_dropdowns(scope)					# f_
