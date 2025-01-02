@@ -9,7 +9,7 @@ from screener.views.settings.example import example_settings
 from users.views.save_user_settings_button import save_user_settings_button
 
 
-def show_trial_settings(scope):
+def show_user_trial_settings(scope):
 
 	st.divider()
 	col1,col2=st.columns([8,4])

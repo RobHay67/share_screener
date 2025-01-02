@@ -11,11 +11,15 @@ from config.views.ticker_config import show_missing_ticker_config
 from config.views.user_config import show_user_config
 from config.views.y_finance_config import show_y_finance_config
 
+# Config for Screener Page
+from config.views.trial_config import show_trial_general_config
+from config.views.trial_config import show_trial_user_settings
+from config.views.trial_config import show_trial_verdicts
+from screener.views.settings.user_strategy import show_strategy_config
 
-from config.views.trial_config import show_trial_global_config
-
-from screener.views.settings.controller_strategy import show_strategy_config
+# Config for Charts Page
 from config.views.chart_config import show_chart_config
+from config.views.chart_config import show_chart_user_settings
 
 
 # Config > app_config  		DONE						all fields reported
@@ -58,9 +62,15 @@ if scope.users['logged_in']:
 		if config_page == 'show_y_finance_config':show_y_finance_config(scope)
 		if config_page == 'show_user_config':show_user_config(scope)
 		# Page Specific Config
-		if config_page == 'show_trial_global_config':show_trial_global_config(scope)
-		if config_page == 'show_strategy_config':show_strategy_config(scope)
-		if config_page == 'show_chart_config':show_chart_config(scope)
+		if config_page == 'show_trial_global_config':
+			show_trial_general_config(scope)
+			show_trial_user_settings(scope)
+			show_trial_verdicts(scope)
+		if config_page == 'show_strategy_config':
+			show_strategy_config(scope)
+		if config_page == 'show_chart_config':
+			show_chart_config(scope)
+			show_chart_user_settings(scope)
 		st.divider()
 	
 

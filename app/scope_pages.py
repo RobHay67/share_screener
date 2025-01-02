@@ -49,7 +49,7 @@ def scope_pages(scope):
 		
 		scope.pages[page]['render'] = 	{
 										'ticker_file':'Show/Hide Data',	# display the ticker files
-										'app_config':False,				# display the application config
+										'page_config':False,			# display the application config
 										'chart_settings':False,			# display the chart settings
 										'overlay_settings':False,		# display the overlay settings
 										'trial_settings':False,			# display the trial settings

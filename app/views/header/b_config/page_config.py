@@ -22,7 +22,7 @@ def show_specific_page_config(scope):
 		three_cols( 'Ticker'  , scope.pages[page]['selectors']['ticker']    , "scope.pages['"+ page +"']['selectors']['ticker']"    , widget_type='string' )
 	
 	with st.expander("Page Show / Hide Options", expanded=False):
-		three_cols( 'Show Page Config (this)'	, scope.pages[page]['render']['app_config']    		, "scope.pages['"+ page +"']['render']['app_config']"    , widget_type='string' )
+		three_cols( 'Show Page Config (this)'	, scope.pages[page]['render']['page_config']    	, "scope.pages['"+ page +"']['render']['page_config']"    , widget_type='string' )
 		three_cols( 'Show Chart Settings'  		, scope.pages[page]['render']['chart_settings']    	, "scope.pages['"+ page +"']['render']['chart_settings']"    , widget_type='string' )
 		three_cols( 'Show Overlay Settings'  	, scope.pages[page]['render']['overlay_settings']	, "scope.pages['"+ page +"']['render']['overlay_config']"    , widget_type='string' )
 		three_cols( 'Show Trial Settings'  		, scope.pages[page]['render']['trial_settings']    	, "scope.pages['"+ page +"']['render']['trial_settings']"    , widget_type='string' )

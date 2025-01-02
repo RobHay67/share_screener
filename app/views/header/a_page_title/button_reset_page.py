@@ -17,7 +17,7 @@ def reset_render_status(scope):
 	page = scope.pages['display']
 	scope.pages[page]['render']['ticker_file'] 		= 'Show/Hide Data'
 
-	scope.pages[page]['render']['app_config'] 		= False
+	scope.pages[page]['render']['page_config'] 		= False
 	scope.pages[page]['render']['chart_settings'] 	= False
 	scope.pages[page]['render']['overlay_settings'] = False
 	scope.pages[page]['render']['trial_settings'] 	= False
