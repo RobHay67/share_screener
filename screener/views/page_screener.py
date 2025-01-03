@@ -1,7 +1,7 @@
 import streamlit as st
 
 from app.views.header.controller import show_page_header		
-from screener.views.verdicts import render_trial_verdicts
+from screener.views.verdicts.controller import show_verdicts
 
 
 # Page Configuration
@@ -17,4 +17,4 @@ scope.pages['display'] = page
 show_page_header(scope, page_title, page_icon)
 
 if scope.users['logged_in']:
-	render_trial_verdicts(scope)
+	show_verdicts(scope)
