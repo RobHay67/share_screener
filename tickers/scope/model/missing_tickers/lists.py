@@ -7,11 +7,11 @@ def update_missing_ticker_lists(scope, ticker):
 	# the overall status
 
 
-	if ticker in scope.tickers_missing['local']:
-		scope.tickers_missing['local'].remove(ticker)
+	if ticker in scope.tickers['missing']['local']:
+		scope.tickers['missing']['local'].remove(ticker)
 	
-	if ticker in scope.tickers_missing['cloud']:
-		scope.tickers_missing['cloud'].remove(ticker)
+	if ticker in scope.tickers['missing']['cloud']:
+		scope.tickers['missing']['cloud'].remove(ticker)
 
-	if ticker in scope.tickers_missing['list']:
-		scope.tickers_missing['list'].remove(ticker)
+	if ticker in scope.tickers['missing']['list']:
+		scope.tickers['missing']['list'].remove(ticker)

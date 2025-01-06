@@ -18,9 +18,9 @@ def select_search_result_ticker(scope, page, ticker, widget_key):
 
 	# set selected ticker as the target for the page
 	if page == 'screener':
-		scope.pages[page]['selectors']['tickers'] = [ticker]
+		scope.page[page]['selectors']['tickers'] = [ticker]
 	else:
-		scope.pages[page]['selectors']['ticker'] = ticker
+		scope.page[page]['selectors']['ticker'] = ticker
 
 	# Clear Search Results
-	scope.pages[page]['search_results'] = {}
+	scope.page[page]['search_results'] = {}

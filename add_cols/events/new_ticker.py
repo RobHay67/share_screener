@@ -13,7 +13,7 @@ def new_ticker_data_event(scope, ticker):
 
 
 
-	for page in scope.pages['page_list']:
+	for page in scope.config['page_list']:
 
 		scope.tickers[ticker][page]['replace_df'] = True
 

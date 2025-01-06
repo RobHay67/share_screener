@@ -10,7 +10,7 @@ def edit_row_limit_event(scope):
 
 
 	for ticker in scope.tickers.keys():
-		for page in scope.pages['page_list']:
+		for page in scope.config['page_list']:
 
 			scope.tickers[ticker][page]['replace_df'] = True
 

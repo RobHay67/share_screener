@@ -7,11 +7,11 @@ def edit_ohlcv(scope, config_group, config_key ):
 	widget_key = 'widget_' + config_group + '_' + config_key
 	display_name =  ('This ticker metric')
 	previous_selection = scope[config_group]['user_config'][config_key]['add_columns']['column']
-	pos_for_previous = scope.pages['dropdowns']['ohlcv_columns'].index(previous_selection)	
+	pos_for_previous = scope.config['dropdowns']['ohlcv_columns'].index(previous_selection)	
 
 	st.selectbox ( 
 					label		=display_name, 
-					options		=scope.pages['dropdowns']['ohlcv_columns'],
+					options		=scope.config['dropdowns']['ohlcv_columns'],
 					index		=pos_for_previous, 
 					on_change	=on_change_ohlcv,
 					args		=(scope, config_group, config_key, widget_key, ),

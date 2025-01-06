@@ -27,7 +27,7 @@ def create_dictionary_to_store_ticker_data(scope, ticker):
 	scope.tickers[ticker]['df'] = {}
 
 	# Ticker Config for each Application / Page
-	for page in scope.pages['page_list']:
+	for page in scope.config['page_list']:
 		scope.tickers[ticker][page] = {}
 		scope.tickers[ticker][page]['df'] = {}					# to store the dataframe for this page
 		scope.tickers[ticker][page]['replace_df'] = True		# does the df need replace

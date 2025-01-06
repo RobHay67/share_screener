@@ -23,8 +23,8 @@ def initilize_yf_config(scope, batch_no, industry):
 	
 	if industry == 'random_tickers':
 		# Selected specific tickers rather than by industry group					 
-		page = scope.pages['display']
-		ticker_list = scope.pages[page]['worklist']
+		page = scope.config['display']
+		ticker_list = scope.page[page]['worklist']
 	else:
 		# selected a share market, an industry or multiple industries
 		industry_tickers = scope.ticker_index['df'][scope.ticker_index['df']['industry_group'] == industry ]

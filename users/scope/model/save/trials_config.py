@@ -1,6 +1,6 @@
 
 
-def save_trials_config(scope):
+def save_trials_user_settings(scope):
 
 	# Summarise the current TRIALS config for this user 
 	excluded_attribute_list = ['function']

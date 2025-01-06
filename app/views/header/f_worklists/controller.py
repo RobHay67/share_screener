@@ -5,7 +5,7 @@ from app.views.header.f_worklists.dropdown_active_tests import active_chart_or_t
 
 
 def show_worklist_dropdowns(scope):
-	page=scope.pages['display']
+	page=scope.config['display']
 	if page in ['screener', 'chart', 'intraday', 'volume', 'research']:
 		col1,col2,col3 = st.columns([7.0, 3.0, 2.0])  #12
 		with col1:worklist_dropdown(scope)

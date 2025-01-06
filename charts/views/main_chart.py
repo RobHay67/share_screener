@@ -21,8 +21,8 @@ def add_main_chart(schema):
 
 def format_main_chart(scope, fig):
 	# format the overall chart layout
-	page 	= scope.pages['display']
-	ticker 	= scope.pages[page]['selectors']['ticker']
+	page 	= scope.config['display']
+	ticker 	= scope.page[page]['selectors']['ticker']
 	
 	fig.update_layout(	
 						height 		= scope.charts['total_height'],

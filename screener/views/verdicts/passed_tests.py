@@ -5,12 +5,12 @@ from app.views.header.links import website_hyperlink
 
 def passing_verdict_list(scope):
 	# Generate a list of tickers with an overall passing result
-	page = scope.pages['display']
+	page = scope.config['display']
 	verdict_list = []
 
-	for ticker in scope.pages[page]['worklist']:
+	for ticker in scope.page[page]['worklist']:
 		# Only mined tickers can have verdicts
-		if ticker in scope.pages[page]['loaded_ticker_list']:
+		if ticker in scope.page[page]['loaded_ticker_list']:
 			if scope.tickers[ticker][page]['verdict'] == 'pass':
 				verdict_list.append(ticker)
 
@@ -33,7 +33,7 @@ def show_passing_verdicts(scope, no_of_verdicts, tab_group_size, verdict_list):
 				for ticker in tickers_for_tab:
 					col1,col2,col3,col4,col5,col6,col7,col8,col9,col10,col11,col12,col13 = st.columns([1,4,1,1,1,1,1,1,1,1,1,1,1])
 					
-					company_name = scope.pages['ticker_search'][ticker]
+					company_name = scope.config['ticker_search'][ticker]
 					with col1 :st.write(ticker)
 					with col2 :st.write(company_name)
 					with col3 :link_to_app_button(scope, 'chart', ticker)

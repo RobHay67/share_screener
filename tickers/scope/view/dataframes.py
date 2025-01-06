@@ -3,9 +3,9 @@ import streamlit as st
 
 def show_page_dataframes(scope):
 	# Just the dataframes relevant for a particular page
-	page = scope.pages['display']
+	page = scope.config['display']
 
-	selected_ticker = scope.pages[page]['render']['ticker_file'].split("---")
+	selected_ticker = scope.page[page]['render']['ticker_file'].split("---")
 	ticker = selected_ticker[0]
 
 	col1,col2=st.columns([4,8])

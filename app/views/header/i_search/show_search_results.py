@@ -8,9 +8,9 @@ from app.views.header.i_search.button_search import seach_for_ticker_button
 
 def show_search_results(scope):
 	
-	page = scope.pages['display']
+	page = scope.config['display']
 
-	search_results = scope.pages[page]['search_results']
+	search_results = scope.page[page]['search_results']
 
 	if len(search_results) > 0:
 		st.write('First 10 Search Results')

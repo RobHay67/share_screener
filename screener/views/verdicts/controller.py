@@ -9,7 +9,7 @@ import streamlit as st
 from screener.views.verdicts.failed_all_tests import show_all_verdicts_failed
 from screener.views.verdicts.passed_too_many import show_too_many_verdicts
 from screener.views.verdicts.passed_tests import show_passing_verdicts
-from screener.views.verdicts.active_tests import show_active_trials
+from screener.views.active_trials.active_tests import show_active_trials
 from screener.views.verdicts.passed_tests import passing_verdict_list
 
 

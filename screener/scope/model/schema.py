@@ -37,7 +37,7 @@ trends_for_stochastic = ['above_line', 'below_line', 'over_bought', 'over_sold',
 trends_for_rsi = ['up', 'down', 'over bought', 'over sold' ]
 
 
-trial_configuration_dict = {
+trials_schema = {
 	'price_1'	: {
 						active			: False,
 						name			: 'Price Direction (OHLCV)',

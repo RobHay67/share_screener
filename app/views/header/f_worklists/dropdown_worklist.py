@@ -3,12 +3,12 @@ import streamlit as st
 
 def worklist_dropdown(scope):
 
-	page = scope.pages['display']
-	worklist = scope.pages[page]['worklist_long_desc']
+	page = scope.config['display']
+	worklist = scope.page[page]['worklist_long_desc']
 	widget_key = 'widget_' + page + '_worklist_long_desc'
 	widget_label = determine_appropriate_label(worklist)
-	previous_selection = scope.pages[page]['render']['ticker_file']
-	pos_for_previous = scope.pages[page]['render']['ticker_file'].index(previous_selection)	
+	previous_selection = scope.page[page]['render']['ticker_file']
+	pos_for_previous = scope.page[page]['render']['ticker_file'].index(previous_selection)	
 
 	selectbox = st.selectbox(
 			label		=widget_label, 
@@ -25,7 +25,7 @@ def worklist_dropdown(scope):
 def tag_worklist_item_to_display(scope, page, widget_key):
 	selected_ticker = scope[widget_key]
 	# store the selection
-	scope.pages[page]['render']['ticker_file'] = selected_ticker	
+	scope.page[page]['render']['ticker_file'] = selected_ticker	
 	st.write(selected_ticker)
 
 

@@ -8,7 +8,7 @@ def multiple_tickers_downloader(scope):
 	yf_download = yf.download( 
 								tickers=scope.yf['batch_ticker_string'], 
 								group_by = 'ticker', 				# group_by: group by column or ticker (‘column’/’ticker’, default is ‘column’)
-								period=scope.pages['download_days'], 
+								period=scope.config['download_days'], 
 								interval='1d', 
 								progress=True, 
 								threads=True, 						# threads : use threads for mass downloading? (True/False/Integer)

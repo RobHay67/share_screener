@@ -5,7 +5,7 @@ from app.scope.model.dropdowns.controller import refresh_ticker_selector_lists
 
 
 
-from app.scope.model.scope_pages import scope_ticker_search
+from app.scope.model.scope_config import scope_ticker_search
 
 from ticker_index.scope.views.download.messages import message_downloading
 from ticker_index.scope.views.download.messages import message_completed_download
@@ -14,7 +14,7 @@ from ticker_index.scope.views.download.messages import message_failed_market
 
 def download_ticker_index_data(scope):
 
-	if scope.pages['share_market'] == 'ASX':
+	if scope.config['share_market'] == 'ASX':
 		message_downloading(scope)
 
 		url = 'https://asx.api.markitdigital.com/asx-research/1.0/companies/directory/file?'
@@ -57,7 +57,7 @@ def download_ticker_index_data(scope):
 		message_completed_download(scope, downloaded_df)
 
 		# Cache the downloaded file
-		scope.ticker_index['df_downloaded'] = downloaded_df 
+		scope.ticker_index['download_cache']= downloaded_df 
 		   
 		update_ticker_index(scope)
 

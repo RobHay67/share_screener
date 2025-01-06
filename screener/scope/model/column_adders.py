@@ -2,7 +2,7 @@
 
 
 
-def trial_column_adders(scope):
+def trial_template_column_adders(scope):
 	# A dictionary of every trial that requires additional columns
 	# ignore and trials that dont have column adders
 	# Seperate function so it can be called after the initial load - i.e. change user

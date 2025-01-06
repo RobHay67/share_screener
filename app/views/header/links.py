@@ -28,12 +28,12 @@ def link_to_app_button(scope, page, ticker):
 
 	if open_app_button:
 		if page != 'screener':	
-			scope.pages[page]['selectors']['ticker'] = ticker
+			scope.page[page]['selectors']['ticker'] = ticker
 		else:
-			scope.pages[page]['selectors']['tickers'] = [ticker]
-			scope.pages[page]['selectors']['industries'] = []
-			scope.pages[page]['selectors']['market'] = 'select market'
-			scope.pages[page]['search_results'] = {}
+			scope.page[page]['selectors']['tickers'] = [ticker]
+			scope.page[page]['selectors']['industries'] = []
+			scope.page[page]['selectors']['market'] = 'select market'
+			scope.page[page]['search_results'] = {}
 
 		switch_page(streamlit_page_name)
 
@@ -43,7 +43,7 @@ def website_hyperlink(scope, website, ticker):
 
 	pos = ticker.find(".")
 	ticker_code = ticker[0:pos]
-	share_market = scope.pages['share_market']
+	share_market = scope.config['share_market']
 
 	if website == 'eTrade':
 		leader = 'https://trading.anzshareinvesting.com.au/Market/Charts.aspx?asxcode='

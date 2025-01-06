@@ -11,13 +11,13 @@ def show_quick_links(scope):
 
 	col1,col2,col3,col4,col5,col6,col7,col8,col9,col10,col11 = st.columns([1.0,   0.5, 0.5, 0.5, 0.5,   0.5, 0.5, 0.5, 0.5, 0.5,    1.0])
 
-	page = scope.pages['display']
+	page = scope.config['display']
 	
 	if page == 'screener':
 		# multi tickers possible, so quicklinks rendered against each selection
 		show_links = False
 	else:
-		ticker = scope.pages[page]['selectors']['ticker']
+		ticker = scope.page[page]['selectors']['ticker']
 		show_links = True if ticker != 'select a ticker' else False
 	if show_links:
 		with col1 : st.write('Quick Links :')

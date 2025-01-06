@@ -2,17 +2,17 @@ import streamlit as st
 
 from add_cols.replace_page_df import replace_page_df
 from add_cols.replace_df_cols import replace_page_df_columns
-from screener.scope.model.verdict import determine_verdict_for_ticker
-from add_cols.builder import create_list_of_tickers_to_add_columns
+from screener.scope.model.verdicts import determine_verdict_for_ticker
+from add_cols.list_builder import create_list_of_tickers_to_add_columns
 
 
 def add_extra_cols_progress_bar(scope, page):
 
-	if len(scope.pages[page]['worklist']) == 0:
+	if len(scope.page[page]['worklist']) == 0:
 		st.write('No Files available - select some')
 	else:
 		ticker_list = create_list_of_tickers_to_add_columns(scope, page)
-		app_row_limit = int(scope.pages['row_limit'])
+		app_row_limit = int(scope.config['row_limit'])
 
 		my_bar = st.progress(0)
 

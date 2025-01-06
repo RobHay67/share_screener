@@ -12,11 +12,11 @@ def show_ticker_general_config(scope):
 
 
 def show_ticker_page_config(scope):
-	page = scope.pages['display']
+	page = scope.config['display']
 	ticker_keys = list(scope.tickers.keys())
 	st.subheader('Ticker Page Configuration')
 
-	three_cols( 'Show original Ticker DF + Page Ticker DF with added columns', scope.pages[page]['render']['ticker_file']    	, "scope.pages['"+ page +"']['render']['ticker_file']"    , widget_type='string' )
+	three_cols( 'Show original Ticker DF + Page Ticker DF with added columns', scope.page[page]['render']['ticker_file']    	, "scope.page['"+ page +"']['render']['ticker_file']"    , widget_type='string' )
 	if len(ticker_keys)>0:
 		for ticker in ticker_keys:
 			st.divider()

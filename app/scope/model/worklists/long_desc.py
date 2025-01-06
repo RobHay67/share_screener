@@ -6,24 +6,24 @@ def refresh_worklist_long_description(scope):
 	# cant download from cloud, there probably wont be
 	# a local file anyway.
 
-	page = scope.pages['display']
+	page = scope.config['display']
 	work_list_dropdown = []
 
-	for ticker in scope.pages[page]['worklist']:
+	for ticker in scope.page[page]['worklist']:
 
-		ticker_name = scope.pages['ticker_search'][ticker]
+		ticker_name = scope.config['ticker_search'][ticker]
 		
 		ticker_length = len(ticker)
 		padding = 10 - ticker_length
 		pad_string = '-'*padding
 		ticker_status = ticker + pad_string
 
-		print(scope.tickers_missing['cloud'])
+		print(scope.tickers['missing']['cloud'])
 
-		if ticker in scope.tickers_missing['cloud']:
-			ticker_status =  ticker_status + scope.tickers_missing['errors'][ticker]['yf']
-		elif ticker in scope.tickers_missing['local']:
-			ticker_status = ticker_status + scope.tickers_missing['errors'][ticker]['load']
+		if ticker in scope.tickers['missing']['cloud']:
+			ticker_status =  ticker_status + scope.tickers['missing']['errors'][ticker]['yf']
+		elif ticker in scope.tickers['missing']['local']:
+			ticker_status = ticker_status + scope.tickers['missing']['errors'][ticker]['load']
 		else:
 			if ticker in list(scope.tickers.keys()): 
 				ticker_df = scope.tickers[ticker]['df']
@@ -43,6 +43,6 @@ def refresh_worklist_long_description(scope):
 	
 	work_list_dropdown.insert(0, 'Show/Hide Data')
 
-	scope.pages[page]['worklist_long_desc'] = work_list_dropdown
+	scope.page[page]['worklist_long_desc'] = work_list_dropdown
 
 	

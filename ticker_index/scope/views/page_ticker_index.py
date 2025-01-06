@@ -16,7 +16,7 @@ page_title = 'Ticker Index File'
 page_icon = '🗄️'
 # -----------------------------
 scope = st.session_state
-scope.pages['display'] = page
+scope.config['display'] = page
 
 
 show_page_header(scope, page_title, page_icon)

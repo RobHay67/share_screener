@@ -3,7 +3,7 @@ import streamlit as st
 
 def search_ticker_by_name(scope):
 
-	page = scope.pages['display']
+	page = scope.config['display']
 
 	widget_key = 'widget_' + page + '_search'
 	previous_selection = ''
@@ -25,15 +25,15 @@ def search_for_ticker(scope, page, widget_key):
 	search_string = scope[widget_key].upper()
 
 	# Set other selectors to their defualt values
-	scope.pages[page]['selectors']['tickers'] = []
-	scope.pages[page]['selectors']['industries'] = []
-	scope.pages[page]['selectors']['market'] = 'select market'
+	scope.page[page]['selectors']['tickers'] = []
+	scope.page[page]['selectors']['industries'] = []
+	scope.page[page]['selectors']['market'] = 'select market'
 
 	# Search through the ticker index for this string in the company name
 	search_results = {}
 	counter = 0
 
-	for ticker, company_name in scope.pages['ticker_search'].items():
+	for ticker, company_name in scope.config['ticker_search'].items():
 		if search_string in company_name:
 			counter += 1
 			search_results[ticker] = company_name
@@ -41,8 +41,8 @@ def search_for_ticker(scope, page, widget_key):
 
 	# Cache search_results
 	if len(search_results) > 0:
-		scope.pages[page]['search_results'] = search_results
+		scope.page[page]['search_results'] = search_results
 		# Reset the search_ticker_by_name to blank for next search
 		scope[widget_key] = ''
 	else:	# No search Results
-		scope.pages[page]['search_results'] = {}
+		scope.page[page]['search_results'] = {}

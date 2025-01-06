@@ -8,14 +8,14 @@ page_title = 'Intra Day Analysis'
 page_icon = '🌤️'
 # -----------------------------
 scope = st.session_state
-scope.pages['display'] = page
+scope.config['display'] = page
 
 
 show_page_header(scope, page_title, page_icon)
 
 if scope.users['logged_in']:
 	
-	ticker = scope.pages[page]['selectors']['ticker']
+	ticker = scope.page[page]['selectors']['ticker']
 
 	st.error('TODO render_intraday_page')
 

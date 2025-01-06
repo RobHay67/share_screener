@@ -1,5 +1,5 @@
 import streamlit as st
-from screener.views.settings.expander_status import set_expander_status
+from screener.scope.view.settings.expander_status import set_expander_status
 from app.views.widgets.active import edit_active
 from app.views.widgets.number import edit_number
 from app.views.widgets.ohlcv import edit_ohlcv

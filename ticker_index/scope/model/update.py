@@ -16,7 +16,7 @@ def update_ticker_index(scope):
 
 	apply_defaults_to_missing_values(scope, 'downloaded_df')
 
-	for ticker, row in scope.ticker_index['df_downloaded'].iterrows(): 
+	for ticker, row in scope.ticker_index['download_cache'].iterrows(): 
 		if ticker not in scope.ticker_index['df'].index:
 			# add completely new ticker record/row
 			number_of_new_records += 1
@@ -54,7 +54,7 @@ def apply_defaults_to_missing_values(scope, which_df):
 	defaults = default_values(scope)
 	dtypes = data_types(scope)
 	if which_df == 'downloaded_df':
-		df = scope.ticker_index['df_downloaded']
+		df = scope.ticker_index['download_cache']
 	else:
 		df = scope.ticker_index['df']
 

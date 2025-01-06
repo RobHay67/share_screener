@@ -5,7 +5,7 @@ from tickers.scope.model.y_finance.download.format import format_downloaded_batc
 # from tickers.scope.model.y_finance.download.format import format_downloaded_batch_new
 from tickers.scope.model.y_finance.cache.batch_data import cache_batch_data
 from tickers.scope.model.y_finance.cache.ticker_data import cache_entire_download
-from tickers.scope.model.y_finance.scope_yf import scope_yf_config
+from tickers.scope.model.scope_yf import scope_yf_config
 from tickers.views.msg_download import render_message_download
 from tickers.views.msg_download_complete import render_message_download_complete
 from tickers.views.msg_no_tickers import no_tickers_selected
@@ -20,8 +20,8 @@ def download_ticker_data(scope):
 	# download ticker data for a single or group of tickers
 	# utilising the y_finance platform
 
-	page = scope.pages['display']
-	ticker_download_list = scope.pages[page]['worklist']
+	page = scope.config['display']
+	ticker_download_list = scope.page[page]['worklist']
 
 	if len(ticker_download_list) > 0:
 		initilize_yf_config(scope, ticker_download_list)

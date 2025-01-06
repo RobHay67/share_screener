@@ -10,7 +10,7 @@ page_title = 'test Page - try out new config'
 page_icon = '🔬'
 # -----------------------------
 scope = st.session_state
-scope.pages['display'] = page
+scope.config['display'] = page
 
 
 show_page_header(scope, page_title, page_icon)
@@ -49,7 +49,7 @@ show_page_header(scope, page_title, page_icon)
 	# yf_download = yf.download( 
 	# 								tickers=scope.yf['batch_ticker_string'], 
 	# 								# period='3mo',
-	# 								period=scope.pages['download_days'], 
+	# 								period=scope.config['download_days'], 
 	# 								interval='1d', 
 	# 								progress=True, 
 	# 								# show_errors=False
@@ -77,5 +77,5 @@ show_page_header(scope, page_title, page_icon)
 # st.write(dat.option_chain(dat.options[0]).calls)
 
 
-# scope.pages['download_days'] = '5d'
-# print(scope.pages['download_days'])
+# scope.config['download_days'] = '5d'
+# print(scope.config['download_days'])

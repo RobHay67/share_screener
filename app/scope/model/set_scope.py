@@ -1,9 +1,10 @@
-import time
+
 
 from app.helpers.system import print_system_info_to_terminal
 from app.scope.model.streamlit_config import set_streamlit_page_config
 
-from app.scope.model.scope_pages import scope_pages, scope_ticker_search
+from app.scope.model.scope_config import scope_config, scope_ticker_search
+from app.scope.model.scope_page import scope_page
 from files.scope.model.scope_files import scope_folders_and_paths
 from users.scope.model.scope_users import scope_users
 from screener.scope.model.scope_trials import scope_trials
@@ -11,8 +12,8 @@ from screener.scope.model.scope_strategy import scope_strategy
 from charts.scope.model.scope_charts import scope_charts
 from ticker_index.scope.model.scope_ticker_index import scope_index_file
 from tickers.scope.model.scope_tickers import scope_tickers
-from tickers.scope.model.missing_tickers.scope_tickers_missing import scope_tickers_missing
-from tickers.scope.model.y_finance.scope_yf import scope_download_variables
+from tickers.scope.model.scope_tickers_missing import scope_tickers_missing
+from tickers.scope.model.scope_yf import scope_download_variables
 
 
 
@@ -21,13 +22,12 @@ def set_scope(scope):
 	print_system_info_to_terminal()
 	set_streamlit_page_config()								# should only run onetime
 	
-	if 'pages' not in scope:	
+	if 'config' not in scope:	
 		scope.allow_auto_login = True			# TODO for releases purposes only - delete later
-		scope.config = {}
-		scope.config['project_description'] = 'Share Picker'
-		scope.config['project_start_time'] 	= time.time()
 		
-		scope_pages(scope)					# This contains all the page Specific settings
+		scope_config(scope)					# This contains all the General page settings
+		# scope_pages(scope)					
+		scope_page(scope)					# Page specific config
 		scope_folders_and_paths(scope)		# Required before we can attempt to load the data
 		scope_users(scope)					# Set Default Values ready for a user to login
 		scope_trials(scope)					# add the trials configuration

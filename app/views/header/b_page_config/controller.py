@@ -5,8 +5,8 @@ from tickers.scope.view.config import show_ticker_page_config
 
 from charts.scope.views.settings.controller_charts import show_chart_settings
 from charts.scope.views.settings.controller_overlays import show_overlay_config
-from screener.views.settings.controller import show_user_trial_settings
-from screener.views.settings.user_strategy import show_user_strategy_settings
+from screener.scope.view.settings.controller import show_user_trial_settings
+from screener.scope.view.settings.user_strategy import show_user_strategy_settings
 
 from screener.scope.view.trial_config import show_trial_general_config
 from screener.scope.view.trial_config import show_trial_user_settings
@@ -18,22 +18,22 @@ from charts.scope.views.config import show_chart_user_settings
 # Show/Hide additional config information or settings as specified by the user
 
 def show_page_config(scope):
-	page = scope.pages['display']
+	page = scope.config['display']
 
-	if scope.pages[page]['render']['page_config'] == True:
+	if scope.page[page]['render']['page_config'] == True:
 		show_specific_page_config(scope)
 	
-	if scope.pages[page]['render']['ticker_config'] == True:
+	if scope.page[page]['render']['ticker_config'] == True:
 		show_ticker_page_config(scope)
 
 	if page == 'screener':
-		if scope.pages[page]['render']['trial_settings'] == True:
+		if scope.page[page]['render']['trial_settings'] == True:
 			show_user_trial_settings(scope)
-		if scope.pages[page]['render']['strategy'] == True:
+		if scope.page[page]['render']['strategy'] == True:
 			show_strategy_config(scope)
-		if scope.pages[page]['render']['strategy'] == True:
+		if scope.page[page]['render']['strategy'] == True:
 			show_user_strategy_settings(scope)
-		if scope.pages[page]['render']['page_config'] == True:
+		if scope.page[page]['render']['page_config'] == True:
 			st.divider()
 			st.subheader('Screener Page specific config')
 			st.write('TODO we need to default dictionary obkect')
@@ -43,11 +43,11 @@ def show_page_config(scope):
 			show_strategy_config(scope)
 		
 	if page == 'chart':
-		if scope.pages[page]['render']['chart_settings'] == True:
+		if scope.page[page]['render']['chart_settings'] == True:
 			show_chart_settings(scope)
-		if scope.pages[page]['render']['overlay_settings'] == True:
+		if scope.page[page]['render']['overlay_settings'] == True:
 			show_overlay_config(scope)
-		if scope.pages[page]['render']['page_config'] == True:
+		if scope.page[page]['render']['page_config'] == True:
 			st.divider()
 			st.subheader('Charts Page specific config')
 			st.write('TODO we need to default dictionary obkect')

@@ -1,6 +1,6 @@
 
 
-def save_charts_config(scope):
+def save_charts_user_settings(scope):
 
 	# Summarise the current CHARTS config for this user 
 	excluded_attribute_list = ['function']

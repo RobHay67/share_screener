@@ -1,10 +1,10 @@
 
-from screener.scope.model.schema import trial_configuration_dict
+from screener.scope.model.schema import trials_schema
 
 def user_config_trials(scope):
 	# store the trial configuration dictionary (from below)
 	scope.trials['user_config'] = {}
-	for trial, configuration in trial_configuration_dict.items():
+	for trial, configuration in trials_schema.items():
 		scope.trials['user_config'][trial] = configuration.copy()
 
 

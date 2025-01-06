@@ -15,7 +15,7 @@ from app.views.header.d_ticker_files.progress_bar_add_cols import add_extra_cols
 
 
 def show_ticker_load_and_col_adding(scope):
-	page = scope.pages['display']
+	page = scope.config['display']
 	col1,col2 = st.columns([6.0, 6.0])  #12.0
 	if page in ['chart', 'intraday', 'volume', 'screener',]:
 		with col1:

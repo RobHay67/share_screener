@@ -13,15 +13,15 @@ page_title = 'Daily Charting'
 page_icon = '📊'
 # -----------------------------
 scope = st.session_state
-scope.pages['display'] = page
+scope.config['display'] = page
 
 show_page_header(scope, page_title, page_icon)
 
 if scope.users['logged_in']:
 
-	ticker = scope.pages[page]['selectors']['ticker']
+	ticker = scope.page[page]['selectors']['ticker']
 
-	if ticker in scope.pages[page]['loaded_ticker_list']:
+	if ticker in scope.page[page]['loaded_ticker_list']:
 
 		chart_df		= scope.tickers[ticker][page]['df']
 		schema 			= create_schema_for_plotly(scope)

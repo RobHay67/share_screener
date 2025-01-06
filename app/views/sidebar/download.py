@@ -6,7 +6,7 @@ def edit_download_days(scope):
 	display_name = 'Interval for Download'
 	widget_key = 'widget_download_days'
 	permitted_options = scope.yf['intervals']
-	previous_selection = scope.pages['download_days']
+	previous_selection = scope.config['download_days']
 	pos_for_previous = scope.yf['intervals'].index(previous_selection)	
 
 	st.sidebar.selectbox( 	
@@ -24,5 +24,5 @@ def on_change_download_days(scope:dict, widget_key:str):
 	changed_value = scope[widget_key]
 
 	# store the selection
-	scope.pages['download_days'] = changed_value
+	scope.config['download_days'] = changed_value
 

@@ -6,7 +6,7 @@ import streamlit as st
 
 def active_chart_or_test_dropdown(scope):
 
-	page = scope.pages['display']
+	page = scope.config['display']
 	
 	if page in ['screener', 'chart']:
 

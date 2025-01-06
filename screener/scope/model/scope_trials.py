@@ -6,19 +6,20 @@
 # trials is the config
 # trials_config are the current settings!!!
 
-from screener.scope.model.schema import trial_configuration_dict
+from screener.scope.model.schema import trials_schema
 from screener.scope.model.active_list import trial_active_list
-from screener.scope.model.column_adders import trial_column_adders
-from screener.scope.model.user import user_config_trials
+from screener.scope.model.column_adders import trial_template_column_adders
+from screener.scope.model.scope_user_config import user_config_trials
 
 
 def scope_trials(scope):
 
 	scope.trials = {}
 	user_config_trials(scope)
-	scope.trials['trial_list'] = list(trial_configuration_dict.keys())
+	scope.trials['trial_list'] = list(trials_schema.keys())
 	trial_active_list(scope)
-	trial_column_adders(scope)
+	trial_template_column_adders(scope)
+	
 
 
 

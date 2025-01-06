@@ -14,9 +14,9 @@ def replace_page_df(scope, page, ticker, app_row_limit):
 		# Cache the ticker dataframe to be utilised by this page/page
 		scope.tickers[ticker][page]['df'] = ticker_df
 
-		if ticker not in scope.pages[page]['loaded_ticker_list']:
+		if ticker not in scope.page[page]['loaded_ticker_list']:
 		# add ticker to the loaded_ticker list
-			scope.pages[page]['loaded_ticker_list'].append(ticker)
+			scope.page[page]['loaded_ticker_list'].append(ticker)
 		
 		# Set the status to false to prevent refreshing unnecesarily
 		scope.tickers[ticker][page]['replace_df'] = False

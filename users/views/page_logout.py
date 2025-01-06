@@ -11,7 +11,7 @@ page = 'streamlit_app'
 page_title = scope.config['project_description']
 page_icon = '🏠'
 # -----------------------------
-scope.pages['display'] = page
+scope.config['display'] = page
 
 
 
@@ -28,7 +28,7 @@ page_title = 'Logout ( Save User Settings )'
 page_icon = '🔒'
 # -----------------------------
 scope = st.session_state
-scope.pages['display'] = page
+scope.config['display'] = page
 
 
 page_title_layer(scope, page_title, page_icon)

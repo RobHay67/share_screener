@@ -19,15 +19,15 @@
 #																					|
 #																					|
 #							  										copy specific <ticker_data_files> only
-# 														specific tickers stored in < scope.pages[page]['ticker_list] >
+# 														specific tickers stored in < scope.page[page]['ticker_list] >
 # 																Limit rows to < app_row_limit > default = 100	
 #																   /				|				 \
 #															  	  /					|			 	  \
 #																 /					|			  	   \
 #																/					|			   		\
 #											---------------------			---------------------		---------------------
-#											| 	 scope.pages	|			| 	 scope.pages	|		| 	 scope.pages	|
-# 											|	 ['screener']	|			|	  ['chart']	|		|	['intra_day']	|
+#											| 	 scope.page	|	|			| 	 scope.page		|		| 	 scope.page		|
+# 											|	 ['screener']	|			|	  ['chart']		|		|	['intra_day']	|
 #											|    	[df]   		|			|     	[df]   		|		|      [df]   		|
 #											|					|			|					|		|					|
 #											---------------------			---------------------		---------------------
@@ -61,9 +61,9 @@
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 # T			= tag the object
 # R			= perform the actual replacement (results in a False status)
-# r_df		= scope.pages[page]['replace_dfs']
-# r_col		= scope.pages[page]['replace_cols']
-# r_all		= both the scope.pages[page]['replace_dfs'] and scope.pages[page]['replace_cols'] dictionaries
+# r_df		= scope.page[page]['replace_dfs']
+# r_col		= scope.page[page]['replace_cols']
+# r_all		= both the scope.page[page]['replace_dfs'] and scope.page[page]['replace_cols'] dictionaries
 
 
 # tag the add_cols when they have been run													???? - updated function

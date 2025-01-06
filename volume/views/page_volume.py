@@ -15,17 +15,17 @@ page_title = 'Predict Closing Volume to End of Today'
 page_icon = '🔊'
 # -----------------------------
 scope = st.session_state
-scope.pages['display'] = page
+scope.config['display'] = page
 
 show_page_header(scope, page_title, page_icon)
 
 if scope.users['logged_in']:
 
-	ticker = scope.pages[page]['selectors']['ticker']
+	ticker = scope.page[page]['selectors']['ticker']
 
 	if ticker != 'select a ticker' :		
 
-		market_timezone = opening_hours[scope.pages['share_market']]['timezone']		# Timezone for the share market
+		market_timezone = opening_hours[scope.config['share_market']]['timezone']		# Timezone for the share market
 		market_time = datetime.now(pytz.timezone(market_timezone))						# Current Market time
 
 		ticker_current_volume = view_input_volume()

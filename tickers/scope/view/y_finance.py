@@ -5,8 +5,8 @@ from app.views.widgets.cols_three import three_cols
 def show_y_finance_config(scope):
 	st.subheader('Y Finance ( Download Configuration )')
 	three_cols( 'Download Variables', 	{}, 							"scope.yf", widget_type='string' )
-	three_cols( 'Days to Download',	 	scope.pages['download_days'], 	"scope.pages['download_days']" )
-	three_cols( 'Download Intervals',	scope.yf['intervals'], 	"scope.pages['intervals']" )
+	three_cols( 'Days to Download',	 	scope.config['download_days'], 	"scope.config['download_days']" )
+	three_cols( 'Download Intervals',	scope.config['intervals'], 	"scope.yf['intervals']" )
 	st.divider()
 	st.caption('yFinance Batch Download Variables')
 	three_cols( 'Type', scope.yf['batch_type'], "scope.yf['batch_type']" )

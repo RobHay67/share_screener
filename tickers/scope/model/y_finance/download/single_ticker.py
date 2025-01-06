@@ -5,7 +5,7 @@ import yfinance as yf					# https://github.com/ranaroussi/yfinance
 def single_ticker_downloader(scope):
 	yf_download = yf.download( 
 					tickers=scope.yf['batch_ticker_string'], 
-					period=scope.pages['download_days'], 
+					period=scope.config['download_days'], 
 					interval='1d', 
 					progress=True, 
 					)			

@@ -10,7 +10,7 @@
 
 import streamlit as st
 
-from app.views.header.controller import show_page_header		
+from app.views.header.controller import show_page_header
 from screener.views.verdicts.controller import show_verdicts
 
 # Page Configuration
@@ -20,7 +20,7 @@ page_title = 'Ticker Screener'
 page_icon = '🧪'
 # -----------------------------
 
-scope.pages['display'] = page
+scope.config['display'] = page
 
 show_page_header(scope, page_title, page_icon)
 

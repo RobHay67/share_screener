@@ -21,11 +21,11 @@ def show_config_buttons(scope):
 	
 
 def set_st_button(scope:dict, show_config:str):
-	previous_value = scope.pages['render_config']
+	previous_value = scope.config['display_config_group']
 	if previous_value == show_config: 
-		scope.pages['render_config'] = None
+		scope.config['display_config_group'] = None
 	else:
-		scope.pages['render_config'] = show_config
+		scope.config['display_config_group'] = show_config
 
 
 

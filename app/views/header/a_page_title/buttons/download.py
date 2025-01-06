@@ -5,7 +5,7 @@ from tickers.scope.model.y_finance.controller import download_ticker_data
 
 def download_button(scope):
 
-	download_button_msg = 'Download (' + str(scope.pages['download_days'] + ')')
+	download_button_msg = 'Download (' + str(scope.config['download_days'] + ')')
 		
 	button = st.button(
 		label=download_button_msg, 

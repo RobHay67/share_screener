@@ -15,7 +15,7 @@ def edit_active_event(scope, config_group, config_key, status):
 	
 	# Update this status in Each Page / Ticker that utilises this column adder (config_key)
 	for ticker in scope.tickers.keys():
-		for page in scope.pages['page_list']: 
+		for page in scope.config['page_list']: 
 			# if the activated column adder is used by this page then change the refresh status
 			if config_key in scope.tickers[ticker][page]['replace_column'].keys():
 				scope.tickers[ticker][page]['replace_column'][config_key] = status

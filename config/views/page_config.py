@@ -1,7 +1,7 @@
 import streamlit as st
 
 from app.views.header.controller import show_page_header
-from app.scope.views.button_config import show_config_buttons
+from config.views.button_config import show_config_buttons
 from app.scope.views.app import show_app_config
 from files.scope.view.files import show_files_config
 from app.scope.views.pages import show_page_config 
@@ -25,14 +25,14 @@ page_title = 'Application Configuration & Settings'
 page_icon = '⚙️'
 # -----------------------------
 scope = st.session_state
-scope.pages['display'] = page
+scope.config['display'] = page
 
 show_page_header(scope, page_title, page_icon)
 
 if scope.users['logged_in']:
 	show_config_buttons(scope)
 
-	config_page = scope.pages['render_config']
+	config_page = scope.config['display_config_group']
 	if config_page != None:
 		if config_page == 'show_app_config':show_app_config(scope)
 		if config_page == 'show_files_config':show_files_config(scope)

@@ -12,7 +12,7 @@ from app.views.header.a_page_title.buttons.download import download_button
 
 def page_title_layer(scope, page_title, page_icon):
     
-	page = scope.pages['display']
+	page = scope.config['display']
 
 	if page in ['streamlit_app', 'config', 'ticker_index', 'logout']:
 		# Single Line Titles only
