@@ -6,7 +6,7 @@ from tickers.y_finance.metadata import fetch_yfinance_metadata
 
 def dividend_cols( scope, chart, ticker, chart_df):
 
-	page 	= scope.pages['display']
+	page = scope.pages['display']
 
 	# Fetch the Dividend Information for this ticker
 	metadata = fetch_yfinance_metadata(ticker)

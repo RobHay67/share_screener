@@ -1,7 +1,4 @@
-
-
 import numpy as np
-
 
 
 def rsi_cols(scope, chart, ticker, chart_df):

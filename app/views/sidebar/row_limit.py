@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from tickers.events.edit_row_limit import edit_row_limit_event
+from add_cols.events.edit_row_limit import edit_row_limit_event
 
 
 def edit_row_limit(scope):

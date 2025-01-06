@@ -1,7 +1,7 @@
 import json
 
-from users.save.config_trials import save_trials_config
-from users.save.config_charts import save_charts_config
+from users.save.trials_config import save_trials_config
+from users.save.charts_config import save_charts_config
 
 
 

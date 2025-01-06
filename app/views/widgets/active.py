@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from tickers.events.edit_active import edit_active_event
+from add_cols.events.edit_active import edit_active_event
 
 
 

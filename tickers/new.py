@@ -1,7 +1,7 @@
 import pandas as pd
 
 from tickers.save import save_ticker
-from tickers.events.new import new_ticker_data_event
+from add_cols.events.new import new_ticker_data_event
 from tickers.scope_tickers import create_dictionary_to_store_ticker_data
 
 

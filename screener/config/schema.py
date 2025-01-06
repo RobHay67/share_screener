@@ -1,10 +1,9 @@
 
 
-from tickers.add_cols.trend import trend_cols
-from tickers.add_cols.sma import sma_trend
-from tickers.add_cols.stochastic import stochastic_trend
-from tickers.add_cols.rsi import rsi_trend
-
+from add_cols.functions.trend import trend_cols
+from add_cols.functions.sma import sma_trend
+from add_cols.functions.stochastic import stochastic_trend
+from add_cols.functions.rsi import rsi_trend
 
 
 
@@ -18,7 +17,7 @@ short_name		= 'short_name'			# A short name used if various Screen Outputs
 definition		= 'definition'			# URL link to the definition for this chart or overlay
 
 column 			= 'column'				# OHLCV column required for the Analysis
-duration		= 'duration'			# the lenght or number of consecutive occurances
+duration		= 'duration'			# the length or number of consecutive occurances
 timespan 		= 'timespan'			# The entire analysis Period
 trend			= 'trend'				# the trend or direction of the trend - up or down / above or below
 add_columns		= 'add_columns'			# Dictionary of Dataframe Column Params	

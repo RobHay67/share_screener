@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from tickers.events.edit_column_adder import edit_column_adder_event
+from add_cols.events.edit_column_adder import edit_column_adder_event
 
 
 def edit_number(scope, config_group, config_key, measure ):
