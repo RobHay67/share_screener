@@ -25,4 +25,8 @@ scope.pages['display'] = page
 show_page_header(scope, page_title, page_icon)
 
 if scope.users['logged_in']:
+
+	st.write('Should I show a summary of the active test here')
+
+
 	show_verdicts(scope)

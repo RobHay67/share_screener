@@ -1,10 +1,10 @@
 import streamlit as st
 
 from app.views.header.a_page_title.buttons.config import page_config_button
-from charts.views.settings.button_chart_config import chart_settings_button
-from charts.views.settings.button_overlay_config import chart_overlay_button
+from app.views.header.a_page_title.buttons.charts import chart_settings_button
+from app.views.header.a_page_title.buttons.overlays import chart_overlay_button
 from app.views.header.a_page_title.buttons.strategies import strategies_button
-from screener.views.trials.trial_settings import trial_settings_button
+from app.views.header.a_page_title.buttons.trials import trial_settings_button
 from app.views.header.a_page_title.buttons.dfs import ticker_config_button
 from app.views.header.a_page_title.buttons.reset_page import reset_page_button
 from app.views.header.a_page_title.buttons.download import download_button

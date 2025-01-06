@@ -1,5 +1,4 @@
-from app.views.config.tickers.dataframes import show_page_dataframes
-
+from tickers.scope.view.dataframes import show_page_dataframes
 
 def show_dataframes(scope):
 	page = scope.pages['display']

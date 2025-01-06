@@ -1,0 +1,22 @@
+import streamlit as st
+
+
+from app.views.widgets.active import edit_active
+from app.views.widgets.number import edit_number
+from app.views.widgets.ohlc import edit_ohlc
+from app.views.widgets.charts.colour import edit_colour
+
+
+def moving_average_settings(scope, config_key):  # SMA or EMA
+
+	config_group = 'charts'
+
+	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1,1])
+
+	with col1:edit_active(scope, config_group, config_key)
+	with col2:edit_number(scope, config_group, config_key, 'periods' )
+	with col3:edit_ohlc(scope, config_group, config_key )
+	with col4:edit_colour(scope, config_group, config_key )
+
+
+

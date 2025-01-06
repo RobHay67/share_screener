@@ -5,7 +5,7 @@ from app.views.header.c_ticker_selectors.tickers import select_tickers
 from app.views.header.c_ticker_selectors.industries import select_industries
 from app.views.header.c_ticker_selectors.market import select_a_market
 from app.views.header.i_search.by_name import search_ticker_by_name
-from app.worklists.builder import refresh_page_worklist
+from app.scope.model.worklists.builder import refresh_page_worklist
 
 
 

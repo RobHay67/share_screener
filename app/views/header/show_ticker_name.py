@@ -1,6 +1,6 @@
 import streamlit as st
 
-from tickers.latest_price import latest_ticker_price
+from tickers.helpers.latest_price import latest_ticker_price
 
 
 

@@ -2,7 +2,7 @@ import streamlit as st
 
 from add_cols.replace_page_df import replace_page_df
 from add_cols.replace_df_cols import replace_page_df_columns
-from screener.verdict import determine_verdict_for_ticker
+from screener.scope.model.verdict import determine_verdict_for_ticker
 from add_cols.builder import create_list_of_tickers_to_add_columns
 
 

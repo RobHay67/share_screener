@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
 
 from app.views.header.a_page_title.controller import page_title_layer
-from users.logout import logout_user
+from users.scope.model.logout import logout_user
 
 
 # Page Configuration

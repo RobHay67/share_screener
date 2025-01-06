@@ -1,4 +1,4 @@
-from screener.remove_test_result import remove_test_result_column
+from screener.scope.model.remove_test_result import remove_test_result_column
 
 # This event is triggered when a column adder is changed to either 
 #

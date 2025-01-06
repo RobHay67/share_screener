@@ -1,19 +1,19 @@
 import streamlit as st
 
-from app.views.config.pages import show_specific_page_config
-from app.views.config.tickers.config import show_ticker_page_config
+from app.scope.views.pages import show_specific_page_config
+from tickers.scope.view.config import show_ticker_page_config
 
-from charts.views.settings.controller_charts import show_chart_settings
-from charts.views.settings.controller_overlays import show_overlay_config
-from screener.views.settings.user_trials import show_user_trial_settings
+from charts.scope.views.settings.controller_charts import show_chart_settings
+from charts.scope.views.settings.controller_overlays import show_overlay_config
+from screener.views.settings.controller import show_user_trial_settings
 from screener.views.settings.user_strategy import show_user_strategy_settings
 
-from app.views.config.trials import show_trial_general_config
-from app.views.config.trials import show_trial_user_settings
-from app.views.config.trials import show_trial_verdicts
-from app.views.config.strategy import show_strategy_config
-from app.views.config.charts import show_chart_config
-from app.views.config.charts import show_chart_user_settings
+from screener.scope.view.trial_config import show_trial_general_config
+from screener.scope.view.trial_config import show_trial_user_settings
+from screener.scope.view.trial_config import show_trial_verdicts
+from screener.scope.view.strategy_config import show_strategy_config
+from charts.scope.views.config import show_chart_config
+from charts.scope.views.config import show_chart_user_settings
 
 # Show/Hide additional config information or settings as specified by the user
 

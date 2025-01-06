@@ -1,7 +1,7 @@
 import streamlit as st
 
 from app.views.header.controller import show_page_header
-from charts.views.schema import create_schema_for_plotly
+from charts.helpers.plotly_schema import create_schema_for_plotly
 from charts.views.main_chart import add_main_chart 
 from charts.views.child_charts import add_child_charts
 from charts.views.main_chart import format_main_chart

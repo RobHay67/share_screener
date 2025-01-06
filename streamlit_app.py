@@ -6,7 +6,7 @@
 
 import streamlit as st
 from app.helpers.re_render import app_is_re_rendering
-from app.scope_app import set_scope
+from app.scope.model.scope_app import set_scope
 from users.views.login.controller import render_login_page
 from app.views.sidebar.controller import render_sidebar
 
@@ -23,10 +23,11 @@ intra_day_page 	= st.Page(page = "intraday/views/page_intraday.py",			title = "I
 volume_page 	= st.Page(page = "volume/views/page_volume.py",				title = "Volume", 			icon = '🔊', 	default=False,)
 research_page 	= st.Page(page = "research/views/page_research.py",	title = "Research", 		icon = '🕵', 	default=False,)
 websites_page 	= st.Page(page = "websites/views/page_websites.py",			title = "Websites", 		icon = '🌐',	default=False,)
-ticker_idx_page = st.Page(page = "ticker_index/views/page_ticker_index.py",	title = "Ticker Index", 	icon = '🗄️',	default=False,)
+ticker_idx_page = st.Page(page = "ticker_index/scope/views/page_ticker_index.py",	title = "Ticker Index", 	icon = '🗄️',	default=False,)
 logout_page 	= st.Page(page = "users/views/page_logout.py",				title = "Logout", 			icon = '🔒', 	default=True,)
-config_page 	= st.Page(page = "app/views/config/page/page_config.py",	title = "Config", 			icon = '⚙️',	default=False,)
+config_page 	= st.Page(page = "app/scope/views/page_config.py",	title = "Config", 			icon = '⚙️',	default=False,)
 testing_page 	= st.Page(page = "app/views/page_test.py",					title = "Testing", 			icon = '🔬',	default=False,)
+
 
 page_navigation = st.navigation(
 	{

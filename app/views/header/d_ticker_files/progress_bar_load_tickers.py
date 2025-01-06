@@ -1,7 +1,7 @@
 import streamlit as st
 
-from tickers.load.controller import load_ticker
-from tickers.load.builder import create_ticker_list_to_load
+from tickers.scope.model.load import load_ticker
+from tickers.helpers.ticker_list import create_ticker_list_to_load
 
 
 def load_tickers_progress_bar(scope):

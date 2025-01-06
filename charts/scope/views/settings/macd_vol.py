@@ -1,0 +1,22 @@
+
+import streamlit as st
+
+
+from app.views.widgets.active import edit_active
+from app.views.widgets.number import edit_number
+
+
+def macd_volume_settings(scope):
+	
+	config_key = 'macd_vol'
+	config_group = 'charts'
+
+	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1,1])
+
+	with col1:edit_active(scope, config_group, config_key)
+	with col2:
+		st.write('Column for MACD Vol')
+		st.caption('Volume')
+	with col3:edit_number(scope, config_group, config_key, 'long' )
+	with col4:edit_number(scope, config_group, config_key, 'short' )
+	with col5:edit_number(scope, config_group, config_key, 'signal' )

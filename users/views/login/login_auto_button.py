@@ -1,6 +1,6 @@
 import streamlit as st
 
-from users.login import login_user
+from users.scope.model.login import login_user
 
 def auto_login_button(scope):
 	button = st.button(
