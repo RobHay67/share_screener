@@ -64,8 +64,8 @@ def show_chart_settings(scope):
 
 
 
-def activate_chart(scope, config_key):
-	edit_active(scope, 'charts', config_key)
+def activate_chart(scope, schema_key):
+	edit_active(scope, 'charts', schema_key)
 
 
 

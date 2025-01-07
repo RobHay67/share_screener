@@ -4,15 +4,15 @@ import streamlit as st
 from add_cols.events.edit_column_adder import edit_column_adder_event
 
 
-def edit_number(scope, config_group, config_key, measure ):
+def edit_number(scope, schema_group, schema_key, measure ):
 
-	widget_key = 'widget_' + config_group + '_' + config_key + '_' + measure
+	widget_key = 'widget_' + schema_group + '_' + schema_key + '_' + measure
 	display_name = measure.capitalize()
 	if display_name == 'Duration':
 		display_name =  'at least this many days'
 	elif display_name == 'Timespan':
 		display_name = 'of the last x days'
-	previous_selection = int(scope[config_group]['user_config'][config_key]['add_columns'][measure])	
+	previous_selection = int(scope[schema_group]['user_config'][schema_key]['add_columns'][measure])	
 
 	st.number_input( 	
 					label		=display_name, 
@@ -20,17 +20,17 @@ def edit_number(scope, config_group, config_key, measure ):
 					step		=1, 
 					value		=previous_selection,
 					on_change	=on_change_number,
-					args		=(scope, config_group, config_key, measure, widget_key, ),
+					args		=(scope, schema_group, schema_key, measure, widget_key, ),
 					key			=widget_key,
 					)  
 
 
-def on_change_number(scope:dict, config_group:str, config_key:str, measure:str, widget_key:str):
+def on_change_number(scope:dict, schema_group:str, schema_key:str, measure:str, widget_key:str):
 
 	changed_value = scope[widget_key]
 
 	# store the selection
-	scope[config_group]['user_config'][config_key]['add_columns'][measure] = changed_value
+	scope[schema_group]['user_config'][schema_key]['add_columns'][measure] = changed_value
 
 	# update the page data renew status
-	edit_column_adder_event(scope, config_key)
+	edit_column_adder_event(scope, schema_key)

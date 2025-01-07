@@ -7,12 +7,12 @@ from app.views.widgets.number import edit_number
 
 def volume_oscillator_settings(scope):
 	
-	config_key = 'vol_osssy'
-	config_group = 'charts'
+	schema_key = 'vol_osssy'
+	schema_group = 'charts'
 
 	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1,1])
 
-	with col1:edit_active(scope, config_group, config_key)
-	with col2:edit_number(scope, config_group, config_key, 'fast' )
-	with col3:edit_number(scope, config_group, config_key, 'slow' )
+	with col1:edit_active(scope, schema_group, schema_key)
+	with col2:edit_number(scope, schema_group, schema_key, 'fast' )
+	with col3:edit_number(scope, schema_group, schema_key, 'slow' )
 	

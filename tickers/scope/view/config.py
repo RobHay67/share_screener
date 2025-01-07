@@ -23,7 +23,7 @@ def show_ticker_page_config(scope):
 			st.divider()
 			three_cols( 'Page Dataframe Information '	, {}													, "scope.tickers["+ticker+"]["+page+"]"					, widget_type='string' )
 			three_cols( 'Page Dataframes'						, ticker										, "scope.tickers["+ticker+"]["+page+"][df]"				, widget_type='string' )
-			three_cols( 'Page Configuration Group'				, scope.tickers[ticker][page]['config_group']	, "scope.tickers["+ticker+"]["+page+"][config_group]"	, widget_type='string' )
+			three_cols( 'Page Configuration Group'				, scope.tickers[ticker][page]['schema_group']	, "scope.tickers["+ticker+"]["+page+"][schema_group]"	, widget_type='string' )
 			three_cols( 'Replace Dataframe ?'					, scope.tickers[ticker][page]['replace_df']		, "scope.tickers["+ticker+"]["+page+"][replace_df]"		, widget_type='string' )
 			three_cols( 'Replace Dataframe Columns ?'			, scope.tickers[ticker][page]['replace_column']	, "scope.tickers["+ticker+"]["+page+"]][replace_column]", widget_type='string' )
 		else:

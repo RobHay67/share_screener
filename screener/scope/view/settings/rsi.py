@@ -18,11 +18,11 @@ def rsi_trends(scope):
 
 def rsi_settings(scope, trial):
 	
-	config_group = 'trials'
+	schema_group = 'trials'
 
 	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1,1])
 
-	with col1:edit_active(scope, config_group, trial)
-	with col2:edit_ohlcv(scope, config_group, trial)
-	with col3:edit_trend_rsi(scope, config_group, trial)
-	with col4:edit_number(scope, config_group, trial, 'lookback_days' )
+	with col1:edit_active(scope, schema_group, trial)
+	with col2:edit_ohlcv(scope, schema_group, trial)
+	with col3:edit_trend_rsi(scope, schema_group, trial)
+	with col4:edit_number(scope, schema_group, trial, 'lookback_days' )

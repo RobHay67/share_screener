@@ -18,11 +18,11 @@ def new_ticker_data_event(scope, ticker):
 		scope.tickers[ticker][page]['replace_df'] = True
 
 		if page == 'chart':
-			scope.tickers[ticker][page]['config_group'] = 'charts'
+			scope.tickers[ticker][page]['schema_group'] = 'charts'
 			scope.tickers[ticker][page]['replace_column'] = scope.charts['template_col_adders'].copy()
 
 		if page == 'screener':
-			scope.tickers[ticker][page]['config_group'] = 'trials'
+			scope.tickers[ticker][page]['schema_group'] = 'trials'
 			scope.tickers[ticker][page]['replace_column'] = scope.trials['template_col_adders'].copy()
 
 

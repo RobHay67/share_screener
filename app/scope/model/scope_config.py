@@ -20,7 +20,7 @@ def scope_config(scope):
 								'testing',
 								]
 	scope.config['ticker_values'] = ticker_value_schema
-	scope.config['display_config_group'] = None
+	scope.config['display_schema_group'] = None
 
 	# Dropdowns
 	scope.config['dropdowns'] = {}

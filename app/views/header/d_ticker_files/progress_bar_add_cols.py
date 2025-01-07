@@ -26,6 +26,6 @@ def add_extra_cols_progress_bar(scope, page):
 				replace_page_df_columns(scope, page, ticker)
 				determine_verdict_for_ticker(scope, ticker)
 
-			my_bar.progress(100, text='Finished adding columns to ( ' + str(len(ticker_list)) + ' ) ticker files')
+			my_bar.progress(100, text='Added Columns to ( ' + str(len(ticker_list)) + ' ) ticker files')
 		else:
 			my_bar = st.progress(100, text='No Files available - cannot add any columns')

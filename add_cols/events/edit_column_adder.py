@@ -3,7 +3,7 @@
 
 
 
-def edit_column_adder_event(scope, config_key):
+def edit_column_adder_event(scope, schema_key):
 
 	# Event is called when one of the column adders has its
 	# criteria changed - i.e. sma_days changed from 5 to 10
@@ -18,7 +18,7 @@ def edit_column_adder_event(scope, config_key):
 		for page in scope.config['page_list']: 
 			
 			# if column adder is used by this page then change the refresh status to True
-			if config_key in scope.tickers[ticker][page]['replace_column'].keys():
-				scope.tickers[ticker][page]['replace_column'][config_key] = status
+			if schema_key in scope.tickers[ticker][page]['replace_column'].keys():
+				scope.tickers[ticker][page]['replace_column'][schema_key] = status
 
 

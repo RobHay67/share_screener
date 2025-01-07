@@ -16,13 +16,13 @@ def ohlcv_price_direction(scope):
 
 def ohlcv_settings(scope, trial):
 	
-	config_group = 'trials'
-	column_name = scope[config_group]['user_config'][trial]['add_columns']['column']
+	schema_group = 'trials'
+	column_name = scope[schema_group]['user_config'][trial]['add_columns']['column']
 
 	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1.5,1])
 
-	with col1:edit_active(scope, config_group, trial)
-	with col2:edit_ohlcv(scope, config_group, trial)
-	with col3:edit_trend_ohlcv (scope, config_group, trial)
-	with col4:edit_number(scope, config_group, trial, 'duration' )
-	with col5:edit_number(scope, config_group, trial, 'timespan' )
+	with col1:edit_active(scope, schema_group, trial)
+	with col2:edit_ohlcv(scope, schema_group, trial)
+	with col3:edit_trend_ohlcv (scope, schema_group, trial)
+	with col4:edit_number(scope, schema_group, trial, 'duration' )
+	with col5:edit_number(scope, schema_group, trial, 'timespan' )

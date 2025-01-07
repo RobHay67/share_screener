@@ -11,19 +11,19 @@ from screener.scope.model.remove_test_result import remove_test_result_column
 # Column adders deactived need to be removed from the page_df
 # Screener Page Overall Verdict will need to be re-run
 
-def edit_active_event(scope, config_group, config_key, status):
+def edit_active_event(scope, schema_group, schema_key, status):
 	
-	# Update this status in Each Page / Ticker that utilises this column adder (config_key)
+	# Update this status in Each Page / Ticker that utilises this column adder (schema_key)
 	for ticker in scope.tickers.keys():
 		for page in scope.config['page_list']: 
 			# if the activated column adder is used by this page then change the refresh status
-			if config_key in scope.tickers[ticker][page]['replace_column'].keys():
-				scope.tickers[ticker][page]['replace_column'][config_key] = status
+			if schema_key in scope.tickers[ticker][page]['replace_column'].keys():
+				scope.tickers[ticker][page]['replace_column'][schema_key] = status
 				# for the screener page, remove the test result 
 				# if the users has deactivated this test
 				# and rerun the overall test
 				if page == 'screener' and status == False:
-					remove_test_result_column(scope, ticker, config_key)
+					remove_test_result_column(scope, ticker, schema_key)
 					scope.tickers[ticker][page]['replace_verdict'] = True
 
 	# Update the Active lists for charts or trials
@@ -31,10 +31,10 @@ def edit_active_event(scope, config_group, config_key, status):
 
 	if status == True:
 		# add chart or trial to active list
-		scope[config_group]['active_list'].append(config_key)
+		scope[schema_group]['active_list'].append(schema_key)
 	else:
 		# remove the chart or trial from the active list
-		if config_key in scope[config_group]['active_list']:
-			scope[config_group]['active_list'].remove(config_key)
+		if schema_key in scope[schema_group]['active_list']:
+			scope[schema_group]['active_list'].remove(schema_key)
 
 

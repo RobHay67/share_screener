@@ -13,7 +13,7 @@ from add_cols.functions.rsi import rsi_trend
 
 active 			= 'active'				# True or False - The Analysis is active or inactive (displayed or not displayed)
 name 			= 'name'				# The display name for the Analysis (used in the settings Page)
-short_name		= 'short_name'			# A short name used if various Screen Outputs
+short_name		= 'short_name'			# A short name used for various Screen Outputs
 definition		= 'definition'			# URL link to the definition for this chart or overlay
 
 column 			= 'column'				# OHLCV column required for the Analysis
@@ -21,7 +21,7 @@ duration		= 'duration'			# the length or number of consecutive occurances
 timespan 		= 'timespan'			# The entire analysis Period
 trend			= 'trend'				# the trend or direction of the trend - up or down / above or below
 add_columns		= 'add_columns'			# Dictionary of Dataframe Column Params	
-function		= 'function'			# The function to add the columns for this config_key
+function		= 'function'			# The function to add the columns for this schema_key
 
 periods 		= 'periods'				# Most Indicators use a base number of days/hours (periods) for their calcs - store it here
 short 			= 'short'				# for the MACD

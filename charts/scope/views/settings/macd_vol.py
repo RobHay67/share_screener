@@ -8,15 +8,15 @@ from app.views.widgets.number import edit_number
 
 def macd_volume_settings(scope):
 	
-	config_key = 'macd_vol'
-	config_group = 'charts'
+	schema_key = 'macd_vol'
+	schema_group = 'charts'
 
 	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1,1])
 
-	with col1:edit_active(scope, config_group, config_key)
+	with col1:edit_active(scope, schema_group, schema_key)
 	with col2:
 		st.write('Column for MACD Vol')
 		st.caption('Volume')
-	with col3:edit_number(scope, config_group, config_key, 'long' )
-	with col4:edit_number(scope, config_group, config_key, 'short' )
-	with col5:edit_number(scope, config_group, config_key, 'signal' )
+	with col3:edit_number(scope, schema_group, schema_key, 'long' )
+	with col4:edit_number(scope, schema_group, schema_key, 'short' )
+	with col5:edit_number(scope, schema_group, schema_key, 'signal' )
