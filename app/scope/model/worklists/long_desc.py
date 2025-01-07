@@ -18,12 +18,12 @@ def refresh_worklist_long_description(scope):
 		pad_string = '-'*padding
 		ticker_status = ticker + pad_string
 
-		print(scope.tickers['missing']['cloud'])
+		print('refresh_worklist_long_description > ', scope.tickers_missing['cloud'])
 
-		if ticker in scope.tickers['missing']['cloud']:
-			ticker_status =  ticker_status + scope.tickers['missing']['errors'][ticker]['yf']
-		elif ticker in scope.tickers['missing']['local']:
-			ticker_status = ticker_status + scope.tickers['missing']['errors'][ticker]['load']
+		if ticker in scope.tickers_missing['cloud']:
+			ticker_status =  ticker_status + scope.tickers_missing['errors'][ticker]['yf']
+		elif ticker in scope.tickers_missing['local']:
+			ticker_status = ticker_status + scope.tickers_missing['errors'][ticker]['load']
 		else:
 			if ticker in list(scope.tickers.keys()): 
 				ticker_df = scope.tickers[ticker]['df']

@@ -3,7 +3,7 @@ import os
 
 from files.helpers.ticker_path import path_for_ticker_file
 from tickers.scope.model.new import add_new_ticker
-from tickers.scope.model.missing_tickers.failed_load import fail_local_load_event
+from tickers.scope.model.missing.failed_load import fail_local_load_event
 
 from tickers.scope.model.schema import ticker_file_usecols
 from tickers.scope.model.schema import ticker_file_dtypes

@@ -68,7 +68,7 @@ def rsi_trend(scope, trial, ticker, df):
 	else:
 		df[trial] = 'fail'
 
-	print(df.tail(3))
+	# print(df.tail(3))
 	
 	# clean up temp columns
 	df.drop(['rsi_delta', 'rsi_gain', 'rsi_loss', 'rsi_avg_gains', 'rsi_avg_losses', 'rsi_rs', 'rsi', 'rsi_shifted'], axis=1, inplace=True)

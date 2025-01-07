@@ -1,6 +1,6 @@
 
 from files.helpers.ticker_path import path_for_ticker_file
-from tickers.scope.model.missing_tickers.save import save_ticker_event
+from tickers.scope.model.missing.save import save_ticker_event
 
 def save_ticker(scope, ticker):
 

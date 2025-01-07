@@ -1,7 +1,7 @@
 from tickers.scope.model.schema import ticker_file_usecols
 from tickers.scope.model.new import add_new_ticker
-from tickers.scope.model.missing_tickers.lists import update_missing_ticker_lists
-from tickers.scope.model.missing_tickers.failed_download import fail_download_event
+from tickers.scope.model.missing.lists import update_missing_ticker_lists
+from tickers.scope.model.missing.failed_download import fail_download_event
 
 
 def cache_entire_download(scope, ticker_download_list):

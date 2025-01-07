@@ -14,7 +14,6 @@ from tickers.views.msg_no_tickers import no_tickers_selected
 def download_ticker_data(scope):
 	print('Running download_ticker_data')
 	counter = 1
-	print(counter)
 
 	# download_from_yahoo_finance(scope)
 	# download ticker data for a single or group of tickers
@@ -25,7 +24,6 @@ def download_ticker_data(scope):
 
 	if len(ticker_download_list) > 0:
 		initilize_yf_config(scope, ticker_download_list)
-		print('Finished initilize_yf_config')
 		download_data_from_yf(scope)
 		format_downloaded_batch(scope)
 
@@ -40,9 +38,12 @@ def download_ticker_data(scope):
 		cache_entire_download(scope, ticker_download_list)
 		render_message_download_complete(scope, ticker_download_list)
 	# 	# scope_yf_config(scope)
+	
 
 	else:
 		no_tickers_selected(scope)
+
+	print('Finished > download_ticker_data function')
 
 
 
