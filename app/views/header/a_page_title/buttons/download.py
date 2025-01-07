@@ -1,6 +1,6 @@
 import streamlit as st
 
-from tickers.scope.model.y_finance.controller import download_ticker_data
+from tickers.scope.model.download import download_ticker_data
 
 
 def download_button(scope):

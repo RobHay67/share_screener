@@ -1,7 +1,12 @@
 
-def initilize_yf_config(scope, ticker_download_list):
+
+
+def set_download_config(scope, ticker_download_list):
 	determine_batch_type(scope, ticker_download_list)
 	create_readable_string(scope, ticker_download_list)
+	scope.yf['batch_data'] = {}
+	scope.yf['batch_errors'] = {}
+	
 
 
 def determine_batch_type(scope, ticker_download_list):
@@ -14,12 +19,14 @@ def determine_batch_type(scope, ticker_download_list):
 def create_readable_string(scope, ticker_download_list):
 
 	# Create a readable list of the tickers for Y_Finance
-	y_finance_ticker_string = ""
+	ticker_string_for_y_finance = ""
 	for ticker in ticker_download_list:
-		if len(y_finance_ticker_string) != 0:
-			y_finance_ticker_string += " "
-		y_finance_ticker_string =  y_finance_ticker_string + ticker
-	scope.yf['batch_ticker_string'] = y_finance_ticker_string
+		if len(ticker_string_for_y_finance) != 0:
+			ticker_string_for_y_finance += ", "
+		ticker_string_for_y_finance =  ticker_string_for_y_finance + ticker
+	
+	# cache for download function
+	scope.yf['batch_ticker_string'] = ticker_string_for_y_finance
 
 
 

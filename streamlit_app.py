@@ -49,13 +49,8 @@ else:
 for i in range(5):print('')
 print('='*66)
 print('TODOs - document while coding then move to Trello')
-
 print('TODO - we need to download and SAVE the dividend data as well')
-print('TODO > /Users/robhay/Developer/share_screener/y_finance/cache/batch_data.py:13:')
-print('FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. ')
-print('In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. ')
-print('To retain the old behavior, exclude the relevant entries before the concat operation.')
-print("scope.yf['data'] = pd.concat([scope.yf['data'], scope.yf['batch_data']], sort=False))")
+
 print('='*66)
 for i in range(3):print('')
 

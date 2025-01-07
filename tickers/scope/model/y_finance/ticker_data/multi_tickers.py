@@ -15,8 +15,12 @@ def multiple_tickers_downloader(scope):
 								)
 
 	# Sort out the column headers
-	yf_download = yf_download.stack(level=0).rename_axis(['Date', 'Ticker']).reset_index(level=1)
+	yf_download = yf_download.stack(level=0, future_stack=True).rename_axis(['Date', 'Ticker']).reset_index(level=1)
 
 	# Store the results
 	scope.yf['batch_data'] = yf_download
 	scope.yf['batch_errors'] = yf.shared._ERRORS
+
+	print(scope.yf['batch_errors'])
+
+

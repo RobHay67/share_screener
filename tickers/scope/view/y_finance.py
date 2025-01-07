@@ -6,7 +6,7 @@ def show_y_finance_config(scope):
 	st.subheader('Y Finance ( Download Configuration )')
 	three_cols( 'Download Variables', 	{}, 							"scope.yf", widget_type='string' )
 	three_cols( 'Days to Download',	 	scope.config['download_days'], 	"scope.config['download_days']" )
-	three_cols( 'Download Intervals',	scope.config['intervals'], 	"scope.yf['intervals']" )
+	three_cols( 'Download periods',		scope.config['periods'], 		"scope.yf['periods']" )
 	st.divider()
 	st.caption('yFinance Batch Download Variables')
 	three_cols( 'Type', scope.yf['batch_type'], "scope.yf['batch_type']" )
@@ -18,7 +18,6 @@ def show_y_finance_config(scope):
 	st.divider()
 	st.caption('Download Variables')
 	# three_cols( 'Ticker List', scope.yf['ticker_list'], "scope.yf['ticker_list']" )
-	three_cols( 'All Errors', 		scope.yf['errors']  , "scope.yf['errors']" )
-	three_cols( 'All Data', 		scope.yf['data'], "scope.yf['data']" )
-	three_cols( 'Download Data ?',	scope.yf['downloaded_data'], "scope.yf['downloaded_data']" )
+	three_cols( 'All Errors', 		scope.yf['all_errors']  , "scope.yf['all_errors']" )
+	three_cols( 'All Data', 		scope.yf['all_data'], "scope.yf['all_data']" )
 	
