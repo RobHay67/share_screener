@@ -1,6 +1,5 @@
 
 
-
 def scope_tickers_missing(scope):
 	# To Store the missing ticker information
 	scope.tickers_missing = {}
@@ -13,8 +12,3 @@ def scope_tickers_missing(scope):
 	
 def scope_missing_ticker_error(scope, ticker):
 	scope.tickers_missing['errors'][ticker] = {'load':None, 'yf':None}
-
-
-
-
-	# scope.tickers_missing

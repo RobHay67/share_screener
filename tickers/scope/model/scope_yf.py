@@ -1,10 +1,10 @@
 import pandas as pd
-from tickers.scope.model.schema import ticker_file_usecols
-
+from tickers.scope.model.y_finance.ticker_data.schema_yf import scope_yf_schema
 
 def scope_download_variables(scope):
 	scope.yf = {}
 	scope.yf['periods']				= ['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y']
+	scope_yf_schema(scope)
 	scope_yf_config(scope)
 	scope_yf_batch_config(scope)
 
@@ -12,7 +12,7 @@ def scope_download_variables(scope):
 def scope_yf_config(scope):
 	# seperate so it can be called at the begining of each download
 	# All Downloaded ticker data (all batches) is tempporarily stored here
-	scope.yf['all_data'] 	= pd.DataFrame(columns=ticker_file_usecols + ['ticker'] )		
+	scope.yf['all_data'] 	= pd.DataFrame(columns=scope.ticker_config['usecols'] + ['ticker'] )		
 	scope.yf['all_errors'] 	= {}
 
 

@@ -4,7 +4,7 @@ import streamlit as st
 def show_active_trials(scope):
 
 	st.divider()
-	st.subheader('Currently Active Trials / Tests')
+	st.subheader('Trials (Tests) - active only')
 
 	st.write('https://www.investopedia.com/articles/active-trading/041814/four-most-commonlyused-indicators-trend-trading.asp')
 
@@ -14,7 +14,7 @@ def show_active_trials(scope):
 	with col1:st.caption('Trial Name')
 	with col2:st.caption('-- and ---')
 	with col3:st.caption('Criteria (english explanation)')
-	with col4:st.caption('Link to Definition')
+	with col4:st.caption('Definition')
 	with col5:st.caption('Config Ref')
 	st.divider()
 
@@ -23,6 +23,7 @@ def show_active_trials(scope):
 		connector = 'and ------- >'
 		english_explanation = ''
 		dict_of_values = scope.trials['user_config'][trial]['add_columns']
+		# st.write(dict_of_values)
 		column = dict_of_values['column'] if 'column' in dict_of_values else None
 		trend = dict_of_values['trend'] if 'trend' in dict_of_values else None
 		duration = dict_of_values['duration'] if 'duration' in dict_of_values else None
@@ -35,15 +36,13 @@ def show_active_trials(scope):
 		# print(definition)
 		
 		with col1: st.write(scope.trials['user_config'][trial]['short_name'])
-		
-		# st.write(scope.config['ticker_values'])
-		
+			
 		if trial in ['price_1', 'price_2', 'price_3']:
-			column_name = scope.config['ticker_values'][column]['long_english']
+			column_name = scope.ticker_config['schema'][column]['long_english']
 			english_explanation =  f"{column_name} is {trend}, {duration} of the previous {timespan} days"
 
 		if trial in ['sma_1', 'sma_2', 'sma_3']:
-			column_name = scope.config['ticker_values'][column]['long_english']
+			column_name = scope.ticker_config['schema'][column]['long_english']
 			english_explanation =  f"{column_name} is trading {trend} the {periods} day Simple Moving Average (SMA)"
 
 		if trial in ['stochastic_1', 'stochastic_2', 'stochastic_3']:
@@ -51,7 +50,7 @@ def show_active_trials(scope):
 			english_explanation = 'STOCHASTIC'
 
 		if trial in ['rsi_1', 'rsi_2']:
-			column_name = scope.config['ticker_values'][column]['long_english']
+			column_name = scope.ticker_config['schema'][column]['long_english']
 
 			# buy and sell zone
 			if trend in ['up ','down']:

@@ -1,4 +1,3 @@
-from tickers.scope.model.schema import ticker_file_usecols
 from tickers.scope.model.new import add_new_ticker
 from tickers.scope.model.missing.lists import update_missing_ticker_lists
 from tickers.scope.model.missing.failed_download import fail_download_event
@@ -15,7 +14,7 @@ def append_downloaded_data_to_scope_tickers(scope, ticker_download_list):
 			# subset to specific ticker from the downloaded data
 			ticker_data = scope.yf['all_data'][scope.yf['all_data']['ticker'] == ticker]
 			# standardise the columns
-			ticker_data = ticker_data[ticker_file_usecols]
+			ticker_data = ticker_data[scope.ticker_config['usecols']]
 			# drop rows where volume is zero 		
 			ticker_data = ticker_data[ticker_data['volume'] != 0]
 			

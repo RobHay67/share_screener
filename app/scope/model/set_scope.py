@@ -13,6 +13,7 @@ from charts.scope.model.scope_charts import scope_charts
 from ticker_index.scope.model.scope_ticker_index import scope_index_file
 from tickers.scope.model.scope_tickers import scope_tickers
 from tickers.scope.model.scope_tickers_missing import scope_tickers_missing
+from tickers.scope.model.schema_tickers import scope_tickers_config
 from tickers.scope.model.scope_yf import scope_download_variables
 
 
@@ -36,6 +37,7 @@ def set_scope(scope):
 		scope_index_file(scope)				# load the share index
 		scope_tickers_missing(scope)		# track missing tickers and associated errors
 		scope_ticker_search(scope)			# variable to facilite searching for ticker by name
+		scope_tickers_config(scope)			# dictionary to define the structure of the ticker file/dataframe
 		scope_download_variables(scope)		# variable used during download of ticker data
 		scope_strategy(scope)				# TODO - this may not even be required - keeping just in case
 

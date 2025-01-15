@@ -19,8 +19,3 @@ def scope_trials(scope):
 	scope.trials['trial_list'] = list(trials_schema.keys())
 	trial_active_list(scope)
 	trial_template_column_adders(scope)
-	
-
-
-
-

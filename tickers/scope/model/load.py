@@ -5,11 +5,6 @@ from files.helpers.ticker_path import path_for_ticker_file
 from tickers.scope.model.new import add_new_ticker
 from tickers.scope.model.missing.failed_load import fail_local_load_event
 
-from tickers.scope.model.schema import ticker_file_usecols
-from tickers.scope.model.schema import ticker_file_dtypes
-from tickers.scope.model.schema import ticker_file_dates
-
-
 
 def load_ticker(scope, ticker):
 	path_for_ticker_file(scope, ticker )
@@ -19,10 +14,10 @@ def load_ticker(scope, ticker):
 									scope.files['paths']['ticker_data'], 
 									header      = 0,
 									# nrows       = params.row_limitor, 
-									usecols     = ticker_file_usecols,
+									usecols     = scope.ticker_config['usecols'],
 									# index_col   = 'date', 
-									dtype       = ticker_file_dtypes,
-									parse_dates = ticker_file_dates,
+									dtype       = scope.ticker_config['dtypes'],
+									parse_dates = scope.ticker_config['dates'],
 									)
 		add_new_ticker(scope, ticker, ticker_data_file)
 	else:
