@@ -10,8 +10,8 @@ def show_config_buttons(scope):
 		st.button('Page(s)', use_container_width=True, on_click=set_st_button, args=(scope, 'show_page_config', ))
 		st.button('Users', 			use_container_width=True, on_click=set_st_button, args=(scope, 'show_user_config', ))
 	with col3: 
+		st.button('Ticker Config',	use_container_width=True, on_click=set_st_button, args=(scope, 'show_ticker_config', ))
 		st.button('Ticker Data', 	use_container_width=True, on_click=set_st_button, args=(scope, 'show_ticker_general_config', ))
-		st.button('Missing Tickers',use_container_width=True, on_click=set_st_button, args=(scope, 'show_missing_ticker_config', ))
 	with col4: 		
 		st.button('Charts', 			use_container_width=True, on_click=set_st_button, args=(scope, 'show_chart_config', ))
 		st.button('Y Finance', 		use_container_width=True, on_click=set_st_button, args=(scope, 'show_y_finance_config', ))
@@ -23,7 +23,7 @@ def show_config_buttons(scope):
 def set_st_button(scope:dict, show_config:str):
 	previous_value = scope.config['display_config_group']
 	if previous_value == show_config: 
-		scope.config['display_'] = None
+		scope.config['display_config_group'] = None
 	else:
 		scope.config['display_config_group'] = show_config
 

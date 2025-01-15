@@ -6,7 +6,7 @@ from app.scope.views.app import show_app_config
 from files.scope.view.files import show_files_config
 from app.scope.views.pages import show_page_config 
 from tickers.scope.view.config import show_ticker_general_config
-from tickers.scope.view.missing import show_missing_ticker_config
+from tickers.scope.view.config import show_ticker_config
 from users.scope.view.users import show_user_config
 from tickers.scope.view.y_finance import show_y_finance_config
 # Config for Screener Page
@@ -39,7 +39,7 @@ if scope.users['logged_in']:
 		# if button == 'show_ticker_index':has its own page,
 		if config_page == 'show_page_config':show_page_config(scope)
 		if config_page == 'show_ticker_general_config':show_ticker_general_config(scope)
-		if config_page == 'show_missing_ticker_config':show_missing_ticker_config(scope)
+		if config_page == 'show_ticker_config':show_ticker_config(scope)
 		if config_page == 'show_y_finance_config':show_y_finance_config(scope)
 		if config_page == 'show_user_config':show_user_config(scope)
 		

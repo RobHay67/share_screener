@@ -19,7 +19,7 @@ def scope_config(scope):
 								'logout',
 								'testing',
 								]
-	scope.config['display_schema_group'] = None
+	scope.config['display_config_group'] = None
 
 	# Dropdowns
 	scope.config['dropdowns'] = {}
@@ -42,7 +42,7 @@ def user_config_pages(scope):
 	scope.config['download_days'] = '5d'
 
 
-def scope_ticker_search(scope):
+def scope_seach_for_ticker(scope):
 	# company names for the ticker search
 	scope.config['ticker_search'] = {}
 	scope.config['ticker_search'] = (scope.ticker_index['df']['company_name']).to_dict()

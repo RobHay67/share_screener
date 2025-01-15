@@ -1,11 +1,4 @@
 
-def scope_tickers_config(scope):
-	scope.ticker_config = {}
-	scope.ticker_config['schema'] = schema
-	scope.ticker_config['usecols'] = ['date', 'open', 'high', 'low', 'close', 'volume']
-	scope.ticker_config['dtypes'] = {'open': 'float64', 'high': 'float64', 'low': 'float64', 'close': 'float64', 'volume': 'int64'}
-	scope.ticker_config['dates'] = ['date']
-
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Ticker Data file Schema
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -24,4 +17,3 @@ schema =  {
 		'volume': { index_col : False , data_type : 'int64'			, english:'Volume'	, long_english:'Volume'			}, 
 		'ticker': { index_col : False , data_type : None			, english:'Ticker'	, long_english:'Ticker Code'	},   # will not be added to the column dictionary
 		}
-

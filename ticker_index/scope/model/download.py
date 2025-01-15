@@ -5,7 +5,7 @@ from app.scope.model.dropdowns.controller import refresh_ticker_selector_lists
 
 
 
-from app.scope.model.scope_config import scope_ticker_search
+from app.scope.model.scope_config import scope_seach_for_ticker
 
 from ticker_index.scope.views.download.messages import message_downloading
 from ticker_index.scope.views.download.messages import message_completed_download
@@ -63,7 +63,7 @@ def download_ticker_index_data(scope):
 
 		refresh_ticker_selector_lists(scope)
 
-		scope_ticker_search(scope)	# refresh the default ticker search list
+		scope_seach_for_ticker(scope)	# refresh the default ticker search list
 				
 	else:
 		message_failed_market(scope)
