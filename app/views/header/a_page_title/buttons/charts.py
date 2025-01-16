@@ -10,7 +10,8 @@ def chart_settings_button(scope):
 	button = st.button(
 						label='📊', 
 						use_container_width=True, 
-						on_click=chart_settings_status, args=(scope, page, ),
+						on_click=chart_settings_status, 
+						args=(scope, page, ),
 						type=type_of_button,
 						help='Chart Configuration Settings'
 						)

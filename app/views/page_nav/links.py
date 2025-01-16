@@ -2,40 +2,6 @@ import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
 
 
-def link_to_app_button(scope, page, ticker):
-	
-	widget_key = 'widget_link_to_' + page + '_page_for_' + ticker
-	streamlit_page_name = page
-
-	if page == 'chart':
-		app_desc = '📊'
-		streamlit_page_name = 'charting'
-	elif page == 'volume':
-		app_desc = '🔊'
-	elif page == 'intraday':
-		app_desc = '🌤️'
-	elif page == 'research':
-		app_desc = '🕵'
-	else:
-		app_desc = page
-
-	open_app_button = st.button(
-						label=app_desc,
-						key=widget_key,
-						use_container_width=True,
-						)
-	
-
-	if open_app_button:
-		if page != 'screener':	
-			scope.page[page]['selectors']['ticker'] = ticker
-		else:
-			scope.page[page]['selectors']['tickers'] = [ticker]
-			scope.page[page]['selectors']['industries'] = []
-			scope.page[page]['selectors']['market'] = 'select market'
-			scope.page[page]['search_results'] = {}
-
-		switch_page(streamlit_page_name)
 
 
 

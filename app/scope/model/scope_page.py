@@ -34,3 +34,9 @@ def scope_page(scope):
 										'strategy':False,				# display the strategy settings
 										'ticker_config':False,			# display the ticker config
 								}
+		
+
+
+
+
+		

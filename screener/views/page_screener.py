@@ -11,6 +11,7 @@
 import streamlit as st
 
 from app.views.header.controller import show_page_header
+from screener.views.active_trials.active_tests import show_active_trials
 from screener.views.verdicts.controller import show_verdicts
 
 # Page Configuration
@@ -26,7 +27,11 @@ show_page_header(scope, page_title, page_icon)
 
 if scope.users['logged_in']:
 
-	st.write('Should I show a summary of the active test here')
-
+	show_active_trials(scope)
 
 	show_verdicts(scope)
+
+	st.divider()
+	st.subheader('Fliss Simple Strategy')
+	st.write('Closing Price is up n times over the last x days')
+	st.write('Volume is up n times over the last x days')

@@ -1,20 +1,8 @@
 import streamlit as st
-from app.views.header.links import link_to_app_button
-from app.views.header.links import website_hyperlink
+from screener.helpers.tab_names import determine_tab_names
 
-
-def passing_verdict_list(scope):
-	# Generate a list of tickers with an overall passing result
-	page = scope.config['display']
-	verdict_list = []
-
-	for ticker in scope.page[page]['worklist']:
-		# Only mined tickers can have verdicts
-		if ticker in scope.page[page]['loaded_ticker_list']:
-			if scope.tickers[ticker][page]['verdict'] == 'pass':
-				verdict_list.append(ticker)
-
-	return verdict_list
+from app.views.page_nav.button import link_to_page_button, button_page_link_chart
+from app.views.page_nav.links import website_hyperlink
 
 
 def show_passing_verdicts(scope, no_of_verdicts, tab_group_size, verdict_list):
@@ -36,10 +24,10 @@ def show_passing_verdicts(scope, no_of_verdicts, tab_group_size, verdict_list):
 					company_name = scope.config['ticker_search'][ticker]
 					with col1 :st.write(ticker)
 					with col2 :st.write(company_name)
-					with col3 :link_to_app_button(scope, 'chart', ticker)
-					with col4 :link_to_app_button(scope, 'intraday', ticker)
-					with col5 :link_to_app_button(scope, 'volume', ticker)
-					with col6 :link_to_app_button(scope, 'research', ticker)
+					with col3 :button_page_link_chart(scope, ticker)
+					with col4 :link_to_page_button(scope, 'intraday', ticker)
+					with col5 :link_to_page_button(scope, 'volume', ticker)
+					with col6 :link_to_page_button(scope, 'research', ticker)
 					with col7 :website_hyperlink(scope, 'eTrade', ticker)
 					with col8 :website_hyperlink(scope, 'asx', ticker)
 					with col9 :website_hyperlink(scope, 'google', ticker)
@@ -50,13 +38,3 @@ def show_passing_verdicts(scope, no_of_verdicts, tab_group_size, verdict_list):
 
 
 
-def determine_tab_names(no_of_verdicts, tab_group_size):
-
-	no_of_tabs = int(no_of_verdicts / tab_group_size)		
-	if (no_of_verdicts % tab_group_size) > 0:no_of_tabs+=1
-		
-	list_of_tab_names = []
-	for tab_no in range(no_of_tabs):
-		list_of_tab_names.append(str(tab_no+1))
-	
-	return list_of_tab_names

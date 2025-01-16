@@ -11,7 +11,6 @@ def show_worklist_dropdowns(scope):
 		with col1:worklist_dropdown(scope)
 		with col2:ticker_load_and_download_errors_dropdown(scope)
 		with col3:active_chart_or_test_dropdown(scope)
-		st.divider()
     
 
 

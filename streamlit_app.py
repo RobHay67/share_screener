@@ -15,18 +15,18 @@ app_is_re_rendering()
 if 'display_page' not in st.session_state:
 	scope = set_scope(st.session_state)
 
-
 # Page Setup
-screener_page 	= st.Page(page = "screener/views/page_screener.py",			title = "Screener", 		icon = '🧪', 	default=False,)
-charting_page 	= st.Page(page = "charts/views/page_charts.py",				title = "Charting", 		icon = '📊', 	default=False,)
-intra_day_page 	= st.Page(page = "intraday/views/page_intraday.py",			title = "Intra Day", 		icon = '🌤️', 	default=False,)
-volume_page 	= st.Page(page = "volume/views/page_volume.py",				title = "Volume", 			icon = '🔊', 	default=False,)
-research_page 	= st.Page(page = "research/views/page_research.py",			title = "Research", 		icon = '🕵', 	default=False,)
-websites_page 	= st.Page(page = "websites/views/page_websites.py",			title = "Websites", 		icon = '🌐',	default=False,)
-ticker_idx_page = st.Page(page = "ticker_index/scope/views/page_ticker_index.py",	title = "Ticker Index", 	icon = '🗄️',	default=False,)
-logout_page 	= st.Page(page = "users/views/page_logout.py",				title = "Logout", 			icon = '🔒', 	default=True,)
-config_page 	= st.Page(page = "config/views/page_config.py",				title = "Config", 			icon = '⚙️',	default=False,)
-testing_page 	= st.Page(page = "app/views/page_test.py",					title = "Testing", 			icon = '🔬',	default=False,)
+page = scope.config['page']
+screener_page 	= st.Page(page=page['screener']['path'],	title=page['screener']['title'], 	icon=page['screener']['icon'], 		default=page['screener']['default'])
+charting_page 	= st.Page(page=page['chart']['path'],		title=page['chart']['title'], 		icon=page['chart']['icon'], 		default=page['chart']['default'])
+intra_day_page 	= st.Page(page=page['intraday']['path'],	title=page['intraday']['title'], 	icon=page['intraday']['icon'], 		default=page['intraday']['default'])
+volume_page 	= st.Page(page=page['volume']['path'],		title=page['volume']['title'], 		icon=page['volume']['icon'], 		default=page['volume']['default'])
+research_page 	= st.Page(page=page['research']['path'],	title=page['research']['title'], 	icon=page['research']['icon'], 		default=page['research']['default'])
+websites_page 	= st.Page(page=page['websites']['path'],	title=page['websites']['title'], 	icon=page['websites']['icon'], 		default=page['websites']['default'])
+ticker_idx_page = st.Page(page=page['ticker_index']['path'],title=page['ticker_index']['title'],icon=page['ticker_index']['icon'], 	default=page['ticker_index']['default'])
+logout_page 	= st.Page(page=page['logout']['path'],		title=page['logout']['title'], 		icon=page['logout']['icon'], 		default=page['logout']['default'])
+config_page 	= st.Page(page=page['config']['path'],		title=page['config']['title'], 		icon=page['config']['icon'], 		default=page['config']['default'])
+testing_page 	= st.Page(page=page['testing']['path'],		title=page['testing']['title'], 	icon=page['testing']['icon'], 		default=page['testing']['default'])
 
 
 page_navigation = st.navigation(
