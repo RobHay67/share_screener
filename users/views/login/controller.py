@@ -6,7 +6,7 @@ from users.views.login.login_button import login_button
 from users.views.login.messages import login_message
 
 
-def render_login_page(scope):
+def show_login_page(scope):
 
 	st.subheader('Login')
 

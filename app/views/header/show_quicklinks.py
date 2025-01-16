@@ -4,7 +4,7 @@
 import streamlit as st
 
 from app.views.page_nav.links import website_hyperlink
-from app.views.page_nav.button import link_to_page_button, button_page_link_chart
+from app.views.page_nav.button import button_page_link
 
 
 def show_quick_links(scope):
@@ -21,10 +21,10 @@ def show_quick_links(scope):
 		show_links = True if ticker != 'select a ticker' else False
 	if show_links:
 		with col1 : st.write('Quick Links :')
-		with col2:button_page_link_chart(scope, ticker)
-		with col3:link_to_page_button(scope, 'intraday', ticker)
-		with col4:link_to_page_button(scope, 'volume', ticker)
-		with col5:link_to_page_button(scope, 'research', ticker)
+		with col2:button_page_link(scope, 'chart', ticker)
+		with col3:button_page_link(scope, 'intraday', ticker)
+		with col4:button_page_link(scope, 'volume', ticker)
+		with col5:button_page_link(scope, 'research', ticker)
 		# dont link to screener - too complicated
 		with col6 :website_hyperlink(scope, 'asx', ticker)
 		with col7 :website_hyperlink(scope, 'google', ticker)

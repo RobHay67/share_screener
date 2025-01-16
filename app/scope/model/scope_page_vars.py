@@ -3,7 +3,7 @@
 
 
 
-def scope_page(scope):
+def scope_page_variables(scope):
 	# ==========================================
 	# variables for each page from the page list above
 

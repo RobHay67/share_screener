@@ -7,41 +7,23 @@
 import streamlit as st
 from app.helpers.re_render import app_is_re_rendering
 from app.scope.model.set_scope import set_scope
-from users.views.login.controller import render_login_page
-from app.views.sidebar.controller import render_sidebar
+from users.views.login.controller import show_login_page
+from app.views.sidebar.market_info import show_market_info_and_selectors
+from app.views.sidebar.page_navigation import return_sidebar_navigation_buttons
 
 app_is_re_rendering()
 
 if 'display_page' not in st.session_state:
 	scope = set_scope(st.session_state)
 
-# Page Setup
-page = scope.config['page']
-screener_page 	= st.Page(page=page['screener']['path'],	title=page['screener']['title'], 	icon=page['screener']['icon'], 		default=page['screener']['default'])
-charting_page 	= st.Page(page=page['chart']['path'],		title=page['chart']['title'], 		icon=page['chart']['icon'], 		default=page['chart']['default'])
-intra_day_page 	= st.Page(page=page['intraday']['path'],	title=page['intraday']['title'], 	icon=page['intraday']['icon'], 		default=page['intraday']['default'])
-volume_page 	= st.Page(page=page['volume']['path'],		title=page['volume']['title'], 		icon=page['volume']['icon'], 		default=page['volume']['default'])
-research_page 	= st.Page(page=page['research']['path'],	title=page['research']['title'], 	icon=page['research']['icon'], 		default=page['research']['default'])
-websites_page 	= st.Page(page=page['websites']['path'],	title=page['websites']['title'], 	icon=page['websites']['icon'], 		default=page['websites']['default'])
-ticker_idx_page = st.Page(page=page['ticker_index']['path'],title=page['ticker_index']['title'],icon=page['ticker_index']['icon'], 	default=page['ticker_index']['default'])
-logout_page 	= st.Page(page=page['logout']['path'],		title=page['logout']['title'], 		icon=page['logout']['icon'], 		default=page['logout']['default'])
-config_page 	= st.Page(page=page['config']['path'],		title=page['config']['title'], 		icon=page['config']['icon'], 		default=page['config']['default'])
-testing_page 	= st.Page(page=page['testing']['path'],		title=page['testing']['title'], 	icon=page['testing']['icon'], 		default=page['testing']['default'])
-
-
-page_navigation = st.navigation(
-	{
-		"Research & Analysis"	: [screener_page, charting_page, intra_day_page, volume_page, research_page, websites_page],
-		"Config"	: [ticker_idx_page, config_page, logout_page, testing_page],
-	}
-)
+page_navigation = return_sidebar_navigation_buttons(scope)
 
 # Render Pages
 if scope.users['logged_in'] == True:
-	page_navigation.run()		# Run Navigation
-	render_sidebar(scope)	
+	page_navigation.run()		# Add Application Navigation Buttons
+	show_market_info_and_selectors(scope)	
 else:
-	render_login_page(scope)
+	show_login_page(scope)
 
 
 

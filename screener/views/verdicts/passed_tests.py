@@ -1,7 +1,7 @@
 import streamlit as st
 from screener.helpers.tab_names import determine_tab_names
 
-from app.views.page_nav.button import link_to_page_button, button_page_link_chart
+from app.views.page_nav.button import button_page_link
 from app.views.page_nav.links import website_hyperlink
 
 
@@ -24,10 +24,10 @@ def show_passing_verdicts(scope, no_of_verdicts, tab_group_size, verdict_list):
 					company_name = scope.config['ticker_search'][ticker]
 					with col1 :st.write(ticker)
 					with col2 :st.write(company_name)
-					with col3 :button_page_link_chart(scope, ticker)
-					with col4 :link_to_page_button(scope, 'intraday', ticker)
-					with col5 :link_to_page_button(scope, 'volume', ticker)
-					with col6 :link_to_page_button(scope, 'research', ticker)
+					with col3 :button_page_link(scope, 'chart', ticker)
+					with col4 :button_page_link(scope, 'intraday', ticker)
+					with col5 :button_page_link(scope, 'volume', ticker)
+					with col6 :button_page_link(scope, 'research', ticker)
 					with col7 :website_hyperlink(scope, 'eTrade', ticker)
 					with col8 :website_hyperlink(scope, 'asx', ticker)
 					with col9 :website_hyperlink(scope, 'google', ticker)

@@ -2,9 +2,6 @@ import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
 
 
-
-
-
 def website_hyperlink(scope, website, ticker):
 
 	pos = ticker.find(".")

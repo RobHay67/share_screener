@@ -1,7 +1,7 @@
 from app.helpers.system import print_system_info_to_terminal
 from app.scope.model.streamlit_config import set_streamlit_page_config
 from app.scope.model.scope_config import scope_config
-from app.scope.model.scope_page import scope_page
+from app.scope.model.scope_page_vars import scope_page_variables
 from files.scope.model.scope_files import scope_folders_and_paths
 from users.scope.model.scope_users import scope_users
 from screener.scope.model.scope_trials import scope_trials
@@ -23,8 +23,7 @@ def set_scope(scope):
 		scope.allow_auto_login = True			# TODO for releases purposes only - delete later
 		
 		scope_config(scope)					# This contains all the General page settings
-		# scope_pages(scope)					
-		scope_page(scope)					# Page specific config
+		scope_page_variables(scope)			# Page specific config
 		scope_folders_and_paths(scope)		# Required before we can attempt to load the data
 		scope_users(scope)					# Set Default Values ready for a user to login
 		scope_trials(scope)					# add the trials configuration
