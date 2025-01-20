@@ -14,15 +14,15 @@ def scope_page_variables(scope):
 		
 		scope.page[page]['search_results'] = {}
 		scope.page[page]['worklist'] = []  			# formally known as scope.page[page]['ticker_list']
-		scope.page[page]['worklist_long_desc'] = []
+		scope.page[page]['worklist_long_desc'] = ['Show/Hide Data']
 		scope.page[page]['loaded_ticker_list'] = []		# list of every ticker loaded by this particular page - saves checking later
 
 		scope.page[page]['selectors'] = {
-										'ticker'		: 'select a ticker',
-										'tickers'		: [],
-										'industries'	: [],
-										'market'		: 'select market',
-										'config_ticker'	: 'select a ticker',
+										'ticker'			: 'select a ticker',
+										'tickers'			: [],
+										'industries'		: [],
+										'market'			: 'select market',
+										'ticker_worklist'	: 'select a ticker',
 										}
 		
 		scope.page[page]['render'] = 	{

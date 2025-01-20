@@ -1,5 +1,5 @@
 import pandas as pd
-from tickers.scope.model.y_finance.ticker_data.schema_yf import scope_yf_schema
+from tickers.model.y_finance.ticker_data.schema_yf import scope_yf_schema
 
 def scope_download_variables(scope):
 	scope.yf = {}

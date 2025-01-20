@@ -12,7 +12,7 @@ def ticker_config_button(scope):
 					use_container_width=True, 
 					on_click=ticker_config_status, args=(scope, ),
 					type=type_of_button,
-					help='Ticker Configuration'
+					help='Data File Management (Tickers)'
 					)
 
 	return button

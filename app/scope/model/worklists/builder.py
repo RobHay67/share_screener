@@ -24,7 +24,6 @@ def refresh_page_worklist(scope):
 	# Store the Worklist
 	ticker_list.sort()
 	scope.page[page]['worklist'] = ticker_list
-
 	refresh_worklist_long_description(scope)
 
 

@@ -1,19 +1,47 @@
 import streamlit as st
-from app.views.widgets.cols_three import three_cols
+from config.views.button_choose_scope import scope_button
+from config.views.button_data_type import data_type_button
+from config.views.show_scope_value import show_scope_single_value, show_scope_values
 
 
-def show_user_config(scope):
-	st.subheader('User Configuration')
-	three_cols( 'User Configuration stored in', {}, 'scope.users', widget_type='string' )
+def show_scope_users(scope):
+
 	st.divider()
-	three_cols( 'User Logged in ?', 				scope.users['logged_in'], 	"scope.users['logged_in']" )
-	three_cols( 'Which User is logged in (name)', 	scope.users['login_name'], 	"scope.users['login_name']" )
-	st.divider()
-	three_cols( 'List of Valid Users', 				scope.users['user_list'], 	"scope.users['user_list']" )
-	st.divider()
-	three_cols( 'Raw Json File', 					scope.users['json'], 		"scope.users['json']" )
+	scope_button(scope, "scope.users", scope.users, make_red=True, suffix_only=False)
+	
+	col1,col2,col3,col4 = st.columns([1,1,1,6])
+	with col1:scope_button(scope, "scope.users['user_list']", scope.users['user_list'])
+	with col2:scope_button(scope, "scope.users['login_name']", scope.users['login_name'])
+	with col3:scope_button(scope, "scope.users['logged_in']", scope.users['logged_in'])
+	with col4:scope_button(scope, "scope.users['json']", scope.users['json'])
+	with col4:scope_button(scope, "scope.users['json']['Rob', 'Fliss']", "Rob, Fliss")
+	
+	col1,col2,col3,col4,col5,col6,col7,col8,col9 = st.columns(9)
+	user = scope.users['login_name']
+	with col4:scope_button(scope, "scope.users['json'][user]['chart_height']", scope.users['json'][user]['chart_height'])
+	with col5:scope_button(scope, "scope.users['json'][user][download_days]", scope.users['json'][user]['download_days'])
+	with col6:scope_button(scope, "scope.users['json'][user][row_limit]", scope.users['json'][user]['row_limit'])
+	with col7:scope_button(scope, "scope.users['json'][user][password]", scope.users['json'][user]['password'])
+	with col8:scope_button(scope, "scope.users['json'][user][charts]", scope.users['json'][user]['charts'])
+	with col9:scope_button(scope, "scope.users['json'][user][trials]", scope.users['json'][user]['trials'])
+	
+	col1,col2,col3,col4,col5,col6,col7,col8,col9 = st.columns(9)
+	with col1:data_type_button(scope, 'list', 1)
+	with col2:data_type_button(scope, 'string', 1)
+	with col3:data_type_button(scope, 'true_false', 1)
+	with col4:data_type_button(scope, 'integer', 1)
+	with col5:data_type_button(scope, 'integer', 2)
+	with col6:data_type_button(scope, 'integer', 3)
+	with col7:data_type_button(scope, 'password', 1)
+	with col8:data_type_button(scope, 'dict', 1)
+	with col9:data_type_button(scope, 'dict', 2)
 
+	col1,col2,col3,col4,col5,col6,col7,col8,col9 = st.columns(9)
+	with col2:show_scope_single_value("login_name", scope.users['login_name'])
+	with col3:show_scope_single_value("logged_in", scope.users['logged_in'])
+	with col4:show_scope_single_value("chart_height", scope.users['json'][user]['chart_height'])
+	with col5:show_scope_single_value("download_days", scope.users['json'][user]['download_days'])
+	with col6:show_scope_single_value("row_limit", scope.users['json'][user]['row_limit'])
 
-
-
-
+	# st.divider()
+	if scope.config['display_scope']['scope_key'] != None:show_scope_values(scope)

@@ -1,8 +1,8 @@
 import streamlit as st
 from screener.helpers.tab_names import determine_tab_names
 
-from app.views.page_nav.button import button_page_link
-from app.views.page_nav.links import website_hyperlink
+from app.views.navigation.button import button_page_link
+from app.views.navigation.links import website_hyperlink
 
 
 def show_passing_verdicts(scope, no_of_verdicts, tab_group_size, verdict_list):
@@ -28,13 +28,44 @@ def show_passing_verdicts(scope, no_of_verdicts, tab_group_size, verdict_list):
 					with col4 :button_page_link(scope, 'intraday', ticker)
 					with col5 :button_page_link(scope, 'volume', ticker)
 					with col6 :button_page_link(scope, 'research', ticker)
-					with col7 :website_hyperlink(scope, 'eTrade', ticker)
-					with col8 :website_hyperlink(scope, 'asx', ticker)
-					with col9 :website_hyperlink(scope, 'google', ticker)
-					with col10:website_hyperlink(scope, 'yahoo', ticker)
-					with col11:website_hyperlink(scope, 'market index', ticker)
-					with col12:website_hyperlink(scope, 'hot copper', ticker)
-					with col13:website_hyperlink(scope, 'market watch', ticker)
+
+					with col7:
+						# google = st.page_link("http://www.google.com", label="Google", icon="🌎")
+						hyperlinks = ['one','two']
+						widget_key = ticker
+
+						st.selectbox ( 
+							label		='Market',
+							options		=hyperlinks,
+							# index		=pos_for_previous, 
+							help		='Select an Entire Share Market for Analysis',
+							on_change	=on_select_external_link,
+							args		=(scope, widget_key, ),
+							key			=widget_key,
+						) 
+					with col8:
+						st.page_link("http://www.google.com", label="Google", icon="🌎")
 
 
+					# with col7 :website_hyperlink(scope, 'eTrade', ticker)
+					# with col8 :website_hyperlink(scope, 'asx', ticker)
+					# with col9 :website_hyperlink(scope, 'google', ticker)
+					# with col10:website_hyperlink(scope, 'yahoo', ticker)
+					# with col11:website_hyperlink(scope, 'market index', ticker)
+					# with col12:website_hyperlink(scope, 'hot copper', ticker)
+					# with col13:website_hyperlink(scope, 'market watch', ticker)
 
+
+def on_select_external_link(scope, widget_key):
+	test = "[market watch](https://www.marketwatch.com/investing/stock/wbc/charts?countrycode=au)"
+	changed_value = scope[widget_key]
+	print('^'*88)
+	print(changed_value)
+
+	# store the selection
+	# scope.page[page]['selectors']['tickers'] = []
+	# scope.page[page]['selectors']['industries'] = []
+	# scope.page[page]['selectors']['market'] = changed_value
+	# scope.page[page]['search_results'] = {}
+
+	# st.link_button

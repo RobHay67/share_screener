@@ -3,8 +3,8 @@
 
 import streamlit as st
 
-from app.views.page_nav.links import website_hyperlink
-from app.views.page_nav.button import button_page_link
+from app.views.navigation.links import website_hyperlink
+from app.views.navigation.button import button_page_link
 
 
 def show_quick_links(scope):

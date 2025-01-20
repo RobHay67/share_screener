@@ -21,11 +21,9 @@ page_navigation = return_sidebar_navigation_buttons(scope)
 # Render Pages
 if scope.users['logged_in'] == True:
 	page_navigation.run()		# Add Application Navigation Buttons
-	show_market_info_and_selectors(scope)	
+	show_market_info_and_selectors(scope)
 else:
 	show_login_page(scope)
-
-
 
 #======================================================== TODO s
 for i in range(5):print('')
@@ -71,14 +69,14 @@ print('='*66)
 # 	print('='*70)
 
 
-def level_2_details(level_1, level_2):
-	# print('')
-	print('-'*40)
-	print(level_1, '/', level_2, ' ( level 2 )', )
-	print('-'*40)
-	if level_2 in st.session_state[level_1]:
-		for key in st.session_state[level_1][level_2]:
-			print(level_2 , ' - ', key)
+# def level_2_details(level_1, level_2):
+# 	# print('')
+# 	print('-'*40)
+# 	print(level_1, '/', level_2, ' ( level 2 )', )
+# 	print('-'*40)
+# 	if level_2 in st.session_state[level_1]:
+# 		for key in st.session_state[level_1][level_2]:
+# 			print(level_2 , ' - ', key)
 
 # def level_3_details(level_1, level_2, level_3):
 # 	print('-'*50)

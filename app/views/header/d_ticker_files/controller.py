@@ -2,6 +2,8 @@ import streamlit as st
 
 from app.views.header.d_ticker_files.progress_bar_load_tickers import load_tickers_progress_bar	
 from app.views.header.d_ticker_files.progress_bar_add_cols import add_extra_cols_progress_bar
+from app.scope.model.worklists.long_desc import refresh_worklist_long_description
+
 
 # Function to show status of ticker data
 # - progress bar while loading files (as can be time consuming)
@@ -19,7 +21,9 @@ def show_ticker_load_and_col_adding(scope):
 	col1,col2 = st.columns([6.0, 6.0])  #12.0
 	if page in ['chart', 'intraday', 'volume', 'screener',]:
 		with col1:
-			load_tickers_progress_bar(scope, ) # loads ticker data as well
+			# loads ticker data as well
+			load_tickers_progress_bar(scope, ) 
+			refresh_worklist_long_description(scope)
 		with col2:
 			# for volume we dont need to do this step
 			if page != 'volume':

@@ -1,6 +1,6 @@
-from tickers.scope.model.new import add_new_ticker
-from tickers.scope.model.missing.lists import update_missing_ticker_lists
-from tickers.scope.model.missing.failed_download import fail_download_event
+from tickers.model.new import add_new_ticker
+from tickers.model.missing.lists import update_missing_ticker_lists
+from tickers.model.missing.failed_download import fail_download_event
 
 
 def append_downloaded_data_to_scope_tickers(scope, ticker_download_list):

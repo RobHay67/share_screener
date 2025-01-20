@@ -9,7 +9,7 @@ def show_page_config(scope):
 	three_cols('Specific Page Config', '{ }', "scope.page[page]")
 	# st.caption('navigate to each page and select config button')
 	three_cols( 'Current Page to Display', 		scope.config['display'], 			"scope.config['display']" )
-	three_cols( 'Config Group (this screen)',	scope.config['display_config_group'],"scope.config.display_config_group", widget_type='string' )
+	three_cols( 'Config Group (this screen)',	scope.config['display']['config_page'],"scope.config.display.config_group", widget_type='string' )
 	st.divider()
 	three_cols( 'Share Market', 				scope.config['share_market'], 	"scope.config['share_market']" )
 	three_cols( 'Row Limit for Page',		 	scope.config['row_limit'], 		"scope.config.row_limit", widget_type='string' )
@@ -40,9 +40,10 @@ def show_specific_page_config(scope):
 	
 	# st.caption('Lists and Dictionaries')
 	with st.expander("Page Dictionary and Lists", expanded=False):
-		three_cols( 'Search Results'  			 , scope.page[page]['search_results']		, "scope.page['"+ page +"']['search_results']"    	, widget_type='string' )
-		three_cols( 'Worklist - targets for page', scope.page[page]['worklist']			, "scope.page['"+ page +"']['worklist']"    		, widget_type='string' )
-		three_cols( 'Tickers Loaded Used by Page', scope.page[page]['loaded_ticker_list']	, "scope.page['"+ page +"']['loaded_ticker_list"	, widget_type='string' )
+		three_cols( 'Search Results'  			 , 		scope.page[page]['search_results']		, "scope.page['"+ page +"']['search_results']"    	, widget_type='string' )
+		three_cols( 'Tickers Loaded Used by Page', 		scope.page[page]['loaded_ticker_list']	, "scope.page['"+ page +"']['loaded_ticker_list"	, widget_type='string' )
+		three_cols( 'Worklist - targets for page', 		scope.page[page]['worklist']			, "scope.page['"+ page +"']['worklist']"    		, widget_type='string' )
+		three_cols( 'Worklist - extended desciption', 	scope.page[page]['worklist_long_desc']	, "scope.page['"+ page +"']['worklist_long_desc']"	, widget_type='string' )
 	
 	with st.expander("Ticker Selectors", expanded=False):
 		three_cols( 'Market'  , scope.page[page]['selectors']['market']    , "scope.page['"+ page +"']['selectors']['market']"    , widget_type='string' )

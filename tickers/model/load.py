@@ -2,8 +2,8 @@ import pandas as pd
 import os
 
 from files.helpers.ticker_path import path_for_ticker_file
-from tickers.scope.model.new import add_new_ticker
-from tickers.scope.model.missing.failed_load import fail_local_load_event
+from tickers.model.new import add_new_ticker
+from tickers.model.missing.failed_load import fail_local_load_event
 
 
 def load_ticker(scope, ticker):

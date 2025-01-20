@@ -7,7 +7,7 @@ from files.scope.view.files import show_files_config
 from app.scope.views.pages import show_page_config 
 from tickers.scope.view.config import show_ticker_general_config
 from tickers.scope.view.config import show_ticker_config
-from users.scope.view.users import show_user_config
+from users.scope.view.users import show_scope_users
 from tickers.scope.view.y_finance import show_y_finance_config
 # Config for Screener Page
 from screener.scope.view.trial_config import show_trial_general_config
@@ -31,8 +31,7 @@ show_page_header(scope, page_title, page_icon)
 
 if scope.users['logged_in']:
 	show_config_buttons(scope)
-
-	config_page = scope.config['display_config_group']
+	config_page = scope.config['display_scope']['config_page']
 	if config_page != None:
 		if config_page == 'show_app_config':show_app_config(scope)
 		if config_page == 'show_files_config':show_files_config(scope)
@@ -41,7 +40,7 @@ if scope.users['logged_in']:
 		if config_page == 'show_ticker_general_config':show_ticker_general_config(scope)
 		if config_page == 'show_ticker_config':show_ticker_config(scope)
 		if config_page == 'show_y_finance_config':show_y_finance_config(scope)
-		if config_page == 'show_user_config':show_user_config(scope)
+		if config_page == 'show_scope_users':show_scope_users(scope)
 		
 		# Page Specific Config
 		if config_page == 'show_trial_config':

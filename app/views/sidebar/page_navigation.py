@@ -2,7 +2,6 @@ import streamlit as st
 
 
 def return_sidebar_navigation_buttons(scope):
-	
 	screener_page = st.Page(
 		page=scope.config['page_schema']['screener']['path'],
 		title=scope.config['page_schema']['screener']['title'],
@@ -64,7 +63,6 @@ def return_sidebar_navigation_buttons(scope):
 		default=scope.config['page_schema']['testing']['default']
 		)
 
-
 	page_navigation = st.navigation(
 		{
 		"Research & Analysis"	: [
@@ -83,5 +81,4 @@ def return_sidebar_navigation_buttons(scope):
 			],
 		}
 	)
-
 	return page_navigation
