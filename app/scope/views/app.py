@@ -1,8 +1,5 @@
 import streamlit as st
-from datetime import datetime 
-from app.views.widgets.cols_three import three_cols
 from config.views.button_choose_scope import scope_button
-from config.views.button_data_type import data_type_button
 from config.views.show_scope_value import show_scope_single_value, show_scope_values
 
 
@@ -45,10 +42,8 @@ def show_app_config(scope):
 	with col9:scope_button(scope, "scope.config['dropdowns']['price_columns']", scope.config['dropdowns']['price_columns'])
 
 	col1,col2,col3,col4,col5,col6,col7,col8,col9 = st.columns(9)
-	# with col1:show_scope_single_value("display_scope_key", scope.config['display_scope']['scope_key'])
 	with col3:show_scope_single_value("display_config_group", scope.config['display_scope']['config_page'])
-	# with col4:show_scope_single_value("dropdown_markets", scope.config['dropdowns']['markets'])
-	# with col5:show_scope_single_value("dropdown_industries", scope.config['dropdowns']['industries'])
-	print('SCOPE KEY', scope.config['display_scope']['scope_key'])
+	
+	
 	st.divider()
 	if scope.config['display_scope']['scope_key'] != None:show_scope_values(scope)

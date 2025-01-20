@@ -1,5 +1,6 @@
 from app.views.header.a_page_title.controller import page_title_layer
-from app.views.header.b_page_config.controller import show_page_config
+from app.views.header.b_page_config.show_page_config import show_page_config
+# from app.views.header.b_page_config.show_page_config import show_scope_page
 from app.views.header.c_ticker_selectors.controller import show_ticker_selectors
 from app.views.header.d_ticker_files.controller import show_ticker_load_and_col_adding
 from app.views.header.f_worklists.controller import show_worklist_dropdowns

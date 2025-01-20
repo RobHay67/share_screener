@@ -1,25 +1,42 @@
 import streamlit as st
 from app.views.widgets.cols_three import three_cols
+from config.views.button_choose_scope import scope_button
+from config.views.button_data_type import data_type_button
+from config.views.show_scope_value import show_scope_single_value, show_scope_values
 
 
-def show_trial_general_config(scope):
-	with st.expander("Trial Configuration", expanded=False):
-		three_cols( 'Trials Configuration stored in', {}, "scope.trials", 					widget_type='string' )
-		three_cols( 'Trials User Settings stored in', {}, "scope.trials['user_config']", 	widget_type='string' )
+
+def show_scope_trials(scope):
+
+	st.divider()
+	scope_button(scope, "scope.trials", scope.trials, make_red=True, suffix_only=False)
 	
-		st.divider()
-		three_cols( 'List of Every Trial', 				scope.trials['trial_list'], 		"scope.trials['trial_list']" )
-		three_cols( 'Active Trial List', 				scope.trials['active_list'], 		"scope.trials['active_list']" )
-		three_cols( 'Trials that require extra Columns',scope.charts['template_col_adders'],"scope.trials['template_col_adders']" )
-		# st.divider()
+	col1,col2,col3,col4 = st.columns([1,1,1,5])
+	with col1:scope_button(scope, "scope.trials['trial_list']", scope.trials['trial_list'])
+	with col2:scope_button(scope, "scope.trials['active_list']", scope.trials['active_list'])
+	with col3:scope_button(scope, "scope.trials['template_col_adders']", scope.trials['template_col_adders'])
+	with col4:scope_button(scope, "scope.trials['user_config']", scope.trials['user_config'])
+
+	col1,col2 = st.columns([3,5])
+	trial = next(iter(scope.trials['user_config'].keys()))
+	with col2:scope_button(scope, "scope.trials['user_config'][trial]", scope.trials['user_config'], make_red=False, suffix_only=False)
+	with col2:scope_button(scope, '[trial] = '+trial, scope.trials['user_config'], make_red=False, suffix_only=False)
+
+	
+	col1,col2,col3,col4,col5,col6 = st.columns([3,1,1,1,1,1])
+	with col2:scope_button(scope, "scope.trials['user_config']["+trial+"]['active']", scope.trials['user_config'][trial]['active'])
+	with col3:scope_button(scope, "scope.trials['user_config']["+trial+"]['name']", scope.trials['user_config'][trial]['name'])
+	with col4:scope_button(scope, "scope.trials['user_config']["+trial+"]['short_name']", scope.trials['user_config'][trial]['short_name'])
+	with col5:scope_button(scope, "scope.trials['user_config']["+trial+"]['definition']", scope.trials['user_config'][trial]['definition'])
+	with col6:scope_button(scope, "scope.trials['user_config']["+trial+"]['add_columns']", scope.trials['user_config'][trial]['add_columns'])
+
+
+	# st.divider()
+	if scope.config['display_scope']['scope_key'] != None:
+		show_scope_values(scope)
+
+
 		
-
-def show_trial_user_settings(scope):
-	diff_col_size=[2,5,3]
-	with st.expander("User Settings", expanded=False):
-		for trial in scope.trials['user_config'].keys():
-			three_cols( trial, scope.trials['user_config'][trial], "scope.trials['user_config']["+trial+"]", diff_col_size=diff_col_size, widget_type='string')
-
 
 
 def show_trial_verdicts(scope):

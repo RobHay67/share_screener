@@ -1,62 +1,55 @@
 import streamlit as st
-from app.views.widgets.cols_three import three_cols
+from config.views.button_choose_scope import scope_button
+from config.views.show_scope_value import show_scope_single_value, show_scope_values
 
 
-def show_page_config(scope):
-	st.subheader('Page(s)')
-	three_cols( 'Page Configuration', {}, 'scope.config', widget_type='string' )
-	# st.divider()
-	three_cols('Specific Page Config', '{ }', "scope.page[page]")
-	# st.caption('navigate to each page and select config button')
-	three_cols( 'Current Page to Display', 		scope.config['display'], 			"scope.config['display']" )
-	three_cols( 'Config Group (this screen)',	scope.config['display']['config_page'],"scope.config.display.config_group", widget_type='string' )
-	st.divider()
-	three_cols( 'Share Market', 				scope.config['share_market'], 	"scope.config['share_market']" )
-	three_cols( 'Row Limit for Page',		 	scope.config['row_limit'], 		"scope.config.row_limit", widget_type='string' )
-	three_cols( 'Days to Download (recent)', 	scope.config['download_days'], 	"scope.config['download_days']" )
-	st.divider()
-	three_cols( 'Page List', 					scope.config['page_list'], 					"scope.config.app_list", widget_type='string' )
-	st.divider()
-	st.caption('Ticker Selector Dropdowns')
-	three_cols( 'Dropdown Configuration stored in', {}, 									"scope.config['dropdowns']", widget_type='string' )
-	three_cols( 'Ticker', 						scope.config['dropdowns']['ticker'], 	 	"scope.config['dropdowns']['ticker']", widget_type='selectbox' )
-	three_cols( 'Tickers', 						scope.config['dropdowns']['tickers'],  		"scope.config['dropdowns']['tickers']", widget_type='multiselect' )
-	three_cols( 'Industry', 					scope.config['dropdowns']['industries'],		"scope.config['dropdowns']['industries']", widget_type='multiselect' )
-	three_cols( 'Market', 						scope.config['dropdowns']['markets'], 		"scope.config['dropdowns']['markets']", widget_type='selectbox' )
-	st.caption('Column Selectors')
-	three_cols( 'OHLCV Columns', 				scope.config['dropdowns']['ohlcv_columns'],  "scope.config['dropdowns']['ohlcv_columns']", widget_type='selectbox' )
-	three_cols( 'Price Columns', 				scope.config['dropdowns']['price_columns'],  "scope.config['dropdowns']['price_columns']", widget_type='selectbox' )
-	st.divider()
-	three_cols( 'Ticker Search (Default List)', scope.config['ticker_search'], "scope.config['ticker_search']" )
 
 
-def show_specific_page_config(scope):
+def show_scope_page(scope):
+
+	st.divider()
+	scope_button(scope, "scope.page", scope.page, make_red=True, suffix_only=False)
 
 	page = scope.config['display']
+	scope_button(scope, "scope.page[page]", scope.page[page], make_red=False, suffix_only=False)
+	scope_button(scope, '[page] = '+page, scope.page[page], make_red=False, suffix_only=False)
 
+	# 12 and then 5 for the selectors
+	col1,col2,col3,col4,col5 = st.columns([1,1,1,1,7])
+	with col1:scope_button(scope, "scope.page["+page+"]['loaded_ticker_list']", scope.page[page]['loaded_ticker_list'])
+	with col2:scope_button(scope, "scope.page["+page+"]['worklist']", scope.page[page]['worklist'])
+	with col3:scope_button(scope, "scope.page["+page+"]['worklist_long_desc']", scope.page[page]['worklist_long_desc'])
+	with col4:scope_button(scope, "scope.page["+page+"]['search_results']", scope.page[page]['search_results'])
+	with col5:scope_button(scope, "scope.page["+page+"]['render']", scope.page[page]['render'])
+
+	col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([4,1,1,1,1,1,1,1])
+	with col2:scope_button(scope, "scope.page["+page+"]['render']['page_config']", scope.page[page]['render']['page_config'])
+	with col3:scope_button(scope, "scope.page["+page+"]['render']['chart_settings']", scope.page[page]['render']['chart_settings'])
+	with col4:scope_button(scope, "scope.page["+page+"]['render']['overlay_settings']", scope.page[page]['render']['overlay_settings'])
+	with col5:scope_button(scope, "scope.page["+page+"]['render']['trial_settings']", scope.page[page]['render']['trial_settings'])
+	with col6:scope_button(scope, "scope.page["+page+"]['render']['ticker_file']", scope.page[page]['render']['ticker_file'])
+	with col7:scope_button(scope, "scope.page["+page+"]['render']['ticker_config']", scope.page[page]['render']['ticker_config'])
+	with col8:scope_button(scope, "scope.page["+page+"]['render']['strategy']", scope.page[page]['render']['strategy'])
+
+	col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([4,1,1,1,1,1,1,1])
+	with col2:show_scope_single_value("page_config", scope.page[page]['render']['page_config'])
+	with col3:show_scope_single_value("chart_settings", scope.page[page]['render']['chart_settings'])
+	with col4:show_scope_single_value("overlay_settings", scope.page[page]['render']['overlay_settings'])
+	with col5:show_scope_single_value("trial_settings", scope.page[page]['render']['trial_settings'])
+	with col6:show_scope_single_value("ticker_file", scope.page[page]['render']['ticker_file'])
+	with col7:show_scope_single_value("ticker_config", scope.page[page]['render']['ticker_config'])
+	with col8:show_scope_single_value("strategy", scope.page[page]['render']['strategy'])
+
+	col1,col2 = st.columns([5,6])
+	with col1:scope_button(scope, "scope.page["+page+"]['selectors']", scope.page[page]['selectors'], make_red=False, suffix_only=False)
+	col1,col2,col3,col4,col5,col6 = st.columns([1,1,1,1,1,6])
+	with col1:scope_button(scope, "scope.page["+page+"]['selectors']['ticker']", scope.page[page]['selectors']['ticker'])
+	with col2:scope_button(scope, "scope.page["+page+"]['selectors']['tickers']", scope.page[page]['selectors']['tickers'])
+	with col3:scope_button(scope, "scope.page["+page+"]['selectors']['industries']", scope.page[page]['selectors']['industries'])
+	with col4:scope_button(scope, "scope.page["+page+"]['selectors']['market']", scope.page[page]['selectors']['market'])
+	with col5:scope_button(scope, "scope.page["+page+"]['selectors']['ticker_worklist']", scope.page[page]['selectors']['ticker_worklist'])
+	
 	# st.divider()
-	st.subheader( 'Page Configuration > page = ' + page.title() + ' page')
-	three_cols( 'Page Specific Configuration stored in', {}, 'scope.page['+page+']', widget_type='string' )
-	
-	# st.caption('Lists and Dictionaries')
-	with st.expander("Page Dictionary and Lists", expanded=False):
-		three_cols( 'Search Results'  			 , 		scope.page[page]['search_results']		, "scope.page['"+ page +"']['search_results']"    	, widget_type='string' )
-		three_cols( 'Tickers Loaded Used by Page', 		scope.page[page]['loaded_ticker_list']	, "scope.page['"+ page +"']['loaded_ticker_list"	, widget_type='string' )
-		three_cols( 'Worklist - targets for page', 		scope.page[page]['worklist']			, "scope.page['"+ page +"']['worklist']"    		, widget_type='string' )
-		three_cols( 'Worklist - extended desciption', 	scope.page[page]['worklist_long_desc']	, "scope.page['"+ page +"']['worklist_long_desc']"	, widget_type='string' )
-	
-	with st.expander("Ticker Selectors", expanded=False):
-		three_cols( 'Market'  , scope.page[page]['selectors']['market']    , "scope.page['"+ page +"']['selectors']['market']"    , widget_type='string' )
-		three_cols( 'Industry', scope.page[page]['selectors']['industries'], "scope.page['"+ page +"']['selectors']['industries']", widget_type='string' )
-		three_cols( 'Tickers' , scope.page[page]['selectors']['tickers']   , "scope.page['"+ page +"']['selectors']['tickers']"   , widget_type='string' )
-		three_cols( 'Ticker'  , scope.page[page]['selectors']['ticker']    , "scope.page['"+ page +"']['selectors']['ticker']"    , widget_type='string' )
-	
-	with st.expander("Page Show / Hide Options", expanded=False):
-		three_cols( 'Show Page Config (this)'	, scope.page[page]['render']['page_config']    		, "scope.page['"+ page +"']['render']['page_config']"    , widget_type='string' )
-		three_cols( 'Show Chart Settings'  		, scope.page[page]['render']['chart_settings']    	, "scope.page['"+ page +"']['render']['chart_settings']"    , widget_type='string' )
-		three_cols( 'Show Overlay Settings'  	, scope.page[page]['render']['overlay_settings']	, "scope.page['"+ page +"']['render']['overlay_config']"    , widget_type='string' )
-		three_cols( 'Show Trial Settings'  		, scope.page[page]['render']['trial_settings']    	, "scope.page['"+ page +"']['render']['trial_settings']"    , widget_type='string' )
-		three_cols( 'Show Strategies'  			, scope.page[page]['render']['strategy']    		, "scope.page['"+ page +"']['render']['strategy']"    , widget_type='string' )
-		three_cols( 'Show Ticker Configuration'	, scope.page[page]['render']['ticker_config']    	, "scope.page['"+ page +"']['render']['ticker_config']"    , widget_type='string' )
-		three_cols( 'Show Ticker DFs'  			, scope.page[page]['render']['ticker_file']    		, "scope.page['"+ page +"']['render']['ticker_file']"    , widget_type='string' )
+	if scope.config['display_scope']['scope_key'] != None:
+		show_scope_values(scope)
 

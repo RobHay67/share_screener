@@ -1,19 +1,17 @@
 import streamlit as st
 
-from app.scope.views.pages import show_specific_page_config
+from app.scope.views.pages import show_scope_page
 from tickers.scope.view.config import show_ticker_page_config
 
 from charts.scope.views.settings.controller_charts import show_chart_settings
 from charts.scope.views.settings.controller_overlays import show_overlay_config
 from screener.scope.view.settings.controller import show_user_trial_settings
-from screener.scope.view.settings.user_strategy import show_user_strategy_settings
 
-from screener.scope.view.trial_config import show_trial_general_config
-from screener.scope.view.trial_config import show_trial_user_settings
+from screener.scope.view.trial_config import show_scope_trials
 from screener.scope.view.trial_config import show_trial_verdicts
 from screener.scope.view.strategy_config import show_strategy_config
-from charts.scope.views.config import show_chart_config
-from charts.scope.views.config import show_chart_user_settings
+from charts.scope.views.chart_config import show_scope_chart
+from charts.scope.views.chart_config import show_chart_user_settings
 
 # Show/Hide additional config information or settings as specified by the user
 
@@ -21,7 +19,7 @@ def show_page_config(scope):
 	page = scope.config['display']
 
 	if scope.page[page]['render']['page_config'] == True:
-		show_specific_page_config(scope)
+		show_scope_page(scope)
 	
 	if scope.page[page]['render']['ticker_config'] == True:
 		show_ticker_page_config(scope)
@@ -31,15 +29,13 @@ def show_page_config(scope):
 			show_user_trial_settings(scope)
 		if scope.page[page]['render']['strategy'] == True:
 			show_strategy_config(scope)
-		if scope.page[page]['render']['strategy'] == True:
-			show_user_strategy_settings(scope)
 		if scope.page[page]['render']['page_config'] == True:
 			st.divider()
 			st.subheader('Screener Page specific config')
 			st.write('TODO we need to default dictionary obkect')
-			show_trial_general_config(scope)
+			show_scope_trials(scope)
 			show_trial_verdicts(scope)
-			show_trial_user_settings(scope)
+			# show_trial_user_settings(scope)
 			show_strategy_config(scope)
 		
 	if page == 'chart':
@@ -51,7 +47,7 @@ def show_page_config(scope):
 			st.divider()
 			st.subheader('Charts Page specific config')
 			st.write('TODO we need to default dictionary obkect')
-			show_chart_config(scope)
+			show_scope_chart(scope)
 			show_chart_user_settings(scope)
 
 	

@@ -1,22 +1,29 @@
 import streamlit as st
-from app.views.widgets.cols_three import three_cols
+from config.views.button_choose_scope import scope_button
+from config.views.show_scope_value import show_scope_values
 
 
 def show_files_config(scope):
-	diff_col_size = [2,5,3]
-	st.subheader('File Configuration')
-	three_cols( 'File Configuration stored in', {}, "scope.files", diff_col_size, widget_type='string' )
-	st.divider()	
-	st.caption('Folders')
-	three_cols( 'Project', scope.files['folders']['project'], "scope.files['folders']['project']", diff_col_size )
-	three_cols( 'Files', scope.files['folders']['files'], "scope.files['folders']['files']", diff_col_size )
-	three_cols( 'Share Data', scope.files['folders']['tickers'], "scope.files['folders']['tickers']", diff_col_size )
-	three_cols( 'Results Analysis', scope.files['folders']['results_analysis'], "scope.files['folders']['results_analysis']", diff_col_size )
-	three_cols( 'Website Output', scope.files['folders']['website'], "scope.files['folders']['website']", diff_col_size )
-	st.caption('Paths to Specific Objects')
-	three_cols( 'Path for Users Json File', scope.files['paths']['users'], "scope.files['paths']['users']", diff_col_size )
-	three_cols( 'Path for Share Index File', scope.files['paths']['ticker_index'], "scope.files['paths']['ticker_index']", diff_col_size )
-	three_cols( 'Path for Website Output File', scope.files['paths']['website'], "scope.files['paths']['website']", diff_col_size )
-	three_cols( 'Path for Share Data File', scope.files['paths']['ticker_data'], "scope.files['paths']['ticker_data']", diff_col_size )
+	st.divider()
+	scope_button(scope, "scope.files", scope.files, make_red=True, suffix_only=False)
+
+	col1,col2 = st.columns([5,4])
+	with col1:scope_button(scope, "scope.files['folders']", scope.files['folders'], make_red=False, suffix_only=True)
+	with col2:scope_button(scope, "scope.files['paths']", scope.files['paths'], make_red=False, suffix_only=True)
+	
+	col1,col2,col3,col4,col5,col6,col7,col8,col9 = st.columns(9)
+	with col1:scope_button(scope, "scope.files['folders']['project']", scope.files['folders']['project'])
+	with col2:scope_button(scope, "scope.files['folders']['files']", scope.files['folders']['files'])
+	with col3:scope_button(scope, "scope.files['folders']['tickers']", scope.files['folders']['tickers'])
+	with col4:scope_button(scope, "scope.files['folders']['results_analysis']", scope.files['folders']['results_analysis'])
+	with col5:scope_button(scope, "scope.files['folders']['website']", scope.files['folders']['website'])
+	with col6:scope_button(scope, "scope.files['paths']['users']", scope.files['paths']['users'])
+	with col7:scope_button(scope, "scope.files['paths']['ticker_index']", scope.files['paths']['ticker_index'])
+	with col8:scope_button(scope, "scope.files['paths']['website']", scope.files['paths']['website'])
+	with col9:scope_button(scope, "scope.files['paths']['ticker_data']", scope.files['paths']['ticker_data'])
+
+	st.divider()
+	if scope.config['display_scope']['scope_key'] != None:show_scope_values(scope)
+
 
 

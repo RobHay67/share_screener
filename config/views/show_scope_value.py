@@ -12,7 +12,7 @@ def show_scope_values(scope):
 		scope_value = scope.config['display_scope']['scope_value']
 	
 	st.subheader(':blue[' + button_pressed +']')
-	st.subheader(scope_value)
+	st.write(scope_value)
 	st.divider()
 
 

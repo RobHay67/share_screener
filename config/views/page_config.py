@@ -4,19 +4,18 @@ from app.views.header.controller import show_page_header
 from config.views.button_config import show_config_buttons
 from app.scope.views.app import show_app_config
 from files.scope.view.files import show_files_config
-from app.scope.views.pages import show_page_config 
+from app.scope.views.pages import show_scope_page 
 from tickers.scope.view.config import show_ticker_general_config
 from tickers.scope.view.config import show_ticker_config
 from users.scope.view.users import show_scope_users
 from tickers.scope.view.y_finance import show_y_finance_config
 # Config for Screener Page
-from screener.scope.view.trial_config import show_trial_general_config
-from screener.scope.view.trial_config import show_trial_user_settings
+from screener.scope.view.trial_config import show_scope_trials
 from screener.scope.view.trial_config import show_trial_verdicts
 from screener.scope.view.strategy_config import show_strategy_config
 # Config for Charts Page
-from charts.scope.views.config import show_chart_config
-from charts.scope.views.config import show_chart_user_settings
+from charts.scope.views.chart_config import show_scope_chart
+from charts.scope.views.chart_config import show_chart_user_settings
 
 
 # Page Configuration
@@ -36,7 +35,7 @@ if scope.users['logged_in']:
 		if config_page == 'show_app_config':show_app_config(scope)
 		if config_page == 'show_files_config':show_files_config(scope)
 		# if button == 'show_ticker_index':has its own page,
-		if config_page == 'show_page_config':show_page_config(scope)
+		if config_page == 'show_scope_page':show_scope_page(scope)
 		if config_page == 'show_ticker_general_config':show_ticker_general_config(scope)
 		if config_page == 'show_ticker_config':show_ticker_config(scope)
 		if config_page == 'show_y_finance_config':show_y_finance_config(scope)
@@ -44,13 +43,12 @@ if scope.users['logged_in']:
 		
 		# Page Specific Config
 		if config_page == 'show_trial_config':
-			show_trial_general_config(scope)
-			show_trial_user_settings(scope)
+			show_scope_trials(scope)
 			show_trial_verdicts(scope)
 		if config_page == 'show_strategy_config':
 			show_strategy_config(scope)
-		if config_page == 'show_chart_config':
-			show_chart_config(scope)
+		if config_page == 'show_scope_chart':
+			show_scope_chart(scope)
 			show_chart_user_settings(scope)
 		st.divider()
 	
