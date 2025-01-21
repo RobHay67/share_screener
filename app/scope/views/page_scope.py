@@ -3,11 +3,13 @@ import streamlit as st
 from app.views.header.controller import show_page_header
 from app.scope.views.set_config_group import show_config_group_selection_buttons
 
+from app.scope.views.config_summary import show_scope_summary
 from app.scope.views.config_config import show_scope_config
 from files.scope.view.config_files import show_scope_files
 from app.scope.views.config_pages import show_scope_page 
-from tickers.scope.view.config_ticker_schema import show_ticker_general_config
-from tickers.scope.view.config_ticker_schema import show_scope_tickers
+from tickers.scope.view.config_ticker_schema import show_scope_tickers_schema
+
+from tickers.scope.view.config_tickers import show_scope_tickers
 from users.scope.view.config_users import show_scope_users
 from tickers.scope.view.config_yf import show_scope_yf
 # Config for Screener Page
@@ -33,12 +35,17 @@ if scope.users['logged_in']:
 	config_page = scope.config['display_scope']['config_page']
 
 	match config_page:
+		case 'show_scope_summary':show_scope_summary(scope)
+
+
 		case 'show_scope_config':show_scope_config(scope)
 		case 'show_scope_files':show_scope_files(scope)
 		# case 'show_ticker_index':has its own page,
 		case 'show_scope_page':show_scope_page(scope)
-		case 'show_ticker_general_config':show_ticker_general_config(scope)
+
 		case 'show_scope_tickers':show_scope_tickers(scope)
+		case 'show_scope_tickers_schema':show_scope_tickers_schema(scope)
+		
 		case 'show_scope_yf':show_scope_yf(scope)
 		case 'show_scope_users':show_scope_users(scope)
 		# Page Specific Config

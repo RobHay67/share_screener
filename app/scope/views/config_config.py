@@ -7,7 +7,6 @@ from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 def show_scope_config(scope):
 
-	# st.divider()
 	scope_button(scope, "scope.config", scope.config, make_red=True, suffix_only=False)
 	
 	col1,col2,col3,col4,col5,col6,col7,col8,col9 = st.columns(9)

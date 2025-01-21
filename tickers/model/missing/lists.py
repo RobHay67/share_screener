@@ -10,7 +10,7 @@ def update_missing_ticker_lists(scope, ticker):
 	if ticker in scope.ticker_schema['missing']['local']:
 		scope.ticker_schema['missing']['local'].remove(ticker)
 	
-	if ticker in ['missing']['cloud']:
+	if ticker in scope.ticker_schema['missing']['cloud']:
 		scope.ticker_schema['missing']['cloud'].remove(ticker)
 
 	if ticker in scope.ticker_schema['missing']['list']:

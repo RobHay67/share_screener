@@ -1,7 +1,9 @@
 import streamlit as st
 
 from app.scope.views.config_pages import show_scope_page
-from tickers.scope.view.config_ticker_schema import show_ticker_page_config
+
+from tickers.scope.view.config_tickers import show_scope_tickers
+from tickers.scope.view.config_ticker_schema import show_scope_tickers_schema
 
 from charts.scope.views.settings.settings_chart import show_settings_chart
 from charts.scope.views.settings.settings_overlay import show_settings_overlay
@@ -21,7 +23,8 @@ def show_page_config_and_settings(scope):
 		show_scope_page(scope)
 	
 	if scope.page[page]['render']['ticker_config'] == True:
-		show_ticker_page_config(scope)
+		show_scope_tickers(scope)
+		# show_scope_tickers_schema(scope)
 
 	if page == 'screener':
 		if scope.page[page]['render']['trial_settings'] == True:
