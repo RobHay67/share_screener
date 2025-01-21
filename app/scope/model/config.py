@@ -1,5 +1,5 @@
 import time
-from app.scope.model.schema_page import page_schema
+from app.scope.model.schema import page_schema
 
 
 def scope_config(scope):

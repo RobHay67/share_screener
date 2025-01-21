@@ -3,7 +3,7 @@
 from users.scope.model.scope_users import user_config_users
 from charts.scope.model.scope_charts import user_config_charts
 from screener.scope.model.scope_trials import user_config_trials
-from app.scope.model.scope_config import user_config_pages
+from app.scope.model.config import user_config_pages
 
 
 def restore_base_config(scope):

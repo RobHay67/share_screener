@@ -11,11 +11,10 @@ from screener.scope.view.trial_config import show_scope_trials
 from screener.scope.view.trial_config import show_trial_verdicts
 from screener.scope.view.strategy_config import show_strategy_config
 from charts.scope.views.chart_config import show_scope_chart
-from charts.scope.views.chart_config import show_chart_user_settings
 
 # Show/Hide additional config information or settings as specified by the user
 
-def show_page_config(scope):
+def show_page_config_and_settings(scope):
 	page = scope.config['display']
 
 	if scope.page[page]['render']['page_config'] == True:
@@ -35,7 +34,6 @@ def show_page_config(scope):
 			st.write('TODO we need to default dictionary obkect')
 			show_scope_trials(scope)
 			show_trial_verdicts(scope)
-			# show_trial_user_settings(scope)
 			show_strategy_config(scope)
 		
 	if page == 'chart':
@@ -48,6 +46,5 @@ def show_page_config(scope):
 			st.subheader('Charts Page specific config')
 			st.write('TODO we need to default dictionary obkect')
 			show_scope_chart(scope)
-			show_chart_user_settings(scope)
 
 	

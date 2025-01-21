@@ -50,11 +50,11 @@ def return_sidebar_navigation_buttons(scope):
 		icon=scope.config['page_schema']['logout']['icon'],
 		default=scope.config['page_schema']['logout']['default']
 		)
-	config_page 	= st.Page(
-		page=scope.config['page_schema']['config']['path'],
-		title=scope.config['page_schema']['config']['title'],
-		icon=scope.config['page_schema']['config']['icon'],
-		default=scope.config['page_schema']['config']['default']
+	scope_page 	= st.Page(
+		page=scope.config['page_schema']['scope']['path'],
+		title=scope.config['page_schema']['scope']['title'],
+		icon=scope.config['page_schema']['scope']['icon'],
+		default=scope.config['page_schema']['scope']['default']
 		)
 	testing_page 	= st.Page(
 		page=scope.config['page_schema']['testing']['path'],
@@ -75,7 +75,7 @@ def return_sidebar_navigation_buttons(scope):
 			],
 		"Config"	: [
 			ticker_index_page, 
-			config_page, 
+			scope_page, 
 			logout_page, 
 			testing_page
 			],

@@ -3,7 +3,7 @@ import streamlit as st
 from tickers.model.download import download_ticker_data
 
 
-def download_button(scope):
+def button_download_ticker(scope):
 
 	download_button_msg = 'Download (' + str(scope.config['download_days'] + ')')
 		

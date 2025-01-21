@@ -1,11 +1,13 @@
 import streamlit as st
-from config.views.button_choose_scope import scope_button
-from config.views.show_scope_value import show_scope_single_value, show_scope_values
+from app.scope.views.buttons.button_choose_scope import scope_button
+from app.scope.views.buttons.button_data_type import data_type_button
+from app.scope.views.buttons.show_scope_value import show_scope_single_value, show_scope_values
+from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 
 def show_app_config(scope):
 
-	st.divider()
+	# st.divider()
 	scope_button(scope, "scope.config", scope.config, make_red=True, suffix_only=False)
 	
 	col1,col2,col3,col4,col5,col6,col7,col8,col9 = st.columns(9)
@@ -46,4 +48,5 @@ def show_app_config(scope):
 	
 	
 	st.divider()
-	if scope.config['display_scope']['scope_key'] != None:show_scope_values(scope)
+	if scope.config['display_scope']['scope_key'] != None:
+		show_scope_values(scope)

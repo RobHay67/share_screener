@@ -6,7 +6,7 @@ from markets.schema import opening_hours
 from app.views.sidebar.row_limit import edit_row_limit
 from app.views.sidebar.download import edit_download_days
 
-def show_market_info_and_selectors(scope):
+def show_sidebar_app_info(scope):
 
 	local_time=datetime.now()
 	market_timezone = opening_hours[scope.config['share_market']]['timezone']

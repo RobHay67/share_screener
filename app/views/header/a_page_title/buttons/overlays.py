@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-def chart_overlay_button(scope):
+def button_show_overlay_settings(scope):
 
 	page = scope.config['display']
 	current_value = scope.page[page]['render']['overlay_settings']

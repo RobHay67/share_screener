@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-def trial_settings_button(scope):
+def button_show_trial_settings(scope):
 
 	page = scope.config['display']
 	current_value = scope.page[page]['render']['trial_settings']

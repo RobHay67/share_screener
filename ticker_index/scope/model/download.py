@@ -5,7 +5,7 @@ from app.scope.model.dropdowns.controller import refresh_ticker_selector_lists
 
 
 
-from app.scope.model.scope_config import scope_seach_for_ticker
+from app.scope.model.config import scope_seach_for_ticker
 
 from ticker_index.scope.views.download.messages import message_downloading
 from ticker_index.scope.views.download.messages import message_completed_download

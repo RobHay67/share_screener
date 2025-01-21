@@ -1,14 +1,11 @@
-import streamlit as st
 from app.views.widgets.cols_three import three_cols
-
+import streamlit as st
+from app.scope.views.buttons.button_choose_scope import scope_button
+from app.scope.views.buttons.button_data_type import data_type_button
+from app.scope.views.buttons.show_scope_value import show_scope_single_value, show_scope_values
+from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 def show_ticker_general_config(scope):
-
-	
-
-	
-
-
 
 	ticker_keys = scope.tickers.keys()
 	st.subheader('Tickers')
@@ -37,38 +34,41 @@ def show_ticker_page_config(scope):
 			st.write('No Ticker Information. Load or Download some data')
 
 
-def show_ticker_config(scope):
+def build_ticker_list(scope):
+	ticker_list = scope.tickers.keys()
+	return ticker_list
+
+
+def show_scope_tickers(scope):
+	scope_button(scope, "scope.tickers", scope.tickers, make_red=True, suffix_only=False)
+	scope_button(scope, "[ticker] i.e. ANZ.AX", scope.tickers, make_red=False, suffix_only=False)
 	
+	ticker = scope_dropdown(scope, build_ticker_list(scope))
+
+	col1,col2 = st.columns([1,4])
+	with col1:scope_button(scope, "scope.tickers["+ticker+"]['df']", scope.tickers[ticker]['df'])
+	with col2:scope_button(scope, "scope.tickers["+ticker+"]['page']", scope.config['page_list'])
+	with col2:page = scope_dropdown(scope, scope.config['page_list'])
+
+
+	col1,col2,col3,col4,col5 = st.columns([1,1,1,1,1])
+	with col2:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][df]", scope.tickers[ticker][page]['df'])
+	with col3:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][replace_df]", scope.tickers[ticker][page]['replace_df'])
+	with col4:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][replace_column]", scope.tickers[ticker][page]['replace_column'])
+	with col5:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][schema_group]", scope.tickers[ticker][page]['schema_group'])
+
+	col1,col2,col3,col4,col5 = st.columns([1,1,1,1,1])
+	with col4:show_scope_single_value("replace_df", scope.tickers[ticker][page]['replace_df'])
+	with col5:show_scope_single_value("schema_group", scope.tickers[ticker][page]['schema_group'])
+
 	st.divider()
-	st.button('scope.tickers', use_container_width=True, type="primary", key='widget_config_tickers')
-	st.button('[ticker] i.e. ANZ.AX', use_container_width=True, type="secondary", key='widget_config_tickers_ticker')
-	col1,col2 = st.columns([1,7])
-	with col1:st.button('[df]', 				key='widget_config_tickers_df', use_container_width=True, type="secondary")
-	with col2:st.button('[page] i.e. charts', key='widget_config_tickers_page', use_container_width=True, type="secondary")
-
-	col1,col2,col3,col4,col5,col6,col7,col8 = st.columns(8)
-	with col1:st.button(' ', 	key='widget_config_empty_button', 		use_container_width=True, type="secondary")
-	with col2:st.button('[df]', key='widget_config_tickers_page_df', 	use_container_width=True, type="secondary")
-	with col3:st.button('[schema_group]', key='widget_config_tickers_page_schema_group', 	use_container_width=True, type="secondary")
-	with col4:st.button('[replace_df]', key='widget_config_tickers_page_replace_df', 	use_container_width=True, type="secondary")
-	with col5:st.button('[replace_column]', key='widget_config_tickers_page_replace_column', 	use_container_width=True, type="secondary")
-	with col6:st.button('[verdict]', key='widget_config_tickers_page_verdict', 	use_container_width=True, type="secondary")
-	with col7:st.button('[replace_verdict]', key='widget_config_tickers_page_replace_verdict', 	use_container_width=True, type="secondary")
-	with col8:st.button('[trials]', key='widget_config_tickers_page_trials', 	use_container_width=True, type="secondary")
-
-	col1,col2,col3,col4,col5,col6,col7,col8 = st.columns(8)
-	with col1:st.button('{ }', key='widget_config_empty_dictionary', 	use_container_width=True, type="secondary")
-	with col4:st.button(':blue[True or False]', key='widget_config_boolean', 	use_container_width=True, type="secondary")
-	with col5:st.button(':blue[None]', key='widget_config_none', 	use_container_width=True, type="secondary")
-
-	st.write(':red[So when you click on an object we render the contents]')
-	st.divider()
+	if scope.config['display_scope']['scope_key'] != None:
+		show_scope_values(scope)
 
 
-	st.write('[ ticker ] :orange[ie ANZ.AX]')
-	col1,col2 = st.columns([6.0, 6.0])
-	with col1:st.write('[ df ]')
-	with col2:st.write('[ page ] :orange[ie charts]')
+
+
+
 
 
 	# col1,col2,col3,col4,col5,col6,col7,col8 = st.columns(8)

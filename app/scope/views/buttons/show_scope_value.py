@@ -1,6 +1,6 @@
 import streamlit as st
 from datetime import datetime 
-# import time
+
 
 def show_scope_values(scope):
 	button_pressed = scope.config['display_scope']['scope_key']
@@ -13,11 +13,9 @@ def show_scope_values(scope):
 	
 	st.subheader(':blue[' + button_pressed +']')
 	st.write(scope_value)
-	st.divider()
 
 
 def show_scope_single_value(label_name, scope_value):
-	print(label_name)
 	button = st.button(
 		label=str(scope_value), 
 		key=label_name, 

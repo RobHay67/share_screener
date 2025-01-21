@@ -8,7 +8,7 @@ import streamlit as st
 from app.helpers.re_render import app_is_re_rendering
 from app.scope.model.set_scope import set_scope
 from users.views.login.controller import show_login_page
-from app.views.sidebar.market_info import show_market_info_and_selectors
+from app.views.sidebar.market_info import show_sidebar_app_info
 from app.views.sidebar.page_navigation import return_sidebar_navigation_buttons
 
 app_is_re_rendering()
@@ -20,10 +20,12 @@ page_navigation = return_sidebar_navigation_buttons(scope)
 
 # Render Pages
 if scope.users['logged_in'] == True:
-	page_navigation.run()		# Add Application Navigation Buttons
-	show_market_info_and_selectors(scope)
+	page_navigation.run()			# adds Application Navigation Buttons
+	show_sidebar_app_info(scope)	# adds additional market info and global variables
 else:
 	show_login_page(scope)
+
+
 
 #======================================================== TODO s
 for i in range(5):print('')

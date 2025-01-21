@@ -1,6 +1,3 @@
-
-
-
 path = 'path'
 title = 'title'
 icon = 'icon'
@@ -50,11 +47,11 @@ page_schema = {
 		default:False,
 		path:"ticker_index/scope/views/page_ticker_index.py"
 		}, 
-	'config'		:{
-		title:"Config",
+	'scope'		:{
+		title:"Scope",
 		icon:"⚙️",
 		default:False,
-		path:"config/views/page_config.py"
+		path:"app/scope/views/page_scope.py"
 		}, 
 	'logout'		:{
 		title:"Logout",
@@ -69,4 +66,3 @@ page_schema = {
 		path:"app/views/page_test.py"
 		}, 
 }
-

@@ -3,7 +3,7 @@ import streamlit as st
 
 
 
-def reset_page_button(scope):
+def button_reset_page(scope):
 	st.button(
 			label='Reset', 
 			use_container_width=True,

@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-def chart_settings_button(scope):
+def button_show_chart_settings(scope):
 
 	page = scope.config['display']
 	current_value = scope.page[page]['render']['chart_settings']

@@ -15,8 +15,6 @@ def scope_button(scope, scope_reference, scope_value, make_red=False, suffix_onl
 	else:
 		button_label = scope_reference
 
-	
-	# print(scope_reference)
 	button = st.button(
 		label=button_label, 
 		key=widget_key, 

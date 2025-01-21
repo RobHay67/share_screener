@@ -1,6 +1,11 @@
 import streamlit as st
-from config.views.button_choose_scope import scope_button
-from config.views.show_scope_value import show_scope_values
+from app.scope.views.buttons.button_choose_scope import scope_button
+from app.scope.views.buttons.button_data_type import data_type_button
+from app.scope.views.buttons.show_scope_value import show_scope_single_value, show_scope_values
+from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
+
+
+
 
 
 def show_files_config(scope):

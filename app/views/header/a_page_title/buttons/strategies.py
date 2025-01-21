@@ -1,6 +1,6 @@
 import streamlit as st
 
-def strategies_button(scope):
+def button_show_strategy_config(scope):
 
 	page = scope.config['display']
 	current_value = scope.page[page]['render']['strategy']

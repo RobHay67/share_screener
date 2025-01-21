@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-def ticker_config_button(scope):
+def button_show_ticker_config(scope):
 
 	page = scope.config['display']
 	current_value = scope.page[page]['render']['ticker_config']

@@ -1,4 +1,4 @@
-from charts.scope.model.schema import charts_schema
+
 
 def user_config_charts(scope):
 	# Setting can be changed for each user
@@ -9,5 +9,5 @@ def user_config_charts(scope):
 
 	# store the default chart configuration dictionary (over-written by user settings)
 	scope.charts['user_config'] = {}
-	for chart, config in charts_schema.items():
+	for chart, config in scope.charts['schema'].items():
 		scope.charts['user_config'][chart] = config.copy()

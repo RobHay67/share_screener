@@ -24,14 +24,16 @@ def scope_page_variables(scope):
 										'market'			: 'select market',
 										'ticker_worklist'	: 'select a ticker',
 										}
-		
+		# Settings are Changeable
+		# Config is read only
 		scope.page[page]['render'] = 	{
-										'ticker_file':'Show/Hide Data',	# display the ticker files
-										'page_config':False,			# display the application config
 										'chart_settings':False,			# display the chart settings
 										'overlay_settings':False,		# display the overlay settings
 										'trial_settings':False,			# display the trial settings
 										'strategy':False,				# display the strategy settings
+										'ticker_file':'Show/Hide Data',	# display the ticker files
+										'page_config':False,			# display the application config
+										'app_scope':False,				# Structure of the scope object (relevant for app/page)
 										'ticker_config':False,			# display the ticker config
 								}
 		

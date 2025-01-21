@@ -62,8 +62,6 @@ def show_chart_settings(scope):
 	st.divider()
 
 
-
-
 def activate_chart(scope, schema_key):
 	edit_active(scope, 'charts', schema_key)
 
