@@ -5,7 +5,7 @@ from app.scope.views.buttons.show_scope_value import show_scope_single_value, sh
 from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 
-def show_app_config(scope):
+def show_scope_config(scope):
 
 	# st.divider()
 	scope_button(scope, "scope.config", scope.config, make_red=True, suffix_only=False)

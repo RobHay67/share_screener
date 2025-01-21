@@ -34,17 +34,17 @@ def create_error_list_for_page(scope, page):
 	ticker_error_list = []
 	drop_down_list = []
 	
-	for ticker in scope.ticker_config['missing']['list']:
+	for ticker in scope.ticker_schema['missing']['list']:
 		if ticker in scope.page[page]['worklist']:
 			ticker_error_list.append(ticker)
 
 	for ticker in ticker_error_list:
 		ticker_error_status = ticker + '---'
 
-		if ticker in scope.ticker_config['missing']['cloud']:
-			ticker_error_status =  ticker_error_status + scope.ticker_config['missing']['errors'][ticker]['yf']
-		elif ticker in scope.ticker_config['missing']['local']:
-			ticker_error_status = ticker_error_status + scope.ticker_config['missing']['errors'][ticker]['load']
+		if ticker in scope.ticker_schema['missing']['cloud']:
+			ticker_error_status =  ticker_error_status + scope.ticker_schema['missing']['errors'][ticker]['yf']
+		elif ticker in scope.ticker_schema['missing']['local']:
+			ticker_error_status = ticker_error_status + scope.ticker_schema['missing']['errors'][ticker]['load']
 		else:
 			ticker_error_status = ticker_error_status + 'UNDETERMINED ERROR'
 

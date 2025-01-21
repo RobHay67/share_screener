@@ -2,16 +2,16 @@
 from tickers.scope.model.schema_tickers import schema
 
 
-def scope_tickers_config(scope):
-	scope.ticker_config = {}
-	scope.ticker_config['schema'] = schema
-	scope.ticker_config['usecols'] = ['date', 'open', 'high', 'low', 'close', 'volume']
-	scope.ticker_config['dtypes'] = {'open': 'float64', 'high': 'float64', 'low': 'float64', 'close': 'float64', 'volume': 'int64'}
-	scope.ticker_config['dates'] = ['date']
+def scope_tickers_schema(scope):
+	scope.ticker_schema = {}
+	scope.ticker_schema['schema'] = schema
+	scope.ticker_schema['usecols'] = ['date', 'open', 'high', 'low', 'close', 'volume']
+	scope.ticker_schema['dtypes'] = {'open': 'float64', 'high': 'float64', 'low': 'float64', 'close': 'float64', 'volume': 'int64'}
+	scope.ticker_schema['dates'] = ['date']
 
 	# To Store the missing ticker information
-	scope.ticker_config['missing'] = {}
-	scope.ticker_config['missing'] = {
+	scope.ticker_schema['missing'] = {}
+	scope.ticker_schema['missing'] = {
 								'errors': {},
 								'local' : [],
 								'cloud' : [],
@@ -20,4 +20,4 @@ def scope_tickers_config(scope):
 
 	
 def scope_missing_ticker_error(scope, ticker):
-	scope.ticker_config['missing']['errors'][ticker] = {'load':None, 'yf':None}
+	scope.ticker_schema['missing']['errors'][ticker] = {'load':None, 'yf':None}

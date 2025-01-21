@@ -5,13 +5,13 @@ def fail_local_load_event(scope, ticker):
 	# There is no local file so record this fact
 	# to prevent further attempts to load the local file
 
-	scope.ticker_config['missing']['local'].append(ticker)
-	scope.ticker_config['missing']['list'].append(ticker)
+	scope.ticker_schema['missing']['local'].append(ticker)
+	scope.ticker_schema['missing']['list'].append(ticker)
 
 	# Cache Error
-	if ticker not in scope.ticker_config['missing']['errors']:
+	if ticker not in scope.ticker_schema['missing']['errors']:
 		scope_missing_ticker_error(scope, ticker)
-	scope.ticker_config['missing']['errors'][ticker]['load'] = 'Missing Local file'
+	scope.ticker_schema['missing']['errors'][ticker]['load'] = 'Missing Local file'
 
 
 

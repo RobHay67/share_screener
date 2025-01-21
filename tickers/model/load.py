@@ -14,10 +14,10 @@ def load_ticker(scope, ticker):
 									scope.files['paths']['ticker_data'], 
 									header      = 0,
 									# nrows       = params.row_limitor, 
-									usecols     = scope.ticker_config['usecols'],
+									usecols     = scope.ticker_schema['usecols'],
 									# index_col   = 'date', 
-									dtype       = scope.ticker_config['dtypes'],
-									parse_dates = scope.ticker_config['dates'],
+									dtype       = scope.ticker_schema['dtypes'],
+									parse_dates = scope.ticker_schema['dates'],
 									)
 		add_new_ticker(scope, ticker, ticker_data_file)
 	else:

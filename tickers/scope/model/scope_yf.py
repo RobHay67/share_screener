@@ -12,7 +12,7 @@ def scope_download_variables(scope):
 def scope_yf_config(scope):
 	# seperate so it can be called at the begining of each download
 	# All Downloaded ticker data (all batches) is tempporarily stored here
-	scope.yf['all_data'] 	= pd.DataFrame(columns=scope.ticker_config['usecols'] + ['ticker'] )		
+	scope.yf['all_data'] 	= pd.DataFrame(columns=scope.ticker_schema['usecols'] + ['ticker'] )		
 	scope.yf['all_errors'] 	= {}
 
 

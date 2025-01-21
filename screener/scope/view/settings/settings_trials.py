@@ -9,7 +9,7 @@ from screener.scope.view.settings.rsi import rsi_trends
 from screener.scope.view.settings.example import example_settings
 
 
-def show_user_trial_settings(scope):
+def show_settings_trials(scope):
 
 	st.divider()
 	col1,col2=st.columns([8,4])

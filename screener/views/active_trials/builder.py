@@ -15,11 +15,11 @@ def build_english_explanation(scope, trial ):
 	
 
 	if trial in ['price_1', 'price_2', 'price_3']:
-		column_name = scope.ticker_config['schema'][column]['long_english']
+		column_name = scope.ticker_schema['schema'][column]['long_english']
 		english_explanation =  f"{column_name} is {trend}, {duration} of the previous {timespan} days"
 
 	if trial in ['sma_1', 'sma_2', 'sma_3']:
-		column_name = scope.ticker_config['schema'][column]['long_english']
+		column_name = scope.ticker_schema['schema'][column]['long_english']
 		english_explanation =  f"{column_name} is trading {trend} the {periods} day Simple Moving Average (SMA)"
 
 	if trial in ['stochastic_1', 'stochastic_2', 'stochastic_3']:
@@ -27,7 +27,7 @@ def build_english_explanation(scope, trial ):
 		english_explanation = 'STOCHASTIC'
 
 	if trial in ['rsi_1', 'rsi_2']:
-		column_name = scope.ticker_config['schema'][column]['long_english']
+		column_name = scope.ticker_schema['schema'][column]['long_english']
 
 		# buy and sell zone
 		if trend in ['up ','down']:

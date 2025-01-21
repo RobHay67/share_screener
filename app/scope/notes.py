@@ -14,22 +14,22 @@
 
 
 
-#						----page required-------	---access from page----
-# name			type		config		settings 	Scope		Screener	charts	Intra	Volume	Research	Website	Ticker	Logout	Testing
-#																					Day									Index
+#						module	function	----page required-------	---access from page----
+# name			type	name	name		config		settings 	Scope		Screener	charts	Intra	Volume	Research	Website	Ticker	Logout	Testing
+#																									Day									Index
 # -------------------------------------------------------------------------------------------------------------------------------------------------
-# summary		summary		Yes			x			Yes			x			x		x		x		x			x		x		Yes		x
-# files						DONE		x			Yes			x			x		x		x		x			x		x		x		x
-# config					DONE		x			Yes			x			x		x		x		x			x		x		x		x
-# ticker_index				Yes			x			Yes			x			x		x		x		x			x		Yes		x		x
-# users						DONE		x			Yes			x			x		x		x		x			x		x		x		x
-# tickers		DATA		Yes			x			Yes			Yes			Yes		Yes		Yes		x			x		x		x		x
-# tickers_config			Yes			x			Yes			x			x		x		x		x			x		x		x		x
-# yf						Yes			x			Yes			x			x		x		x		x			x		x		x		x
-# page						DONE		x			Yes			Yes			Yes		Yes		Yes		Yes			x		x		x		x
-# trials (and verdicts)		DONE		Yes			Yes			Yes			x		x		x		x			x		x		x		x
-# strategy					DONE		Yes			Yes			Yes			x		x		x		x			x		x		x		x
-# charts (and overlays)		DONE		Yes			Yes			x			Yes		x		x		x			x		x		x		x
+# summary		summary						Yes			x			Yes			x			x		x		x		x			x		x		Yes		x
+# files										DONE		x			Yes			x			x		x		x		x			x		x		x		x
+# config									DONE		x			Yes			x			x		x		x		x			x		x		x		x
+# ticker_index								Yes			x			Yes			x			x		x		x		x			x		Yes		x		x
+# users										DONE		x			Yes			x			x		x		x		x			x		x		x		x
+# tickers		DATA	DONE	DONE		Yes			x			Yes			Yes			Yes		Yes		Yes		x			x		x		x		x
+# tickers_schema		DONE	DONE		Yes			x			Yes			x			x		x		x		x			x		x		x		x
+# yf					DONE				Yes			x			Yes			x			x		x		x		x			x		x		x		x
+# page										DONE		x			Yes			Yes			Yes		Yes		Yes		Yes			x		x		x		x
+# trials (and verdicts)						DONE		Yes			Yes			Yes			x		x		x		x			x		x		x		x
+# strategy									DONE		Yes			Yes			Yes			x		x		x		x			x		x		x		x
+# charts (and overlays)						DONE		Yes			Yes			x			Yes		x		x		x			x		x		x		x
 
 
 # NOTES

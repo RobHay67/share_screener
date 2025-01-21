@@ -15,10 +15,10 @@ def refresh_worklist_long_description(scope):
 		pad_string = '-'*padding
 		ticker_status = ticker + pad_string
 
-		if ticker in scope.ticker_config['missing']['cloud']:
-			ticker_status =  ticker_status + scope.ticker_config['missing']['errors'][ticker]['yf']
-		elif ticker in scope.ticker_config['missing']['local']:
-			ticker_status = ticker_status + scope.ticker_config['missing']['errors'][ticker]['load']
+		if ticker in scope.ticker_schema['missing']['cloud']:
+			ticker_status =  ticker_status + scope.ticker_schema['missing']['errors'][ticker]['yf']
+		elif ticker in scope.ticker_schema['missing']['local']:
+			ticker_status = ticker_status + scope.ticker_schema['missing']['errors'][ticker]['load']
 		else:
 			if ticker in list(scope.tickers.keys()): 
 				ticker_df = scope.tickers[ticker]['df']

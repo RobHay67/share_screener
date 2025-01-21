@@ -8,7 +8,7 @@ from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 
 
-def show_files_config(scope):
+def show_scope_files(scope):
 	st.divider()
 	scope_button(scope, "scope.files", scope.files, make_red=True, suffix_only=False)
 

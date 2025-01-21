@@ -12,7 +12,7 @@ from charts.scope.views.settings.volume_oscillator import volume_oscillator_sett
 from charts.scope.views.settings.line import line_settings
 
 
-def show_chart_settings(scope):
+def show_settings_chart(scope):
 
 	# ----------------------------------------------------------------------
 	# Primary Charts

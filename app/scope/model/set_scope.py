@@ -8,7 +8,7 @@ from screener.scope.model.scope_trials import scope_trials
 from charts.scope.model.scope_charts import scope_charts
 from tickers.scope.model.scope_tickers import scope_tickers
 from ticker_index.scope.model.scope_ticker_index import scope_index_file
-from tickers.scope.model.scope_ticker_config import scope_tickers_config
+from tickers.scope.model.scope_ticker_config import scope_tickers_schema
 from app.scope.model.config import scope_seach_for_ticker
 from tickers.scope.model.scope_yf import scope_download_variables
 from screener.scope.model.scope_strategy import scope_strategy
@@ -30,7 +30,7 @@ def set_scope(scope):
 		scope_charts(scope)					# add the chart configuration
 		scope_tickers(scope)				# variables for storing the ticker files
 		scope_index_file(scope)				# load the share index
-		scope_tickers_config(scope)			# download info for the tickers
+		scope_tickers_schema(scope)			# download info for the tickers
 		scope_seach_for_ticker(scope)			# variable to facilite searching for ticker by name
 		scope_download_variables(scope)		# variable used during download of ticker data
 		scope_strategy(scope)				# TODO - this may not even be required - keeping just in case

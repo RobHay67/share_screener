@@ -2,9 +2,9 @@
 # from app.scope.views.
 
 
-from screener.scope.view.trial_config import show_scope_trials
-from screener.scope.view.strategy_config import show_strategy_config
-from charts.scope.views.chart_config import show_scope_chart
+from screener.scope.view.config_trials import show_scope_trials
+from screener.scope.view.config_strategy import show_scope_strategy
+from charts.scope.views.config_chart import show_scope_chart
 
 import streamlit as st
 
@@ -18,7 +18,7 @@ def show_scope_config(scope):
 			case 'screener':
 				print('Render the app Scope for this page')
 				show_scope_trials(scope)
-				show_strategy_config(scope)
+				show_scope_strategy(scope)
 			case 'chart':
 				print('This is done')
 				st.header(':red[Still need to show the overlays config]') #TODO

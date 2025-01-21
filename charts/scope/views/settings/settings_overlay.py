@@ -7,7 +7,7 @@ from charts.scope.views.settings.moving_average import moving_average_settings
 
 
 
-def show_overlay_config(scope):
+def show_settings_overlay(scope):
 	# ----------------------------------------------------------------------
 	# Overlays
 	# ----------------------------------------------------------------------
