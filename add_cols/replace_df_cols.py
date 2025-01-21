@@ -5,7 +5,7 @@ def replace_page_df_columns(scope, page, ticker):
 
 	schema_group = scope.tickers[ticker][page]['schema_group']
 	
-	scope.page[page]['render']['verdicts'] = False
+	scope.page[page]['show']['verdicts'] = False
 				
 	if schema_group != None:			
 	# Some pages do not have any dataframes

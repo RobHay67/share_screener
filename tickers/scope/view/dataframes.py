@@ -5,7 +5,7 @@ def show_page_dataframes(scope):
 	# Just the dataframes relevant for a particular page
 	page = scope.config['display']
 
-	selected_ticker = scope.page[page]['render']['ticker_file'].split("---")
+	selected_ticker = scope.page[page]['show']['ticker_file'].split("---")
 	ticker = selected_ticker[0]
 
 	col1,col2=st.columns([5,7])

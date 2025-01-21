@@ -14,7 +14,7 @@ def show_page_header(scope, page_title, page_icon):
 	page_title_layer(scope, page_title, page_icon)		# a_
 	if scope.users['logged_in']:
 		# Levels at the top of the page
-		show_page_config_and_settings(scope)							# b_
+		show_page_config_and_settings(scope)			# b_
 		show_ticker_selectors(scope)					# c_
 		show_ticker_load_and_col_adding(scope)			# d_
 		show_worklist_dropdowns(scope)					# f_

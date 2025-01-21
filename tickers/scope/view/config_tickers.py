@@ -30,7 +30,8 @@ def show_scope_tickers(scope):
 		with col5:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][schema_group]", scope.tickers[ticker][page]['schema_group'])
 
 		col1,col2,col3,col4,col5 = st.columns([1,1,1,1,1])
-		with col4:show_scope_single_value("replace_df", scope.tickers[ticker][page]['replace_df'])
+		with col3:show_scope_single_value("replace_df", scope.tickers[ticker][page]['replace_df'])
+		# with col4:show_scope_single_value("replace_column", scope.tickers[ticker][page]['replace_column'])
 		with col5:show_scope_single_value("schema_group", scope.tickers[ticker][page]['schema_group'])
 	else:
 		scope_button(scope, "Detailed Config Not Available until tickers loaded", scope.tickers, make_red=True, suffix_only=False)
@@ -46,7 +47,8 @@ def show_scope_tickers(scope):
 		with col5:scope_button(scope, "scope.tickers['ticker]['page'][schema_group]", scope.tickers)
 
 		col1,col2,col3,col4,col5 = st.columns([1,1,1,1,1])
-		with col4:show_scope_single_value("replace_df", scope.tickers)
+		with col3:show_scope_single_value("replace_df", scope.tickers)
+		with col4:show_scope_single_value("replace_column", scope.tickers)
 		with col5:show_scope_single_value("schema_group", scope.tickers)
 
 	st.divider()

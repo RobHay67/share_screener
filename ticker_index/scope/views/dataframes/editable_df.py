@@ -32,7 +32,6 @@ def render_editable_ticker_index_df(scope):
 			disabled=uneditable_cols
 			)
 
-
 		if scope.ticker_index['render']['save_edited_df']:
 			save_changes_into_ticker_index(scope, edited_df)
 

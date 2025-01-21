@@ -1,0 +1,46 @@
+import streamlit as st
+from app.scope.views.buttons.button_choose_scope import scope_button
+from app.scope.views.buttons.button_data_type import data_type_button
+from app.scope.views.buttons.show_scope_value import show_scope_single_value, show_scope_values
+from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
+
+
+
+
+def show_scope_ticker_index(scope):
+
+	# st.divider()
+	scope_button(scope, "scope.ticker_index", scope.page, make_red=True, suffix_only=False)
+
+	col1,col2,col3,col4 = st.columns([1,1,1,5]) #8
+	with col1:scope_button(scope, "scope.ticker_index['schema']", scope.ticker_index['schema'])
+	with col2:scope_button(scope, "scope.ticker_index['df']", scope.ticker_index['df'])
+	with col3:scope_button(scope, "scope.ticker_index['download_cache']", scope.ticker_index['download_cache'])
+	with col4:scope_button(scope, "scope.ticker_index['render']", scope.ticker_index['render'])
+
+
+
+
+	col1,col2,col3,col4,col5,col6 = st.columns([3,1,1,1,1,1])
+	with col2:scope_button(scope, "scope.ticker_index['render']['ticker_index']", scope.ticker_index['render']['ticker_index'])
+	with col3:scope_button(scope, "scope.ticker_index['render']['industry_report']", scope.ticker_index['render']['industry_report'])
+	with col4:scope_button(scope, "scope.ticker_index['render']['save_edited_df']", scope.ticker_index['render']['save_edited_df'])
+	with col5:scope_button(scope, "scope.ticker_index['render']['editable_df']", scope.ticker_index['render']['editable_df'])
+	with col6:scope_button(scope, "scope.ticker_index['render']['editable_df_key']", scope.ticker_index['render']['editable_df_key'])
+
+
+
+	col1,col2,col3,col4,col5,col6 = st.columns([3,1,1,1,1,1])
+	with col2:show_scope_single_value("show_ticker_index", scope.ticker_index['render']['ticker_index'])
+	with col3:show_scope_single_value("industry_report", scope.ticker_index['render']['industry_report'])
+	with col4:show_scope_single_value("save_edited_df", scope.ticker_index['render']['save_edited_df'])
+	with col5:show_scope_single_value("editable_df", scope.ticker_index['render']['editable_df'])
+	with col6:show_scope_single_value("editable_df_key", scope.ticker_index['render']['editable_df_key'])
+
+
+	st.divider()
+	if scope.config['display_scope']['scope_key'] != None:
+		show_scope_values(scope)
+
+
+

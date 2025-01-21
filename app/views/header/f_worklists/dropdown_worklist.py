@@ -1,5 +1,5 @@
 import streamlit as st
-# if scope.page[page]['render']['ticker_file'] != 'Show/Hide Data':
+# if scope.page[page]['show']['ticker_file'] != 'Show/Hide Data':
 
 
 # previous_selection = scope[schema_group]['user_config'][schema_key]['add_columns']['trend']
@@ -16,11 +16,11 @@ def worklist_dropdown(scope):
 	print('^'*88)
 	widget_key = 'widget_' + page + '_worklist_long_desc'
 	widget_label = determine_label_name(worklist)
-	previous_selection = scope.page[page]['render']['ticker_file']
+	previous_selection = scope.page[page]['show']['ticker_file']
 	st.write('Previous Selection = '+previous_selection)
-	# pos_for_previous = scope.page[page]['render']['ticker_file'].index(previous_selection)	
+	# pos_for_previous = scope.page[page]['show']['ticker_file'].index(previous_selection)	
 	pos_for_previous = worklist.index(previous_selection)	
-	print(scope.page[page]['render']['ticker_file'])
+	print(scope.page[page]['show']['ticker_file'])
 	st.write('pos_for_previous = ', pos_for_previous)
 
 	selectbox = st.selectbox(
@@ -38,7 +38,7 @@ def worklist_dropdown(scope):
 def tag_worklist_item_to_display(scope, page, widget_key):
 	selected_ticker = scope[widget_key]
 	# store the selection
-	scope.page[page]['render']['ticker_file'] = selected_ticker	
+	scope.page[page]['show']['ticker_file'] = selected_ticker	
 	# st.write(selected_ticker)
 
 

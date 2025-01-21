@@ -15,14 +15,14 @@ def button_reset_page(scope):
 
 def reset_render_status(scope):
 	page = scope.config['display']
-	scope.page[page]['render']['ticker_file'] 		= 'Show/Hide Data'
-
-	scope.page[page]['render']['page_config'] 		= False
-	scope.page[page]['render']['chart_settings'] 	= False
-	scope.page[page]['render']['overlay_settings'] = False
-	scope.page[page]['render']['trial_settings'] 	= False
-	scope.page[page]['render']['strategy'] 		= False
-	scope.page[page]['render']['ticker_config'] 	= False
+	
+	scope.page[page]['show']['settings_trials'] 	= False
+	scope.page[page]['show']['settings_strategy'] 	= False
+	scope.page[page]['show']['settings_charts'] 	= False
+	scope.page[page]['show']['settings_overlay'] 	= False
+	scope.page[page]['show']['config_ticker_data'] 	= False
+	scope.page[page]['show']['config_page'] 		= False
+	scope.page[page]['show']['ticker_file'] 		= 'Show/Hide Data'
 
 	scope.page[page]['search_results'] 			= {}
 

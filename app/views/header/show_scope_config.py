@@ -12,7 +12,7 @@ import streamlit as st
 def show_scope_config(scope):
 	page = scope.config['display']
 	print(page)
-	if scope.page[page]['render']['app_scope']:
+	if scope.page[page]['show']['scope']:
 
 		match page:
 			case 'screener':

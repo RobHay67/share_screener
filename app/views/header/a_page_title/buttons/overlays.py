@@ -4,7 +4,7 @@ import streamlit as st
 def button_show_overlay_settings(scope):
 
 	page = scope.config['display']
-	current_value = scope.page[page]['render']['overlay_settings']
+	current_value = scope.page[page]['show']['settings_overlay']
 	type_of_button = 'primary' if current_value == True else 'secondary'
 
 	button = st.button(
@@ -18,7 +18,7 @@ def button_show_overlay_settings(scope):
 
 def overlay_config_status(scope, page):
 
-	previous_value = scope.page[page]['render']['overlay_settings']
+	previous_value = scope.page[page]['show']['settings_overlay']
 	new_value = True if previous_value == False else False
 
-	scope.page[page]['render']['overlay_settings'] = new_value
+	scope.page[page]['show']['settings_overlay'] = new_value

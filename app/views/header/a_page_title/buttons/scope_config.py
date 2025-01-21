@@ -3,7 +3,7 @@ import streamlit as st
 
 def button_show_app_scope(scope):
 	page = scope.config['display']
-	current_value = scope.page[page]['render']['app_scope']
+	current_value = scope.page[page]['show']['scope']
 	type_of_button = 'primary' if current_value == True else 'secondary'
 
 	button = st.button(
@@ -18,7 +18,7 @@ def button_show_app_scope(scope):
 
 def status_app_scope(scope, page):
 
-	previous_value = scope.page[page]['render']['app_scope']
+	previous_value = scope.page[page]['show']['scope']
 	new_value = True if previous_value == False else False
 
-	scope.page[page]['render']['app_scope'] = new_value
+	scope.page[page]['show']['scope'] = new_value

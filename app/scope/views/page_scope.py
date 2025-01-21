@@ -7,17 +7,18 @@ from app.scope.views.config_summary import show_scope_summary
 from app.scope.views.config_config import show_scope_config
 from files.scope.view.config_files import show_scope_files
 from app.scope.views.config_pages import show_scope_page 
-from tickers.scope.view.config_ticker_schema import show_scope_tickers_schema
-
+from ticker_index.scope.views.config_ticker_index import show_scope_ticker_index
 from tickers.scope.view.config_tickers import show_scope_tickers
+from tickers.scope.view.config_ticker_schema import show_scope_tickers_schema
 from users.scope.view.config_users import show_scope_users
 from tickers.scope.view.config_yf import show_scope_yf
+from charts.scope.views.config_chart import show_scope_chart
 # Config for Screener Page
 from screener.scope.view.config_trials import show_scope_trials
 from screener.scope.view.config_trials import show_trial_verdicts
 from screener.scope.view.config_strategy import show_scope_strategy
 # Config for Charts Page
-from charts.scope.views.config_chart import show_scope_chart
+
 
 
 # Page Configuration
@@ -40,12 +41,10 @@ if scope.users['logged_in']:
 
 		case 'show_scope_config':show_scope_config(scope)
 		case 'show_scope_files':show_scope_files(scope)
-		# case 'show_ticker_index':has its own page,
+		case 'show_scope_ticker_index':show_scope_ticker_index(scope)
 		case 'show_scope_page':show_scope_page(scope)
-
 		case 'show_scope_tickers':show_scope_tickers(scope)
-		case 'show_scope_tickers_schema':show_scope_tickers_schema(scope)
-		
+		case 'show_scope_tickers_schema':show_scope_tickers_schema(scope)		
 		case 'show_scope_yf':show_scope_yf(scope)
 		case 'show_scope_users':show_scope_users(scope)
 		# Page Specific Config

@@ -16,6 +16,12 @@ def show_scope_values(scope):
 
 
 def show_scope_single_value(label_name, scope_value):
+	print(scope_value)
+
+	match scope_value:
+		# case False:scope_value = ":white["+str(scope_value)+"]"
+		case True:scope_value = ":green["+str(scope_value)+"]"
+
 	button = st.button(
 		label=str(scope_value), 
 		key=label_name, 

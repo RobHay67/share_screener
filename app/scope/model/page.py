@@ -26,15 +26,15 @@ def scope_page_variables(scope):
 										}
 		# Settings are Changeable
 		# Config is read only
-		scope.page[page]['render'] = 	{
-										'chart_settings':False,			# display the chart settings
-										'overlay_settings':False,		# display the overlay settings
-										'trial_settings':False,			# display the trial settings
-										'strategy':False,				# display the strategy settings
-										'ticker_file':'Show/Hide Data',	# display the ticker files
-										'page_config':False,			# display the application config
-										'app_scope':False,				# Structure of the scope object (relevant for app/page)
-										'ticker_config':False,			# display the ticker config
+		scope.page[page]['show'] = 	{
+										'settings_charts':False,		# display the chart settings
+										'settings_overlay':False,		# display the overlay settings
+										'settings_trials':False,		# display the trial settings
+										'settings_strategy':False,		# display the strategy settings
+										'config_ticker_data':False,		# display the ticker config
+										'config_page':False,			# display the application config
+										'scope':False,					# Relevant Scope for Page (page dependant)
+										'ticker_file':'Show/Hide Data',	# display the ticker files for the selected ticker
 								}
 		
 
