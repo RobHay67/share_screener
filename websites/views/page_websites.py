@@ -2,16 +2,12 @@ import streamlit as st
 
 from app.views.header.controller import show_page_header
 
+
 # Page Configuration
-page = 'websites'
-page_title = 'Internet Resources'
-page_icon = '🌐'
-# -----------------------------
 scope = st.session_state
-scope.config['display'] = page
+scope.config['display'] = 'websites'
 
-
-show_page_header(scope, page_title, page_icon)
+show_page_header(scope)
 
 # No need to check if user logged in for this page
 

@@ -10,7 +10,5 @@ def login_button(scope, login_name):
 						args=(scope, login_name, ), 
 						key='widget_login_button',
 						)
-		print('Manual Login called for >', login_name)
-
 		return button
 

@@ -9,7 +9,7 @@ from app.scope.model.worklists.builder import refresh_page_worklist
 
 
 
-def show_ticker_selectors(scope):
+def router_show_ticker_selectors(scope):
 
 	col1,col2,col3,col4 = st.columns([2.0, 2.0, 2.0, 6.0])  #12
 	

@@ -10,14 +10,10 @@ from markets.schema import opening_hours
 
 
 # Page Configuration
-page = 'volume'
-page_title = 'Predict Closing Volume to End of Today'
-page_icon = '🔊'
-# -----------------------------
 scope = st.session_state
-scope.config['display'] = page
+scope.config['display'] = 'volume'
 
-show_page_header(scope, page_title, page_icon)
+show_page_header(scope)
 
 if scope.users['logged_in']:
 

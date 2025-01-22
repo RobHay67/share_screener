@@ -5,7 +5,7 @@ from ticker_index.scope.model.load import load_ticker_index_file
 
 
 
-def scope_index_file(scope):
+def scope_ticker_index(scope):
 
 	scope.ticker_index = {}	
 

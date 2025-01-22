@@ -7,7 +7,7 @@
 import streamlit as st
 from app.helpers.re_render import app_is_re_rendering
 from app.scope.model.set_scope import set_scope
-from users.views.login.controller import show_login_page
+from users.views.page_login import show_login_page
 from app.views.sidebar.market_info import show_sidebar_app_info
 from app.views.sidebar.page_navigation import return_sidebar_navigation_buttons
 

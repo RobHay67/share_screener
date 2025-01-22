@@ -5,15 +5,19 @@ from app.views.header.controller import show_page_header
 
 
 # Page Configuration
-page = 'testing'
-page_title = 'test Page - try out new config'
-page_icon = '🔬'
-# -----------------------------
 scope = st.session_state
-scope.config['display'] = page
+scope.config['display'] = 'testing'
+
+show_page_header(scope)
 
 
-show_page_header(scope, page_title, page_icon)
+st.selectbox(
+	# label=':red[Select Somthing]',
+	label="🎛 Show Configuration",
+	options=['Relevant Configuration','Page Configuration','Ticker Data']
+)
+
+
 
 # @st.dialog("No Tickers have been selected!")
 # st.dialog('this is a dialog ????', width="wide")

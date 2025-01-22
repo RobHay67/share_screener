@@ -5,6 +5,18 @@ default = 'default'
 
 
 page_schema = {
+	'welcome'		:{
+		title:"Welcome",
+		icon:"🔒",
+		default:True,
+		path:"users/views/page_welcome.py"
+		},  
+	'logout'		:{
+		title:"Logout",
+		icon:"🔒",
+		default:True,
+		path:"users/views/page_logout.py"
+		},  
 	"chart"			:{
 		title:"Charting",
 		icon:"📊",
@@ -53,12 +65,6 @@ page_schema = {
 		default:False,
 		path:"app/scope/views/page_scope.py"
 		}, 
-	'logout'		:{
-		title:"Logout",
-		icon:"🔒",
-		default:True,
-		path:"users/views/page_logout.py"
-		},  
 	'testing'		:{
 		title:"Testing",
 		icon:"🔬",

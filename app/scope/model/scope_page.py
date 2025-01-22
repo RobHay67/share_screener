@@ -3,7 +3,7 @@
 
 
 
-def scope_page_variables(scope):
+def scope_page(scope):
 	# ==========================================
 	# variables for each page from the page list above
 
@@ -31,9 +31,10 @@ def scope_page_variables(scope):
 										'settings_overlay':False,		# display the overlay settings
 										'settings_trials':False,		# display the trial settings
 										'settings_strategy':False,		# display the strategy settings
-										'config_ticker_data':False,		# display the ticker config
-										'config_page':False,			# display the application config
-										'scope':False,					# Relevant Scope for Page (page dependant)
+										'config_to_show':None,			# display the selected config
+										# 'config_ticker_data':False,		# display the ticker config
+										# 'config_page':False,			# display the application config
+										# 'scope':False,					# Relevant Scope for Page (page dependant)
 										'ticker_file':'Show/Hide Data',	# display the ticker files for the selected ticker
 								}
 		

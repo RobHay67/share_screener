@@ -9,13 +9,13 @@
 from screener.scope.model.schema import trials_schema
 from screener.scope.model.active_list import trial_active_list
 from screener.scope.model.column_adders import trial_template_column_adders
-from screener.scope.model.scope_user_config import user_config_trials
+from screener.scope.model.settings_for_user import trial_settings_for_user
 
 
 def scope_trials(scope):
 
 	scope.trials = {}
-	user_config_trials(scope)
+	trial_settings_for_user(scope)
 	scope.trials['trial_list'] = list(trials_schema.keys())
 	trial_active_list(scope)
 	trial_template_column_adders(scope)

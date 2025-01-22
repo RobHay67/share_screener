@@ -3,6 +3,8 @@ from screener.scope.model.scope_trials import trial_template_column_adders
 from charts.scope.model.scope_charts import chart_active_list
 from charts.scope.model.scope_charts import chart_column_adders
 
+# from users.views
+from users.views.page_welcome import show_welcome_page
 
 def login_user(scope, login_name):
 	# Store User params
@@ -66,6 +68,9 @@ def login_user(scope, login_name):
 	# refresh the Chart lists
 	chart_active_list(scope)
 	chart_column_adders(scope)
+
+	# open the Welcome Page?
+	show_welcome_page(scope)
 
 
 

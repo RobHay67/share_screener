@@ -1,8 +1,8 @@
 
 import streamlit as st
 
-from users.views.login.login_auto_button import auto_login_button
-from users.views.login.login_button import login_button
+from users.views.login.button_auto_login import auto_login_button
+from users.views.login.button_login import login_button
 from users.views.login.messages import login_message
 
 
@@ -25,6 +25,7 @@ def show_login_page(scope):
 	else:
 		if login_name != '':
 			login_message(login_name, 'invalid_user')
+
 
 
 

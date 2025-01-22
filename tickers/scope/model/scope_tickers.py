@@ -36,7 +36,6 @@ def create_dictionary_to_store_ticker_data(scope, ticker):
 
 		# To Store Test (trial) Results for the screener page
 		if page == 'screener':
-
 			scope.tickers[ticker][page]['verdict'] = None
 			scope.tickers[ticker][page]['replace_verdict'] = False
 			scope.tickers[ticker][page]['trials'] = {}

@@ -1,9 +1,9 @@
 
 
 from users.scope.model.scope_users import user_config_users
-from charts.scope.model.scope_charts import user_config_charts
-from screener.scope.model.scope_trials import user_config_trials
-from app.scope.model.config import user_config_pages
+from charts.scope.model.scope_charts import chart_settings_for_user
+from screener.scope.model.scope_trials import trial_settings_for_user
+from app.scope.model.scope_config import user_config_pages
 
 
 def restore_base_config(scope):
@@ -13,10 +13,10 @@ def restore_base_config(scope):
 	user_config_users(scope)
 
 	# Chart Config and Chart Height
-	user_config_charts(scope)
+	chart_settings_for_user(scope)
 
 	# Trial Config
-	user_config_trials(scope)
+	trial_settings_for_user(scope)
 
 	# row_limit
 	user_config_pages(scope)

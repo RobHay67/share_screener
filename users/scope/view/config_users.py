@@ -1,11 +1,11 @@
 import streamlit as st
 from app.scope.views.buttons.button_choose_scope import scope_button
 from app.scope.views.buttons.button_data_type import data_type_button
-from app.scope.views.buttons.show_scope_value import show_scope_single_value, show_scope_values
+from app.scope.views.buttons.show_config_value import show_config_single_value, show_config_values
 from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 
-def show_scope_users(scope):
+def show_config_users(scope):
 
 	st.divider()
 	scope_button(scope, "scope.users", scope.users, make_red=True, suffix_only=False)
@@ -38,12 +38,12 @@ def show_scope_users(scope):
 	with col9:data_type_button(scope, 'dict', 2)
 
 	col1,col2,col3,col4,col5,col6,col7,col8,col9 = st.columns(9)
-	with col2:show_scope_single_value("login_name", scope.users['login_name'])
-	with col3:show_scope_single_value("logged_in", scope.users['logged_in'])
-	with col4:show_scope_single_value("chart_height", scope.users['json'][user]['chart_height'])
-	with col5:show_scope_single_value("download_days", scope.users['json'][user]['download_days'])
-	with col6:show_scope_single_value("row_limit", scope.users['json'][user]['row_limit'])
+	with col2:show_config_single_value("login_name", scope.users['login_name'])
+	with col3:show_config_single_value("logged_in", scope.users['logged_in'])
+	with col4:show_config_single_value("chart_height", scope.users['json'][user]['chart_height'])
+	with col5:show_config_single_value("download_days", scope.users['json'][user]['download_days'])
+	with col6:show_config_single_value("row_limit", scope.users['json'][user]['row_limit'])
 
 	# st.divider()
 	if scope.config['display_scope']['scope_key'] != None:
-		show_scope_values(scope)
+		show_config_values(scope)

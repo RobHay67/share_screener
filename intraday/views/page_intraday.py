@@ -2,16 +2,14 @@ import streamlit as st
 
 from app.views.header.controller import show_page_header
 
+
 # Page Configuration
-page = 'intraday'
-page_title = 'Intra Day Analysis'
-page_icon = '🌤️'
-# -----------------------------
 scope = st.session_state
+page = 'intraday'
 scope.config['display'] = page
 
 
-show_page_header(scope, page_title, page_icon)
+show_page_header(scope)
 
 if scope.users['logged_in']:
 	

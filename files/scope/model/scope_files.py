@@ -3,7 +3,7 @@ import os
 from app.views.widgets.cols_three import three_cols
 
 
-def scope_folders_and_paths(scope):
+def scope_files(scope):
 
 	scope.files = {}
 

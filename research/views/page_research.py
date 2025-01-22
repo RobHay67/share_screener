@@ -27,15 +27,11 @@ from research.views.news import news
 # TODO - I like this example from the ASX for CBA - https://www2.asx.com.au/markets/company/cba
 
 # Page Configuration
-page = 'research'
-page_title = 'Company Research'
-page_icon = '🕵'
-# -----------------------------
 scope = st.session_state
-scope.config['display'] = page
+scope.config['display'] = 'research'
 
 
-show_page_header(scope, page_title, page_icon)
+show_page_header(scope)
 
 if scope.users['logged_in']:
 

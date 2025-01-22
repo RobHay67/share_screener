@@ -20,19 +20,19 @@ def return_sidebar_navigation_buttons(scope):
 		icon=scope.config['page_schema']['intraday']['icon'],
 		default=scope.config['page_schema']['intraday']['default']
 		)
-	volume_page 	= st.Page(
+	volume_page = st.Page(
 		page=scope.config['page_schema']['volume']['path'],
 		title=scope.config['page_schema']['volume']['title'],
 		icon=scope.config['page_schema']['volume']['icon'],
 		default=scope.config['page_schema']['volume']['default']
 		)
-	research_page 	= st.Page(
+	research_page = st.Page(
 		page=scope.config['page_schema']['research']['path'],
 		title=scope.config['page_schema']['research']['title'],
 		icon=scope.config['page_schema']['research']['icon'],
 		default=scope.config['page_schema']['research']['default']
 		)
-	websites_page 	= st.Page(
+	websites_page = st.Page(
 		page=scope.config['page_schema']['websites']['path'],
 		title=scope.config['page_schema']['websites']['title'],
 		icon=scope.config['page_schema']['websites']['icon'],
@@ -44,19 +44,19 @@ def return_sidebar_navigation_buttons(scope):
 		icon=scope.config['page_schema']['ticker_index']['icon'],
 		default=scope.config['page_schema']['ticker_index']['default']
 		)
-	logout_page 	= st.Page(
+	logout_page = st.Page(
 		page=scope.config['page_schema']['logout']['path'],
 		title=scope.config['page_schema']['logout']['title'],
 		icon=scope.config['page_schema']['logout']['icon'],
 		default=scope.config['page_schema']['logout']['default']
 		)
-	scope_page 	= st.Page(
+	scope_page = st.Page(
 		page=scope.config['page_schema']['scope']['path'],
 		title=scope.config['page_schema']['scope']['title'],
 		icon=scope.config['page_schema']['scope']['icon'],
 		default=scope.config['page_schema']['scope']['default']
 		)
-	testing_page 	= st.Page(
+	testing_page = st.Page(
 		page=scope.config['page_schema']['testing']['path'],
 		title=scope.config['page_schema']['testing']['title'],
 		icon=scope.config['page_schema']['testing']['icon'],

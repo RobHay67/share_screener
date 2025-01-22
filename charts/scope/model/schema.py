@@ -444,10 +444,7 @@ charts_schema = {
 								add_overlays	: False, 
 								definition		: '',
 								notes			: '',
-								plot			: { 
-													function:sma_plot, 
-													colour:'black' 		
-												}, 									
+								plot			: { function:sma_plot, colour:'black' }, 									
 								add_columns		:{ 
 													function:ema_cols, 
 													column:'close', 
@@ -465,10 +462,7 @@ charts_schema = {
 								add_overlays	: False, 
 								definition		: '',
 								notes			: '',
-								plot			: { 
-													function: dividend_plot, 
-													colour	:'blue' 		
-												}, 									
+								plot			: { function: dividend_plot, colour	:'blue' }, 									
 								add_columns		: { 
 													function:dividend_cols			# TODO - we could still plot into the plot_df
 												} 
@@ -481,10 +475,7 @@ charts_schema = {
 								add_overlays	: False, 
 								definition		: '',
 								notes			: '',
-								plot			: { 
-													function:sma_plot, 
-													colour	:'black' 		
-												}, 									
+								plot			: { function:sma_plot, colour :'black' }, 									
 								add_columns		: None,			 # TODO - we are still going to need a chart here
 								},		
 		'ichi_moku' 		: { 
@@ -495,10 +486,7 @@ charts_schema = {
 								add_overlays	: False, 
 								definition		: '',
 								notes			: '',
-								plot			:{ 
-													function:sma_plot, 
-													colour	:'black' 		
-												}, 									
+								plot			:{ function:sma_plot, colour :'black' }, 									
 								add_columns		: None 			# TODO - Rob to work out if this needs speccing
 								},		
 		'ichi_moku_daily'	: { 
@@ -509,10 +497,7 @@ charts_schema = {
 								add_overlays	:False,
 								definition		: '',
 								notes			: '',
-								plot			: { 
-													function:sma_plot, 
-													colour	:'black'
-													},
+								plot			: { function:sma_plot, colour:'black' },
 								add_columns		: None 					# TODO - Rob to work out if this needs speccing
 
 								},		

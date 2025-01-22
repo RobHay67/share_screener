@@ -11,18 +11,12 @@ from ticker_index.scope.views.download.download_button import button_download_ti
 
 
 # Page Configuration
-page = 'ticker_index'
-page_title = 'Ticker Index File'
-page_icon = '🗄️'
-# -----------------------------
 scope = st.session_state
-scope.config['display'] = page
+scope.config['display'] = 'ticker_index'
 
-
-show_page_header(scope, page_title, page_icon)
+show_page_header(scope)
 
 if scope.users['logged_in']:
-
 	col1,col2 = st.columns([10,2]) #12
 	
 	with col1:
@@ -32,16 +26,11 @@ if scope.users['logged_in']:
 		st.caption("< scope.ticker_index['df'] >")
 
 	col1,col2,col3,col4 = st.columns([3,3,3,3]) #12
-	with col1:
-		button_show_ticker_index(scope)
-	with col2:
-		button_edit_ticker_index_df(scope)
-	with col3:
-		button_industry_report(scope)
-	with col4:
-		button_download_ticker_index(scope)
-		
-		
+	with col1:button_show_ticker_index(scope)
+	with col2:button_edit_ticker_index_df(scope)
+	with col3:button_industry_report(scope)
+	with col4:button_download_ticker_index(scope)
+				
 	render_industry_report(scope)
 	render_editable_ticker_index_df(scope)
 	render_ticker_index_df(scope)

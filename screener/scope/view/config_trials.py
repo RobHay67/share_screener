@@ -2,12 +2,12 @@ import streamlit as st
 from app.views.widgets.cols_three import three_cols
 from app.scope.views.buttons.button_choose_scope import scope_button
 from app.scope.views.buttons.button_data_type import data_type_button
-from app.scope.views.buttons.show_scope_value import show_scope_single_value, show_scope_values
+from app.scope.views.buttons.show_config_value import show_config_single_value, show_config_values
 from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 
 
-def show_scope_trials(scope):
+def show_config_trials(scope):
 
 	st.divider()
 	scope_button(scope, "scope.trials", scope.trials, make_red=True, suffix_only=False)
@@ -34,13 +34,13 @@ def show_scope_trials(scope):
 
 	# st.divider()
 	if scope.config['display_scope']['scope_key'] != None:
-		show_scope_values(scope)
+		show_config_values(scope)
 
 
 		
 
 
-def show_trial_verdicts(scope):
+def show_config_verdicts(scope):
 	verdict_keys = list(scope.tickers.keys())
 	with st.expander("Trial Results (Verdicts)", expanded=False):
 		if len(verdict_keys)>0:

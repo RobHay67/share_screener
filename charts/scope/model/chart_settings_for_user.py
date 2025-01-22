@@ -1,6 +1,6 @@
 
 
-def user_config_charts(scope):
+def chart_settings_for_user(scope):
 	# Setting can be changed for each user
 	# so we need to be able to call when changing user
 

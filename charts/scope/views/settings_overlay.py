@@ -10,16 +10,12 @@ from charts.scope.views.settings.moving_average import moving_average_settings
 def show_settings_overlay(scope):
 	# ----------------------------------------------------------------------
 	# Overlays
-	# ----------------------------------------------------------------------
-	
-	
-	st.divider()
+	# ----------------------------------------------------------------------	
 	st.subheader('Overlays')
 	st.caption('added to every relevant chart')
 	
 	col1,col2,col3,col4,col5,col6 = st.columns([1,1,1,1,1,1])
-	
-	
+		
 	dividend_settings(scope)
 	announcement_settings(scope)
 

@@ -1,7 +1,7 @@
 import pandas as pd
 from tickers.model.y_finance.ticker_data.schema_yf import scope_yf_schema
 
-def scope_download_variables(scope):
+def scope_yf(scope):
 	scope.yf = {}
 	scope.yf['periods']				= ['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y']
 	scope_yf_schema(scope)

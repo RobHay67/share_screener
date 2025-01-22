@@ -7,13 +7,13 @@ from charts.scope.model.active_list import chart_active_list
 
 from charts.scope.model.schema import scope_charts_schema
 from charts.scope.model.col_adders import chart_column_adders
-from charts.scope.model.scope_user_config import user_config_charts
+from charts.scope.model.chart_settings_for_user import chart_settings_for_user
 
 
 def scope_charts(scope):
 	scope.charts = {}
 	scope_charts_schema(scope)
-	user_config_charts(scope)
+	chart_settings_for_user(scope)
 	scope.charts['chart_list'] = list(scope.charts['schema'].keys())
 	scope.charts['colours'] = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
 	chart_active_list(scope)

@@ -1,38 +1,16 @@
 import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
 
-from app.views.header.a_page_title.page_title_controller import page_title_layer
+from app.views.header.a_page_title.page_titles import page_title_layer
 from users.scope.model.logout import logout_user
 
 
-# Page Configuration
-scope = st.session_state
-page = 'streamlit_app'
-page_title = scope.config['project_description']
-page_icon = '🏠'
-# -----------------------------
-scope.config['display'] = page
-
-
-
-page_title_layer(scope, page_title, page_icon)
-st.write('Welcome to the Share Picker Appliction.')
-st.write('Select from the options in the sidebar (left)')
-st.write('User : ', scope.users['login_name'])
-
-
 
 # Page Configuration
-page = 'logout'
-page_title = 'Logout ( Save User Settings )'
-page_icon = '🔒'
-# -----------------------------
 scope = st.session_state
-scope.config['display'] = page
+scope.config['display'] = 'logout'
 
-
-page_title_layer(scope, page_title, page_icon)
-
+page_title_layer(scope)
 logout_button = st.button(label='Logout Now')
 
 if logout_button:

@@ -16,14 +16,9 @@ from screener.views.verdicts.controller import show_verdicts
 
 # Page Configuration
 scope = st.session_state
-page = 'screener'
-page_title = 'Ticker Screener'
-page_icon = '🧪'
-# -----------------------------
+scope.config['display'] = 'screener'
 
-scope.config['display'] = page
-
-show_page_header(scope, page_title, page_icon)
+show_page_header(scope)
 
 if scope.users['logged_in']:
 

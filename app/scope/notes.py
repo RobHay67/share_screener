@@ -9,8 +9,8 @@
 # including the state of the app.
 #																				---------Naming Conventions------------
 #																				---module-------	-----function------
-# config 	: variables managed entirely by the application						config_< name >  	show_scope_< name >
-# settings 	: variables that can be changed by the user (i.e. show this chart)	settings_< name >	show_scope_< name >
+# config 	: variables managed entirely by the application						config_< name >  	show_config_< name >
+# settings 	: variables that can be changed by the user (i.e. show this chart)	settings_< name >	show_config_< name >
 
 
 

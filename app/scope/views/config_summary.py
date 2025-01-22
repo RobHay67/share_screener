@@ -1,10 +1,10 @@
 
 import streamlit as st
 from app.scope.views.buttons.button_choose_scope import scope_button
-from app.scope.views.buttons.show_scope_value import show_scope_values
+from app.scope.views.buttons.show_config_value import show_config_values
 
 
-def show_scope_summary(scope):
+def show_config_summary(scope):
 
 	scope_button(scope, "scope", { }, make_red=True, suffix_only=False)
 	
@@ -27,4 +27,4 @@ def show_scope_summary(scope):
 
 	st.divider()
 	if scope.config['display_scope']['scope_key'] != None:
-		show_scope_values(scope)
+		show_config_values(scope)

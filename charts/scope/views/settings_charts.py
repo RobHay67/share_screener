@@ -12,13 +12,10 @@ from charts.scope.views.settings.volume_oscillator import volume_oscillator_sett
 from charts.scope.views.settings.line import line_settings
 
 
-def show_settings_chart(scope):
-
+def show_settings_charts(scope):
 	# ----------------------------------------------------------------------
 	# Primary Charts
 	# ----------------------------------------------------------------------
-	
-	st.divider()
 	col1,col2,col3,col4 = st.columns([4,2,4,2]) #12
 	with col1:
 		st.subheader('Chart Settings')
