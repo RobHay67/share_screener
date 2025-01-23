@@ -32,9 +32,6 @@ def scope_page(scope):
 										'settings_trials':False,		# display the trial settings
 										'settings_strategy':False,		# display the strategy settings
 										'config_to_show':None,			# display the selected config
-										# 'config_ticker_data':False,		# display the ticker config
-										# 'config_page':False,			# display the application config
-										# 'scope':False,					# Relevant Scope for Page (page dependant)
 										'ticker_file':'Show/Hide Data',	# display the ticker files for the selected ticker
 								}
 		

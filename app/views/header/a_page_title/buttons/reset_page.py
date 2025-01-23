@@ -20,9 +20,7 @@ def reset_render_status(scope):
 	scope.page[page]['show']['settings_strategy'] 	= False
 	scope.page[page]['show']['settings_charts'] 	= False
 	scope.page[page]['show']['settings_overlay'] 	= False
-	scope.page[page]['show']['config_ticker_data'] 	= False
-	scope.page[page]['show']['config_page'] 		= False
-	scope.page[page]['show']['scope'] 		= False
+	scope.page[page]['show']['config_to_show'] 		= None
 	scope.page[page]['show']['ticker_file'] 		= 'Show/Hide Data'
 
 	scope.page[page]['search_results'] 			= {}

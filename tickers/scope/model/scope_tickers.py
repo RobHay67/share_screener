@@ -34,12 +34,14 @@ def create_dictionary_to_store_ticker_data(scope, ticker):
 		scope.tickers[ticker][page]['schema_group'] = None   	# relevant type of col_adder - 'charts' or 'trials'
 		scope.tickers[ticker][page]['replace_column'] = {}		# dict of col_adder functions for this page
 
-		# To Store Test (trial) Results for the screener page
-		if page == 'screener':
-			scope.tickers[ticker][page]['verdict'] = None
-			scope.tickers[ticker][page]['replace_verdict'] = False
-			scope.tickers[ticker][page]['trials'] = {}
-			for trial in scope.trials['trial_list']:
-				scope.tickers[ticker][page]['trials'][trial] = None
+	# To Store Test (trial) Results for the SCREENER page
+	page = 'screener'
+	scope.tickers[ticker][page]['verdicts'] = {}
+	scope.tickers[ticker][page]['verdicts']['verdict'] = None				# the overall result from all tests - they need to all pass
+	scope.tickers[ticker][page]['verdicts']['replace_verdict'] = False		# if this verdict needs to be determined again
+	scope.tickers[ticker][page]['verdicts']['trials'] = {}					# create a dict of all possible tests which is
+	for trial in scope.trials['trial_list']:								#   then utilised to save that test result
+		scope.tickers[ticker][page]['verdicts']['trials'][trial] = None		#   which will be a pass or fail result
 	
 	refresh_ticker_selector_lists(scope)
+

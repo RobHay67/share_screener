@@ -7,8 +7,8 @@ from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 def show_config_strategy(scope):
 
-	st.divider()
-	scope_button(scope, "scope.strategy", scope.strategy, make_red=True, suffix_only=False)
+	scope_button(scope, "Strategies (WIP)", scope.strategy, make_red=True, suffix_only=False)
+	scope_button(scope, "scope.strategy", scope.strategy, make_red=False, suffix_only=False)
 
 	col1,col2,col3,col4,col5,col6,col7 = st.columns([1,1,1,1,1,2,2]) #9
 	with col1:scope_button(scope, "scope.strategy['name']", scope.strategy['name'])

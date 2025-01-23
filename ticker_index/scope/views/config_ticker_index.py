@@ -9,8 +9,8 @@ from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 def show_config_ticker_index(scope):
 
-	# st.divider()
-	scope_button(scope, "scope.ticker_index", scope.page, make_red=True, suffix_only=False)
+	scope_button(scope, "Ticker Index", scope.page, make_red=True, suffix_only=False)
+	scope_button(scope, "scope.ticker_index", scope.page, make_red=False, suffix_only=False)
 
 	col1,col2,col3,col4 = st.columns([1,1,1,5]) #8
 	with col1:scope_button(scope, "scope.ticker_index['schema']", scope.ticker_index['schema'])

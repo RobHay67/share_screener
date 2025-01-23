@@ -7,8 +7,8 @@ from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 def show_config_users(scope):
 
-	st.divider()
-	scope_button(scope, "scope.users", scope.users, make_red=True, suffix_only=False)
+	scope_button(scope, "Users", scope.users, make_red=True, suffix_only=False)
+	scope_button(scope, "scope.users", scope.users, make_red=False, suffix_only=False)
 	
 	col1,col2,col3,col4 = st.columns([1,1,1,6])
 	with col1:scope_button(scope, "scope.users['user_list']", scope.users['user_list'])

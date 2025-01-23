@@ -5,7 +5,8 @@ from app.views.header.controller import show_page_header
 
 # Page Configuration
 scope = st.session_state
-scope.config['display'] = 'websites'
+page = 'websites'
+scope.config['display'] = page
 
 show_page_header(scope)
 

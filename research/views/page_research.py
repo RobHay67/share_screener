@@ -28,7 +28,8 @@ from research.views.news import news
 
 # Page Configuration
 scope = st.session_state
-scope.config['display'] = 'research'
+page = 'research'
+scope.config['display'] = page
 
 
 show_page_header(scope)

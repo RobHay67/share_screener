@@ -7,7 +7,8 @@ from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 def show_config_config(scope):
 
-	scope_button(scope, "scope.config", scope.config, make_red=True, suffix_only=False)
+	scope_button(scope, "Config (App)", scope.config, make_red=True, suffix_only=False)
+	scope_button(scope, "scope.config", scope.config, make_red=False, suffix_only=False)
 	
 	col1,col2,col3,col4,col5,col6,col7,col8,col9 = st.columns(9)
 	with col1:scope_button(scope, "scope.config['project_description']", scope.config['project_description'])

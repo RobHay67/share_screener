@@ -20,8 +20,8 @@ def replace_page_df_columns(scope, page, ticker):
 
 				if schema_group == 'trials':
 					# set stutus to recalc overall verdict for this ticker
-					scope.tickers[ticker][page]['replace_verdict'] = True
+					scope.tickers[ticker][page]['verdicts']['replace_verdict'] = True
 					# Store the most date recent test result - it should be the first row
-					scope.tickers[ticker][page]['trials'][schema_key] = ticker_df[schema_key].iloc[0]
+					scope.tickers[ticker][page]['verdicts']['trials'][schema_key] = ticker_df[schema_key].iloc[0]
 
 

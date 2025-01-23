@@ -9,8 +9,9 @@ from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 
 def show_config_files(scope):
-	st.divider()
-	scope_button(scope, "scope.files", scope.files, make_red=True, suffix_only=False)
+	
+	scope_button(scope, "Folders and Paths", scope.files, make_red=True, suffix_only=False)
+	scope_button(scope, "scope.files", scope.files, make_red=False, suffix_only=False)
 
 	col1,col2 = st.columns([5,4])
 	with col1:scope_button(scope, "scope.files['folders']", scope.files['folders'], make_red=False, suffix_only=True)

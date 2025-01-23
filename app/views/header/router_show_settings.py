@@ -16,6 +16,7 @@ def router_show_settings(scope):
 				show_settings_trials(scope)
 			if scope.page[page]['show']['settings_strategy']:
 				show_config_strategy(scope)
+				
 		case 'chart':
 			if scope.page[page]['show']['settings_charts']:
 				show_settings_charts(scope)

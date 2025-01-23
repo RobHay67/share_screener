@@ -9,8 +9,8 @@ from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 def show_config_trials(scope):
 
-	st.divider()
-	scope_button(scope, "scope.trials", scope.trials, make_red=True, suffix_only=False)
+	scope_button(scope, "Trials", scope.trials, make_red=True, suffix_only=False)
+	scope_button(scope, "scope.trials", scope.trials, make_red=False, suffix_only=False)
 	
 	col1,col2,col3,col4 = st.columns([1,1,1,5])
 	with col1:scope_button(scope, "scope.trials['trial_list']", scope.trials['trial_list'])
@@ -38,18 +38,3 @@ def show_config_trials(scope):
 
 
 		
-
-
-def show_config_verdicts(scope):
-	verdict_keys = list(scope.tickers.keys())
-	with st.expander("Trial Results (Verdicts)", expanded=False):
-		if len(verdict_keys)>0:
-			for ticker in verdict_keys:
-				st.subheader(ticker)
-				three_cols( 'Passed every Test', 						scope.tickers[ticker]['screener']['verdict'], 			"scope.tickers["+ticker+"]['screener']['verdict']"			, widget_type='string' )
-				three_cols( 'Do we need to update the verdict', 		scope.tickers[ticker]['screener']['replace_verdict'], 	"scope.tickers["+ticker+"]['screener']['replace_verdict']"	, widget_type='string' )
-				three_cols( 'Individual Trial that ran and the verdict',scope.tickers[ticker]['screener']['trials'], 			"scope.tickers["+ticker+"]['screener']['trials']"			, widget_type='string' )
-		else:
-			st.write('No verdicts to display. Run some tests')
-
-

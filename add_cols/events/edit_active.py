@@ -24,7 +24,7 @@ def edit_active_event(scope, schema_group, schema_key, status):
 				# and rerun the overall test
 				if page == 'screener' and status == False:
 					remove_test_result_column(scope, ticker, schema_key)
-					scope.tickers[ticker][page]['replace_verdict'] = True
+					scope.tickers[ticker][page]['verdicts']['replace_verdict'] = True
 
 	# Update the Active lists for charts or trials
 	# either add the chart or trial or remove it

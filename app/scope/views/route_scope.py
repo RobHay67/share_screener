@@ -12,6 +12,7 @@ def show_config_group_selection_buttons(scope):
 	with col3: 
 		st.button('Ticker Index',		use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_ticker_index', ))
 		st.button('Y Finance', 			use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_yf', ))
+		st.button('Verdicts', 			use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_verdicts', ))
 	with col4: 	
 		st.button('Tickers (Data)',		use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_tickers', ))
 		st.button('Ticker Schema', 		use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_tickers_schema', ))
@@ -20,7 +21,7 @@ def show_config_group_selection_buttons(scope):
 		st.button('Strategies (WIP)', 	use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_strategy', ))
 	with col6:
 		st.button('Page(s)', 			use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_page', ))
-		st.button('Charts (WIP - add overlays)', 			use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_chart', ))
+		st.button('Charts', 			use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_chart', ))
 
 	st.divider()
 

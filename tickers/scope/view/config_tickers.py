@@ -6,17 +6,15 @@ from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 
 def show_config_tickers(scope):
-
-	st.header(':red[The Tickers Verdicts for the screen page only need to be configured]')
-
-	scope_button(scope, "scope.tickers", scope.tickers, make_red=True, suffix_only=False)
+	scope_button(scope, "Tickers (Data)", scope.tickers, make_red=True, suffix_only=False)
+	scope_button(scope, "scope.tickers", scope.tickers, make_red=False, suffix_only=False)
 	scope_button(scope, "[ticker] i.e. ANZ.AX", scope.tickers, make_red=False, suffix_only=False)
 	
 	ticker_list = scope.tickers.keys()
-	ticker = scope_dropdown(scope, ticker_list)
+	ticker = scope_dropdown(scope, 'ticker', ticker_list)
 
 	if len(ticker_list)>0:
-		col1,col2 = st.columns([1,4])
+		col1,col2 = st.columns([1,5])
 		with col1:scope_button(scope, "scope.tickers["+ticker+"]['df']", scope.tickers[ticker]['df'])
 		with col2:scope_button(scope, "scope.tickers["+ticker+"]['page']", scope.config['page_list'])
 		
@@ -24,15 +22,16 @@ def show_config_tickers(scope):
 		page = scope.config['display']
 		page_list = scope.config['page_list']
 		current_page_position = page_list.index(page)	
-		with col2:page = scope_dropdown(scope, page_list, current_page_position )
+		with col2:page = scope_dropdown(scope, 'page', page_list, current_page_position )
 
-		col1,col2,col3,col4,col5 = st.columns([1,1,1,1,1])
+		col1,col2,col3,col4,col5,col6 = st.columns([1,1,1,1,1,1])
 		with col2:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][df]", scope.tickers[ticker][page]['df'])
 		with col3:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][replace_df]", scope.tickers[ticker][page]['replace_df'])
 		with col4:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][replace_column]", scope.tickers[ticker][page]['replace_column'])
 		with col5:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][schema_group]", scope.tickers[ticker][page]['schema_group'])
+		with col6:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][verdicts]", scope.tickers[ticker][page]['verdicts'])
 
-		col1,col2,col3,col4,col5 = st.columns([1,1,1,1,1])
+		col1,col2,col3,col4,col5,col6 = st.columns([1,1,1,1,1,1])
 		with col3:show_config_single_value("replace_df", scope.tickers[ticker][page]['replace_df'])
 		# with col4:show_config_single_value("replace_column", scope.tickers[ticker][page]['replace_column'])
 		with col5:show_config_single_value("schema_group", scope.tickers[ticker][page]['schema_group'])
@@ -43,13 +42,14 @@ def show_config_tickers(scope):
 		with col1:scope_button(scope, "scope.tickers['ticker']['df']", scope.tickers)
 		with col2:scope_button(scope, "scope.tickers['ticker]['page']", scope.tickers)
 
-		col1,col2,col3,col4,col5 = st.columns([1,1,1,1,1])
+		col1,col2,col3,col4,col5,col6 = st.columns([1,1,1,1,1,1])
 		with col2:scope_button(scope, "scope.tickers['ticker]['page'][df]", scope.tickers)
 		with col3:scope_button(scope, "scope.tickers['ticker]['page'][replace_df]", scope.tickers)
 		with col4:scope_button(scope, "scope.tickers['ticker]['page'][replace_column]", scope.tickers)
 		with col5:scope_button(scope, "scope.tickers['ticker]['page'][schema_group]", scope.tickers)
+		with col6:scope_button(scope, "scope.tickers['ticker]['page'][verdicts]", scope.tickers)
 
-		col1,col2,col3,col4,col5 = st.columns([1,1,1,1,1])
+		col1,col2,col3,col4,col5,col6 = st.columns([1,1,1,1,1,1])
 		with col3:show_config_single_value("replace_df", scope.tickers)
 		with col4:show_config_single_value("replace_column", scope.tickers)
 		with col5:show_config_single_value("schema_group", scope.tickers)
