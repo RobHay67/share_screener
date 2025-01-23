@@ -19,10 +19,15 @@ def show_config_trials(scope):
 	with col4:scope_button(scope, "scope.trials['user_config']", scope.trials['user_config'])
 
 	col1,col2 = st.columns([3,5])
-	trial = next(iter(scope.trials['user_config'].keys()))
-	with col2:scope_button(scope, "scope.trials['user_config'][trial]", scope.trials['user_config'], make_red=False, suffix_only=False)
-	with col2:scope_button(scope, '[trial] = '+trial, scope.trials['user_config'], make_red=False, suffix_only=False)
+	# trial = next(iter(scope.trials['user_config'].keys()))
+	# with col2:scope_button(scope, "scope.trials['user_config'][trial]", scope.trials['user_config'], make_red=False, suffix_only=False)
+	# with col2:scope_button(scope, "['trial'] i.e. 'price_1", scope.trials['user_config'], make_red=False, suffix_only=False)
 
+	# page selector - with default of current page
+		# page = scope.config['display']
+	trial_list = scope.trials['trial_list']
+	with col2:trial = scope_dropdown(scope, 'trial', trial_list )
+	with col2:scope_button(scope, "['trial'] = "+trial, scope.trials['user_config'][trial], make_red=False, suffix_only=False)
 	
 	col1,col2,col3,col4,col5,col6 = st.columns([3,1,1,1,1,1])
 	with col2:scope_button(scope, "scope.trials['user_config']["+trial+"]['active']", scope.trials['user_config'][trial]['active'])
@@ -31,6 +36,11 @@ def show_config_trials(scope):
 	with col5:scope_button(scope, "scope.trials['user_config']["+trial+"]['definition']", scope.trials['user_config'][trial]['definition'])
 	with col6:scope_button(scope, "scope.trials['user_config']["+trial+"]['add_columns']", scope.trials['user_config'][trial]['add_columns'])
 
+	with col2:show_config_single_value("active", scope.trials['user_config'][trial]['active'])
+	with col3:show_config_single_value("name", scope.trials['user_config'][trial]['name'])
+	with col4:show_config_single_value("short_name", scope.trials['user_config'][trial]['short_name'])
+	# with col5:show_config_single_value("definition", scope.trials['user_config'][trial]['definition'])
+	# with col6:show_config_single_value("add_columns", scope.trials['user_config'][trial]['add_columns'])
 
 	# st.divider()
 	if scope.config['display_scope']['scope_key'] != None:

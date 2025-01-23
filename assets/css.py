@@ -1,5 +1,5 @@
 
-# this is the tutoria
+# this is the tutorial
 
 # https://www.youtube.com/watch?v=jbJpAdGlKVY
 

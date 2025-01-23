@@ -12,7 +12,7 @@ from app.views.header.a_page_title.buttons.reset_page import button_reset_page
 def page_title_layer(scope):
 	page = scope.config['display']
 
-	col1,col2,col3,col4,col5,col6 = st.columns([6.5,2.0,0.5,0.5,1.5,1.0])  #12
+	col1,col2,col3,col4,col5,col6 = st.columns([7.0,2.0,0.5,0.5,1.0,1.0])  #12
 	match page:
 		case 'welcome':
 			page_header(scope)
