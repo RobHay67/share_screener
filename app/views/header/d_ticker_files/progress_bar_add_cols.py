@@ -1,8 +1,8 @@
 import streamlit as st
-from add_cols.replace_page_df import replace_page_df
-from add_cols.replace_df_cols import replace_page_df_columns
+from add_cols.model.replace_page_df import replace_page_df
+from add_cols.model.replace_df_cols import replace_page_df_columns
 from screener.scope.model.verdicts import determine_verdict_for_ticker
-from add_cols.list_builder import create_list_of_tickers_to_add_columns
+from add_cols.model.list_builder import create_list_of_tickers_to_add_columns
 
 
 def add_extra_cols_progress_bar(scope, page):

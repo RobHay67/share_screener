@@ -34,46 +34,41 @@ def scope_charts_schema(scope):
 # announcements
 
 
-
-
-
-
-
 # ==============================================================================================================================================================
 # Technical Indicator Specification for the charts
 # ==============================================================================================================================================================
 
 # Primary Charts -------------------------------------
-from charts.scope.model.plotly_charts.candlestick 		import candle_plot
+from charts.functions.plotly_charts.candlestick 		import candle_plot
 
 # from charts.scatter									# TODO
-from charts.scope.model.plotly_charts.bar				import bar_ohlc_plot
-from charts.scope.model.plotly_charts.line 				import line_plot
+from charts.functions.plotly_charts.bar				import bar_ohlc_plot
+from charts.functions.plotly_charts.line 				import line_plot
 # from charts.heikin_ashi
 
 # Secondary Charts -----------------------------------
-from charts.scope.model.plotly_charts.volume 			import volume_plot
+from charts.functions.plotly_charts.volume 			import volume_plot
 # from charts.vac										# TODO
 from add_cols.functions.vpm								import vpm_cols
-from charts.scope.model.plotly_charts.vpm 				import vpm_plot
+from charts.functions.plotly_charts.vpm 				import vpm_plot
 from add_cols.functions.macd							import macd_cols
-from charts.scope.model.plotly_charts.macd 				import macd_plot
+from charts.functions.plotly_charts.macd 				import macd_plot
 from add_cols.functions.macd_on_volume					import macd_vol_cols
-from charts.scope.model.plotly_charts.macd_vol			import macd_vol_plot
+from charts.functions.plotly_charts.macd_vol			import macd_vol_plot
 from add_cols.functions.rsi 							import rsi_cols
-from charts.scope.model.plotly_charts.rsi 				import rsi_plot
+from charts.functions.plotly_charts.rsi 				import rsi_plot
 from add_cols.functions.stochastic						import stoch_cols
-from charts.scope.model.plotly_charts.stoch 			import stoch_plot
+from charts.functions.plotly_charts.stoch 			import stoch_plot
 # from analysis.charts.				# Volume Oscillator				# TODO
 # from charts.roc													# TODO - not sure what this one is ROb - investigate and add in - i think it might be a primary chart
 											
 # Overlays -------------------------------------------
 from add_cols.functions.sma								import sma_cols
-from charts.scope.model.plotly_overlays.sma 			import sma_plot
+from charts.functions.plotly_overlays.sma 			import sma_plot
 from add_cols.functions.ema								import ema_cols
-from charts.scope.model.plotly_overlays.ema 			import ema_plot
+from charts.functions.plotly_overlays.ema 			import ema_plot
 from add_cols.functions.dividends						import dividend_cols
-from charts.scope.model.plotly_overlays.dividends 		import dividend_plot
+from charts.functions.plotly_overlays.dividends 		import dividend_plot
 
 
 # ==============================================================================================================================================================

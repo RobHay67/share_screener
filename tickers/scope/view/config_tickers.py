@@ -27,13 +27,13 @@ def show_config_tickers(scope):
 		col1,col2,col3,col4,col5,col6 = st.columns([1,1,1,1,1,1])
 		with col2:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][df]", scope.tickers[ticker][page]['df'])
 		with col3:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][replace_df]", scope.tickers[ticker][page]['replace_df'])
-		with col4:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][replace_column]", scope.tickers[ticker][page]['replace_column'])
+		with col4:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][replace_colum_adder]", scope.tickers[ticker][page]['replace_column_adder'])
 		with col5:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][schema_group]", scope.tickers[ticker][page]['schema_group'])
 		with col6:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][verdicts]", scope.tickers[ticker][page]['verdicts'])
 
 		col1,col2,col3,col4,col5,col6 = st.columns([1,1,1,1,1,1])
 		with col3:show_config_single_value("replace_df", scope.tickers[ticker][page]['replace_df'])
-		# with col4:show_config_single_value("replace_column", scope.tickers[ticker][page]['replace_column'])
+		# with col4:show_config_single_value("replace_column", scope.tickers[ticker][page]['replace_column_adder'])
 		with col5:show_config_single_value("schema_group", scope.tickers[ticker][page]['schema_group'])
 	else:
 		scope_button(scope, "Detailed Config Not Available until tickers loaded", scope.tickers, make_red=True, suffix_only=False)

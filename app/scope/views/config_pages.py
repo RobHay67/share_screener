@@ -5,8 +5,6 @@ from app.scope.views.buttons.show_config_value import show_config_single_value, 
 from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 
-
-
 def show_config_pages(scope):
 
 	scope_button(scope, "Pages", scope.page, make_red=True, suffix_only=False)

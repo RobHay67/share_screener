@@ -9,14 +9,14 @@ def replace_page_df_columns(scope, page, ticker):
 				
 	if schema_group != None:			
 	# Some pages do not have any dataframes
-		for schema_key, status in scope.tickers[ticker][page]['replace_column'].items():
+		for schema_key, status in scope.tickers[ticker][page]['replace_column_adder'].items():
 			if status == True:	
 			# Only replace the columns if requested to do so for this column adder
 				ticker_df = scope.tickers[ticker][page]['df']
 				# Call the column adding function for this schema_key
 				scope[schema_group]['user_config'][schema_key]['add_columns']['function'](scope, schema_key, ticker, ticker_df)
 				# Set the status to false to prevent refreshing unnecesarily
-				scope.tickers[ticker][page]['replace_column'][schema_key] = False
+				scope.tickers[ticker][page]['replace_column_adder'][schema_key] = False
 
 				if schema_group == 'trials':
 					# set stutus to recalc overall verdict for this ticker

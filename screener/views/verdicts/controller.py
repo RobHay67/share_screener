@@ -4,7 +4,7 @@
 # - expecting the verdicts to be stored in scope.tickers[ticker]['trials']['verdict']
 
 
-import streamlit as st
+# import streamlit as st
 
 from screener.helpers.passing_verdicts import passing_verdict_list
 from screener.views.verdicts.failed_all_tests import show_all_verdicts_failed

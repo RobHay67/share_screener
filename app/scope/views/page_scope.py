@@ -1,6 +1,6 @@
 import streamlit as st
 from app.views.header.controller import show_page_header
-from app.scope.views.route_scope import show_config_group_selection_buttons
+# from app.scope.views.config_summary import show_config_group_selection_buttons
 from app.scope.views.config_summary import show_config_summary
 from app.scope.views.config_config import show_config_config
 from files.scope.view.config_files import show_config_files
@@ -23,11 +23,12 @@ scope.config['display'] = 'scope'
 show_page_header(scope)
 
 if scope.users['logged_in']:
-	show_config_group_selection_buttons(scope)
+	# show_config_group_selection_buttons(scope)
+	show_config_summary(scope)
 	config_page = scope.config['display_scope']['config_page']
 
 	match config_page:
-		case 'route_config_summary':		show_config_summary(scope)
+		# case 'route_config_summary':		show_config_summary(scope)
 
 		case 'route_config_config':			show_config_config(scope)
 		case 'route_config_files':			show_config_files(scope)
@@ -39,9 +40,8 @@ if scope.users['logged_in']:
 		case 'route_config_verdicts':		show_config_verdicts(scope)
 		case 'route_config_users':			show_config_users(scope)
 		case 'route_config_chart':			show_config_charts(scope)
-		case 'route_config_trial':
-											show_config_trials(scope)
-											show_config_verdicts(scope)
+		case 'route_config_trial':			show_config_trials(scope)
+		case 'route_config_verdicts':		show_config_verdicts(scope)
 		case 'route_config_strategy':		show_config_strategy(scope)
 
 

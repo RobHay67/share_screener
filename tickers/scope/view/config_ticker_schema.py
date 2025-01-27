@@ -28,13 +28,12 @@ def show_config_tickers_schema(scope):
 	missing_ticker_list = list(scope.ticker_schema['missing']['errors'].keys())	
 	with col2:ticker = scope_dropdown(scope, 'ticker', missing_ticker_list)
 
+	col1,col2,col3,col4 = st.columns([4,1,1,3])
 	if len(missing_ticker_list)>0:
-		col1,col2,col3,col4 = st.columns([4,1,1,3])
+		
 		with col2:scope_button(scope, "scope.ticker_schema['missing']['errors']["+ticker+"]['load']", scope.ticker_schema['missing']['errors'][ticker]['load'])
 		with col3:scope_button(scope, "scope.ticker_schema['missing']['errors']["+ticker+"]['yf']", scope.ticker_schema['missing']['errors'][ticker]['yf'])
-
 	else:
-		scope_button(scope, "scope.tickers['ticker]['page'][df]", scope.tickers)
 		with col2:scope_button(scope, "scope.ticker_schema['missing']['errors']['ticker']['load']", scope.ticker_schema['missing']['errors'])
 		with col3:scope_button(scope, "scope.ticker_schema['missing']['errors']['ticker']['yf']", scope.ticker_schema['missing']['errors'])
 

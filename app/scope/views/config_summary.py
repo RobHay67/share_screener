@@ -1,32 +1,47 @@
-
 import streamlit as st
-from app.scope.views.buttons.button_choose_scope import scope_button
-from app.scope.views.buttons.show_config_value import show_config_values
 
 
 def show_config_summary(scope):
+	st.button('Overview (basic structure of App)', use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_summary', ))
 
-	scope_button(scope, "Summary", { }, make_red=True, suffix_only=False)
-	scope_button(scope, "scope", { }, make_red=False, suffix_only=False)
+	col1,col2,col3,col4,col5,col6 = st.columns([1,1,1,1,3,3])
 	
-	col1,col2,col3,col4,col5,col6 = st.columns([1,1,1,1,3,2]) #10
-	with col1:scope_button(scope, "scope.config", scope.config)
-	with col2:scope_button(scope, "scope.files", scope.files)
-	with col3:scope_button(scope, "scope.users", scope.users)
-	with col4:scope_button(scope, "scope.ticker_index", scope.ticker_index)
-	with col5:scope_button(scope, "scope.tickers", scope.tickers, suffix_only=True)
-	with col6:scope_button(scope, "scope.page", scope.page, suffix_only=True)
+	with col1:st.button('Config (App)', 	use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_config', ))
+	with col2:st.button('Folders and Paths',use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_files', ))
+	with col3:st.button('Users', 			use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_users', ))
+	with col4:st.button('Ticker Index',		use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_ticker_index', ))
+	with col5:st.button('Tickers (Data)',	use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_tickers', ))
+	with col6:st.button('Page(s)', 			use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_page', ))
 
-	# Tickers
-	col1,col2,col3,col4,col5,col6 = st.columns([4,1,1,1,1,1])
-	with col2:scope_button(scope, "scope.ticker_schema", scope.ticker_schema)
-	with col3:scope_button(scope, "scope.yf", scope.yf)
-	with col4:scope_button(scope, "scope.verdicts", scope.ticker_schema, make_red=True)
-	# # Pages
-	with col5:scope_button(scope, "scope.trials", scope.trials)
-	with col6:scope_button(scope, "scope.strategy", scope.strategy)
 
+	col1,col2,col3,col4,col5,col6,col7 = st.columns([4,1,1,1,1,1,1])
+	with col2:st.button('Ticker Schema', 	use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_tickers_schema', ))
+	with col3:st.button('Y Finance', 		use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_yf', ))
+	with col4:st.button('Verdicts', 		use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_verdicts', ))
+	with col5: st.button('Trials', 			use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_trial', ))
+	with col6: st.button('Strategies (WIP)',use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_strategy', ))
+	with col7: st.button('Charts', 			use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_chart', ))
 
 	st.divider()
-	if scope.config['display_scope']['scope_key'] != None:
-		show_config_values(scope)
+
+
+def set_st_button(scope:dict, show_config:str):
+	previous_value = scope.config['display_scope']['config_page']
+	if previous_value == show_config: 
+		scope.config['display_scope']['config_page'] = None
+	else:
+		scope.config['display_scope']['config_page'] = show_config
+
+
+
+
+
+
+
+
+
+
+
+
+
+

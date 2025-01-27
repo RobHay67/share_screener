@@ -23,7 +23,7 @@ def show_config_yf(scope):
 	col1,col2,col3,col4 = st.columns([1,1,1,6])
 	with col2:scope_button(scope, "scope.yf['schemas']['single_ticker']", scope.yf['schemas']['single_ticker'])
 	with col3:scope_button(scope, "scope.yf['schemas']['multiple_tickers']", scope.yf['schemas']['multiple_tickers'])
-	
+
 	
 	st.divider()
 	if scope.config['display_scope']['scope_key'] != None:
