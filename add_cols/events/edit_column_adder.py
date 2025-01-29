@@ -18,7 +18,7 @@ def edit_column_adder_event(scope, schema_key):
 		for page in scope.config['page_list']: 
 			
 			# if column adder is used by this page then change the refresh status to True
-			if schema_key in scope.tickers[ticker][page]['replace_column_adder'].keys():
-				scope.tickers[ticker][page]['replace_column_adder'][schema_key] = status
+			if schema_key in scope.tickers[ticker][page]['re_run_functions'].keys():
+				scope.tickers[ticker][page]['re_run_functions'][schema_key] = status
 
 

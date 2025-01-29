@@ -12,7 +12,7 @@ def replace_page_df_columns(scope, page, ticker):
 	if schema_group != None:			
 		
 		# Iterate through each column adder for the page
-		for schema_key, replace_column_adder in page_ticker['replace_column_adder'].items():
+		for schema_key, replace_column_adder in page_ticker['re_run_functions'].items():
 			
 			# Only replace the columns if requested to do so for 
 			# this particular column adder
@@ -27,9 +27,9 @@ def replace_page_df_columns(scope, page, ticker):
 
 				scope[schema_group]['user_config'][schema_key]['function']['function'](scope, schema_key, ticker, ticker_df)
 				
-				# Set the replace_column_adder status to false 
+				# Set the re_run_functions status to false 
 				# to prevent refreshing unnecesarily
-				page_ticker['replace_column_adder'][schema_key] = False
+				page_ticker['re_run_functions'][schema_key] = False
 
 
 				if schema_group == 'trials':

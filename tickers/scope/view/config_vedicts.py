@@ -9,7 +9,7 @@ def show_config_verdicts(scope):
 	col1,col2 = st.columns([3,3])
 	ticker_list = scope.tickers.keys()
 	page='screener' # Verdicts are not relevant for any of the other pages
-	with col2:ticker = scope_dropdown(scope, 'ticker', ticker_list)
+	with col2:ticker = scope_dropdown(scope, 'Ticker', ticker_list)
 	leader_text = "scope.tickers['"+ticker+"']['"+page+"']['verdicts']"
 	with col2:scope_button(scope, "Verdicts ( "+ticker+" )", scope.tickers[ticker][page]['verdicts'], make_red=True, suffix_only=False)
 	with col2:scope_button(scope, leader_text, scope.tickers[ticker][page]['verdicts'], suffix_only=False)

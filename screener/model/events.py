@@ -4,10 +4,10 @@
 # micro controlled by the following event status
 
 
-# 		scope.tickers[ticker][page]['replace_column_adder']
+# 		scope.tickers[ticker][page]['re_run_functions']
 
 
-# The following key events cause the ['replace_column_adder'] status 
+# The following key events cause the ['re_run_functions'] status 
 # to be changed which it results in the columns being replaced
 # during the page refresh event
 

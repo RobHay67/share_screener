@@ -26,7 +26,7 @@ def show_config_tickers_schema(scope):
 	with col2:scope_button(scope,"['errors']['ticker'] i.e. CBA.AX", scope.ticker_schema['missing']['errors'], make_red=False, suffix_only=False)
 	
 	missing_ticker_list = list(scope.ticker_schema['missing']['errors'].keys())	
-	with col2:ticker = scope_dropdown(scope, 'ticker', missing_ticker_list)
+	with col2:ticker = scope_dropdown(scope, 'Ticker', missing_ticker_list)
 
 	col1,col2,col3,col4 = st.columns([4,1,1,3])
 	if len(missing_ticker_list)>0:

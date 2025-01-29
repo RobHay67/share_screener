@@ -32,8 +32,8 @@ def create_dictionary_to_store_ticker_data(scope, ticker):
 		scope.tickers[ticker][page]['df'] = {}					# container to store the dataframe for this page
 		scope.tickers[ticker][page]['replace_df'] = True		# status to flag replacement of entire page dataframe
 		scope.tickers[ticker][page]['schema_group'] = None   	# relevant type of col_adder - 'charts' or 'trials'
-		scope.tickers[ticker][page]['replace_column_adder'] = {}		# dict of col_adder functions (key) and Status to 
-																#   indicate if the col_adder need to be replaced (value True or False)
+		scope.tickers[ticker][page]['re_run_functions'] = {}	# dict of col_adder functions (key) and Status to 
+																# - indicate if the col_adder need to be replaced (value True or False)
 
 	# To Store Test (trial) Results for the SCREENER page
 	page = 'screener'

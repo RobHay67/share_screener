@@ -24,10 +24,9 @@ def show_config_charts(scope):
 
 
 	scope_button(scope, "scope.charts['user_config'][chart]", scope.charts['user_config'], make_red=False, suffix_only=False)
-	# chart = scope_dropdown(scope, build_chart_list(scope, is_overlays=False))
 	chart_list = list(scope.charts['schema'].keys())
 	chart_list = sorted(chart_list, key=str.lower)
-	chart = scope_dropdown(scope, 'chart', chart_list)
+	chart = scope_dropdown(scope, 'Chart or Overlay', chart_list)
 
 	col1,col2,col3,col4,col5,col6,col7,col8,col9 = st.columns([1,1,1,1,1,1,1,1,1])
 	with col1:scope_button(scope, "scope.charts['user_config']["+chart+"]['active']", scope.charts['user_config'][chart]['active'])

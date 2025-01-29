@@ -17,8 +17,8 @@ def edit_active_event(scope, schema_group, schema_key, status):
 	for ticker in scope.tickers.keys():
 		for page in scope.config['page_list']: 
 			# if the activated column adder is used by this page then change the refresh status
-			if schema_key in scope.tickers[ticker][page]['replace_column_adder'].keys():
-				scope.tickers[ticker][page]['replace_column_adder'][schema_key] = status
+			if schema_key in scope.tickers[ticker][page]['re_run_functions'].keys():
+				scope.tickers[ticker][page]['re_run_functions'][schema_key] = status
 				# for the screener page, remove the test result 
 				# if the users has deactivated this test
 				# and rerun the overall test

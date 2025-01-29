@@ -20,7 +20,7 @@ def show_config_trials(scope):
 
 	col1,col2 = st.columns([3,5])
 	trial_list = scope.trials['trial_list']
-	with col2:trial = scope_dropdown(scope, 'trial', trial_list )
+	with col2:trial = scope_dropdown(scope, 'Trial', trial_list )
 	with col2:scope_button(scope, "['trial'] = "+trial, scope.trials['user_config'][trial], make_red=False, suffix_only=False)
 	
 	col1,col2,col3,col4,col5,col6 = st.columns([3,1,1,1,1,1])

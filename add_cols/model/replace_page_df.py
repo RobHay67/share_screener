@@ -14,9 +14,6 @@ def replace_page_df(scope, page, ticker, app_row_limit):
 		# take a copy of the original ticker dataframe
 		ticker_df = scope.tickers[ticker]['df'].copy()
 
-		print('#'*4000)
-		print(ticker_df)
-		
 		# limit no of rows for the page df (speeds up page rendering)	
 		ticker_df = ticker_df.head(app_row_limit)
 		

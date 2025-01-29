@@ -15,10 +15,10 @@ def edit_row_limit_event(scope):
 			scope.tickers[ticker][page]['replace_df'] = True
 
 			if page == 'chart':
-				scope.tickers[ticker][page]['replace_column_adder'] = scope.charts['template_col_adders'].copy()
+				scope.tickers[ticker][page]['re_run_functions'] = scope.charts['template_col_adders'].copy()
 
 			if page == 'screener':
-				scope.tickers[ticker][page]['replace_column_adder'] = scope.trials['template_col_adders'].copy()
+				scope.tickers[ticker][page]['re_run_functions'] = scope.trials['template_col_adders'].copy()
 
 
 

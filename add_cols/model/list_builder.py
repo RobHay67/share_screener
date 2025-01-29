@@ -13,11 +13,11 @@ def create_list_of_tickers_to_add_columns(scope, page):
 			if scope.tickers[ticker][page]['replace_df']:
 				status_add_ticker = True
 			
-			if True in scope.tickers[ticker][page]['replace_column_adder'].values():
+			if True in scope.tickers[ticker][page]['re_run_functions'].values():
 				status_add_ticker = True
 
 			# iterate through list 
-			print(scope.tickers[ticker][page]['replace_column_adder'])
+			print(scope.tickers[ticker][page]['re_run_functions'])
 
 
 			if status_add_ticker:
