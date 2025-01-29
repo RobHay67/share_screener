@@ -9,7 +9,7 @@ from tickers.scope.view.config_tickers import show_config_tickers
 
 def router_show_config(scope):
 	page = scope.config['display']
-	config_to_show = scope.page[page]['show']['config_to_show']
+	config_to_show = scope.page[page]['show']['config']
 
 	match config_to_show:
 		case 'Page Config':show_config_pages(scope)

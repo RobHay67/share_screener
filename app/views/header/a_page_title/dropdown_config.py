@@ -4,7 +4,6 @@ import streamlit as st
 def dropdown_select_config(scope):
 	page = scope.config['display']
 	widget_key = 'widget_' + page + '_select_config'
-	# previous_selection = scope.page[page]['show']['config_to_show']
 	
 	match page:
 		case 'screener':config_list 	= ['Nothing','Page Config','Ticker Data', 'Verdicts', 'Trials', 'Strategies',]
@@ -31,4 +30,4 @@ def dropdown_select_config(scope):
 
 def on_change_show_config_selection(scope, page, widget_key):
 	selected_config = scope[widget_key]
-	scope.page[page]['show']['config_to_show'] = selected_config
+	scope.page[page]['show']['config'] = selected_config

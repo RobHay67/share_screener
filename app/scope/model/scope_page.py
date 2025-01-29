@@ -27,12 +27,12 @@ def scope_page(scope):
 		# Settings are Changeable
 		# Config is read only
 		scope.page[page]['show'] = 	{
-										'settings_charts':False,		# display the chart settings
-										'settings_overlay':False,		# display the overlay settings
-										'settings_trials':False,		# display the trial settings
-										'settings_strategy':False,		# display the strategy settings
-										'config_to_show':None,			# display the selected config
-										'ticker_file':'Show/Hide Data',	# display the ticker files for the selected ticker
+										'charts'		:False,				# display the chart settings
+										'overlays'		:False,				# display the overlay settings
+										'trials'		:False,				# display the trial settings
+										'strategy'		:False,				# display the strategy settings
+										'config'		:None,				# display the selected config
+										'ticker_file'	:'Show/Hide Data',	# display the ticker files for the selected ticker
 								}
 		
 

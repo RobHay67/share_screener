@@ -3,7 +3,7 @@ import streamlit as st
 def button_show_strategy_config(scope):
 
 	page = scope.config['display']
-	current_value = scope.page[page]['show']['settings_strategy']
+	current_value = scope.page[page]['show']['strategy']
 	type_of_button = 'primary' if current_value == True else 'secondary'
 
 	button = st.button(
@@ -19,9 +19,9 @@ def button_show_strategy_config(scope):
 def strategy_status(scope):
 	page = scope.config['display']
 
-	previous_value = scope.page[page]['show']['settings_strategy']
+	previous_value = scope.page[page]['show']['strategy']
 	new_value = True if previous_value == False else False
 
-	scope.page[page]['show']['settings_strategy'] = new_value
+	scope.page[page]['show']['strategy'] = new_value
 
 

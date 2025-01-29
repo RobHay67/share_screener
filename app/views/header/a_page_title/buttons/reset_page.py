@@ -16,14 +16,14 @@ def button_reset_page(scope):
 def reset_render_status(scope):
 	page = scope.config['display']
 	
-	scope.page[page]['show']['settings_trials'] 	= False
-	scope.page[page]['show']['settings_strategy'] 	= False
-	scope.page[page]['show']['settings_charts'] 	= False
-	scope.page[page]['show']['settings_overlay'] 	= False
-	scope.page[page]['show']['config_to_show'] 		= None
-	scope.page[page]['show']['ticker_file'] 		= 'Show/Hide Data'
+	scope.page[page]['show']['trials'] 		= False
+	scope.page[page]['show']['strategy'] 	= False
+	scope.page[page]['show']['charts'] 		= False
+	scope.page[page]['show']['overlays'] 	= False
+	scope.page[page]['show']['config'] 		= None
+	scope.page[page]['show']['ticker_file'] = 'Show/Hide Data'
 
-	scope.page[page]['search_results'] 			= {}
+	scope.page[page]['search_results'] 		= {}
 
 	if page == 'index':
 		scope.ticker_index['render']['industry_report'] = False

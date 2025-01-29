@@ -12,15 +12,15 @@ def router_show_settings(scope):
 
 	match page:
 		case 'screener':
-			if scope.page[page]['show']['settings_trials']:
+			if scope.page[page]['show']['trials']:
 				show_settings_trials(scope)
-			if scope.page[page]['show']['settings_strategy']:
+			if scope.page[page]['show']['strategy']:
 				show_config_strategy(scope)
 				
 		case 'chart':
-			if scope.page[page]['show']['settings_charts']:
+			if scope.page[page]['show']['charts']:
 				show_settings_charts(scope)
-			if scope.page[page]['show']['settings_overlay']:
+			if scope.page[page]['show']['overlays']:
 				show_settings_overlay(scope)
 
 	
