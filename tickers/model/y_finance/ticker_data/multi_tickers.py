@@ -21,6 +21,4 @@ def multiple_tickers_downloader(scope):
 	scope.yf['batch_data'] = yf_download
 	scope.yf['batch_errors'] = yf.shared._ERRORS
 
-	print(scope.yf['batch_errors'])
-
 

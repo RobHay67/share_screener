@@ -20,8 +20,8 @@ if scope.users['logged_in']:
 
 	if ticker in scope.page[page]['loaded_ticker_list']:
 
-		chart_df		= scope.tickers[ticker][page]['df']
-		schema 			= create_schema_for_plotly(scope)
+		chart_df 	= scope.tickers[ticker][page]['df']
+		schema		= create_schema_for_plotly(scope)
 		
 		if schema['no_of_charts'] > 0:
 			

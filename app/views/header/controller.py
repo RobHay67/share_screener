@@ -1,4 +1,4 @@
-from app.views.header.a_page_title.page_titles import page_title_layer
+from app.views.header.a_page_title.router import page_title_layer
 from app.views.header.router_show_settings import router_show_settings
 from app.views.header.router_show_config import router_show_config
 from app.views.header.c_ticker_selectors.router_ticker_selectors import router_show_ticker_selectors

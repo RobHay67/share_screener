@@ -3,7 +3,7 @@
 
 def build_english_explanation(scope, trial ):
 	english_explanation = ''
-	dict_of_values = scope.trials['user_config'][trial]['add_columns']
+	dict_of_values = scope.trials['user_config'][trial]['function']
 	column = dict_of_values['column'] if 'column' in dict_of_values else None
 	trend = dict_of_values['trend'] if 'trend' in dict_of_values else None
 	duration = dict_of_values['duration'] if 'duration' in dict_of_values else None

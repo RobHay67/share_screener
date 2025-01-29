@@ -12,13 +12,8 @@ def show_sidebar_app_info(scope):
 	market_timezone = opening_hours[scope.config['share_market']]['timezone']
 	market_time = datetime.now(pytz.timezone(market_timezone))
 
-	# print('local_time      = ', local_time)
-	# print('market_timezone = ', market_timezone)
-	# print('market_time     = ', market_time)
-	
 	st.logo('assets/Logo JPG.jpg')
 	
-
 	with st.sidebar:
 		st.write('Welcome      : ' +  scope.users['login_name'])
 		st.write('Share Market : ' + str(scope.config['share_market']))

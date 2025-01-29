@@ -14,7 +14,7 @@ def add_child_charts(scope, fig, chart_df, schema):
 		fig = format_child_chart(scope, fig, chart, row_no, 1 )
 		
 		# apply overlays to relevant charts
-		if scope.charts['user_config'][chart]['add_overlays'] == True:											
+		if scope.charts['user_config'][chart]['add_overlays'] == True:
 			for overlay in schema['add_overlay']:
 				scope.charts['user_config'][overlay]['plot']['function'](scope, fig, overlay, chart_df, row_no, col_no)
 

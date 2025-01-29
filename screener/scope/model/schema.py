@@ -17,7 +17,7 @@ column 			= 'column'				# OHLCV column required for the Analysis
 duration		= 'duration'			# the length or number of consecutive occurances
 timespan 		= 'timespan'			# The entire analysis Period
 trend			= 'trend'				# the trend or direction of the trend - up or down / above or below
-add_columns		= 'add_columns'			# Dictionary of Dataframe Column Params	
+function		= 'function'			# Dictionary of Dataframe Column Params	
 function		= 'function'			# The function to add the columns for this schema_key
 
 periods 		= 'periods'				# Most Indicators use a base number of days/hours (periods) for their calcs - store it here
@@ -40,7 +40,7 @@ trials_schema = {
 						name			: 'Price Direction (OHLCV)',
 						short_name		: 'Price Direction (OHLCV)',
 						definition		: 'https://www.investopedia.com/terms/o/openingprice.asp',
-						add_columns		: {
+						function		: {
 											function : trend_cols,
 											column 	 : 'close',
 											trend	 : 'up',
@@ -53,7 +53,7 @@ trials_schema = {
 						name			: 'Price Direction (OHLCV)',
 						short_name		: 'Price Direction (OHLCV)',
 						definition		: 'https://www.investopedia.com/terms/c/closingprice.asp',
-						add_columns		: {
+						function		: {
 											function : trend_cols,
 											column 	 : 'high',
 											trend	 : 'up',
@@ -66,7 +66,7 @@ trials_schema = {
 						name			: 'Price Direction (OHLCV)',
 						short_name		: 'Price Direction (OHLCV)',
 						definition		: '',
-						add_columns		: {
+						function		: {
 											function : trend_cols,
 											column 	 : 'volume',
 											trend	 : 'up',
@@ -79,7 +79,7 @@ trials_schema = {
 						name			: 'OHLCV Trending Above or Below SMA',
 						short_name		: 'SMA Trend 1',
 						definition		: 'https://www.investopedia.com/terms/s/sma.asp',
-						add_columns		: {
+						function		: {
 											function : sma_trend,
 											column 	 : 'close',
 											trend	 : 'above',
@@ -91,7 +91,7 @@ trials_schema = {
 						name			: 'OHLCV Trending Above or Below SMA',
 						short_name		: 'SMA Trend 2',
 						definition		: 'https://www.investopedia.com/terms/s/sma.asp',
-						add_columns		: {
+						function		: {
 											function : sma_trend,
 											column 	 : 'open',
 											trend	 : 'above',
@@ -103,7 +103,7 @@ trials_schema = {
 						name			: 'OHLCV Trending Above or Below SMA',
 						short_name		: 'SMA Trend 3',
 						definition		: 'https://www.investopedia.com/terms/s/sma.asp',
-						add_columns		: {
+						function		: {
 											function : sma_trend,
 											column 	 : 'volume',
 											trend	 : 'above',
@@ -115,7 +115,7 @@ trials_schema = {
 						name			: 'Stochastic',
 						short_name		: 'Stochastic',
 						definition		: 'https://www.investopedia.com/terms/s/stochasticoscillator.asp',
-						add_columns		: {
+						function		: {
 											function : stochastic_trend,
 											trend	 : 'above_line',
 											lookback_days	: 14, 
@@ -128,7 +128,7 @@ trials_schema = {
 						name			: 'Stochastic',
 						short_name		: 'Stochastic',
 						definition		: 'https://www.investopedia.com/terms/s/stochasticoscillator.asp',
-						add_columns		: {
+						function		: {
 											function : stochastic_trend,
 											trend	 : 'over_sold',
 											lookback_days	: 14, 
@@ -141,7 +141,7 @@ trials_schema = {
 						name			: 'Stochastic',
 						short_name		: 'Stochastic',
 						definition		: 'https://www.investopedia.com/terms/s/stochasticoscillator.asp',
-						add_columns		: {
+						function		: {
 											function : stochastic_trend,
 											trend	 : 'cross_up',
 											lookback_days	: 14, 
@@ -154,7 +154,7 @@ trials_schema = {
 						name			: 'RSI-1',
 						short_name		: 'RSI-1',
 						definition		: 'https://www.investopedia.com/terms/r/rsi.asp',
-						add_columns		: {
+						function		: {
 											function 		: rsi_trend,
 											trend	 		: 'upwards',
 											column 	 		: 'close',
@@ -166,7 +166,7 @@ trials_schema = {
 						name			: 'RSI-2',
 						short_name		: 'RSI-2',
 						definition		: 'https://www.investopedia.com/terms/r/rsi.asp',
-						add_columns		: {
+						function		: {
 											function 		: rsi_trend,
 											trend	 		: 'over_sold',
 											column 	 		: 'open',

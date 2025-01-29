@@ -14,15 +14,15 @@ def save_trials_user_settings(scope):
 		trial_dict[trial]['active'] = scope.trials['user_config'][trial]['active']
 		
 		# Save any column adding settings (i.e. selected column or duration)
-		add_columns = scope.trials['user_config'][trial]['add_columns']
+		add_columns = scope.trials['user_config'][trial]['function']
 		if add_columns != None:
-			trial_dict[trial]['add_columns'] = {}
+			trial_dict[trial]['function'] = {}
 			for attribute in add_columns.keys():
 				# Save attributes (unless exluded)
 				if attribute not in excluded_attribute_list:
-					trial_dict[trial]['add_columns'][attribute] = scope.trials['user_config'][trial]['add_columns'][attribute]
+					trial_dict[trial]['function'][attribute] = scope.trials['user_config'][trial]['function'][attribute]
 		else:
-			trial_dict[trial]['add_columns'] = None
+			trial_dict[trial]['function'] = None
 
 	return trial_dict
 

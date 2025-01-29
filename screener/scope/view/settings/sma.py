@@ -18,7 +18,7 @@ def sma_trends(scope):
 def sma_settings(scope, trial):
 	
 	schema_group = 'trials'
-	column_name = scope[schema_group]['user_config'][trial]['add_columns']['column']
+	column_name = scope[schema_group]['user_config'][trial]['function']['column']
 
 	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1,1])
 

@@ -22,7 +22,7 @@ def show_ticker_load_and_col_adding(scope):
 	if page in ['chart', 'intraday', 'volume', 'screener',]:
 		with col1:
 			# loads ticker data as well
-			load_tickers_progress_bar(scope, ) 
+			load_tickers_progress_bar(scope) 
 			refresh_worklist_long_description(scope)
 		with col2:
 			# for volume we dont need to do this step

@@ -19,12 +19,3 @@ def render_message_download(scope):
 					' )'
 					)
 
-	# with col2:
-	# 	st.write(batch_no)
-	# with col3:
-	# 	st.write('tickers = ' + str(no_of_tickers))
-	# with col4:
-	# 	st.write(scope.yf['batch_industry'])
-
-
-	print(batch_no, 'tickers = ' + str(no_of_tickers), scope.yf['batch_industry'])

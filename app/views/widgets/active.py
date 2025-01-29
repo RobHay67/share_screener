@@ -10,7 +10,7 @@ def edit_active(scope, schema_group, schema_key ):
 	widget_key = 'widget_active_' + schema_group + '_' + schema_key
 	display_name =  '' + scope[schema_group]['user_config'][schema_key]['name']
 	previous_selection = scope[schema_group]['user_config'][schema_key]['active']
-	add_columns = scope[schema_group]['user_config'][schema_key]['add_columns']
+	add_columns = scope[schema_group]['user_config'][schema_key]['function']
 	
 	if add_columns != None:
 		# add some space above active for charts/trials that have column config

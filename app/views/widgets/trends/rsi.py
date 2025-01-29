@@ -8,7 +8,7 @@ from screener.scope.model.schema import trends_for_rsi
 def edit_trend_rsi(scope, schema_group, schema_key ):
 	widget_key = 'widget_trend_' + schema_group + '_' + schema_key
 	display_name = 'Trend'
-	previous_selection = scope[schema_group]['user_config'][schema_key]['add_columns']['trend']
+	previous_selection = scope[schema_group]['user_config'][schema_key]['function']['trend']
 	# previous_selection = 'up'
 	pos_for_previous = trends_for_rsi.index(previous_selection)	
 
@@ -27,7 +27,7 @@ def on_change_rsi_selection(scope:dict, schema_group:str, schema_key:str, widget
 	changed_value = scope[widget_key]
 
 	# store the selection
-	scope[schema_group]['user_config'][schema_key]['add_columns']['trend'] = changed_value	
+	scope[schema_group]['user_config'][schema_key]['function']['trend'] = changed_value	
 
 	# update the page data renew status
 	edit_column_adder_event(scope, schema_key)

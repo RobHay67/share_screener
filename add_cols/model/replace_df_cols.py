@@ -25,7 +25,7 @@ def replace_page_df_columns(scope, page, ticker):
 				# This function will also remove any previous columns
 
 
-				# scope[schema_group]['user_config'][schema_key]['add_columns']['function'](scope, schema_key, ticker, ticker_df)
+				scope[schema_group]['user_config'][schema_key]['function']['function'](scope, schema_key, ticker, ticker_df)
 				
 				# Set the replace_column_adder status to false 
 				# to prevent refreshing unnecesarily
@@ -35,7 +35,9 @@ def replace_page_df_columns(scope, page, ticker):
 				if schema_group == 'trials':
 					# set stutus to recalc overall verdict for this ticker
 					page_ticker['verdicts']['replace_verdict'] = True
-					# Store the most date recent test result - it should be the first row
+
+
+					# Store the most date recent test result - it should be the first row				
 					page_ticker['verdicts']['trials'][schema_key] = ticker_df[schema_key].iloc[0]
 
 

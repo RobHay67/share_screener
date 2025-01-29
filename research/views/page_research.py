@@ -40,7 +40,6 @@ if scope.users['logged_in']:
 
 	if ticker != 'select a ticker' :
 		metadata = fetch_yfinance_metadata(ticker)
-		# print(metadata)
 		if metadata.info != None:
 			company_general(metadata)
 
@@ -51,7 +50,7 @@ if scope.users['logged_in']:
 
 			dividends(metadata)
 
-			print('None of the financial statements are coming out now')
+			print('ERROR None of the financial statements are coming out now')
 			# financial_statements(metadata)
 			# major(metadata)
 			# institutional(metadata)
@@ -63,7 +62,7 @@ if scope.users['logged_in']:
 			# cashflow_qtr(metadata)
 			# earnings(metadata)
 			# earnings_qtr(metadata)
-			print('Calendar no longer available')
+			print('ERROR Calendar no longer available')
 			# calendar(metadata)
 			news(metadata)
 

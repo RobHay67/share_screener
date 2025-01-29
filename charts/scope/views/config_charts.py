@@ -38,7 +38,7 @@ def show_config_charts(scope):
 	with col6:scope_button(scope, "scope.charts['user_config']["+chart+"]['definition']", scope.charts['user_config'][chart]['definition'])
 	with col7:scope_button(scope, "scope.charts['user_config']["+chart+"]['notes']", scope.charts['user_config'][chart]['notes'])
 	with col8:scope_button(scope, "scope.charts['user_config']["+chart+"]['plot']", scope.charts['user_config'][chart]['plot'])	
-	with col9:scope_button(scope, "scope.charts['user_config']["+chart+"]['add_columns']", scope.charts['user_config'][chart]['add_columns'])
+	with col9:scope_button(scope, "scope.charts['user_config']["+chart+"]['function']", scope.charts['user_config'][chart]['function'])
 	col1,col2,col3,col4,col5,col6,col7,col8,col9 = st.columns([1,1,1,1,1,1,1,1,1])
 	with col4:show_config_single_value("is_overlay", scope.charts['user_config'][chart]['is_overlay'])
 	with col5:show_config_single_value("add_overlays", scope.charts['user_config'][chart]['add_overlays'])

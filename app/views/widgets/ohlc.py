@@ -8,7 +8,7 @@ def edit_ohlc(scope, schema_group, schema_key ):
 	
 	widget_key = 'widget_' + schema_group + '_' + schema_key
 	display_name =  ('Column for ' +  scope[schema_group]['user_config'][schema_key]['short_name'])
-	previous_selection = scope[schema_group]['user_config'][schema_key]['add_columns']['column']
+	previous_selection = scope[schema_group]['user_config'][schema_key]['function']['column']
 	pos_for_previous = scope.config['dropdowns']['price_columns'].index(previous_selection)	
 
 	st.selectbox ( 
@@ -26,7 +26,7 @@ def on_change_ohlc(scope:dict, schema_group:str, schema_key:str, widget_key:str)
 	changed_value = scope[widget_key]
 
 	# store the selection
-	scope[schema_group]['user_config'][schema_key]['add_columns']['column'] = changed_value	
+	scope[schema_group]['user_config'][schema_key]['function']['column'] = changed_value	
 
 	# update the page data renew status
 	edit_column_adder_event(scope, schema_key)

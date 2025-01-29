@@ -51,7 +51,6 @@ def website_hyperlink(scope, website, ticker):
 	# if website == "market watch":
 
 
-	# print(url_string)
 	# st.write(url_string)
 
 # [market watch](https://www.marketwatch.com/investing/stock/wbc/charts?countrycode=au)

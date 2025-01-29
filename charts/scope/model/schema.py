@@ -91,7 +91,7 @@ title			= 'title'				# The Title to be rendered for this chart
 scale			= 'scale'				# height for the chart - this is a relative height > % of charts_height_primary
 yaxis			= 'yaxis'				# Format for the Y Axis on the charts
 # Dataframe Columns Required for this chart -------------------------------------------------------------------------------------------------------
-add_columns		= 'add_columns'			# Dictionary of Column Params to be added to the page[df]
+function		= 'function'			# Dictionary of Column Params to be added to the page[df]
 periods 		= 'periods'				# Most Indicators use a base number of days/hours (periods) for their calcs - store it here
 column 			= 'column'				# OHLCV column required for calc
 fast 			= 'fast'
@@ -122,7 +122,7 @@ charts_schema = {
 													scale		: 1.00, 
 													yaxis		: '$,.2f',
 												},
-								add_columns		: None, 
+								function		: None, 
 								},
 		'bar'				: { 
 								active			: False, 
@@ -138,7 +138,7 @@ charts_schema = {
 													scale		: 0.80, 
 													yaxis		: '$,.2f' 
 												}, 
-								add_columns		: None, 
+								function		: None, 
 							},
 		'scatter'			: { 
 								active			: False, 
@@ -153,7 +153,7 @@ charts_schema = {
 													scale		: 0.80, 
 													yaxis		: '$,.2f',	
 												}, 	
-								add_columns		: None, 
+								function		: None, 
 							},
 		'line'				: { 
 								active			: True , 
@@ -170,7 +170,7 @@ charts_schema = {
 													scale		: 0.50, 
 													yaxis		: '$,.2f' 
 												}, 	
-								add_columns		: None, 
+								function		: None, 
 							},
 		'heiken_ashi'		: { 
 								active			: False, 
@@ -186,7 +186,7 @@ charts_schema = {
 													scale:0.80, 
 													yaxis:'$,.2f' ,
 												}, 	
-								add_columns		: None, 
+								function		: None, 
 								},
 
 		
@@ -204,7 +204,7 @@ charts_schema = {
 													scale		: 0.25, 
 													yaxis		: ',.'
 												}, 	
-								add_columns		: None, 
+								function		: None, 
 								},
 
 		
@@ -223,7 +223,7 @@ charts_schema = {
 													scale		: 0.25, 
 													yaxis		: ',.'
 												}, 	
-								add_columns		: None, 
+								function		: None, 
 								},
 		'vol_per_minute'	: { 
 								active			: False, 
@@ -239,7 +239,7 @@ charts_schema = {
 													scale		: 0.25, 
 													yaxis		: ',.' 	
 												}, 	
-								add_columns		: None, 					# TODO is this a chart or on is_overlay - maybe just to the volume chart - I dont know
+								function		: None, 					# TODO is this a chart or on is_overlay - maybe just to the volume chart - I dont know
 								},  
 		'vac'				: { 
 								active			: False, 
@@ -255,7 +255,7 @@ charts_schema = {
 													scale		: 0.25, 
 													yaxis		: ',.' 
 													}, 	
-								add_columns		: None, 
+								function		: None, 
 								},
 		'macd'				: { 
 								active			: True, 
@@ -271,7 +271,7 @@ charts_schema = {
 													scale		: 0.50, 
 													yaxis		: ',.' 
 												}, 	
-								add_columns		: { 
+								function		: { 
 													function	: macd_cols, 
 													column		: 'close', 
 													long		: 26, 
@@ -293,7 +293,7 @@ charts_schema = {
 													scale		: 0.50, 
 													yaxis		: ',.', 	
 												}, 	
-								add_columns		: { 
+								function		: { 
 													function	:macd_vol_cols, 
 													column		:'volume', 
 													long		:26, 
@@ -315,7 +315,7 @@ charts_schema = {
 													scale			: 0.50, 
 													yaxis			: '.0%',
 												}, 	
-								add_columns		: { 
+								function		: { 
 													function		: rsi_cols, 
 													column			: 'close', 
 													lookback_days	: 10, 
@@ -335,7 +335,7 @@ charts_schema = {
 													scale		: 0.75, 
 													yaxis		: '$,.2f',
 												}, 	
-								add_columns		: { 
+								function		: { 
 													function	: None, 
 													column		: 'volume', 
 													fast		: 14, 
@@ -356,7 +356,7 @@ charts_schema = {
 													scale			: 0.50, 
 													yaxis			: '.0%',
 												}, 	
-								add_columns		: { 
+								function		: { 
 													function		: stoch_cols, 
 													lookback_days	: 14, 
 													slow			: 3, 
@@ -374,7 +374,7 @@ charts_schema = {
 								definition		: '',
 								notes			: '',
 								plot			: { function : sma_plot, colour : 'blue' }, 									
-								add_columns		: {	function : sma_cols, column : 'close', periods:21 } 
+								function		: {	function : sma_cols, column : 'close', periods:21 } 
 								},		
 		'sma_b' 			: { 
 								active			: False, 
@@ -385,7 +385,7 @@ charts_schema = {
 								definition		: '',
 								notes			: '',
 								plot			: { function : sma_plot, colour : 'green' }, 									
-								add_columns		: {	function : sma_cols, column : 'close', periods:50 } 
+								function		: {	function : sma_cols, column : 'close', periods:50 } 
 								},		
 		'sma_c' 			: { 
 								active			: False, 
@@ -396,7 +396,7 @@ charts_schema = {
 								definition		: '',
 								notes			: '',
 								plot			: { function : sma_plot, colour : 'green' }, 									
-								add_columns		: {	function : sma_cols, column : 'close', periods:200 } 
+								function		: {	function : sma_cols, column : 'close', periods:200 } 
 								},		
 		'ema_a' 			: { 
 								active			: False, 
@@ -407,7 +407,7 @@ charts_schema = {
 								definition		: '',
 								notes			: '',
 								plot			: { function : ema_plot, colour : 'red' }, 									
-								add_columns		: {	function : ema_cols, column : 'close', periods:21 } 
+								function		: {	function : ema_cols, column : 'close', periods:21 } 
 								},
 		'ema_b' 			: { 
 								active			: False, 
@@ -418,7 +418,7 @@ charts_schema = {
 								definition		: '',
 								notes			: '',
 								plot			: { function : ema_plot, colour : 'blue' }, 									
-								add_columns		: {	function : ema_cols, column : 'close', periods:50 } 
+								function		: {	function : ema_cols, column : 'close', periods:50 } 
 								},
 		'ema_c' 			: { 
 								active			: False, 
@@ -429,7 +429,7 @@ charts_schema = {
 								definition		: '',
 								notes			: '',
 								plot			: { function : ema_plot, colour : 'SteelBlue' }, 									
-								add_columns		: {	function : ema_cols, column : 'close', periods:200 } 
+								function		: {	function : ema_cols, column : 'close', periods:200 } 
 								},
 		'bollinger_bands' 	: { 
 								active			: False, 
@@ -440,7 +440,7 @@ charts_schema = {
 								definition		: '',
 								notes			: '',
 								plot			: { function:sma_plot, colour:'black' }, 									
-								add_columns		:{ 
+								function		:{ 
 													function:ema_cols, 
 													column:'close', 
 													length:20, 
@@ -458,7 +458,7 @@ charts_schema = {
 								definition		: '',
 								notes			: '',
 								plot			: { function: dividend_plot, colour	:'blue' }, 									
-								add_columns		: { 
+								function		: { 
 													function:dividend_cols			# TODO - we could still plot into the plot_df
 												} 
 								},		
@@ -471,7 +471,7 @@ charts_schema = {
 								definition		: '',
 								notes			: '',
 								plot			: { function:sma_plot, colour :'black' }, 									
-								add_columns		: None,			 # TODO - we are still going to need a chart here
+								function		: None,			 # TODO - we are still going to need a chart here
 								},		
 		'ichi_moku' 		: { 
 								active			: False, 
@@ -482,7 +482,7 @@ charts_schema = {
 								definition		: '',
 								notes			: '',
 								plot			:{ function:sma_plot, colour :'black' }, 									
-								add_columns		: None 			# TODO - Rob to work out if this needs speccing
+								function		: None 			# TODO - Rob to work out if this needs speccing
 								},		
 		'ichi_moku_daily'	: { 
 								active			:False, 
@@ -493,7 +493,7 @@ charts_schema = {
 								definition		: '',
 								notes			: '',
 								plot			: { function:sma_plot, colour:'black' },
-								add_columns		: None 					# TODO - Rob to work out if this needs speccing
+								function		: None 					# TODO - Rob to work out if this needs speccing
 
 								},		
 		}

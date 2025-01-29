@@ -31,10 +31,10 @@ def login_user(scope, login_name):
 			scope.trials['user_config'][trial]['active'] = user_trial_settings[trial]['active']
 
 			# Trial additional column attribute settings
-			add_columns = user_trial_settings[trial]['add_columns']
+			add_columns = user_trial_settings[trial]['function']
 			if add_columns != None:
 				for attribute in add_columns.keys():
-					scope.trials['user_config'][trial]['add_columns'][attribute] = add_columns[attribute]
+					scope.trials['user_config'][trial]['function'][attribute] = add_columns[attribute]
 	
 	# refresh the Trial lists
 	trial_active_list(scope)
@@ -59,10 +59,10 @@ def login_user(scope, login_name):
 				scope.charts['user_config'][chart]['active_columns'] = user_chart_settings[chart]['active_columns']
 
 			# Chart additional column attribute settings
-			add_columns = user_chart_settings[chart]['add_columns']
+			add_columns = user_chart_settings[chart]['function']
 			if add_columns != None:
 				for attribute in add_columns.keys():
-					scope.charts['user_config'][chart]['add_columns'][attribute] = add_columns[attribute]
+					scope.charts['user_config'][chart]['function'][attribute] = add_columns[attribute]
 
 		
 	# refresh the Chart lists

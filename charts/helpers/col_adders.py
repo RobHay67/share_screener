@@ -5,6 +5,6 @@ def chart_column_adders(scope):
 
 	for chart in scope.charts['chart_list']:
 		# Only include charts that require additional columns
-		if scope.charts['user_config'][chart]['add_columns'] != None:
+		if scope.charts['user_config'][chart]['function'] != None:
 			scope.charts['template_col_adders'][chart] = scope.charts['user_config'][chart]['active']
 

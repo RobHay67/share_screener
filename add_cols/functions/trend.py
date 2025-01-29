@@ -3,10 +3,10 @@ import numpy as np
 
 def trend_cols(scope, trial, ticker, df):
 
-	column 		= scope.trials['user_config'][trial]['add_columns']['column']
-	trend 		= scope.trials['user_config'][trial]['add_columns']['trend']
-	duration	= int(scope.trials['user_config'][trial]['add_columns']['duration'])
-	timespan 	= int(scope.trials['user_config'][trial]['add_columns']['timespan'])
+	column 		= scope.trials['user_config'][trial]['function']['column']
+	trend 		= scope.trials['user_config'][trial]['function']['trend']
+	duration	= int(scope.trials['user_config'][trial]['function']['duration'])
+	timespan 	= int(scope.trials['user_config'][trial]['function']['timespan'])
 
 	# Change df to be ascending to simplify the shifting
 	df.sort_values(by=['date'], inplace=True, ascending=True)
@@ -17,7 +17,7 @@ def trend_cols(scope, trial, ticker, df):
 	match trend:
 		case 'up'	:df['temp_trend'] = np.where( df[column] > df['temp_shifted'], 1, 0 )
 		case 'down'	:df['temp_trend'] = np.where( df[column] < df['temp_shifted'], 1, 0 )
-		case '_':print('Unknown TREND requested')
+		case '_':print('ERROR - Unknown TREND requested')
 
 	# Calculate the total number of Pass (on a rolling basis)
 	df['temp_trend_total'] = df['temp_trend'].rolling(timespan, min_periods=1).sum().astype(int)

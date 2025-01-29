@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-def page_header(scope):
+def page_heading(scope):
 
 	page = scope.config['display']
 	page_icon = scope.config['page_schema'][page]['icon']

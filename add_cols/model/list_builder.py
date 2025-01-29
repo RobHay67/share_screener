@@ -10,8 +10,6 @@ def create_list_of_tickers_to_add_columns(scope, page):
 		# function will fail on missing columns
 		if ticker in list(scope.tickers.keys()):
 			status_add_ticker = False
-			print(ticker)
-			# print(scope.tickers[ticker][page]['replace_df'])
 			if scope.tickers[ticker][page]['replace_df']:
 				status_add_ticker = True
 			

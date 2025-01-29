@@ -9,6 +9,10 @@ import plotly.graph_objects as go
 
 def candle_plot(scope, fig, chart, chart_df, row_no, col_no):
 
+	print('*'*999)
+	print(chart_df)
+	print(chart_df.columns)
+
 	fig.add_trace( 	go.Candlestick(
 									x		= chart_df['date'],
 									open	= chart_df['open'],

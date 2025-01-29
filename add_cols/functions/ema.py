@@ -6,8 +6,8 @@ def ema_cols(  scope, chart, ticker, chart_df):
 	
 	# EMA  = https://www.investopedia.com/terms/e/ema.asp
 
-	column 		= scope.charts['user_config'][chart]['add_columns']['column']
-	no_of_days 	= scope.charts['user_config'][chart]['add_columns']['periods']
+	column 		= scope.charts['user_config'][chart]['function']['column']
+	no_of_days 	= scope.charts['user_config'][chart]['function']['periods']
 
 	chart_df[chart] = chart_df[column].ewm(span=no_of_days, adjust=False).mean()
 
