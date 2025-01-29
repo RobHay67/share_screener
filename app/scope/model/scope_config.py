@@ -12,11 +12,6 @@ def scope_config(scope):
 	scope.config['page_list'] = list(scope.config['page_schema'].keys())
 	user_config_pages(scope)
 
-	scope.config['display_scope'] = {}
-	scope.config['display_scope']['config_page'] = 'Rob'
-	scope.config['display_scope']['scope_key'] = None
-	scope.config['display_scope']['scope_value'] = None
-
 	# Dropdowns
 	scope.config['dropdowns'] = {}
 	scope.config['dropdowns']['markets'] = []

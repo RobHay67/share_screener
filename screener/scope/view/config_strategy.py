@@ -26,5 +26,5 @@ def show_config_strategy(scope):
 	with col5:scope_button(scope, "scope.strategy['print']['line']", scope.strategy['print']['line'])
 
 	# st.divider()
-	if scope.config['display_scope']['scope_key'] != None:
+	if scope.display['config_key'] != None:
 		show_config_values(scope)

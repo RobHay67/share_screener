@@ -48,6 +48,6 @@ def show_config_pages(scope):
 	with col5:scope_button(scope, "scope.page["+page+"]['selectors']['ticker_worklist']", scope.page[page]['selectors']['ticker_worklist'])
 	
 	st.divider()
-	if scope.config['display_scope']['scope_key'] != None:
+	if scope.display['config_key'] != None:
 		show_config_values(scope)
 

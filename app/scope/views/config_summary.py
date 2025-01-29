@@ -13,24 +13,24 @@ def show_config_summary(scope):
 	with col5:st.button('Tickers (Data)',	use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_tickers', ))
 	with col6:st.button('Page(s)', 			use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_page', ))
 
-
-	col1,col2,col3,col4,col5,col6,col7 = st.columns([4,1,1,1,1,1,1])
-	with col2:st.button('Ticker Schema', 	use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_tickers_schema', ))
-	with col3:st.button('Y Finance', 		use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_yf', ))
-	with col4:st.button('Verdicts', 		use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_verdicts', ))
-	with col5: st.button('Trials', 			use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_trial', ))
-	with col6: st.button('Strategies (WIP)',use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_strategy', ))
-	with col7: st.button('Charts', 			use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_chart', ))
+	col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([1,3,1,1,1,1,1,1])
+	with col1:st.button('Display Config', 	use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_display', ))
+	with col3:st.button('Ticker Schema', 	use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_tickers_schema', ))
+	with col4:st.button('Y Finance', 		use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_yf', ))
+	with col5:st.button('Verdicts', 		use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_verdicts', ))
+	with col6: st.button('Trials', 			use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_trial', ))
+	with col7: st.button('Strategies (WIP)',use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_strategy', ))
+	with col8: st.button('Charts', 			use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_chart', ))
 
 	st.divider()
 
 
 def set_st_button(scope:dict, show_config:str):
-	previous_value = scope.config['display_scope']['config_page']
+	previous_value = scope.display['config_page']
 	if previous_value == show_config: 
-		scope.config['display_scope']['config_page'] = None
+		scope.display['config_page'] = None
 	else:
-		scope.config['display_scope']['config_page'] = show_config
+		scope.display['config_page'] = show_config
 
 
 

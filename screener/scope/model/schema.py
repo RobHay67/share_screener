@@ -1,10 +1,7 @@
-
-
 from add_cols.functions.trend import trend_cols
 from add_cols.functions.sma import sma_trend
-from add_cols.functions.stochastic import stochastic_trend
 from add_cols.functions.rsi import rsi_trend
-
+from add_cols.functions.stochastic import stochastic_trend
 
 
 # ==============================================================================================================================================================
@@ -31,10 +28,10 @@ slow 			= 'slow'				# Stochastic Oscillator
 
 # 
 
-trends_for_ohlcv = [ 'up', 'down' ]
-trends_for_sma 	= ['above', 'below']
-trends_for_stochastic = ['above_line', 'below_line', 'over_bought', 'over_sold', 'cross_up', 'cross_down']
-trends_for_rsi = ['up', 'down', 'over bought', 'over sold' ]
+trends_for_ohlcv 		= [ 'up', 'down' ]
+trends_for_sma 			= ['above', 'below']
+trends_for_stochastic 	= ['above_line', 'below_line', 'over_bought', 'over_sold', 'cross_up', 'cross_down']
+trends_for_rsi 			= ['up', 'down', 'over bought', 'over sold' ]
 
 
 trials_schema = {

@@ -45,5 +45,5 @@ def show_config_users(scope):
 	with col6:show_config_single_value("row_limit", scope.users['json'][user]['row_limit'])
 
 	# st.divider()
-	if scope.config['display_scope']['scope_key'] != None:
+	if scope.display['config_key'] != None:
 		show_config_values(scope)

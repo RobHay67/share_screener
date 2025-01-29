@@ -29,7 +29,8 @@ def show_config_tickers(scope):
 		with col3:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][replace_df]", scope.tickers[ticker][page]['replace_df'])
 		with col4:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][replace_colum_adder]", scope.tickers[ticker][page]['replace_column_adder'])
 		with col5:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][schema_group]", scope.tickers[ticker][page]['schema_group'])
-		with col6:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][verdicts]", scope.tickers[ticker][page]['verdicts'])
+		if page=='verdicts':
+			with col6:scope_button(scope, "scope.tickers["+ticker+"]["+page+"][verdicts]", scope.tickers[ticker][page]['verdicts'])
 
 		col1,col2,col3,col4,col5,col6 = st.columns([1,1,1,1,1,1])
 		with col3:show_config_single_value("replace_df", scope.tickers[ticker][page]['replace_df'])
@@ -47,7 +48,8 @@ def show_config_tickers(scope):
 		with col3:scope_button(scope, "scope.tickers['ticker]['page'][replace_df]", scope.tickers)
 		with col4:scope_button(scope, "scope.tickers['ticker]['page'][replace_column]", scope.tickers)
 		with col5:scope_button(scope, "scope.tickers['ticker]['page'][schema_group]", scope.tickers)
-		with col6:scope_button(scope, "scope.tickers['ticker]['page'][verdicts]", scope.tickers)
+		if page=='verdicts':
+			with col6:scope_button(scope, "scope.tickers['ticker]['page'][verdicts]", scope.tickers)
 
 		col1,col2,col3,col4,col5,col6 = st.columns([1,1,1,1,1,1])
 		with col3:show_config_single_value("replace_df", scope.tickers)
@@ -55,6 +57,6 @@ def show_config_tickers(scope):
 		with col5:show_config_single_value("schema_group", scope.tickers)
 
 	st.divider()
-	if scope.config['display_scope']['scope_key'] != None:
+	if scope.display['config_key'] != None:
 		show_config_values(scope)
 

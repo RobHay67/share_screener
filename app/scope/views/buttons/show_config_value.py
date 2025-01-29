@@ -4,13 +4,13 @@ from datetime import datetime
 # blue, green, orange, red, violet, gray/grey, rainbow.
 
 def show_config_values(scope):
-	button_pressed = scope.config['display_scope']['scope_key']
+	button_pressed = scope.display['config_key']
 	button_pressed = button_pressed.removeprefix('widget>')
 
 	if button_pressed == "scope.config['project_start_time']":
 		scope_value =  datetime.fromtimestamp(scope.config['project_start_time']).strftime('%Y-%m-%d %H:%M:%S %p')
 	else:
-		scope_value = scope.config['display_scope']['scope_value']
+		scope_value = scope.display['config_value']
 	
 	st.subheader(':blue[' + button_pressed +']')
 	st.write(scope_value)

@@ -7,8 +7,8 @@ from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 def show_config_yf(scope):
 
-	scope_button(scope, "Y Finance", scope.users, make_red=True, suffix_only=False)
-	scope_button(scope, "scope.yf", scope.users, make_red=False, suffix_only=False)
+	scope_button(scope, "Y Finance", scope.yf, make_red=True, suffix_only=False)
+	scope_button(scope, "scope.yf", scope.yf, make_red=False, suffix_only=False)
 
 	col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([1,2,1,1,1,1,1,1])
 	with col1:scope_button(scope, "scope.yf['periods']", scope.yf['periods'])
@@ -26,5 +26,5 @@ def show_config_yf(scope):
 
 	
 	st.divider()
-	if scope.config['display_scope']['scope_key'] != None:
+	if scope.display['config_key'] != None:
 		show_config_values(scope)

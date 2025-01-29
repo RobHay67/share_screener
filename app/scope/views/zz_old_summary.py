@@ -28,5 +28,5 @@ def old_show_config_summary(scope):
 
 
 	st.divider()
-	if scope.config['display_scope']['scope_key'] != None:
+	if scope.display['config_key'] != None:
 		show_config_values(scope)

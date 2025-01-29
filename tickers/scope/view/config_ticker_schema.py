@@ -38,7 +38,7 @@ def show_config_tickers_schema(scope):
 		with col3:scope_button(scope, "scope.ticker_schema['missing']['errors']['ticker']['yf']", scope.ticker_schema['missing']['errors'])
 
 	st.divider()
-	if scope.config['display_scope']['scope_key'] != None:
+	if scope.display['config_key'] != None:
 		show_config_values(scope)
 
 

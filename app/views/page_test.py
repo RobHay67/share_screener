@@ -3,7 +3,6 @@ import streamlit as st
 from app.views.header.controller import show_page_header
 
 
-
 # Page Configuration
 scope = st.session_state
 page = 'testing'
@@ -12,132 +11,45 @@ scope.config['display'] = page
 show_page_header(scope)
 
 
-# st.selectbox(
-# 	# label=':red[Select Somthing]',
-# 	label="🎛 Show Configuration",
-# 	options=['Relevant Configuration','Page Configuration','Ticker Data']
-# )
 
 
-list_of_items = ['this', 'and', 'that']
+# st.subheader (':blue[Need some code to test access the namespace]')
+
+# print(scope.config['project_description'])
+# print(type(scope))
+# # print(scope.config.project_description)
 
 
-import streamlit as st
 
-with st.popover("Open popover"):
-    st.markdown("Hello World 👋")
-    name = st.text_input("What's your name?")
+st.subheader(':green[Come code to iterate through every key in the scope and output the key]')
+# # print_tree_level(scope.config)
 
-st.write("Your name:", name)
 
-with st.popover('COnfig'):
-    genre = st.radio(
-    label="What's your favorite movie genre",
-    options=[":rainbow[Comedy]", "***Drama***", "Documentary :movie_camera:"],
-	)
-if genre == ":rainbow[Comedy]":
-	st.write("You selected comedy.")
-else:
-	st.write("You didn't select comedy.")
-# popover = st.popover("Filter items")
-# red = popover.checkbox("Show red items.", True)
-# blue = popover.checkbox("Show blue items.", True)
+# def pretty_print_dict(d, indent=0):
+# 	exception_dict = {
+# 		'ticker_search':'{ dict of tickers - too many to display}'
+# 		}
+# 	for key, value in d.items():
+# 		if key in exception_dict.keys():
+# 			# print(key, 'contains too many records to go down a level')
+# 			print('\t' * indent + str(key)+' : '+exception_dict[key])
+# 		else:
+# 			print('\t' * indent + str(key))
+# 			if isinstance(value, dict):
+# 				pretty_print_dict(value, indent+1)
 
-# if red:
-#     st.write(":red[This is a red item.]")
-# if blue:
-#     st.write(":blue[This is a blue item.]")
 
-# import streamlit as st
-
-# st.selectbox(
-#     "Select a country",
-#     [
-#         "USA",
-#         "Canada",
-#         "Mexico",
-#         "Australia",
-#         "Japan",
-#         "Germany",
-#         "France",
-#         "Italy",
-#         "Spain",
-#         "UK",
-#     ],
-# )
-
-# st.html("""
-# <style>
-#     [data-testid="stVirtualDropdown"] > div {
-#         height: auto !important;
-#     }
-# </style>
-# """)
+# pretty_print_dict(scope)
 
 
 
 
-# @st.dialog("No Tickers have been selected!")
-# st.dialog('this is a dialog ????', width="wide")
-
-# with st.popover('open popover'):
-# 	st.write("what the hell")
-
-# Pop Up Model with iterations (and the @st.dialog results in the model only being executied one time)
-# @st.dialog("Cast your vote")
-# def vote(item):
-#     st.write(f"Why is {item} your favorite?")
-#     reason = st.text_input("Because...")
-#     if st.button("Submit Button"):
-#         st.session_state.vote = {"item": item, "reason": reason}
-#         st.rerun()
-
-# if "vote" not in st.session_state:
-#     st.write("Vote for your favorite")
-#     if st.button("A"):
-#         vote("A")
-#     if st.button("B"):
-#         vote("B")
-# else:
-#     f"You voted for {st.session_state.vote['item']} because {st.session_state.vote['reason']}"
-    
-
-# import yfinance as yf
-
-# ticker = "MSFT"
-# ticker = "cba.ax"
-
-
-	# yf_download = yf.download( 
-	# 								tickers=scope.yf['batch_ticker_string'], 
-	# 								# period='3mo',
-	# 								period=scope.config['download_days'], 
-	# 								interval='1d', 
-	# 								progress=True, 
-	# 								# show_errors=False
-	# 								)	
-
-# dat = yf.download(tickers='CBA.AX', period='5d', interval='1d')
-
-# st.header(ticker)
-# st.write(dat)
-# print(dat)
 
 
 
-# dat = yf.Ticker(ticker)
-# st.header(ticker)
-# st.write(dat)
-# st.write(dat.info)
-# st.subheader('Dividends')
-# st.write(dat.dividends)
-# st.write(dat.calendar)
-# st.write(dat.analyst_price_targets)
-# st.write(dat.quarterly_income_stmt)
-# st.subheader('this is dat.history')
-# st.write(dat.history(period='1mo'))
-# st.write(dat.option_chain(dat.options[0]).calls)
 
 
-# scope.config['download_days'] = '5d'
-# print(scope.config['download_days'])
+
+
+
+

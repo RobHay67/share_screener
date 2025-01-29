@@ -1,4 +1,3 @@
-
 import numpy as np
 
 
@@ -15,12 +14,12 @@ def trend_cols(scope, trial, ticker, df):
 	df['temp_shifted'] = df[column].shift(1)
 	df['temp_shifted'] = df['temp_shifted'].fillna(0.0).astype(float)
 
-	if trend == 'up_trend':
-		df['temp_trend'] = np.where( df[column] > df['temp_shifted'], 1, 0 )
-	else:
-		df['temp_trend'] = np.where( df[column] < df['temp_shifted'], 1, 0 )
+	match trend:
+		case 'up'	:df['temp_trend'] = np.where( df[column] > df['temp_shifted'], 1, 0 )
+		case 'down'	:df['temp_trend'] = np.where( df[column] < df['temp_shifted'], 1, 0 )
+		case '_':print('Unknown TREND requested')
 
-
+	# Calculate the total number of Pass (on a rolling basis)
 	df['temp_trend_total'] = df['temp_trend'].rolling(timespan, min_periods=1).sum().astype(int)
 
 	# Determine the Result for each row

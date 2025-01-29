@@ -43,7 +43,7 @@ def show_config_trials(scope):
 	# with col6:show_config_single_value("add_columns", scope.trials['user_config'][trial]['add_columns'])
 
 	# st.divider()
-	if scope.config['display_scope']['scope_key'] != None:
+	if scope.display['config_key'] != None:
 		show_config_values(scope)
 
 
