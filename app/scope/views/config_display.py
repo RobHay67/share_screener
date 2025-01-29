@@ -32,3 +32,5 @@ def show_config_display(scope):
 		st.write("scope.display['config_page']   = " + scope.display['config_page'])
 		st.write("scope.display['config_key']    = " + button_pressed)
 		st.write("scope.display['config_value']  = " +scope.display['config_value'])
+	
+	st.divider()

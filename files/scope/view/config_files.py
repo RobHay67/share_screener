@@ -29,7 +29,8 @@ def show_config_files(scope):
 	with col9:scope_button(scope, "scope.files['paths']['ticker_data']", scope.files['paths']['ticker_data'])
 
 	st.divider()
-	if scope.display['config_key'] != None:show_config_values(scope)
+	if scope.display['config_key'] != None:
+		show_config_values(scope)
 
 
 

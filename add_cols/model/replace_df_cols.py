@@ -4,24 +4,38 @@
 def replace_page_df_columns(scope, page, ticker):
 
 	schema_group = scope.tickers[ticker][page]['schema_group']
-	
-	scope.page[page]['show']['verdicts'] = False
+	page_ticker = scope.tickers[ticker][page]
+	# 
 				
-	if schema_group != None:			
 	# Some pages do not have any dataframes
-		for schema_key, status in scope.tickers[ticker][page]['replace_column_adder'].items():
-			if status == True:	
-			# Only replace the columns if requested to do so for this column adder
-				ticker_df = scope.tickers[ticker][page]['df']
+	# This can be checked if the schema group has been assigned or not
+	if schema_group != None:			
+		
+		# Iterate through each column adder for the page
+		for schema_key, replace_column_adder in page_ticker['replace_column_adder'].items():
+			
+			# Only replace the columns if requested to do so for 
+			# this particular column adder
+			if replace_column_adder == True:	
+			
+				
+				ticker_df = page_ticker['df']
+				
 				# Call the column adding function for this schema_key
-				scope[schema_group]['user_config'][schema_key]['add_columns']['function'](scope, schema_key, ticker, ticker_df)
-				# Set the status to false to prevent refreshing unnecesarily
-				scope.tickers[ticker][page]['replace_column_adder'][schema_key] = False
+				# This function will also remove any previous columns
+
+
+				# scope[schema_group]['user_config'][schema_key]['add_columns']['function'](scope, schema_key, ticker, ticker_df)
+				
+				# Set the replace_column_adder status to false 
+				# to prevent refreshing unnecesarily
+				page_ticker['replace_column_adder'][schema_key] = False
+
 
 				if schema_group == 'trials':
 					# set stutus to recalc overall verdict for this ticker
-					scope.tickers[ticker][page]['verdicts']['replace_verdict'] = True
+					page_ticker['verdicts']['replace_verdict'] = True
 					# Store the most date recent test result - it should be the first row
-					scope.tickers[ticker][page]['verdicts']['trials'][schema_key] = ticker_df[schema_key].iloc[0]
+					page_ticker['verdicts']['trials'][schema_key] = ticker_df[schema_key].iloc[0]
 
 

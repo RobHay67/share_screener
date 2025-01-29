@@ -14,6 +14,7 @@ def show_config_values(scope):
 	
 	st.subheader(':blue[' + button_pressed +']')
 	st.write(scope_value)
+	st.divider()
 
 
 def show_config_single_value(label_name, scope_value):

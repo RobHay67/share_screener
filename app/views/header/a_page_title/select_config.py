@@ -7,26 +7,26 @@ def select_config_to_show(scope):
 	previous_selection = scope.page[page]['show']['config_to_show']
 	
 	match page:
-		case 'screener':config_list 	= ['Page Config','Ticker Data', 'Verdicts', 'Trials', 'Strategies',]
-		case 'chart':config_list 		= ['Page Config','Ticker Data', 'Charts']
-		case 'intraday':config_list 	= ['Page Config','Ticker Data']
-		case 'volume':config_list 		= ['Page Config','Ticker Data']
-		case 'research':config_list 	= ['Page Config']
-		case 'websites':config_list 	= ['Page Config']
-		case 'ticker_index':config_list	= ['Page Config', 'Ticker Index',]
-		case 'testing':config_list 		= ['Page Config']
+		case 'screener':config_list 	= ['Nothing','Page Config','Ticker Data', 'Verdicts', 'Trials', 'Strategies',]
+		case 'chart':config_list 		= ['Nothing','Page Config','Ticker Data', 'Charts']
+		case 'intraday':config_list 	= ['Nothing','Page Config','Ticker Data']
+		case 'volume':config_list 		= ['Nothing','Page Config','Ticker Data']
+		case 'research':config_list 	= ['Nothing','Page Config']
+		case 'websites':config_list 	= ['Nothing','Page Config']
+		case 'ticker_index':config_list	= ['Nothing','Page Config', 'Ticker Index',]
+		case 'testing':config_list 		= ['Nothing','Page Config']
 		case _:st.write(":red[Unknown Page Called = "+page+"]")
 
 	config_list = sorted(config_list)
 	
 	with st.popover('Config'):
-		genre = st.radio(
-		label="Choose Configuration to Display",
-		options=config_list,
-		on_change	=on_change_show_config_selection,
-		args		=(scope, page, widget_key, ),
-		key			=widget_key,
-		)
+		st.radio(
+				label="Choose Configuration to Display",
+				options=config_list,
+				on_change	=on_change_show_config_selection,
+				args		=(scope, page, widget_key, ),
+				key			=widget_key,
+				)
 
 
 def on_change_show_config_selection(scope, page, widget_key):

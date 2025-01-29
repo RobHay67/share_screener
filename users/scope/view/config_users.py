@@ -44,6 +44,6 @@ def show_config_users(scope):
 	with col5:show_config_single_value("download_days", scope.users['json'][user]['download_days'])
 	with col6:show_config_single_value("row_limit", scope.users['json'][user]['row_limit'])
 
-	# st.divider()
+	st.divider()
 	if scope.display['config_key'] != None:
 		show_config_values(scope)
