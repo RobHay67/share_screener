@@ -3,7 +3,7 @@ import streamlit as st
 
 def button_show_chart_settings(scope):
 
-	page = scope.config['display']
+	page = scope.display['page']
 	current_value = scope.page[page]['show']['charts']
 	type_of_button = 'primary' if current_value == True else 'secondary'
 

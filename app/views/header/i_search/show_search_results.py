@@ -8,7 +8,7 @@ from app.views.header.i_search.button_search import seach_for_ticker_button
 
 def show_search_results(scope):
 	
-	page = scope.config['display']
+	page = scope.display['page']
 
 	search_results = scope.page[page]['search_results']
 

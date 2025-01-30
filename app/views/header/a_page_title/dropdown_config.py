@@ -2,7 +2,7 @@ import streamlit as st
 
 
 def dropdown_select_config(scope):
-	page = scope.config['display']
+	page = scope.display['page']
 	widget_key = 'widget_' + page + '_select_config'
 	
 	match page:

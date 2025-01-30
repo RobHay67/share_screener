@@ -3,7 +3,7 @@ import streamlit as st
 
 def search_ticker_by_name(scope):
 
-	page = scope.config['display']
+	page = scope.display['page']
 
 	widget_key = 'widget_' + page + '_search'
 	previous_selection = ''

@@ -8,7 +8,7 @@ from tickers.scope.view.config_tickers import show_config_tickers
 
 
 def router_show_config(scope):
-	page = scope.config['display']
+	page = scope.display['page']
 	config_to_show = scope.page[page]['show']['config']
 
 	match config_to_show:

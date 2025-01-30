@@ -26,7 +26,6 @@ def user_config_pages(scope):
 	# These Setting can be changed for each user
 	# so we need to be able to call when changing user
 	scope.config['row_limit'] = 100
-	scope.config['display'] = 'streamlit_app'
 	scope.config['share_market'] = 'ASX'
 	# scope.config['share_market'] = 'USA'
 	scope.config['download_days'] = '5d'

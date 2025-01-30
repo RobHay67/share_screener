@@ -6,7 +6,7 @@ from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 
 def show_config_tickers(scope):
-	page = scope.config['display']
+	page = scope.display['page']
 	
 	scope_button(scope, "Tickers (Data)", scope.tickers, make_red=True, suffix_only=False)
 	scope_button(scope, "scope.tickers", scope.tickers, make_red=False, suffix_only=False)

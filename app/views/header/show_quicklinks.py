@@ -11,7 +11,7 @@ def router_show_quick_links(scope):
 
 	col1,col2,col3,col4,col5,col6,col7,col8,col9,col10,col11 = st.columns([1.0,   0.5, 0.5, 0.5, 0.5,   0.5, 0.5, 0.5, 0.5, 0.5,    1.0])
 
-	page = scope.config['display']
+	page = scope.display['page']
 	
 	if page == 'screener':
 		# multi tickers possible, so quicklinks rendered against each selection

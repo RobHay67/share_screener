@@ -6,7 +6,7 @@ from tickers.helpers.latest_price import latest_ticker_price
 
 def show_ticker_name(scope):
 
-	page = scope.config['display']
+	page = scope.display['page']
 
 	if page != 'screener':
 		# non screener page - there will  be 1 ticker in worklist

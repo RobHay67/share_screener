@@ -10,7 +10,7 @@ def refresh_page_worklist(scope):
 	#  	ie industry selection trumps a single ticker selection
 	# note that 'random_tickers' is the default for industry_list (special codes runs off this)
 	
-	page = scope.config['display']
+	page = scope.display['page']
 	
 	# Default Values
 	ticker_list = []

@@ -6,26 +6,28 @@ from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 
 def show_config_config(scope):
+
 	scope_button(scope, "Config (App)", scope.config, make_red=True, suffix_only=False)
 	scope_button(scope, "scope.config", scope.config, make_red=False, suffix_only=False)
 	
-	col1,col2,col3,col4,col5,col6,col7,col8,col9 = st.columns(9)
+	col1,col2,col3,col4,col5,col6,col7,col8 = st.columns([1.5,1.5,1,1,1,1,1,1])
 	with col1:scope_button(scope, "scope.config['project_description']", scope.config['project_description'])
 	with col2:scope_button(scope, "scope.config['project_start_time']", scope.config['project_start_time'])
 	with col3:scope_button(scope, "scope.config['page_schema']", scope.config['page_schema'])
 	with col4:scope_button(scope, "scope.config['page_list']", scope.config['page_list'])
 	with col5:scope_button(scope, "scope.config['ticker_search']", scope.config['ticker_search'])
 	with col6:scope_button(scope, "scope.config['row_limit']", scope.config['row_limit'])
-	with col7:scope_button(scope, "scope.config['display']", scope.config['display'])
-	with col8:scope_button(scope, "scope.config['share_market']", scope.config['share_market'])
-	with col9:scope_button(scope, "scope.config['download_days']", scope.config['download_days'])
+	with col7:scope_button(scope, "scope.config['share_market']", scope.config['share_market'])
+	with col8:scope_button(scope, "scope.config['download_days']", scope.config['download_days'])
 
-	col1,col2,col3,col4,col5,col6,col7,col8,col9 = st.columns(9)
+	with col1:show_config_single_value("project_description", scope.config['project_description'])
+	with col2:show_config_single_value("project_start_time", scope.config['project_start_time'])
 	with col6:show_config_single_value("row_limit", scope.config['row_limit'])
-	with col7:show_config_single_value("display", scope.config['display'])
-	with col8:show_config_single_value("share_market", scope.config['share_market'])
-	with col9:show_config_single_value("download_days", scope.config['download_days'])
+	with col7:show_config_single_value("share_market", scope.config['share_market'])
+	with col8:show_config_single_value("download_days", scope.config['download_days'])
 
+	col1,col2 = st.columns([3,6])
+	with col2:scope_button(scope, "scope.config['dropdowns']", scope.config['dropdowns'], make_red=False, suffix_only=False)
 	col1,col2,col3,col4,col5,col6,col7,col8,col9 = st.columns(9)
 	with col4:scope_button(scope, "scope.config['dropdowns']['markets']", scope.config['dropdowns']['markets'])
 	with col5:scope_button(scope, "scope.config['dropdowns']['industries']", scope.config['dropdowns']['industries'])

@@ -3,7 +3,7 @@ def refresh_worklist_long_description(scope):
 	# cant download from cloud, there probably wont be
 	# a local file anyway.
 
-	page = scope.config['display']
+	page = scope.display['page']
 	work_list_with_long_desc = []
 	print('$'*99)
 	print(scope.page[page]['worklist'])

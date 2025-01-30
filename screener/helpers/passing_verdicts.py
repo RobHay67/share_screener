@@ -2,7 +2,7 @@
 
 def passing_verdict_list(scope):
 	# Generate a list of tickers with an overall passing result
-	page = scope.config['display']
+	page = scope.display['page']
 	verdict_list = []
 
 	for ticker in scope.page[page]['worklist']:

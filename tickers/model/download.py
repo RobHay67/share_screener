@@ -12,7 +12,7 @@ from tickers.views.msg_no_tickers import no_tickers_selected
 def download_ticker_data(scope):
 	# utilising the y_finance platform
 
-	page = scope.config['display']
+	page = scope.display['page']
 	ticker_download_list = scope.page[page]['worklist']
 	
 	scope_yf_config(scope)

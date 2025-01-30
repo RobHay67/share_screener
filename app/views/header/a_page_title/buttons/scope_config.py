@@ -2,7 +2,7 @@ import streamlit as st
 
 
 def button_show_app_scope(scope):
-	page = scope.config['display']
+	page = scope.display['page']
 	current_value = scope.page[page]['show']['scope']
 	type_of_button = 'primary' if current_value == True else 'secondary'
 

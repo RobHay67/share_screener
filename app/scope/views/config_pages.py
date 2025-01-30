@@ -10,7 +10,7 @@ def show_config_pages(scope):
 	scope_button(scope, "Pages", scope.page, make_red=True, suffix_only=False)
 	scope_button(scope, "scope.page", scope.page, make_red=False, suffix_only=False)
 
-	page = scope.config['display']
+	page = scope.display['page']
 	scope_button(scope, "scope.page[page]", scope.page[page], make_red=False, suffix_only=False)
 	scope_button(scope, '[page] = '+page, scope.page[page], make_red=False, suffix_only=False)
 

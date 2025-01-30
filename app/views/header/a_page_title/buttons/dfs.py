@@ -3,7 +3,7 @@ import streamlit as st
 
 def button_show_ticker_config(scope):
 
-	page = scope.config['display']
+	page = scope.display['page']
 	current_value = scope.page[page]['show']['config_ticker_data']
 	type_of_button = 'primary' if current_value == True else 'secondary'
 
@@ -21,7 +21,7 @@ def button_show_ticker_config(scope):
 
 def ticker_config_status(scope):
 
-	page = scope.config['display']
+	page = scope.display['page']
 
 	previous_value = scope.page[page]['show']['config_ticker_data']
 	new_value = True if previous_value == False else False

@@ -8,7 +8,7 @@ from screener.scope.view.config_strategy import show_config_strategy
 # Show/Hide additional config information or settings as specified by the user
 
 def router_show_settings(scope):
-	page = scope.config['display']
+	page = scope.display['page']
 
 	match page:
 		case 'screener':

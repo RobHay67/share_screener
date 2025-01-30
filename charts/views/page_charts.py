@@ -10,7 +10,7 @@ from charts.views.main_chart import format_main_chart
 # Page Configuration
 scope = st.session_state
 page = 'chart'
-scope.config['display'] = page
+scope.display['page'] = page
 
 show_page_header(scope)
 

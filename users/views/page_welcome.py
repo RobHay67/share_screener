@@ -5,7 +5,7 @@ from app.views.header.a_page_title.router import page_title_layer
 
 
 def show_welcome_page(scope):
-	scope.config['display'] = 'welcome'
+	scope.display['page'] = 'welcome'
 
 	page_title_layer(scope)
 	st.write('Welcome to the Share Picker Appliction.')

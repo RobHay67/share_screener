@@ -12,7 +12,7 @@ from ticker_index.scope.views.download.download_button import button_download_ti
 
 # Page Configuration
 scope = st.session_state
-scope.config['display'] = 'ticker_index'
+scope.display['page'] = 'ticker_index'
 
 show_page_header(scope)
 

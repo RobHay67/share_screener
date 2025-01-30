@@ -13,7 +13,7 @@ def router_show_ticker_selectors(scope):
 
 	col1,col2,col3,col4 = st.columns([2.0, 2.0, 2.0, 6.0])  #12
 	
-	page = scope.config['display']
+	page = scope.display['page']
 	layer_title = 'Ticker(s) Selectors'
 
 	if page == 'screener':

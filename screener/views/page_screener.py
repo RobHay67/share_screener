@@ -17,7 +17,7 @@ from screener.views.verdicts.controller import show_verdicts
 # Page Configuration
 scope = st.session_state
 page = 'screener'
-scope.config['display'] = page
+scope.display['page'] = page
 
 show_page_header(scope)
 

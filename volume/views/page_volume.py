@@ -12,7 +12,7 @@ from markets.schema import opening_hours
 # Page Configuration
 scope = st.session_state
 page = 'volume'
-scope.config['display'] = page
+scope.display['page'] = page
 
 show_page_header(scope)
 

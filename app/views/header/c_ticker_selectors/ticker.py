@@ -3,7 +3,7 @@ import streamlit as st
 
 def select_a_ticker(scope):
 
-	page = scope.config['display']
+	page = scope.display['page']
 	
 	widget_key = 'widget_' + page + '_select_ticker'
 	display_name = 'Select a Ticker'

@@ -9,7 +9,7 @@ def ticker_load_and_download_errors_dropdown(scope):
 	
 	# Same as render_worklist_dropdown but only the errirs only 
 
-	page = scope.config['display']
+	page = scope.display['page']
 
 	widget_key = 'widget_' + page + '_load_errors'
 	

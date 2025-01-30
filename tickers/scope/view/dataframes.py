@@ -3,7 +3,7 @@ import streamlit as st
 
 def show_page_dataframes(scope):
 	# Just the dataframes relevant for a particular page
-	page = scope.config['display']
+	page = scope.display['page']
 
 	selected_ticker = scope.page[page]['show']['ticker_file'].split("---")
 	ticker = selected_ticker[0]

@@ -6,7 +6,7 @@ from app.scope.views.router import route_to_config_page
 
 
 scope = st.session_state
-scope.config['display'] = 'scope'
+scope.display['page'] = 'scope'
 
 show_page_header(scope)
 

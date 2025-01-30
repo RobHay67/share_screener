@@ -14,7 +14,7 @@ def button_reset_page(scope):
 
 
 def reset_render_status(scope):
-	page = scope.config['display']
+	page = scope.display['page']
 	
 	scope.page[page]['show']['trials'] 		= False
 	scope.page[page]['show']['strategy'] 	= False

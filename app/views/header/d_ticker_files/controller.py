@@ -17,7 +17,7 @@ from app.scope.model.worklists.long_desc import refresh_worklist_long_descriptio
 
 
 def show_ticker_load_and_col_adding(scope):
-	page = scope.config['display']
+	page = scope.display['page']
 	col1,col2 = st.columns([6.0, 6.0])  #12.0
 	if page in ['chart', 'intraday', 'volume', 'screener',]:
 		with col1:

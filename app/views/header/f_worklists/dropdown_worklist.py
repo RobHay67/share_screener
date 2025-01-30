@@ -10,7 +10,7 @@ import streamlit as st
 
 def worklist_dropdown(scope):
 
-	page = scope.config['display']
+	page = scope.display['page']
 	worklist = scope.page[page]['worklist_long_desc']
 	widget_key = 'widget_' + page + '_worklist_long_desc'
 	widget_label = determine_label_name(worklist)
