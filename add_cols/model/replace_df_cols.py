@@ -4,7 +4,7 @@
 def replace_page_df_columns(scope, page, ticker):
 
 	schema_group = scope.tickers[ticker][page]['schema_group']
-	page_ticker = scope.tickers[ticker][page]
+	ticker_for_page = scope.tickers[ticker][page]
 	# 
 				
 	# Some pages do not have any dataframes
@@ -12,14 +12,14 @@ def replace_page_df_columns(scope, page, ticker):
 	if schema_group != None:			
 		
 		# Iterate through each column adder for the page
-		for schema_key, replace_column_adder in page_ticker['re_run_functions'].items():
+		for schema_key, replace_column_adder in ticker_for_page['re_run_functions'].items():
 			
 			# Only replace the columns if requested to do so for 
 			# this particular column adder
 			if replace_column_adder == True:	
 			
 				
-				ticker_df = page_ticker['df']
+				ticker_df = ticker_for_page['df']
 				
 				# Call the column adding function for this schema_key
 				# This function will also remove any previous columns
@@ -29,15 +29,15 @@ def replace_page_df_columns(scope, page, ticker):
 				
 				# Set the re_run_functions status to false 
 				# to prevent refreshing unnecesarily
-				page_ticker['re_run_functions'][schema_key] = False
+				ticker_for_page['re_run_functions'][schema_key] = False
 
 
 				if schema_group == 'trials':
 					# set stutus to recalc overall verdict for this ticker
-					page_ticker['verdicts']['replace_verdict'] = True
+					ticker_for_page['verdicts']['re_run_trials'] = True
 
 
 					# Store the most date recent test result - it should be the first row				
-					page_ticker['verdicts']['trials'][schema_key] = ticker_df[schema_key].iloc[0]
+					ticker_for_page['verdicts']['trial_verdicts'][schema_key] = ticker_df[schema_key].iloc[0]
 
 

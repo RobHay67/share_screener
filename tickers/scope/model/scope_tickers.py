@@ -38,11 +38,11 @@ def create_dictionary_to_store_ticker_data(scope, ticker):
 	# To Store Test (trial) Results for the SCREENER page
 	page = 'screener'
 	scope.tickers[ticker][page]['verdicts'] = {}
-	scope.tickers[ticker][page]['verdicts']['verdict'] = None				# the overall result from all tests - they need to all pass
-	scope.tickers[ticker][page]['verdicts']['replace_verdict'] = False		# if this verdict needs to be determined again
-	scope.tickers[ticker][page]['verdicts']['trials'] = {}					# create a dict of all possible tests which is
-	for trial in scope.trials['trial_list']:								#   then utilised to save that test result
-		scope.tickers[ticker][page]['verdicts']['trials'][trial] = None		#   which will be a pass or fail result
+	scope.tickers[ticker][page]['verdicts']['overall_verdict'] = None			# the overall result from all tests - they need to all pass
+	scope.tickers[ticker][page]['verdicts']['re_run_trials'] = False			# if this verdict needs to be determined again
+	scope.tickers[ticker][page]['verdicts']['trial_verdicts'] = {}				# create a dict of all possible tests which is
+	for trial in scope.trials['trial_list']:									#   then utilised to save that test result
+		scope.tickers[ticker][page]['verdicts']['trial_verdicts'][trial] = None	#   which will be a pass or fail result
 	
 	refresh_ticker_selector_lists(scope)
 

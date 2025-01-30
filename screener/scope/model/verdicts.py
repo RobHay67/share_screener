@@ -10,18 +10,18 @@ def determine_verdict_for_ticker(scope, ticker):
 
 	if page == 'screener':
 		# determine an overall verdict for this ticker
-		if scope.tickers[ticker][page]['verdicts']['replace_verdict']:
+		if scope.tickers[ticker][page]['verdicts']['re_run_trials']:
 	
 			final_verdict = 'pass'
 			# Determine a verdict/test result for this ticker
 			# - but only assess currently active trials 
 			# - a trial may have since been turned off
 			for trial in scope.trials['active_list']:
-				if scope.tickers[ticker][page]['verdicts']['trials'][trial] not in [ 'pass', None ]:
+				if scope.tickers[ticker][page]['verdicts']['trial_verdicts'][trial] not in [ 'pass', None ]:
 					final_verdict = 'fail'
 					break
-			scope.tickers[ticker][page]['verdicts']['verdict'] = final_verdict
+			scope.tickers[ticker][page]['verdicts']['overall_verdict'] = final_verdict
 			# reset request so this does not re-run unncessarily
-			scope.tickers[ticker][page]['verdicts']['replace_verdict'] = False
+			scope.tickers[ticker][page]['verdicts']['re_run_trials'] = False
 
 

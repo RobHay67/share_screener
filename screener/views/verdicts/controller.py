@@ -1,7 +1,7 @@
 # Display the Results from all the tests run on the ticker data
 # - limit to tickers in the page worklist
 # - ensure we have actually added columns to the ticker
-# - expecting the verdicts to be stored in scope.tickers[ticker]['trials']['verdict']
+# - expecting the verdicts to be stored in scope.tickers[ticker]['trials']['overall_verdict']
 
 
 # import streamlit as st

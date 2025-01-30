@@ -8,7 +8,7 @@ def passing_verdict_list(scope):
 	for ticker in scope.page[page]['worklist']:
 		# Only mined tickers can have verdicts
 		if ticker in scope.page[page]['loaded_ticker_list']:
-			if scope.tickers[ticker][page]['verdicts']['verdict'] == 'pass':
+			if scope.tickers[ticker][page]['verdicts']['overall_verdict'] == 'pass':
 				verdict_list.append(ticker)
 
 	return verdict_list
