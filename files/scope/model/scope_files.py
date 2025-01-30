@@ -1,7 +1,5 @@
 import os
 
-from app.views.widgets.cols_three import three_cols
-
 
 def scope_files(scope):
 

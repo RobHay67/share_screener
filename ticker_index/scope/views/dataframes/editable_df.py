@@ -12,9 +12,9 @@ from ticker_index.scope.views.dataframes.button_cancel_edit import button_cancel
 
 def render_editable_ticker_index_df(scope):
     
-	if scope.ticker_index['render']['editable_df']:
+	if scope.ticker_index['show']['editable_df']:
 		
-		widget_key = 'widget_' + 'edit_ticker_index_' + str(scope.ticker_index['render']['editable_df_key'])
+		widget_key = 'widget_' + 'edit_ticker_index_' + str(scope.ticker_index['editable_df_key'])
 		uneditable_cols = uneditable_columns(scope)
 		
 		col1,col2,col3 = st.columns([6,3,3]) #12
@@ -32,7 +32,7 @@ def render_editable_ticker_index_df(scope):
 			disabled=uneditable_cols
 			)
 
-		if scope.ticker_index['render']['save_edited_df']:
+		if scope.ticker_index['save_edited_df']:
 			save_changes_into_ticker_index(scope, edited_df)
 
 

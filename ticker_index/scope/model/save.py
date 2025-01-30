@@ -20,7 +20,7 @@ def save_changes_into_ticker_index(scope, edited_df):
 
 	scope.ticker_index['df'] = edited_df
 	save_index(scope)
-	scope.ticker_index['render']['save_edited_df'] = False
+	scope.ticker_index['save_edited_df'] = False
 
 
 

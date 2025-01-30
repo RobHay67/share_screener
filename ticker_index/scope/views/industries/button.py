@@ -19,12 +19,12 @@ def button_industry_report(scope):
 
 def change_industry_report_status(scope):
 
-	previous_value = scope.ticker_index['render']['industry_report']
+	previous_value = scope.ticker_index['show']['industry_report']
 	new_value = True if previous_value == False else False
 
-	scope.ticker_index['render']['industry_report'] = new_value
+	scope.ticker_index['show']['industry_report'] = new_value
 
 	if new_value == True:
-		scope.ticker_index['render']['ticker_index'] = False
-		scope.ticker_index['render']['editable_df'] = False
+		scope.ticker_index['show']['ticker_index'] = False
+		scope.ticker_index['show']['editable_df'] = False
 

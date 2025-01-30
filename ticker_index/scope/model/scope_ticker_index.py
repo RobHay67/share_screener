@@ -12,13 +12,14 @@ def scope_ticker_index(scope):
 	scope.ticker_index['schema'] = schema
 	scope.ticker_index['df'] = {}
 	scope.ticker_index['download_cache'] = {}
+	scope.ticker_index['save_edited_df'] = False				# Flag to save changes
+	scope.ticker_index['editable_df_key'] = 1					# ??? to cancel changes (dont save)
 	
-	scope.ticker_index['render'] = {}
-	scope.ticker_index['render']['ticker_index'] = True
-	scope.ticker_index['render']['industry_report'] = False
-	scope.ticker_index['render']['save_edited_df'] = False
-	scope.ticker_index['render']['editable_df'] = False
-	scope.ticker_index['render']['editable_df_key'] = 1
+	scope.ticker_index['show'] = {}
+	scope.ticker_index['show']['ticker_index'] = True			# show the ticker index
+	scope.ticker_index['show']['industry_report'] = False		# show the industry report
+	scope.ticker_index['show']['editable_df'] = False			# show a ticker index that can be edited
+	
 	
 	load_ticker_index_file(scope)
 

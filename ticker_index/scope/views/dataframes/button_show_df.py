@@ -18,10 +18,10 @@ def button_show_ticker_index(scope):
 
 
 def change_show_ticker_index_status(scope):
-	previous_value = scope.ticker_index['render']['ticker_index']
+	previous_value = scope.ticker_index['show']['ticker_index']
 	new_value = True if previous_value == False else False
-	scope.ticker_index['render']['ticker_index'] = new_value
+	scope.ticker_index['show']['ticker_index'] = new_value
 
 	if new_value == True:
-		scope.ticker_index['render']['industry_report'] = False
-		scope.ticker_index['render']['editable_df'] = False
+		scope.ticker_index['show']['industry_report'] = False
+		scope.ticker_index['show']['editable_df'] = False

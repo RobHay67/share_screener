@@ -26,4 +26,4 @@ def reset_render_status(scope):
 	scope.page[page]['search_results'] 		= {}
 
 	if page == 'index':
-		scope.ticker_index['render']['industry_report'] = False
+		scope.ticker_index['show']['industry_report'] = False

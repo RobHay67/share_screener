@@ -5,7 +5,7 @@ import streamlit as st
 def render_industry_report(scope):
 
 
-	if scope.ticker_index['render']['industry_report']:
+	if scope.ticker_index['show']['industry_report']:
 
 		st.subheader('Ticker Index File contains the following Industries')
 

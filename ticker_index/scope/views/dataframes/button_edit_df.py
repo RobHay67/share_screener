@@ -17,12 +17,12 @@ def button_edit_ticker_index_df(scope):
 	return button
 
 def change_editable_df_status(scope):
-	previous_value = scope.ticker_index['render']['editable_df']
+	previous_value = scope.ticker_index['show']['editable_df']
 	new_value = True if previous_value == False else False
-	scope.ticker_index['render']['editable_df'] = new_value
+	scope.ticker_index['show']['editable_df'] = new_value
 
 	if new_value == True:
-		scope.ticker_index['render']['industry_report'] = False
-		scope.ticker_index['render']['ticker_index'] = False
+		scope.ticker_index['show']['industry_report'] = False
+		scope.ticker_index['show']['ticker_index'] = False
 
 

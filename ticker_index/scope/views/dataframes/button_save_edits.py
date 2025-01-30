@@ -18,7 +18,7 @@ def button_save_ticker_index(scope):
 
 
 def save_changes_to_ticker_index(scope):
-	scope.ticker_index['render']['save_edited_df'] = True
+	scope.ticker_index['save_edited_df'] = True
 
 
 
