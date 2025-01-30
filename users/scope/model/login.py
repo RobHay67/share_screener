@@ -4,7 +4,7 @@ from charts.scope.model.scope_charts import chart_active_list
 from charts.scope.model.scope_charts import chart_column_adders
 
 # from users.views
-from users.views.page_welcome import show_welcome_page
+from users.page_welcome import show_welcome_page
 
 def login_user(scope, login_name):
 	# Store User params

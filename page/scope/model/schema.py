@@ -9,13 +9,13 @@ page_schema = {
 		title:"Welcome",
 		icon:"🔒",
 		default:True,
-		path:"users/views/page_welcome.py"
+		path:"users/page_welcome.py"
 		},  
 	'logout'		:{
 		title:"Logout",
 		icon:"🔒",
 		default:True,
-		path:"users/views/page_logout.py"
+		path:"users/page_logout.py"
 		},  
 	"chart"			:{
 		title:"Charting",
@@ -27,19 +27,19 @@ page_schema = {
 		title:"Intra Day",
 		icon:"🌤️",
 		default:False,
-		path:"intraday/views/page_intraday.py"
+		path:"intraday/page_intraday.py"
 		},  
 	'volume'		:{
 		title:"Volume",
 		icon:"🔊",
 		default:False,
-		path:"volume/views/page_volume.py"
+		path:"volume/page_volume.py"
 		}, 
 	'research'		:{
 		title:"Research",
 		icon:"🕵",
 		default:False,
-		path:"research/views/page_research.py"
+		path:"research/page_research.py"
 		}, 
 	'screener'		:{
 		title:"Screener",
@@ -51,24 +51,24 @@ page_schema = {
 		title:"Websites",
 		icon:"🌐",
 		default:False,
-		path:"websites/views/page_websites.py"
+		path:"websites/page_websites.py"
 		}, 
 	'ticker_index'	:{
 		title:"Ticker Index",
 		icon:"🗄️",
 		default:False,
-		path:"ticker_index/scope/views/page_ticker_index.py"
+		path:"ticker_index/page_ticker_index.py"
 		}, 
 	'scope'		:{
 		title:"Scope",
 		icon:"⚙️",
 		default:False,
-		path:"config/scope/views/page_scope.py"
+		path:"config/page_scope.py"
 		}, 
 	'testing'		:{
 		title:"Testing",
 		icon:"🔬",
 		default:False,
-		path:"page/views/page_test.py"
+		path:"page/page_test.py"
 		}, 
 }
