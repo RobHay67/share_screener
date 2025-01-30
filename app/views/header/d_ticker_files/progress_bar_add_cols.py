@@ -1,34 +1,35 @@
 import streamlit as st
 from add_cols.model.replace_page_df import replace_page_df
 from add_cols.model.replace_df_cols import replace_page_df_columns
-from screener.scope.model.verdicts import determine_verdict_for_ticker
-from add_cols.model.list_builder import create_list_of_tickers_to_add_columns
+from add_cols.model.re_run_verdicts import determine_verdict_for_ticker
+from add_cols.helpers.list_builder import create_list_of_tickers_to_add_columns
+from tickers.helpers.count_page_tickers import count_page_tickers
 
 
-def add_extra_cols_progress_bar(scope, page):
-	status_added_columns = False
+def progress_bar_for_adding_extra_columns(scope, page):
 	ticker_list = create_list_of_tickers_to_add_columns(scope, page)
 	number_to_add_columns = len(ticker_list)
 	app_row_limit = int(scope.config['row_limit'])
+	status_just_added_columns = False
 
 	if number_to_add_columns > 0:
-		# st.write(':red[I am adding olumns again]')
-		if status_added_columns == False:
-			my_bar = st.progress(0)
-			status_added_columns = True
+		my_bar = st.progress(0)
+		status_just_added_columns = True
+		add_cols_counter=0
 
-		for counter, ticker in enumerate(ticker_list):
-			poc = int(((counter+1) / number_to_add_columns ) * 100)
-			my_bar.progress(poc, text='Adding columns to ticker ('+ticker+')')
+		for ticker in ticker_list:
+			add_cols_counter+=1
+			poc = int(((add_cols_counter) / number_to_add_columns ) * 100)
+			my_bar.progress(poc, text='Adding columns to > '+ticker)
 			replace_page_df(scope, page, ticker, app_row_limit)
 			replace_page_df_columns(scope, page, ticker)
 			determine_verdict_for_ticker(scope, ticker)
-		
-	# What to show after we have added columns or not added any columns
-	if status_added_columns:
-		success_string = ':green[Added Columns to ( '+str(number_to_add_columns)+' ) ticker files]'
-		my_bar.progress(100, text=success_string)
+	
+	# Report (columns just added) (or nothing to do)
+	load_total = str(len(scope.tickers.keys()))
+	page_total = str(count_page_tickers(scope))
+	if status_just_added_columns:
+		my_bar.empty()
+		st.write(':green[Added Columns to '+str(load_total)+' ticker(s)]')
 	else:
-		# my_bar = st.progress(100, text='No Files available - cannot add any columns')
-		st.write(':green[Previously Added Columns - nothing to do]')
-		# st.write(':green[('+total_loaded+') files - previously loaded]')
+		st.write(':blue[Total Added Columns Tickers = '+load_total+' | Loaded for Page = '+page_total+']')

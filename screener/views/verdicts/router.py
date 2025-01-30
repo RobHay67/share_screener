@@ -6,7 +6,7 @@
 
 # import streamlit as st
 
-from screener.helpers.passing_verdicts import passing_verdict_list
+from add_cols.helpers.verdicts_passing import passing_verdict_list
 from screener.views.verdicts.failed_all_tests import show_all_verdicts_failed
 from screener.views.verdicts.passed_too_many import show_too_many_verdicts
 from screener.views.verdicts.passed_tests import show_passing_verdicts

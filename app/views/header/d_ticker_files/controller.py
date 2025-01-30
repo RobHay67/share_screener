@@ -1,7 +1,7 @@
 import streamlit as st
 
-from app.views.header.d_ticker_files.progress_bar_load_tickers import load_tickers_progress_bar	
-from app.views.header.d_ticker_files.progress_bar_add_cols import add_extra_cols_progress_bar
+from app.views.header.d_ticker_files.progress_bar_load_tickers import progress_bar_for_loading_tickers	
+from app.views.header.d_ticker_files.progress_bar_add_cols import progress_bar_for_adding_extra_columns
 from app.scope.model.worklists.long_desc import refresh_worklist_long_description
 
 
@@ -22,12 +22,12 @@ def show_ticker_load_and_col_adding(scope):
 	if page in ['chart', 'intraday', 'volume', 'screener',]:
 		with col1:
 			# loads ticker data as well
-			load_tickers_progress_bar(scope) 
+			progress_bar_for_loading_tickers(scope) 
 			refresh_worklist_long_description(scope)
 		with col2:
-			# for volume we dont need to do this step
+			# for the volume pagewe dont need to do this step
 			if page != 'volume':
-				add_extra_cols_progress_bar(scope, page)      # will add/update the columns as well!
+				progress_bar_for_adding_extra_columns(scope, page)      # will add/update the columns as well!
 
 
 

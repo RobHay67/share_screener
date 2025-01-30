@@ -12,11 +12,11 @@ def show_config_tickers(scope):
 	scope_button(scope, "scope.tickers", scope.tickers, make_red=False, suffix_only=False)
 	scope_button(scope, "[ticker] i.e. ANZ.AX", scope.tickers, make_red=False, suffix_only=False)
 	
-	ticker_list = scope.tickers.keys()
+	ticker_list = sorted(scope.tickers.keys())
 	ticker = scope_dropdown(scope, 'Ticker', ticker_list)
 
 	if len(ticker_list)>0:
-		col1,col2 = st.columns([1,5])
+		col1,col2 = st.columns([1,5]) #6
 		with col1:scope_button(scope, "scope.tickers["+ticker+"]['df']", scope.tickers[ticker]['df'])
 		with col2:scope_button(scope, "scope.tickers["+ticker+"]['page']", scope.config['page_list'])
 		
@@ -42,7 +42,7 @@ def show_config_tickers(scope):
 	else:
 		scope_button(scope, "Detailed Config Not Available until tickers loaded", scope.tickers, make_red=True, suffix_only=False)
 
-		col1,col2 = st.columns([1,4])
+		col1,col2 = st.columns([1,5])
 		with col1:scope_button(scope, "scope.tickers['ticker']['df']", scope.tickers)
 		with col2:scope_button(scope, "scope.tickers['ticker]['page']", scope.tickers)
 

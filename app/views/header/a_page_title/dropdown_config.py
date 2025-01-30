@@ -20,8 +20,9 @@ def dropdown_select_config(scope):
 	
 	with st.popover('Config', use_container_width=True):
 		st.radio(
-				label="Choose Configuration to Display",
-				options=config_list,
+				label		="Choose Configuration to Display",
+				index		=1,
+				options		=config_list,
 				on_change	=on_change_show_config_selection,
 				args		=(scope, page, widget_key, ),
 				key			=widget_key,

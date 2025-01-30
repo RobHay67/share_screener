@@ -18,6 +18,7 @@ def replace_page_df_columns(scope, page, ticker):
 			# this particular column adder
 			if replace_column_adder == True:	
 			
+				print('Replacing the Page Ticker df columns     Page = ',page, 'ticker = ', ticker)
 				
 				ticker_df = ticker_for_page['df']
 				

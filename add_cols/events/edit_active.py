@@ -1,4 +1,4 @@
-from screener.scope.model.remove_test_result import remove_test_result_column
+from add_cols.helpers.trial_remove_result import remove_trial_result_column
 
 # This event is triggered when a column adder is changed to either 
 #
@@ -23,7 +23,7 @@ def edit_active_event(scope, schema_group, schema_key, status):
 				# if the users has deactivated this test
 				# and rerun the overall test
 				if page == 'screener' and status == False:
-					remove_test_result_column(scope, ticker, schema_key)
+					remove_trial_result_column(scope, ticker, schema_key)
 					scope.tickers[ticker][page]['verdicts']['re_run_trials'] = True
 
 	# Update the Active lists for charts or trials

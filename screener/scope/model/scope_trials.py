@@ -7,7 +7,7 @@
 # trials_config are the current settings!!!
 
 from screener.scope.model.schema import trials_schema
-from screener.scope.model.active_list import trial_active_list
+from add_cols.helpers.trial_active_list import trial_active_list
 from screener.scope.model.column_adders import trial_template_column_adders
 from screener.scope.model.settings_for_user import trial_settings_for_user
 

@@ -12,7 +12,7 @@ import streamlit as st
 
 from app.views.header.controller import show_page_header
 from screener.views.active_trials.active_tests import show_active_trials
-from screener.views.verdicts.controller import show_verdicts
+from screener.views.verdicts.router import show_verdicts
 
 # Page Configuration
 scope = st.session_state

@@ -37,8 +37,18 @@ print('='*66)
 for i in range(3):print('')
 
 print('='*66)
-print('Total Keys in Scope = ', len(scope))
-for count, key in enumerate(sorted(st.session_state)):print(count+1, key)
+counter = 0; widgets = 0;hide_widgets = True
+for key in sorted(st.session_state):
+	# print(counter)
+	if key[:7] == 'widget_':
+		widgets+=1
+		if hide_widgets==False:print(widgets, key)
+	else:
+		counter+=1
+		print(counter, key)
+print('-'*66)
+print('Total Scope Keys   = ', counter)
+print('Total Widgets Keys = ', widgets)
 print('='*66)
 
 

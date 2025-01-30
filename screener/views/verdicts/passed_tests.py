@@ -1,5 +1,5 @@
 import streamlit as st
-from screener.helpers.tab_names import determine_tab_names
+from screener.views.tab_names import determine_tab_names
 
 from app.views.navigation.button import button_page_link
 from app.views.navigation.links import website_hyperlink
