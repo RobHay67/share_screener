@@ -17,7 +17,7 @@ def trend_cols(scope, trial, ticker, df):
 	match trend:
 		case 'up'	:df['temp_trend'] = np.where( df[column] > df['temp_shifted'], 1, 0 )
 		case 'down'	:df['temp_trend'] = np.where( df[column] < df['temp_shifted'], 1, 0 )
-		case '_':print('ERROR - Unknown TREND requested')
+		case _ 		:print('ERROR - Unknown TREND requested')
 
 	# Calculate the total number of Pass (on a rolling basis)
 	df['temp_trend_total'] = df['temp_trend'].rolling(timespan, min_periods=1).sum().astype(int)

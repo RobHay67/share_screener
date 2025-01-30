@@ -1,6 +1,6 @@
 import streamlit as st
 
-from app.views.header.controller import show_page_header
+from page.header.controller import show_page_header
 from tickers.model.y_finance.meta_data.metadata import fetch_yfinance_metadata
 
 from research.views.info import company_general

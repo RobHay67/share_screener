@@ -1,10 +1,10 @@
 import streamlit as st
 
 
-from app.views.widgets.active import edit_active
-from app.views.widgets.number import edit_number
-from app.views.widgets.ohlc import edit_ohlc
-from app.views.widgets.charts.colour import edit_colour
+from page.widgets.active import edit_active
+from page.widgets.number import edit_number
+from page.widgets.ohlc import edit_ohlc
+from page.widgets.charts.colour import edit_colour
 
 
 def moving_average_settings(scope, schema_key):  # SMA or EMA

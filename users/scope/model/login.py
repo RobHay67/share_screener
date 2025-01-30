@@ -1,5 +1,5 @@
-from screener.scope.model.scope_trials import trial_active_list
-from screener.scope.model.scope_trials import trial_template_column_adders
+from trials.scope.model.scope_trials import trial_active_list
+from trials.scope.model.scope_trials import trial_template_column_adders
 from charts.scope.model.scope_charts import chart_active_list
 from charts.scope.model.scope_charts import chart_column_adders
 

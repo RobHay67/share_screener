@@ -1,8 +1,8 @@
 import streamlit as st
-from app.scope.views.buttons.button_choose_scope import scope_button
-from app.scope.views.buttons.button_data_type import data_type_button
-from app.scope.views.buttons.show_config_value import show_config_single_value, show_config_values
-from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
+from config.scope.views.buttons.button_choose_scope import scope_button
+from config.scope.views.buttons.button_data_type import data_type_button
+from config.scope.views.buttons.show_config_value import show_config_single_value, show_config_values, show_config_note
+from config.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 def show_config_charts(scope):
 
@@ -18,7 +18,13 @@ def show_config_charts(scope):
 	with col6:scope_button(scope, "scope.charts['primary_height']", scope.charts['primary_height'])
 	with col7:scope_button(scope, "scope.charts['total_height']", scope.charts['total_height'])
 	with col8:scope_button(scope, "scope.charts['user_config']", scope.charts['user_config'])
+	
 	col1,col2,col3,col4,col5,col6,col7,col8 = st.columns(8)
+	with col1:show_config_note("schema", 'actual code for every chart')
+	with col2:show_config_note("chart_list", 'list of every chart available')
+	with col3:show_config_note("active_list", 'list of every ACTIVE chart')
+	with col4:show_config_note("template_col_adders", 'dictionary of every chart/overlay which requires column adders. Value is the active status')
+
 	with col6:show_config_single_value("primary_height", scope.charts['primary_height'])
 	with col7:show_config_single_value("total_height", scope.charts['total_height'])
 

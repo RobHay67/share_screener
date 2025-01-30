@@ -1,6 +1,6 @@
 import streamlit as st
 
-from app.views.header.controller import show_page_header
+from page.header.controller import show_page_header
 
 
 # Page Configuration

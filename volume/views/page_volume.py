@@ -3,7 +3,7 @@ from datetime import datetime
 from datetime import timedelta
 import pytz
 
-from app.views.header.controller import show_page_header
+from page.header.controller import show_page_header
 from volume.views.input_volume import view_input_volume
 from volume.views.prediction import view_prediction
 from markets.schema import opening_hours

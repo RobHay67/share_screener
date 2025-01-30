@@ -1,8 +1,8 @@
 import streamlit as st
-from app.scope.views.buttons.button_choose_scope import scope_button
-from app.scope.views.buttons.button_data_type import data_type_button
-from app.scope.views.buttons.show_config_value import show_config_single_value, show_config_values
-from app.scope.views.buttons.dropdown_choose_scope import scope_dropdown
+from config.scope.views.buttons.button_choose_scope import scope_button
+from config.scope.views.buttons.button_data_type import data_type_button
+from config.scope.views.buttons.show_config_value import show_config_single_value, show_config_values
+from config.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 
 def show_config_verdicts(scope):

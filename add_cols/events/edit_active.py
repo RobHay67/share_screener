@@ -1,4 +1,4 @@
-from add_cols.helpers.trial_remove_result import remove_trial_result_column
+from trials.helpers.trial_remove_result import remove_trial_result_column
 
 # This event is triggered when a column adder is changed to either 
 #

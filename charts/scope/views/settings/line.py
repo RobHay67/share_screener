@@ -1,8 +1,8 @@
 import streamlit as st
 
-from app.views.widgets.active import edit_active
-from app.views.widgets.number import edit_number
-from app.views.widgets.ohlc import edit_ohlc, edit_ohlc_active_col
+from page.widgets.active import edit_active
+from page.widgets.number import edit_number
+from page.widgets.ohlc import edit_ohlc, edit_ohlc_active_col
 
 def line_settings(scope):
 	

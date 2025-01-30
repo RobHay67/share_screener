@@ -1,6 +1,6 @@
 import streamlit as st
 
-from app.views.header.controller import show_page_header
+from page.header.controller import show_page_header
 from ticker_index.scope.views.industries.report import render_industry_report
 from ticker_index.scope.views.industries.button import button_industry_report
 from ticker_index.scope.views.dataframes.button_show_df import button_show_ticker_index

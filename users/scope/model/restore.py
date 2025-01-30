@@ -2,8 +2,8 @@
 
 from users.scope.model.scope_users import user_config_users
 from charts.scope.model.scope_charts import chart_settings_for_user
-from screener.scope.model.scope_trials import trial_settings_for_user
-from app.scope.model.scope_config import user_config_pages
+from trials.scope.model.scope_trials import trial_settings_for_user
+from config.scope.model.scope_config import user_config_pages
 
 
 def restore_base_config(scope):

@@ -2,7 +2,7 @@ import streamlit as st
 from users.views.save_user_settings_button import save_user_settings_button
 
 from charts.scope.views.settings.chart_height import set_chart_height_primary
-from app.views.widgets.active import edit_active
+from page.widgets.active import edit_active
 
 from charts.scope.views.settings.macd import macd_settings
 from charts.scope.views.settings.macd_vol import macd_volume_settings

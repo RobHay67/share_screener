@@ -5,12 +5,12 @@
 
 
 import streamlit as st
-from app.helpers.re_render import app_is_re_rendering
-from app.scope.model.set_scope import set_scope
+from config.helpers.re_render import app_is_re_rendering
+from config.scope.model.set_scope import set_scope
 from users.views.page_login import show_login_page
-from app.views.sidebar.market_info import show_sidebar_app_info
-from app.views.sidebar.page_navigation import return_sidebar_navigation_buttons
-from app.helpers.scope_keys import print_scope_keys
+from page.sidebar.market_info import show_sidebar_app_info
+from page.navigation.page_navigation import sidebar_navigation_buttons
+from config.helpers.scope_keys import print_scope_keys
 
 
 app_is_re_rendering()
@@ -18,7 +18,7 @@ app_is_re_rendering()
 if 'display_page' not in st.session_state:
 	scope = set_scope(st.session_state)
 
-page_navigation = return_sidebar_navigation_buttons(scope)
+page_navigation = sidebar_navigation_buttons(scope)
 
 # Render Pages
 if scope.users['logged_in'] == True:
