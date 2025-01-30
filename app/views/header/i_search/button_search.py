@@ -4,7 +4,7 @@ import streamlit as st
 
 def seach_for_ticker_button(scope, page, ticker):
 
-	widget_key = ticker + '_button'
+	widget_key = 'widget_button_' + ticker
 
 	st.button(
 				label='Choose', 

@@ -15,15 +15,15 @@ def refresh_page_worklist(scope):
 	# Default Values
 	ticker_list = []
 
-	if page != 'screener':
-		ticker_list = single_selector_page(scope, page, ticker_list)
-	
-	if page == 'screener':
-		ticker_list = multi_selector_page(scope, ticker_list)
+	match page:
+		case 'screener':
+			ticker_list = multi_selector_page(scope, ticker_list)
+		case '_':
+			ticker_list = single_selector_page(scope, page, ticker_list)	
 		
 	# Store the Worklist
 	ticker_list.sort()
-	scope.page[page]['worklist'] = ticker_list
+	scope.page[page]['selected_tickers'] = ticker_list
 	refresh_worklist_long_description(scope)
 
 

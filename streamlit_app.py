@@ -10,6 +10,8 @@ from app.scope.model.set_scope import set_scope
 from users.views.page_login import show_login_page
 from app.views.sidebar.market_info import show_sidebar_app_info
 from app.views.sidebar.page_navigation import return_sidebar_navigation_buttons
+from app.helpers.scope_keys import print_scope_keys
+
 
 app_is_re_rendering()
 
@@ -26,7 +28,6 @@ else:
 	show_login_page(scope)
 
 
-
 #======================================================== TODO s
 for i in range(5):print('')
 print('='*66)
@@ -36,84 +37,8 @@ print('TODO - we need to download and SAVE the dividend data as well')
 print('='*66)
 for i in range(3):print('')
 
-print('='*66)
-counter = 0; widgets = 0;hide_widgets = True
-for key in sorted(st.session_state):
-	# print(counter)
-	if key[:7] == 'widget_':
-		widgets+=1
-		if hide_widgets==False:print(widgets, key)
-	else:
-		counter+=1
-		print(counter, key)
-print('-'*66)
-print('Total Scope Keys   = ', counter)
-print('Total Widgets Keys = ', widgets)
-print('='*66)
+print_scope_keys('streamlit_app')
 
-
-# for key, item in scope.trials.items():
-# 	print( key, '   :    ', item)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# =======================================
-# Testing code - show whats in scope
-# =======================================
-
-
-
-# def terminal_heading(heading):
-# 	print('')
-# 	print('='*70)
-# 	print(heading.upper(), '   ( level_1 )')
-# 	print('='*70)
-
-
-# def level_2_details(level_1, level_2):
-# 	# print('')
-# 	print('-'*40)
-# 	print(level_1, '/', level_2, ' ( level 2 )', )
-# 	print('-'*40)
-# 	if level_2 in st.session_state[level_1]:
-# 		for key in st.session_state[level_1][level_2]:
-# 			print(level_2 , ' - ', key)
-
-# def level_3_details(level_1, level_2, level_3):
-# 	print('-'*50)
-# 	print(level_1, '/', level_2, '/', level_3, ' ( level 3 )')
-# 	print('-'*50)
-# 	if level_2 in st.session_state[level_1]:
-# 		if level_3 in st.session_state[level_1][level_2]:
-# 			# print(st.session_state[level_1][level_2])
-# 			for key in st.session_state[level_1][level_2][level_3]:
-# 				print(level_3 , ' - ', key)
-# 				# print(type(st.session_state[level_1][level_2][level_3]))
-
-
-# if 'initial_load' in st.session_state:
-# 	print('')
-# 	terminal_heading('All keys in st.session_state')
-# 	for key in sorted(st.session_state):print(key)
-
-
-# if 'initial_load' in st.session_state:
-# 	scope = st.session_state
-# 	# scope.users['user_list'] = [rob, Fliss]
-# 	# json file has structure
-# 	for key in sorted(scope.users):print(key)
-# 	# for key in sorted(scope.users['json']['Rob']):print(key)
 
 
 

@@ -13,7 +13,7 @@ def download_ticker_data(scope):
 	# utilising the y_finance platform
 
 	page = scope.display['page']
-	ticker_download_list = scope.page[page]['worklist']
+	ticker_download_list = scope.page[page]['selected_tickers']
 	
 	scope_yf_config(scope)
 

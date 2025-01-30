@@ -35,7 +35,7 @@ def create_error_list_for_page(scope, page):
 	drop_down_list = []
 	
 	for ticker in scope.ticker_schema['missing']['list']:
-		if ticker in scope.page[page]['worklist']:
+		if ticker in scope.page[page]['selected_tickers']:
 			ticker_error_list.append(ticker)
 
 	for ticker in ticker_error_list:

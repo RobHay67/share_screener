@@ -17,7 +17,7 @@ def show_config_pages(scope):
 	col1,col2,col3,col4,col5 = st.columns([1,1,1,1,6]) #12
 
 	with col1:scope_button(scope, "scope.page["+page+"]['loaded_ticker_list']", scope.page[page]['loaded_ticker_list'])
-	with col2:scope_button(scope, "scope.page["+page+"]['worklist']", scope.page[page]['worklist'])
+	with col2:scope_button(scope, "scope.page["+page+"]['selected_tickers']", scope.page[page]['selected_tickers'])
 	with col3:scope_button(scope, "scope.page["+page+"]['worklist_long_desc']", scope.page[page]['worklist_long_desc'])
 	with col4:scope_button(scope, "scope.page["+page+"]['search_results']", scope.page[page]['search_results'])
 	with col5:scope_button(scope, "scope.page["+page+"]['show']", scope.page[page]['show'])

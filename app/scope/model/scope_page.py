@@ -13,7 +13,7 @@ def scope_page(scope):
 		scope.page[page] = {}
 		
 		scope.page[page]['search_results'] = {}
-		scope.page[page]['worklist'] = []  			# formally known as scope.page[page]['ticker_list']
+		scope.page[page]['selected_tickers'] = []  			# formally known as scope.page[page]['ticker_list']
 		scope.page[page]['worklist_long_desc'] = ['Show/Hide Data']
 		scope.page[page]['loaded_ticker_list'] = []		# list of every ticker loaded by this particular page - saves checking later
 

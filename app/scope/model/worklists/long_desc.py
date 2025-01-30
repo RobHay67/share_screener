@@ -5,10 +5,10 @@ def refresh_worklist_long_description(scope):
 
 	page = scope.display['page']
 	work_list_with_long_desc = []
-	print('$'*99)
-	print(scope.page[page]['worklist'])
+	# print('$'*99)
+	# print(scope.page[page]['selected_tickers'])
 
-	for ticker in scope.page[page]['worklist']:
+	for ticker in scope.page[page]['selected_tickers']:
 		ticker_name = scope.config['ticker_search'][ticker]
 		ticker_length = len(ticker)
 		padding = 10 - ticker_length

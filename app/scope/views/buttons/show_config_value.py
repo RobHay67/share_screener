@@ -20,7 +20,6 @@ def show_config_values(scope):
 def show_config_single_value(label_name, scope_value):
 
 	widget_key = 'widget>' + label_name
-	print(label_name)
 	if label_name == 'project_start_time':
 		scope_value =  datetime.fromtimestamp(scope_value).strftime('%Y-%m-%d %H:%M:%S %p')
 	if scope_value == True : scope_value = ":green["+str(scope_value)+"]"

@@ -10,10 +10,10 @@ def show_ticker_name(scope):
 
 	if page != 'screener':
 		# non screener page - there will  be 1 ticker in worklist
-		if len(scope.page[page]['worklist'])==1:
+		if len(scope.page[page]['selected_tickers'])==1:
 			# we have a ticker to work with
 		
-			ticker = scope.page[page]['worklist'][0]
+			ticker = scope.page[page]['selected_tickers'][0]
 			ticker_name = scope.config['ticker_search'][ticker].title()
 			ticker_latest_price_df = latest_ticker_price(scope, ticker)
 				

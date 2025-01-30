@@ -10,6 +10,9 @@ from app.views.header.i_search.show_search_results import show_search_results
 from app.views.header.show_ticker_name import show_ticker_name
 
 
+
+
+
 def show_page_header(scope):
 	page_title_layer(scope)								# a_
 	if scope.users['logged_in']:
@@ -24,7 +27,6 @@ def show_page_header(scope):
 		show_dataframes(scope)		
 		show_search_results(scope)						# i_
 		show_ticker_name(scope)
-
 
 
 # ==============================================================

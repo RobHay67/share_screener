@@ -11,7 +11,7 @@ def replace_page_df(scope, page, ticker, app_row_limit):
 	# Replace the page df if requested
 	if ticker_for_page['replace_df'] == True:
 
-		print('Replacing the ticker[df] for > ', ticker)
+		# print('Replacing the ticker[df] for > ', ticker)
 
 		# take a copy of the original ticker dataframe
 		ticker_df = scope.tickers[ticker]['df'].copy()

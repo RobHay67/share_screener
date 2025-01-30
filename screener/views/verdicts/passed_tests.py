@@ -8,9 +8,7 @@ from app.views.navigation.links import website_hyperlink
 def show_passing_verdicts(scope, no_of_verdicts, tab_group_size, verdict_list):
 		# Render the Results (in tabs and there could be lots)
 		st.subheader('Passing Test Results       (' + str(no_of_verdicts) + ') passed')
-		
 		list_of_tab_names = determine_tab_names(no_of_verdicts, tab_group_size)
-		
 		# Create Tabs and populate from verdicts
 		tabs = st.tabs(list_of_tab_names)
 		ticker_start = 0
@@ -28,11 +26,10 @@ def show_passing_verdicts(scope, no_of_verdicts, tab_group_size, verdict_list):
 					with col4 :button_page_link(scope, 'intraday', ticker)
 					with col5 :button_page_link(scope, 'volume', ticker)
 					with col6 :button_page_link(scope, 'research', ticker)
-
 					with col7:
 						# google = st.page_link("http://www.google.com", label="Google", icon="🌎")
 						hyperlinks = ['one','two']
-						widget_key = ticker
+						widget_key = 'widget_'+ticker
 
 						st.selectbox ( 
 							label		='Market',
@@ -56,11 +53,13 @@ def show_passing_verdicts(scope, no_of_verdicts, tab_group_size, verdict_list):
 					# with col13:website_hyperlink(scope, 'market watch', ticker)
 
 
+
+
 def on_select_external_link(scope, widget_key):
 	test = "[market watch](https://www.marketwatch.com/investing/stock/wbc/charts?countrycode=au)"
 	changed_value = scope[widget_key]
-	print('^'*88)
-	print(changed_value)
+	# print('^'*88)
+	# print(changed_value)
 
 	# store the selection
 	# scope.page[page]['selectors']['tickers'] = []

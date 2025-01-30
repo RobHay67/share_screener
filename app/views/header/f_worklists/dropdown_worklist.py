@@ -5,9 +5,6 @@ import streamlit as st
 # previous_selection = scope[schema_group]['user_config'][schema_key]['function']['trend']
 # pos_for_previous = trends_for_ohlcv.index(previous_selection)	
 
-
-
-
 def worklist_dropdown(scope):
 
 	page = scope.display['page']

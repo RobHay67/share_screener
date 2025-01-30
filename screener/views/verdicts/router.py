@@ -18,7 +18,6 @@ def show_verdicts(scope):
 	number_of_tabs 	= 30
 	verdict_list 	= passing_verdict_list(scope)
 	qty_of_verdicts	= len(verdict_list)
-
 	match qty_of_verdicts:
 		case 0:
 			show_all_verdicts_failed()
@@ -26,5 +25,4 @@ def show_verdicts(scope):
 			show_too_many_verdicts(qty_of_verdicts, number_of_tabs, tab_group_size)
 		case _:
 			show_passing_verdicts(scope, qty_of_verdicts, tab_group_size, verdict_list)
-
 

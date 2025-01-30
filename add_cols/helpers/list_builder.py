@@ -5,7 +5,7 @@ def create_list_of_tickers_to_add_columns(scope, page):
 
 	ticker_list = []
 
-	for ticker in scope.page[page]['worklist']:
+	for ticker in scope.page[page]['selected_tickers']:
 		# Ensure ticker data available otherwise
 		# function will fail on missing columns
 		if ticker in list(scope.tickers.keys()):
@@ -17,7 +17,7 @@ def create_list_of_tickers_to_add_columns(scope, page):
 				status_add_ticker = True
 
 			# iterate through list 
-			print(scope.tickers[ticker][page]['re_run_functions'])
+			# print(scope.tickers[ticker][page]['re_run_functions'])
 
 
 			if status_add_ticker:
