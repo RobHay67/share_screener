@@ -1,9 +1,11 @@
+import logging
 from tickers.model.new import add_new_ticker
 from tickers.model.missing.lists import update_missing_ticker_lists
 from tickers.model.missing.failed_download import fail_download_event
 
 
 def append_downloaded_data_to_scope_tickers(scope, ticker_download_list):
+	logging.debug("append_downloaded_data_to_scope_tickers")
 	# concatenates any downloaded data with any loaded data 
 	# resulting in a complete (hopefully) temporal transaction history for a ticker
 

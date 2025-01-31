@@ -1,4 +1,7 @@
+import logging
+
 def format_downloaded_ticker_data(scope):
+	logging.debug("format_downloaded_ticker_data")
 	# simple object reference
 	type = scope.yf['batch_type']
 	yf_df = scope.yf['batch_data']

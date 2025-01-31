@@ -1,7 +1,7 @@
-
+import logging
 
 def create_ticker_list_to_load(scope):
-
+	logging.debug("create_ticker_list_to_load")
 	page = scope.display['page']
 	already_loaded_list = list(scope.tickers.keys())
 

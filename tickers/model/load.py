@@ -1,3 +1,4 @@
+import logging
 import pandas as pd
 import os
 
@@ -7,6 +8,7 @@ from tickers.model.missing.failed_load import fail_local_load_event
 
 
 def load_ticker(scope, ticker):
+	logging.debug("load_ticker")
 	path_for_ticker_file(scope, ticker )
 	# Check that a local file is available to load
 	if os.path.exists( scope.files['paths']['ticker_data'] ):

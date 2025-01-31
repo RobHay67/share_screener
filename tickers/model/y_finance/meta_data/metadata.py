@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 
 import yfinance as yf					# https://github.com/ranaroussi/yfinance
@@ -20,6 +21,7 @@ import yfinance as yf					# https://github.com/ranaroussi/yfinance
 # @st.cache_data(show_spinner="Fetching data from API...")
 @st.cache_resource()
 def fetch_yfinance_metadata(ticker):
+	logging.debug("fetch_yfinance_metadata")
 	try:
 		metadata = yf.Ticker(ticker)
 	except:

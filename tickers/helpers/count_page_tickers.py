@@ -1,6 +1,7 @@
-
+import logging
 
 def count_page_tickers(scope):
+	logging.debug("count_page_tickers")
 	page = scope.display['page']
 	page_counter=0
 	ticker_list = list(scope.tickers.keys())

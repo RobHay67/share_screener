@@ -1,3 +1,4 @@
+import logging
 import pandas as pd
 
 from tickers.model.save import save_ticker
@@ -7,7 +8,7 @@ from tickers.scope.model.scope_tickers import create_dictionary_to_store_ticker_
 
 
 def add_new_ticker(scope, ticker, new_ticker_data):
-
+	logging.debug("add_new_ticker")
 	if ticker in scope.tickers.keys():
 		# Data already exists for this ticker
 		scope.tickers[ticker]['df'] = pd.concat([scope.tickers[ticker]['df'], new_ticker_data]).drop_duplicates(subset=['date'], keep='last')

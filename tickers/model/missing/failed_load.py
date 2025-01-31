@@ -1,7 +1,9 @@
+import logging
 from tickers.scope.model.scope_ticker_schema import scope_missing_ticker_error
 
 
 def fail_local_load_event(scope, ticker):
+	logging.debug("fail_local_load_event")
 	# There is no local file so record this fact
 	# to prevent further attempts to load the local file
 

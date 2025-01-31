@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 from config.scope.views.buttons.button_choose_scope import scope_button
 from config.scope.views.buttons.button_data_type import data_type_button
@@ -6,6 +7,7 @@ from config.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 
 def show_config_tickers_schema(scope):
+	logging.debug("show_config_tickers_schema")
 	scope_button(scope, "Ticker Schema", scope.ticker_schema, make_red=True, suffix_only=False)
 	scope_button(scope, "scope.ticker_schema", scope.ticker_schema, make_red=False, suffix_only=False)
 

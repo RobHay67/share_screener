@@ -1,8 +1,9 @@
+import logging
 import streamlit as st
 
 
 def render_message_download(scope):
-
+	logging.debug("render_message_download")
 	col1,col2,col3,col4 = st.columns([5.5,1.5,1,4])
 
 	yf_ticker_list = scope.yf['batch_ticker_string'].split(' ')

@@ -1,14 +1,15 @@
-
+import logging
 
 from page.scope.model.dropdowns.controller import refresh_ticker_selector_lists
 
 
 def scope_tickers(scope):
+	logging.debug("scope_tickers")
 	scope.tickers = {}
 
 
 def create_dictionary_to_store_ticker_data(scope, ticker):
-
+	logging.debug("create_dictionary_to_store_ticker_data")
 	# This function is triggered after NEW ticker data is either
 	# - loaded 
 	# or 

@@ -1,7 +1,8 @@
-
+import logging
 
 
 def update_missing_ticker_lists(scope, ticker):
+	logging.debug("update_missing_ticker_lists")
 	# we may not have had any local data (ie its a new ticker)
 	# so we need to reset the local load status and change
 	# the overall status

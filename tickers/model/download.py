@@ -1,3 +1,4 @@
+import logging
 from tickers.scope.model.scope_yf import scope_yf_config
 from tickers.model.y_finance.ticker_data.config import set_download_config
 from tickers.model.y_finance.ticker_data.single_ticker import single_ticker_downloader
@@ -10,6 +11,7 @@ from tickers.views.msg_no_tickers import no_tickers_selected
 
 
 def download_ticker_data(scope):
+	logging.debug("download_ticker_data")
 	# utilising the y_finance platform
 
 	page = scope.display['page']

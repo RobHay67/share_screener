@@ -1,9 +1,9 @@
-
+import logging
 from files.helpers.ticker_path import path_for_ticker_file
 from tickers.model.missing.save import save_ticker_event
 
 def save_ticker(scope, ticker):
-
+	logging.warning("save_ticker")
 	path_for_ticker_file(scope, ticker)
 
 	saving_df = scope.tickers[ticker]['df'].copy()

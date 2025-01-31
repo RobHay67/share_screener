@@ -1,8 +1,10 @@
+import logging
 import yfinance as yf					# https://github.com/ranaroussi/yfinance
 										# https://ranaroussi.github.io/yfinance/index.html
 
 
 def single_ticker_downloader(scope):
+	logging.debug("single_ticker_downloader")
 	yf_download = yf.download( 
 					tickers=scope.yf['batch_ticker_string'], 
 					period=scope.config['download_days'], 

@@ -1,8 +1,9 @@
+import logging
 from tickers.scope.model.scope_ticker_schema import scope_missing_ticker_error
 
 
 def fail_download_event(scope, ticker, zero_volume=False):
-
+	logging.debug("fail_download_event")
 	# So the download has failed and we need to update the 
 	# missing tickers list
 	

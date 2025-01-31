@@ -1,7 +1,9 @@
+import logging
 import streamlit as st
 
 
 def show_page_dataframes(scope):
+	logging.debug("show_page_dataframes")
 	# Just the dataframes relevant for a particular page
 	page = scope.display['page']
 
@@ -17,7 +19,7 @@ def show_page_dataframes(scope):
 
 
 def show_page_df(scope, page, ticker, type_df):
-
+	logging.debug("show_page_df")
 	if type_df == 'ticker_file':
 		df = scope.tickers[ticker]['df']
 		prefix='raw'

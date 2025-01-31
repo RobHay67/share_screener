@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 from config.scope.views.buttons.button_choose_scope import scope_button
 from config.scope.views.buttons.button_data_type import data_type_button
@@ -6,6 +7,7 @@ from config.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 
 def show_config_verdicts(scope):
+	logging.debug("show_config_verdicts")
 	col1,col2 = st.columns([3,3])
 	ticker_list = scope.tickers.keys()
 	page='screener' # Verdicts are not relevant for any of the other pages
