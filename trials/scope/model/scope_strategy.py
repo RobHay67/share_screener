@@ -1,7 +1,9 @@
+import logging
 import streamlit as st
 
 
 def scope_strategy(scope):
+	logging.debug("scope_strategy")
 	# Strategy Params
 
 	scope.strategy = {}

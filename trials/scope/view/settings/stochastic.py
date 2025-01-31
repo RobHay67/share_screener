@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 from trials.scope.view.settings.expander_status import set_expander_status
 from page.widgets.active import edit_active
@@ -6,6 +7,7 @@ from page.widgets.trends.stochastic import edit_trend_stochastic
 
 
 def stochastic_trend(scope):
+	logging.debug("stochastic_trend")
 	settings_group = ['stochastic_1','stochastic_2','stochastic_3']
 	open_status = set_expander_status(scope, settings_group)
 	with st.expander(label='Stochastic Oscillator - Momentum Indicator x 3 concurrrent options', expanded=open_status):
@@ -16,7 +18,7 @@ def stochastic_trend(scope):
 
 
 def stochastic_settings(scope, trial):
-	
+	logging.debug("stochastic_settings")
 	schema_group = 'trials'
 
 	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1,1])

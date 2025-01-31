@@ -1,9 +1,11 @@
+import logging
 import streamlit as st
 
 from trials.views.active_trials.builder import build_english_explanation
 
 
 def show_active_trials(scope):
+	logging.debug("show_active_trials")
 	# Introduction
 	col1,col2 = st.columns([4,8])
 	with col1:st.subheader('Trials (Tests) - active only')

@@ -4,7 +4,7 @@
 # - expecting the verdicts to be stored in scope.tickers[ticker]['trials']['overall_verdict']
 
 
-# import streamlit as st
+import logging
 
 from trials.helpers.verdicts_passing import passing_verdict_list
 from trials.views.verdicts.failed_all_tests import show_all_verdicts_failed
@@ -14,6 +14,7 @@ from trials.views.verdicts.passed_tests import show_passing_verdicts
 
 
 def show_verdicts(scope):
+	logging.debug("show_verdicts")
 	tab_group_size 	= 10
 	number_of_tabs 	= 30
 	verdict_list 	= passing_verdict_list(scope)

@@ -1,6 +1,8 @@
+import logging
 
 
 def passing_verdict_list(scope):
+	logging.debug("passing_verdict_list")
 	# Generate a list of tickers with an overall passing result
 	page = scope.display['page']
 	verdict_list = []

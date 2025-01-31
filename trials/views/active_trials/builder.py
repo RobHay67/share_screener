@@ -1,7 +1,8 @@
-
+import logging
 
 
 def build_english_explanation(scope, trial ):
+	logging.debug("build_english_explanation")
 	english_explanation = ''
 	dict_of_values = scope.trials['user_config'][trial]['function']
 	column = dict_of_values['column'] if 'column' in dict_of_values else None

@@ -1,6 +1,8 @@
+import logging
 
 
 def trial_settings_for_user(scope):
+	logging.debug("trial_settings_for_user")
 	# store the trial configuration dictionary (from below)
 	scope.trials['user_config'] = {}
 	for trial, configuration in scope.trials['schema'].items():

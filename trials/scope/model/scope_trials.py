@@ -5,7 +5,7 @@
 
 # trials is the config
 # trials_config are the current settings!!!
-
+import logging
 from trials.scope.model.schema import scope_trials_schema
 from trials.helpers.trial_active_list import trial_active_list
 from trials.scope.model.column_adders import trial_template_column_adders
@@ -13,7 +13,7 @@ from trials.scope.model.settings_for_user import trial_settings_for_user
 
 
 def scope_trials(scope):
-
+	logging.debug("scope_trials")
 	scope.trials = {}
 	scope_trials_schema(scope)
 	trial_settings_for_user(scope)

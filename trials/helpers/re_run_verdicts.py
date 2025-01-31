@@ -2,10 +2,11 @@
 # - more than one test may be run
 # - the assumption is that every test must pass to obtain
 #   an overall pass
+import logging
 
 
 def determine_verdict_for_ticker(scope, ticker):
-
+	logging.debug("determine_verdict_for_ticker")
 	page = scope.display['page']
 
 	if page == 'screener':
