@@ -1,10 +1,11 @@
-
+import logging
 import numpy as np
 
 
 
 
 def stoch_cols( scope, chart, ticker, chart_df):
+	logging.debug("stoch_cols")
 	# Stochastic Oscillator
 	
 	# 1) identify overbrought and oversold regions and look for reversals

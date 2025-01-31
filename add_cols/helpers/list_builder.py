@@ -1,8 +1,8 @@
-
+import logging
 
 
 def create_list_of_tickers_to_add_columns(scope, page):
-
+	logging.debug("create_list_of_tickers_to_add_columns")
 	ticker_list = []
 
 	for ticker in scope.page[page]['selected_tickers']:

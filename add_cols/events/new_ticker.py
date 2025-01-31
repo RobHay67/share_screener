@@ -1,7 +1,8 @@
-
+import logging
 
 
 def new_ticker_data_event(scope, ticker):
+	logging.debug("new_ticker_data_event")
     # This event is triggered after new ticker data is
 	# either loaded or downloaded. 
 	#  

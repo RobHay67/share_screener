@@ -1,7 +1,10 @@
+import logging
 import numpy as np
 
 
 def sma_cols( scope, chart, ticker, chart_df):
+	logging.debug("sma_cols")
+
 	# Add a Simple Moving Average (SMA)
 	# https://www.investopedia.com/terms/s/sma.asp
 	

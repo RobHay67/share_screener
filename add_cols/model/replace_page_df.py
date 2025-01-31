@@ -1,10 +1,8 @@
-
-
-
+import logging
 
 
 def replace_page_df(scope, page, ticker, app_row_limit):
-	
+	logging.debug("replace_page_df")
 	# Shorcut reference
 	ticker_for_page = scope.tickers[ticker][page]
 

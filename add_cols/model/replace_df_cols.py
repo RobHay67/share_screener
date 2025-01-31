@@ -1,8 +1,8 @@
-
+import logging
 
 
 def replace_page_df_columns(scope, page, ticker):
-
+	logging.debug("replace_page_df_columns")
 	schema_group = scope.tickers[ticker][page]['schema_group']
 	ticker_for_page = scope.tickers[ticker][page]
 	# 

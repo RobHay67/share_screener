@@ -7,12 +7,16 @@
 # Note : Screener Tests are run during the add_columns calls
 # 			- this is controlled by the header function
 
-
+import logging
 import streamlit as st
 
 from page.header.controller import show_page_header
 from trials.views.active_trials.active_tests import show_active_trials
 from trials.views.verdicts.router import show_verdicts
+
+
+logging.info('Page = Screener')
+logging.debug("This will get logged.")
 
 
 # Page Configuration

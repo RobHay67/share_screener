@@ -1,7 +1,9 @@
+import logging
 import numpy as np
 
 
 def rsi_cols(scope, chart, ticker, chart_df):
+	logging.debug("rsi_cols")
 	# Relative Strength Index (RSI)
 	
 	# RSI = https://www.investopedia.com/terms/r/rsi.asp

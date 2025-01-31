@@ -1,3 +1,4 @@
+import logging
 from trials.helpers.trial_remove_result import remove_trial_result_column
 
 # This event is triggered when a column adder is changed to either 
@@ -12,7 +13,7 @@ from trials.helpers.trial_remove_result import remove_trial_result_column
 # Screener Page Overall Verdict will need to be re-run
 
 def edit_active_event(scope, schema_group, schema_key, status):
-	
+	logging.debug("edit_active_event")
 	# Update this status in Each Page / Ticker that utilises this column adder (schema_key)
 	for ticker in scope.tickers.keys():
 		for page in scope.config['page_list']: 
