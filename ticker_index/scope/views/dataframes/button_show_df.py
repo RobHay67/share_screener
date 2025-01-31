@@ -1,8 +1,9 @@
+import logging
 import streamlit as st
 
 
 def button_show_ticker_index(scope):
-
+	logging.debug("button_show_ticker_index")
 	widget_key = 'widget_show_ticker_index'
 	
 	button = st.button(
@@ -18,6 +19,7 @@ def button_show_ticker_index(scope):
 
 
 def change_show_ticker_index_status(scope):
+	logging.debug("change_show_ticker_index_status")
 	previous_value = scope.ticker_index['show']['ticker_index']
 	new_value = True if previous_value == False else False
 	scope.ticker_index['show']['ticker_index'] = new_value

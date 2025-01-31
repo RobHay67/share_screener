@@ -1,8 +1,10 @@
+import logging
 import streamlit as st
 
 from page.widgets.cols_two import view_2_columns
 
 def company_general(metadata):
+	logging.debug("company_general")
 	# st.subheader(metadata.info['longName'])
 
 	info_keys = metadata.info.keys()
@@ -69,6 +71,7 @@ def company_general(metadata):
 
 
 def fundamental(metadata):
+	logging.debug("fundamental")
 	# col1,col2 = st.columns([5,7])
 	my_expander = st.expander(label='Fundamental Information', expanded=False)
 	with my_expander:
@@ -90,6 +93,7 @@ def fundamental(metadata):
 
 
 def general(metadata):
+	logging.debug("general")
 	# st.markdown('##### General meta_data Info') 
 	my_expander = st.expander(label='General Information', expanded=False)
 	with my_expander:
@@ -100,6 +104,7 @@ def general(metadata):
 
 
 def market_info(metadata):
+	logging.debug("market_info")
 	my_expander = st.expander(label='Market Information', expanded=False)
 	info_keys = metadata.info.keys()
 	

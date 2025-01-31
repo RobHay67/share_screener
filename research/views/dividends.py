@@ -1,9 +1,11 @@
 
+import logging
 import streamlit as st
 import pandas as pd
 
 
 def dividends(metadata):
+	logging.debug("dividends")
 	dividends = pd.DataFrame(metadata.dividends)
 	if not dividends.empty:
 		dividends.reset_index(inplace=True)

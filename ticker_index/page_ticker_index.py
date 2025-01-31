@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 
 from page.header.controller import show_page_header
@@ -13,6 +14,7 @@ from ticker_index.scope.views.download.download_button import button_download_ti
 # Page Configuration
 scope = st.session_state
 scope.display['page'] = 'ticker_index'
+logging.debug("page = ticker_index")
 
 show_page_header(scope)
 

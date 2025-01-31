@@ -1,4 +1,5 @@
 
+import logging
 import streamlit as st
 import pandas as pd
 
@@ -9,7 +10,7 @@ import pandas as pd
 
 
 def financial_statements(metadata):
-
+	logging.debug("financial_statements")
 	col1,col2,col3 = st.columns([4,1,4])
 
 	# if 'financials' in metadata.keys:

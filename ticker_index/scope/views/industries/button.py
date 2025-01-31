@@ -1,9 +1,10 @@
+import logging
 import streamlit as st
 
 
 
 def button_industry_report(scope):
-
+	logging.debug("button_industry_report")
 	widget_key = 'widget_' + 'ticker_index' + '_industry_report'
 
 	button = st.button(
@@ -18,7 +19,7 @@ def button_industry_report(scope):
 	return button
 
 def change_industry_report_status(scope):
-
+	logging.debug("change_industry_report_status")
 	previous_value = scope.ticker_index['show']['industry_report']
 	new_value = True if previous_value == False else False
 

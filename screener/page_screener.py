@@ -23,6 +23,8 @@ logging.debug("This will get logged.")
 scope = st.session_state
 page = 'screener'
 scope.display['page'] = page
+logging.debug("page = screener")
+
 show_page_header(scope)
 if scope.users['logged_in']:
 	show_active_trials(scope)

@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 
 from page.header.controller import show_page_header
@@ -30,6 +31,7 @@ from research.views.news import news
 scope = st.session_state
 page = 'research'
 scope.display['page'] = page
+logging.debug("page = research")
 
 
 show_page_header(scope)

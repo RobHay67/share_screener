@@ -1,9 +1,10 @@
 # import pandas as pd
+import logging
 import streamlit as st
 
 
 def render_industry_report(scope):
-
+	logging.debug("render_industry_report")
 
 	if scope.ticker_index['show']['industry_report']:
 

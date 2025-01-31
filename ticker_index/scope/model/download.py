@@ -1,3 +1,4 @@
+import logging
 import pandas as pd
 
 from ticker_index.scope.model.update import update_ticker_index
@@ -13,7 +14,7 @@ from ticker_index.scope.views.download.messages import message_failed_market
 
 
 def download_ticker_index_data(scope):
-
+	logging.debug("download_ticker_index_data")
 	if scope.config['share_market'] == 'ASX':
 		message_downloading(scope)
 

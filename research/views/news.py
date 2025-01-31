@@ -1,4 +1,5 @@
 
+import logging
 import streamlit as st
 import pandas as pd
 from datetime import datetime
@@ -11,6 +12,7 @@ from datetime import datetime
 
 
 def news(metadata):
+	logging.debug("news")
 	st.markdown('** news from YFinance is NOT Reliable - will try scraping from ASX - BeautifulSoup **')
 
 

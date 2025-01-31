@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 
 from ticker_index.scope.model.schema import uneditable_columns
@@ -11,7 +12,7 @@ from ticker_index.scope.views.dataframes.button_cancel_edit import button_cancel
 
 
 def render_editable_ticker_index_df(scope):
-    
+	logging.debug("render_editable_ticker_index_df")
 	if scope.ticker_index['show']['editable_df']:
 		
 		widget_key = 'widget_' + 'edit_ticker_index_' + str(scope.ticker_index['editable_df_key'])

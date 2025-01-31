@@ -1,3 +1,4 @@
+import logging
 import os
 import pandas as pd
 
@@ -9,7 +10,7 @@ from ticker_index.helpers.create_empty import create_empty_ticker_index
 
 
 def load_ticker_index_file( scope ):
-
+	logging.debug("load_ticker_index_file")
 	if os.path.exists( scope.files['paths']['ticker_index'] ):
 		
 		ticker_index_file = pd.read_csv(  scope.files['paths']['ticker_index'], 

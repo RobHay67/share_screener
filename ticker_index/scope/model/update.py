@@ -1,3 +1,4 @@
+import logging
 import pandas as pd
 
 from ticker_index.scope.model.schema import default_values
@@ -10,7 +11,7 @@ from ticker_index.scope.views.dataframes.messages import message_records_added
 
 
 def update_ticker_index(scope):
-
+	logging.debug("update_ticker_index")
 	blue_chip_default_value = scope.ticker_index['schema']['blue_chip']['default']
 	number_of_new_records = 0
 
@@ -51,6 +52,7 @@ def update_ticker_index(scope):
 	
 
 def apply_defaults_to_missing_values(scope, which_df):
+	logging.debug("apply_defaults_to_missing_values")
 	defaults = default_values(scope)
 	dtypes = data_types(scope)
 	if which_df == 'downloaded_df':

@@ -1,10 +1,11 @@
 
+import logging
 import streamlit as st
 from ticker_index.scope.model.download import download_ticker_index_data
 
 
 def button_download_ticker_index(scope):
-	
+	logging.debug("button_download_ticker_index")
 	widget_key = 'widget_button_download_ticker_index'
 	
 	button = st.button(
@@ -20,7 +21,7 @@ def button_download_ticker_index(scope):
 
 
 def perform_the_download(scope):
-
+	logging.debug("perform_the_download")
 	scope.ticker_index['show']['industry_report'] = False
 	scope.ticker_index['show']['ticker_index'] = False
 	scope.ticker_index['show']['editable_df'] = False

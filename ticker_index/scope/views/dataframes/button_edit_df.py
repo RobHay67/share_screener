@@ -1,8 +1,9 @@
+import logging
 import streamlit as st
 
 
 def button_edit_ticker_index_df(scope):
-
+	logging.debug("button_edit_ticker_index_df")
 	widget_key = 'widget_' + 'ticker_index' + '_editable'
 
 	button = st.button(
@@ -17,6 +18,7 @@ def button_edit_ticker_index_df(scope):
 	return button
 
 def change_editable_df_status(scope):
+	logging.debug("change_editable_df_status")
 	previous_value = scope.ticker_index['show']['editable_df']
 	new_value = True if previous_value == False else False
 	scope.ticker_index['show']['editable_df'] = new_value

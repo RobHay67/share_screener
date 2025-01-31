@@ -1,4 +1,4 @@
-
+import logging
 
 from ticker_index.scope.model.schema import schema
 from ticker_index.scope.model.load import load_ticker_index_file
@@ -6,7 +6,7 @@ from ticker_index.scope.model.load import load_ticker_index_file
 
 
 def scope_ticker_index(scope):
-
+	logging.debug("scope_ticker_index")
 	scope.ticker_index = {}	
 
 	scope.ticker_index['schema'] = schema

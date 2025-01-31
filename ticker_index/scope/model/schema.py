@@ -1,3 +1,4 @@
+import logging
 import pandas as pd
 
 
@@ -28,6 +29,8 @@ schema = {
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def data_types(scope):
+	logging.debug("data_types")
+
 	schema = scope.ticker_index['schema']
 	dtypes={}
 	for field, schema in schema.items():
@@ -35,6 +38,7 @@ def data_types(scope):
 	return dtypes
 
 def default_values(scope):
+	logging.debug("default_values")
 	schema = scope.ticker_index['schema']
 	default_values={}
 	for field, schema in schema.items():
@@ -42,6 +46,7 @@ def default_values(scope):
 	return default_values
 
 def csv_dtypes(scope):
+	logging.debug("csv_dtypes")
 	schema = scope.ticker_index['schema']
 	dtypes={}
 	for field, schema in schema.items():
@@ -50,6 +55,7 @@ def csv_dtypes(scope):
 	return dtypes
 
 def csv_dates(scope):
+	logging.debug("csv_dates")
 	schema = scope.ticker_index['schema']
 	dates_to_parse = []
 	for field, schema in schema.items():
@@ -58,6 +64,7 @@ def csv_dates(scope):
 	return dates_to_parse
 
 def editable_columns(scope):
+	logging.debug("editable_columns")
 	schema = scope.ticker_index['schema']
 	editable_cols={}
 	for i, key in enumerate(schema):
@@ -66,6 +73,7 @@ def editable_columns(scope):
 	return editable_cols
 
 def uneditable_columns(scope):
+	logging.debug("uneditable_columns")
 	schema = scope.ticker_index['schema']
 	uneditable_cols=[]
 	for field, schema in schema.items():

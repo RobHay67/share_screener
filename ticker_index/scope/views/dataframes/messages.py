@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 
 
@@ -5,6 +6,7 @@ import streamlit as st
 
 
 def message_missing_ticker_file(scope):
+	logging.debug("message_missing_ticker_file")
 	st.toast(
 		'Ticker Index File does not exist at path > ' 
 		+ str(scope.files['paths']['ticker_index']), 
@@ -12,19 +14,21 @@ def message_missing_ticker_file(scope):
 		)
 
 def messgae_creation_success():
+	logging.debug("messgae_creation_success")
 	st.toast(
 		'Successfully created empty Ticker Index Dataframe / File', 
 		icon='🏆'
 		)
 	
 def message_saved_ticker_index_file():
+	logging.debug("message_saved_ticker_index_file")
 	st.toast(
 		'Saved the Ticker Index File', 
 		icon='💾'
 		)
 	
 def message_records_added(number_of_new_records):
-
+	logging.debug("message_records_added")
 	if number_of_new_records > 0:
 		st.toast(
 			'Added '

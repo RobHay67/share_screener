@@ -1,9 +1,11 @@
+import logging
 import streamlit as st
 
 
 
 
 def message_downloading(scope):
+	logging.debug("message_downloading")
 	st.toast(
 		'Downloading '
 		+ scope.config['share_market'] 
@@ -12,6 +14,7 @@ def message_downloading(scope):
 
 
 def message_completed_download(scope, downloaded_df):
+	logging.debug("message_completed_download")
 	st.toast(
 		'Downloaded '
 		+ str(len(downloaded_df)) 
@@ -21,6 +24,7 @@ def message_completed_download(scope, downloaded_df):
 		)
 	
 def message_failed_market(scope):
+	logging.debug("message_failed_market")
 	st.toast(
 		'DOWNLOAD Ticker data NOT YET CONFIGURED FOR ' 
 		+ scope.config['share_market'], 

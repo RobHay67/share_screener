@@ -1,9 +1,11 @@
 
+import logging
 import streamlit as st
 import pandas as pd
 
 
 def institutional(metadata):
+	logging.debug("institutional")
 	institutional = pd.DataFrame(metadata.institutional_holders)
 	if not institutional.empty:
 		institutional.sort_values(by=['Shares'], inplace=True, ascending=False)
@@ -15,6 +17,7 @@ def institutional(metadata):
 
 
 def major(metadata):
+	logging.debug("major")
 	major_holders = pd.DataFrame(metadata.major_holders)
 	if not major_holders.empty:
 		major_holders.rename(columns={0:'Percentage', 1:'Description'}, inplace = True) 
