@@ -1,8 +1,8 @@
 import logging
-from trials.scope.model.scope_trials import trial_active_list
-from trials.scope.model.scope_trials import trial_template_column_adders
-from charts.scope.model.scope_charts import chart_active_list
-from charts.scope.model.scope_charts import chart_column_adders
+from trials.scope.model.scope_trials import build_trial_active_list
+from trials.scope.model.scope_trials import build_column_adder_template_for_trials
+from charts.scope.model.scope_charts import build_chart_active_list
+from charts.scope.model.scope_charts import build_column_adder_template_for_charts
 
 # from users.views
 from users.page_welcome import show_welcome_page
@@ -39,8 +39,8 @@ def login_user(scope, login_name):
 					scope.trials['user_config'][trial]['function'][attribute] = add_columns[attribute]
 	
 	# refresh the Trial lists
-	trial_active_list(scope)
-	trial_template_column_adders(scope)
+	build_trial_active_list(scope)
+	build_column_adder_template_for_trials(scope)
 
 
 	# ========================================================
@@ -68,8 +68,8 @@ def login_user(scope, login_name):
 
 		
 	# refresh the Chart lists
-	chart_active_list(scope)
-	chart_column_adders(scope)
+	build_chart_active_list(scope)
+	build_column_adder_template_for_charts(scope)
 
 	# open the Welcome Page?
 	show_welcome_page(scope)

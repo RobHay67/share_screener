@@ -1,26 +1,26 @@
 import logging
 
-from users.scope.model.scope_users import user_config_users
-from charts.scope.model.scope_charts import chart_settings_for_user
-from trials.scope.model.scope_trials import trial_settings_for_user
-from config.scope.model.scope_config import user_config_pages
+from users.scope.model.scope_users import scope_users_for_users
+from charts.scope.model.scope_charts import scope_charts_for_users
+from trials.scope.model.scope_trials import scope_trials_for_users
+from config.scope.model.scope_config import scope_config_for_users
 
 
-def restore_base_config(scope):
-	logging.debug("restore_base_config")
+def restore_user_config(scope):
+	logging.debug("restore_user_config")
 	# Reinstate default user setting across config
 
 	# Default User Name
-	user_config_users(scope)
+	scope_users_for_users(scope)
 
 	# Chart Config and Chart Height
-	chart_settings_for_user(scope)
+	scope_charts_for_users(scope)
 
 	# Trial Config
-	trial_settings_for_user(scope)
+	scope_trials_for_users(scope)
 
 	# row_limit
-	user_config_pages(scope)
+	scope_config_for_users(scope)
 
 
 	# TODO - what about the trials config - should this also not revert to the base values

@@ -2,7 +2,7 @@ import logging
 import pandas as pd
 
 from ticker_index.scope.model.update import update_ticker_index
-from page.scope.model.dropdowns.controller import refresh_ticker_selector_lists
+from page.scope.model.dropdowns.controller import build_ticker_selectors
 
 
 
@@ -62,7 +62,7 @@ def download_ticker_index_data(scope):
 		   
 		update_ticker_index(scope)
 
-		refresh_ticker_selector_lists(scope)
+		build_ticker_selectors(scope)
 
 		scope_seach_for_ticker(scope)	# refresh the default ticker search list
 				

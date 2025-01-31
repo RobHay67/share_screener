@@ -1,7 +1,7 @@
 import logging
 
-def chart_settings_for_user(scope):
-	logging.debug("chart_settings_for_user")
+def scope_charts_for_users(scope):
+	logging.debug("scope_charts_for_users")
 	# Setting can be changed for each user
 	# so we need to be able to call when changing user
 

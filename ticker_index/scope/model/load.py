@@ -4,13 +4,13 @@ import pandas as pd
 
 from ticker_index.scope.model.schema import csv_dates
 from ticker_index.scope.model.schema import csv_dtypes
-from page.scope.model.dropdowns.controller import refresh_ticker_selector_lists
+from page.scope.model.dropdowns.controller import build_ticker_selectors
 
 from ticker_index.helpers.create_empty import create_empty_ticker_index
 
 
 def load_ticker_index_file( scope ):
-	logging.debug("load_ticker_index_file")
+	logging.warning("load_ticker_index_file")
 	if os.path.exists( scope.files['paths']['ticker_index'] ):
 		
 		ticker_index_file = pd.read_csv(  scope.files['paths']['ticker_index'], 
@@ -27,7 +27,7 @@ def load_ticker_index_file( scope ):
 
 		scope.ticker_index['df'] = ticker_index_file	# Cache the loaded ticker Index file	
 
-		refresh_ticker_selector_lists(scope)
+		build_ticker_selectors(scope)
 
 	else: 
 		create_empty_ticker_index(scope)

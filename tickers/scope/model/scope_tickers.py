@@ -1,6 +1,6 @@
 import logging
 
-from page.scope.model.dropdowns.controller import refresh_ticker_selector_lists
+from page.scope.model.dropdowns.controller import build_ticker_selectors
 
 
 def scope_tickers(scope):
@@ -45,5 +45,5 @@ def create_dictionary_to_store_ticker_data(scope, ticker):
 	for trial in scope.trials['trial_list']:									#   then utilised to save that test result
 		scope.tickers[ticker][page]['verdicts']['trial_verdicts'][trial] = None	#   which will be a pass or fail result
 	
-	refresh_ticker_selector_lists(scope)
+	build_ticker_selectors(scope)
 
