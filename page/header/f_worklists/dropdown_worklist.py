@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 # if scope.page[page]['show']['ticker_file'] != 'Show/Hide Data':
 
@@ -6,7 +7,7 @@ import streamlit as st
 # pos_for_previous = trends_for_ohlcv.index(previous_selection)	
 
 def worklist_dropdown(scope):
-
+	logging.debug("worklist_dropdown")
 	page = scope.display['page']
 	worklist = scope.page[page]['worklist_long_desc']
 	widget_key = 'widget_' + page + '_worklist_long_desc'
@@ -30,6 +31,7 @@ def worklist_dropdown(scope):
 
 
 def tag_worklist_item_to_display(scope, page, widget_key):
+	logging.debug("tag_worklist_item_to_display")
 	selected_ticker = scope[widget_key]
 	# store the selection
 	scope.page[page]['show']['ticker_file'] = selected_ticker	
@@ -37,6 +39,7 @@ def tag_worklist_item_to_display(scope, page, widget_key):
 
 
 def determine_label_name(worklist):
+	logging.debug("determine_label_name")
 	no_of_tickers = len(worklist)-1 # as a default is inserted at the top
 	widget_label = 'Unknown Label'
 	if no_of_tickers  < 1:widget_label = 'Worklist (Empty)'

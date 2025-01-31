@@ -1,10 +1,12 @@
 
+import logging
 import streamlit as st
 
 
 
 
 def set_streamlit_page_config():
+	logging.debug("set_streamlit_page_config")
 	# This code should only run the one time (on initial load)
 	
 	# Set the Browser Tab Name for the Page

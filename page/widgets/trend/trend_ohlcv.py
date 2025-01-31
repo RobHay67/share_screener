@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 
 from add_cols.events.edit_column_adder import edit_column_adder_event
@@ -5,7 +6,7 @@ from trials.scope.model.schema import trends_for_ohlcv
 
 
 def edit_trend_ohlcv(scope, schema_group, schema_key ):
-
+	logging.debug("edit_trend_ohlcv")
 	widget_key = 'widget_trend_' + schema_group + '_' + schema_key
 	display_name =  'is Trending'
 	previous_selection = scope[schema_group]['user_config'][schema_key]['function']['trend']
@@ -23,7 +24,7 @@ def edit_trend_ohlcv(scope, schema_group, schema_key ):
 
 
 def on_change_trend_selection(scope:dict, schema_group:str, schema_key:str, widget_key:str):
-
+	logging.debug("on_change_trend_selection")
 	changed_value = scope[widget_key]
 
 	# store the selection

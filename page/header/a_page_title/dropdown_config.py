@@ -1,7 +1,9 @@
+import logging
 import streamlit as st
 
 
 def dropdown_select_config(scope):
+	logging.debug("dropdown_select_config")
 	page = scope.display['page']
 	widget_key = 'widget_' + page + '_select_config'
 	
@@ -32,5 +34,6 @@ def dropdown_select_config(scope):
 
 
 def on_change_show_config_selection(scope, page, widget_key):
+	logging.debug("on_change_show_config_selection")
 	selected_config = scope[widget_key]
 	scope.page[page]['show']['config'] = selected_config

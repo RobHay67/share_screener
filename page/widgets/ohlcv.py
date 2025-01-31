@@ -1,9 +1,11 @@
+import logging
 import streamlit as st
 
 from add_cols.events.edit_column_adder import edit_column_adder_event
 
 
 def edit_ohlcv(scope, schema_group, schema_key ):
+	logging.debug("edit_ohlcv")
 	widget_key = 'widget_' + schema_group + '_' + schema_key
 	display_name =  ('This ticker metric')
 	previous_selection = scope[schema_group]['user_config'][schema_key]['function']['column']
@@ -20,7 +22,7 @@ def edit_ohlcv(scope, schema_group, schema_key ):
 
 
 def on_change_ohlcv(scope:dict, schema_group:str, schema_key:str, widget_key:str):
-
+	logging.debug("on_change_ohlcv")
 	changed_value = scope[widget_key]
 
 	# store the selection

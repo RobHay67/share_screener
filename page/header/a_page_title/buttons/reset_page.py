@@ -1,9 +1,10 @@
-
+import logging
 import streamlit as st
 
 
 
 def button_reset_page(scope):
+	logging.debug("button_reset_page")
 	st.button(
 			label='Reset', 
 			use_container_width=True,
@@ -14,6 +15,7 @@ def button_reset_page(scope):
 
 
 def reset_render_status(scope):
+	logging.debug("reset_render_status")
 	page = scope.display['page']
 	
 	scope.page[page]['show']['trials'] 		= False

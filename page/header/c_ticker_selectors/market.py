@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 
 
@@ -5,7 +6,7 @@ import streamlit as st
 
 
 def select_a_market(scope):
-
+	logging.debug("select_a_market")
 	page = scope.display['page']
 	
 	widget_key = 'widget_' + page + '_select_market'
@@ -24,7 +25,7 @@ def select_a_market(scope):
 
 
 def on_change_market_selection(scope, page, widget_key):
-	
+	logging.debug("on_change_market_selection")
 	changed_value = scope[widget_key]
 
 	# store the selection

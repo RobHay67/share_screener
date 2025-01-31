@@ -1,8 +1,9 @@
+import logging
 import streamlit as st
 
 
 def button_show_overlay_settings(scope):
-
+	logging.debug("button_show_overlay_settings")
 	page = scope.display['page']
 	current_value = scope.page[page]['show']['overlays']
 	type_of_button = 'primary' if current_value == True else 'secondary'
@@ -17,7 +18,7 @@ def button_show_overlay_settings(scope):
 	return 
 
 def overlay_config_status(scope, page):
-
+	logging.debug("overlay_config_status")
 	previous_value = scope.page[page]['show']['overlays']
 	new_value = True if previous_value == False else False
 

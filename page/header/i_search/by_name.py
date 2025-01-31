@@ -1,8 +1,9 @@
+import logging
 import streamlit as st
 
 
 def search_ticker_by_name(scope):
-
+	logging.debug("search_ticker_by_name")
 	page = scope.display['page']
 
 	widget_key = 'widget_' + page + '_search'
@@ -21,7 +22,7 @@ def search_ticker_by_name(scope):
 
 
 def search_for_ticker(scope, page, widget_key):
-
+	logging.debug("search_for_ticker")
 	search_string = scope[widget_key].upper()
 
 	# Set other selectors to their defualt values

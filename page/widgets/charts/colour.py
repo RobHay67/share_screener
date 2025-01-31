@@ -1,9 +1,10 @@
+import logging
 import streamlit as st
 
 
 
 def edit_colour(scope, schema_group, schema_key ):
-	
+	logging.debug("edit_colour")
 	widget_key = 'widget_colour_' + schema_group + '_' + schema_key
 	display_name =  ('Colour for ' + scope[schema_group]['user_config'][schema_key]['short_name'])
 	previous_selection = scope[schema_group]['user_config'][schema_key]['plot']['colour']
@@ -22,7 +23,7 @@ def edit_colour(scope, schema_group, schema_key ):
 
 
 def on_change_colour_selection(scope:dict, schema_group:str, schema_key:str, widget_key:str):
-
+	logging.debug("on_change_colour_selection")
 	changed_value = scope[widget_key]
 
 	# store the selection

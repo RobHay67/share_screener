@@ -1,7 +1,9 @@
+import logging
 import streamlit as st
 
-def button_show_strategy_config(scope):
 
+def button_show_strategy_config(scope):
+	logging.debug("button_show_strategy_config")
 	page = scope.display['page']
 	current_value = scope.page[page]['show']['strategy']
 	type_of_button = 'primary' if current_value == True else 'secondary'
@@ -17,6 +19,7 @@ def button_show_strategy_config(scope):
 	return button
 
 def strategy_status(scope):
+	logging.debug("strategy_status")
 	page = scope.display['page']
 
 	previous_value = scope.page[page]['show']['strategy']

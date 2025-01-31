@@ -1,3 +1,4 @@
+import logging
 from page.header.a_page_title.router import page_title_layer
 from page.header.router_show_settings import router_show_settings
 from page.header.router_show_config import router_show_config
@@ -14,6 +15,7 @@ from page.header.show_ticker_name import show_ticker_name
 
 
 def show_page_header(scope):
+	logging.debug("show_page_header")
 	page_title_layer(scope)								# a_
 	if scope.users['logged_in']:
 		# Levels at the top of the page

@@ -1,11 +1,12 @@
 
+import logging
 import streamlit as st
 
 from add_cols.events.edit_column_adder import edit_column_adder_event
 
 
 def edit_ohlc(scope, schema_group, schema_key ):
-	
+	logging.debug("edit_ohlc")
 	widget_key = 'widget_' + schema_group + '_' + schema_key
 	display_name =  ('Column for ' +  scope[schema_group]['user_config'][schema_key]['short_name'])
 	previous_selection = scope[schema_group]['user_config'][schema_key]['function']['column']
@@ -22,7 +23,7 @@ def edit_ohlc(scope, schema_group, schema_key ):
 
 
 def on_change_ohlc(scope:dict, schema_group:str, schema_key:str, widget_key:str):
-
+	logging.debug("on_change_ohlc")
 	changed_value = scope[widget_key]
 
 	# store the selection
@@ -34,7 +35,7 @@ def on_change_ohlc(scope:dict, schema_group:str, schema_key:str, widget_key:str)
 
 
 def edit_ohlc_active_col(scope, schema_group, schema_key, col_name):
-	
+	logging.debug("edit_ohlc_active_col")
 	active_ohlc_cols = scope[schema_group]['user_config'][schema_key]['active_columns']
 	previous_selection = True if col_name in active_ohlc_cols else False
 
@@ -50,7 +51,7 @@ def edit_ohlc_active_col(scope, schema_group, schema_key, col_name):
 
 
 def on_change_active_column_status(scope, schema_group, schema_key, col_name, widget_key):
-
+	logging.debug("on_change_active_column_status")
 	changed_value = scope[widget_key]
 
 	active_columns = scope[schema_group]['user_config'][schema_key]['active_columns']

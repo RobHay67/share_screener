@@ -1,9 +1,10 @@
+import logging
 from page.scope.model.worklists.single_selector import single_selector_page
 from page.scope.model.worklists.multi_selector import multi_selector_page
 from page.scope.model.worklists.long_desc import refresh_worklist_long_description
 
 def refresh_page_worklist(scope):
-	
+	logging.debug("refresh_page_worklist")
 	# Create a ticker list based on what has been chosen in the Page Selectors
 	# most detailed/largest selection takes precedence 
 	#  	ie industry selection trumps a single ticker selection

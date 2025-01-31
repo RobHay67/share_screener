@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 
 from page.header.c_ticker_selectors.ticker import select_a_ticker
@@ -10,7 +11,7 @@ from page.scope.model.worklists.builder import refresh_page_worklist
 
 
 def router_show_ticker_selectors(scope):
-
+	logging.debug("router_show_ticker_selectors")
 	col1,col2,col3,col4 = st.columns([2.0, 2.0, 2.0, 6.0])  #12
 	
 	page = scope.display['page']

@@ -1,7 +1,9 @@
+import logging
 import streamlit as st
 
 
 def sidebar_navigation_buttons(scope):
+	logging.debug("sidebar_navigation_buttons")
 	screener_page = st.Page(
 		page=scope.config['page_schema']['screener']['path'],
 		title=scope.config['page_schema']['screener']['title'],

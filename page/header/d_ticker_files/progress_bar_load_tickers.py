@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 from tickers.model.load import load_ticker
 from tickers.helpers.ticker_list import create_ticker_list_to_load
@@ -5,6 +6,7 @@ from tickers.helpers.count_page_tickers import count_page_tickers
 
 
 def progress_bar_for_loading_tickers(scope):
+	logging.debug("progress_bar_for_loading_tickers")
 	ticker_list = create_ticker_list_to_load(scope)
 	number_to_load = len(ticker_list)
 	status_just_loaded_tickers = False

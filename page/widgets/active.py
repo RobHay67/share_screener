@@ -1,4 +1,5 @@
 
+import logging
 import streamlit as st
 
 from add_cols.events.edit_active import edit_active_event
@@ -6,7 +7,7 @@ from add_cols.events.edit_active import edit_active_event
 
 
 def edit_active(scope, schema_group, schema_key ):
-
+	logging.debug("edit_active")
 	widget_key = 'widget_active_' + schema_group + '_' + schema_key
 	display_name =  '' + scope[schema_group]['user_config'][schema_key]['name']
 	previous_selection = scope[schema_group]['user_config'][schema_key]['active']
@@ -26,6 +27,7 @@ def edit_active(scope, schema_group, schema_key ):
 
 
 def on_change_active_status(scope:dict, schema_group:str, schema_key:str, widget_key:str):
+	logging.debug("on_change_active_status")
 	changed_value = scope[widget_key]
 
 	# store the selection

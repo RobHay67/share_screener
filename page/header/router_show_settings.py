@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 
 from charts.scope.views.settings_charts import show_settings_charts
@@ -8,6 +9,7 @@ from trials.scope.view.config_strategy import show_config_strategy
 # Show/Hide additional config information or settings as specified by the user
 
 def router_show_settings(scope):
+	logging.debug("router_show_settings")
 	page = scope.display['page']
 
 	match page:

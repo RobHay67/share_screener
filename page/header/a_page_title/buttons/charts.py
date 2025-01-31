@@ -1,8 +1,9 @@
+import logging
 import streamlit as st
 
 
 def button_show_chart_settings(scope):
-
+	logging.debug("button_show_chart_settings")
 	page = scope.display['page']
 	current_value = scope.page[page]['show']['charts']
 	type_of_button = 'primary' if current_value == True else 'secondary'
@@ -18,7 +19,7 @@ def button_show_chart_settings(scope):
 	return button
 
 def chart_settings_status(scope, page):
-	
+	logging.debug("chart_settings_status")
 	previous_value = scope.page[page]['show']['charts']
 	new_value = True if previous_value == False else False
 

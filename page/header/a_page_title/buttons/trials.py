@@ -1,8 +1,9 @@
+import logging
 import streamlit as st
 
 
 def button_show_trial_settings(scope):
-
+	logging.debug("button_show_trial_settings")
 	page = scope.display['page']
 	current_value = scope.page[page]['show']['trials']
 	type_of_button = 'primary' if current_value == True else 'secondary'
@@ -18,7 +19,7 @@ def button_show_trial_settings(scope):
 	return button
 
 def trial_config_status(scope):
-
+	logging.debug("trial_config_status")
 	page = scope.display['page']
 
 	previous_value = scope.page[page]['show']['trials']

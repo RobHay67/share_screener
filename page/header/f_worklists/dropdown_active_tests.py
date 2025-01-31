@@ -1,11 +1,12 @@
 
 
+import logging
 import streamlit as st
 
 
 
 def active_chart_or_test_dropdown(scope):
-
+	logging.debug("active_chart_or_test_dropdown")
 	page = scope.display['page']
 	
 	if page in ['screener', 'chart']:

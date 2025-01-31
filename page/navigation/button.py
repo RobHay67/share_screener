@@ -1,7 +1,9 @@
+import logging
 import streamlit as st
 
 
 def button_page_link(scope, page, ticker):
+	logging.debug("button_page_link")
 	widget_key = 'widget_navigate_to_' + page + '_page_for_' + ticker
 
 	if st.button(

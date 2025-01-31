@@ -1,9 +1,10 @@
 
+import logging
 import streamlit as st
 
 
 def seach_for_ticker_button(scope, page, ticker):
-
+	logging.debug("seach_for_ticker_button")
 	widget_key = 'widget_button_' + ticker
 
 	st.button(
@@ -15,7 +16,7 @@ def seach_for_ticker_button(scope, page, ticker):
 
 
 def select_search_result_ticker(scope, page, ticker, widget_key):
-
+	logging.debug("select_search_result_ticker")
 	# set selected ticker as the target for the page
 	if page == 'screener':
 		scope.page[page]['selectors']['tickers'] = [ticker]

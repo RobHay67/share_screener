@@ -1,10 +1,11 @@
+import logging
 import streamlit as st
 
 from tickers.model.download import download_ticker_data
 
 
 def button_download_ticker(scope):
-
+	logging.debug("button_download_ticker")
 	download_button_msg = 'Download (' + str(scope.config['download_days'] + ')')
 		
 	button = st.button(
@@ -19,6 +20,7 @@ def button_download_ticker(scope):
 
 
 def download_tickers(scope):
+	logging.debug("download_tickers")
 	st.write('Reset Progress Bar')
 	download_ticker_data(scope)
 

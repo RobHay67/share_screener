@@ -1,8 +1,9 @@
+import logging
 import streamlit as st
 
 
 def select_a_ticker(scope):
-
+	logging.debug("select_a_ticker")
 	page = scope.display['page']
 	
 	widget_key = 'widget_' + page + '_select_ticker'
@@ -22,7 +23,7 @@ def select_a_ticker(scope):
 
 
 def on_change_ticker_selection(scope, page, widget_key):
-	
+	logging.debug("on_change_ticker_selection")
 	changed_value = scope[widget_key]
 
 	# store the selection

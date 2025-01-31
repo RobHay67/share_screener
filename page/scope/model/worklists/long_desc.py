@@ -1,4 +1,8 @@
+import logging
+
 def refresh_worklist_long_description(scope):
+	logging.debug("refresh_worklist_long_description")
+
 	# Cloud Errors over-ride local error. If we 
 	# cant download from cloud, there probably wont be
 	# a local file anyway.

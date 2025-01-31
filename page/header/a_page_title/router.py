@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 from page.header.a_page_title.heading import page_heading 
 from page.header.a_page_title.buttons.download import button_download_ticker
@@ -10,6 +11,7 @@ from page.header.a_page_title.buttons.reset_page import button_reset_page
 
 
 def page_title_layer(scope):
+	logging.debug("page_title_layer")
 	page = scope.display['page']
 
 	col1,col2,col3,col4,col5,col6 = st.columns([7.0,2.0,0.5,0.5,1.0,1.0])  #12

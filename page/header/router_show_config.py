@@ -1,3 +1,4 @@
+import logging
 from tickers.scope.view.config_vedicts import show_config_verdicts
 from trials.scope.view.config_trials import show_config_trials
 from trials.scope.view.config_strategy import show_config_strategy
@@ -8,6 +9,7 @@ from tickers.scope.view.config_tickers import show_config_tickers
 
 
 def router_show_config(scope):
+	logging.debug("router_show_config")
 	page = scope.display['page']
 	config_to_show = scope.page[page]['show']['config']
 

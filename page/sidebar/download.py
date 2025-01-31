@@ -1,8 +1,9 @@
+import logging
 import streamlit as st
 
 
 def edit_download_days(scope):
-	
+	logging.debug("edit_download_days")
 	display_name = 'Interval for Download'
 	widget_key = 'widget_download_days'
 	permitted_options = scope.yf['periods']
@@ -20,7 +21,7 @@ def edit_download_days(scope):
 
 
 def on_change_download_days(scope:dict, widget_key:str):
-
+	logging.debug("on_change_download_days")
 	changed_value = scope[widget_key]
 
 	# store the selection

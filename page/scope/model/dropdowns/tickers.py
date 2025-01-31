@@ -1,7 +1,8 @@
-
+import logging
 
 
 def build_ticker_dropdown_list(scope):
+	logging.debug("build_ticker_dropdown_list")
 	list_of_tickers = scope.ticker_index['df'].index.values.tolist()
 	scope.config['dropdowns']['tickers'] = list_of_tickers.copy()
 

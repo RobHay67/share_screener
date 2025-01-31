@@ -1,5 +1,6 @@
 
 
+import logging
 import streamlit as st
 
 
@@ -7,7 +8,7 @@ from page.header.i_search.button_search import seach_for_ticker_button
 
 
 def show_search_results(scope):
-	
+	logging.debug("show_search_results")
 	page = scope.display['page']
 
 	search_results = scope.page[page]['search_results']

@@ -1,8 +1,10 @@
 
+import logging
 import streamlit as st
 
 
 def three_cols( description, variable, variable_name, diff_col_size=None, widget_type='string' ):
+	logging.warning("three_cols")
 	if diff_col_size == None:
 		col1,col2,col3 = st.columns([2,2,2])
 	else:
