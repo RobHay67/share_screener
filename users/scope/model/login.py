@@ -1,3 +1,4 @@
+import logging
 from trials.scope.model.scope_trials import trial_active_list
 from trials.scope.model.scope_trials import trial_template_column_adders
 from charts.scope.model.scope_charts import chart_active_list
@@ -7,6 +8,7 @@ from charts.scope.model.scope_charts import chart_column_adders
 from users.page_welcome import show_welcome_page
 
 def login_user(scope, login_name):
+	logging.debug("login_user")
 	# Store User params
 
 	scope.users['login_name'] = login_name

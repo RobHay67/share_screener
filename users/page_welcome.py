@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 
 from page.header.a_page_title.router import page_title_layer
@@ -5,6 +6,7 @@ from page.header.a_page_title.router import page_title_layer
 
 
 def show_welcome_page(scope):
+	logging.debug("show_welcome_page")
 	scope.display['page'] = 'welcome'
 
 	page_title_layer(scope)

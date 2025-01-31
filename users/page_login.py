@@ -1,4 +1,5 @@
 
+import logging
 import streamlit as st
 
 from users.views.login.button_auto_login import auto_login_button
@@ -7,7 +8,7 @@ from users.views.login.messages import login_message
 
 
 def show_login_page(scope):
-
+	logging.debug("show_login_page")
 	st.subheader('Login')
 
 	login_name = st.text_input('User Name')

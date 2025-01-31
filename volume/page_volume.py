@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 from datetime import datetime
 from datetime import timedelta
@@ -13,6 +14,7 @@ from markets.schema import opening_hours
 scope = st.session_state
 page = 'volume'
 scope.display['page'] = page
+logging.debug("page = volume")
 
 show_page_header(scope)
 

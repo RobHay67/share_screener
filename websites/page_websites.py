@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 
 from page.header.controller import show_page_header
@@ -7,6 +8,7 @@ from page.header.controller import show_page_header
 scope = st.session_state
 page = 'websites'
 scope.display['page'] = page
+logging.debug("page = websites")
 
 show_page_header(scope)
 

@@ -1,10 +1,10 @@
 # Not sure what these are for anymore
 # TODO - might be able to delete these later
-
+import logging
 
 
 def summarise_trial_config_for_user(scope):
-
+	logging.debug("summarise_trial_config_for_user")
 	trial_dict = {}
 
 	for trial in scope.trials['trial_list']:
@@ -23,7 +23,7 @@ def summarise_trial_config_for_user(scope):
 
 
 def summarise_chart_config_for_user(scope):
-
+	logging.debug("summarise_chart_config_for_user")
 	chart_dict = {}
 
 	for chart in scope.charts['chart_list']:
