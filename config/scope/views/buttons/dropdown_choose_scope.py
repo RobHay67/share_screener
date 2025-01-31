@@ -1,9 +1,10 @@
 
+import logging
 import streamlit as st
 
 
 def scope_dropdown(scope, label_name, list_options, index_pos=0):
-	
+	logging.debug("scope_dropdown")
 	label_name = 'Select a :red['+label_name +']'
 
 	scope_dropdown = st.selectbox(

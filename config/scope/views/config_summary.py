@@ -1,7 +1,9 @@
+import logging
 import streamlit as st
 
 
 def show_config_summary(scope):
+	logging.debug("show_config_summary")
 	st.button('Overview (basic structure of App)', use_container_width=True, on_click=set_st_button, args=(scope, 'route_config_summary', ))
 
 	col1,col2,col3,col4,col5,col6 = st.columns([1,1,1,1,3,3])
@@ -26,6 +28,7 @@ def show_config_summary(scope):
 
 
 def set_st_button(scope:dict, show_config:str):
+	logging.debug("set_st_button")
 	previous_value = scope.display['config_page']
 	if previous_value == show_config: 
 		scope.display['config_page'] = None

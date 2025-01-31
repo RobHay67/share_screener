@@ -1,7 +1,7 @@
-
+import logging
 
 def scope_display(scope):
-
+	logging.debug("scope_display")
 	scope.display = {}
 	scope.display['page'] = 'streamlit_app'
 	scope.display['config_page'] = 'Rob'

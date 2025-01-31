@@ -1,4 +1,4 @@
-
+import logging
 from config.scope.views.config_config import show_config_config
 from config.scope.views.config_display import show_config_display
 from files.scope.view.config_files import show_config_files
@@ -16,7 +16,7 @@ from trials.scope.view.config_strategy import show_config_strategy
 
 
 def route_to_config_page(scope):
-	
+	logging.debug("route_to_config_page")
 	config_page = scope.display['config_page']
 
 	match config_page:

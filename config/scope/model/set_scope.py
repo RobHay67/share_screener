@@ -1,3 +1,4 @@
+import logging
 from config.helpers.system import print_system_info_to_terminal
 from page.scope.model.streamlit import set_streamlit_page_config
 from config.scope.model.scope_config import scope_config
@@ -16,7 +17,7 @@ from trials.scope.model.scope_strategy import scope_strategy
 
 
 def set_scope(scope):
-
+	logging.debug("set_scope")
 	print_system_info_to_terminal()
 	set_streamlit_page_config()								# should only run onetime
 	

@@ -1,9 +1,10 @@
+import logging
 import time
 from page.scope.model.schema import page_schema
 
 
 def scope_config(scope):
-
+	logging.debug("scope_config")
 	scope.config = {}
 	scope.config['project_description'] = 'Share Picker'
 	scope.config['project_start_time'] 	= time.time()
@@ -23,6 +24,7 @@ def scope_config(scope):
 
 
 def user_config_pages(scope):
+	logging.debug("replace_page_df_columns")
 	# These Setting can be changed for each user
 	# so we need to be able to call when changing user
 	scope.config['row_limit'] = 100
@@ -32,6 +34,7 @@ def user_config_pages(scope):
 
 
 def scope_seach_for_ticker(scope):
+	logging.debug("replace_page_df_columns")
 	# company names for the ticker search
 	scope.config['ticker_search'] = {}
 	scope.config['ticker_search'] = (scope.ticker_index['df']['company_name']).to_dict()

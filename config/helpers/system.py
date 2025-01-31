@@ -1,4 +1,4 @@
-
+import logging
 import sys
 import streamlit
 import pandas
@@ -11,7 +11,7 @@ import streamlit_extras
 
 
 def print_system_info_to_terminal():
-
+	logging.debug("print_system_info_to_terminal")
 	print ( '\033[94m')
 	print('='*100)
 	print ( 'EXPECTED Python Verion  = 3.13.13')

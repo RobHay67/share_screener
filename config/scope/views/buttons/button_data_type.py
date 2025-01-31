@@ -1,8 +1,10 @@
+import logging
 import streamlit as st
 
 # blue, green, orange, red, violet, gray/grey, rainbow.
 
 def data_type_button(scope, button_type, number=1):
+	logging.debug("data_type_button")
 	widget_key = 'widget>'+button_type+str(number)
 	match button_type:
 		case 'blank'		:button_label = ' '

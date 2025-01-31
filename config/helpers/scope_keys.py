@@ -1,7 +1,9 @@
+import logging
 import streamlit as st
 
 
 def print_scope_keys(location='Not Specified'):
+	logging.debug("print_scope_keys")
 	print('='*66)
 	print('\033[95m Called From > '+location+'\033[0m')
 	counter = 0; widgets = 0;hide_widgets = True
