@@ -1,4 +1,5 @@
 
+import logging
 import streamlit as st
 
 
@@ -9,7 +10,7 @@ from page.widgets.ohlcv import edit_ohlcv
 
 
 def rsi_settings(scope):
-	
+	logging.debug("rsi_settings")
 	schema_key = 'rsi'
 	schema_group = 'charts'
 

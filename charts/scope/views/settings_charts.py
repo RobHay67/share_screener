@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 from users.views.save_user_settings_button import save_user_settings_button
 
@@ -13,6 +14,7 @@ from charts.scope.views.settings.line import line_settings
 
 
 def show_settings_charts(scope):
+	logging.debug("show_settings_charts")
 	# ----------------------------------------------------------------------
 	# Primary Charts
 	# ----------------------------------------------------------------------
@@ -60,6 +62,7 @@ def show_settings_charts(scope):
 
 
 def activate_chart(scope, schema_key):
+	logging.debug("activate_chart")
 	edit_active(scope, 'charts', schema_key)
 
 

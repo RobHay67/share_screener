@@ -1,4 +1,5 @@
 
+import logging
 import streamlit as st
 
 
@@ -7,7 +8,7 @@ from page.widgets.number import edit_number
 
 
 def macd_volume_settings(scope):
-	
+	logging.debug("macd_volume_settings")
 	schema_key = 'macd_vol'
 	schema_group = 'charts'
 

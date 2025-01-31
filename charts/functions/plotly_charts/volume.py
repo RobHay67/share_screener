@@ -1,11 +1,11 @@
-
+import logging
 import plotly.graph_objects as go
 
 
 
 
 def volume_plot(scope, fig, chart, chart_df, row_no, col_no):
-
+	logging.debug("volume_plot")
 	# Colour the bars on the chart
 	# Close Up 		= Green
 	# Close Down 	= Red

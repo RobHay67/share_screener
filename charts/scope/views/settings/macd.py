@@ -1,4 +1,5 @@
 
+import logging
 import streamlit as st
 
 from page.widgets.active import edit_active
@@ -8,7 +9,7 @@ from page.widgets.ohlc import edit_ohlc
 
 
 def macd_settings(scope):
-	
+	logging.debug("macd_settings")
 	schema_key = 'macd'
 	schema_group = 'charts'
 

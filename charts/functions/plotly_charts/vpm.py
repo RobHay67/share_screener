@@ -1,7 +1,6 @@
-
-
-
+import logging
 
 
 def vpm_plot():
-	print( 'TODO VPM plot')
+	logging.debug("vpm_plot")
+	logging.warning("vpm_plot not yet completed")

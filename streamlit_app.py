@@ -18,16 +18,6 @@ logging.basicConfig(
 # logging.getLogger(__name__)
 # logging.warning("remain Calm!")
 
-
-# logging.debug("This is a debug message 10")
-# logging.info("This is an info message 20")
-# logging.warning("This is a warning message 30")
-# logging.error("This is an error message 40")
-# logging.critical("This is a critical message 50")
-
-
-
-
 import streamlit as st
 from config.helpers.re_render import app_is_re_rendering
 from config.scope.model.set_scope import set_scope

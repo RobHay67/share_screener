@@ -10,6 +10,7 @@ from page.widgets.ohlc import edit_ohlc
 
 
 def bollinger_band_settings(scope):
+	logging.debug("bollinger_band_settings")
 	schema_key = 'bollinger_bands'
 	schema_group = 'charts'
 

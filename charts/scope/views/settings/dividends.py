@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 
 
@@ -6,7 +7,7 @@ from page.widgets.active import edit_active
 
 
 def dividend_settings(scope):
-
+	logging.debug("dividend_settings")
 	schema_key = 'dividends'
 	schema_group = 'charts'
 

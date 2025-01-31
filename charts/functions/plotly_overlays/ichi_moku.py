@@ -1,5 +1,6 @@
-
+import logging
 
 
 def ichi_moku_cols( scope, chart_df, chart):
-	print('TODO ichi_moku_cols')
+	logging.debug("ichi_moku_cols")
+	logging.warning("ichi_moku_cols not yet completed")

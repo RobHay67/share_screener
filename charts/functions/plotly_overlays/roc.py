@@ -1,4 +1,4 @@
-
+import logging
 
 
 # What is the ROC  - Rate of Change
@@ -7,4 +7,5 @@
 
 
 def roc_cols( scope, chart_df, chart):
-	print('TODO roc_cols')
+	logging.debug("roc_cols")
+	logging.warning("roc_cols not yet completed")

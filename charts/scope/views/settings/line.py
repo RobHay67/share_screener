@@ -1,11 +1,13 @@
+import logging
 import streamlit as st
 
 from page.widgets.active import edit_active
 from page.widgets.number import edit_number
 from page.widgets.ohlc import edit_ohlc, edit_ohlc_active_col
 
+
 def line_settings(scope):
-	
+	logging.debug("line_settings")
 	schema_group = 'charts'
 	schema_key = 'line'
 	

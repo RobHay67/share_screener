@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 
 
@@ -6,7 +7,7 @@ from page.widgets.number import edit_number
 
 
 def stochastic_settings(scope):
-	
+	logging.debug("stochastic_settings")
 	schema_key = 'stochastic'
 	schema_group = 'charts'
 

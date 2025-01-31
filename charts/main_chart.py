@@ -1,4 +1,4 @@
-
+import logging
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
@@ -8,6 +8,7 @@ from plotly.subplots import make_subplots
 
 
 def add_main_chart(schema):
+	logging.debug("add_main_chart")
 	fig = go.Figure()
 	fig = make_subplots(
 						rows				= schema['no_of_charts'], 
@@ -20,6 +21,7 @@ def add_main_chart(schema):
 
 
 def format_main_chart(scope, fig):
+	logging.debug("format_main_chart")
 	# format the overall chart layout
 	page 	= scope.display['page']
 	ticker 	= scope.page[page]['selectors']['ticker']

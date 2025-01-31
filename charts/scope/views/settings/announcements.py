@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 
 
@@ -6,6 +7,7 @@ from page.widgets.active import edit_active
 
 
 def announcement_settings(scope):
+	logging.debug("announcement_settings")
 	schema_key = 'announcements'
 	schema_group = 'charts'
 

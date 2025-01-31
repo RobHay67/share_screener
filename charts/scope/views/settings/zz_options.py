@@ -1,5 +1,6 @@
 
 
+import logging
 import streamlit as st
 
 
@@ -9,7 +10,7 @@ import streamlit as st
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def render_chart_options(unique_key, show_col_checkboxes=False):
-
+	logging.debug("render_chart_options")
 	col1,col2,col3,col4,col5,col6,col7,col8 = st.columns(8)
 
 	with col1: st.write('Select Options')

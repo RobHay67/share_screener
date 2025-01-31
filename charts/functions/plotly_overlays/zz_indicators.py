@@ -1,3 +1,4 @@
+import logging
 import numpy as np
 
 # thinking is that the last leter will refer to the appropriate col on which the trend is based
@@ -62,6 +63,7 @@ import numpy as np
 # Complex measure with trend Lines
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 def trend_sma_50_low( params, share_df ):
+	logging.debug("trend_sma_50_low")
 	# report_function( params, f'Simple Moving Average on low price - number of days = 50' )
 	share_df['sma'] = share_df['low'].rolling(window=50).mean()
 	share_df['sma_50_l'] = np.where( share_df['low'] > share_df['sma'], '^', 'v' ) 		# add the trend direction
@@ -69,6 +71,7 @@ def trend_sma_50_low( params, share_df ):
 	return share_df 
 
 def recent_price_moves( params, share_df, lookback_days=5 ):
+	logging.debug("recent_price_moves")
 	for column in params.strategy['price_columns'] + ['volume']:
 		# report_function( params, f'Price direction on {column} today and over the past {lookback_days} days' )
 		trend_col_name = 'c_' + str(column[:1])
@@ -110,7 +113,7 @@ def recent_price_moves( params, share_df, lookback_days=5 ):
 # 	return share_df
 
 def highs_and_lows( params, share_df ):
-
+	logging.debug("highs_and_lows")
 	for column in params.strategy['price_columns'] + ['volume']:
 		# report_function( params, f'peaks and troughs on {column}' ) 
 		p_and_t_col_name = 'pt_' +  str(column[:1])
@@ -193,6 +196,7 @@ def highs_and_lows( params, share_df ):
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def add_rsi( params, share_df, column, no_of_days=14):
+	logging.debug("add_rsi")
 	# Add an RSI
 	# RSI = https://www.investopedia.com/terms/r/rsi.asp
 	if params.terminal['audit']: print ( 'trend - RSI on', column, 'number of days =', no_of_days )

@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 
 from charts.scope.views.settings.announcements import announcement_settings
@@ -8,6 +9,7 @@ from charts.scope.views.settings.moving_average import moving_average_settings
 
 
 def show_settings_overlay(scope):
+	logging.debug("show_settings_overlay")
 	# ----------------------------------------------------------------------
 	# Overlays
 	# ----------------------------------------------------------------------	

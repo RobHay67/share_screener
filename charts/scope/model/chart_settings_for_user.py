@@ -1,6 +1,7 @@
-
+import logging
 
 def chart_settings_for_user(scope):
+	logging.debug("chart_settings_for_user")
 	# Setting can be changed for each user
 	# so we need to be able to call when changing user
 

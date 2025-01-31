@@ -1,4 +1,5 @@
 
+import logging
 import streamlit as st
 
 from page.widgets.active import edit_active
@@ -6,7 +7,7 @@ from page.widgets.number import edit_number
 
 
 def volume_oscillator_settings(scope):
-	
+	logging.debug("volume_oscillator_settings")
 	schema_key = 'vol_osssy'
 	schema_group = 'charts'
 

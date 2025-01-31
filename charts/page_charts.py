@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 
 from page.header.controller import show_page_header
@@ -11,6 +12,7 @@ from charts.main_chart import format_main_chart
 scope = st.session_state
 page = 'chart'
 scope.display['page'] = page
+logging.info("page = charts")
 
 show_page_header(scope)
 

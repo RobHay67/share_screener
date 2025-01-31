@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 from config.scope.views.buttons.button_choose_scope import scope_button
 from config.scope.views.buttons.button_data_type import data_type_button
@@ -5,7 +6,7 @@ from config.scope.views.buttons.show_config_value import show_config_single_valu
 from config.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 def show_config_charts(scope):
-
+	logging.debug("show_config_charts")
 	scope_button(scope, "Charts", scope.charts, make_red=True, suffix_only=False)
 	scope_button(scope, "scope.charts", scope.charts, make_red=False, suffix_only=False)
 
@@ -84,6 +85,7 @@ def show_config_charts(scope):
 
 
 def build_chart_list(scope, is_overlays=False):
+	logging.debug("build_chart_list")
 	chart_list = []
 	for chart, config in scope.charts['schema'].items():
 		if scope.charts['schema'][chart]['is_overlay'] == is_overlays:

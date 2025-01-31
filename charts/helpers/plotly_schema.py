@@ -1,6 +1,7 @@
-
+import logging
 
 def create_schema_for_plotly(scope):
+	logging.debug("create_schema_for_plotly")
 	schema = {
 			'no_of_charts'			: 0,
 			'col_no' 				: 1,
@@ -25,6 +26,7 @@ def create_schema_for_plotly(scope):
 
 
 def make_chart_heights_proportional(scope, schema):
+	logging.debug("make_chart_heights_proportional")
 	for pos, percentage_height in enumerate(schema['chart_heights']):
 		chart_pixel_height = scope.charts['primary_height'] * percentage_height
 		schema['chart_heights'][pos] = chart_pixel_height

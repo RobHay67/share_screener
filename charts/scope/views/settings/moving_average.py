@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 
 
@@ -8,7 +9,7 @@ from page.widgets.charts.colour import edit_colour
 
 
 def moving_average_settings(scope, schema_key):  # SMA or EMA
-
+	logging.debug("moving_average_settings")
 	schema_group = 'charts'
 
 	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1,1])

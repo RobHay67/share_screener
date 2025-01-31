@@ -1,8 +1,9 @@
+import logging
 import streamlit as st
 
 
 def set_chart_height_primary(scope):
-
+	logging.debug("set_chart_height_primary")
 	previous_selection = int(scope.charts['primary_height'])
 	display_name = 'Total Height of All Charts Combined (default = 500)'
 	widget_key = 'widget_chart_height'
@@ -18,7 +19,7 @@ def set_chart_height_primary(scope):
 
 
 def on_change_chart_height(scope:dict, widget_key:str):
-
+	logging.debug("on_change_chart_height")
 	changed_value = scope[widget_key]
 	scope.charts['primary_height'] = changed_value
 

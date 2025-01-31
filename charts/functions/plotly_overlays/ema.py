@@ -1,3 +1,4 @@
+import logging
 import plotly.graph_objects as go
 
 
@@ -6,6 +7,7 @@ import plotly.graph_objects as go
 
 
 def ema_plot(scope, fig, overlay, chart_df, row_no, col_no):
+	logging.debug("ema_plot")
 
 	line_colour = scope.charts['user_config'][overlay]['plot']['colour']
 
