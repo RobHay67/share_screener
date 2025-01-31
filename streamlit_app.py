@@ -29,18 +29,16 @@ from config.helpers.scope_keys import print_scope_keys
 
 app_is_re_rendering()
 
-
 if __name__ == "__main__":
-	if 'display_page' not in st.session_state:
-		scope = set_scope(st.session_state)
-
+	scope = set_scope(st.session_state)
 	page_navigation = sidebar_navigation_buttons(scope)
 
-	if scope.users['logged_in'] == True:
-		page_navigation.run()			# adds Application Navigation Buttons
-		show_sidebar_app_info(scope)	# adds additional market info and global variables
-	else:
-		show_login_page(scope)
+	match scope.users['logged_in']:
+		case True:
+			page_navigation.run()			# adds Application Navigation Buttons
+			show_sidebar_app_info(scope)	# adds additional market info and global variables
+		case _ : 
+			show_login_page(scope)
 
 	logging.info("Download and Save the dividend data to this app")
 	print_scope_keys('streamlit_app')

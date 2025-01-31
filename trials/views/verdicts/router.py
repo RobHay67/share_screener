@@ -6,7 +6,7 @@
 
 import logging
 
-from trials.helpers.verdicts_passing import passing_verdict_list
+from trials.helpers.verdicts_passing import build_passing_verdict_list
 from trials.views.verdicts.failed_all_tests import show_all_verdicts_failed
 from trials.views.verdicts.passed_too_many import show_too_many_verdicts
 from trials.views.verdicts.passed_tests import show_passing_verdicts
@@ -17,7 +17,7 @@ def show_verdicts(scope):
 	logging.debug("show_verdicts")
 	tab_group_size 	= 10
 	number_of_tabs 	= 30
-	verdict_list 	= passing_verdict_list(scope)
+	verdict_list 	= build_passing_verdict_list(scope)
 	qty_of_verdicts	= len(verdict_list)
 	match qty_of_verdicts:
 		case 0:

@@ -1,7 +1,7 @@
 import logging
 import streamlit as st
 
-from page.header.controller import show_page_header
+from page.header.controller import add_page_header
 from ticker_index.scope.views.industries.report import render_industry_report
 from ticker_index.scope.views.industries.button import button_industry_report
 from ticker_index.scope.views.dataframes.button_show_df import button_show_ticker_index
@@ -14,9 +14,9 @@ from ticker_index.scope.views.download.download_button import button_download_ti
 # Page Configuration
 scope = st.session_state
 scope.display['page'] = 'ticker_index'
-logging.debug("page = ticker_index")
+logging.info("page = ticker_index")
 
-show_page_header(scope)
+add_page_header(scope)
 
 if scope.users['logged_in']:
 	col1,col2 = st.columns([10,2]) #12

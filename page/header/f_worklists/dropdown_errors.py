@@ -2,8 +2,8 @@ import logging
 import streamlit as st
 
 
-def ticker_load_and_download_errors_dropdown(scope):
-	logging.debug("ticker_load_and_download_errors_dropdown")
+def dropdown_load_and_download_ticker_errors(scope):
+	logging.debug("dropdown_load_and_download_ticker_errors")
 	# =========================================
 	# Errors Dropdown list
 	# =========================================
@@ -15,7 +15,7 @@ def ticker_load_and_download_errors_dropdown(scope):
 
 	widget_key = 'widget_' + page + '_load_errors'
 	
-	ticker_error_list = create_error_list_for_page(scope, page)
+	ticker_error_list = build_error_list_for_page(scope, page)
 	no_of_errors = len(ticker_error_list)
 
 	# Create label for dropdown list
@@ -31,8 +31,8 @@ def ticker_load_and_download_errors_dropdown(scope):
 
 	return selectbox
 
-def create_error_list_for_page(scope, page):
-	logging.debug("create_error_list_for_page")
+def build_error_list_for_page(scope, page):
+	logging.debug("build_error_list_for_page")
 	# create a list of errors relevant for this page/page
 	ticker_error_list = []
 	drop_down_list = []

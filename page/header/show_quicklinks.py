@@ -8,8 +8,8 @@ from page.navigation.links import website_hyperlink
 from page.navigation.button import button_page_link
 
 
-def router_show_quick_links(scope):
-	logging.debug("router_show_quick_links")
+def show_quick_links(scope):
+	logging.debug("show_quick_links")
 	col1,col2,col3,col4,col5,col6,col7,col8,col9,col10,col11 = st.columns([1.0,   0.5, 0.5, 0.5, 0.5,   0.5, 0.5, 0.5, 0.5, 0.5,    1.0])
 
 	page = scope.display['page']

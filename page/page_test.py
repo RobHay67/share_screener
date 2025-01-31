@@ -1,15 +1,15 @@
 import logging
 import streamlit as st
 
-from page.header.controller import show_page_header
+from page.header.controller import add_page_header
 
 # Page Configuration
 scope = st.session_state
 page = 'testing'
 scope.display['page'] = page
-logging.debug("page = test")
+logging.info("page = test")
 
-show_page_header(scope)
+add_page_header(scope)
 
 
 

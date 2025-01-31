@@ -1,11 +1,11 @@
 import logging
-from page.header.a_page_title.router import page_title_layer
+from page.header.a_page_title.router import build_page_header_title_row
 from page.header.router_show_settings import router_show_settings
 from page.header.router_show_config import router_show_config
 from page.header.c_ticker_selectors.router_ticker_selectors import router_show_ticker_selectors
-from page.header.d_ticker_files.controller import show_ticker_load_and_col_adding
-from page.header.f_worklists.controller import show_worklist_dropdowns
-from page.header.show_quicklinks import router_show_quick_links
+from page.header.d_ticker_files.controller import show_progress_load_and_add_cols
+from page.header.f_worklists.controller import show_worklist_dropdown
+from page.header.show_quicklinks import show_quick_links
 from page.header.show_dataframes import show_dataframes
 from page.header.i_search.show_search_results import show_search_results
 from page.header.show_ticker_name import show_ticker_name
@@ -14,18 +14,18 @@ from page.header.show_ticker_name import show_ticker_name
 
 
 
-def show_page_header(scope):
-	logging.debug("show_page_header")
-	page_title_layer(scope)								# a_
+def add_page_header(scope):
+	logging.debug("add_page_header")
+	build_page_header_title_row(scope)								# a_
 	if scope.users['logged_in']:
 		# Levels at the top of the page
 		router_show_settings(scope)						# b_
 		router_show_config(scope)						# b_
 		router_show_ticker_selectors(scope)				# c_
-		show_ticker_load_and_col_adding(scope)			# d_
-		show_worklist_dropdowns(scope)					# f_
+		show_progress_load_and_add_cols(scope)			# d_
+		show_worklist_dropdown(scope)					# f_
 		# Optional items to show as requested
-		router_show_quick_links(scope)						
+		show_quick_links(scope)						
 		show_dataframes(scope)		
 		show_search_results(scope)						# i_
 		show_ticker_name(scope)

@@ -6,8 +6,8 @@ import streamlit as st
 # previous_selection = scope[schema_group]['user_config'][schema_key]['function']['trend']
 # pos_for_previous = trends_for_ohlcv.index(previous_selection)	
 
-def worklist_dropdown(scope):
-	logging.debug("worklist_dropdown")
+def dropdown_worklist(scope):
+	logging.debug("dropdown_worklist")
 	page = scope.display['page']
 	worklist = scope.page[page]['worklist_long_desc']
 	widget_key = 'widget_' + page + '_worklist_long_desc'

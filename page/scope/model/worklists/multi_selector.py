@@ -3,8 +3,8 @@ import logging
 
 
 
-def multi_selector_page(scope, ticker_list):
-	logging.debug("multi_selector_page")
+def page_with_multiple_selectors(scope, ticker_list):
+	logging.debug("page_with_multiple_selectors")
 	# Screener page has multiple selectors
 	# - most complex selections takes precendence
 	#	 ie. market trumps industry selection

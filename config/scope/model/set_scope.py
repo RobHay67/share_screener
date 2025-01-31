@@ -17,8 +17,9 @@ from trials.scope.model.scope_strategy import scope_strategy
 
 
 def set_scope(scope):
-	logging.debug("set_scope")
 	print_system_info_to_terminal()
+	
+	logging.debug("set_scope")
 	set_streamlit_page_config()								# should only run onetime
 	
 	if 'config' not in scope:	

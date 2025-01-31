@@ -4,7 +4,7 @@ from datetime import datetime
 from datetime import timedelta
 import pytz
 
-from page.header.controller import show_page_header
+from page.header.controller import add_page_header
 from volume.views.input_volume import view_input_volume
 from volume.views.prediction import view_prediction
 from markets.schema import opening_hours
@@ -14,9 +14,9 @@ from markets.schema import opening_hours
 scope = st.session_state
 page = 'volume'
 scope.display['page'] = page
-logging.debug("page = volume")
+logging.info("page = volume")
 
-show_page_header(scope)
+add_page_header(scope)
 
 if scope.users['logged_in']:
 

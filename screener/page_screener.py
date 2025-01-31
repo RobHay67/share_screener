@@ -10,22 +10,18 @@
 import logging
 import streamlit as st
 
-from page.header.controller import show_page_header
+from page.header.controller import add_page_header
 from trials.views.active_trials.active_tests import show_active_trials
 from trials.views.verdicts.router import show_verdicts
-
-
-logging.info('Page = Screener')
-logging.debug("This will get logged.")
 
 
 # Page Configuration
 scope = st.session_state
 page = 'screener'
 scope.display['page'] = page
-logging.debug("page = screener")
+logging.info("page = screener")
 
-show_page_header(scope)
+add_page_header(scope)
 if scope.users['logged_in']:
 	show_active_trials(scope)
 	show_verdicts(scope)

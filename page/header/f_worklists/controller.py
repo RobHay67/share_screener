@@ -1,18 +1,18 @@
 import logging
 import streamlit as st
-from page.header.f_worklists.dropdown_worklist import worklist_dropdown
-from page.header.f_worklists.dropdown_errors import ticker_load_and_download_errors_dropdown
-from page.header.f_worklists.dropdown_active_tests import active_chart_or_test_dropdown
+from page.header.f_worklists.dropdown_worklist import dropdown_worklist
+from page.header.f_worklists.dropdown_errors import dropdown_load_and_download_ticker_errors
+from page.header.f_worklists.dropdown_active_tests import dropdown_active_charts_or_trials
 
 
-def show_worklist_dropdowns(scope):
-	logging.debug("show_worklist_dropdowns")
+def show_worklist_dropdown(scope):
+	logging.debug("show_worklist_dropdown")
 	page=scope.display['page']
 	if page in ['screener', 'chart', 'intraday', 'volume', 'research']:
 		col1,col2,col3 = st.columns([7.0, 3.0, 2.0])  #12
-		with col1:worklist_dropdown(scope)
-		with col2:ticker_load_and_download_errors_dropdown(scope)
-		with col3:active_chart_or_test_dropdown(scope)
+		with col1:dropdown_worklist(scope)
+		with col2:dropdown_load_and_download_ticker_errors(scope)
+		with col3:dropdown_active_charts_or_trials(scope)
     
 
 
