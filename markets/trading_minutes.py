@@ -1,8 +1,10 @@
+import logging
 from markets.schema import opening_hours
 
 
 
 def trading_minutes( scope, ticker ):
+	logging.debug("trading_minutes")
 	market = scope.config['share_market']
 	ticker_code_first_letter = ticker[0].upper()
 	for group in opening_hours[market].keys():

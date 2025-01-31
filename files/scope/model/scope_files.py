@@ -1,8 +1,9 @@
+import logging
 import os
 
 
 def scope_files(scope):
-
+	logging.debug("scope_files")
 	scope.files = {}
 
 	# Folders

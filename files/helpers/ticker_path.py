@@ -1,3 +1,4 @@
+import logging
 import os
 
 
@@ -7,6 +8,7 @@ import os
 
 
 def path_for_ticker_file( scope, ticker ):
+	logging.debug(f"path_for_ticker_file {ticker=}")
 	file_name = ( ticker.replace( '.', '_' ) ) + '.csv'
 
 	file_path = os.path.join(scope.files['folders']['tickers'], file_name)

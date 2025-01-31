@@ -1,3 +1,4 @@
+import logging
 import streamlit as st
 from config.scope.views.buttons.button_choose_scope import scope_button
 from config.scope.views.buttons.button_data_type import data_type_button
@@ -9,7 +10,7 @@ from config.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 
 def show_config_files(scope):
-	
+	logging.debug("show_config_files")
 	scope_button(scope, "Folders and Paths", scope.files, make_red=True, suffix_only=False)
 	scope_button(scope, "scope.files", scope.files, make_red=False, suffix_only=False)
 
