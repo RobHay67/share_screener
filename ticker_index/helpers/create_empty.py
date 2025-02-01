@@ -7,7 +7,7 @@ from ticker_index.scope.views.dataframes.messages import messgae_creation_succes
 
 
 def create_empty_ticker_index(scope):
-	logging.debug("create_empty_ticker_index")
+	logging.warning("create_empty_ticker_index")
 	message_missing_ticker_file(scope)
 
 	dataframe_columns = []

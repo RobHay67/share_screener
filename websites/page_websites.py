@@ -8,7 +8,7 @@ from page.header.controller import add_page_header
 scope = st.session_state
 page = 'websites'
 scope.display['page'] = page
-logging.info("page = websites")
+logging.info(f"{page=}")
 
 add_page_header(scope)
 

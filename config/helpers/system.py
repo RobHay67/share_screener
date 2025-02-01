@@ -30,3 +30,25 @@ def print_system_info_to_terminal():
 	print('='*100)
 	print ( '\33[0m')
 	for i in range(5):print('')
+
+
+
+
+
+# [packages]
+# pandas = "==1.5.3"
+# streamlit = "*"
+# datetime = "*"
+# yfinance = "==0.2.14"
+# mplfinance = "===0.12.7a5"
+# matplotlib = "*"
+# plotly = "*"
+# pytz = "==2023.3"
+# watchdog = "*"
+# streamlit-extras = "*"
+# jinja2 = "*"
+
+# [dev-packages]
+
+# [requires]
+# python_version = "3.8"

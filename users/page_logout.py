@@ -9,8 +9,9 @@ from users.scope.model.logout import logout_user
 
 # Page Configuration
 scope = st.session_state
-scope.display['page'] = 'logout'
-logging.info("page = logout")
+page = 'logout'
+scope.display['page'] = page
+logging.info(f"{page=}")
 
 build_page_header_title_row(scope)
 logout_button = st.button(label='Logout Now')

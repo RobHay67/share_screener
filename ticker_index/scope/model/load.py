@@ -2,20 +2,20 @@ import logging
 import os
 import pandas as pd
 
-from ticker_index.scope.model.schema import csv_dates
-from ticker_index.scope.model.schema import csv_dtypes
+from ticker_index.helpers.csv_dates import ticker_index_csv_dates
+from ticker_index.helpers.csv_dtypes import ticker_index_csv_dtypes
 from page.scope.model.dropdowns.controller import build_ticker_selectors
 
 from ticker_index.helpers.create_empty import create_empty_ticker_index
 
 
 def load_ticker_index_file( scope ):
-	logging.warning("load_ticker_index_file")
+	logging.debug("load_ticker_index_file")
 	if os.path.exists( scope.files['paths']['ticker_index'] ):
 		
 		ticker_index_file = pd.read_csv(  scope.files['paths']['ticker_index'], 
-									dtype=csv_dtypes(scope),
-									parse_dates=csv_dates(scope),
+									dtype=ticker_index_csv_dtypes(scope),
+									parse_dates=ticker_index_csv_dates(scope),
 									)
 
 		ticker_index_file.set_index('share_code', inplace=True)

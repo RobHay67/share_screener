@@ -2,7 +2,7 @@
 import logging
 import streamlit as st
 
-from users.views.login.button_auto_login import auto_login_button
+from users.views.login.button_auto_login import show_auto_login_button
 from users.views.login.button_login import login_button
 from users.views.login.messages import login_message
 
@@ -15,7 +15,7 @@ def show_login_page(scope):
 	login_pword = st.text_input('Password', type='password')
 
 	if scope.allow_auto_login:
-		auto_login_button(scope)
+		show_auto_login_button(scope)
 
 	if login_name in scope.users['user_list']:
 		if login_pword == scope.users['json'][login_name]['password']:

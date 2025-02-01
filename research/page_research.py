@@ -31,8 +31,7 @@ from research.views.news import news
 scope = st.session_state
 page = 'research'
 scope.display['page'] = page
-logging.info("page = research")
-
+logging.info(f"{page=}")
 
 add_page_header(scope)
 

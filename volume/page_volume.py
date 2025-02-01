@@ -14,7 +14,7 @@ from markets.schema import opening_hours
 scope = st.session_state
 page = 'volume'
 scope.display['page'] = page
-logging.info("page = volume")
+logging.info(f"{page=}")
 
 add_page_header(scope)
 
