@@ -11,7 +11,7 @@ def scope_config(scope):
 	
 	scope.config['page_schema'] = page_schema
 	scope.config['page_list'] = list(scope.config['page_schema'].keys())
-	scope_config_for_users(scope)
+	scope_config_for_users_settings(scope)
 
 	# Dropdowns
 	scope.config['dropdowns'] = {}
@@ -23,8 +23,8 @@ def scope_config(scope):
 	scope.config['dropdowns']['price_columns'] = ['open', 'high', 'low', 'close' 		   ]	
 
 
-def scope_config_for_users(scope):
-	logging.debug("scope_config_for_users")
+def scope_config_for_users_settings(scope):
+	logging.debug("scope_config_for_users_settings")
 	# These Setting can be changed for each user
 	# so we need to be able to call when changing user
 	scope.config['row_limit'] = 100

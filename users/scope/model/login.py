@@ -1,5 +1,5 @@
 import logging
-from trials.scope.model.scope_trials import build_trial_active_list
+from trials.scope.model.scope_trials import build_trials_active_list
 from trials.scope.model.scope_trials import build_column_adder_template_for_trials
 from charts.scope.model.scope_charts import build_chart_active_list
 from charts.scope.model.scope_charts import build_column_adder_template_for_charts
@@ -39,7 +39,7 @@ def login_user(scope, login_name):
 					scope.trials['user_config'][trial]['function'][attribute] = add_columns[attribute]
 	
 	# refresh the Trial lists
-	build_trial_active_list(scope)
+	build_trials_active_list(scope)
 	build_column_adder_template_for_trials(scope)
 
 

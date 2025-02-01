@@ -1,9 +1,5 @@
 import logging
 import pandas as pd
-
-from ticker_index.scope.model.schema import ticker_index_default_values
-from ticker_index.scope.model.schema import ticker_index_data_types
-
 from ticker_index.scope.model.save import save_index
 from markets.open_time import open_time
 from markets.trading_minutes import trading_minutes
@@ -53,8 +49,8 @@ def update_ticker_index(scope):
 
 def apply_defaults_to_missing_values(scope, which_df):
 	logging.debug("apply_defaults_to_missing_values")
-	defaults = ticker_index_default_values(scope)
-	dtypes = ticker_index_data_types(scope)
+	defaults = scope.ticker_index['lists']['default_values'](scope)
+	dtypes = scope.ticker_index['lists']['data_types'](scope)
 	if which_df == 'downloaded_df':
 		df = scope.ticker_index['download_cache']
 	else:
