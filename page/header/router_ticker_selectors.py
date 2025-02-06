@@ -1,17 +1,17 @@
 import logging
 import streamlit as st
 
-from page.header.c_ticker_selectors.ticker import select_a_ticker
-from page.header.c_ticker_selectors.tickers import select_tickers
-from page.header.c_ticker_selectors.industries import select_industries
-from page.header.c_ticker_selectors.market import select_a_market
-from page.header.i_search.by_name import search_ticker_by_name
+from page.header.b_ticker_selectors.ticker import select_a_ticker
+from page.header.b_ticker_selectors.tickers import select_tickers
+from page.header.b_ticker_selectors.industries import select_industries
+from page.header.b_ticker_selectors.market import select_a_market
+from page.header.i_search_results.by_name import search_ticker_by_name
 from page.scope.model.worklists.builder import build_list_of_selected_tickers_for_page
 
 
 
-def router_show_ticker_selectors(scope):
-	logging.debug("router_show_ticker_selectors")
+def row_ticker_selectors(scope):
+	logging.info("row_ticker_selectors")
 	col1,col2,col3,col4 = st.columns([2.0, 2.0, 2.0, 6.0])  #12
 	
 	page = scope.display['page']

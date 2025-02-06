@@ -7,16 +7,18 @@ import streamlit as st
 from config.logger.log import set_logging_config
 from config.helpers.re_render import app_is_re_rendering
 from config.scope.model.set_scope import set_scope
-from users.page_login import show_login_page
+from users.page_login import build_login_page
 from page.sidebar.market_info import show_sidebar_app_info
 from page.navigation.page_navigation import sidebar_navigation
 
 
-set_logging_config()
-app_is_re_rendering()
+set_logging_config()	# This needs to be the first code to run
 
 if __name__ == "__main__":
-	scope = set_scope(st.session_state)
+	app_is_re_rendering()
+	scope=st.session_state
+	if 'config' not in scope:set_scope(scope)
+	
 	page_navigation = sidebar_navigation(scope)
 
 	match scope.users['logged_in']:
@@ -24,9 +26,9 @@ if __name__ == "__main__":
 			page_navigation.run()			# adds Application Navigation Buttons
 			show_sidebar_app_info(scope)	# adds additional market info and global variables
 		case _ : 
-			show_login_page(scope)
+			build_login_page(scope)
 
-	logging.critical("Download and Save the dividend data to this app")
+	
 	
 
 

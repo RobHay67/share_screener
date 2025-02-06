@@ -4,7 +4,7 @@ from page.scope.model.schema import page_schema
 
 
 def scope_config(scope):
-	logging.debug("scope_config")
+	logging.debug("scope_config ==========================================")
 	scope.config = {}
 	scope.config['project_description'] = 'Share Picker'
 	scope.config['project_start_time'] 	= time.time()
@@ -33,8 +33,8 @@ def scope_config_for_users_settings(scope):
 	scope.config['download_days'] = '5d'
 
 
-def scope_seach_for_ticker(scope):
-	logging.debug("scope_seach_for_ticker")
+def scope_ticker_search(scope):
+	logging.debug("scope_ticker_search")
 	# company names for the ticker search
 	scope.config['ticker_search'] = {}
 	scope.config['ticker_search'] = (scope.ticker_index['df']['company_name']).to_dict()

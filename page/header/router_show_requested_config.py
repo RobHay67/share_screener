@@ -8,8 +8,8 @@ from config.views.config_pages import show_config_pages
 from tickers.scope.view.config_tickers import show_config_tickers
 
 
-def router_show_config(scope):
-	logging.debug("router_show_config")
+def router_show_requested_config(scope):
+	logging.debug("router_show_requested_config")
 	page = scope.display['page']
 	config_to_show = scope.page[page]['show']['config']
 

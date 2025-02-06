@@ -2,30 +2,30 @@
 import logging
 import streamlit as st
 
-from users.views.login.button_auto_login import show_auto_login_button
-from users.views.login.button_login import login_button
-from users.views.login.messages import login_message
+from users.views.login.button_auto_login import add_auto_login_button
+from users.views.login.button_login import show_login_button
+from users.views.login.messages import show_login_message
 
 
-def show_login_page(scope):
-	logging.debug("show_login_page")
+def build_login_page(scope):
+	logging.info("build_login_page-----------")
 	st.subheader('Login')
 
 	login_name = st.text_input('User Name')
 	login_pword = st.text_input('Password', type='password')
 
 	if scope.allow_auto_login:
-		show_auto_login_button(scope)
+		add_auto_login_button(scope)
 
 	if login_name in scope.users['user_list']:
 		if login_pword == scope.users['json'][login_name]['password']:
-			login_button(scope)
+			show_login_button(scope)
 		else:
 			if login_pword != '':
-				login_message(login_name, 'invalid_password')
+				show_login_message(login_name, 'invalid_password')
 	else:
 		if login_name != '':
-			login_message(login_name, 'invalid_user')
+			show_login_message(login_name, 'invalid_user')
 
 
 

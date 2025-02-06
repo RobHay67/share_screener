@@ -3,7 +3,7 @@ import streamlit as st
 
 
 def search_ticker_by_name(scope):
-	logging.debug("search_ticker_by_name")
+	logging.debug("_search_ticker_by_name")
 	page = scope.display['page']
 
 	widget_key = 'widget_' + page + '_search'

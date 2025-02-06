@@ -38,7 +38,7 @@ def show_config_single_value(label_name, scope_value):
 	return button
 
 def show_config_note(key_name, config_note='Note for this item'):
-	logging.debug(f"show_config_note {config_note=}")
+	logging.debug(f"{config_note=}")
 	widget_key = 'widget>' + key_name
 	
 	config_note = ":grey["+str(config_note)+"]"

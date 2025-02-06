@@ -4,7 +4,7 @@ from datetime import datetime
 from datetime import timedelta
 import pytz
 
-from page.header.controller import add_page_header
+from page.header.controller import controller_page_header
 from volume.views.input_volume import view_input_volume
 from volume.views.prediction import view_prediction
 from markets.schema import opening_hours
@@ -16,7 +16,7 @@ page = 'volume'
 scope.display['page'] = page
 logging.info(f"{page=}")
 
-add_page_header(scope)
+controller_page_header(scope)
 
 if scope.users['logged_in']:
 
@@ -58,8 +58,7 @@ if scope.users['logged_in']:
 		ticker_closing_time = datetime.strptime(ticker_opening_time, '%H:%M:%S')
 		ticker_closing_time = ticker_closing_time + timedelta(minutes=ticker_minutes_per_day)
 
-		# TODO - we could use a POC model over the recent history and plot the prediction against this - we could smooth in accordance with the POC curve
-
+		logging.warning("we could use a POC model over the recent history and plot the prediction against this - we could smooth in accordance with the POC curve")
 		view_prediction( ticker_open_time, minutes_elapsed, ticker_remaining_minutes, ticker_closing_time, 
 							volume_to_date, ticker_average_vol_per_minute, extrapolated_daily_volume, ticker_minutes_per_day)
 

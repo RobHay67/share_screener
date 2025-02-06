@@ -22,5 +22,4 @@ def restore_user_config(scope):
 	# row_limit
 	scope_config_for_users_settings(scope)
 
-
-	# TODO - what about the trials config - should this also not revert to the base values
+	logging.warning("what about the trials config - should this also not revert to the base values")

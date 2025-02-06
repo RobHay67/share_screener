@@ -3,7 +3,7 @@ import streamlit as st
 
 
 def button_show_trial_settings(scope):
-	logging.debug("button_show_trial_settings")
+	logging.debug("_button_show_trial_settings")
 	page = scope.display['page']
 	current_value = scope.page[page]['show']['trials']
 	type_of_button = 'primary' if current_value == True else 'secondary'

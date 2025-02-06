@@ -1,8 +1,8 @@
 import logging
 import streamlit as st
 
-from page.header.d_ticker_files.progress_bar_load_tickers import show_progress_bar_for_loading_tickers	
-from page.header.d_ticker_files.progress_bar_add_cols import show_progress_bar_for_adding_extra_columns
+from page.header.c_ticker_files.progress_bar_load_tickers import progress_bar_ticker_loading	
+from page.header.c_ticker_files.progress_bar_add_cols import progress_bar_add_columns
 from page.scope.model.worklists.long_desc import build_worklist_with_long_description
 
 
@@ -17,19 +17,19 @@ from page.scope.model.worklists.long_desc import build_worklist_with_long_descri
 # - utilised the scope.tickers object to track what needs to be done
 
 
-def show_progress_load_and_add_cols(scope):
-	logging.debug("show_progress_load_and_add_cols")
+def row_progress_bars(scope):
+	logging.info("row_progress_bars")
 	page = scope.display['page']
 	col1,col2 = st.columns([6.0, 6.0])  #12.0
 	if page in ['chart', 'intraday', 'volume', 'screener',]:
 		with col1:
 			# loads ticker data as well
-			show_progress_bar_for_loading_tickers(scope) 
+			progress_bar_ticker_loading(scope) 
 			build_worklist_with_long_description(scope)
 		with col2:
 			# for the volume pagewe dont need to do this step
 			if page != 'volume':
-				show_progress_bar_for_adding_extra_columns(scope, page)      # will add/update the columns as well!
+				progress_bar_add_columns(scope, page)      # will add/update the columns as well!
 
 
 

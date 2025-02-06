@@ -8,7 +8,7 @@ from page.sidebar.row_limit import show_edit_row_limit
 from page.sidebar.download import show_edit_download_days
 
 def show_sidebar_app_info(scope):
-	logging.debug("show_sidebar_app_info")
+	logging.info("show_sidebar_app_info")
 	local_time=datetime.now()
 	market_timezone = opening_hours[scope.config['share_market']]['timezone']
 	market_time = datetime.now(pytz.timezone(market_timezone))

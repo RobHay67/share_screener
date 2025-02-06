@@ -1,7 +1,7 @@
 import logging
 import streamlit as st
 
-from page.header.controller import add_page_header
+from page.header.controller import controller_page_header
 from ticker_index.scope.views.industries.report import render_industry_report
 from ticker_index.scope.views.industries.button import button_industry_report
 from ticker_index.scope.views.dataframes.button_show_df import button_show_ticker_index
@@ -17,7 +17,7 @@ page = 'ticker_index'
 scope.display['page'] = page
 logging.info(f"{page=}")
 
-add_page_header(scope)
+controller_page_header(scope)
 
 if scope.users['logged_in']:
 	col1,col2 = st.columns([10,2]) #12
@@ -38,8 +38,7 @@ if scope.users['logged_in']:
 	render_editable_ticker_index_df(scope)
 	render_ticker_index_df(scope)
 		
-
-	# TODO Yfinance messages
+	logging.warning("Yfinance messages")
 
 
 

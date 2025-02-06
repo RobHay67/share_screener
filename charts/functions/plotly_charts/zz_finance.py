@@ -46,7 +46,7 @@
 	# fig.update_xaxes(rangebreaks=[dict(values=dt_breaks)])
 
 
-	# TODO Rob note that the dataframe may need to be sorted in ascending order for these to work correctly - probably best to apply these 
+	# Rob note that the dataframe may need to be sorted in ascending order for these to work correctly - probably best to apply these 
 	# metrics before doing the sort - or maybe change the data displayers to sort and then un-sort
 
 	# add moving averages to dataframe
@@ -121,7 +121,7 @@
 	# fig.update_yaxes(title_text="MACD", showgrid=False, row=3, col=1)
 	# fig.update_yaxes(title_text="Stoch", row=4, col=1)
 
-	#TODO - Rob I copied the code from above
+	# Rob I copied the code from above
 
 	# Plot OHLC on 1st subplot (using the codes from before)
 

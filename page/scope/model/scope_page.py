@@ -5,8 +5,6 @@ import logging
 
 def scope_page(scope):
 	logging.debug("scope_page")
-	# ==========================================
-	# variables for each page from the page list above
 
 	scope.page = {}
 

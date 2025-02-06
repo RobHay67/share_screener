@@ -3,8 +3,8 @@ import streamlit as st
 
 from users.scope.model.login import login_user
 
-def show_auto_login_button(scope):
-	logging.debug("show_auto_login_button")
+def add_auto_login_button(scope):
+	logging.debug("add_auto_login_button")
 	button = st.button(
 						'Press to Auto Login to Rob ', 
 						on_click=login_user, 

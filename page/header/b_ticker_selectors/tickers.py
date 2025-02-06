@@ -4,7 +4,7 @@ import streamlit as st
 
 
 def select_tickers(scope):
-	logging.debug("select_tickers")
+	logging.debug("_select_tickers")
 	page = scope.display['page']
 	
 	widget_key = 'widget_' + page + '_select_tickers'

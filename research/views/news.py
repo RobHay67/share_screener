@@ -4,11 +4,7 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 
-# Unfortunately YFinance is no good for news - we need to find another source TODO
-
-
-
-
+logging.warning("Unfortunately YFinance is no good for news - we need to find another source")
 
 
 def news(metadata):

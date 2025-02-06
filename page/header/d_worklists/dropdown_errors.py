@@ -8,7 +8,6 @@ def dropdown_load_and_download_ticker_errors(scope):
 	# Errors Dropdown list
 	# =========================================
 
-	
 	# Same as render_worklist_dropdown but only the errirs only 
 
 	page = scope.display['page']

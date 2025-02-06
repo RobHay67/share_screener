@@ -5,7 +5,7 @@ from tickers.model.download import download_ticker_data
 
 
 def button_download_ticker(scope):
-	logging.debug("button_download_ticker")
+	logging.debug("_button_download_ticker")
 	download_button_msg = 'Download (' + str(scope.config['download_days'] + ')')
 		
 	button = st.button(

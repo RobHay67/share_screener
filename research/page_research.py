@@ -1,7 +1,7 @@
 import logging
 import streamlit as st
 
-from page.header.controller import add_page_header
+from page.header.controller import controller_page_header
 from tickers.model.y_finance.meta_data.metadata import fetch_yfinance_metadata
 
 from research.views.info import company_general
@@ -24,16 +24,14 @@ from research.views.financials import earnings_qtr
 from research.views.calendar import calendar
 from research.views.news import news
 
-
-# TODO - I like this example from the ASX for CBA - https://www2.asx.com.au/markets/company/cba
-
+logging.warning("I like this example from the ASX for CBA - https://www2.asx.com.au/markets/company/cba")
 # Page Configuration
 scope = st.session_state
 page = 'research'
 scope.display['page'] = page
 logging.info(f"{page=}")
 
-add_page_header(scope)
+controller_page_header(scope)
 
 if scope.users['logged_in']:
 

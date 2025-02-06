@@ -2,8 +2,8 @@ import logging
 import streamlit as st
 
 
-def login_message(login_name, status):
-	logging.debug("login_message")
+def show_login_message(login_name, status):
+	logging.debug("show_login_message")
 	scope = st.session_state
 	if status == 'logged_in':
 		st.success(login_name + ' Logged In')

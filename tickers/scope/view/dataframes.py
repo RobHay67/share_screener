@@ -2,8 +2,8 @@ import logging
 import streamlit as st
 
 
-def show_page_dataframes(scope):
-	logging.debug("show_page_dataframes")
+def add_page_dataframes(scope):
+	logging.debug("add_page_dataframes")
 	# Just the dataframes relevant for a particular page
 	page = scope.display['page']
 
@@ -13,13 +13,13 @@ def show_page_dataframes(scope):
 	col1,col2=st.columns([5,7])
 	
 	if ticker in scope.tickers.keys():
-		with col1:show_page_df(scope, page, ticker, 'ticker_file')
-		with col2:show_page_df(scope, page, ticker, 'with_added_columns')
+		with col1:add_page_df(scope, page, ticker, 'ticker_file')
+		with col2:add_page_df(scope, page, ticker, 'with_added_columns')
 
 
 
-def show_page_df(scope, page, ticker, type_df):
-	logging.debug("show_page_df")
+def add_page_df(scope, page, ticker, type_df):
+	logging.debug("add_page_df")
 	if type_df == 'ticker_file':
 		df = scope.tickers[ticker]['df']
 		prefix='raw'
@@ -28,8 +28,7 @@ def show_page_df(scope, page, ticker, type_df):
 		df = scope.tickers[ticker][page]['df']
 		prefix='added columns'
 
-	# TODO - maybe set the index to be the date range for better scrollability
-
+	logging.warning("maybe set the index to be the date range for better scrollability")
 	no_of_rows = str(len(df))
 	my_expander = st.expander(
 		label=(

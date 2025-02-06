@@ -7,7 +7,7 @@ import logging
 from charts.scope.model.schema import scope_charts_schema
 from charts.scope.model.chart_settings_for_user import scope_charts_for_users
 from charts.helpers.active_list import build_chart_active_list
-from charts.helpers.col_adders import build_column_adder_template_for_charts
+from charts.helpers.col_adders import build_charts_column_adder_template
 
 def scope_charts(scope):
 	logging.debug("scope_charts")
@@ -17,7 +17,7 @@ def scope_charts(scope):
 	scope.charts['chart_list'] = list(scope.charts['schema'].keys())
 	scope.charts['colours'] = ['blue','orange','green','red','LightSkyBlue','ForestGreen','SteelBlue','black', 'yellow']
 	build_chart_active_list(scope)
-	build_column_adder_template_for_charts(scope)
+	build_charts_column_adder_template(scope)
 
 
 

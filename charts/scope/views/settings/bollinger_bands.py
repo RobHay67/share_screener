@@ -17,7 +17,9 @@ def bollinger_band_settings(scope):
 	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1,1])
 
 	with col1:edit_active(scope, schema_group, schema_key)
-	with col1:st.write('Moving Average Type - Rob to configure')		# TODO - Simple, Weighted, Exponential, Wilders
+	# with col1:st.write('Moving Average Type - Rob to configure')		
+	# Simple, Weighted, Exponential, Wilders
+	logging.info("Moving Average Type - Rob to configure")
 	with col2:edit_ohlc(scope, schema_group, schema_key )
 	with col3:edit_number(scope, schema_group, schema_key, 'length' )
 	with col4:edit_number(scope, schema_group, schema_key, 'shift_up' )

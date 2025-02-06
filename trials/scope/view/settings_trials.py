@@ -2,7 +2,7 @@
 import logging
 import streamlit as st
 
-from users.views.save_user_settings_button import save_user_settings_button
+from users.views.button_save_user_settings import button_save_user_settings
 from trials.scope.view.settings.ohlcv import ohlcv_price_direction
 from trials.scope.view.settings.sma import sma_trends
 from trials.scope.view.settings.stochastic import stochastic_trend
@@ -11,11 +11,11 @@ from trials.scope.view.settings.example import example_settings
 
 
 def show_settings_trials(scope):
-	logging.debug("show_settings_trials")
+	logging.debug("show_settings_trials ---------------------------")
 	st.divider()
 	col1,col2=st.columns([8,4])
 	with col1:st.subheader('Trial/Test Settings for User ')
-	with col2:save_user_settings_button(scope)
+	with col2:button_save_user_settings(scope)
 	
 	ohlcv_price_direction(scope)
 	sma_trends(scope)

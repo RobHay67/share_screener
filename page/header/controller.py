@@ -1,34 +1,65 @@
 import logging
-from page.header.a_page_title.router import build_page_header_title_row
-from page.header.router_show_settings import router_show_settings
-from page.header.router_show_config import router_show_config
-from page.header.c_ticker_selectors.router_ticker_selectors import router_show_ticker_selectors
-from page.header.d_ticker_files.controller import show_progress_load_and_add_cols
-from page.header.f_worklists.controller import show_worklist_dropdown
-from page.header.show_quicklinks import show_quick_links
-from page.header.show_dataframes import show_dataframes
-from page.header.i_search.show_search_results import show_search_results
-from page.header.show_ticker_name import show_ticker_name
+from page.header.router_page_title import row_page_title
+from page.header.router_show_requested_settings import router_show_requested_settings
+from page.header.router_show_requested_config import router_show_requested_config
+from page.header.router_ticker_selectors import row_ticker_selectors
+from page.header.c_ticker_files.controller import row_progress_bars
+from page.header.d_worklists.controller import row_page_list_dropdowns
+from page.header.show_quicklinks import add_quick_links
+from tickers.scope.view.dataframes import add_page_dataframes
+from page.header.i_search_results.add_search_results import add_search_results
+from page.header.add_ticker_name import add_ticker_name
 
 
+def controller_page_header(scope):
+	logging.info("controller_page_header")
+	page = scope.display['page']
 
+	# default show status for optional display items
+	show_settings=False
+	show_config=False
+	show_quick_links = False
+	show_ticker_files = False
+	show_search_results = False
+	show_ticker_name = False
 
+	if (scope.page[page]['show']['trials'] == True or
+		scope.page[page]['show']['strategy'] == True or
+		scope.page[page]['show']['charts'] == True or
+		scope.page[page]['show']['overlays'] == True
+		): show_settings=True
 
-def add_page_header(scope):
-	logging.debug("add_page_header")
-	build_page_header_title_row(scope)								# a_
+	if scope.page[page]['show']['config'] != None:
+		show_config=True
+
+	if page != 'screener':
+		ticker = scope.page[page]['selectors']['ticker']
+		if ticker != 'select a ticker':
+			show_quick_links = True
+			show_ticker_name = True
+
+	if scope.page[page]['show']['ticker_file'] != 'Show/Hide Data':
+		show_ticker_files = True
+
+	if len(scope.page[page]['search_results']) > 0: 
+		show_search_results=True
+
+	row_page_title(scope)						# a_
 	if scope.users['logged_in']:
-		# Levels at the top of the page
-		router_show_settings(scope)						# b_
-		router_show_config(scope)						# b_
-		router_show_ticker_selectors(scope)				# c_
-		show_progress_load_and_add_cols(scope)			# d_
-		show_worklist_dropdown(scope)					# f_
+		row_ticker_selectors(scope)						# b_
+		row_progress_bars(scope)	# c_
+		row_page_list_dropdowns(scope)					# d_
+		
+		# show Settings
+		if show_settings:router_show_requested_settings(scope)		# 
 		# Optional items to show as requested
-		show_quick_links(scope)						
-		show_dataframes(scope)		
-		show_search_results(scope)						# i_
-		show_ticker_name(scope)
+		if show_config:router_show_requested_config(scope)			# 
+		if show_quick_links:add_quick_links(scope)	
+		if show_ticker_files: add_page_dataframes(scope)
+		if show_search_results:add_search_results(scope)	# i_
+		if show_ticker_name:add_ticker_name(scope)
+
+
 
 
 # ==============================================================

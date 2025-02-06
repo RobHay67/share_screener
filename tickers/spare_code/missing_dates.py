@@ -9,12 +9,6 @@ import os
 
 
 
-
-
-
-
-
-
 # from ticker_index import save_ticker_index_file
 # from tickers.index.file import save_index
 # from files.path import path_for_ticker_file

@@ -8,7 +8,7 @@ page_schema = {
 	'welcome'		:{
 		title:"Welcome",
 		icon:"🔒",
-		default:True,
+		default:False,
 		path:"users/page_welcome.py"
 		},  
 	'logout'		:{

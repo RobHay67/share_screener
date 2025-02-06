@@ -4,7 +4,7 @@ import streamlit as st
 
 
 def button_reset_page(scope):
-	logging.debug("button_reset_page")
+	logging.debug("_button_reset_page")
 	st.button(
 			label='Reset', 
 			use_container_width=True,

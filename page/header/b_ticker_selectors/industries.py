@@ -4,7 +4,7 @@ import streamlit as st
 
 
 def select_industries(scope):
-	logging.debug("select_industries")
+	logging.debug("_select_industries")
 	page = scope.display['page']
 	
 	widget_key = 'widget_' + page + '_select_industries'

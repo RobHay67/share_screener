@@ -3,7 +3,7 @@ import streamlit as st
 
 
 def scope_button(scope, scope_key, scope_value, make_red=False, suffix_only=True):
-	logging.debug("scope_button")
+	logging.debug(f"scope_button > {scope_key}")
 	# Render a button and give it a unique name
 	widget_key = 'widget>' + scope_key
 	button_type = 'primary' if make_red else 'secondary'

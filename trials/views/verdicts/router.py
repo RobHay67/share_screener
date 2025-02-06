@@ -13,8 +13,8 @@ from trials.views.verdicts.passed_tests import show_passing_verdicts
 
 
 
-def show_verdicts(scope):
-	logging.debug("show_verdicts")
+def router_show_verdicts(scope):
+	logging.debug("router_show_verdicts")
 	tab_group_size 	= 10
 	number_of_tabs 	= 30
 	verdict_list 	= build_passing_verdict_list(scope)

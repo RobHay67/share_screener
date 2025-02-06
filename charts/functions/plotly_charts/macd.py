@@ -65,6 +65,7 @@ def macd_plot(scope, fig, chart, chart_df, row_no, col_no):
 # 	axes_macd.bar(  share_df.index, share_df[histogram_col_name] * 3, label="hist",   color=macd_hist_colors)
 # 	axes_macd.plot( share_df.index, share_df[signal_col_name],        label="signal")
 # 	axes_macd.set_title('MACD on ' + column_name + ' Column')
-# 	axes_macd.legend()																											 # TODO - Rob check out if this is what we need
+# 	axes_macd.legend()																											 
+# # TODO - Rob check out if this is what we need
 
 

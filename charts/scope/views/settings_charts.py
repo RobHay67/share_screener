@@ -1,6 +1,6 @@
 import logging
 import streamlit as st
-from users.views.save_user_settings_button import save_user_settings_button
+from users.views.button_save_user_settings import button_save_user_settings
 
 from charts.scope.views.settings.chart_height import set_chart_height_primary
 from page.widgets.active import edit_active
@@ -27,7 +27,7 @@ def show_settings_charts(scope):
 	with col3:
 		set_chart_height_primary(scope)
 	with col4:
-		save_user_settings_button(scope)
+		button_save_user_settings(scope)
 
 	col1,col2,col3 = st.columns(3)
 	with col1:

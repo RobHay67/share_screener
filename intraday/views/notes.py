@@ -4,6 +4,7 @@
 # plot it
 # try and predict price movemment by volume
 
+import logging
 import pandas as pd
 
 import yfinance as yf
@@ -28,8 +29,8 @@ yf_download = yf.download( ticker, period=period, interval=interval, progress=Tr
 
 yf_download = yf_download.sort_index(ascending=False)        # ensure latest trade is at the top of the list
 
-print ( 'TODO Total Daily Volume =', yf_download.Volume.sum())
-# TODO  make this into a report
+logging.warning("Total Daily Volume =", yf_download.Volume.sum())
+logging.warning("make this into a report")
 
 # ensure the index is a datetime object
 # yf_download.index = pd.to_datetime(yf_download.index, format='%Y-%m-%d %H:%M:%S')

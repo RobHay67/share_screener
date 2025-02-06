@@ -1,7 +1,7 @@
 import logging
 import streamlit as st
 
-from page.header.controller import add_page_header
+from page.header.controller import controller_page_header
 
 
 # Page Configuration
@@ -10,7 +10,7 @@ page = 'websites'
 scope.display['page'] = page
 logging.info(f"{page=}")
 
-add_page_header(scope)
+controller_page_header(scope)
 
 # No need to check if user logged in for this page
 

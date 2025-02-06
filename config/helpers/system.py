@@ -26,7 +26,7 @@ def print_system_info_to_terminal():
 	print ( 'Plotly                  =', plotly.__version__)
 	print ( 'pytz                    =', pytz.__version__)
 	print ( 'Streamlit Extras        =', streamlit_extras.__version__)
-	print ( 'TODO > Rob we need to lock these versions into the pipfile prior to production release') # TODO
+	logging.info("Rob we need to lock these versions into the pipfile prior to production release")
 	print('='*100)
 	print ( '\33[0m')
 	for i in range(5):print('')

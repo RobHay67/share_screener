@@ -2,7 +2,7 @@ import logging
 import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
 
-from page.header.a_page_title.router import build_page_header_title_row
+from page.header.router_page_title import row_page_title
 from users.scope.model.logout import logout_user
 
 
@@ -11,9 +11,9 @@ from users.scope.model.logout import logout_user
 scope = st.session_state
 page = 'logout'
 scope.display['page'] = page
-logging.info(f"{page=}")
+logging.info(f"{page=}=================")
 
-build_page_header_title_row(scope)
+row_page_title(scope)
 logout_button = st.button(label='Logout Now')
 
 if logout_button:

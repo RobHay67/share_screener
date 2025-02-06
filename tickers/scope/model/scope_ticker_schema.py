@@ -2,8 +2,8 @@ import logging
 from tickers.scope.model.schema_tickers import schema
 
 
-def scope_tickers_schema(scope):
-	logging.debug("scope_tickers_schema")
+def scope_ticker_schema(scope):
+	logging.debug("scope_ticker_schema")
 	scope.ticker_schema = {}
 	scope.ticker_schema['schema'] = schema
 	scope.ticker_schema['usecols'] = ['date', 'open', 'high', 'low', 'close', 'volume']

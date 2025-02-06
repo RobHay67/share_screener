@@ -1,7 +1,7 @@
 import logging
 import streamlit as st
 
-from page.header.controller import add_page_header
+from page.header.controller import controller_page_header
 from charts.helpers.plotly_schema import create_schema_for_plotly
 from charts.main_chart import add_main_chart 
 from charts.child_charts import add_child_charts
@@ -14,7 +14,7 @@ page = 'chart'
 scope.display['page'] = page
 logging.info(f"{page=}")
 
-add_page_header(scope)
+controller_page_header(scope)
 
 if scope.users['logged_in']:
 	ticker = scope.page[page]['selectors']['ticker']

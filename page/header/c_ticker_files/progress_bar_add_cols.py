@@ -7,8 +7,8 @@ from add_cols.helpers.list_builder import build_list_of_tickers_that_require_ext
 from tickers.helpers.count_page_tickers import count_page_tickers
 
 
-def show_progress_bar_for_adding_extra_columns(scope, page):
-	logging.debug("show_progress_bar_for_adding_extra_columns")
+def progress_bar_add_columns(scope, page):
+	logging.debug("progress_bar_add_columns")
 	ticker_list = build_list_of_tickers_that_require_extra_columns(scope, page)
 	number_to_add_columns = len(ticker_list)
 	app_row_limit = int(scope.config['row_limit'])

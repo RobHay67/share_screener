@@ -5,8 +5,8 @@ from tickers.helpers.latest_price import latest_ticker_price
 
 
 
-def show_ticker_name(scope):
-	logging.debug("show_ticker_name")
+def add_ticker_name(scope):
+	logging.debug("add_ticker_name")
 	page = scope.display['page']
 
 	if page != 'screener':

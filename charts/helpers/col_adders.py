@@ -1,8 +1,8 @@
 import logging
 
 
-def build_column_adder_template_for_charts(scope):
-	logging.debug("build_column_adder_template_for_charts")
+def build_charts_column_adder_template(scope):
+	logging.debug("build_charts_column_adder_template")
 	# Reset the list as this function will rebuild it
 	scope.charts['template_col_adders'] = {}
 
