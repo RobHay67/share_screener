@@ -9,7 +9,7 @@ from config.scope.views.router import route_to_config_page
 scope = st.session_state
 page = 'scope'
 scope.display['page'] = page
-logging.info(f"{page=}")
+logging.debug(f"{page=}")
 
 controller_page_header(scope)
 

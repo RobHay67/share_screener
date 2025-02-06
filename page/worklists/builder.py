@@ -1,7 +1,7 @@
 import logging
-from page.scope.model.worklists.single_selector import page_with_single_selector
-from page.scope.model.worklists.multi_selector import page_with_multiple_selectors
-from page.scope.model.worklists.long_desc import build_worklist_with_long_description
+from page.worklists.single_selector import page_with_single_selector
+from page.worklists.multi_selector import page_with_multiple_selectors
+from page.worklists.long_desc import build_worklist_with_long_description
 
 def build_list_of_selected_tickers_for_page(scope):
 	logging.debug("build_list_of_selected_tickers_for_page")
@@ -20,7 +20,8 @@ def build_list_of_selected_tickers_for_page(scope):
 			ticker_list = page_with_multiple_selectors(scope, ticker_list)
 		case _:
 			ticker_list = page_with_single_selector(scope, page, ticker_list)	
-	# Store the Worklist
+	
+	# Store the ticker_list in the Page selected_tickers
 	ticker_list.sort()
 	scope.page[page]['selected_tickers'] = ticker_list
 	build_worklist_with_long_description(scope)

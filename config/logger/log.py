@@ -14,15 +14,15 @@ def set_logging_config(to_terminal=True):
 						)
 	
 	print_scope_keys('streamlit_app')
-	logging.info("set_logging_config")
+	logging.debug("set_logging_config")
 
 	logging.critical("Download and Save the dividend data to this app")
 
 
 # Logging Levels
 # logging.debug(		"This is a debug message = 10")				# minimum on every function
-# logging.info(			"This is an info message = 20")				# A Key function / Controller / Router  
-# logging.warning(		"This is a warning message = 30")			# A change is being made to a file or data AND/OR a TODO
+# logging.info(			"This is an info message = 20")				# A change is being made to a file or data  
+# logging.warning(		"This is a warning message = 30")			# TODO - warn that this need coding
 # logging.error(		"This is an error message = 40")			# An actual error message
 # logging.critical(		"This is a critical message = 50")			# Something that need to be fixed and soon
 

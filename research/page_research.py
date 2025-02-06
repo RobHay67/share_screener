@@ -29,7 +29,7 @@ logging.warning("I like this example from the ASX for CBA - https://www2.asx.com
 scope = st.session_state
 page = 'research'
 scope.display['page'] = page
-logging.info(f"{page=}")
+logging.debug(f"{page=}")
 
 controller_page_header(scope)
 

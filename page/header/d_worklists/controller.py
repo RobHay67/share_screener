@@ -6,7 +6,7 @@ from page.header.d_worklists.dropdown_active_tests import dropdown_active_charts
 
 
 def row_page_list_dropdowns(scope):
-	logging.info("row_page_list_dropdowns")
+	logging.debug("row_page_list_dropdowns")
 	page=scope.display['page']
 	if page in ['screener', 'chart', 'intraday', 'volume', 'research']:
 		col1,col2,col3 = st.columns([7.0, 3.0, 2.0])  #12

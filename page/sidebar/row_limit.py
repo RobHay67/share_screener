@@ -5,8 +5,8 @@ import streamlit as st
 from add_cols.events.edit_row_limit import edit_row_limit_event
 
 
-def show_edit_row_limit(scope):
-	logging.debug("show_edit_row_limit")
+def edit_row_limit(scope):
+	logging.debug("_edit_row_limit")
 	previous_selection = int(scope.config['row_limit'])
 	display_name = 'No of Rows for Analysis & Charts'
 	widget_key = 'widget_row_limit'

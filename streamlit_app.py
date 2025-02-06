@@ -12,13 +12,14 @@ from page.sidebar.market_info import show_sidebar_app_info
 from page.navigation.page_navigation import sidebar_navigation
 
 
-set_logging_config()	# This needs to be the first code to run
+scope=st.session_state
+if 'config' not in scope:
+	set_logging_config()	# This needs to be the first code to run
+
 
 if __name__ == "__main__":
 	app_is_re_rendering()
-	scope=st.session_state
 	if 'config' not in scope:set_scope(scope)
-	
 	page_navigation = sidebar_navigation(scope)
 
 	match scope.users['logged_in']:

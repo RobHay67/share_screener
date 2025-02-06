@@ -11,7 +11,7 @@ from page.header.a_title.buttons.reset_page import button_reset_page
 
 
 def row_page_title(scope):
-	logging.info("row_page_title")
+	logging.debug("row_page_title")
 	page = scope.display['page']
 
 	col1,col2,col3,col4,col5,col6 = st.columns([7.0,2.0,0.5,0.5,1.0,1.0])  #12

@@ -15,7 +15,7 @@ from ticker_index.scope.views.download.download_button import button_download_ti
 scope = st.session_state
 page = 'ticker_index'
 scope.display['page'] = page
-logging.info(f"{page=}")
+logging.debug(f"{page=}")
 
 controller_page_header(scope)
 

@@ -19,7 +19,7 @@ from trials.views.verdicts.router import router_show_verdicts
 scope = st.session_state
 page = 'screener'
 scope.display['page'] = page
-logging.info(f"{page=}==================")
+logging.debug(f"{page=}")
 
 controller_page_header(scope)
 if scope.users['logged_in']:

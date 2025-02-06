@@ -3,7 +3,7 @@ import streamlit as st
 
 from page.header.c_ticker_files.progress_bar_load_tickers import progress_bar_ticker_loading	
 from page.header.c_ticker_files.progress_bar_add_cols import progress_bar_add_columns
-from page.scope.model.worklists.long_desc import build_worklist_with_long_description
+from page.worklists.long_desc import build_worklist_with_long_description
 
 
 # Function to show status of ticker data
@@ -18,7 +18,7 @@ from page.scope.model.worklists.long_desc import build_worklist_with_long_descri
 
 
 def row_progress_bars(scope):
-	logging.info("row_progress_bars")
+	logging.debug("row_progress_bars")
 	page = scope.display['page']
 	col1,col2 = st.columns([6.0, 6.0])  #12.0
 	if page in ['chart', 'intraday', 'volume', 'screener',]:

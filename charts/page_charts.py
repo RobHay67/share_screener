@@ -12,7 +12,7 @@ from charts.main_chart import format_main_chart
 scope = st.session_state
 page = 'chart'
 scope.display['page'] = page
-logging.info(f"{page=}")
+logging.debug(f"{page=}")
 
 controller_page_header(scope)
 

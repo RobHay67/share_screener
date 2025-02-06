@@ -2,6 +2,7 @@ import logging
 
 def build_worklist_with_long_description(scope):
 	logging.debug("build_worklist_with_long_description")
+	logging.critical('build_worklist_with_long_description > Not sure this function is even required')
 
 	# Cloud Errors over-ride local error. If we 
 	# cant download from cloud, there probably wont be

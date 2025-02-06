@@ -12,7 +12,7 @@ from page.header.add_ticker_name import add_ticker_name
 
 
 def controller_page_header(scope):
-	logging.info("controller_page_header")
+	logging.debug("controller_page_header")
 	page = scope.display['page']
 
 	# default show status for optional display items

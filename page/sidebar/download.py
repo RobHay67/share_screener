@@ -2,8 +2,8 @@ import logging
 import streamlit as st
 
 
-def show_edit_download_days(scope):
-	logging.debug("show_edit_download_days")
+def edit_download_days(scope):
+	logging.debug("_edit_download_days")
 	display_name = 'Interval for Download'
 	widget_key = 'widget_download_days'
 	permitted_options = scope.yf['periods']
