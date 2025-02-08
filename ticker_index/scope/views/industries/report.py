@@ -7,12 +7,8 @@ def render_industry_report(scope):
 	logging.debug("render_industry_report")
 
 	if scope.ticker_index['show']['industry_report']:
-
 		st.subheader('Ticker Index File contains the following Industries')
-
 		list_of_industries = sorted(scope.ticker_index['df']['industry_group'].unique())
-
-
 		for industry in list_of_industries:
 			industry_df = scope.ticker_index['df'][scope.ticker_index['df']['industry_group'] == industry ]
 			industry_label = industry + ' ( ' + str(len(industry_df)) + ' )'

@@ -1,7 +1,7 @@
 import logging
 
 def scope_charts_schema(scope):
-	logging.debug("scope_charts_schema")
+	logging.warning("scope_charts_schema")
 	scope.charts['schema'] = charts_schema
 
 # ---------------------------------------------------------------------------------

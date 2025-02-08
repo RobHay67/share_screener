@@ -5,7 +5,7 @@ import streamlit as st
 
 def view_prediction(ticker_open_time, minutes_elapsed, ticker_remaining_minutes, ticker_closing_time, 
 						volume_to_date, ticker_average_vol_per_minute, extrapolated_daily_volume, ticker_minutes_per_day):
-	logging.debug("view_prediction")
+	logging.warning("view_prediction")
 	# Render the results of the calculations
 	col1,col2,col3 = st.columns([1,1,1])
 

@@ -7,7 +7,7 @@ import streamlit as st
 
 
 def render_user_maintenance(scope):
-	logging.debug("render_user_maintenance")
+	logging.warning("render_user_maintenance")
 	st.header('User Maintenance')
 
 	col1,col2,col3,col4,col5 = st.columns([1,2,2,2,2])
@@ -121,7 +121,7 @@ def render_user_maintenance(scope):
 	st.write(scope.user_df)
 
 def render_new_user_name(scope, custom_label):
-	logging.debug("render_new_user_name")
+	logging.warning("render_new_user_name")
 	widget_key = 'new_user'
 	st.text_input(
 					label=custom_label, 
@@ -131,7 +131,7 @@ def render_new_user_name(scope, custom_label):
 					)
 
 def render_true_or_false_control(scope, custom_label, user_name, current_value, df_col_name, widget_key):
-	logging.debug("render_true_or_false_control")
+	logging.warning("render_true_or_false_control")
 	st.write('')
 	st.checkbox(
 					label=custom_label, 
@@ -143,7 +143,7 @@ def render_true_or_false_control(scope, custom_label, user_name, current_value, 
 					)
 
 def render_country_code_selector(scope, custom_label, user_name, current_value, df_col_name, widget_key ):
-	logging.debug("render_country_code_selector")
+	logging.warning("render_country_code_selector")
 	st.text_input(
 					label=custom_label, 
 					# type='password',
@@ -156,7 +156,7 @@ def render_country_code_selector(scope, custom_label, user_name, current_value, 
 
 
 def render_password_control(scope, custom_label, user_name, current_value, df_col_name, widget_key ):
-	logging.debug("render_password_control")
+	logging.warning("render_password_control")
 	st.text_input(
 					label=custom_label, 
 					# type='password',
@@ -167,20 +167,20 @@ def render_password_control(scope, custom_label, user_name, current_value, df_co
 					)
 
 def on_change_true_or_false(scope:dict, user_name:str, df_col_name:str, widget_key:str ):
-	logging.debug("on_change_true_or_false")
+	logging.warning("on_change_true_or_false")
 	changed_value = scope[widget_key]
 	# store the selection
 	scope.user_df.at[user_name, df_col_name] = changed_value
 
 
 def on_change_password(scope:dict, user_name:str, df_col_name:str, widget_key:str ):
-	logging.debug("on_change_password")
+	logging.warning("on_change_password")
 	changed_value = scope[widget_key]
 	# store the selection
 	scope.user_df.at[user_name, df_col_name] = changed_value
 
 def on_add_new_user(scope:dict,widget_key:str ):
-	logging.debug("on_add_new_user")
+	logging.warning("on_add_new_user")
 	changed_value = scope[widget_key]
 	
 	default_user_settings = ['password', 'all', False, True, False, False, False, False, False, 'Country',  'Australia' ]
@@ -194,7 +194,7 @@ def on_add_new_user(scope:dict,widget_key:str ):
 
 
 def on_change_country_codes(scope:dict, user_name:str, df_col_name:str, widget_key:str ):
-	logging.debug("replace_page_df_columns")
+	logging.warning("replace_page_df_columns")
 	changed_value = scope[widget_key]
 
 	# store the selection

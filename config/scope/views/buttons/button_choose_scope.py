@@ -3,7 +3,7 @@ import streamlit as st
 
 
 def scope_button(scope, scope_key, scope_value, make_red=False, suffix_only=True):
-	logging.debug(f"scope_button > {scope_key}")
+	logging.debug(f"_scope_button > {scope_key}")
 	# Render a button and give it a unique name
 	widget_key = 'widget>' + scope_key
 	button_type = 'primary' if make_red else 'secondary'
@@ -29,7 +29,7 @@ def scope_button(scope, scope_key, scope_value, make_red=False, suffix_only=True
 
 
 def set_scope_button(scope:dict, widget_key:str, scope_value, ):
-	logging.debug("set_scope_button")
+	logging.warning("set_scope_button")
 	previous_value = scope.display['config_key']
 	if previous_value == widget_key: 
 		scope.display['config_key'] = None

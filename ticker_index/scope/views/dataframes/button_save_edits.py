@@ -11,15 +11,15 @@ def button_save_ticker_index(scope):
 						use_container_width=True, 
 						type='secondary',
 						key=widget_key,
-						on_click=save_changes_to_ticker_index,
+						on_click=clicked_save_ticker_index,
 						args=(scope,)
 						)
 	
 	return button
 
 
-def save_changes_to_ticker_index(scope):
-	logging.debug("save_changes_to_ticker_index")
+def clicked_save_ticker_index(scope):
+	logging.warning("clicked_save_ticker_index")
 	scope.ticker_index['save_edited_df'] = True
 
 

@@ -3,7 +3,7 @@ import pandas as pd
 
 
 def consolidate_downloaded_ticker_data(scope):
-	logging.debug("consolidate_downloaded_ticker_data")
+	logging.warning("consolidate_downloaded_ticker_data")
 	# Add the batch data to the yf['data'] object
 	# 	- essentially add all batches together for
 	# 		later processing

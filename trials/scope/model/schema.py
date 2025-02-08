@@ -5,7 +5,7 @@ from add_cols.functions.rsi import rsi_trend
 from add_cols.functions.stochastic import stochastic_trend
 
 def scope_trials_schema(scope):
-	logging.debug("scope_trials_schema")
+	logging.warning("scope_trials_schema")
 	scope.trials['schema'] = trials_schema
 # ==============================================================================================================================================================
 # Share Screener Trial Specifications (included the tech indicators where appropriate)

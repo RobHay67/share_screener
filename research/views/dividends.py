@@ -5,7 +5,7 @@ import pandas as pd
 
 
 def dividends(metadata):
-	logging.debug("dividends")
+	logging.warning("dividends")
 	dividends = pd.DataFrame(metadata.dividends)
 	if not dividends.empty:
 		dividends.reset_index(inplace=True)

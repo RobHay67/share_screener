@@ -5,7 +5,7 @@ import pandas as pd
 
 
 def calendar(metadata):
-	logging.debug("calendar")
+	logging.warning("calendar")
 	calendar = pd.DataFrame(metadata.calendar)
 	if not calendar.empty:
 		# calendar.rename(columns={0:'Percentage', 1:'Description'}, inplace = True) 

@@ -14,7 +14,7 @@ from charts.scope.views.settings.line import line_settings
 
 
 def show_settings_charts(scope):
-	logging.debug("show_settings_charts")
+	logging.warning("show_settings_charts")
 	# ----------------------------------------------------------------------
 	# Primary Charts
 	# ----------------------------------------------------------------------
@@ -62,7 +62,7 @@ def show_settings_charts(scope):
 
 
 def activate_chart(scope, schema_key):
-	logging.debug("activate_chart")
+	logging.warning("activate_chart")
 	edit_active(scope, 'charts', schema_key)
 
 

@@ -4,7 +4,7 @@ import streamlit as st
 
 
 def select_tickers(scope):
-	logging.debug("_select_tickers")
+	logging.debug("select_tickers")
 	page = scope.display['page']
 	
 	widget_key = 'widget_' + page + '_select_tickers'
@@ -16,18 +16,32 @@ def select_tickers(scope):
 				options		=scope.config['dropdowns']['tickers'],
 				default		=previous_selection, 
 				help		='Select a ticker, or multiple tickers from the dropdown. Start typing to jump within list',
-				on_change	=on_change_tickers_selection,
+				on_change	=changed_tickers_selection,
 				args		=(scope, page, widget_key, ),
 				key			=widget_key,
 				) 
 
 
-def on_change_tickers_selection(scope, page, widget_key):
-	logging.debug("on_change_tickers_selection")
-	changed_value = scope[widget_key]
-
+def changed_tickers_selection(scope, page, widget_key):
+	logging.warning("changed_tickers_selection")
+	selected_tickers = scope[widget_key]
 	# store the selection
-	scope.page[page]['selectors']['tickers'] = changed_value
+	scope.page[page]['selectors']['ticker'] = None
+	scope.page[page]['selectors']['tickers'] = selected_tickers
 	scope.page[page]['selectors']['industries'] = []
-	scope.page[page]['selectors']['market'] = 'select market'
+	scope.page[page]['selectors']['market'] = None
 	scope.page[page]['search_results'] = {}
+
+	# Update the selected_tickers list
+	tickers_list = []
+	for ticker in selected_tickers:
+		tickers_list.append(ticker)
+	tickers_list.sort()
+	scope.page[page]['list_selected_tickers'] = tickers_list
+
+	# update the list of tickers to load
+	scope.page[page]['list_load_tickers'] = []
+	already_loaded_list = list(scope.tickers.keys())
+	if ticker not in already_loaded_list:
+		if ticker not in scope.ticker_schema['missing']['local']: # Tried and failed to load this one
+			scope.page[page]['list_load_tickers'].append(ticker)

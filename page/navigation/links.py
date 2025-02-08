@@ -6,7 +6,7 @@ import streamlit as st
 
 
 def website_hyperlink(scope, website, ticker):
-	logging.debug("website_hyperlink")
+	logging.warning("website_hyperlink")
 	pos = ticker.find(".")
 	ticker_code = ticker[0:pos]
 	share_market = scope.config["share_market"]

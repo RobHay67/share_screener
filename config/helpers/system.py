@@ -11,7 +11,7 @@ import streamlit_extras
 
 
 def print_system_info_to_terminal():
-	logging.debug("print_system_info_to_terminal")
+	logging.warning("print_system_info_to_terminal")
 	print ( '\033[94m')
 	print('='*100)
 	print ( 'EXPECTED Python Verion  = 3.13.13')
@@ -26,7 +26,7 @@ def print_system_info_to_terminal():
 	print ( 'Plotly                  =', plotly.__version__)
 	print ( 'pytz                    =', pytz.__version__)
 	print ( 'Streamlit Extras        =', streamlit_extras.__version__)
-	logging.warning("Rob we need to lock these versions into the pipfile prior to production release")
+	logging.critical("Rob we need to lock these versions into the pipfile prior to production release")
 	print('='*100)
 	print ( '\33[0m')
 	for i in range(5):print('')

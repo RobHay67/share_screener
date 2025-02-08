@@ -4,7 +4,7 @@ import pandas as pd
 # Changes require a reboot
 
 def scope_ticker_index_schema(scope):
-	logging.debug("scope_ticker_index_schema")
+	logging.warning("scope_ticker_index_schema")
 	scope.ticker_index['schema'] = schema
 
 

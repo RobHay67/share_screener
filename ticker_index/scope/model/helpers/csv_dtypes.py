@@ -2,7 +2,7 @@ import logging
 
 
 def scope_ticker_index_csv_dtypes(scope):
-	logging.debug("scope_ticker_index_csv_dtypes")
+	logging.warning("scope_ticker_index_csv_dtypes")
 	schema = scope.ticker_index['schema']
 	dtypes={}
 	for field, schema in schema.items():

@@ -2,7 +2,7 @@ import logging
 
 
 def build_trials_active_list(scope):
-	logging.debug("build_trials_active_list")
+	logging.warning("build_trials_active_list")
 	# a list of every currently active trial
 	# Seperate function so it can be called after the initial load - i.e. change user
 

@@ -17,14 +17,14 @@ def edit_trend_ohlcv(scope, schema_group, schema_key ):
 					label		=display_name, 
 					options		=trends_for_ohlcv,
 					index		=pos_for_previous, 
-					on_change	=on_change_trend_selection,
+					on_change	=changed_trend_selection,
 					args		=(scope, schema_group, schema_key, widget_key, ),
 					key			=widget_key,
 					) 
 
 
-def on_change_trend_selection(scope:dict, schema_group:str, schema_key:str, widget_key:str):
-	logging.debug("on_change_trend_selection")
+def changed_trend_selection(scope:dict, schema_group:str, schema_key:str, widget_key:str):
+	logging.warning("changed_trend_selection")
 	changed_value = scope[widget_key]
 
 	# store the selection

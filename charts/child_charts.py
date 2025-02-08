@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 
 
 def add_child_charts(scope, fig, chart_df, schema):
-	logging.debug("add_child_charts")
+	logging.warning("add_child_charts")
 	for chart_no, chart in enumerate(schema['add_chart']):
 		row_no = chart_no+1 
 		col_no = schema['col_no']
@@ -23,7 +23,7 @@ def add_child_charts(scope, fig, chart_df, schema):
 
 
 def format_child_chart(scope, fig, chart, row_no, col_no):
-	logging.debug("format_child_chart")
+	logging.warning("format_child_chart")
 	sub_plot_title = scope.charts['user_config'][chart]['plot']['title']
 	yaxis_format = scope.charts['user_config'][chart]['plot']['yaxis']
 

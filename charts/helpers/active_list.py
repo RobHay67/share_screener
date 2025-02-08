@@ -1,7 +1,7 @@
 import logging
 
 def build_chart_active_list(scope):
-	logging.debug("build_chart_active_list")
+	logging.warning("build_chart_active_list")
 	# Seperate function so it can be called after the initial load - i.e. change user
 	# Reset the list as this function will rebuild it
 	scope.charts['active_list'] = []

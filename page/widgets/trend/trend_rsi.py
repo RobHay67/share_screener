@@ -18,14 +18,14 @@ def edit_trend_rsi(scope, schema_group, schema_key ):
 					label		=display_name, 
 					options		=trends_for_rsi,
 					index		=pos_for_previous, 
-					on_change	=on_change_rsi_selection,
+					on_change	=changed_rsi_selection,
 					args		=(scope, schema_group, schema_key, widget_key, ),
 					key			=widget_key,
 					) 
 
 
-def on_change_rsi_selection(scope:dict, schema_group:str, schema_key:str, widget_key:str):
-	logging.debug("on_change_rsi_selection")
+def changed_rsi_selection(scope:dict, schema_group:str, schema_key:str, widget_key:str):
+	logging.warning("changed_rsi_selection")
 	changed_value = scope[widget_key]
 
 	# store the selection

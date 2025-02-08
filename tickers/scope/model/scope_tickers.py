@@ -1,15 +1,13 @@
 import logging
 
-from page.scope.model.dropdowns.controller import build_ticker_selectors
-
 
 def scope_tickers(scope):
-	logging.debug("scope_tickers")
+	logging.warning("scope_tickers")
 	scope.tickers = {}
 
 
-def create_dictionary_to_store_ticker_data(scope, ticker):
-	logging.debug("create_dictionary_to_store_ticker_data")
+def scope_for_new_ticker_data(scope, ticker):
+	logging.warning("scope_for_new_ticker_data")
 	# This function is triggered after NEW ticker data is either
 	# - loaded 
 	# or 
@@ -45,5 +43,3 @@ def create_dictionary_to_store_ticker_data(scope, ticker):
 	for trial in scope.trials['trial_list']:									#   then utilised to save that test result
 		scope.tickers[ticker][page]['verdicts']['trial_verdicts'][trial] = None	#   which will be a pass or fail result
 	
-	build_ticker_selectors(scope)
-

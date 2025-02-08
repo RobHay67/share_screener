@@ -6,7 +6,7 @@ from add_cols.events.edit_row_limit import edit_row_limit_event
 
 
 def edit_row_limit(scope):
-	logging.debug("_edit_row_limit")
+	logging.debug("edit_row_limit")
 	previous_selection = int(scope.config['row_limit'])
 	display_name = 'No of Rows for Analysis & Charts'
 	widget_key = 'widget_row_limit'
@@ -22,7 +22,7 @@ def edit_row_limit(scope):
 
 
 def on_change_row_limit(scope, widget_key):
-	logging.debug("on_change_row_limit")
+	logging.warning("on_change_row_limit")
 	changed_value = scope[widget_key]
 
 	# store the selection

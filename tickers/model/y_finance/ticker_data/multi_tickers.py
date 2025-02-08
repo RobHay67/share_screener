@@ -6,7 +6,7 @@ import yfinance as yf					# https://github.com/ranaroussi/yfinance
 
 
 def multiple_tickers_downloader(scope):
-	logging.debug("multiple_tickers_downloader")
+	logging.warning("multiple_tickers_downloader")
 	yf_download = yf.download( 
 								tickers=scope.yf['batch_ticker_string'], 
 								group_by = 'ticker', 				# group_by: group by column or ticker (‘column’/’ticker’, default is ‘column’)

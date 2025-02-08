@@ -1,8 +1,8 @@
 import logging
 
 
-def new_ticker_data_event(scope, ticker):
-	logging.debug("new_ticker_data_event")
+def new_ticker_data_event_replace_df_true(scope, ticker):
+	logging.warning(f"new_ticker_data_event_replace_df_true {ticker=}")			# Primary Event
     # This event is triggered after new ticker data is
 	# either loaded or downloaded. 
 	#  
@@ -15,7 +15,6 @@ def new_ticker_data_event(scope, ticker):
 
 
 	for page in scope.config['page_list']:
-
 		scope.tickers[ticker][page]['replace_df'] = True
 
 		if page == 'chart':

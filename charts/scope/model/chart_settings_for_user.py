@@ -1,7 +1,7 @@
 import logging
 
 def scope_charts_for_users(scope):
-	logging.debug("scope_charts_for_users")
+	logging.warning("scope_charts_for_users")
 	# Setting can be changed for each user
 	# so we need to be able to call when changing user
 

@@ -13,15 +13,15 @@ def button_download_ticker_index(scope):
 						use_container_width=True, 
 						type='secondary',
 						key=widget_key,
-						on_click=perform_the_download,
+						on_click=clicked_download_ticker_index,
 						args=(scope, )
 						)
 	
 	return button
 
 
-def perform_the_download(scope):
-	logging.debug("perform_the_download")
+def clicked_download_ticker_index(scope):
+	logging.warning("clicked_download_ticker_index")
 	scope.ticker_index['show']['industry_report'] = False
 	scope.ticker_index['show']['ticker_index'] = False
 	scope.ticker_index['show']['editable_df'] = False

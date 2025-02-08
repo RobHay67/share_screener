@@ -9,16 +9,15 @@ def button_edit_ticker_index_df(scope):
 	button = st.button(
 					label = '🖊 Edit Ticker Index', 
 					use_container_width=True, 
-					on_click=change_editable_df_status, 
+					on_click=clicked_edit_ticker_index_df, 
 					args=(scope, ),
 	# 				help='Edit data in the Ticker Index Dataframe (permitted cols only)',
 					key=widget_key,
 					)
-
 	return button
 
-def change_editable_df_status(scope):
-	logging.debug("change_editable_df_status")
+def clicked_edit_ticker_index_df(scope):
+	logging.warning("clicked_edit_ticker_index_df")
 	previous_value = scope.ticker_index['show']['editable_df']
 	new_value = True if previous_value == False else False
 	scope.ticker_index['show']['editable_df'] = new_value

@@ -7,7 +7,7 @@ from page.widgets.active import edit_active
 
 
 def dividend_settings(scope):
-	logging.debug("dividend_settings")
+	logging.warning("dividend_settings")
 	schema_key = 'dividends'
 	schema_group = 'charts'
 

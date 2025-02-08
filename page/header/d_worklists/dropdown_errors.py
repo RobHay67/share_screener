@@ -14,7 +14,21 @@ def dropdown_load_and_download_ticker_errors(scope):
 
 	widget_key = 'widget_' + page + '_load_errors'
 	
-	ticker_error_list = build_error_list_for_page(scope, page)
+	# create a list of errors relevant for this page/page
+	ticker_error_list = []
+	drop_down_list = []
+	for ticker in scope.ticker_schema['missing']['list']:
+		if ticker in scope.page[page]['list_selected_tickers']:
+			ticker_error_list.append(ticker)
+	for ticker in ticker_error_list:
+		ticker_error_status = ticker + '---'
+		if ticker in scope.ticker_schema['missing']['cloud']:
+			ticker_error_status =  ticker_error_status + scope.ticker_schema['missing']['errors'][ticker]['yf']
+		elif ticker in scope.ticker_schema['missing']['local']:
+			ticker_error_status = ticker_error_status + scope.ticker_schema['missing']['errors'][ticker]['load']
+		else:
+			ticker_error_status = ticker_error_status + 'UNDETERMINED ERROR'
+		drop_down_list.append(ticker_error_status)
 	no_of_errors = len(ticker_error_list)
 
 	# Create label for dropdown list
@@ -30,27 +44,5 @@ def dropdown_load_and_download_ticker_errors(scope):
 
 	return selectbox
 
-def build_error_list_for_page(scope, page):
-	logging.debug("build_error_list_for_page")
-	# create a list of errors relevant for this page/page
-	ticker_error_list = []
-	drop_down_list = []
-	
-	for ticker in scope.ticker_schema['missing']['list']:
-		if ticker in scope.page[page]['selected_tickers']:
-			ticker_error_list.append(ticker)
 
-	for ticker in ticker_error_list:
-		ticker_error_status = ticker + '---'
-
-		if ticker in scope.ticker_schema['missing']['cloud']:
-			ticker_error_status =  ticker_error_status + scope.ticker_schema['missing']['errors'][ticker]['yf']
-		elif ticker in scope.ticker_schema['missing']['local']:
-			ticker_error_status = ticker_error_status + scope.ticker_schema['missing']['errors'][ticker]['load']
-		else:
-			ticker_error_status = ticker_error_status + 'UNDETERMINED ERROR'
-
-		drop_down_list.append(ticker_error_status)
-
-	return drop_down_list
 

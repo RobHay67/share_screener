@@ -12,13 +12,13 @@ from charts.main_chart import format_main_chart
 scope = st.session_state
 page = 'chart'
 scope.display['page'] = page
-logging.debug(f"{page=}")
+logging.info(f"{page=}")
 
 controller_page_header(scope)
 
 if scope.users['logged_in']:
 	ticker = scope.page[page]['selectors']['ticker']
-	if ticker in scope.page[page]['loaded_ticker_list']:
+	if ticker in scope.page[page]['list_loaded_tickers']:
 		chart_df 	= scope.tickers[ticker][page]['df']
 		schema		= create_schema_for_plotly(scope)
 		if schema['no_of_charts'] > 0:

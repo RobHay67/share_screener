@@ -14,7 +14,7 @@ from markets.schema import opening_hours
 scope = st.session_state
 page = 'volume'
 scope.display['page'] = page
-logging.debug(f"{page=}")
+logging.info(f"{page=}")
 
 controller_page_header(scope)
 
@@ -22,7 +22,7 @@ if scope.users['logged_in']:
 
 	ticker = scope.page[page]['selectors']['ticker']
 
-	if ticker != 'select a ticker' :		
+	if ticker != None :		
 
 		market_timezone = opening_hours[scope.config['share_market']]['timezone']		# Timezone for the share market
 		market_time = datetime.now(pytz.timezone(market_timezone))						# Current Market time
@@ -58,7 +58,8 @@ if scope.users['logged_in']:
 		ticker_closing_time = datetime.strptime(ticker_opening_time, '%H:%M:%S')
 		ticker_closing_time = ticker_closing_time + timedelta(minutes=ticker_minutes_per_day)
 
-		logging.warning("we could use a POC model over the recent history and plot the prediction against this - we could smooth in accordance with the POC curve")
+		logging.critical("we could use a POC model over the recent history and plot the prediction against this ")
+		logging.critical("- we could smooth in accordance with the POC curve")
 		view_prediction( ticker_open_time, minutes_elapsed, ticker_remaining_minutes, ticker_closing_time, 
 							volume_to_date, ticker_average_vol_per_minute, extrapolated_daily_volume, ticker_minutes_per_day)
 

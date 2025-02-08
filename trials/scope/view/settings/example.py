@@ -3,7 +3,7 @@ import streamlit as st
 
 
 def example_settings(scope):
-	logging.debug("example_settings")
+	logging.warning("example_settings")
 	st.header('Analysis Selection Criteria')
 
 	col1,col2,col3,col4,col5,col6,col7,col8,col9 = st.columns([1,1,1,1,1,1,1,1,1])

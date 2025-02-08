@@ -13,7 +13,7 @@ from trials.scope.model.settings_for_user import scope_trials_for_users_settings
 
 
 def scope_trials(scope):
-	logging.debug("scope_trials")
+	logging.warning("scope_trials")
 	scope.trials = {}
 	scope_trials_schema(scope)
 	scope_trials_for_users_settings(scope)

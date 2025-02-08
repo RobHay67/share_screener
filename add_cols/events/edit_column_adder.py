@@ -4,7 +4,7 @@ import logging
 
 
 def edit_column_adder_event(scope, schema_key):
-	logging.debug("edit_column_adder_event")
+	logging.warning("edit_column_adder_event")
 	# Event is called when one of the column adders has its
 	# criteria changed - i.e. sma_days changed from 5 to 10
 	# Column Adder requires a refresh for every ticker

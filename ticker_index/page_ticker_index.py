@@ -15,13 +15,21 @@ from ticker_index.scope.views.download.download_button import button_download_ti
 scope = st.session_state
 page = 'ticker_index'
 scope.display['page'] = page
-logging.debug(f"{page=}")
+logging.info(f"{page=}")
 
 controller_page_header(scope)
 
 if scope.users['logged_in']:
-	col1,col2 = st.columns([10,2]) #12
+
+	show_industry_report = False
+	show_editable_df = False
+	show_ticker_index = False
+
+	if scope.ticker_index['show']['industry_report']:show_industry_report=True
+	if scope.ticker_index['show']['editable_df']:show_editable_df=True
+	if scope.ticker_index['show']['ticker_index']:show_ticker_index=True
 	
+	col1,col2 = st.columns([10,2]) #12
 	with col1:
 		no_of_tickers_in_index = str((len(scope.ticker_index['df'])))
 		st.write('Currently ' + no_of_tickers_in_index + ' codes in the ticker index')
@@ -34,11 +42,11 @@ if scope.users['logged_in']:
 	with col3:button_industry_report(scope)
 	with col4:button_download_ticker_index(scope)
 				
-	render_industry_report(scope)
-	render_editable_ticker_index_df(scope)
-	render_ticker_index_df(scope)
+	if show_industry_report:render_industry_report(scope)
+	if show_editable_df:render_editable_ticker_index_df(scope)
+	if show_ticker_index:render_ticker_index_df(scope)
 		
-	logging.warning("Yfinance messages")
+	logging.critical("ticker index page > Yfinance messages to be coded?")
 
 
 

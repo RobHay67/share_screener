@@ -5,7 +5,7 @@ import pandas as pd
 
 
 def institutional(metadata):
-	logging.debug("institutional")
+	logging.warning("institutional")
 	institutional = pd.DataFrame(metadata.institutional_holders)
 	if not institutional.empty:
 		institutional.sort_values(by=['Shares'], inplace=True, ascending=False)
@@ -17,7 +17,7 @@ def institutional(metadata):
 
 
 def major(metadata):
-	logging.debug("major")
+	logging.warning("major")
 	major_holders = pd.DataFrame(metadata.major_holders)
 	if not major_holders.empty:
 		major_holders.rename(columns={0:'Percentage', 1:'Description'}, inplace = True) 

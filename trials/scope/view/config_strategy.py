@@ -7,7 +7,7 @@ from config.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 
 def show_config_strategy(scope):
-	logging.debug("show_config_strategy")
+	logging.info("show_config_strategy")
 	scope_button(scope, "Strategies (WIP)", scope.strategy, make_red=True, suffix_only=False)
 	scope_button(scope, "scope.strategy", scope.strategy, make_red=False, suffix_only=False)
 

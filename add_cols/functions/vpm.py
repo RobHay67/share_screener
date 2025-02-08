@@ -2,7 +2,7 @@ import logging
 
 
 def vpm_cols( scope, chart, ticker, chart_df):
-	logging.debug("vpm_cols")
+	logging.warning("vpm_cols")
 	# Add a Volume Per Minute (VPM)
 
 	# Not on Investpedia - Rob made this one up specifically for Volume

@@ -7,7 +7,7 @@ from charts.scope.model.scope_charts import build_charts_column_adder_template
 
 
 def login_user(scope, login_name):
-	logging.debug("login_user")
+	logging.warning("login_user")
 	# Store User params
 
 	scope.users['login_name'] = login_name

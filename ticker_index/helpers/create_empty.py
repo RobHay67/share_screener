@@ -1,13 +1,13 @@
 import logging
 import pandas as pd
 
-from ticker_index.scope.model.save import save_index
+from ticker_index.scope.model.save import save_ticker_index
 from ticker_index.scope.views.dataframes.messages import message_missing_ticker_file
 from ticker_index.scope.views.dataframes.messages import messgae_creation_success
 
 
 def create_empty_ticker_index(scope):
-	logging.warning("create_empty_ticker_index")
+	logging.critical("create_empty_ticker_index")
 	message_missing_ticker_file(scope)
 
 	dataframe_columns = []
@@ -23,4 +23,4 @@ def create_empty_ticker_index(scope):
 	
 	messgae_creation_success()
 
-	save_index(scope)
+	save_ticker_index(scope)

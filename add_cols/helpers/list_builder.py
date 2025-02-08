@@ -2,10 +2,10 @@ import logging
 
 
 def build_list_of_tickers_that_require_extra_columns(scope, page):
-	logging.debug("build_list_of_tickers_that_require_extra_columns")
+	logging.critical("build_list_of_tickers_that_require_extra_columns")
 	ticker_list = []
 
-	for ticker in scope.page[page]['selected_tickers']:
+	for ticker in scope.page[page]['list_selected_tickers']:
 		# Ensure ticker data available otherwise
 		# function will fail on missing columns
 		if ticker in list(scope.tickers.keys()):

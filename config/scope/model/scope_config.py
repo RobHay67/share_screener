@@ -1,10 +1,12 @@
 import logging
 import time
 from page.scope.model.schema import page_schema
-
+from config.scope.model.dropdowns.markets import build_market_dropdown_list
+from config.scope.model.dropdowns.industries import build_industry_dropdown_list
+from config.scope.model.dropdowns.tickers import build_ticker_dropdown_list
 
 def scope_config(scope):
-	logging.debug("scope_config ==========================================")
+	logging.warning("scope_config ==========================================")
 	scope.config = {}
 	scope.config['project_description'] = 'Share Picker'
 	scope.config['project_start_time'] 	= time.time()
@@ -24,7 +26,7 @@ def scope_config(scope):
 
 
 def scope_config_for_users_settings(scope):
-	logging.debug("scope_config_for_users_settings")
+	logging.warning("scope_config_for_users_settings")
 	# These Setting can be changed for each user
 	# so we need to be able to call when changing user
 	scope.config['row_limit'] = 100
@@ -34,11 +36,16 @@ def scope_config_for_users_settings(scope):
 
 
 def scope_ticker_search(scope):
-	logging.debug("scope_ticker_search")
+	logging.warning("scope_ticker_search")
 	# company names for the ticker search
 	scope.config['ticker_search'] = {}
 	scope.config['ticker_search'] = (scope.ticker_index['df']['company_name']).to_dict()
 
+
+def scope_dropdown_lists(scope):
+	build_market_dropdown_list(scope)
+	build_industry_dropdown_list(scope)
+	build_ticker_dropdown_list(scope)
 
 
 

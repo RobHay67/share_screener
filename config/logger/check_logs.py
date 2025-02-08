@@ -117,7 +117,7 @@ Application Re-Rendering - see below this line >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 2025-02-06 15:02:29 - DEBUG - build_list_of_selected_tickers_for_page			# Why do we do this here ? should it not be after a change
 2025-02-06 15:02:29 - DEBUG - page_with_multiple_selectors
 2025-02-06 15:02:29 - DEBUG - build_worklist_with_long_description
-2025-02-06 15:02:29 - DEBUG - row_progress_bars
+2025-02-06 15:02:29 - DEBUG - row_router_progress_bars
 2025-02-06 15:02:29 - DEBUG - progress_bar_ticker_loading
 2025-02-06 15:02:29 - DEBUG - create_ticker_list_to_load
 2025-02-06 15:02:29 - DEBUG - count_page_tickers
@@ -133,10 +133,98 @@ Application Re-Rendering - see below this line >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 2025-02-06 15:02:29 - DEBUG - build_error_list_for_page
 2025-02-06 15:02:29 - DEBUG - dropdown_active_charts_or_trials
 2025-02-06 15:02:29 - DEBUG - show_active_trials
-2025-02-06 15:02:29 - DEBUG - build_english_explanation
+2025-02-06 15:02:29 - DEBUG - build_english_explanation_for_trial
 2025-02-06 15:02:29 - DEBUG - router_show_verdicts
 2025-02-06 15:02:29 - DEBUG - build_passing_verdict_list
 2025-02-06 15:02:29 - DEBUG - show_all_verdicts_failed
 2025-02-06 15:02:29 - DEBUG - show_sidebar_app_info
 2025-02-06 15:02:29 - DEBUG - _edit_download_days
 2025-02-06 15:02:29 - DEBUG - _edit_row_limit
+# 41 Lines 
+
+
+
+
+
+# Select the Screener Page
+
+2025-02-06 17:23:47 - DEBUG - sidebar_navigation
+2025-02-06 17:23:47 - DEBUG - page='screener'
+2025-02-06 17:23:47 - DEBUG - controller_page_header
+2025-02-06 17:23:47 - DEBUG - page_title
+2025-02-06 17:23:47 - DEBUG - _page_name_and_icon
+2025-02-06 17:23:47 - DEBUG - _button_download_ticker
+2025-02-06 17:23:47 - DEBUG - _button_show_trial_settings
+2025-02-06 17:23:47 - DEBUG - _button_show_strategy_config
+2025-02-06 17:23:47 - WARNING - Strategy Settings yet to be built
+2025-02-06 17:23:47 - DEBUG - _dropdown_select_config
+2025-02-06 17:23:47 - DEBUG - _button_reset_page
+2025-02-06 17:23:47 - DEBUG - ticker_selectors
+2025-02-06 17:23:47 - DEBUG - _select_tickers
+2025-02-06 17:23:47 - DEBUG - _select_industries
+2025-02-06 17:23:47 - DEBUG - _select_a_market
+2025-02-06 17:23:47 - DEBUG - _search_ticker_by_name
+2025-02-06 17:23:47 - DEBUG - router_router_progress_bars
+2025-02-06 17:23:47 - DEBUG - _progress_bar_ticker_loading
+2025-02-06 17:23:47 - CRITICAL - How do we know we need to load tickers here?
+2025-02-06 17:23:47 - DEBUG - create_ticker_list_to_load
+2025-02-06 17:23:47 - CRITICAL - We need this list to preexist
+2025-02-06 17:23:47 - DEBUG - count_page_tickers
+2025-02-06 17:23:47 - DEBUG - _progress_bar_add_columns
+2025-02-06 17:23:47 - DEBUG - build_list_of_tickers_that_require_extra_columns
+2025-02-06 17:23:47 - DEBUG - count_page_tickers
+2025-02-06 17:23:47 - DEBUG - dropdown_selectors
+2025-02-06 17:23:47 - DEBUG - dropdown_worklist
+2025-02-06 17:23:47 - WARNING - determine_label_name
+2025-02-06 17:23:47 - ERROR - dropdown worklist - coding at this point
+2025-02-06 17:23:47 - DEBUG - dropdown_load_and_download_ticker_errors
+2025-02-06 17:23:47 - DEBUG - build_error_list_for_page
+2025-02-06 17:23:47 - DEBUG - dropdown_active_charts_or_trials
+2025-02-06 17:23:47 - DEBUG - show_active_trials
+2025-02-06 17:23:47 - DEBUG - build_english_explanation_for_trial
+2025-02-06 17:23:47 - DEBUG - router_show_verdicts
+2025-02-06 17:23:47 - DEBUG - build_passing_verdict_list
+2025-02-06 17:23:47 - DEBUG - show_all_verdicts_failed
+2025-02-06 17:23:47 - DEBUG - show_sidebar_app_info
+2025-02-06 17:23:47 - DEBUG - _edit_download_days
+2025-02-06 17:23:47 - DEBUG - _edit_row_limit
+# 39 Lines 
+
+
+
+# Check Load Progress
+
+2025-02-07 09:37:09 - CRITICAL - _progress_bar_ticker_loading
+2025-02-07 09:37:09 - DEBUG - number_to_load=1
+2025-02-07 09:37:09 - DEBUG - number_to_load=1
+2025-02-07 09:37:09 - DEBUG - load_ticker ticker='ANZ.AX'
+2025-02-07 09:37:09 - DEBUG - _path_for_ticker_file ticker='ANZ.AX'
+2025-02-07 09:37:09 - DEBUG - _add_new_ticker_data
+2025-02-07 09:37:09 - DEBUG - scope_for_new_ticker_data
+2025-02-07 09:37:09 - DEBUG - new_ticker_data_event_change_page_df_status
+2025-02-07 09:37:09 - WARNING - save_ticker
+2025-02-07 09:37:09 - DEBUG - _path_for_ticker_file ticker='ANZ.AX'
+2025-02-07 09:37:09 - DEBUG - _save_ticker_event
+2025-02-07 09:37:09 - CRITICAL - count_page_tickers
+2025-02-07 09:37:09 - CRITICAL - dropdown_selectors
+2025-02-07 09:37:09 - CRITICAL - dropdown_worklist
+2025-02-07 09:37:09 - WARNING - determine_label_name
+2025-02-07 09:37:09 - ERROR - dropdown worklist - coding at this point
+2025-02-07 09:37:09 - DEBUG - dropdown_load_and_download_ticker_errors
+2025-02-07 09:37:09 - DEBUG - build_error_list_for_page
+2025-02-07 09:37:09 - DEBUG - dropdown_active_charts_or_trials
+2025-02-07 09:37:09 - DEBUG - _view_input_volume
+
+
+
+2025-02-07 13:32:29,783 - Screener_App - DEBUG - Debug message: Initializing GeeksforGeeks module.
+2025-02-07 13:32:29,783 - Screener_App - INFO - Info message: GeeksforGeeks module loaded successfully.
+2025-02-07 13:32:29,783 - Screener_App - WARNING - Warning message: GeeksforGeeks module is using deprecated functions.
+2025-02-07 13:32:29,783 - Screener_App - ERROR - Error message: GeeksforGeeks module encountered an error.
+2025-02-07 13:32:29,783 - Screener_App - CRITICAL - Critical message: GeeksforGeeks module failed to load.
+
+2025-02-07 13:36:53,610 - DEBUG - Debug message: Initializing GeeksforGeeks module.
+2025-02-07 13:36:53,610 - INFO - Info message: GeeksforGeeks module loaded successfully.
+2025-02-07 13:36:53,610 - WARNING - Warning message: GeeksforGeeks module is using deprecated functions.
+2025-02-07 13:36:53,610 - ERROR - Error message: GeeksforGeeks module encountered an error.
+2025-02-07 13:36:53,610 - CRITICAL - Critical message: GeeksforGeeks module failed to load.

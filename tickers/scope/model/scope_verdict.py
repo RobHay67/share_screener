@@ -5,7 +5,7 @@
 
 # refer to the following code
 
-from tickers.scope.model.scope_tickers import create_dictionary_to_store_ticker_data
+from tickers.scope.model.scope_tickers import scope_for_new_ticker_data
 
 
 

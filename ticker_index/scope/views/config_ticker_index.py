@@ -7,7 +7,7 @@ from config.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 
 def show_config_ticker_index(scope):
-	logging.debug("show_config_ticker_index")
+	logging.info("show_config_ticker_index")
 	scope_button(scope, "Ticker Index", scope.ticker_index, make_red=True, suffix_only=False)
 	scope_button(scope, "scope.ticker_index", scope.ticker_index, make_red=False, suffix_only=False)
 

@@ -10,7 +10,7 @@ def button_industry_report(scope):
 	button = st.button(
 					label = '🏭 Tickers by Industry', 
 					use_container_width=True, 
-					on_click=change_industry_report_status, 
+					on_click=clicked_industry_report, 
 					args=(scope, ),
 	# 				help='Show a Report by Industry (expandable to show codes)',
 					key=widget_key,
@@ -18,8 +18,8 @@ def button_industry_report(scope):
 
 	return button
 
-def change_industry_report_status(scope):
-	logging.debug("change_industry_report_status")
+def clicked_industry_report(scope):
+	logging.warning("clicked_industry_report")
 	previous_value = scope.ticker_index['show']['industry_report']
 	new_value = True if previous_value == False else False
 

@@ -2,7 +2,7 @@ import logging
 
 
 def scope_ticker_index_editable_columns(scope):
-	logging.debug("scope_ticker_index_editable_columns")
+	logging.warning("scope_ticker_index_editable_columns")
 	schema = scope.ticker_index['schema']
 	editable_cols={}
 	for i, key in enumerate(schema):

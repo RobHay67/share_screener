@@ -3,7 +3,7 @@ from tickers.scope.model.schema_tickers import schema
 
 
 def scope_ticker_schema(scope):
-	logging.debug("scope_ticker_schema")
+	logging.warning("scope_ticker_schema")
 	scope.ticker_schema = {}
 	scope.ticker_schema['schema'] = schema
 	scope.ticker_schema['usecols'] = ['date', 'open', 'high', 'low', 'close', 'volume']
@@ -21,5 +21,5 @@ def scope_ticker_schema(scope):
 
 	
 def scope_missing_ticker_error(scope, ticker):
-	logging.error("scope_missing_ticker_error")
+	logging.error(f"_scope_missing_ticker_error {ticker=}")
 	scope.ticker_schema['missing']['errors'][ticker] = {'load':None, 'yf':None}

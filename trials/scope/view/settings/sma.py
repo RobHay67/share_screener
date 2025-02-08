@@ -8,7 +8,7 @@ from page.widgets.ohlcv import edit_ohlcv
 
 
 def sma_trends(scope):
-	logging.debug("sma_trends")
+	logging.warning("sma_trends")
 	settings_group = ['sma_1','sma_2','sma_3']
 	open_status = set_expander_status(scope, settings_group)
 
@@ -18,7 +18,7 @@ def sma_trends(scope):
 
 
 def sma_settings(scope, trial):
-	logging.debug("sma_settings")
+	logging.warning("sma_settings")
 	schema_group = 'trials'
 	column_name = scope[schema_group]['user_config'][trial]['function']['column']
 

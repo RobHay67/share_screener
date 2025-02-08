@@ -4,11 +4,11 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 
-logging.warning("Unfortunately YFinance is no good for news - we need to find another source")
+logging.critical("Unfortunately YFinance is no good for news - we need to find another source")
 
 
 def news(metadata):
-	logging.debug("news")
+	logging.warning("news")
 	st.markdown('** news from YFinance is NOT Reliable - will try scraping from ASX - BeautifulSoup **')
 
 

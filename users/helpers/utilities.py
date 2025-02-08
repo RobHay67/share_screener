@@ -3,8 +3,8 @@ import logging
 
 
 def summarise_trial_config_for_user(scope):
-	logging.debug("summarise_trial_config_for_user")
-	logging.warning("may be able to remove this function later")
+	logging.warning("summarise_trial_config_for_user")
+	logging.critical("may be able to remove this function later")
 	trial_dict = {}
 
 	for trial in scope.trials['trial_list']:
@@ -23,8 +23,8 @@ def summarise_trial_config_for_user(scope):
 
 
 def summarise_chart_config_for_user(scope):
-	logging.debug("summarise_chart_config_for_user")
-	logging.warning("may be able to remove this function later")
+	logging.warning("summarise_chart_config_for_user")
+	logging.critical("may be able to remove this function later")
 	chart_dict = {}
 
 	for chart in scope.charts['chart_list']:

@@ -1,7 +1,7 @@
 import logging
 
 def save_trials_user_settings(scope):
-	logging.debug("save_trials_user_settings")
+	logging.warning("save_trials_user_settings")
 	# Summarise the current TRIALS config for this user 
 	excluded_attribute_list = ['function']
 

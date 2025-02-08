@@ -1,7 +1,7 @@
 import logging
 
 def edit_row_limit_event(scope):
-	logging.debug("edit_row_limit_event")
+	logging.warning("edit_row_limit_event")
 	# This event is triggered when the user sets a new row limit for
 	# every page - there is only a single global row limit
 	#

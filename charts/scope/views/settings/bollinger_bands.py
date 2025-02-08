@@ -10,7 +10,7 @@ from page.widgets.ohlc import edit_ohlc
 
 
 def bollinger_band_settings(scope):
-	logging.debug("bollinger_band_settings")
+	logging.warning("bollinger_band_settings")
 	schema_key = 'bollinger_bands'
 	schema_group = 'charts'
 
@@ -19,7 +19,7 @@ def bollinger_band_settings(scope):
 	with col1:edit_active(scope, schema_group, schema_key)
 	# with col1:st.write('Moving Average Type - Rob to configure')		
 	# Simple, Weighted, Exponential, Wilders
-	logging.warning("Moving Average Type - Rob to configure")
+	logging.critical("Moving Average Type - Rob to configure")
 	with col2:edit_ohlc(scope, schema_group, schema_key )
 	with col3:edit_number(scope, schema_group, schema_key, 'length' )
 	with col4:edit_number(scope, schema_group, schema_key, 'shift_up' )

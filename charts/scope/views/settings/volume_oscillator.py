@@ -7,7 +7,7 @@ from page.widgets.number import edit_number
 
 
 def volume_oscillator_settings(scope):
-	logging.debug("volume_oscillator_settings")
+	logging.warning("volume_oscillator_settings")
 	schema_key = 'vol_osssy'
 	schema_group = 'charts'
 

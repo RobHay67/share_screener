@@ -16,14 +16,14 @@ def edit_ohlc(scope, schema_group, schema_key ):
 					label		=display_name, 
 					options		=scope.config['dropdowns']['price_columns'],
 					index		=pos_for_previous, 
-					on_change	=on_change_ohlc,
+					on_change	=changed_ohlc,
 					args		=(scope, schema_group, schema_key, widget_key, ),
 					key			=widget_key,
 					) 
 
 
-def on_change_ohlc(scope:dict, schema_group:str, schema_key:str, widget_key:str):
-	logging.debug("on_change_ohlc")
+def changed_ohlc(scope:dict, schema_group:str, schema_key:str, widget_key:str):
+	logging.warning("changed_ohlc")
 	changed_value = scope[widget_key]
 
 	# store the selection
@@ -35,7 +35,7 @@ def on_change_ohlc(scope:dict, schema_group:str, schema_key:str, widget_key:str)
 
 
 def edit_ohlc_active_col(scope, schema_group, schema_key, col_name):
-	logging.debug("edit_ohlc_active_col")
+	logging.warning("edit_ohlc_active_col")
 	active_ohlc_cols = scope[schema_group]['user_config'][schema_key]['active_columns']
 	previous_selection = True if col_name in active_ohlc_cols else False
 
@@ -44,14 +44,14 @@ def edit_ohlc_active_col(scope, schema_group, schema_key, col_name):
 	st.checkbox( 
 				label		=col_name.title(), 
 				value		=previous_selection,
-				on_change	=on_change_active_column_status,
+				on_change	=changed_active_column_status,
 				args		=(scope, schema_group, schema_key, col_name, widget_key, ),
 				key			=widget_key,
 				)
 
 
-def on_change_active_column_status(scope, schema_group, schema_key, col_name, widget_key):
-	logging.debug("on_change_active_column_status")
+def changed_active_column_status(scope, schema_group, schema_key, col_name, widget_key):
+	logging.warning("changed_active_column_status")
 	changed_value = scope[widget_key]
 
 	active_columns = scope[schema_group]['user_config'][schema_key]['active_columns']

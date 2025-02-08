@@ -4,7 +4,7 @@ import logging
 
 
 def save_ticker_event(scope, ticker):
-	logging.debug("save_ticker_event")
+	logging.warning("save_ticker_event")
 	# so we must have data to save... right???
 
 	if ticker in scope.ticker_schema['missing']['local']:

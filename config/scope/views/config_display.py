@@ -7,7 +7,7 @@ from config.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 
 def show_config_display(scope):
-	logging.debug("show_config_display")
+	logging.info("show_config_display")
 
 	col1,col2 = st.columns([4,3])
 	with col1:st.write(':blue[This section is specifically for this Config Page]')

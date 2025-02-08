@@ -4,7 +4,7 @@ import logging
 
 
 def scope_ticker_index_uneditable_columns(scope):
-	logging.debug("scope_ticker_index_uneditable_columns")
+	logging.warning("scope_ticker_index_uneditable_columns")
 	schema = scope.ticker_index['schema']
 	uneditable_cols=[]
 	for field, schema in schema.items():

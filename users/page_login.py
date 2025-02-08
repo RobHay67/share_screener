@@ -8,7 +8,7 @@ from users.views.login.messages import show_login_message
 
 
 def build_login_page(scope):
-	logging.debug("build_login_page")
+	logging.warning("build_login_page")
 	st.subheader('Login')
 
 	login_name = st.text_input('User Name')

@@ -7,7 +7,7 @@ from config.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 
 def show_config_yf(scope):
-	logging.debug("show_config_yf")
+	logging.info("show_config_yf")
 	scope_button(scope, "Y Finance", scope.yf, make_red=True, suffix_only=False)
 	scope_button(scope, "scope.yf", scope.yf, make_red=False, suffix_only=False)
 

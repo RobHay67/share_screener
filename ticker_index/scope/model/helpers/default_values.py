@@ -2,7 +2,7 @@ import logging
 
 
 def scope_ticker_index_default_values(scope):
-	logging.debug("scope_ticker_index_default_values")
+	logging.warning("scope_ticker_index_default_values")
 	schema = scope.ticker_index['schema']
 	default_values={}
 	for field, schema in schema.items():

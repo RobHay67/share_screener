@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 
 
 def macd_vol_plot(scope, fig, chart, chart_df, row_no, col_no):
-	logging.debug("macd_vol_plot")
+	logging.warning("macd_vol_plot")
 	histogram_colours = ['seagreen' if row['macd_vol_histogram'] >=0 else 'salmon' for index, row in chart_df.iterrows()]
 
 	# MACD (diff) Line

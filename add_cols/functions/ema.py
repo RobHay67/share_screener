@@ -2,7 +2,7 @@ import logging
 
 
 def ema_cols(  scope, chart, ticker, chart_df):
-	logging.debug("ema_cols")
+	logging.warning("ema_cols")
 	# add an Exponential Moving Average (EMA)
 	
 	# EMA  = https://www.investopedia.com/terms/e/ema.asp

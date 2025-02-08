@@ -24,12 +24,12 @@ from research.views.financials import earnings_qtr
 from research.views.calendar import calendar
 from research.views.news import news
 
-logging.warning("I like this example from the ASX for CBA - https://www2.asx.com.au/markets/company/cba")
+logging.critical("I like this example from the ASX for CBA - https://www2.asx.com.au/markets/company/cba")
 # Page Configuration
 scope = st.session_state
 page = 'research'
 scope.display['page'] = page
-logging.debug(f"{page=}")
+logging.info(f"{page=}")
 
 controller_page_header(scope)
 
@@ -37,7 +37,7 @@ if scope.users['logged_in']:
 
 	ticker = scope.page[page]['selectors']['ticker']
 
-	if ticker != 'select a ticker' :
+	if ticker != None :
 		metadata = fetch_yfinance_metadata(ticker)
 		if metadata.info != None:
 			company_general(metadata)

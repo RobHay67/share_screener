@@ -8,7 +8,7 @@ from page.widgets.ohlcv import edit_ohlcv
 
 
 def ohlcv_price_direction(scope):
-	logging.debug("ohlcv_price_direction")
+	logging.warning("ohlcv_price_direction")
 	settings_group = ['price_1','price_2','price_3']
 	open_status = set_expander_status(scope, settings_group)
 	with st.expander(label='Price Direction (Trend) of either Open, High, Low, Close or Volume', expanded=open_status):
@@ -17,7 +17,7 @@ def ohlcv_price_direction(scope):
 
 
 def ohlcv_settings(scope, trial):
-	logging.debug("ohlcv_settings")
+	logging.warning("ohlcv_settings")
 	schema_group = 'trials'
 	column_name = scope[schema_group]['user_config'][trial]['function']['column']
 

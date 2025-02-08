@@ -1,11 +1,11 @@
 import logging
-from tickers.model.new import add_new_ticker
+from tickers.model.new import add_new_ticker_data
 from tickers.model.missing.lists import update_missing_ticker_lists
 from tickers.model.missing.failed_download import fail_download_event
 
 
 def append_downloaded_data_to_scope_tickers(scope, ticker_download_list):
-	logging.debug("append_downloaded_data_to_scope_tickers")
+	logging.warning("append_downloaded_data_to_scope_tickers")
 	# concatenates any downloaded data with any loaded data 
 	# resulting in a complete (hopefully) temporal transaction history for a ticker
 
@@ -23,7 +23,7 @@ def append_downloaded_data_to_scope_tickers(scope, ticker_download_list):
 			# Check we have data after dropping the zero volume rows (above)
 			if len(ticker_data)>0:
 				update_missing_ticker_lists(scope, ticker)
-				add_new_ticker(scope, ticker, ticker_data)
+				add_new_ticker_data(scope, ticker, ticker_data)
 			else:
 				# Ticker Downloaded ok but only contained dates with zero volume
 				fail_download_event(scope, ticker, zero_volume=True)

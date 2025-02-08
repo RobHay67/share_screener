@@ -3,7 +3,7 @@ import numpy as np
 
 
 def trend_cols(scope, trial, ticker, df):
-	logging.debug("trend_cols")
+	logging.warning("trend_cols")
 	column 		= scope.trials['user_config'][trial]['function']['column']
 	trend 		= scope.trials['user_config'][trial]['function']['trend']
 	duration	= int(scope.trials['user_config'][trial]['function']['duration'])

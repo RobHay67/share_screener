@@ -5,7 +5,7 @@ from users.scope.model.login import login_user
 
 
 def show_login_button(scope, login_name):
-	logging.debug("show_login_button")
+	logging.warning("show_login_button")
 	button = st.button(	
 					'login', 
 					on_click=login_user, 

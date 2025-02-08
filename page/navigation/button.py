@@ -3,7 +3,7 @@ import streamlit as st
 
 
 def button_page_link(scope, page, ticker):
-	logging.debug("button_page_link")
+	logging.debug(f"button_page_link {page=} {ticker=}")
 	widget_key = 'widget_navigate_to_' + page + '_page_for_' + ticker
 
 	if st.button(
@@ -17,7 +17,7 @@ def button_page_link(scope, page, ticker):
 			case 'screener':
 				scope.page[page]['selectors']['tickers'] = [ticker]
 				scope.page[page]['selectors']['industries'] = []
-				scope.page[page]['selectors']['market'] = 'select market'
+				scope.page[page]['selectors']['market'] = None
 				scope.page[page]['search_results'] = {}	
 			case _:
 				scope.page[page]['selectors']['ticker'] = ticker

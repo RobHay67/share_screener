@@ -10,7 +10,7 @@ import os
 
 
 # from ticker_index import save_ticker_index_file
-# from tickers.index.file import save_index
+# from tickers.index.file import save_ticker_index
 # from files.path import path_for_ticker_file
 
 
@@ -49,7 +49,7 @@ import os
 # 				store_missing_dates( params, ticker, None )
 # 				output_result_to_terminal( params, ticker, result='passed' )
 # 		output_result_to_terminal(params, (' - dates good for ' + cyan + str(params.terminal['count_passed']) + white + ' and gaps with ' + purple + str(params.terminal['count_failed']) + white), final_print=True )
-# 		save_index(params)
+# 		save_ticker_index(params)
 # 		params.analysis['check_dates'] = False			# To prevent this function being run twice
 # 		if params.reports['missing_dates']: print_missing_dates(params)
 
@@ -76,7 +76,7 @@ import os
 # 	if params.ticker_index['specified_trading_halt_codes'] != None:  # just make sure we have specified some codes
 # 		terminal_heading( params, ( 'editing share index to account for trading halt days' + cyan + '   Changed' + '  /  ' + purple + 'Failed' + white ), line_filler='-' )
 # 		output_result_to_terminal(params)
-# 		for ticker in params.analysis['selected_tickers']:
+# 		for ticker in params.analysis['list_selected_tickers']:
 # 			missing_dates_string = str(params.ticker_index['file'].loc[ticker]['missing_dates'])
 # 			trading_halt_dates_string = str(params.ticker_index['file'].loc[ticker]['trading_halt_dates'])
 
@@ -90,7 +90,7 @@ import os
 # 			params.ticker_index['file'].at[ticker, 'missing_dates'] = None  # as they are no longer missing - we have them accounted for in the trading_halt_days
 # 			output_result_to_terminal( params, ticker, result='passed' )
 # 		print ('')
-# 		save_index(params)
+# 		save_ticker_index(params)
 # 	# rerun the date checker to make sure the result is what we wanted
 # 	params.analysis['check_dates'] = True
 # 	check_share_data_for_missing_dates(params)

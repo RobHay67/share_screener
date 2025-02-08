@@ -7,7 +7,7 @@ from config.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 
 def show_config_users(scope):
-	logging.debug("show_config_users")
+	logging.info("show_config_users")
 	scope_button(scope, "Users", scope.users, make_red=True, suffix_only=False)
 	scope_button(scope, "scope.users", scope.users, make_red=False, suffix_only=False)
 	

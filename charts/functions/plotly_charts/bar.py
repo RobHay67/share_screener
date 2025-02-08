@@ -9,7 +9,7 @@ import plotly.graph_objects as go
 
 
 def bar_ohlc_plot(scope, fig, chart, chart_df, row_no, col_no):
-	logging.debug("bar_ohlc_plot")
+	logging.warning("bar_ohlc_plot")
 	fig.add_trace( go.Ohlc(
 							x		= chart_df['date'],
 							open	= chart_df['open'],

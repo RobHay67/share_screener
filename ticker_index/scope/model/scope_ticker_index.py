@@ -9,7 +9,7 @@ from ticker_index.scope.model.helpers.editable_columns import scope_ticker_index
 from ticker_index.scope.model.helpers.uneditable_columns import scope_ticker_index_uneditable_columns
 
 def scope_ticker_index(scope):
-	logging.debug("scope_ticker_index")
+	logging.warning("scope_ticker_index")
 	scope.ticker_index = {}	
 
 	scope_ticker_index_schema(scope)

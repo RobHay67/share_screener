@@ -20,7 +20,8 @@ def show_config_values(scope):
 
 
 def show_config_single_value(label_name, scope_value):
-	logging.debug(f"show_config_single_value {label_name=}{scope_value=}")
+	logging.debug(f"show_config_single_value")
+	logging.debug(f"{label_name=}{scope_value=}")
 	widget_key = 'widget>' + label_name
 	if label_name == 'project_start_time':
 		scope_value =  datetime.fromtimestamp(scope_value).strftime('%Y-%m-%d %H:%M:%S %p')
@@ -38,7 +39,7 @@ def show_config_single_value(label_name, scope_value):
 	return button
 
 def show_config_note(key_name, config_note='Note for this item'):
-	logging.debug(f"{config_note=}")
+	logging.debug(f"_{config_note=}")
 	widget_key = 'widget>' + key_name
 	
 	config_note = ":grey["+str(config_note)+"]"

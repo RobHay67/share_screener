@@ -2,7 +2,7 @@ import logging
 
 
 def replace_page_df_columns(scope, page, ticker):
-	logging.debug("replace_page_df_columns")
+	logging.warning(f"replace_page_df_columns {page=}{ticker=}")
 	schema_group = scope.tickers[ticker][page]['schema_group']
 	ticker_for_page = scope.tickers[ticker][page]
 	# 
@@ -36,7 +36,6 @@ def replace_page_df_columns(scope, page, ticker):
 				if schema_group == 'trials':
 					# set stutus to recalc overall verdict for this ticker
 					ticker_for_page['verdicts']['re_run_trials'] = True
-
 
 					# Store the most date recent test result - it should be the first row				
 					ticker_for_page['verdicts']['trial_verdicts'][schema_key] = ticker_df[schema_key].iloc[0]

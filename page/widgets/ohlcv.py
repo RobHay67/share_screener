@@ -15,14 +15,14 @@ def edit_ohlcv(scope, schema_group, schema_key ):
 					label		=display_name, 
 					options		=scope.config['dropdowns']['ohlcv_columns'],
 					index		=pos_for_previous, 
-					on_change	=on_change_ohlcv,
+					on_change	=changed_ohlcv,
 					args		=(scope, schema_group, schema_key, widget_key, ),
 					key			=widget_key,
 					) 
 
 
-def on_change_ohlcv(scope:dict, schema_group:str, schema_key:str, widget_key:str):
-	logging.debug("on_change_ohlcv")
+def changed_ohlcv(scope:dict, schema_group:str, schema_key:str, widget_key:str):
+	logging.warning("changed_ohlcv")
 	changed_value = scope[widget_key]
 
 	# store the selection

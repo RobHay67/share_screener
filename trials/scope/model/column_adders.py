@@ -2,7 +2,7 @@ import logging
 
 
 def build_trials_column_adder_template(scope):
-	logging.debug("build_trials_column_adder_template")
+	logging.warning("build_trials_column_adder_template")
 	# A dictionary of every trial that requires additional columns
 	# ignore and trials that dont have column adders
 	# Seperate function, so it can be called after the initial load - i.e. change user

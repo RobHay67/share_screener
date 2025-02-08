@@ -11,7 +11,7 @@ from trials.scope.view.settings.example import example_settings
 
 
 def show_settings_trials(scope):
-	logging.debug("show_settings_trials ---------------------------")
+	logging.warning("show_settings_trials ---------------------------")
 	st.divider()
 	col1,col2=st.columns([8,4])
 	with col1:st.subheader('Trial/Test Settings for User ')

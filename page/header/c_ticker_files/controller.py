@@ -1,9 +1,9 @@
 import logging
 import streamlit as st
 
-from page.header.c_ticker_files.progress_bar_load_tickers import progress_bar_ticker_loading	
+from page.header.c_ticker_files.progress_bar_load_tickers import progress_bar_load_tickers	
 from page.header.c_ticker_files.progress_bar_add_cols import progress_bar_add_columns
-from page.worklists.long_desc import build_worklist_with_long_description
+
 
 
 # Function to show status of ticker data
@@ -17,19 +17,19 @@ from page.worklists.long_desc import build_worklist_with_long_description
 # - utilised the scope.tickers object to track what needs to be done
 
 
-def row_progress_bars(scope):
-	logging.debug("row_progress_bars")
+def router_progress_bars(scope):
+	logging.info("router_progress_bars")
 	page = scope.display['page']
 	col1,col2 = st.columns([6.0, 6.0])  #12.0
 	if page in ['chart', 'intraday', 'volume', 'screener',]:
 		with col1:
 			# loads ticker data as well
-			progress_bar_ticker_loading(scope) 
-			build_worklist_with_long_description(scope)
+			progress_bar_load_tickers(scope) 
 		with col2:
-			# for the volume pagewe dont need to do this step
+			# for the volume page we dont need to do this step
 			if page != 'volume':
-				progress_bar_add_columns(scope, page)      # will add/update the columns as well!
+				# will add/update the columns as well!
+				progress_bar_add_columns(scope, page)      
 
 
 

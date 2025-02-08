@@ -1,12 +1,11 @@
 import logging
 import os
 import pandas as pd
-from page.scope.model.dropdowns.controller import build_ticker_selectors
 from ticker_index.helpers.create_empty import create_empty_ticker_index
 
 
 def load_ticker_index_file( scope ):
-	logging.debug("load_ticker_index_file")
+	logging.warning("load_ticker_index_file")
 	if os.path.exists( scope.files['paths']['ticker_index'] ):
 		
 		ticker_index_file = pd.read_csv(  scope.files['paths']['ticker_index'], 
@@ -22,8 +21,6 @@ def load_ticker_index_file( scope ):
 			ticker_index_file['listing_date'] = pd.to_datetime( ticker_index_file['listing_date'].dt.date  )
 
 		scope.ticker_index['df'] = ticker_index_file	# Cache the loaded ticker Index file	
-
-		build_ticker_selectors(scope)
 
 	else: 
 		create_empty_ticker_index(scope)

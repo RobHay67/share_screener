@@ -2,10 +2,7 @@ import logging
 import pandas as pd
 
 from ticker_index.scope.model.update import update_ticker_index
-from page.scope.model.dropdowns.controller import build_ticker_selectors
-
-
-
+from config.scope.model.scope_config import scope_dropdown_lists
 from config.scope.model.scope_config import scope_ticker_search
 
 from ticker_index.scope.views.download.messages import message_downloading
@@ -14,7 +11,7 @@ from ticker_index.scope.views.download.messages import message_failed_market
 
 
 def download_ticker_index_data(scope):
-	logging.debug("download_ticker_index_data")
+	logging.warning("download_ticker_index_data")
 	if scope.config['share_market'] == 'ASX':
 		message_downloading(scope)
 
@@ -59,11 +56,8 @@ def download_ticker_index_data(scope):
 
 		# Cache the downloaded file
 		scope.ticker_index['download_cache']= downloaded_df 
-		   
 		update_ticker_index(scope)
-
-		build_ticker_selectors(scope)
-
+		scope_dropdown_lists(scope)
 		scope_ticker_search(scope)	# refresh the default ticker search list
 				
 	else:

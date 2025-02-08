@@ -2,7 +2,7 @@ import logging
 from config.scope.views.config_config import show_config_config
 from config.scope.views.config_display import show_config_display
 from files.scope.view.config_files import show_config_files
-from config.views.config_pages import show_config_pages 
+from page.scope.views.config_pages import show_config_pages
 from ticker_index.scope.views.config_ticker_index import show_config_ticker_index
 from tickers.scope.view.config_tickers import show_config_tickers
 from tickers.scope.view.config_ticker_schema import show_config_tickers_schema
@@ -16,8 +16,9 @@ from trials.scope.view.config_strategy import show_config_strategy
 
 
 def route_to_config_page(scope):
-	logging.debug("route_to_config_page")
+	logging.warning(f"route_to_config_page")
 	config_page = scope.display['config_page']
+	logging.warning(f"{config_page=}")
 
 	match config_page:
 		case 'route_config_config':			show_config_config(scope)

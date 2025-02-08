@@ -4,12 +4,12 @@ from trials.scope.view.config_trials import show_config_trials
 from trials.scope.view.config_strategy import show_config_strategy
 from charts.scope.views.config_charts import show_config_charts
 from ticker_index.scope.views.config_ticker_index import show_config_ticker_index
-from config.views.config_pages import show_config_pages
+from page.scope.views.config_pages import show_config_pages
 from tickers.scope.view.config_tickers import show_config_tickers
 
 
-def router_show_requested_config(scope):
-	logging.debug("router_show_requested_config")
+def router_show_selected_config(scope):
+	logging.info("router_show_selected_config")
 	page = scope.display['page']
 	config_to_show = scope.page[page]['show']['config']
 

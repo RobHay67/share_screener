@@ -3,7 +3,7 @@ import os
 
 
 def scope_files(scope):
-	logging.debug("scope_files")
+	logging.warning("scope_files")
 	scope.files = {}
 
 	# Folders

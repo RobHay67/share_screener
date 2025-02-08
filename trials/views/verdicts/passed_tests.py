@@ -1,6 +1,5 @@
 import logging
 import streamlit as st
-from trials.views.verdicts.tab_names import determine_tab_names
 
 from page.navigation.button import button_page_link
 from page.navigation.links import website_hyperlink
@@ -8,9 +7,16 @@ from page.navigation.links import website_hyperlink
 
 def show_passing_verdicts(scope, no_of_verdicts, tab_group_size, verdict_list):
 	logging.debug("show_passing_verdicts")
-	# Render the Results (in tabs and there could be lots)
+	# Render the Results (in tabs because there could be lots)
 	st.subheader('Passing Test Results       (' + str(no_of_verdicts) + ') passed')
-	list_of_tab_names = determine_tab_names(no_of_verdicts, tab_group_size)
+	
+	# Create List of Tab Names
+	no_of_tabs = int(no_of_verdicts / tab_group_size)		
+	if (no_of_verdicts % tab_group_size) > 0:no_of_tabs+=1
+	list_of_tab_names = []
+	for tab_no in range(no_of_tabs):
+		list_of_tab_names.append(str(tab_no+1))
+
 	# Create Tabs and populate from verdicts
 	tabs = st.tabs(list_of_tab_names)
 	ticker_start = 0
@@ -38,7 +44,7 @@ def show_passing_verdicts(scope, no_of_verdicts, tab_group_size, verdict_list):
 						options		=hyperlinks,
 						# index		=pos_for_previous, 
 						help		='Select an Entire Share Market for Analysis',
-						on_change	=on_select_external_link,
+						on_change	=clicked_external_link,
 						args		=(scope, widget_key, ),
 						key			=widget_key,
 					) 
@@ -57,8 +63,8 @@ def show_passing_verdicts(scope, no_of_verdicts, tab_group_size, verdict_list):
 
 
 
-def on_select_external_link(scope, widget_key):
-	logging.debug("on_select_external_link")
+def clicked_external_link(scope, widget_key):
+	logging.error("clicked_external_link")
 	test = "[market watch](https://www.marketwatch.com/investing/stock/wbc/charts?countrycode=au)"
 	changed_value = scope[widget_key]
 	# print('^'*88)

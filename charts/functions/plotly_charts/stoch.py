@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 
 
 def stoch_plot(scope, fig, chart, chart_df, row_no, col_no):
-	logging.debug("stoch_plot")
+	logging.warning("stoch_plot")
 	# Stochastic Line
 	fig.add_trace( go.Scatter(
 								x		= chart_df['date'],

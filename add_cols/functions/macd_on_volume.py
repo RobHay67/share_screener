@@ -6,7 +6,7 @@ import numpy as np
 
 
 def macd_vol_cols( scope, chart, ticker, chart_df):
-	logging.debug("macd_vol_cols")
+	logging.warning("macd_vol_cols")
 	# Moving Average, Convergence, Divergence (MACD)
 
 	# MACD = https://www.investopedia.com/terms/m/macd.asp

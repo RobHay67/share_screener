@@ -5,20 +5,24 @@
 
 
 import logging
-
-from trials.helpers.verdicts_passing import build_passing_verdict_list
+import streamlit as st
 from trials.views.verdicts.failed_all_tests import show_all_verdicts_failed
 from trials.views.verdicts.passed_too_many import show_too_many_verdicts
 from trials.views.verdicts.passed_tests import show_passing_verdicts
 
 
-
 def router_show_verdicts(scope):
-	logging.debug("router_show_verdicts")
+	logging.info("router_show_verdicts")
+	page 			= scope.display['page']
 	tab_group_size 	= 10
 	number_of_tabs 	= 30
-	verdict_list 	= build_passing_verdict_list(scope)
+	verdict_list 	= []
+	for ticker in scope.page[page]['list_selected_tickers']:
+		if ticker in scope.page[page]['list_loaded_tickers']:
+			if scope.tickers[ticker][page]['verdicts']['overall_verdict'] == 'pass':
+				verdict_list.append(ticker)
 	qty_of_verdicts	= len(verdict_list)
+	st.subheader("Trial Verdicts")
 	match qty_of_verdicts:
 		case 0:
 			show_all_verdicts_failed()

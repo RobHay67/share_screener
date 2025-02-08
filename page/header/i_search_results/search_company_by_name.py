@@ -4,11 +4,11 @@ import logging
 import streamlit as st
 
 
-from page.header.i_search_results.button_search import seach_for_ticker_button
+from page.header.i_search_results.button_search import button_select_seach_result_ticker
 
 
-def add_search_results(scope):
-	logging.debug("add_search_results")
+def search_company_by_name(scope):
+	logging.info("search_company_by_name")
 	page = scope.display['page']
 
 	search_results = scope.page[page]['search_results']
@@ -18,7 +18,7 @@ def add_search_results(scope):
 		for ticker, company_name in search_results.items():
 			col1,col2,col3=st.columns([0.3,0.3,5])
 			
-			with col1: seach_for_ticker_button(scope, page, ticker)
+			with col1: button_select_seach_result_ticker(scope, page, ticker)
 			with col2: st.write(ticker)
 			with col3: st.write(company_name)
 

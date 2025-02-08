@@ -13,7 +13,7 @@
 
 from add_cols.events.edit_active import edit_active_event
 from add_cols.events.edit_column_adder import edit_column_adder_event
-from add_cols.events.new_ticker import new_ticker_data_event
+from add_cols.events.new_ticker import new_ticker_data_event_replace_df_true
 
 from add_cols.events.edit_row_limit import edit_row_limit_event
 

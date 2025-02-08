@@ -17,14 +17,14 @@ def edit_trend_stochastic(scope, schema_group, schema_key ):
 					label		=display_name, 
 					options		=trends_for_stochastic,
 					index		=pos_for_previous, 
-					on_change	=on_change_stochastic_selection,
+					on_change	=changed_stochastic_selection,
 					args		=(scope, schema_group, schema_key, widget_key, ),
 					key			=widget_key,
 					) 
 
 
-def on_change_stochastic_selection(scope:dict, schema_group:str, schema_key:str, widget_key:str):
-	logging.debug("on_change_stochastic_selection")
+def changed_stochastic_selection(scope:dict, schema_group:str, schema_key:str, widget_key:str):
+	logging.warning("changed_stochastic_selection")
 	changed_value = scope[widget_key]
 
 	# store the selection

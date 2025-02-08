@@ -29,8 +29,8 @@ yf_download = yf.download( ticker, period=period, interval=interval, progress=Tr
 
 yf_download = yf_download.sort_index(ascending=False)        # ensure latest trade is at the top of the list
 
-logging.warning("Total Daily Volume =", yf_download.Volume.sum())
-logging.warning("make this into a report")
+logging.critical("Total Daily Volume =", yf_download.Volume.sum())
+logging.critical("make this into a report")
 
 # ensure the index is a datetime object
 # yf_download.index = pd.to_datetime(yf_download.index, format='%Y-%m-%d %H:%M:%S')

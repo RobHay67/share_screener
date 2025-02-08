@@ -15,10 +15,11 @@ from tickers.scope.model.scope_ticker_schema import scope_ticker_schema
 from config.scope.model.scope_config import scope_ticker_search
 from tickers.scope.model.scope_yf import scope_yf
 from trials.scope.model.scope_strategy import scope_strategy
+from config.scope.model.scope_config import scope_dropdown_lists
 
 
 def set_scope(scope):
-	logging.debug("set_scope")
+	logging.warning("set_scope")
 	# set_logging_config()
 	print_system_info_to_terminal()
 	set_streamlit_page_config()				# should only run onetime
@@ -40,7 +41,8 @@ def set_scope(scope):
 		scope_ticker_search(scope)			# variable to facilite searching for ticker by name
 		scope_yf(scope)						# variable used during download of ticker data
 		scope_strategy(scope)				# this may not even be required - keeping just in case
-		logging.warning("scope_strategy - this may not even be required - keeping just in case")
+		logging.critical("scope_strategy - this may not even be required - keeping just in case")
+		scope_dropdown_lists(scope)			# moved from elsewhere
 	return scope
 
 

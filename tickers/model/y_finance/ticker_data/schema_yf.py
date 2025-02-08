@@ -1,7 +1,7 @@
 import logging
 
 def scope_yf_schema(scope):
-	logging.debug("scope_yf_schema")
+	logging.warning("scope_yf_schema")
 	scope.yf['schemas'] = yf_schemas
 
 

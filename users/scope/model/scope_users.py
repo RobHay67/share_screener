@@ -4,7 +4,7 @@ from users.scope.model.load import load_user_table
 
 
 def scope_users(scope):
-	logging.debug("scope_users")
+	logging.warning("scope_users")
 	scope.users = {}
 	scope.users['json'] = {}
 	scope.users['user_list'] = []
@@ -13,7 +13,7 @@ def scope_users(scope):
 
 
 def scope_users_for_users(scope):
-	logging.debug("scope_users_for_users")
+	logging.warning("scope_users_for_users")
 	# Setting can be changed for each user
 	# so we need to be able to call when changing user
 

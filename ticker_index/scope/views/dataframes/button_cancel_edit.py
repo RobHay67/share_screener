@@ -3,7 +3,7 @@ import streamlit as st
 
 
 def button_cancel_index_changes(scope):
-	logging.debug("button_cancel_index_changes")
+	logging.warning("button_cancel_index_changes")
 	widget_key = 'widget_cancel_ticker_index_changes'
 	
 	button = st.button(
@@ -11,15 +11,15 @@ def button_cancel_index_changes(scope):
 						use_container_width=True, 
 						type='secondary',
 						key=widget_key,
-						on_click=change_cancel_df_save_status,
+						on_click=clicked_cancel_index_changes,
 						args=(scope,)
 						)
 	
 	return button
 
 
-def change_cancel_df_save_status(scope):
-	logging.debug("change_cancel_df_save_status")
+def clicked_cancel_index_changes(scope):
+	logging.warning("clicked_cancel_index_changes")
 	# increment the key counter for the widget. This has the affect
 	# of causing the object to be re-rendered to its initial postition
 	# in effect 'resetting' the dataframe and cancelling any changes

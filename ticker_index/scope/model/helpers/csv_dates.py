@@ -2,7 +2,7 @@ import logging
 
 
 def scope_ticker_index_csv_dates(scope):
-	logging.debug("scope_ticker_index_csv_dates")
+	logging.warning("scope_ticker_index_csv_dates")
 	schema = scope.ticker_index['schema']
 	dates_to_parse = []
 	for field, schema in schema.items():

@@ -10,7 +10,7 @@ from charts.helpers.active_list import build_chart_active_list
 from charts.helpers.col_adders import build_charts_column_adder_template
 
 def scope_charts(scope):
-	logging.debug("scope_charts")
+	logging.warning("scope_charts")
 	scope.charts = {}
 	scope_charts_schema(scope)
 	scope_charts_for_users(scope)

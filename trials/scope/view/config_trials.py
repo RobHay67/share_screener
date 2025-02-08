@@ -8,7 +8,7 @@ from config.scope.views.buttons.dropdown_choose_scope import scope_dropdown
 
 
 def show_config_trials(scope):
-	logging.debug("show_config_trials")
+	logging.info("show_config_trials")
 	scope_button(scope, "Trials", scope.trials, make_red=True, suffix_only=False)
 	scope_button(scope, "scope.trials", scope.trials, make_red=False, suffix_only=False)
 	

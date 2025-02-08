@@ -4,7 +4,7 @@ import pandas as pd
 
 
 def show_message_download_complete(scope, ticker_download_list):
-	logging.debug("show_message_download_complete")
+	logging.warning("show_message_download_complete")
 	yf_download = scope.yf['all_data']
 	no_in_worklist = len(ticker_download_list)
 

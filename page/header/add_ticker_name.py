@@ -6,15 +6,15 @@ from tickers.helpers.latest_price import latest_ticker_price
 
 
 def add_ticker_name(scope):
-	logging.debug("add_ticker_name")
+	logging.warning("add_ticker_name")
 	page = scope.display['page']
 
 	if page != 'screener':
 		# non screener page - there will  be 1 ticker in worklist
-		if len(scope.page[page]['selected_tickers'])==1:
+		if len(scope.page[page]['list_selected_tickers'])==1:
 			# we have a ticker to work with
 		
-			ticker = scope.page[page]['selected_tickers'][0]
+			ticker = scope.page[page]['list_selected_tickers'][0]
 			ticker_name = scope.config['ticker_search'][ticker].title()
 			ticker_latest_price_df = latest_ticker_price(scope, ticker)
 				

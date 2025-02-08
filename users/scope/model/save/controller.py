@@ -7,7 +7,7 @@ from users.scope.model.save.charts_config import save_charts_user_settings
 
 
 def save_users_table(scope):
-	logging.debug("save_users_table")
+	logging.warning("save_users_table")
 	user = scope.users['login_name']
 	
 	if user != 'Login to Use the Application':

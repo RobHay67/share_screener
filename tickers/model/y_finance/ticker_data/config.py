@@ -2,7 +2,7 @@ import logging
 
 
 def set_download_config(scope, ticker_download_list):
-	logging.debug("set_download_config")
+	logging.warning("set_download_config")
 	determine_batch_type(scope, ticker_download_list)
 	create_readable_string(scope, ticker_download_list)
 	scope.yf['batch_data'] = {}
@@ -11,7 +11,7 @@ def set_download_config(scope, ticker_download_list):
 
 
 def determine_batch_type(scope, ticker_download_list):
-	logging.debug("determine_batch_type")
+	logging.warning("determine_batch_type")
 	if len(ticker_download_list) == 1:
 		scope.yf['batch_type'] = 'single_ticker'
 	else:
@@ -19,7 +19,7 @@ def determine_batch_type(scope, ticker_download_list):
 
 
 def create_readable_string(scope, ticker_download_list):
-	logging.debug("create_readable_string")
+	logging.warning("create_readable_string")
 	# Create a readable list of the tickers for Y_Finance
 	ticker_string_for_y_finance = ""
 	for ticker in ticker_download_list:

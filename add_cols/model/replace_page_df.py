@@ -2,12 +2,13 @@ import logging
 
 
 def replace_page_df(scope, page, ticker, app_row_limit):
-	logging.debug("replace_page_df")
+	logging.warning(f"replace_page_df {page=}{ticker=}")
 	# Shorcut reference
-	ticker_for_page = scope.tickers[ticker][page]
+	scope_ticker_page = scope.tickers[ticker][page]
+	# logging.critical(f"{scope_ticker_page=}")
 
 	# Replace the page df if requested
-	if ticker_for_page['replace_df'] == True:
+	if scope_ticker_page['replace_df'] == True:
 
 		# print('Replacing the ticker[df] for > ', ticker)
 
@@ -18,11 +19,12 @@ def replace_page_df(scope, page, ticker, app_row_limit):
 		ticker_df = ticker_df.head(app_row_limit)
 		
 		# Cache the ticker dataframe to be utilised by this page/page
-		ticker_for_page['df'] = ticker_df
+		scope_ticker_page['df'] = ticker_df
 
 		# add ticker to the loaded_ticker list
-		if ticker not in scope.page[page]['loaded_ticker_list']:
-			scope.page[page]['loaded_ticker_list'].append(ticker)
+		if ticker not in scope.page[page]['list_loaded_tickers']:
+			scope.page[page]['list_loaded_tickers'].append(ticker)
+			scope.page[page]['replace_worklist'] = True
 		
 		# Set the status to false to prevent refreshing unnecesarily
-		ticker_for_page['replace_df'] = False
+		scope_ticker_page['replace_df'] = False

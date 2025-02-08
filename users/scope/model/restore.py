@@ -7,7 +7,7 @@ from config.scope.model.scope_config import scope_config_for_users_settings
 
 
 def restore_user_config(scope):
-	logging.debug("restore_user_config")
+	logging.warning("restore_user_config")
 	# Reinstate default user setting across config
 
 	# Default User Name
@@ -22,4 +22,4 @@ def restore_user_config(scope):
 	# row_limit
 	scope_config_for_users_settings(scope)
 
-	logging.warning("what about the trials config - should this also not revert to the base values")
+	logging.critical("what about the trials config - should this also not revert to the base values")

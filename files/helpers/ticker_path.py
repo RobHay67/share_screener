@@ -7,8 +7,8 @@ import os
 # generate path name based on the ticker code - on the fly
 
 
-def path_for_ticker_file( scope, ticker ):
-	logging.debug(f"path_for_ticker_file {ticker=}")
+def path_for_ticker_file( scope, ticker, type):
+	logging.warning(f"path_for_ticker_file {type=} {ticker=}")
 	file_name = ( ticker.replace( '.', '_' ) ) + '.csv'
 
 	file_path = os.path.join(scope.files['folders']['tickers'], file_name)

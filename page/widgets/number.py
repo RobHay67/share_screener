@@ -6,7 +6,7 @@ from add_cols.events.edit_column_adder import edit_column_adder_event
 
 
 def edit_number(scope, schema_group, schema_key, measure ):
-	logging.debug("edit_number")
+	logging.warning("edit_number")
 	widget_key = 'widget_' + schema_group + '_' + schema_key + '_' + measure
 	display_name = measure.capitalize()
 	if display_name == 'Duration':
@@ -27,7 +27,7 @@ def edit_number(scope, schema_group, schema_key, measure ):
 
 
 def on_change_number(scope:dict, schema_group:str, schema_key:str, measure:str, widget_key:str):
-	logging.debug("on_change_number")
+	logging.warning("on_change_number")
 	changed_value = scope[widget_key]
 
 	# store the selection

@@ -8,7 +8,7 @@ from page.widgets.trends.rsi import edit_trend_rsi
 
 
 def rsi_trends(scope):
-	logging.debug("rsi_trends")
+	logging.warning("rsi_trends")
 	settings_group = ['rsi_1','rsi_2']
 	open_status = set_expander_status(scope, settings_group)
 	
@@ -19,7 +19,7 @@ def rsi_trends(scope):
 
 
 def rsi_settings(scope, trial):
-	logging.debug("rsi_settings")
+	logging.warning("rsi_settings")
 	schema_group = 'trials'
 
 	col1,col2,col3,col4,col5,col6 = st.columns([2,1,1,1,1,1])

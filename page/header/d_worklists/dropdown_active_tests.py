@@ -6,7 +6,7 @@ import streamlit as st
 
 
 def dropdown_active_charts_or_trials(scope):
-	logging.debug("dropdown_active_charts_or_trials")
+	logging.warning("dropdown_active_charts_or_trials > make this a button")
 	page = scope.display['page']
 	
 	if page in ['screener', 'chart']:
