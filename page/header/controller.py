@@ -6,7 +6,7 @@ from page.header.router_ticker_selectors import ticker_selectors
 from page.header.c_ticker_files.controller import router_progress_bars
 from page.header.d_worklists.controller import worklist_selectors
 from page.header.show_quicklinks import add_quick_links
-from tickers.scope.view.dataframes import add_page_dataframes
+from tickers.scope.view_dataframes import add_page_dataframes
 from page.header.i_search_results.search_company_by_name import search_company_by_name
 from page.header.add_ticker_name import add_ticker_name
 from page.header.router_show_active_trial_or_test import router_show_active_trial_or_test
@@ -25,7 +25,6 @@ def controller_page_header(scope):
 	show_search_results = False
 	show_ticker_name = False
 	show_active_trial_or_chart = False
-	show_verdicts = False
 
 	if (scope.page[page]['show']['trials'] == True or
 		scope.page[page]['show']['strategy'] == True or
@@ -41,8 +40,6 @@ def controller_page_header(scope):
 	if scope.page[page]['show']['ticker_file'] != 'Show/Hide Data':show_ticker_files = True
 	if len(scope.page[page]['search_results']) > 0:show_search_results=True
 	if scope.page[page]['show']['active_trial_or_chart']:show_active_trial_or_chart=True
-	if page=='screener' and len(scope.page[page]['list_loaded_tickers'])>0:show_verdicts=True
-
 
 	page_title(scope)											# a_
 	if scope.users['logged_in']:
@@ -58,10 +55,12 @@ def controller_page_header(scope):
 		if show_search_results:search_company_by_name(scope)	# i_
 		if show_ticker_name:add_ticker_name(scope)
 		if show_active_trial_or_chart:router_show_active_trial_or_test(scope)
-		if show_verdicts:
-			router_show_verdicts(scope)
-			show_fliss_simple_strategy(scope)
-			logging.critical('remove show_fliss_simple_strategy when Strategy can be managed in settings')
+		
+		if page=='screener':
+			if len(scope.page[page]['list_loaded_tickers'])>0:
+				router_show_verdicts(scope)
+				show_fliss_simple_strategy(scope)
+				logging.critical('remove show_fliss_simple_strategy when Strategy can be managed in settings')
 
 
 

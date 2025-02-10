@@ -1,10 +1,10 @@
 import logging
 import streamlit as st
 
-from charts.scope.views.settings_charts import show_settings_charts
-from charts.scope.views.settings_overlay import show_settings_overlay
-from trials.scope.view.settings_trials import show_settings_trials
-from trials.scope.view.config_strategy import show_config_strategy
+from charts.scope.view_settings_charts import show_settings_charts
+from charts.scope.view_settings_overlay import show_settings_overlay
+from trials.scope.view_settings_trials import show_settings_trials
+from trials.scope.view_config_strategy import show_config_strategy
 
 # Show/Hide additional config information or settings as specified by the user
 

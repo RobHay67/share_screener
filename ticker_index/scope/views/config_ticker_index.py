@@ -1,9 +1,9 @@
 import logging
 import streamlit as st
-from config.scope.views.buttons.button_choose_scope import scope_button
-from config.scope.views.buttons.button_data_type import data_type_button
-from config.scope.views.buttons.show_config_value import show_config_single_value, show_config_values, show_config_note
-from config.scope.views.buttons.dropdown_choose_scope import scope_dropdown
+from config.scope.buttons.button_choose_scope import scope_button
+from config.scope.buttons.button_data_type import data_type_button
+from config.scope.buttons.show_config_value import show_config_single_value, show_config_values, show_config_note
+from config.scope.buttons.dropdown_choose_scope import scope_dropdown
 
 
 def show_config_ticker_index(scope):

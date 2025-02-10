@@ -1,7 +1,7 @@
 import logging
 import streamlit as st
 
-from users.scope.model.login import login_user
+from users.scope.login import login_user
 
 def auto_login_button(scope):
 	logging.error("auto_login_button")

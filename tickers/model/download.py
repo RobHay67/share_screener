@@ -1,5 +1,5 @@
 import logging
-from tickers.scope.model.scope_yf import scope_yf_config
+from tickers.scope.scope_yf import scope_yf_config
 from tickers.model.y_finance.ticker_data.config import set_download_config
 from tickers.model.y_finance.ticker_data.single_ticker import single_ticker_downloader
 from tickers.model.y_finance.ticker_data.multi_tickers import multiple_tickers_downloader

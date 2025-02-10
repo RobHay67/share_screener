@@ -1,11 +1,11 @@
 import logging
-from tickers.scope.view.config_vedicts import show_config_verdicts
-from trials.scope.view.config_trials import show_config_trials
-from trials.scope.view.config_strategy import show_config_strategy
-from charts.scope.views.config_charts import show_config_charts
+from tickers.scope.view_config_vedicts import show_config_verdicts
+from trials.scope.view_config_trials import show_config_trials
+from trials.scope.view_config_strategy import show_config_strategy
+from charts.scope.view_config_charts import show_config_charts
 from ticker_index.scope.views.config_ticker_index import show_config_ticker_index
-from page.scope.views.config_pages import show_config_pages
-from tickers.scope.view.config_tickers import show_config_tickers
+from page.scope.view_config_pages import show_config_pages
+from tickers.scope.view_config_tickers import show_config_tickers
 
 
 def router_show_selected_config(scope):

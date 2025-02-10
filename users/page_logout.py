@@ -3,7 +3,7 @@ import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
 
 from page.header.router_page_title import page_title
-from users.scope.model.logout import logout_user
+from users.scope.logout import logout_user
 
 
 

@@ -6,7 +6,7 @@ import logging
 import streamlit as st
 from config.logger.log import set_logging_config
 from config.helpers.re_render import app_is_re_rendering
-from config.scope.model.set_scope import set_scope
+from config.scope.scope_set_scope import set_scope
 from users.page_login import build_login_page
 from page.sidebar.market_info import show_sidebar_app_info
 from page.navigation.page_navigation import sidebar_navigation

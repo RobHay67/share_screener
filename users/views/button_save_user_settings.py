@@ -1,7 +1,7 @@
 
 import logging
 import streamlit as st
-from users.scope.model.save.controller import save_users_table
+from users.scope.save.controller import save_users_table
 
 
 

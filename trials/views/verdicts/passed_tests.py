@@ -12,7 +12,7 @@ def show_passing_verdicts(scope, no_of_verdicts, tab_group_size, verdict_list):
 	page = scope.display['page']
 	
 	col1, col2 = st.columns([4,1])
-	with col1:st.subheader('Passing Test Results       (' + str(no_of_verdicts) + ') passed')
+	with col1:st.subheader('Passing Trial Verdicts (' + str(no_of_verdicts) + ') passed')
 	with col2:choose_default_external_link(scope)
 	
 	# Render the Results (in tabs because there could be lots)

@@ -3,7 +3,7 @@ import pandas as pd
 
 from tickers.model.save import save_ticker
 from add_cols.events.new_ticker import new_ticker_data_event_replace_df_true
-from tickers.scope.model.scope_tickers import scope_for_new_ticker_data
+from tickers.scope.scope_tickers import scope_for_new_ticker_data
 
 
 

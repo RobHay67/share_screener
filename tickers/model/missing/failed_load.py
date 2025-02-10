@@ -1,5 +1,5 @@
 import logging
-from tickers.scope.model.scope_ticker_schema import scope_missing_ticker_error
+from tickers.scope.scope_ticker_schema import scope_missing_ticker_error
 
 
 def fail_local_load_event(scope, ticker):

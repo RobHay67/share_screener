@@ -1,8 +1,8 @@
 import logging
 import pandas as pd
 from ticker_index.scope.model.save import save_ticker_index
-from markets.open_time import open_time
-from markets.trading_minutes import trading_minutes
+from config.schemas.open_time import open_time
+from config.schemas.trading_minutes import trading_minutes
 from ticker_index.scope.views.dataframes.messages import message_records_added
 
 

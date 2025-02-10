@@ -3,6 +3,6 @@
 
 # for example
 
-from trials.scope.model.schema import trials_schema
+from trials.scope.schema import trials_schema
 # also now stored in scope.trials['schema']
 

@@ -2,8 +2,8 @@ import logging
 import pandas as pd
 
 from ticker_index.scope.model.update import update_ticker_index
-from config.scope.model.scope_config import scope_dropdown_lists
-from config.scope.model.scope_config import scope_ticker_search
+from config.scope.scope_config import scope_dropdown_lists
+from config.scope.scope_config import scope_ticker_search
 
 from ticker_index.scope.views.download.messages import message_downloading
 from ticker_index.scope.views.download.messages import message_completed_download

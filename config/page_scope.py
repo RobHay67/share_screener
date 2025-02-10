@@ -3,8 +3,8 @@ import streamlit as st
 from page.header.router_page_title import page_title
 
 from page.header.controller import controller_page_header
-from config.scope.views.config_summary import show_config_summary
-from config.scope.views.router import route_to_config_page
+from config.scope.view_config_summary import show_config_summary
+from config.scope.view_router import route_to_config_page
 
 
 scope = st.session_state

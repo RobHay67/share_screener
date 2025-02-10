@@ -2,7 +2,7 @@ import logging
 import streamlit as st
 
 from add_cols.events.edit_column_adder import edit_column_adder_event
-from trials.scope.model.schema import trends_for_sma
+from trials.scope.schema import trends_for_sma
 
 
 def edit_trend_sma(scope, schema_group, schema_key ):

@@ -22,7 +22,7 @@ def router_show_verdicts(scope):
 			if scope.tickers[ticker][page]['verdicts']['overall_verdict'] == 'pass':
 				verdict_list.append(ticker)
 	qty_of_verdicts	= len(verdict_list)
-	st.subheader("Trial Verdicts")
+	# st.subheader("Trial Verdicts")
 	match qty_of_verdicts:
 		case 0:
 			show_all_verdicts_failed()
