@@ -18,10 +18,7 @@ controller_page_header(scope)
 
 if scope.users['logged_in']:
 	ticker = scope.page[page]['selectors']['ticker']
-	logging.critical('user is logged in')
-	print(scope.page[page]['list_loaded_tickers'])
 	if ticker in scope.page[page]['list_loaded_tickers']:
-		logging.critical(f"ticker is in list_load_tickers {ticker=}")
 		chart_df 	= scope.tickers[ticker][page]['df']
 		schema		= create_schema_for_plotly(scope)
 		if schema['no_of_charts'] > 0:

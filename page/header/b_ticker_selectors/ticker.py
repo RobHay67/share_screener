@@ -10,7 +10,6 @@ def select_a_ticker(scope):
 	display_name = 'Select a Ticker'
 
 	previous_selection = scope.page[page]['selectors']['ticker']
-	st.write(previous_selection)
 	if previous_selection != None:
 		pos_for_previous = scope.config['dropdowns']['ticker'].index(previous_selection)	
 	else: 
@@ -40,9 +39,8 @@ def changed_ticker_selection(scope, page, widget_key):
 
 	# Update the selected_tickers list
 	if ticker != None :
-		logging.critical('ticker Not == None')
-		scope.page[page]['list_selected_tickers'] = ticker
-
+		logging.critical(f'ticker Not == None {ticker=}')
+		scope.page[page]['list_selected_tickers'] = [ticker]
 		# update the list of tickers to load
 		scope.page[page]['list_load_tickers'] = []
 		already_loaded_list = list(scope.tickers.keys())
