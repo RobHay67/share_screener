@@ -24,6 +24,7 @@ def select_industries(scope):
 def changed_industry_selection(scope, page, widget_key):
 	logging.warning("changed_industry_selection")
 	selected_industries = scope[widget_key]
+	
 	# store the selection
 	scope.page[page]['selectors']['tickers'] = []
 	scope.page[page]['selectors']['industries'] = selected_industries

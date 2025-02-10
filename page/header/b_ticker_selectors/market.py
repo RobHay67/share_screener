@@ -21,13 +21,13 @@ def select_a_market(scope):
 				options		=scope.config['dropdowns']['markets'],
 				index		=pos_for_previous, 
 				help		='Select an Entire Share Market for Analysis',
-				on_change	=changed_market_selection,
+				on_change	=selected_entire_market,
 				args		=(scope, page, widget_key, ),
 				key			=widget_key,
 				) 
 
 
-def changed_market_selection(scope, page, widget_key):
+def selected_entire_market(scope, page, widget_key):
 	logging.warning("on_change_market_selection")
 	stock_market = scope[widget_key]
 
@@ -38,8 +38,14 @@ def changed_market_selection(scope, page, widget_key):
 	scope.page[page]['search_results'] = {}
 
 	# Selected an entire share market
-	tickers_in_market = scope.ticker_index['df'].index.values.tolist()
-	tickers_in_market.sort()
-	scope.page[page]['list_selected_tickers'] = tickers_in_market
+	ticker_list = scope.ticker_index['df'].index.values.tolist()
+	ticker_list.sort()
+	scope.page[page]['list_selected_tickers'] = ticker_list
 
-	logging.error("changed_market_selection have not updated the list of tickers to download")
+	# update the list of tickers to load
+	scope.page[page]['list_load_tickers'] = []
+	already_loaded_list = list(scope.tickers.keys())
+	for ticker in ticker_list:
+		if ticker not in already_loaded_list:
+			if ticker not in scope.ticker_schema['missing']['local']: # Tried and failed to load this one
+				scope.page[page]['list_load_tickers'].append(ticker)
