@@ -40,13 +40,17 @@ def changed_ticker_selection(scope, page, widget_key):
 
 	# Update the selected_tickers list
 	if ticker != None :
+		logging.critical('ticker Not == None')
 		scope.page[page]['list_selected_tickers'] = ticker
 
 		# update the list of tickers to load
 		scope.page[page]['list_load_tickers'] = []
 		already_loaded_list = list(scope.tickers.keys())
-		if ticker not in already_loaded_list: 	
+		logging.critical(already_loaded_list)
+		if ticker not in already_loaded_list: 
+			logging.critical('ticker NOT IN already loaded list')
 			if ticker not in scope.ticker_schema['missing']['local']: # Tried and failed to load this one
+				logging.critical('ticker NOT IN missing local list')
 				scope.page[page]['list_load_tickers'].append(ticker)
 
 

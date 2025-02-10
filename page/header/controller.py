@@ -41,7 +41,7 @@ def controller_page_header(scope):
 	if scope.page[page]['show']['ticker_file'] != 'Show/Hide Data':show_ticker_files = True
 	if len(scope.page[page]['search_results']) > 0:show_search_results=True
 	if scope.page[page]['show']['active_trial_or_chart']:show_active_trial_or_chart=True
-	if len(scope.page[page]['list_loaded_tickers'])>0:show_verdicts=True
+	if page=='screener' and len(scope.page[page]['list_loaded_tickers'])>0:show_verdicts=True
 
 
 	page_title(scope)											# a_
@@ -61,6 +61,7 @@ def controller_page_header(scope):
 		if show_verdicts:
 			router_show_verdicts(scope)
 			show_fliss_simple_strategy(scope)
+			logging.critical('remove show_fliss_simple_strategy when Strategy can be managed in settings')
 
 
 

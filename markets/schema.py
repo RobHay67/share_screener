@@ -1,6 +1,8 @@
 
 
 
+
+
 markets = {
 					'ASX' : { 'ticker_suffix':'.AX' },
 					'USA' : { 'ticker_suffix':'.US' },

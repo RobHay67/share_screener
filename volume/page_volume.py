@@ -7,7 +7,6 @@ import pytz
 from page.header.controller import controller_page_header
 from volume.views.input_volume import view_input_volume
 from volume.views.prediction import view_prediction
-from markets.schema import opening_hours
 
 
 # Page Configuration
@@ -23,7 +22,7 @@ if scope.users['logged_in']:
 	ticker = scope.page[page]['selectors']['ticker']
 
 	if ticker != None :		
-
+		opening_hours = scope.config['opening_hours']
 		market_timezone = opening_hours[scope.config['share_market']]['timezone']		# Timezone for the share market
 		market_time = datetime.now(pytz.timezone(market_timezone))						# Current Market time
 

@@ -3,14 +3,16 @@ import streamlit as st
 import pytz
 from datetime import datetime
 
-from markets.schema import opening_hours
 from page.sidebar.row_limit import edit_row_limit
 from page.sidebar.download import edit_download_days
+
 
 def show_sidebar_app_info(scope):
 	logging.debug("show_sidebar_app_info")
 	local_time=datetime.now()
-	market_timezone = opening_hours[scope.config['share_market']]['timezone']
+	opening_hours = scope.config['opening_hours']
+	share_market = scope.config['share_market']
+	market_timezone = opening_hours[share_market]['timezone']
 	market_time = datetime.now(pytz.timezone(market_timezone))
 
 	st.logo('assets/Logo JPG.jpg')

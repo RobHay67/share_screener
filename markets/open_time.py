@@ -1,14 +1,10 @@
 import logging
-from markets.schema import opening_hours
-
-
-
-
 
 
 def open_time( scope, ticker):
 	logging.warning("open_time")
 	market = scope.config['share_market']
+	opening_hours = scope.config['opening_hours']
 	ticker_code_first_letter = ticker[0].upper()
 	for group in opening_hours[market].keys():
 		

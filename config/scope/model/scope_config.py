@@ -1,6 +1,8 @@
 import logging
 import time
 from page.scope.model.schema import page_schema
+from config.scope.model.schema_external_links import external_links
+from markets.schema import markets, public_holidays, opening_hours
 from config.scope.model.dropdowns.markets import build_market_dropdown_list
 from config.scope.model.dropdowns.industries import build_industry_dropdown_list
 from config.scope.model.dropdowns.tickers import build_ticker_dropdown_list
@@ -11,8 +13,15 @@ def scope_config(scope):
 	scope.config['project_description'] = 'Share Picker'
 	scope.config['project_start_time'] 	= time.time()
 	
+	# Schemas (General Config)
 	scope.config['page_schema'] = page_schema
+	scope.config['external_links'] = external_links
+	scope.config['markets'] = markets
+	scope.config['public_holidays'] = public_holidays
+	scope.config['opening_hours'] = opening_hours
+
 	scope.config['page_list'] = list(scope.config['page_schema'].keys())
+
 	scope_config_for_users_settings(scope)
 
 	# Dropdowns
@@ -30,8 +39,7 @@ def scope_config_for_users_settings(scope):
 	# These Setting can be changed for each user
 	# so we need to be able to call when changing user
 	scope.config['row_limit'] = 100
-	scope.config['share_market'] = 'ASX'
-	# scope.config['share_market'] = 'USA'
+	scope.config['share_market'] = 'ASX' # 'USA'
 	scope.config['download_days'] = '5d'
 
 

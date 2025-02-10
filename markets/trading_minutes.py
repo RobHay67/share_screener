@@ -1,11 +1,11 @@
 import logging
-from markets.schema import opening_hours
 
 
 
 def trading_minutes( scope, ticker ):
 	logging.warning("trading_minutes")
 	market = scope.config['share_market']
+	opening_hours = scope.config['opening_hours']
 	ticker_code_first_letter = ticker[0].upper()
 	for group in opening_hours[market].keys():
 		if group not in ['timezone', 'market_open', 'market_close' ]:
