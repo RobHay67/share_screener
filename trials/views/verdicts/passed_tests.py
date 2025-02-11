@@ -1,11 +1,9 @@
 import logging
 import streamlit as st
+from page.navigation.external_links import selectbox_external_link
+from page.navigation.button_page_link import button_page_link
+from page.navigation.button_external_link import button_external_link
 
-from page.navigation.button import button_page_link
-# from page.navigation.links import website_hyperlink
-from page.navigation.dropdown_external_links import choose_default_external_link
-
-from page.navigation.dropdown_external_links import button_external_link
 
 def show_passing_verdicts(scope, no_of_verdicts, tab_group_size, verdict_list):
 	logging.debug("show_passing_verdicts")
@@ -13,7 +11,7 @@ def show_passing_verdicts(scope, no_of_verdicts, tab_group_size, verdict_list):
 	
 	col1, col2 = st.columns([4,1])
 	with col1:st.subheader('Passing Trial Verdicts (' + str(no_of_verdicts) + ') passed')
-	with col2:choose_default_external_link(scope)
+	with col2:selectbox_external_link(scope)
 	
 	# Render the Results (in tabs because there could be lots)
 	# Create List of Tab Names

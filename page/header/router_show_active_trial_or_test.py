@@ -7,6 +7,8 @@ def router_show_active_trial_or_test(scope):
 	page = scope.display['page']
 
 	match page:
-		case 'screener':show_active_trials(scope)
-		case 'chart':logging.critical("yet to build an active charts render - TODO")
+		case 'screener':
+			show_active_trials(scope)
+		case 'chart':
+			logging.critical("yet to build an active charts render - TODO")
 

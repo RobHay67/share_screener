@@ -26,6 +26,7 @@ def controller_page_header(scope):
 	show_ticker_name = False
 	show_active_trial_or_chart = False
 
+	# Determine what is to be be shown / displayed
 	if (scope.page[page]['show']['trials'] == True or
 		scope.page[page]['show']['strategy'] == True or
 		scope.page[page]['show']['charts'] == True or

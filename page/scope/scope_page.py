@@ -1,8 +1,6 @@
 import logging
 
 
-
-
 def scope_page(scope):
 	logging.warning("scope_page")
 

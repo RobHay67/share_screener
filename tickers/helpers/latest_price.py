@@ -3,7 +3,7 @@ import pandas as pd
 
 
 def latest_ticker_price(scope, ticker):
-	logging.warning("latest_ticker_price")
+	logging.info("latest_ticker_price")
 	price_df =  pd.DataFrame(columns=['Date','Open','High','Low','Close','Volume' ])
 
 	# Check that we have OHLCV data for this ticker
