@@ -9,7 +9,8 @@ def show_passing_verdicts(scope, no_of_verdicts, tab_group_size, verdict_list):
 	logging.debug("show_passing_verdicts")
 	page = scope.display['page']
 	
-	col1, col2 = st.columns([4,1])
+	col1, col2 = st.columns([9,4]) #13
+
 	with col1:st.subheader('Passing Trial Verdicts (' + str(no_of_verdicts) + ') passed')
 	with col2:selectbox_external_link(scope)
 	
@@ -29,7 +30,7 @@ def show_passing_verdicts(scope, no_of_verdicts, tab_group_size, verdict_list):
 		ticker_start += tab_group_size
 		with tab:
 			for ticker in tickers_for_tab:
-				col1,col2,col3,col4,col5,col6,col7 = st.columns([1,4,1,1,1,1,4])
+				col1,col2,col3,col4,col5,col6,col7 = st.columns([1,4,1,1,1,1,4]) #13
 				
 				company_name = scope.config['ticker_search'][ticker]
 				with col1 :st.write(ticker)

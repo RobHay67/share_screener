@@ -10,7 +10,7 @@ def add_quick_links(scope):
 	page = scope.display['page']
 	ticker = scope.page[page]['selectors']['ticker']
 	
-	col1,col2,col3,col4,col5,col6,col7 = st.columns([1.0,   0.5, 0.5, 0.5, 0.5,  5.0,0.5])
+	col1,col2,col3,col4,col5,col6,col7 = st.columns([1.0,   0.5, 0.5, 0.5, 0.5,  5.0,1.5])
 	with col1 : st.write('Quick Links :')
 	with col2:button_page_link(scope, 'chart', ticker)
 	with col3:button_page_link(scope, 'intraday', ticker)

@@ -4,7 +4,7 @@ import webbrowser
 
 
 def button_external_link(scope, ticker):
-	logging.info('button_external_link')
+	logging.debug('button_external_link')
 	page = scope.display['page']
 	website = scope.page[page]['external_link']
 	widget_key = 'widget_' + page + '_button_external_link_' + ticker
