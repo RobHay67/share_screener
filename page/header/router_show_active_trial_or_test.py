@@ -1,5 +1,6 @@
 import logging
 from trials.views.active_trials import show_active_trials
+from charts.active_charts import show_active_charts
 
 
 def router_show_active_trial_or_test(scope):
@@ -10,5 +11,4 @@ def router_show_active_trial_or_test(scope):
 		case 'screener':
 			show_active_trials(scope)
 		case 'chart':
-			logging.critical("yet to build an active charts render - TODO")
-
+			show_active_charts(scope)

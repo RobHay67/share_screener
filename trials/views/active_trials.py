@@ -1,8 +1,6 @@
 import logging
 import streamlit as st
 
-# from trials.views.active_trials.builder import build_english_explanation_for_trial
-
 
 def show_active_trials(scope):
 	logging.info("show_active_trials")

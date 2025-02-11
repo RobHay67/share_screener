@@ -147,7 +147,7 @@ charts_schema = {
 								short_name		: 'Scatter',
 								is_overlay		: False, 
 								add_overlays	: False, 
-								definition		: 'tbc',
+								definition		: 'https://www.investopedia.com',
 								plot			: { 
 													function	: None, 
 													title		: '', 
@@ -163,7 +163,7 @@ charts_schema = {
 								is_overlay		: False, 
 								add_overlays	: True , 
 								active_columns	: ['open','high','low','close'], 
-								definition		: '',
+								definition		: 'https://www.investopedia.com/terms/l/linechart.asp',
 								notes			: '',
 								plot			: { 
 													function	: line_plot, 
@@ -179,7 +179,7 @@ charts_schema = {
 								short_name		: 'Heikin Ashi',
 								is_overlay		: False, 
 								add_overlays	: False, 
-								definition		: '',
+								definition		: 'https://www.investopedia.com/trading/heikin-ashi-better-candlestick/',
 								notes			: '',
 								plot			: { 
 													function:None, 
@@ -197,7 +197,7 @@ charts_schema = {
 								short_name		: 'VWAP',
 								is_overlay		: False, 
 								add_overlays	: False, 
-								definition		: '',
+								definition		: 'https://www.investopedia.com/terms/w/weightedaverage.asp',
 								notes			: '',
 								plot			: { 
 													function	:  volume_plot, 
@@ -216,7 +216,7 @@ charts_schema = {
 								short_name		: 'Volume',
 								is_overlay		: False, 
 								add_overlays	: False, 
-								definition		: '',
+								definition		: 'https://www.investopedia.com/ask/answers/041015/why-trading-volume-important-investors.asp',
 								notes			: '',
 								plot			: { 
 													function	:  volume_plot, 
@@ -232,7 +232,7 @@ charts_schema = {
 								short_name		: 'VPM', 
 								is_overlay		: False, 
 								add_overlays	: False, 
-								definition		: '',
+								definition		: 'https://www.investopedia.com/ask/answers/041015/why-trading-volume-important-investors.asp',
 								notes			: '',
 								plot			: { 
 													function	: vpm_plot, 
@@ -248,7 +248,7 @@ charts_schema = {
 								short_name		: 'VAC',
 								is_overlay		: False, 
 								add_overlays	: False, 
-								definition		: '',
+								definition		: 'https://www.investopedia.com',
 								notes			: '',
 								plot			: { 
 													function	: None, 
@@ -264,7 +264,7 @@ charts_schema = {
 								short_name		: 'MACD',
 								is_overlay		: False, 
 								add_overlays	: False, 
-								definition		: '',
+								definition		: 'https://www.investopedia.com/articles/forex/05/macddiverge.asp',
 								notes			: '',
 								plot			: { 
 													function	: macd_plot, 
@@ -286,7 +286,7 @@ charts_schema = {
 								short_name		: 'MACD Vol',
 								is_overlay		: False, 
 								add_overlays	: False, 
-								definition		: '',
+								definition		: 'https://www.investopedia.com/articles/forex/05/macddiverge.asp',
 								notes			: '',
 								plot			: { 
 													function	: macd_vol_plot	, 
@@ -308,7 +308,7 @@ charts_schema = {
 								short_name		: 'RSI',
 								is_overlay		: False, 
 								add_overlays	: False, 
-								definition		: '',
+								definition		: 'https://www.investopedia.com/terms/r/rsi.asp',
 								notes			: '',
 								plot			: { 
 													function		: rsi_plot, 
@@ -328,7 +328,7 @@ charts_schema = {
 								short_name		: 'Volume Oscillator',
 								is_overlay		: False, 
 								add_overlays	: False, 
-								definition		: '',
+								definition		: 'https://www.investopedia.com/articles/active-trading/072815/how-interpret-volume-zone-oscillator.asp',
 								notes			: '',
 								plot			: { 
 													function	: None, 
@@ -349,7 +349,7 @@ charts_schema = {
 								short_name		: 'Stochastic',
 								is_overlay		: False, 
 								add_overlays	: False, 
-								definition		: '',
+								definition		: 'https://www.investopedia.com/terms/s/stochasticoscillator.asp',
 								notes			: '',
 								plot			: { 
 													function		: stoch_plot, 
@@ -372,7 +372,7 @@ charts_schema = {
 								short_name		: 'SMA-1',
 								is_overlay		: True , 
 								add_overlays	: False, 
-								definition		: '',
+								definition		: 'https://www.investopedia.com/terms/s/sma.asp',
 								notes			: '',
 								plot			: { function : sma_plot, colour : 'blue' }, 									
 								function		: {	function : sma_cols, column : 'close', periods:21 } 
@@ -383,7 +383,7 @@ charts_schema = {
 								short_name		: 'SMA-2',
 								is_overlay		: True , 
 								add_overlays		: False, 
-								definition		: '',
+								definition		: 'https://www.investopedia.com/terms/s/sma.asp',
 								notes			: '',
 								plot			: { function : sma_plot, colour : 'green' }, 									
 								function		: {	function : sma_cols, column : 'close', periods:50 } 
@@ -394,7 +394,7 @@ charts_schema = {
 								short_name		: 'SMA-3',
 								is_overlay		: True , 
 								add_overlays	: False, 
-								definition		: '',
+								definition		: 'https://www.investopedia.com/terms/s/sma.asp',
 								notes			: '',
 								plot			: { function : sma_plot, colour : 'green' }, 									
 								function		: {	function : sma_cols, column : 'close', periods:200 } 
@@ -405,7 +405,7 @@ charts_schema = {
 								short_name		: 'EMA-1',
 								is_overlay		: True , 
 								add_overlays	: False, 
-								definition		: '',
+								definition		: 'https://www.investopedia.com/terms/e/ema.asp',
 								notes			: '',
 								plot			: { function : ema_plot, colour : 'red' }, 									
 								function		: {	function : ema_cols, column : 'close', periods:21 } 
@@ -416,7 +416,7 @@ charts_schema = {
 								short_name		: 'EMA-2',
 								is_overlay		: True , 
 								add_overlays	: False, 
-								definition		: '',
+								definition		: 'https://www.investopedia.com/terms/e/ema.asp',
 								notes			: '',
 								plot			: { function : ema_plot, colour : 'blue' }, 									
 								function		: {	function : ema_cols, column : 'close', periods:50 } 
@@ -427,7 +427,7 @@ charts_schema = {
 								short_name		: 'EMA-3',
 								is_overlay		: True , 
 								add_overlays	: False, 
-								definition		: '',
+								definition		: 'https://www.investopedia.com/terms/e/ema.asp',
 								notes			: '',
 								plot			: { function : ema_plot, colour : 'SteelBlue' }, 									
 								function		: {	function : ema_cols, column : 'close', periods:200 } 
@@ -438,7 +438,7 @@ charts_schema = {
 								short_name		: 'Bollinger',
 								is_overlay		: True, 
 								add_overlays	: False, 
-								definition		: '',
+								definition		: 'https://www.investopedia.com/terms/b/bollingerbands.asp',
 								notes			: '',
 								plot			: { function:sma_plot, colour:'black' }, 									
 								function		:{ 
@@ -456,7 +456,7 @@ charts_schema = {
 								short_name		: 'Dividends',
 								is_overlay		: True , 
 								add_overlays	: False, 
-								definition		: '',
+								definition		: 'https://www.investopedia.com/terms/d/dividendyield.asp',
 								notes			: '',
 								plot			: { function: dividend_plot, colour	:'blue' }, 									
 								function		: { 
@@ -469,7 +469,7 @@ charts_schema = {
 								short_name		: 'Announcements',
 								is_overlay		: True , 
 								add_overlays	: False, 
-								definition		: '',
+								definition		: 'https://www.investopedia.com',
 								notes			: '',
 								plot			: { function:sma_plot, colour :'black' }, 									
 								function		: None,			 # TODO - we are still going to need a chart here
@@ -480,7 +480,7 @@ charts_schema = {
 								short_name		: 'Icki Moku',
 								is_overlay		: True, 
 								add_overlays	: False, 
-								definition		: '',
+								definition		: 'https://www.investopedia.com/articles/forex/06/ichimoku.asp#toc-what-is-the-ichimoku-chart',
 								notes			: '',
 								plot			:{ function:sma_plot, colour :'black' }, 									
 								function		: None 			# TODO - Rob to work out if this needs speccing
@@ -491,7 +491,7 @@ charts_schema = {
 								short_name		:'Icki Moku Daily',
 								is_overlay		:True,
 								add_overlays	:False,
-								definition		: '',
+								definition		: 'https://www.investopedia.com/articles/forex/06/ichimoku.asp#toc-what-is-the-ichimoku-chart',
 								notes			: '',
 								plot			: { function:sma_plot, colour:'black' },
 								function		: None 					# TODO - Rob to work out if this needs speccing
