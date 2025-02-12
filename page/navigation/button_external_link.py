@@ -6,7 +6,7 @@ import webbrowser
 def button_external_link(scope, ticker):
 	logging.debug('button_external_link')
 	page = scope.display['page']
-	website = scope.page[page]['external_link']
+	website = scope.config['external_link']
 	widget_key = 'widget_' + page + '_button_external_link_' + ticker
 	
 	st.button(
@@ -24,7 +24,7 @@ def clicked_button_external_url(scope, ticker, widget_key):
 	page = scope.display['page']
 	share_market = scope.config['share_market']
 	market_code = scope.config['markets'][share_market]['ticker_suffix']
-	website = scope.page[page]['external_link']
+	website = scope.config['external_link']
 	# Remove the market suffix from the share code
 	ticker_code = ticker.removesuffix(market_code)
 

@@ -8,8 +8,8 @@ from charts.scope.scope_charts import build_charts_column_adder_template
 
 def login_user(scope, login_name):
 	logging.warning("login_user")
-	# Store User params
 
+	# Store User params
 	scope.users['login_name'] = login_name
 	scope.users['logged_in'] = True
 
@@ -17,6 +17,7 @@ def login_user(scope, login_name):
 	scope.charts['primary_height'] = scope.users['json'][login_name]['chart_height']
 	scope.config['download_days'] = scope.users['json'][login_name]['download_days']
 	scope.config['row_limit'] = scope.users['json'][login_name]['row_limit']
+	scope.config['external_link'] = scope.users['json'][login_name]['external_link']
 
 	# ========================================================
 	# Trial Settings

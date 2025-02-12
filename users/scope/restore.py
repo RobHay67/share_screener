@@ -1,20 +1,21 @@
 import logging
 
-from users.scope.scope_users import scope_users_for_users
-from charts.scope.scope_charts import scope_charts_for_users
+from users.scope.scope_users import scope_users_for_users_settings
+from charts.scope.scope_charts import scope_charts_for_users_settings
 from trials.scope.scope_trials import scope_trials_for_users_settings
 from config.scope.scope_config import scope_config_for_users_settings
+from users.helpers.reset_page_to_defaults import reset_page_to_default_values
 
 
-def restore_user_config(scope):
-	logging.warning("restore_user_config")
+def set_user_config_to_default_values(scope):
+	logging.warning("set_user_config_to_default_values")
 	# Reinstate default user setting across config
 
 	# Default User Name
-	scope_users_for_users(scope)
+	scope_users_for_users_settings(scope)
 
 	# Chart Config and Chart Height
-	scope_charts_for_users(scope)
+	scope_charts_for_users_settings(scope)
 
 	# Trial Config
 	scope_trials_for_users_settings(scope)
@@ -22,4 +23,5 @@ def restore_user_config(scope):
 	# row_limit
 	scope_config_for_users_settings(scope)
 
-	logging.critical("what about the trials config - should this also not revert to the base values")
+	# Reset Selectors
+	reset_page_to_default_values(scope)

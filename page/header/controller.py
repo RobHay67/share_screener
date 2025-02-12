@@ -15,6 +15,7 @@ from trials.views.fliss_simple import show_fliss_simple_strategy
 
 def controller_page_header(scope):
 	logging.info("controller_page_header")
+
 	page = scope.display['page']
 
 	# default show status for optional display items
@@ -41,6 +42,8 @@ def controller_page_header(scope):
 	if scope.page[page]['show']['ticker_file'] != 'Show/Hide Data':show_ticker_files = True
 	if len(scope.page[page]['search_results']) > 0:show_search_results=True
 	if scope.page[page]['show']['active_trial_or_chart']:show_active_trial_or_chart=True
+
+
 
 	page_title(scope)											# a_
 	if scope.users['logged_in']:

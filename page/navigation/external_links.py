@@ -10,7 +10,7 @@ def selectbox_external_link(scope):
 	widget_key = 'widget_' + page + '_button_external_link'
 	list_external_links = list(scope.config['external_links'].keys())
 	
-	previous_selection = scope.page[page]['external_link']
+	previous_selection = scope.config['external_link']
 	pos_for_previous = list_external_links.index(previous_selection)
 
 	st.selectbox(
@@ -31,8 +31,13 @@ def radio_external_links(scope, ticker):
 	widget_key = 'widget_' + page + '_radio_external_link'
 	list_external_links = list(scope.config['external_links'].keys())
 
+	previous_selection = scope.config['external_link']
+	pos_for_previous = list_external_links.index(previous_selection)
+
+
 	st.radio(
 				label="Set label visibility",
+				index=pos_for_previous,
 				options=list_external_links,
 				on_change	=clicked_external_url_link,
 				args		=(scope, page, widget_key, ),
@@ -46,5 +51,5 @@ def radio_external_links(scope, ticker):
 def clicked_external_url_link(scope, page, widget_key):
 	logging.warning('clicked_external_url_link')
 	website = scope[widget_key]
-	scope.page[page]['external_link'] = website
+	scope.config['external_link'] = website
 

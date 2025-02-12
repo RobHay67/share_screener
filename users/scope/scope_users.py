@@ -8,12 +8,12 @@ def scope_users(scope):
 	scope.users = {}
 	scope.users['json'] = {}
 	scope.users['user_list'] = []
-	scope_users_for_users(scope)
+	scope_users_for_users_settings(scope)
 	load_user_table(scope)
 
 
-def scope_users_for_users(scope):
-	logging.warning("scope_users_for_users")
+def scope_users_for_users_settings(scope):
+	logging.warning("scope_users_for_users_settings")
 	# Setting can be changed for each user
 	# so we need to be able to call when changing user
 

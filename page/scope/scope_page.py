@@ -16,8 +16,6 @@ def scope_page(scope):
 		
 		scope.page[page]['list_page_worklist'] = ['Show/Hide Data']
 		scope.page[page]['replace_worklist'] = False			# flag to indicate that this job needs to be done
-		
-		scope.page[page]['external_link'] = 'None'				# store whatever the default external link button is
 
 		scope.page[page]['selectors'] = {
 										'ticker'			: None,			# select a single ticker (non screener page)
@@ -39,7 +37,3 @@ def scope_page(scope):
 								}
 		
 
-
-
-
-		

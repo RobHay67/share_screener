@@ -41,6 +41,8 @@ def scope_config_for_users_settings(scope):
 	scope.config['row_limit'] = 100
 	scope.config['share_market'] = 'ASX' # 'USA'
 	scope.config['download_days'] = '5d'
+	scope.config['external_link'] = 'None'				# store whatever the default external link button is
+
 
 
 def scope_ticker_search(scope):

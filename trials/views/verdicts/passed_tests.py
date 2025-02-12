@@ -39,6 +39,6 @@ def show_passing_verdicts(scope, no_of_verdicts, tab_group_size, verdict_list):
 				with col4 :button_page_link(scope, 'intraday', ticker)
 				with col5 :button_page_link(scope, 'volume', ticker)
 				with col6 :button_page_link(scope, 'research', ticker)
-				if scope.page[page]['external_link'] != 'None':
+				if scope.config['external_link'] != 'None':
 					with col7 :button_external_link(scope, ticker)
 

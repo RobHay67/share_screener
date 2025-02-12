@@ -1,7 +1,6 @@
 import logging
 from users.scope.save.controller import save_users_table
-from users.scope.restore import restore_user_config
-
+from users.scope.restore import set_user_config_to_default_values
 
 def logout_user(scope):
 	logging.warning("logout_user")
@@ -9,7 +8,8 @@ def logout_user(scope):
 	# must be done before we start over-writing other settings
 	save_users_table(scope)
 
-	restore_user_config(scope)
+	set_user_config_to_default_values(scope)
+
 
 
 
